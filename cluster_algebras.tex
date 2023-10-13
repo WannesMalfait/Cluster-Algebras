@@ -8,6 +8,7 @@
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\tbx}{\tilde{\bx}}
 \newcommand{\tB}{\tilde{B}}
+\DeclareMathOperator{\Fract}{Fract}
 
 %%%%%%%%%%%%%
 %% Fill in!%%
@@ -120,7 +121,105 @@ avoid having to prove the same results twice.
 
 \subsection{Quantum cluster algebras}
 
+TODO: add more notation!
 We will follow the notation as presented in \cite{GoodearlYakimov2017QCA}.
+Let $\bbK$ be any field.
+As a first step, we move from $\bbQ(Y_1, \dots, Y_N)$ to
+the \emph{quantum torus}
+\begin{equation*}
+    \mcT_{\mathbf r} =
+    \frac{\bbK\langle Y_1^{\pm 1}, \dots, Y_N^{\pm 1} \rangle}{\langle Y_iY_j = r_{ij}Y_jY_i \rangle},
+\end{equation*}
+where $\mathbf{r} \in M_N(\bbK^*)$ is a multiplicatively skew-symmetric matrix i.e.,
+$r_{ij} = r_{ji}\inv, r_{ii} = 1$.
+Associated to any such matrix, is a skew-symmetric bicharacter
+\footnote{With a bicharacter we mean a map from a direct product,
+    such that each of the component maps is a group character.}:
+\begin{equation*}
+    \Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
+    \Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
+\end{equation*}
+
+To prevent formulas from having $\frac{1}{2}$'s in the exponents,
+we will work with the \emph{quantum torus}\footnote{
+    The reason it's called a quantum torus is the following:
+    it is a quantization of the coordinate algebra of the torus $(\bbK^{*})^N$.
+}
+$\mcT_{\mathbf{r}^{\cdot 2}}$,
+where
+\begin{equation*}
+    \mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
+\end{equation*}
+This torus has a $\bbK$-basis consisting of elements
+\begin{equation*}
+    Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
+    \text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
+\end{equation*}
+where
+\begin{equation*}
+    \mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
+\end{equation*}
+Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
+\begin{align*}
+    Y^{(e_k)}
+     & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
+     & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
+     & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
+     & = Y_K.
+\end{align*}
+Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
+\begin{equation*}
+    Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
+\end{equation*}
+Indeed,
+\begin{align*}
+    Y^{(f)}Y^{(g)}
+     & = \mcS_{\mathbf{r}}(f)Y^f\mcS_{\mathbf{r}}(g)Y^g                                    \\
+     & = (\prod_{i < j}r_{ij}^{-f_if_j})(\prod_{i}Y_i^{f_i})
+    (\prod_{i < j}r_{ij}^{-g_ig_j})( \prod_{i}Y_i^{g_i})                                   \\
+     & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+    (\prod_{k}Y_k^{f_k})(\prod_{k}Y_k^{g_k})                                               \\
+     & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+    (\prod_{i < j}r_{ij}^{-2g_if_j})(\prod_{k}Y_k^{f_k + g_k})
+     & (Y_i^{f_i} Y_j^{g_j} = r_{ij}^{2f_ig_j}Y_j^{g_j}Y_i^{f_i})                          \\
+     & = (\prod_{i < j}r_{ij}^{-(f_if_j +2g_if_j + g_ig_j)})
+    (\prod_{k}Y_k^{f_k + g_k})                                                             \\
+     & = (\prod_{i < j}r_{ij}^{f_ig_j - g_if_j})
+    (\prod_{i < j}r_{ij}^{-(f_if_j + f_ig_j + g_if_j + f_ig_j)})(\prod_{k}Y_k^{f_k + g_k}) \\
+     & = (\prod_{i,j}r_{ij}^{f_ig_j})
+    (\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
+     & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
+\end{align*}
+The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^(f) \mid f \in \bbZ^N\}$
+is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
+
+We now come to the analog of clusters in the quantum setting.
+\begin{definition}
+    A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
+    a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
+    \begin{enumerate}
+        \item There is an algebra embedding
+              $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
+              given by $\varphi(Y_i) = M(e_i)$, such that
+              $\mcF = \Fract(\varphi(\mcT_{\mathbf{r}^{\cdot 2}}))$.
+        \item For all $f \in \bbZ^N$, $M(f) = \varphi(Y^{(f)})$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+    We can always recover the matrix $\mathbf{r}$ from the toric frame $M$,
+    since
+    \begin{align*}
+        r_{ij}
+                                 & = \Omega_{\mathbf{r}}(e_i, e_j)                    \\
+                                 & = Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv          \\
+                                 & \Big\Updownarrow                                   \\
+        r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
+                                 & = M(e_i)M(e_j)M(e_i + e_j)\inv.
+    \end{align*}
+
+\end{remark}
+
+
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
