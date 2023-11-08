@@ -121,7 +121,7 @@ avoid having to prove the same results twice.
 
 \subsection{Quantum cluster algebras}
 
-TODO: add more notation!
+\textbf{TODO: add more notation!}
 We will follow the notation as presented in \cite{GoodearlYakimov2017QCA}.
 Let $\bbK$ be any field.
 As a first step, we move from $\bbQ(Y_1, \dots, Y_N)$ to
@@ -216,10 +216,77 @@ We now come to the analog of clusters in the quantum setting.
         r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
                                  & = M(e_i)M(e_j)M(e_i + e_j)\inv.
     \end{align*}
-
+    We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
 \end{remark}
+Now, for quantum seeds, we'll need an extra compatibility condition:
+\begin{definition}
+    A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
+    and an $N \times n$ matrix $B$ over $\bbZ$ such that
+    \begin{enumerate}
+        \item The principal part of $\tB$ is skew-symmetrizable.
+        \item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
+    \end{enumerate}
+\end{definition}
 
-
+So, what is this extra compatibility?
+In analogy with \cref{eq:exchange_relation} we want to define $\mu_k(M)$ in such
+a way that $\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$ and
+\begin{equation*}
+    M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
+\end{equation*}
+where $b^k$ is the $k$-th column of $B$.
+Bringing $M(e_k)$ to the other side,
+and ignoring eventual symmetrization constants we can then define
+\begin{equation*}
+    \mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
+\end{equation*}
+Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
+\begin{align*}
+    \mu_k(M)(e_k)
+     & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
+     & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
+     & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
+\end{align*}
+where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
+\begin{equation*}
+    E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
+\end{equation*}
+Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
+and $E_\epsilon e_j = e_j$ for all $j \neq k$,
+we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
+In other words,
+we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
+\begin{align*}
+    M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
+\end{align*}
+On the one hand we have
+\begin{align*}
+    M'(e_k)M'(e_j)
+     & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
+     & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
+     & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
+     & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
+\end{align*}
+while $M'$ being a toric frame would imply
+\begin{align*}
+    M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
+\end{align*}
+The easiest way to make the two equations compatible,
+is to demand $\mathbf{r}' = \mathbf{r}$,
+and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
+\textbf{TODO: is this the only possible choice?}
+This leads to the following definition:
+\begin{definition}
+    Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
+    \begin{equation*}
+        t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
+    \end{equation*}
+    for $j \in \mathbf{ex}$ and $j \in [1, N]$.
+    We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
+    $t_{ij} = 1$ whenever $i \neq j$,
+    and all the $t_{ii}$ are \emph{not} roots of unity.
+\end{definition}
+\textbf{TODO: How to explain the root of unity part? Is there a clean way?}
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
