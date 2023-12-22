@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\input{definitions/preamble}
+\input{definitions/macros}
+\input{definitions/letterfonts}
+
+\usepackage[width=400pt]{geometry}
+
+
+\title{Homogeneous prime elements in the Heisenberg algebra associated to $U_q (\mathfrak{n}_2)$}
+\author{Wannes Malfait}
+
+\begin{document}
+
+\maketitle
+
+The chosen CGL presentation is the one which adds the generators in the following order: $E_2, E_{12}, E_1, F_1, F_{12}, F_2$. The sequence of homogeneous prime elements of \cite[Theorem 3.6]{GoodearlYakimov2017QCA} is the following:
+\begin{align*}
+	y_1 &= E_2 \\
+	y_2 &= E_{12} \\
+	y_3 &= y_1 E_1 - \frac{1}{1- q^{-2}}E_{12} \\
+	y_4 &= y_3 F_1 - \frac{1}{1-q^2} E_2\\
+	y_5 &= y_2 F_{12} + (q\inv - q) E_1 F_1 - q \inv \\
+	y_6 &= y_4 F_2 + \frac{1}{1-q^2} \left(- q y_3 F_{12} + \frac{1}{1 - q^2} \right).
+\end{align*}
+The function $\eta$ as well as the corresponding predecessor and successor functions can be visualized as follows:
+\begin{equation*}
+	\begin{tikzcd}[sep=tiny]
+    	& y_2 & & & y_5 \\
+		y_1 & & y_3 & y_4 & & y_6
+    \end{tikzcd}
+\end{equation*}
+The vertical position gives the value of $\eta$. The predecessor and sucessor of an element can be seen by looking at the element right before or after on the same (horizontal) row. Additionally, we can easily determine the homogeneous prime elements of $R_k = \mathop{Alg}_\bbK (x_1, \dots, x_k)$ for $k=1,\dots,6$ by looking at the diagram. They are given by the rightmost elements of each row in the diagram restricted to the first $k$ elements. So, for example, the homogeneous prime elements of $R_4$ are $y_4$ and $y_2$.
+
+We can simplify the homogeneous elements a little bit by rescaling. Define $\tilde{E}_{12} = E_2 E_1 - q E_1 E_2$. Then
+\begin{align*}
+	\tilde{y}_1 &= E_2 \\
+	\tilde{y}_2 &= E_{12} \\
+	\tilde{y}_3 &= \tilde{E}_{12} \\
+	\tilde{y}_4 &= \tilde{E}_{12} F_1 -  E_2\\
+	\tilde{y}_5 &= E_{12} F_{12} + (q\inv - q) E_1 F_1 - q \inv \\
+	\tilde{y}_6 &= y_4 F_2 + - q \tilde{E}_{12} F_{12} + \frac{1}{1 - q^2},
+\end{align*}
+are the same as $y_1 , \dots, y_6$ up to a scalar multiple. Although these definitions do seem a bit less mysterious, there does not seem to be an obvious pattern. Maybe a pattern will emerge when looking at higher rank, or when trying to obtain these elements from those of $\mcO_q (M_{n \times n})$.
+
+
+
+\bibliographystyle{plain}
+\bibliography{references.bib}
+
+\end{document}
