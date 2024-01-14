@@ -5,6 +5,8 @@
 \input{definitions/macros}
 \input{definitions/letterfonts}
 
+\usetikzlibrary{shapes.geometric,fit, calc}
+
 \newcommand{\ex}{\mathbf{ex}}
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\tbx}{\tilde{\bx}}
@@ -35,7 +37,304 @@ Mostly use \cite{FominWilliams2021IntroductionCA_1-3} as reference together with
 Geoffrey's notes.
 
 \subsection{Combinatorial integer sequences}
-Somos-4 sequence, SL2-frieze patterns, triangulations of n-gon.
+
+In this section we will look at some integer sequences coming from number theory or
+combinatorial data, and observe some interesting patterns. In the next section we will
+see how these can all be viewed as special instances of a much more general framework.
+
+Let us start with the simplest of the sequences.
+\begin{definition}
+	Let $a_n$ be the sequence defined through the recursion relation
+	\begin{equation}
+		\label{eq:somos_4}
+		a_{n+4} = \frac{a_{n+3}a_{n+1}+ a_{n+2}^2}{a_n}
+	\end{equation}
+	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the \emph{Somos-4} sequence, named after its inventor, Michael Somos.
+\end{definition}
+Computing the first few terms of the sequence, we find:
+\begin{align*}
+	a_4    & = \frac{1 \cdot 1 + 1^2}{1} = 2                                           \\
+	a_5    & = \frac{2 \cdot 1 + 1^2}{1} = 3                                           \\
+	a_6    & = \frac{3 \cdot 1 + 2^2}{1} = 7                                           \\
+	a_7    & = \frac{7 \cdot 2 + 3^2}{2} = 23                                          \\
+	a_8    & = \frac{23 \cdot 3 + 7^2}{2} = \frac{118}{2} = 59                         \\
+	a_9    & = \frac{59 \cdot 7 + 23^2}{3} = \frac{942}{3} = 314                       \\
+	a_{10} & = \frac{314 \cdot 23 + 59^2}{7} = \frac{10703}{7} = 1529                  \\
+	a_{11} & = \frac{1529 \cdot 59 + 314^2}{23} = \frac{188807}{23} = 8209             \\
+	a_{12} & = \frac{8209 \cdot 314 + 1529^2}{59} = \frac{4915467}{59} = 83313         \\
+	a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
+\end{align*}
+From the definition of the sequence, there is no reason, a priori, to assume that all its elements would be integers. However, somewhat remarkably, the denominators seem to always cancel out perfectly. In the next section we will prove that all the terms in the sequence are indeed integers,
+as a corollary of the \emph{Laurent phenomenon}.
+
+The next family of integer sequences comes from \emph{$\SL_2(\bbZ)$-frieze
+	patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
+	to a horizontal strip, often found just below the roofline, which is decorated with
+	patterns.}. The idea of a frieze pattern is best explained through an example
+(\cite{Coxeter1971FriezePatterns}). Take for example the following pattern:
+\begin{equation*}
+	\dots\quad
+	\begin{tikzcd}[
+			sep = 0.2em, cramped,
+		]
+		&0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0\\
+		1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+		&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
+		3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
+		&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+		4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+		&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+		0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0
+	\end{tikzcd}
+	\quad
+	\dots
+\end{equation*}
+The defining property is that the $2 \times 2$ diamonds
+\begin{equation*}
+	\begin{matrix}
+		  & b &   \\
+		a &   & d \\
+		  & c &
+	\end{matrix}
+\end{equation*}
+formed by adjacent elements, can be seen as an element of $\SL_2 (\bbZ)$, i.e., $ad - bc = 1$. Other than the bounding rows of ones and zeros, there is no additional requirement. In what follows we will omit the irrelevant row of zeros. One could ask if it is always possible to construct such a pattern for any number of rows. If so, one might be interested in knowing how many such patterns there are. Furthermore, one might notice that the pattern is periodic, repeating every 7 columns. In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes a translation and reflection.
+\begin{equation*}
+	\dots\quad
+	\begin{tikzcd}[
+			sep = 0.2em, cramped,
+			execute at end picture = {
+					\draw[blue, dashed, rounded corners]
+					($(\tikzcdmatrixname-1-1.north west) + (-0.3, 0.05)$) -- ($(\tikzcdmatrixname-1-11.north east)+ (0.3, 0.05)$)--($(\tikzcdmatrixname-6-6.south) + (0,-0.05)$) -- cycle;
+					\draw[red, dashed, rounded corners]
+					($(\tikzcdmatrixname-6-8.south west) + (-0.3, -0.05)$) -- ($(\tikzcdmatrixname-6-18.south east)+ (0.3, -0.05)$)--($(\tikzcdmatrixname-1-13.north) + (0,0.05)$) -- cycle;
+				}
+		]
+		1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+		&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
+		3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
+		&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+		4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+		&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+	\end{tikzcd}
+	\quad
+	\dots
+\end{equation*}
+
+To make such a pattern, we start with the observation that the rest of the pattern is
+completely determined by a lattice path from top to bottom. Indeed, using the
+$\SL_2(\bbZ)$ rule, one can fill in the rest of the pattern. For example, say we
+started with the following partially filled in pattern:
+\begin{equation*}
+	\dots\quad
+	\begin{tikzcd}[
+			sep = 0.2em, cramped,
+		]
+		1&&1&&1&&1&&1&&1&&1\\
+		&a\\
+		b\\
+		&1&&1&&1&&1&&1&&1\\
+	\end{tikzcd}
+	\quad
+	\dots
+\end{equation*}
+then we could fill out the rest as follows
+\begin{equation*}
+	\dots\quad
+	\begin{tikzcd}[
+			sep = 0.2em, cramped,
+		]
+		1&&1&&1&&1&&1&&1&&1\\
+		&a&& \frac{1+a+b}{ab} && b && \frac{1+a}{b} && \frac{1+b}{a} && a\\
+		b&& \frac{1+a}{b} &&  \frac{1+b}{a} && a && \frac{1+a+b}{ab} && b\\
+		&1&&1&&1&&1&&1&&1\\
+	\end{tikzcd}
+	\quad
+	\dots
+\end{equation*}
+Since all the denominators are monomials in $a$ and $b$, it follows that when $a = b = 1$, all the
+elements will be integers, as required.
+
+It seems that we somehow got lucky in this case. There is again, a priori, no reason to
+assume that for any number of rows, we will always be able to choose the initial
+integers such that all the fractions simplify. The fact that this is possible, follows
+again from the ``Laurent phenomenon'', on which we can now shed a bit more light. Let
+$a_1, a_2, \dots, a_n$ be the initial integers chosen on the lattice path. Then, in
+this context, the Laurent phenomenon states that all the other elements of the frieze
+pattern can be written as Laurent polynomials in $a_1 , \dots, a_n$ with coefficients
+in $\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice
+path from top to bottom consisting of only ones, will yield a frieze pattern. This
+already proves the existence of such frieze patterns for any number of rows. We will
+return to the other questions in the next section.
+
+Let us now look at a final example, coming from triangulations of $n$-gons. We first
+recall the following theorem from Euclidean geometry.
+\begin{theorem}[Ptolomy's Theorem]
+	Let $A,B,C,D$ be distinct points on a circle, in cyclic order (\cref{fig:ptolomy}).
+	These determine vertices of a quadrilateral, where the side, and diagonal lengths
+	satisfy the following rule:
+	\begin{equation*}
+		|AC| \cdot |BD| = |AB|\cdot |CD| + |AD| \cdot |BC|.
+	\end{equation*}
+\end{theorem}
+
+\begin{figure}
+	\centering
+
+	\begin{tikzpicture}
+		\coordinate (center) at (0,0);
+		\def\radius{2.5cm}
+		\draw (center) circle[radius=\radius];
+
+		% points on the circle
+		\path (center) ++(-120:\radius) coordinate (A);
+		\path (center) ++(-30:\radius) coordinate (B);
+		\path (center) ++(40:\radius) coordinate (C);
+		\path (center) ++(150:\radius) coordinate (D);
+
+		\begin{scriptsize}
+			% Chords
+			\draw[color=red, line width=1pt] (A) -- node[left] {$AD$} (D);
+			\draw[color=red, line width=1pt] (B) -- node[left] {$BC$} (C);
+			\draw[color=blue, line width=1pt] (A) -- node[above] {$AB$} (B);
+			\draw[color=blue, line width=1pt] (D) -- node[above] {$DC$} (C);
+			\draw[color=violet, line width=1pt] (A) -- node[above=8pt, near start] {$AC$} (C);
+			\draw[color=violet, line width=1pt] (D) -- node[above=2pt, near start] {$BD$} (B);
+
+			% Draw the points over the chords
+			\fill[black] (A) circle[radius=2pt] ++(-120:1em) node {$A$};
+			\fill[black] (B) circle[radius=2pt] ++(-30:1em) node {$B$};
+			\fill[black] (C) circle[radius=2pt] ++(40:1em) node {$C$};
+			\fill[black] (D) circle[radius=2pt] ++(150:1em) node {$D$};
+
+		\end{scriptsize}
+	\end{tikzpicture}
+	\caption{Ptolomy's theorem:
+	${\color{violet} |AC| \cdot |BD|}
+		= {\color{red} |AD|\cdot |BC|} + {\color{blue} |AB| \cdot |CD|}$.}
+	\label{fig:ptolomy}
+\end{figure}
+
+This rule allows to compute the length of one of the diagonals in terms of the other,
+given the side lengths. We will now apply this to triangulations of polygons.
+
+Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
+connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
+$n$, we obtain a polygon with $n$-sides. A triangulation, $T$, is a choice of $(n-3)$
+non-crossing diagonals. This results in a partitioning of the polygon in $n-2$
+triangles. We will see triangulations in much more detail in a later section, and will
+therefore keep things brief here. For now, it is enough to understand things visually
+(cf. \cref{fig:triangulations}).
+
+\begin{figure}
+	\centering
+
+	\begin{tikzpicture}
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+		\draw[] (h.corner 1) -- (h.corner 3);
+		\draw[] (h.corner 1) -- (h.corner 4);
+		\draw[] (h.corner 1) -- (h.corner 5);
+	\end{tikzpicture}
+	\begin{tikzpicture}
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+		\draw[] (h.corner 2) -- (h.corner 5);
+		\draw[] (h.corner 2) -- (h.corner 4);
+		\draw[] (h.corner 1) -- (h.corner 5);
+	\end{tikzpicture}
+	\begin{tikzpicture}
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+		\draw[] (h.corner 1) -- (h.corner 3);
+		\draw[] (h.corner 3) -- (h.corner 5);
+		\draw[] (h.corner 1) -- (h.corner 5);
+	\end{tikzpicture}
+
+	\caption{Some triangulations of a hexagon.}
+	\label{fig:triangulations}
+\end{figure}
+
+Starting from a triangulation, $T$, we obtain a new triangulation, $T'$, by
+``flipping'' a diagonal. Any diagonal in a triangulation lies on precisely 2 triangles.
+These two triangles form a quadrilateral. To flip the diagonal, you replace it with the
+other diagonal of that quadrilateral. Again, this is most easily seen visually:
+\begin{equation*}
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+		\draw[] (h.corner 1) -- (h.corner 3);
+		\draw[dashed] (h.corner 1) -- (h.corner 4);
+		\draw[] (h.corner 1) -- (h.corner 5);
+	\end{tikzpicture}
+	\quad \leadsto \quad
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+		\draw[] (h.corner 1) -- (h.corner 3);
+		\draw[dashed] (h.corner 3) -- (h.corner 5);
+		\draw[] (h.corner 1) -- (h.corner 5);
+	\end{tikzpicture}
+\end{equation*}
+%
+Now, using Ptolomy's theorem, the length of the new diagonal can be computed given that
+we knew the lengths of all the edges in the previous triangulation. We now ignore
+Euclidean geometry, and just use Ptolomy's theorem as a recurrence relation to
+construct a collection of numbers as follows: Pick a triangulation and set all the edge
+lengths equal to one. Then at each step, choose a diagonal in the triangulation and
+flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
+the collection. For example, we could obtain a sequence starting like this (we omit the
+one's on the sides):
+\begin{equation*}
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 4);
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+	\end{tikzpicture}
+	\leadsto
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
+		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+	\end{tikzpicture}
+	\leadsto
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
+		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+	\end{tikzpicture}
+	\leadsto
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
+		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+		\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
+	\end{tikzpicture}
+	\leadsto
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
+		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+		\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
+	\end{tikzpicture}
+	\leadsto
+	\begin{tikzpicture}[baseline]
+		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
+		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {1} (h.corner 1);
+	\end{tikzpicture}
+	\leadsto \cdots
+\end{equation*}
+%
+Once again, we observe that we only obtain integers. Furthermore, there seems to be a
+limit to which integers we can obtain this way. This hints at a hidden periodicity. The
+Laurent phenomenon offers an explanation for why we only obtain integers: the lengths
+of the diagonals are Laurent polynomials in the originally chosen lengths.
+
+There are many more examples like the three that we just gave. One can look at wiring
+diagrams, generalized Somos sequences, Markov Triples, knight recurrence, the
+Gale-Robinson sequence, etc. As the focus of this thesis is not on number theory, we
+refrain from delving deeper into this interesting world. We refer interested readers to
+\cite[Chapter 3.4]{FominWilliams2021IntroductionCA_1-3} and
+\cite{FominZelevinsky2002Laurent}.
 
 \subsection{Quivers and mutations}
 Motivate as way to generalize phenomenon from previous subsection. What is a quiver and
@@ -71,7 +370,7 @@ proof needed to get there. Have an example along the way.
 \section{Some definitions}
 
 We start with the non-quantized version of cluster algebras, introduced in
-\cite{FominZelivinsky2002CAF}. We won't take the most general definition, since that
+\cite{FominZelevinsky2002CAF}. We won't take the most general definition, since that
 doesn't carry over as nicely to the quantized version.
 
 \subsection{Notation}
@@ -87,7 +386,7 @@ vectors, matrices, or clusters.
 
 Before giving the definition of a cluster algebra, we need to define what seeds and
 seed mutations are.
-\begin{definition}[\cite{BerensteinZelivinsky2005QCA}]
+\begin{definition}[\cite{BerensteinZelevinsky2005QCA}]
 	A \emph{seed} is a pair $(\tilde{\mathbf{x}}, \tilde{B})$ such that
 	\begin{enumerate}
 		\item $\tilde{\mathbf{x}}$ is a \emph{free generating set} of $\mcF$.
