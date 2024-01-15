@@ -5,9 +5,10 @@
 \input{definitions/macros}
 \input{definitions/letterfonts}
 
-\usetikzlibrary{shapes.geometric,fit, calc}
+\usetikzlibrary{shapes.geometric,calc, decorations.pathmorphing}
 
 \newcommand{\ex}{\mathbf{ex}}
+\newcommand{\frz}{\mathbf{frz}}
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\tbx}{\tilde{\bx}}
 \newcommand{\tB}{\tilde{B}}
@@ -49,7 +50,7 @@ Let us start with the simplest of the sequences.
 		\label{eq:somos_4}
 		a_{n+4} = \frac{a_{n+3}a_{n+1}+ a_{n+2}^2}{a_n}
 	\end{equation}
-	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the \emph{Somos-4} sequence, named after its inventor, Michael Somos.
+	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the \emph{Somos-4}\index{Somos-4 sequence} sequence, named after its inventor, Michael Somos.
 \end{definition}
 Computing the first few terms of the sequence, we find:
 \begin{align*}
@@ -65,13 +66,14 @@ Computing the first few terms of the sequence, we find:
 	a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
 \end{align*}
 From the definition of the sequence, there is no reason, a priori, to assume that all its elements would be integers. However, somewhat remarkably, the denominators seem to always cancel out perfectly. In the next section we will prove that all the terms in the sequence are indeed integers,
-as a corollary of the \emph{Laurent phenomenon}.
+as a corollary of the \emph{Laurent phenomenon}\index{Laurent!phenomenon}.
 
 The next family of integer sequences comes from \emph{$\SL_2(\bbZ)$-frieze
 	patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
 	to a horizontal strip, often found just below the roofline, which is decorated with
-	patterns.}. The idea of a frieze pattern is best explained through an example
-(\cite{Coxeter1971FriezePatterns}). Take for example the following pattern:
+	patterns.}\index{Frieze pattern}. The idea of a frieze pattern is best explained
+through an example (\cite{Coxeter1971FriezePatterns}). Take for example the following
+pattern:
 \begin{equation*}
 	\dots\quad
 	\begin{tikzcd}[
@@ -157,14 +159,15 @@ elements will be integers, as required.
 It seems that we somehow got lucky in this case. There is again, a priori, no reason to
 assume that for any number of rows, we will always be able to choose the initial
 integers such that all the fractions simplify. The fact that this is possible, follows
-again from the ``Laurent phenomenon'', on which we can now shed a bit more light. Let
-$a_1, a_2, \dots, a_n$ be the initial integers chosen on the lattice path. Then, in
-this context, the Laurent phenomenon states that all the other elements of the frieze
-pattern can be written as Laurent polynomials in $a_1 , \dots, a_n$ with coefficients
-in $\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice
-path from top to bottom consisting of only ones, will yield a frieze pattern. This
-already proves the existence of such frieze patterns for any number of rows. We will
-return to the other questions in the next section.
+again from the ``Laurent phenomenon''\index{Laurent!phenomenon}, on which we can now
+shed a bit more light. Let $a_1, a_2, \dots, a_n$ be the initial integers chosen on the
+lattice path. Then, in this context, the Laurent phenomenon states that all the other
+elements of the frieze pattern can be written as Laurent
+polynomials\index{Laurent!polynomial} in $a_1 , \dots, a_n$ with coefficients in
+$\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice path
+from top to bottom consisting of only ones, will yield a frieze pattern. This already
+proves the existence of such frieze patterns for any number of rows. We will return to
+the other questions in the next section.
 
 Let us now look at a final example, coming from triangulations of $n$-gons. We first
 recall the following theorem from Euclidean geometry.
@@ -219,11 +222,11 @@ given the side lengths. We will now apply this to triangulations of polygons.
 
 Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
 connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
-$n$, we obtain a polygon with $n$-sides. A triangulation, $T$, is a choice of $(n-3)$
-non-crossing diagonals. This results in a partitioning of the polygon in $n-2$
-triangles. We will see triangulations in much more detail in a later section, and will
-therefore keep things brief here. For now, it is enough to understand things visually
-(cf. \cref{fig:triangulations}).
+$n$, we obtain a polygon with $n$-sides. A triangulation\index{Triangulations!of
+	polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
+partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
+detail in a later section, and will therefore keep things brief here. For now, it is
+enough to understand things visually (cf. \cref{fig:triangulations}).
 
 \begin{figure}
 	\centering
@@ -278,7 +281,7 @@ construct a collection of numbers as follows: Pick a triangulation and set all t
 lengths equal to one. Then at each step, choose a diagonal in the triangulation and
 flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
 the collection. For example, we could obtain a sequence starting like this (we omit the
-one's on the sides):
+ones on the sides):
 \begin{equation*}
 	\begin{tikzpicture}[baseline]
 		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
@@ -337,6 +340,325 @@ refrain from delving deeper into this interesting world. We refer interested rea
 \cite{FominZelevinsky2002Laurent}.
 
 \subsection{Quivers and mutations}
+
+As observed in the previous section, the examples share some common features. The most
+prominent of these was the Laurent phenomenon. There are some more subtle similarities,
+which will become clear in this section. The main role will be played by quivers, and
+their mutations.
+
+\begin{definition}[Quivers]
+	A \emph{quiver}\index{Quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:triangulations}).
+\end{definition}
+
+\begin{figure}
+	\centering
+	\begin{equation*}
+		\begin{tikzcd}
+			&\bullet \arrow[loop] \arrow[r] &\bullet \\
+			\bullet \rar & \bullet \arrow[r, bend left] & \bullet \arrow[l, bend left]
+		\end{tikzcd}
+		\hspace{2cm}
+		\begin{tikzcd}[row sep=small]
+			&&& \bullet \\
+			\bullet \ar[rrrd, bend right]\rar &\bullet  \rar[leftarrow] &\bullet \ar[ru, shift left] \ar[ru, shift right] \ar[rd] \\
+			&&& \bullet\\
+			\\
+			\bullet \ar[rr] && \bullet \ar[ld]\\
+			& \bullet \ar[lu]
+		\end{tikzcd}
+	\end{equation*}
+	\caption{The graphs on the left are not quivers, the graphs on the right are.}
+	\label{fig:quivers}
+\end{figure}
+
+We will now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
+for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Now, fix an integer
+$N$, and a subset $\ex subset.eq [1, N]$ of size $n$. The elements of $\ex$ will be
+called \emph{exchangeable}\index{Exchangeable}, while the elements of $\frz = [1, N]
+	\setminus \ex$ will be called \emph{frozen}\index{Frozen}. Finally, let $\mcF = \bbQ
+	(X_1, \dots, X_N)$ be the field of rational functions over $\bbQ$, in $N$ variables.
+
+\begin{definition}
+	We call a pair $(Q, \tbx)$ a \emph{seed}\index{Seed} if
+	\begin{enumerate}
+		\item $Q$ is a quiver with vertices $Q_0 = [1, N]$.
+		\item $\tbx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\tbx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
+	\end{enumerate}
+	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{Cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{Cluster!variables}.
+\end{definition}
+
+Although not strictly necessary, we will assume that the quiver $Q$ contains no arrows
+between the frozen vertices, i.e., the vertices in $Q_0 \cap \frz$. Arrows between
+exchangeable and frozen vertices are allowed. When drawing a quiver, the frozen
+vertices will be drawn with a box, while the exchangeable vertices will just be drawn
+normally.
+
+Given a seed, we can convert it to another seed through a \emph{seed
+	mutation}\index{Seed!mutation}.
+\begin{definition}
+	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$.
+	We define the \emph{mutation in direction $k$} of the seed
+	$(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx) = (Q', \tbx')$, where
+	\begin{enumerate}
+		\item $Q'_0 = Q_0$.
+		\item For every pair of vertices $i,j$ with $s$ arrows $i \to k$ and $t$ arrows $k \to j$ we
+		      ``collapse'' these arrows into $s\cdot t$ arrows $i \to j$, cancelling pairwise with
+		      any arrows $j \to i$.
+		      \begin{equation*}
+			      \begin{tikzcd}[column sep=small]
+				      i \ar[rr, "r"] \ar[rd, "s"] && j \\
+				      & k \ar[ur, "t"]
+			      \end{tikzcd}
+			      \quad \begin{tikzcd}
+				      \; \rar[rightsquigarrow, "\mu_k"]& \;
+			      \end{tikzcd}\quad
+			      \begin{tikzcd}[column sep=small]
+				      i \ar[rr, "r + st"] \ar[rd,leftarrow, "s"] && j \\
+				      & k \ar[ur, leftarrow, "t"]
+			      \end{tikzcd}
+		      \end{equation*}
+		      Here we take $r$ to be negative, if the arrows actually point the other way.
+		      If $i,j$ are both frozen, then we ignore this step.
+		\item All arrows in $Q$ incident to $k$ get their orientation flipped.
+		\item $\tbx' = \{x_1', \dots, x_n'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
+		      is given by the \emph{exchange relation}\index{Exchange relation}
+		      \begin{equation*}
+			      x'_k = \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
+		      \end{equation*}
+		      where we take the product equal to 1 if $\{i \to k\} = \emptyset$ or $\{k \to j\} = \emptyset$.
+	\end{enumerate}
+\end{definition}
+
+Before we give some examples, we prove a small lemma, which will also be useful for the
+examples.
+\begin{lemma}
+	Seed mutation at a fixed vertex is an involution, i.e., $\mu_k \circ \mu_k = id$.
+\end{lemma}
+
+\begin{proof}
+	We first show that the quiver remains unchanged. For arrows incident to $k$, the
+	mutation reverses the orientation. So, applying it twice yields the same orientation.
+	Now, the only other part of the quiver that changes is at pairs of vertices $i,j$ with
+	$s$ arrows $i \to k$ and $t$ arrows $k \to j$. Applying a single mutation introduces
+	$s\cdot t$ new arrows $i \to j$. When applying the mutation the second time, we now
+	have $s$ arrows $k \to i$ and $t$ arrows $j \to k$, due to the orientation flip of the
+	arrows incident to $k$. Consequently, the mutation introduces $s \cdot t$ arrows $j \to
+		i$ which cancel out exactly the arrows from the first mutation.
+
+	To see that the cluster variables remain unchanged is a simple calculation:
+	\begin{align*}
+		x_k''
+		 & = \frac{1}{x_k'}\left(\prod_{k \to i}x_i' + \prod_{j \to k} x_j'\right)                                                \\
+		 & = x_k \left(\prod_{i \to k} x_i + \prod_{k \to j}x_j\right)^{-1} \left(\prod_{k \to i}x_i + \prod_{j \to k} x_j\right) \\
+		 & = x_k,
+	\end{align*}
+	where we use that the exchange rule is unchanged by an orientation flip of all the arrows.
+\end{proof}
+
+We begin with an example to illustrate the mutation of the quiver.
+\begin{example}
+	We mutate the given quiver at vertex 2:
+	\begin{equation*}
+		\begin{tikzcd}
+			& 4 \dlar \rar & 6 \dar \\
+			1 \rar & 2 \uar \rar \dar[shift left] \dar [shift right] & 5 \\
+			& 3 \ular
+		\end{tikzcd}
+		\begin{tikzcd}
+			\; \rar[rightsquigarrow, "\mu_2"] &\;
+		\end{tikzcd}
+		\begin{tikzcd}
+			& 4 \rar \dar & 6 \dar \\
+			1  \drar \ar[rr,controls = {+(1, -2) and +(-1, -2)}] & 2 \lar & 5 \lar \\
+			& 3 \uar[shift right] \uar[shift left]
+		\end{tikzcd}
+	\end{equation*}
+	%
+	The arrow $1 \to 2$ combined with the arrow $2 \to 4$ introduces one new arrow $1 \to
+		4$ which cancels out the existing arrow $4 \to 1$. The arrow $1 \to 2$ combines with
+	the 2 arrows $2 \to 3$ to create 2 new arrows $1 \to 3$,one of which cancels out with
+	the existing arrow $3 \to 1$. Finally, the arrow $1 \to 2$ combined with the arrow $2
+		\to 5$ yields an arrow $1 \to 5$. The arrows incident to the vertex 6 remain unchanged.
+\end{example}
+
+Let us now look at some examples, where we also keep track of the cluster variables.
+\begin{example}
+	The simplest example is the $A_2$ quiver:
+	\begin{equation*}
+		Q = \begin{tikzcd}
+			1 \rar &2
+		\end{tikzcd}
+		\quad \bx = \{x_1, x_2\}.
+	\end{equation*}
+	%
+	If we apply a mutation at the first vertex, we obtain:
+	\begin{equation*}
+		\mu_1(Q) = \begin{tikzcd}
+			1 & \lar 2
+		\end{tikzcd}
+		\quad \mu_1(\bx) = \{\frac{1+x_2}{x_1}, x_2\}.
+	\end{equation*}
+	%
+	We already know that mutating at the first vertex again will yield the same seed, so
+	the only interesting thing to do is to see what happens after mutating at index 2:
+	\begin{equation*}
+		\mu_2(\mu_1(Q)) = \begin{tikzcd}
+			1 \rar & 2
+		\end{tikzcd}
+		\quad  \mu_2(\mu_1(\bx)) = \{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_2}\}.
+	\end{equation*}
+	%
+	Although we are back at the original quiver, the cluster variables are completely
+	different. We now mutate again at the first vertex. We will use the notation
+	$\mu_{121}$ as a shorthand for $\mu_1 \circ \mu_2 \circ \mu_1$.
+	\begin{equation*}
+		\mu_{121}(Q) = \begin{tikzcd}
+			1 &\lar 2
+		\end{tikzcd}
+		\quad  \mu_{121}(\bx) = \{\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\}.
+	\end{equation*}
+	%
+	The expression for the first cluster variable looks complicated, but can be
+	dramatically simplified to $\frac{x_1 + 1}{x_2}$. We continue mutating:
+	\begin{equation*}
+		\mu_{1212}(Q) = \begin{tikzcd}
+			1 \rar& 2
+		\end{tikzcd}
+		\quad  \mu_{1212}(\bx) = \{\frac{x_1 + 1}{x_2}, x_1\}.
+	\end{equation*}
+	%
+	Once again, some simplification has taken place. We mutate a final time at the first
+	vertex.
+	\begin{equation*}
+		\mu_{12121}(Q) = \begin{tikzcd}
+			1 &\lar 2
+		\end{tikzcd}
+		\quad  \mu_{12121}(\bx) = \{x_2, x_1\}.
+	\end{equation*}
+
+	We have our original seed, except that the arrow in the quiver has been reversed, and
+	that $x_1$ and $x_2$ have swapped places. In other words, after 5 mutations, the roles
+	of 1 and 2 have swapped. It follows that another 5 swaps will give back the original
+	seed. If one takes a close look at the obtained cluster variables, then we see that
+	these correspond exactly to those that we found when trying to construct a frieze
+	pattern with 2 rows. This is no coincidence, and we will come back to this later.
+\end{example}
+\begin{example}
+	In this example, we look at the Markov quiver:
+	\begin{equation*}
+		\begin{tikzcd}[column sep= small]
+			& \bullet \ar[ld, shift left] \ar[ld, shift right]\\
+			\bullet \ar[rr, shift left] \ar[rr, shift right] && \bullet \ar[lu, shift left] \ar[lu, shift right]
+		\end{tikzcd},
+	\end{equation*}
+	%
+	which possesses the special property that it remains invariant under mutations at any
+	vertex. Let us see what happens to the cluster variables as we mutate in a cyclic order
+	of the vertices:
+	\begin{align*}
+		\bx            & = \{x, y, z\}                                                                                                                                                                               \\
+		\mu_1(\bx)     & = \left\{\frac{y^2 + z^2}{x}, y, z\right\}                                                                                                                                                  \\
+		\mu_{12}(\bx)  & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y}, z\right\}                                                                                                         \\
+		\mu_{123}(\bx) & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y},\right.                                                                                                            \\
+		               & \left. \frac{x^{4} z^{4} + x^{2} y^{6} + 4 x^{2} y^{4} z^{2} + 5 x^{2} y^{2} z^{4} + 2 x^{2} z^{6} + y^{8} + 4 y^{6} z^{2} + 6 y^{4} z^{4} + 4 y^{2} z^{6} + z^{8}}{x^{4} y^{2} z} \right\}
+	\end{align*}
+	%
+	Mutating again at the first vertex gives the new cluster variable
+	\begin{align*}
+		 & \frac{x^{8} z^{6} + 4 x^{6} y^{4} z^{4} + 8 x^{6} y^{2} z^{6} + 4 x^{6} z^{8} + x^{4} y^{10} + 8 x^{4} y^{8} z^{2} + 24 x^{4} y^{6} z^{4} + 34 x^{4} y^{4} z^{6} + 23 x^{4} y^{2} z^{8}}{x^7y^4z^2} \\&+ \frac{6 x^{4} z^{10} + 2 x^{2} y^{12} + 14 x^{2} y^{10} z^{2} + 40 x^{2} y^{8} z^{4} + 60 x^{2} y^{6} z^{6} + 50 x^{2} y^{4} z^{8} + 22 x^{2} y^{2} z^{10} + 4 x^{2} z^{12}}{x^7 y^4 z^2}\\ &+ \frac{y^{14} + 7 y^{12} z^{2} + 21 y^{10} z^{4} + 35 y^{8} z^{6} + 35 y^{6} z^{8} + 21 y^{4} z^{10} + 7 y^{2} z^{12} + z^{14}}{x^{7} y^{4} z^{2}}.
+	\end{align*}
+	%
+	Because the author doesn't want to spend too much time fiddling with alignment points
+	to get long fractions to fit on a page, we will stop here. Mutating at vertex 2 would
+	yield another fraction with 65 terms (with positive integer coefficients) in the
+	numerator, and the expression $x^{12}y^7z^4$ in the denominator.
+\end{example}
+\begin{example}
+	We start with the $A_3$ quiver
+	\begin{equation*}
+		Q =
+		\begin{tikzcd}
+			1 \rar[] & 2 \rar[] &3
+		\end{tikzcd}
+		\quad \{x_1, x_2, x_3\}.
+	\end{equation*}
+	Mutation in direction 2 gives
+	\begin{equation*}
+		\mu_2(Q) =
+		\begin{tikzcd}
+			1 \rar[leftarrow] \ar[rr, bend right] & 2 \rar[leftarrow]& 3
+		\end{tikzcd}
+		\quad \{x_1, \frac{x_1 + x_3}{x_2}, x_3\}.
+	\end{equation*}
+	If we instead apply a mutation in direction 1, we find
+	\begin{equation*}
+		\mu_1(Q) =
+		\begin{tikzcd}
+			1 \rar[leftarrow] & 2 \rar[]& 3
+		\end{tikzcd}
+		\quad \{\frac{x_2 + 1}{x_1}, x_2, x_3\}.
+	\end{equation*}
+	Finally, a mutation in direction 3 would give
+	\begin{equation*}
+		\mu_3(Q) =
+		\begin{tikzcd}
+			1 \rar[] & 2 \rar[leftarrow]& 3
+		\end{tikzcd}
+		\quad \{x_1, x_2, \frac{x_2 + 1}{x_3}\}.
+	\end{equation*}
+	Mutating in direction 1 on $\mu_2(Q)$ gives
+	\begin{equation*}
+		\mu_1(\mu_2(Q)) =
+		\begin{tikzcd}
+			1 \rar[] \ar[rr,leftarrow, bend right] & 2 & 3
+		\end{tikzcd}
+		\quad \{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, x_3\}.
+	\end{equation*}
+	If we now mutate in direction 3, we obtain
+	\begin{equation*}
+		\mu_3(\mu_1(\mu_2(Q))) =
+		\begin{tikzcd}
+			1 \rar[] \ar[rr, bend right] & 2 & 3
+		\end{tikzcd}
+		\quad \{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+	\end{equation*}
+	It seems that the expressions keep getting messier and messier. We mutate again in direction 2:
+	\begin{equation*}
+		\mu_2(\mu_3(\mu_1(\mu_2(Q)))) =
+		\begin{tikzcd}
+			1 \rar[leftarrow] \ar[rr, bend right] & 2 & 3
+		\end{tikzcd},
+	\end{equation*}
+	\begin{equation*}
+		\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_2 + 1}{x_1}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+	\end{equation*}
+	Somehow, some miraculous cancelation happened.
+	Note that the expression $\frac{x_2 + 1}{x_2}$ already appeared previously.
+	If we instead mutate in direction 1, we get
+	\begin{equation*}
+		\mu_1(\mu_3(\mu_1(\mu_2(Q)))) =
+		\begin{tikzcd}
+			1 \rar[leftarrow] \ar[rr,leftarrow, bend right] & 2 & 3
+		\end{tikzcd},
+	\end{equation*}
+	\begin{equation*}
+		\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+	\end{equation*}
+	This still introduces a new expression.
+	Interestingly, these are all the possible expressions we can obtain!
+	If we now mutate in, say, direction 3, we would get as cluster
+	\begin{equation*}
+		\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, x_1 \}.
+	\end{equation*}
+	This is again a dramatic cancelation. One can check manually
+	that no mutations introduce new cluster variables.
+
+	Another remark is that the total number of cluster variables we obtained was $9 = 3 +
+		6$. It is no coincidence that $A_3$ is a Dynkin diagram of rank 3, and that the
+	corresponding root system has $6$ positive roots. The positive roots correspond to the
+	denominators that appear in the cluster variables.
+\end{example}
+
 Motivate as way to generalize phenomenon from previous subsection. What is a quiver and
 seed, frozen and exchangeable variables. Mutation. The Laurent phenomenon and total
 positivity.
@@ -622,4 +944,5 @@ This leads to the following definition:
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
+\printindex
 \end{document}
