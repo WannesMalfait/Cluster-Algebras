@@ -431,7 +431,7 @@ Given a seed, we can convert it to another seed through a \emph{seed
 
 Before we give some examples, we prove a small lemma, which will also be useful for the
 examples.
-\begin{lemma}
+\begin{lemma}\label{lem:mutation_involution}
 	Seed mutation at a fixed vertex is an involution, i.e., $\mu_k \circ \mu_k = id$.
 \end{lemma}
 
@@ -483,20 +483,41 @@ We begin with an example to illustrate the mutation of the quiver.
 
 Let us now look at some examples, where we also keep track of the cluster variables.
 \begin{example}
-	The simplest example is the $A_2$ quiver:
+	The simplest example is the quiver consisting of a single vertex:
+	\begin{equation*}
+		Q = \begin{tikzcd}
+			\bullet
+		\end{tikzcd},
+		\quad \bx = \{x\}.
+	\end{equation*}
+	%
+	Mutating at the only vertex gives
+	\begin{equation*}
+		Q = \begin{tikzcd}
+			\bullet
+		\end{tikzcd},
+		\quad \bx = \left\{\frac{x}{2}\right\}.
+	\end{equation*}
+	%
+	If we mutate again, we end up with the original seed, as a consequence of
+	\cref{lem:mutation_involution}. It is of course also straightforward to verify
+	directly.
+\end{example}
+\begin{example}
+	The next simplest example is the $A_2$ quiver:
 	\begin{equation*}
 		Q = \begin{tikzcd}
 			1 \rar &2
-		\end{tikzcd}
-		\quad \bx = \{x_1, x_2\}.
+		\end{tikzcd},
+		\quad \bx = \left\{x_1, x_2\right\}.
 	\end{equation*}
 	%
 	If we apply a mutation at the first vertex, we obtain:
 	\begin{equation*}
 		\mu_1(Q) = \begin{tikzcd}
 			1 & \lar 2
-		\end{tikzcd}
-		\quad \mu_1(\bx) = \{\frac{1+x_2}{x_1}, x_2\}.
+		\end{tikzcd},
+		\quad \mu_1(\bx) = \left\{\frac{1+x_2}{x_1}, x_2\right\}.
 	\end{equation*}
 	%
 	We already know that mutating at the first vertex again will yield the same seed, so
@@ -504,18 +525,19 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	\begin{equation*}
 		\mu_2(\mu_1(Q)) = \begin{tikzcd}
 			1 \rar & 2
-		\end{tikzcd}
-		\quad  \mu_2(\mu_1(\bx)) = \{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_2}\}.
+		\end{tikzcd},
+		\quad  \mu_2(\mu_1(\bx)) = \left\{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_2}\right\}.
 	\end{equation*}
 	%
 	Although we are back at the original quiver, the cluster variables are completely
 	different. We now mutate again at the first vertex. We will use the notation
-	$\mu_{121}$ as a shorthand for $\mu_1 \circ \mu_2 \circ \mu_1$.
+	$\mu_{k_1k_2\cdots k_l}$ as a shorthand for $\mu_{k_l} \circ \cdots \circ \mu_{k_2}
+		\circ \mu_{k_1}$.
 	\begin{equation*}
 		\mu_{121}(Q) = \begin{tikzcd}
 			1 &\lar 2
-		\end{tikzcd}
-		\quad  \mu_{121}(\bx) = \{\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\}.
+		\end{tikzcd},
+		\quad  \mu_{121}(\bx) = \left\{\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\right\}.
 	\end{equation*}
 	%
 	The expression for the first cluster variable looks complicated, but can be
@@ -523,8 +545,8 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	\begin{equation*}
 		\mu_{1212}(Q) = \begin{tikzcd}
 			1 \rar& 2
-		\end{tikzcd}
-		\quad  \mu_{1212}(\bx) = \{\frac{x_1 + 1}{x_2}, x_1\}.
+		\end{tikzcd},
+		\quad  \mu_{1212}(\bx) = \left\{\frac{x_1 + 1}{x_2}, x_1\right\}.
 	\end{equation*}
 	%
 	Once again, some simplification has taken place. We mutate a final time at the first
@@ -532,8 +554,8 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	\begin{equation*}
 		\mu_{12121}(Q) = \begin{tikzcd}
 			1 &\lar 2
-		\end{tikzcd}
-		\quad  \mu_{12121}(\bx) = \{x_2, x_1\}.
+		\end{tikzcd},
+		\quad  \mu_{12121}(\bx) = \left\{x_2, x_1\right\}.
 	\end{equation*}
 
 	We have our original seed, except that the arrow in the quiver has been reversed, and
@@ -547,8 +569,8 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	In this example, we look at the Markov quiver:
 	\begin{equation*}
 		\begin{tikzcd}[column sep= small]
-			& \bullet \ar[ld, shift left] \ar[ld, shift right]\\
-			\bullet \ar[rr, shift left] \ar[rr, shift right] && \bullet \ar[lu, shift left] \ar[lu, shift right]
+			& 1 \ar[ld, shift left] \ar[ld, shift right]\\
+			2 \ar[rr, shift left] \ar[rr, shift right] && 3 \ar[lu, shift left] \ar[lu, shift right]
 		\end{tikzcd},
 	\end{equation*}
 	%
@@ -573,98 +595,109 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	yield another fraction with 65 terms (with positive integer coefficients) in the
 	numerator, and the expression $x^{12}y^7z^4$ in the denominator.
 \end{example}
+
 \begin{example}
-	We start with the $A_3$ quiver
+	As a last example, we look at the $A_3$ quiver
 	\begin{equation*}
 		Q =
 		\begin{tikzcd}
 			1 \rar[] & 2 \rar[] &3
-		\end{tikzcd}
-		\quad \{x_1, x_2, x_3\}.
+		\end{tikzcd},
+		\quad \bx = \left\{x_1, x_2, x_3\right\}.
 	\end{equation*}
 	Mutation in direction 2 gives
 	\begin{equation*}
 		\mu_2(Q) =
 		\begin{tikzcd}
 			1 \rar[leftarrow] \ar[rr, bend right] & 2 \rar[leftarrow]& 3
-		\end{tikzcd}
-		\quad \{x_1, \frac{x_1 + x_3}{x_2}, x_3\}.
+		\end{tikzcd},
+		\quad \mu_2(\bx) = \left\{x_1, \frac{x_1 + x_3}{x_2}, x_3\right\}.
 	\end{equation*}
 	If we instead apply a mutation in direction 1, we find
 	\begin{equation*}
 		\mu_1(Q) =
 		\begin{tikzcd}
 			1 \rar[leftarrow] & 2 \rar[]& 3
-		\end{tikzcd}
-		\quad \{\frac{x_2 + 1}{x_1}, x_2, x_3\}.
+		\end{tikzcd},
+		\quad \mu_1(\bx) = \left\{\frac{x_2 + 1}{x_1}, x_2, x_3\right\}.
 	\end{equation*}
 	Finally, a mutation in direction 3 would give
 	\begin{equation*}
 		\mu_3(Q) =
 		\begin{tikzcd}
 			1 \rar[] & 2 \rar[leftarrow]& 3
-		\end{tikzcd}
-		\quad \{x_1, x_2, \frac{x_2 + 1}{x_3}\}.
+		\end{tikzcd},
+		\quad \mu_3(\bx) = \left\{x_1, x_2, \frac{x_2 + 1}{x_3}\right\}.
 	\end{equation*}
 	Mutating in direction 1 on $\mu_2(Q)$ gives
 	\begin{equation*}
-		\mu_1(\mu_2(Q)) =
+		\mu_{21}(Q) =
 		\begin{tikzcd}
 			1 \rar[] \ar[rr,leftarrow, bend right] & 2 & 3
-		\end{tikzcd}
-		\quad \{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, x_3\}.
+		\end{tikzcd},
+		\quad \mu_{21}(\bx) = \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, x_3\right\}.
 	\end{equation*}
 	If we now mutate in direction 3, we obtain
 	\begin{equation*}
-		\mu_3(\mu_1(\mu_2(Q))) =
+		\mu_{213}(Q) =
 		\begin{tikzcd}
 			1 \rar[] \ar[rr, bend right] & 2 & 3
-		\end{tikzcd}
-		\quad \{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+		\end{tikzcd},
+		\quad \mu_{213}(\bx) = \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
 	\end{equation*}
 	It seems that the expressions keep getting messier and messier. We mutate again in direction 2:
 	\begin{equation*}
-		\mu_2(\mu_3(\mu_1(\mu_2(Q)))) =
+		\mu_{2132}(Q) =
 		\begin{tikzcd}
 			1 \rar[leftarrow] \ar[rr, bend right] & 2 & 3
 		\end{tikzcd},
 	\end{equation*}
 	\begin{equation*}
-		\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_2 + 1}{x_1}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+		\mu_{2132}(\bx)= \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_2 + 1}{x_1}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
 	\end{equation*}
 	Somehow, some miraculous cancelation happened.
 	Note that the expression $\frac{x_2 + 1}{x_2}$ already appeared previously.
 	If we instead mutate in direction 1, we get
 	\begin{equation*}
-		\mu_1(\mu_3(\mu_1(\mu_2(Q)))) =
+		\mu_{2131}(Q) =
 		\begin{tikzcd}
 			1 \rar[leftarrow] \ar[rr,leftarrow, bend right] & 2 & 3
 		\end{tikzcd},
 	\end{equation*}
 	\begin{equation*}
-		\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\}.
+		\mu_{2131}(\bx) = \left\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
 	\end{equation*}
 	This still introduces a new expression.
 	Interestingly, these are all the possible expressions we can obtain!
 	If we now mutate in, say, direction 3, we would get as cluster
 	\begin{equation*}
-		\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, x_1 \}.
+		\mu_{21313} = \left\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, x_1 \right\}.
 	\end{equation*}
 	This is again a dramatic cancelation. One can check manually
 	that no mutations introduce new cluster variables.
-
-	Another remark is that the total number of cluster variables we obtained was $9 = 3 +
-		6$. It is no coincidence that $A_3$ is a Dynkin diagram of rank 3, and that the
-	corresponding root system has $6$ positive roots. The positive roots correspond to the
-	denominators that appear in the cluster variables.
 \end{example}
+
+From these examples we can observe a few things:
+\begin{enumerate}
+	\item Even though a sequence of mutations might result in the same quiver, the corresponding
+	      cluster variables might be different.
+	\item For some quivers, the number of obtainable cluster variables is finite.
+	\item Independent of the quiver, all the cluster variables are Laurent polynomials in the
+	      original cluster variables.
+	\item The Laurent polynomials have coefficients in the positive integers.
+\end{enumerate}
+
+We will now explain each of the observations in more detail.
 
 Motivate as way to generalize phenomenon from previous subsection. What is a quiver and
 seed, frozen and exchangeable variables. Mutation. The Laurent phenomenon and total
 positivity.
 
 Write out example of $A_3$ and non-finite type. Classification of cluster-finite
-quivers.
+quivers. Another remark is that the total number of cluster variables we obtained was
+$9 = 3 + 6$. It is no coincidence that $A_3$ is a Dynkin diagram of rank 3, and that
+the corresponding root system has $6$ positive roots. The positive roots correspond to
+the denominators that appear in the cluster variables.
 
 \subsection{The Grassmannian}
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
