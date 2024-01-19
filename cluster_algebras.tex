@@ -822,10 +822,11 @@ alluded-to \emph{Laurent phenomenon}.
 \end{theorem}
 This theorem was proven already by Fomin and Zelevinsky in their paper introducing cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all the coefficients would be positive. This was first proven by Lee and Schiffler for the types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}). Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more general case as well as a number of other open conjectures (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
 
-We will finish this section by proving the Laurent phenomenon.
 \begin{proof}[Proof of \cref{thm:laurent_phenomenon}]
 	TODO
 \end{proof}
+
+We finish this section by revisiting the examples from the first section. TODO
 
 \subsection{The Grassmannian}
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
@@ -847,261 +848,270 @@ Toric frames, quantum seeds and mutations. Quantum Laurent phenomenon.
 
 \subsection{CGL extensions}
 
-What is CGL extension. Main theorem from \cite{GoodearlYakimov2017QCA}. Key parts of
-proof needed to get there. Have an example along the way.
+Motivate section as a generic way to produce quantum cluster algebras.
 
-\section{Some definitions}
+What is Ore extension. Example of Weyl algebra.
 
-We start with the non-quantized version of cluster algebras, introduced in
-\cite{FominZelevinsky2002CAF}. We won't take the most general definition, since that
-doesn't carry over as nicely to the quantized version.
+What is rational action of a torus.
 
-\subsection{Notation}
+Def CGL extension. Example of matrices, and Heisenberg algebra.
 
-Some of the notation that we will use throughout this paper. Let $[a,b] = \{a, a+1,
-	\dots, b\}$ for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an
-integer $N$, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$
-will be called the \emph{exchangeable} indices. Let $\mcF = \bbQ(Y_1, \dots, Y_N)$, be
-the field of rational functions over $\bbQ$. Boldface letters will be used to denote
-vectors, matrices, or clusters.
+Homogeneous prime elements.
 
-\subsection{Classical cluster algebras}
+(Key parts of) proof of main theorem from \cite{GoodearlYakimov2017QCA}.
 
-Before giving the definition of a cluster algebra, we need to define what seeds and
-seed mutations are.
-\begin{definition}[\cite{BerensteinZelevinsky2005QCA}]
-	A \emph{seed} is a pair $(\tilde{\mathbf{x}}, \tilde{B})$ such that
-	\begin{enumerate}
-		\item $\tilde{\mathbf{x}}$ is a \emph{free generating set} of $\mcF$.
-		      So, $\tilde{\mathbf{x}}$ is a set of $N$ elements $x_1, \dots, x_n \in \mcF$ that are algebraically independent, and generate $\mcF$.
-		\item $\tilde{B}$ is an $N \times n$ matrix over $\bbZ$ with columns labeled by the exchangeable
-		      indices $\ex$. Let $B$ be the $n \times n$ submatrix
-		      of $\tilde{B}$ consisting of all the rows with index in $\ex$.
-		      We call $B$ the \emph{principal part} of $\tilde{B}$, and require that it is \emph{skew-symmetrizable}.
-		      This means that there exists a diagonal matrix $D$ with positive entries
-		      such that $D\inv B D = - B^T$ i.e., $BD$ is skew-symmetric.
-	\end{enumerate}
-\end{definition}
+% \section{Some definitions}
 
-Looking only at the exchangeable indices, we get the \emph{cluster} $\mathbf{x} = \{x_i
-	\mid i \in \ex \} \subseteq \tilde{\mathbf{x}}$.
-\begin{definition}
-	Let $(\tilde{\mathbf{x}}, \tilde{B})$ be a seed.
-	The \emph{seed mutation} in direction $k \in \ex$
-	produces a new seed $\mu_k(\tilde{\mathbf{x}}, \tB) = (\tilde{\bx}', \tB')$, where:
-	\begin{itemize}
-		\item $\tbx' = (\tbx \setminus \{x_k\}) \cup \{x_k'\}$,
-		      with $x_k' \in \mcF$ determined by the \emph{exchange relation}:
-		      \begin{equation}
-			      \label{eq:exchange_relation}
-			      x_kx_k' = \prod_{\substack{i \in [1,N] \\ b_{ik} > 0}}x_i^{b_{ik}} + \prod_{\substack{i \in [1, N] \\ b_{ik} < 0}}x_i^{-b_{ik}}.
-		      \end{equation}
-		\item $\tB'$ is given by the formula:
-		      \begin{equation}
-			      \label{eq:matrix_mutation}
-			      b'_{ij} =
-			      \begin{cases}
-				      -b_{ij}                                            & \text{ if } i=k \text{ or } j=k \\
-				      b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2} & \text{ otherwise}
-			      \end{cases}
-			      .
-		      \end{equation}
-	\end{itemize}
-\end{definition}
+% We start with the non-quantized version of cluster algebras, introduced in
+% \cite{FominZelevinsky2002CAF}. We won't take the most general definition, since that
+% doesn't carry over as nicely to the quantized version.
 
-\begin{remark}
-	These formulas seem a bit random at first sight,
-	but have a nice interpretation in the language of quivers.
-	Assume that $B$ is skew-symmetric,
-	and let $Q$ be the directed graph on $N$ vertices with $b_{ij}$ edges
-	from $i$ to $j$ if $j \in \ex$. If $b_{ij}$ is negative,
-	the edges have the opposite orientation.
-	Now, define the mutation of $Q$ at vertex $k$ as follows:
-	\begin{itemize}
-		\item For every edge connected to $k$, flip its orientation.
-		\item For every pair of edges $i\to k$ and $k\to j$, create an edge $i \to j$. Then
-		      ``cancel'' any pair of edges between $i$ and $j$ with opposite orientation.
-	\end{itemize}
-	The new matrix representing this graph, will be given precisely by \cref{eq:matrix_mutation}.
-	Furthermore, the exchange relation (\ref{eq:exchange_relation}) now takes the following form:
-	\begin{equation*}
-		x_kx_k' = \prod_{i \to k}x_i + \prod_{k \to j}x_i.
-	\end{equation*}
-\end{remark}
+% \subsection{Notation}
 
-\medskip
+% Some of the notation that we will use throughout this paper. Let $[a,b] = \{a, a+1,
+% 	\dots, b\}$ for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an
+% integer $N$, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$
+% will be called the \emph{exchangeable} indices. Let $\mcF = \bbQ(Y_1, \dots, Y_N)$, be
+% the field of rational functions over $\bbQ$. Boldface letters will be used to denote
+% vectors, matrices, or clusters.
 
-With these definitions out of the way we define the \emph{cluster algebra} associated
-to a seed as the subalgebra of $\mcF$ generated by the union of clusters of all seeds
-obtained through (iterative) mutations of the initial seed.
+% \subsection{Classical cluster algebras}
 
-Instead of proving things now for the classical case, we will jump directly to the
-quantized version to avoid having to prove the same results twice.
+% Before giving the definition of a cluster algebra, we need to define what seeds and
+% seed mutations are.
+% \begin{definition}[\cite{BerensteinZelevinsky2005QCA}]
+% 	A \emph{seed} is a pair $(\tilde{\mathbf{x}}, \tilde{B})$ such that
+% 	\begin{enumerate}
+% 		\item $\tilde{\mathbf{x}}$ is a \emph{free generating set} of $\mcF$.
+% 		      So, $\tilde{\mathbf{x}}$ is a set of $N$ elements $x_1, \dots, x_n \in \mcF$ that are algebraically independent, and generate $\mcF$.
+% 		\item $\tilde{B}$ is an $N \times n$ matrix over $\bbZ$ with columns labeled by the exchangeable
+% 		      indices $\ex$. Let $B$ be the $n \times n$ submatrix
+% 		      of $\tilde{B}$ consisting of all the rows with index in $\ex$.
+% 		      We call $B$ the \emph{principal part} of $\tilde{B}$, and require that it is \emph{skew-symmetrizable}.
+% 		      This means that there exists a diagonal matrix $D$ with positive entries
+% 		      such that $D\inv B D = - B^T$ i.e., $BD$ is skew-symmetric.
+% 	\end{enumerate}
+% \end{definition}
 
-\subsection{Quantum cluster algebras}
+% Looking only at the exchangeable indices, we get the \emph{cluster} $\mathbf{x} = \{x_i
+% 	\mid i \in \ex \} \subseteq \tilde{\mathbf{x}}$.
+% \begin{definition}
+% 	Let $(\tilde{\mathbf{x}}, \tilde{B})$ be a seed.
+% 	The \emph{seed mutation} in direction $k \in \ex$
+% 	produces a new seed $\mu_k(\tilde{\mathbf{x}}, \tB) = (\tilde{\bx}', \tB')$, where:
+% 	\begin{itemize}
+% 		\item $\tbx' = (\tbx \setminus \{x_k\}) \cup \{x_k'\}$,
+% 		      with $x_k' \in \mcF$ determined by the \emph{exchange relation}:
+% 		      \begin{equation}
+% 			      \label{eq:exchange_relation}
+% 			      x_kx_k' = \prod_{\substack{i \in [1,N] \\ b_{ik} > 0}}x_i^{b_{ik}} + \prod_{\substack{i \in [1, N] \\ b_{ik} < 0}}x_i^{-b_{ik}}.
+% 		      \end{equation}
+% 		\item $\tB'$ is given by the formula:
+% 		      \begin{equation}
+% 			      \label{eq:matrix_mutation}
+% 			      b'_{ij} =
+% 			      \begin{cases}
+% 				      -b_{ij}                                            & \text{ if } i=k \text{ or } j=k \\
+% 				      b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2} & \text{ otherwise}
+% 			      \end{cases}
+% 			      .
+% 		      \end{equation}
+% 	\end{itemize}
+% \end{definition}
 
-\textbf{TODO: add more notation!}
-We will follow the notation as presented in \cite{GoodearlYakimov2017QCA}.
-Let $\bbK$ be any field.
-As a first step, we move from $\bbQ(Y_1, \dots, Y_N)$ to
-the \emph{quantum torus}
-\begin{equation*}
-	\mcT_{\mathbf r} =
-	\frac{\bbK\langle Y_1^{\pm 1}, \dots, Y_N^{\pm 1} \rangle}{\langle Y_iY_j = r_{ij}Y_jY_i \rangle},
-\end{equation*}
-where $\mathbf{r} \in M_N(\bbK^*)$ is a multiplicatively skew-symmetric matrix i.e.,
-$r_{ij} = r_{ji}\inv, r_{ii} = 1$.
-Associated to any such matrix, is a skew-symmetric bicharacter
-\footnote{With a bicharacter we mean a map from a direct product,
-	such that each of the component maps is a group character.}:
-\begin{equation*}
-	\Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
-	\Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
-\end{equation*}
+% \begin{remark}
+% 	These formulas seem a bit random at first sight,
+% 	but have a nice interpretation in the language of quivers.
+% 	Assume that $B$ is skew-symmetric,
+% 	and let $Q$ be the directed graph on $N$ vertices with $b_{ij}$ edges
+% 	from $i$ to $j$ if $j \in \ex$. If $b_{ij}$ is negative,
+% 	the edges have the opposite orientation.
+% 	Now, define the mutation of $Q$ at vertex $k$ as follows:
+% 	\begin{itemize}
+% 		\item For every edge connected to $k$, flip its orientation.
+% 		\item For every pair of edges $i\to k$ and $k\to j$, create an edge $i \to j$. Then
+% 		      ``cancel'' any pair of edges between $i$ and $j$ with opposite orientation.
+% 	\end{itemize}
+% 	The new matrix representing this graph, will be given precisely by \cref{eq:matrix_mutation}.
+% 	Furthermore, the exchange relation (\ref{eq:exchange_relation}) now takes the following form:
+% 	\begin{equation*}
+% 		x_kx_k' = \prod_{i \to k}x_i + \prod_{k \to j}x_i.
+% 	\end{equation*}
+% \end{remark}
 
-To prevent formulas from having $\frac{1}{2}$'s in the exponents, we will work with the
-\emph{quantum torus}\footnote{ The reason it's called a quantum torus is the following:
-	it is a quantization of the coordinate algebra of the torus $(\bbK^{*})^N$. }
-$\mcT_{\mathbf{r}^{\cdot 2}}$, where
-\begin{equation*}
-	\mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
-\end{equation*}
-This torus has a $\bbK$-basis consisting of elements
-\begin{equation*}
-	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
-	\text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
-\end{equation*}
-where
-\begin{equation*}
-	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
-\end{equation*}
-Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
-\begin{align*}
-	Y^{(e_k)}
-	 & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
-	 & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
-	 & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
-	 & = Y_K.
-\end{align*}
-Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
-\begin{equation*}
-	Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
-\end{equation*}
-Indeed,
-\begin{align*}
-	Y^{(f)}Y^{(g)}
-	 & = \mcS_{\mathbf{r}}(f)Y^f\mcS_{\mathbf{r}}(g)Y^g                                    \\
-	 & = (\prod_{i < j}r_{ij}^{-f_if_j})(\prod_{i}Y_i^{f_i})
-	(\prod_{i < j}r_{ij}^{-g_ig_j})( \prod_{i}Y_i^{g_i})                                   \\
-	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
-	(\prod_{k}Y_k^{f_k})(\prod_{k}Y_k^{g_k})                                               \\
-	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
-	(\prod_{i < j}r_{ij}^{-2g_if_j})(\prod_{k}Y_k^{f_k + g_k})
-	 & (Y_i^{f_i} Y_j^{g_j} = r_{ij}^{2f_ig_j}Y_j^{g_j}Y_i^{f_i})                          \\
-	 & = (\prod_{i < j}r_{ij}^{-(f_if_j +2g_if_j + g_ig_j)})
-	(\prod_{k}Y_k^{f_k + g_k})                                                             \\
-	 & = (\prod_{i < j}r_{ij}^{f_ig_j - g_if_j})
-	(\prod_{i < j}r_{ij}^{-(f_if_j + f_ig_j + g_if_j + f_ig_j)})(\prod_{k}Y_k^{f_k + g_k}) \\
-	 & = (\prod_{i,j}r_{ij}^{f_ig_j})
-	(\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
-	 & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
-\end{align*}
-The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^(f) \mid f \in \bbZ^N\}$
-is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
+% \medskip
 
-We now come to the analog of clusters in the quantum setting.
-\begin{definition}
-	A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
-	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
-	\begin{enumerate}
-		\item There is an algebra embedding $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
-		      given by $\varphi(Y_i) = M(e_i)$, such that $\mcF =
-			      \Fract(\varphi(\mcT_{\mathbf{r}^{\cdot 2}}))$.
-		\item For all $f \in \bbZ^N$, $M(f) = \varphi(Y^{(f)})$.
-	\end{enumerate}
-\end{definition}
-\begin{remark}
-	We can always recover the matrix $\mathbf{r}$ from the toric frame $M$,
-	since
-	\begin{align*}
-		r_{ij}
-		                         & = \Omega_{\mathbf{r}}(e_i, e_j)                    \\
-		                         & = Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv          \\
-		                         & \Big\Updownarrow                                   \\
-		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
-		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
-	\end{align*}
-	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
-\end{remark}
-Now, for quantum seeds, we'll need an extra compatibility condition:
-\begin{definition}
-	A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
-	and an $N \times n$ matrix $B$ over $\bbZ$ such that
-	\begin{enumerate}
-		\item The principal part of $\tB$ is skew-symmetrizable.
-		\item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
-	\end{enumerate}
-\end{definition}
+% With these definitions out of the way we define the \emph{cluster algebra} associated
+% to a seed as the subalgebra of $\mcF$ generated by the union of clusters of all seeds
+% obtained through (iterative) mutations of the initial seed.
 
-So, what is this extra compatibility? In analogy with \cref{eq:exchange_relation} we
-want to define $\mu_k(M)$ in such a way that $\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$
-and
-\begin{equation*}
-	M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
-\end{equation*}
-where $b^k$ is the $k$-th column of $B$.
-Bringing $M(e_k)$ to the other side,
-and ignoring eventual symmetrization constants we can then define
-\begin{equation*}
-	\mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
-\end{equation*}
-Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
-\begin{align*}
-	\mu_k(M)(e_k)
-	 & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
-	 & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
-	 & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
-\end{align*}
-where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
-\begin{equation*}
-	E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
-\end{equation*}
-Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
-and $E_\epsilon e_j = e_j$ for all $j \neq k$,
-we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
-In other words,
-we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
-\begin{align*}
-	M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
-\end{align*}
-On the one hand we have
-\begin{align*}
-	M'(e_k)M'(e_j)
-	 & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
-	 & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
-	 & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
-	 & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
-\end{align*}
-while $M'$ being a toric frame would imply
-\begin{align*}
-	M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
-\end{align*}
-The easiest way to make the two equations compatible,
-is to demand $\mathbf{r}' = \mathbf{r}$,
-and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
-\textbf{TODO: is this the only possible choice?}
-This leads to the following definition:
-\begin{definition}
-	Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
-	\begin{equation*}
-		t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
-	\end{equation*}
-	for $j \in \mathbf{ex}$ and $j \in [1, N]$.
-	We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
-	$t_{ij} = 1$ whenever $i \neq j$,
-	and all the $t_{ii}$ are \emph{not} roots of unity.
-\end{definition}
-\textbf{TODO: How to explain the root of unity part? Is there a clean way?}
+% Instead of proving things now for the classical case, we will jump directly to the
+% quantized version to avoid having to prove the same results twice.
+
+% \subsection{Quantum cluster algebras}
+
+% \textbf{TODO: add more notation!}
+% We will follow the notation as presented in \cite{GoodearlYakimov2017QCA}.
+% Let $\bbK$ be any field.
+% As a first step, we move from $\bbQ(Y_1, \dots, Y_N)$ to
+% the \emph{quantum torus}
+% \begin{equation*}
+% 	\mcT_{\mathbf r} =
+% 	\frac{\bbK\langle Y_1^{\pm 1}, \dots, Y_N^{\pm 1} \rangle}{\langle Y_iY_j = r_{ij}Y_jY_i \rangle},
+% \end{equation*}
+% where $\mathbf{r} \in M_N(\bbK^*)$ is a multiplicatively skew-symmetric matrix i.e.,
+% $r_{ij} = r_{ji}\inv, r_{ii} = 1$.
+% Associated to any such matrix, is a skew-symmetric bicharacter
+% \footnote{With a bicharacter we mean a map from a direct product,
+% 	such that each of the component maps is a group character.}:
+% \begin{equation*}
+% 	\Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
+% 	\Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
+% \end{equation*}
+
+% To prevent formulas from having $\frac{1}{2}$'s in the exponents, we will work with the
+% \emph{quantum torus}\footnote{ The reason it's called a quantum torus is the following:
+% 	it is a quantization of the coordinate algebra of the torus $(\bbK^{*})^N$. }
+% $\mcT_{\mathbf{r}^{\cdot 2}}$, where
+% \begin{equation*}
+% 	\mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
+% \end{equation*}
+% This torus has a $\bbK$-basis consisting of elements
+% \begin{equation*}
+% 	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
+% 	\text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
+% \end{equation*}
+% where
+% \begin{equation*}
+% 	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
+% \end{equation*}
+% Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
+% \begin{align*}
+% 	Y^{(e_k)}
+% 	 & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
+% 	 & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
+% 	 & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
+% 	 & = Y_K.
+% \end{align*}
+% Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
+% \begin{equation*}
+% 	Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
+% \end{equation*}
+% Indeed,
+% \begin{align*}
+% 	Y^{(f)}Y^{(g)}
+% 	 & = \mcS_{\mathbf{r}}(f)Y^f\mcS_{\mathbf{r}}(g)Y^g                                    \\
+% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j})(\prod_{i}Y_i^{f_i})
+% 	(\prod_{i < j}r_{ij}^{-g_ig_j})( \prod_{i}Y_i^{g_i})                                   \\
+% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+% 	(\prod_{k}Y_k^{f_k})(\prod_{k}Y_k^{g_k})                                               \\
+% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+% 	(\prod_{i < j}r_{ij}^{-2g_if_j})(\prod_{k}Y_k^{f_k + g_k})
+% 	 & (Y_i^{f_i} Y_j^{g_j} = r_{ij}^{2f_ig_j}Y_j^{g_j}Y_i^{f_i})                          \\
+% 	 & = (\prod_{i < j}r_{ij}^{-(f_if_j +2g_if_j + g_ig_j)})
+% 	(\prod_{k}Y_k^{f_k + g_k})                                                             \\
+% 	 & = (\prod_{i < j}r_{ij}^{f_ig_j - g_if_j})
+% 	(\prod_{i < j}r_{ij}^{-(f_if_j + f_ig_j + g_if_j + f_ig_j)})(\prod_{k}Y_k^{f_k + g_k}) \\
+% 	 & = (\prod_{i,j}r_{ij}^{f_ig_j})
+% 	(\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
+% 	 & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
+% \end{align*}
+% The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^(f) \mid f \in \bbZ^N\}$
+% is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
+
+% We now come to the analog of clusters in the quantum setting.
+% \begin{definition}
+% 	A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
+% 	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
+% 	\begin{enumerate}
+% 		\item There is an algebra embedding $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
+% 		      given by $\varphi(Y_i) = M(e_i)$, such that $\mcF =
+% 			      \Fract(\varphi(\mcT_{\mathbf{r}^{\cdot 2}}))$.
+% 		\item For all $f \in \bbZ^N$, $M(f) = \varphi(Y^{(f)})$.
+% 	\end{enumerate}
+% \end{definition}
+% \begin{remark}
+% 	We can always recover the matrix $\mathbf{r}$ from the toric frame $M$,
+% 	since
+% 	\begin{align*}
+% 		r_{ij}
+% 		                         & = \Omega_{\mathbf{r}}(e_i, e_j)                    \\
+% 		                         & = Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv          \\
+% 		                         & \Big\Updownarrow                                   \\
+% 		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
+% 		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
+% 	\end{align*}
+% 	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
+% \end{remark}
+% Now, for quantum seeds, we'll need an extra compatibility condition:
+% \begin{definition}
+% 	A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
+% 	and an $N \times n$ matrix $B$ over $\bbZ$ such that
+% 	\begin{enumerate}
+% 		\item The principal part of $\tB$ is skew-symmetrizable.
+% 		\item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
+% 	\end{enumerate}
+% \end{definition}
+
+% So, what is this extra compatibility? In analogy with \cref{eq:exchange_relation} we
+% want to define $\mu_k(M)$ in such a way that $\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$
+% and
+% \begin{equation*}
+% 	M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
+% \end{equation*}
+% where $b^k$ is the $k$-th column of $B$.
+% Bringing $M(e_k)$ to the other side,
+% and ignoring eventual symmetrization constants we can then define
+% \begin{equation*}
+% 	\mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
+% \end{equation*}
+% Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
+% \begin{align*}
+% 	\mu_k(M)(e_k)
+% 	 & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
+% 	 & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
+% 	 & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
+% \end{align*}
+% where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
+% \begin{equation*}
+% 	E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
+% \end{equation*}
+% Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
+% and $E_\epsilon e_j = e_j$ for all $j \neq k$,
+% we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
+% In other words,
+% we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
+% \begin{align*}
+% 	M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
+% \end{align*}
+% On the one hand we have
+% \begin{align*}
+% 	M'(e_k)M'(e_j)
+% 	 & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
+% 	 & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
+% 	 & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
+% 	 & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
+% \end{align*}
+% while $M'$ being a toric frame would imply
+% \begin{align*}
+% 	M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
+% \end{align*}
+% The easiest way to make the two equations compatible,
+% is to demand $\mathbf{r}' = \mathbf{r}$,
+% and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
+% \textbf{TODO: is this the only possible choice?}
+% This leads to the following definition:
+% \begin{definition}
+% 	Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
+% 	\begin{equation*}
+% 		t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
+% 	\end{equation*}
+% 	for $j \in \mathbf{ex}$ and $j \in [1, N]$.
+% 	We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
+% 	$t_{ij} = 1$ whenever $i \neq j$,
+% 	and all the $t_{ii}$ are \emph{not} roots of unity.
+% \end{definition}
+% \textbf{TODO: How to explain the root of unity part? Is there a clean way?}
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
