@@ -67,12 +67,12 @@ Computing the first few terms of the sequence, we find:
 	a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
 \end{align*}
 From the definition of the sequence, there is no reason, a priori, to assume that all its elements would be integers. However, somewhat remarkably, the denominators seem to always cancel out perfectly. In the next section we will prove that all the terms in the sequence are indeed integers,
-as a corollary of the \emph{Laurent phenomenon}\index{Laurent!phenomenon}.
+as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}.
 
 The next family of integer sequences comes from \emph{$\SL_2(\bbZ)$-frieze
 	patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
 	to a horizontal strip, often found just below the roofline, which is decorated with
-	patterns.}\index{Frieze pattern}. The idea of a frieze pattern is best explained
+	patterns.}\index{frieze pattern}. The idea of a frieze pattern is best explained
 through an example (\cite{Coxeter1971FriezePatterns}). Take for example the following
 pattern:
 \begin{equation*}
@@ -160,11 +160,11 @@ elements will be integers, as required.
 It seems that we somehow got lucky in this case. There is again, a priori, no reason to
 assume that for any number of rows, we will always be able to choose the initial
 integers such that all the fractions simplify. The fact that this is possible, follows
-again from the ``Laurent phenomenon''\index{Laurent!phenomenon}, on which we can now
+again from the ``Laurent phenomenon''\index{Laurent!-phenomenon}, on which we can now
 shed a bit more light. Let $a_1, a_2, \dots, a_n$ be the initial integers chosen on the
 lattice path. Then, in this context, the Laurent phenomenon states that all the other
 elements of the frieze pattern can be written as Laurent
-polynomials\index{Laurent!polynomial} in $a_1 , \dots, a_n$ with coefficients in
+polynomials\index{Laurent!-polynomial} in $a_1 , \dots, a_n$ with coefficients in
 $\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice path
 from top to bottom consisting of only ones, will yield a frieze pattern. This already
 proves the existence of such frieze patterns for any number of rows. We will return to
@@ -223,7 +223,7 @@ given the side lengths. We will now apply this to triangulations of polygons.
 
 Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
 connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
-$n$, we obtain a polygon with $n$-sides. A triangulation\index{Triangulations!of
+$n$, we obtain a polygon with $n$-sides. A triangulation\index{triangulations!of
 	polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
 partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
 detail in a later section, and will therefore keep things brief here. For now, it is
@@ -348,7 +348,7 @@ which will become clear in this section. The main role will be played by quivers
 their mutations.
 
 \begin{definition}[Quivers]
-	A \emph{quiver}\index{Quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:triangulations}).
+	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:triangulations}).
 \end{definition}
 
 \begin{figure}
@@ -375,17 +375,17 @@ their mutations.
 We will now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
 for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Now, fix an integer
 $N$, and a subset $\ex subset.eq [1, N]$ of size $n$. The elements of $\ex$ will be
-called \emph{exchangeable}\index{Exchangeable}, while the elements of $\frz = [1, N]
-	\setminus \ex$ will be called \emph{frozen}\index{Frozen}. Finally, let $\mcF = \bbQ
+called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N]
+	\setminus \ex$ will be called \emph{frozen}\index{frozen}. Finally, let $\mcF = \bbQ
 	(X_1, \dots, X_N)$ be the field of rational functions over $\bbQ$, in $N$ variables.
 
 \begin{definition}
-	We call a pair $(Q, \tbx)$ a \emph{seed}\index{Seed} if
+	We call a pair $(Q, \tbx)$ a \emph{seed}\index{seed} if
 	\begin{enumerate}
 		\item $Q$ is a quiver with vertices $Q_0 = [1, N]$.
 		\item $\tbx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\tbx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
 	\end{enumerate}
-	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{Cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{Cluster!variables}.
+	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!-variables}.
 \end{definition}
 
 Although not strictly necessary, we will assume that the quiver $Q$ contains no arrows
@@ -395,7 +395,7 @@ vertices will be drawn with a box, while the exchangeable vertices will just be 
 normally.
 
 Given a seed, we can convert it to another seed through a \emph{seed
-	mutation}\index{Seed!mutation}.
+	mutation}\index{seed!-mutation}.
 \begin{definition}
 	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$.
 	We define the \emph{mutation in direction $k$} of the seed
@@ -422,7 +422,7 @@ Given a seed, we can convert it to another seed through a \emph{seed
 		      If $i,j$ are both frozen, then we ignore this step.
 		\item All arrows in $Q$ incident to $k$ get their orientation flipped.
 		\item $\tbx' = \{x_1', \dots, x_n'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
-		      is given by the \emph{exchange relation}\index{Exchange relation}
+		      is given by the \emph{exchange relation}\index{exchange relation}
 		      \begin{equation*}
 			      x'_k = \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
 		      \end{equation*}
@@ -689,10 +689,10 @@ From these examples we can observe a few things:
 \end{enumerate}
 
 To have the correct setting to explain the above observations, we must introduce the
-notion of a \emph{cluster algebra}\index{Cluster!algebra}. From
+notion of a \emph{cluster algebra}\index{algebra!cluster}. From
 \cref{lem:mutation_involution} it follows that the process of applying mutations is
 invertible. This means that we get a well-defined notion of
-\emph{mutation-equivalence}\index{Mutation!-equivalence} of seeds. Two seeds are
+\emph{mutation-equivalence}\index{mutation!-equivalence} of seeds. Two seeds are
 equivalent if one can be obtained from the other through a sequence of mutations.
 Choose some initial seed $(Q, \tbx)$, and write $\mathbf{c} = \tbx \setminus \bx =
 	\{x_i \in \tbx' \mid i \in \frz\}$.
@@ -709,9 +709,9 @@ Choose some initial seed $(Q, \tbx)$, and write $\mathbf{c} = \tbx \setminus \bx
 
 The first two observations are about two notions of ``finiteness'' of cluster algebras.
 When there are only finitely many mutation-equivalent quivers, we say that the cluster
-algebra is \emph{mutation-finite}\index{Mutation!-finite}. When there are only finitely
+algebra is \emph{mutation-finite}\index{mutation!-finite}. When there are only finitely
 many cluster variables, we say that the cluster algebra is
-\emph{cluster-finite}\index{Cluster!-finite}\footnote{It is also common to say that a
+\emph{cluster-finite}\index{cluster!-finite}\footnote{It is also common to say that a
 	cluster algebra is of finite type instead of calling it cluster-finite.}.
 
 Mutation-finite cluster algebras need not be cluster-finite. For example, the Markov
@@ -818,7 +818,7 @@ involve any subtractions. The subtlety comes from the cancelations that occur to
 the fractions to Laurent polynomials. For example, the fraction $\frac{x^3 +
 		y^3}{x(x+y)}$ simplifies to $\frac{x^2 - xy + y^2}{x}$. We now formulate the much
 alluded-to \emph{Laurent phenomenon}.
-\begin{theorem}[Laurent Phenomenon\index{Laurent!phenomenon}]\label{thm:laurent_phenomenon}
+\begin{theorem}[Laurent Phenomenon\index{Laurent!-phenomenon}]\label{thm:laurent_phenomenon}
 	Let $\mcA (Q, \tbx)$ be a cluster algebra. Each of the cluster variables can be written as a Laurent polynomial in $\tbx$ with integer coefficients.
 \end{theorem}
 This theorem was proven already by Fomin and Zelevinsky in their paper introducing cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all the coefficients would be positive. This was first proven by Lee and Schiffler for the types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}). Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more general case as well as a number of other open conjectures (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
@@ -861,7 +861,7 @@ practice.
 \textbf{What is Ore extension. Example of Weyl algebra.}
 \begin{definition}
 	Let $R$ be a ring with unit, $\sigma \colon R \to R$ be a ring endomorphism and
-	$\delta \colon R \to R$ a $\sigma$-\emph{derivation}\index{ring!derivation}, i.e.,
+	$\delta \colon R \to R$ a $\sigma$-\emph{derivation}\index{ring!-derivation}, i.e.,
 	$\delta$ is a group homomorphism $(R, +) \to (R, +)$ such that $\delta (r s) =
 		\sigma(r)\delta(s) + \delta(r) s$. Then we write $R[x;\sigma, \delta]$ for the ring generated by $R$ and $x$ with the additional relation that
 	\begin{equation*}
@@ -872,7 +872,7 @@ practice.
 In our case we will be working with algebras $R$ over some field $\bbK$. The construction of an Ore extension yields a $\bbK$-algebra, provided that $\sigma$ and $\delta$ are also $\bbK$-linear.
 \begin{example}
 	Let $A_1$ be the $\bbK$-algebra generated by two variables $x$ and $y$ such that $xy =
-		yx + 1$. This algebra is known as the \emph{Weyl algebra}\index{Weyl algebra}. It can
+		yx + 1$. This algebra is known as the \emph{Weyl algebra}\index{algebra!Weyl}. It can
 	also be viewed as an Ore extension $\bbK[y][x; \id, \partial_y]$:
 	\begin{itemize}
 		\item The base algebra is the polynomial ring $\bbK[y]$.
