@@ -5,7 +5,7 @@
 \input{definitions/macros}
 \input{definitions/letterfonts}
 
-\usetikzlibrary{shapes.geometric,calc, decorations.pathmorphing}
+\usetikzlibrary{shapes.geometric,calc, decorations.pathmorphing, arrows.meta}
 
 \newcommand{\ex}{\mathbf{ex}}
 \newcommand{\frz}{\mathbf{frz}}
@@ -945,7 +945,7 @@ is a grading, then we get a rational action through
 \end{equation*}
 %
 Under this correspondence, the $\mcH$-eigenvectors are precisely the nonzero
-homogeneous\index{homogeneous} elements under the grading.
+homogeneous\index{element!homogeneous} elements under the grading.
 
 \textbf{TODO: Examples}.
 
@@ -964,7 +964,7 @@ to the following definition:
 		\item For every $k\in [2, N]$, $\delta_k$ is \emph{locally
 			      nilpotent}\index{nilpotent!locally}, i.e., for all $r \in R_{k-1}$, there exists some
 		      $n \in \bbZ_{>0}$ such that $\delta_k^n (r) = 0$. Here, $R_{k-1}$ denotes the
-		      subalgebra consisting of only the first $k-1$ extensions:
+		      intermediate algebra consisting of only the first $k-1$ extensions:
 		      \begin{equation*}
 			      R_{k-1} = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots[x_{k-1};\sigma_{k-1}, \delta_{k-1}].
 		      \end{equation*}
@@ -982,6 +982,40 @@ multiplicatively skew-symmetric matrix $\boldsymbol{\lambda}= (\lambda_{kj}) \in
 for $1 \leq j < k \leq N$.
 
 \textbf{Homogeneous prime elements.}
+
+A \emph{prime element}\index{element!prime} of a not necessarily commutative domain $R$
+is a nonzero element $p \in R$ such that $p$ is \emph{normal}\index{element!normal},
+that is, $Rp = pR$ and such that the quotient $R / Rp$ is a domain. We now state a
+theorem that is quite technical, but forms the heart of the main theorem. Let us first
+fix some notation. For a function $\eta \colon [1, N] \to \bbZ$, we can define a
+predecessor and successor
+function\index{function!predecessor}\index{function!successor}:
+\begin{align*}
+	p \colon [1, N] \to [1, N] \sqcup \{-\infty\} & \colon k \mapsto  \max\{j < k \mid \eta(j) = \eta(k)\}  \\
+	s \colon [1, N] \to [1, N] \sqcup \{+\infty\} & \colon k \mapsto  \min\{j > k \mid \eta(j) = \eta(k)\},
+\end{align*}
+%
+where we take $\max \{\} = - \infty$ and $\min \{\}= + \infty$ (cf.
+\cref{fig:predecessor_successor}).
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\draw[help lines, xstep =0] (0,0) grid (8,4);
+		\draw plot[mark=*] coordinates {(1,1) (2,2) (3,1) (4,0) (5,1) (6,3) (7,2)};
+		\node (neginf) at (-0.5,1) {$-\infty$};
+		\node (a) at (1,1) {};
+		\node (b) at (3,1) {};
+		\node (c) at (5,1) {};
+		\node (posinf) at (8.5, 1) {$+\infty$};
+		\draw[Stealth-, red] (neginf) to [bend right = 20] (a);
+		\draw[Stealth-Stealth, red] (a) to [bend right = 20] (b);
+		\draw[Stealth-Stealth, red] (b) to [bend right = 20] (c);
+		\draw[-Stealth, red] (c) to [bend right = 15] (posinf);
+	\end{tikzpicture}
+	\caption{The predecessor and successor functions move along the level sets (the horizontal lines) to the previous or the next point respectively.}
+	\label{fig:predecessor_successor}
+\end{figure}
 
 \textbf{(Key parts of) proof of main theorem from \cite{GoodearlYakimov2017QCA}.}
 
