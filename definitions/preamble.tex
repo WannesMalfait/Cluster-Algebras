@@ -8,11 +8,14 @@
 \usepackage{cleveref}
 \usepackage{tikz-cd}
 
+%% Equation numbered by section
+\numberwithin{equation}{section}
+
 %% Theorem environments
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem*{lemma*}{Lemma}
