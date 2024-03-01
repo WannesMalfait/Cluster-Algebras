@@ -1062,7 +1062,7 @@ function\index{function!predecessor}\index{function!successor}:
 	s \colon [1, N] \to [1, N] \sqcup \{+\infty\} & \colon k \mapsto  \min\{j > k \mid \eta(j) = \eta(k)\},
 \end{align*}
 %
-where we take $\max \{\} = - \infty$ and $\min \{\}= + \infty$ (cfr.
+where we take $\max \{\} = - \infty$ and $\min \{\}= + \infty$ (cf.
 \cref{fig:predecessor_successor}).
 
 \begin{figure}
@@ -1151,9 +1151,9 @@ where $\blambda$ is as defined in \cref{eq:CGL_lambda}. Write $\bmq = (q_{kj}) \
 
 Additionally, we have the following equations.
 \begin{align}\label{eq:y_x_quasi_commute}
-	y_j x_k            & = \alpha_{kj}\inv x_k y_j, \text{ for all } j, k \in [1, N] \text{ such that } s(j) > k                    \\
-	\sigma_k (y_j)     & = \alpha_{kj}y_j, \text{ for } 1 \leq j \leq k \leq N                                                      \\
-	\delta_k(y_{p(k)}) & = \alpha_{k, p(k)}(\lambda_k - 1)c_k, \text{ for all } k \in [2, N] \text{ such that } p(k) \neq - \infty.
+	y_j x_k            & = \alpha_{kj}\inv x_k y_j, \text{ for all } j, k \in [1, N] \text{ such that } s(j) > k                                             \\
+	\sigma_k (y_j)     & = \alpha_{kj}y_j, \text{ for } 1 \leq j \leq k \leq N \label{eq:sigma_of_y}                                                         \\
+	\delta_k(y_{p(k)}) & = \alpha_{k, p(k)}(\lambda_k - 1)c_k, \text{ for all } k \in [2, N] \text{ such that } p(k) \neq - \infty \label{eq:delta_of_y_pk}.
 \end{align}
 %
 Finally, the following proposition provides a semi-constructive way of computing the
@@ -1171,6 +1171,84 @@ $y_k$.
 
 \textbf{(Key parts of) proof of main theorem from \cite{GoodearlYakimov2017QCA}.}
 
+To obtain a cluster algebra structure on a symmetric CGL extension, we need to study
+how the homogeneous prime elements change when the variables $x_1, \dots, x_N$ are
+adjoined in a different order. We consider the most basic case, when we swap the order
+of two adjacent variables $x_k, x_{k+1}$. So, we have a CGL extension
+\begin{equation}\label{eq:default_cgl_presentation}
+	R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots[x_k; \sigma_k, \delta_k][x_{k+1};\sigma_{k+1}, \delta_{k+1}]\cdots[x_N; \sigma_N, \delta_N],
+\end{equation}
+%
+such that we can also write $R$ as a CGL extension of the form
+\begin{multline}\label{eq:swapped_cgl_presentation}
+	R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots[x_{k-1}; \sigma_{k-1}, \delta_{k-1}][x_{k+1}; \sigma_k', \delta_k'][x_k;\sigma_{k+1}', \delta_{k+1}']\\
+	[x_{k+2}; \sigma_{k+2}, \delta_{k+2}]\cdots[x_N; \sigma_N, \delta_N].
+\end{multline}
+%
+We first look at what restrictions this places on the $\sigma_i, \sigma_i '$ and
+$\delta_i,\delta_i'$ appearing in the CGL presentations.
+\begin{lemma}
+	Let $R$ be a CGL extension with presentations of the form \eqref{eq:default_cgl_presentation} and \eqref{eq:swapped_cgl_presentation}. Then
+	\begin{equation}\label{eq:sigma_prime}
+		\begin{aligned}
+			\sigma_k ' & = \sigma_{k+1}|_{R_{k-1}}    \\
+			\sigma_k   & = \sigma_{k+1}' |_{R_{k-1}},
+		\end{aligned}
+	\end{equation}
+	and
+	\begin{equation}\label{eq:delta_prime}
+		\begin{aligned}
+			\delta_k ' & = \delta_{k+1}|_{R_{k-1}}    \\
+			\delta_k   & = \delta_{k+1}' |_{R_{k-1}}.
+		\end{aligned}
+	\end{equation}
+	Furthermore, $\delta_{k+1}(x_k) \in R_{k-1}$ and
+	\begin{equation}\label{eq:sigma_delta_prime_x_k_1}
+		\begin{aligned}
+			\sigma_{k+1}'(x_{k+1}) & = \lambda_{k, k+1} x_{k+1}             \\
+			\delta_{k+1}'(x_{k+1}) & = -\lambda_{k, k+1} \delta_{k+1}(x_k).
+		\end{aligned}
+	\end{equation}
+	%
+\end{lemma}
+\begin{proof}
+	%
+	From \cref{eq:default_cgl_presentation} we have that $x_{k+1}a = \sigma_{k+1}(a)x_{k+1}
+		+ \delta_{k+1}(a)$ for $a \in R_{k-1}$. On the other hand, also $x_{k+1}a =
+		\sigma_k'(a)x_{k+1} + \delta_k'(a)$ using \cref{eq:swapped_cgl_presentation}. So
+	\begin{equation*}
+		\sigma_{k+1}(a)x_{k+1} + \delta_{k+1}(a) = \sigma_k'(a) x_{k+1} + \delta_k'(a).
+	\end{equation*}
+	%
+	Using that $\sigma_k'(a)\in R_{k-1}, \sigma_{k+1}(a) \in R_k$ and $\delta_k'(a) \in
+		R_{k-1}, \delta_{k+1}(a) \in R_{k}$ together with the fact that $x_{k+1}$ and 1 are
+	linearly independent over $R_k$ it follows that $\sigma_k'(a) = \sigma_{k+1}(a)$ and
+	$\delta_k'(a) = \delta_{k+1}(a)$. Applying the same reasoning, but swapping the roles
+	of \cref{eq:default_cgl_presentation,eq:swapped_cgl_presentation} we obtain
+	$\sigma_k(a) = \sigma_{k+1}'(a)$ and $\delta_k(a) = \delta_{k+1}'(a)$, and we have
+	shown \cref{eq:delta_prime,eq:sigma_prime}.
+
+	Recalling \cref{eq:CGL_lambda}, note that $x_k x_{k+1} = \lambda'_{k+1,k}x_{k+1}x_{k} +
+		\delta'_{k+1}(x_{k+1})$, and $\lambda'_{k,k+1} = (\lambda_{k+1, k}')\inv$. So,
+	\begin{equation*}
+		\lambda'_{k,k+1}x_k x_{k+1} - \lambda'_{k,k+1} \delta'_{k+1}(x_{k+1}) = x_{k+1} x_k = \lambda_{k+1, k} x_k x_{k+1} + \delta_{k+1}(x_k).
+	\end{equation*}
+	%
+	Then, since $\delta'_{k+1} \in R'_k $ and $\delta_{k+1}(x_k) \in R_k$ are linearly
+	independent of $x_k x_{k+1}$ over $R_{k-1}$, we must have $\lambda_{k,k+1}' =
+		\lambda_{k+1,k}$ and
+	\begin{equation*}
+		-\lambda'_{k,k+1}\delta'_{k+1}(x_{k+1}) = \delta_{k+1}(x_k) \in R'_k \cap R_k = R_{k-1}.
+	\end{equation*}
+	%
+	Thus,
+	\begin{align*}
+		\sigma'_{k+1}(x_{k+1}) & = \lambda'_{k+1,k}x_{k+1} = \lambda_{k, k+1}x_{k+1}         \\
+		\delta'_{k+1}(x_{k+1}) & = -(\lambda_{k,k+1}')\inv \delta_{k+1}(x_k) = - \lambda_{k,
+			k+1}\delta_{k+1}(x_k),
+	\end{align*}
+	showing \cref{eq:sigma_delta_prime_x_k_1}.
+\end{proof}
 
 % \section{Some definitions}
 
@@ -1425,6 +1503,7 @@ $y_k$.
 % \end{definition}
 % \textbf{TODO: How to explain the root of unity part? Is there a clean way?}
 
+\newpage
 \bibliographystyle{plain}
 \bibliography{references.bib}
 \printindex
