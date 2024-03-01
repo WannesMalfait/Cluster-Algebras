@@ -1098,9 +1098,9 @@ where we take $\max \{\} = - \infty$ and $\min \{\}= + \infty$ (cf.
 	\end{equation*}
 	%
 	are homogeneous and have the property that for every $k \in [1, N]$,
-	\begin{equation*}
+	\begin{equation}\label{eq:list_of_ys_in_R_k}
 		\{y_j \mid j \in [1, k], s(j) > k\}
-	\end{equation*}
+	\end{equation}
 	%
 	is a list of the homogeneous prime elements of $R_k$, up to scalar multiples. The
 	elements $y_1, \dots, y_N \in R$ with these properties are unique, and the function $p$
@@ -1185,6 +1185,11 @@ such that we can also write $R$ as a CGL extension of the form
 	[x_{k+2}; \sigma_{k+2}, \delta_{k+2}]\cdots[x_N; \sigma_N, \delta_N].
 \end{multline}
 %
+We will denote the chain of algebras as
+\begin{equation*}
+	\bbK = R'_0 \subset R'_1  = \bbK[x_1] \subset R'_2 = \bbK[x_1][x_2; \sigma_2, \delta_2] \subset \cdots \subset R'_N = R
+\end{equation*}
+for the presentation \eqref{eq:swapped_cgl_presentation}.
 We first look at what restrictions this places on the $\sigma_i, \sigma_i '$ and
 $\delta_i,\delta_i'$ appearing in the CGL presentations.
 \begin{lemma}
@@ -1248,6 +1253,50 @@ $\delta_i,\delta_i'$ appearing in the CGL presentations.
 			k+1}\delta_{k+1}(x_k),
 	\end{align*}
 	showing \cref{eq:sigma_delta_prime_x_k_1}.
+\end{proof}
+
+Using the previous lemma, we can now describe what happens to the homogeneous prime
+elements $y_1, \dots, y_N$.
+
+\begin{theorem}
+	Assume that $R$ is a CGL extension of the form \eqref{eq:default_cgl_presentation}, with a second CGL presentation of the form \eqref{eq:swapped_cgl_presentation}. Denote with $y_1, \dots, y_N$ the sequence of homogeneous prime elements from \cref{thm:homogeneous_primes}, and $\eta : [1, N] \to \bbZ$ the associated function for \eqref{eq:default_cgl_presentation}. For \eqref{eq:swapped_cgl_presentation} we write $y'_1, \dots, y'_N$ and $\eta'$.
+	\begin{enumerate}
+		\item If $\eta(k) \neq \eta(k+1)$, then $y'_j = y_j$ for $j \neq k, k+1$ and $y'_k = y_{k+1},
+			      y'_{k+1} = y_k$.
+		\item If $\eta(k) = \eta(k+1)$, then
+		      \begin{equation*}
+			      y_k y'_k - \alpha_{k p(k)} y_{p(k)} y_{k+1}
+		      \end{equation*}
+		      is a homogeneous normal element of $R_{k-1}$, where we take $y_{-\infty} = 1 =
+			      \alpha_{k, -\infty}$. From \cref{eq:y_x_quasi_commute} we know that $y_{p(k)}y_{k+1}
+			      x_j = \gamma_j y_{p(k)}y_{k+1}$ for some $\gamma_j \in \bbK$ for each $j \in [1, k-1]$.
+		      Then, also
+		      \begin{equation*}
+			      (y_ky'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1})x_j = \gamma_j x_j (y_ky'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1}).
+		      \end{equation*}
+		      Moreover,
+		      \begin{equation*}
+			      y'_j = \begin{dcases*}
+				      \lambda_{k+1,k}y_j, & if $j=s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$                               \\
+				      y_j,                & if $j < k$, or $j>k+1$ and $j \neq s^l (k+1)$ for all $l \in \bbZ_{\geq 0}$.
+			      \end{dcases*}
+		      \end{equation*}
+	\end{enumerate}
+	In both cases, we can take $\eta' = \eta \circ (k,k+1)$, where $(k, k+1)$ denotes a transposition in $S_N$.
+\end{theorem}
+\begin{proof}
+	Since $R'_j = R_j$ for $j\neq k, k+1$ we also have that $y'_j = y_j$ for $j\in [1, k-1]$ since they only depend recursively on the ones before. We can hence also choose $\eta'(j) = \eta(j)$ for all $j\in [1, k-1]$. As we already remarked in the previous lemma, $R'_k \cap R_k = R_{k-1}$, and hence $y'_k$ which lies in $R'_k$ but not in $R_{k-1}$ is not contained in $R_k$.
+
+	If $\eta(k) \neq \eta(k+1)$, then $s(k) > k+1$, and hence $y_k$ is a homogeneous prime
+	element of $R_{k+1}$ due to \cref{eq:list_of_ys_in_R_k}. So, $R_{k+1}$ has two
+	homogeneous prime elements up to taking scalar multiples, $y_k$ and $y_{k+1}$, which do
+	not belong to $R_{k-1}$. Since $R_{k-1}' = R_{k-1}$ and $R_{k+1}' = R_{k+1}$, it
+	follows that $\eta'(k) \neq \eta'(k+1)$. Indeed, $s'(k) = k+1$ would mean that $y'_k$
+	is not a homogeneous prime element of $R'_{k+1}$, and $R'_{k+1}$ would only have one
+	homogeneous prime element up to taking associates which doesn't belong to $R_{k-1}$.
+	Now, by the uniqueness up to taking associates of the homogeneous prime elements and
+	the fact that $y'_k \notin R_k$, we have that $y'_k = \xi_{k+1}y_{k+1}$ and $y'_{k+1} =
+		\xi_{k}y_k$ for some $\xi_k, \xi_{k+1} \in \bbK^\times$.
 \end{proof}
 
 % \section{Some definitions}
