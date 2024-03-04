@@ -548,9 +548,9 @@ elements $y_1, \dots, y_N$.
 	%
 	as $\delta_{k+1}(x_k) \in R_{k-1}$ by \cref{lem:swapped_cgl_sigma_delta}. By
 	convention, $y_{-\infty} = 1 = \alpha_{k, -\infty}$. Hence,
-	\begin{equation*}
+	\begin{equation}\label{eq:y_k_y_k_prime_when_pk_inf}
 		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = y_k y'_k - y_{k+1} =  x_k x_{k+1} - (x_k x_{k+1} - c_{k+1}) = c_{k+1} \in R_{k-1},
-	\end{equation*}
+	\end{equation}
 	as desired, and we also immediately obtain that it is homogeneous, as $c_{k+1} = y_k x_{k+1} -y_{k+1}$ is homogeneous.
 
 	Now, let us tackle the case where $p(k) \neq -\infty$. We have
@@ -619,12 +619,31 @@ elements $y_1, \dots, y_N$.
 	This completes the proof.
 \end{proof}
 
-Although \cref{thm:y_prime_swapped_cgl}~\cref*{itm:eta_k_is_eta_k_plus_one} does give
-an explicit formula for $y'_k$ in terms of $y_k$, we can turn it into a cluster
-mutation statement.
-\begin{theorem}
-
+Although \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one} does
+not give an explicit formula for $y'_k$ in terms of $y_k$, we can make it more
+explicit, by using the following fact.
+\begin{theorem}[\protect{\cite[Proposition 3.1]{GoodearlYakimov2017QCA}}]\label{thm:normal_in_UFD}
+	Let $R$ be a CGL extension\footnote{The statement holds more generally for Noetherian $\mcH$-UFD's, but we only need this specific case.}. Every normal $\mcH$-eigenvector in $R$ is either a unit or a product of prime $\mcH$-eigenvectors. The factors are unique up to reordering and taking associates.
 \end{theorem}
+Let us write
+\begin{equation}\label{eq:P_of_k}
+	P(k) = \{j \in [1,  k] \mid s(j) > k\}.
+\end{equation}
+Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of $R_k$ are given by $\{y_j \mid j \in P(k)\}$.
+\begin{theorem}
+	With the same assumptions as \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}, there exist a collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ and $\kappa \in \bbK^\times$ such that
+	\begin{equation*}
+		y'_k = y_k\inv \left(\alpha_{kp(k)}y_{p(k)}y_{k+1} + \kappa \prod_{i \in P(k-1), i\neq p(k)} y_i^{m_i}\right).
+	\end{equation*}
+\end{theorem}
+\begin{proof}
+	Since $y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1}$ is a homogeneous normal element of $R_{k-1}$, it follows from \cref{thm:normal_in_UFD} that
+	\begin{equation*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = \kappa \prod_{i \in P(k-1)} y_i^{m_i}
+	\end{equation*}
+	for some $\kappa \in \bbK$ and a collection of nonnegative integers $\{m_i \mid i \in P(k-1)\}$, as the set $\{y_i \mid i \in P(k-1)\}$ contains all homogeneous prime elements of $R_{k-1}$ up to associates by \cref{thm:homogeneous_primes}. If $p(k) = -\infty$, then \cref{eq:y_k_y_k_prime_when_pk_inf} gives that the $\kappa$ can not be zero as $c_{k+1} \neq 0$. In this case, also $i \neq p(k)$ for all $i \in P(k-1)$. Thus, it remains to show that $\kappa \neq 0$ and $m_{p(k)} = 0$ if $p(k) \neq - \infty$.
+	If $\kappa = 0$, then $y_k y'_k = \alpha_{kp(k)}y_{p(k)}y_{k+1}$, which is a contradiction, as $y_{k+1}$ is a prime element of $R_{k+1}$ which does not divide either $y_k$ or $y'_k$.
+\end{proof}
 
 % \section{Some definitions}
 
