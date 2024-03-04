@@ -954,7 +954,7 @@ homogeneous\index{element!homogeneous} elements under the grading.
 
 The combination of a rational action by a torus and iterated Ore extensions gives rise
 to the following definition:
-\begin{definition}[\protect{\cite[Definition 3.3]{GoodearlYakimov2017QCA}}]
+\begin{definition}[\protect{\cite[Definition 3.3]{GoodearlYakimov2017QCA}}]\label{def:cgl_extension}
 	An iterated Ore extension
 	\begin{equation*}
 		R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots [x_N; \sigma_N, \delta_N]
@@ -991,6 +991,26 @@ multiplicatively skew-symmetric matrix
 %
 by setting $\lambda_{kk} = 1$ and $\lambda_{jk} = \lambda_{kj}\inv$ for $1 \leq j < k
 	\leq N$.
+
+\begin{lemma}\label{lem:h_after_delta}
+	With the notations as in \cref{def:cgl_extension},
+	\begin{equation*}
+		(h\cdot )\delta_k = \chi_{x_k}(h)\delta_k(h\cdot),
+	\end{equation*}
+	for all $h \in \mcH$ and $k \in [2, N]$.
+\end{lemma}
+\begin{proof}
+	Fix $k \in [2, N]$ and $h \in \mcH$. Note that any monomial $a = x_1^{m_1}\cdots x_{k-1}^{m_{k-1}} \in R_{k-1}$ is an $h$-eigenvector, and also a $\sigma_k$-eigenvector. Hence,
+	\begin{align*}
+		h \cdot(x_k a)  & = \chi_{x_k}(h)\chi_{a}(h)x_ka                                      \\
+		                & = \chi_{x_k}(h)\chi_{a}(h)(\sigma_k (a)x_k +  \delta_k(a))          \\
+		                & = h \cdot (\sigma_k (a) x_k) + \chi_{x_k}(h)\delta_k(\chi_{a}(h)a), \\
+		\shortintertext{but also}
+		h \cdot (x_k a) & = h \cdot (\sigma_k (a) x_k + \delta_k(a))                          \\
+		                & = h \cdot (\sigma_k (a) x_k) + h\cdot \delta_k(a),
+	\end{align*}
+	which shows $h \cdot \delta_k (a) = \chi_{x_k}(h) \delta_k (h \cdot a)$. The result then follows from linearity of $(h \cdot)$ and $\delta_k$.
+\end{proof}
 
 For a given CGL extension, there is not necessarily a unique order in which the $x_1,
 	\dots, x_N$ need to be added. The different permutations will correspond to cluster
@@ -1192,7 +1212,7 @@ We will denote the chain of algebras as
 for the presentation \eqref{eq:swapped_cgl_presentation}.
 We first look at what restrictions this places on the $\sigma_i, \sigma_i '$ and
 $\delta_i,\delta_i'$ appearing in the CGL presentations.
-\begin{lemma}
+\begin{lemma}\label{lem:swapped_cgl_sigma_delta}
 	Let $R$ be a CGL extension with presentations of the form \eqref{eq:default_cgl_presentation} and \eqref{eq:swapped_cgl_presentation}. Then
 	\begin{equation}\label{eq:sigma_prime}
 		\begin{aligned}
@@ -1285,7 +1305,12 @@ elements $y_1, \dots, y_N$.
 	In both cases, we can take $\eta' = \eta \circ (k,k+1)$, where $(k, k+1)$ denotes a transposition in $S_N$.
 \end{theorem}
 \begin{proof}
-	Since $R'_j = R_j$ for $j\neq k, k+1$ we also have that $y'_j = y_j$ for $j\in [1, k-1]$ since they only depend recursively on the ones before. We can hence also choose $\eta'(j) = \eta(j)$ for all $j\in [1, k-1]$. As we already remarked in the previous lemma, $R'_k \cap R_k = R_{k-1}$, and hence $y'_k$ which lies in $R'_k$ but not in $R_{k-1}$ is not contained in $R_k$.
+	%
+	Since $R'_j = R_j$ for $j\neq k, k+1$ we also have that $y'_j = y_j$ for $j\in [1,
+			k-1]$ since they only depend recursively on the ones before. We can hence also choose
+	$\eta'(j) = \eta(j)$ for all $j\in [1, k-1]$. As we already remarked in the previous
+	lemma, $R'_k \cap R_k = R_{k-1}$, and hence $y'_k$ which lies in $R'_k$ but not in
+	$R_{k-1}$ is not contained in $R_k$.
 
 	If $\eta(k) \neq \eta(k+1)$, then $s(k) > k+1$, and hence $y_k$ is a homogeneous prime
 	element of $R_{k+1}$ due to \cref{eq:list_of_ys_in_R_k}. So, $R_{k+1}$ has two
@@ -1296,9 +1321,140 @@ elements $y_1, \dots, y_N$.
 	homogeneous prime element up to taking associates which doesn't belong to $R_{k-1}$.
 	Now, by the uniqueness up to taking associates of the homogeneous prime elements and
 	the fact that $y'_k \notin R_k$, we have that $y'_k = \xi_{k+1}y_{k+1}$ and $y'_{k+1} =
-		\xi_{k}y_k$ for some $\xi_k, \xi_{k+1} \in \bbK^\times$.
-\end{proof}
+		\xi_{k}y_k$ for some $\xi_k, \xi_{k+1} \in \bbK^\times$. Since $y_j' = y_j$ for $j \in
+		[1, k-1]$, \cref{thm:homogeneous_primes} gives that $\xi_{k} = 1 \xi_{k+1}$, and that
+	we may choose $\eta'(k) = \eta(k+1)$ and $\eta'(k+1) = \eta(k)$. Additionally, since
+	$R'_j = R_j$ for $j \in [k+1, N]$, we have $y'_j = \xi_j y_j$ for some $\xi_j \in
+		\bbK^\times$. Applying \cref{thm:homogeneous_primes} and looking at the leading
+	coefficients, we find that $\xi_j = 1$ and that we may choose $\eta'(j) = \eta(j)$ for
+	all $j \in [k+1, N]$. \medskip
 
+	If $\eta(k) = \eta(k+1)$, then $s(k) = k+1$ so that $y_k$ is not a homogeneous prime
+	element of $R_{k+1}$. So, $y_{k+1}$ is the only homogeneous prime element, up to taking
+	associates, in $R_{k+1}\setminus R_{k-1}$. Since $R'_{k+1} = R_{k+1}$ and $R'_{k-1} =
+		R_{k-1}$ we must have that $y'_{k+1}$ is a scalar multiple of $y_{k+1}$, and that
+	$\eta'(k) = \eta'(k+1)$. Because $\eta'(k) = \eta'(p(k)) = \eta(p(k))$ if $p(k) \neq
+		-\infty$, we may choose $\eta'(k) = \eta'(k+1) = \eta(k+1) = \eta(k)$. Using this
+	information, \cref{thm:homogeneous_primes} gives
+	\begin{equation}\label{eq:recursive_yk_y_k_prime}
+		\begin{alignedat}{2}
+			y_k &= \begin{dcases*}
+				\mathrlap{y_{p(k)}x_k - c_k,}\hphantom{y_{p(k)}x_{k+1}-c'_k,} & if $p(k) \neq -\infty$ \\
+				x_k,                                                          & if $p(k) = -\infty$
+			\end{dcases*}
+			&
+			y_{k+1} &= y_k x_{k+1} - c_{k+1}\\
+			y'_k    & = \begin{dcases*}
+				y_{p(k)}x_{k+1} - c'_k, & if $p(k) \neq -\infty$ \\
+				x_{k+1},                & if $p(k) = -\infty$
+			\end{dcases*}
+			\qquad
+			&
+			y_{k+1} & = y'_k x_k - c'_{k+1}
+		\end{alignedat}
+	\end{equation}
+	%
+	for some $c_k,c'_k \in R_{k-1}, c_{k+1} \in R_k$ and $c'_{k+1} \in R'_{k}$. Now,
+	\begin{align*}
+		y_{k+1}  & = y_k x_{k+1} - c_{k+1} = y_{p(k)} x_k x_{k+1} - c_{k+1} - c_k x_{k+1} ,                                                        \\
+		\shortintertext{and}
+		y'_{k+1} & = y'_k x_k - c'_{k+1} = y_{p(k)}x_{k+1}x_k - c'_{k+1} - c'_k x_k = \lambda_{k+1, k}y_{p(k)}x_k x_{k+1} - c'_{k+1} - c'_{k} x_k,
+	\end{align*}
+	%
+	where we use the convention that $y_{p(k)} = 1$ and $c'_k = c_k = 0$ if $p(k) =
+		-\infty$. Since $y'_{k+1}$ is a scalar multiple of $y_{k+1}$, we must have
+	\begin{equation*}
+		y'_{k+1} = \lambda_{k+1,k}y_{k+1}.
+	\end{equation*}
+	%
+	Using again that $R'_j = R_j$ for $j \in [k+1, N]$, together with
+	\cref{thm:homogeneous_primes} we find $\eta'(j) = \eta(j)$ for $j\in [k+1, N]$ and
+	$y'_j = \lambda_{k+1,k} y_j$ if $j = s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$ while
+	$y'_j = y_j$ otherwise.
+
+	We now verify that
+	\begin{equation*}
+		y_k y'_k - \alpha_{k p(k)}y_{p(k)}y_{k+1} \in R_{k-1}.
+	\end{equation*}
+	%
+	If $p(k) = -\infty$, then $y_k = x_k$ and
+	\begin{equation*}
+		c_{k+1} \overset{\eqref{eq:delta_of_y_pk}}{=} \alpha_{k+1, p(k+1)}\inv (\lambda_{k+1} - 1)\inv\delta_{k+1}(y_{p(k+1)})
+		= \alpha_{k+1, k}\inv (\lambda_{k+1} -1)\inv \delta_{k+1}(x_k) \in R_{k-1},
+	\end{equation*}
+	%
+	as $\delta_{k+1}(x_k) \in R_{k-1}$ by \cref{lem:swapped_cgl_sigma_delta}. By
+	convention, $y_{-\infty} = 1 = \alpha_{k, -\infty}$. Hence,
+	\begin{equation*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = y_k y'_k - y_{k+1} =  x_k x_{k+1} - (x_k x_{k+1} - c_{k+1}) = c_{k+1} \in R_{k-1},
+	\end{equation*}
+	as desired, and we also immediately obtain that it is homogeneous, as $c_{k+1} = y_k x_{k+1} -y_{k+1}$ is homogeneous.
+
+	Now, let us tackle the case where $p(k) \neq -\infty$. We have
+	\begin{align*}
+		y_k y_{p(k)}  \overset{\eqref{eq:recursive_yk_y_k_prime}} & {=} (y_{p(k)}x_k - c_k)y_{p(k)}                       \\
+		\overset{\eqref{eq:y_x_quasi_commute}}                    & {=} y_{p(k)}\sigma_k(y_{p(k)}) x_k - c_k y_{p(k)}     \\
+		\overset{\eqref{eq:sigma_of_y}}                           & {=} \alpha_{kp(k)} y_{p(k)}y_{p(k)}x_k - c_k y_{p(k)} \\
+		\overset{\eqref{eq:y_quasi_commute}}                      & {=} \alpha_{kp(k)}y_{p(k)}y_k,
+	\end{align*}
+	and hence
+	\begin{align*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} & = y_k (y_{p(k)}x_{k+1}-c'_k) -\alpha_{kp(k)}y_{p(k)}(y_kx_{k+1}-c_{k+1}) \\
+		                                         & = -y_k c'_k + \alpha_{kp(k)}y_{p(k)}c_{k+1} \in R_k.
+	\end{align*}
+	%
+	On the other hand,
+	\begin{align*}
+		\sigma'_{k+1}(y'_k)                          & = \sigma'_{k+1}(y_{p(k)}x_{x+1} - c'_k)                                \\
+		\overset{\eqref{eq:sigma_delta_prime_x_k_1}} & {=} \alpha_{kp(k)}\lambda_{k,k+1}y_{p(k)}x_{k+1} - \sigma_{k+1}'(c'_k) \\
+		\overset{\eqref{eq:sigma_of_y}}              & {=} \alpha_{kp(k)}\lambda_{k+1,k}\inv y'_k,
+	\end{align*}
+	from which we obtain
+	\begin{align*}
+		y_k y_k' - \alpha_{kp(k)}y_{p(k)}y_{k+1} & = (y_{p(k)}x_k -c_k)y'_k -\alpha_{kp(k)}y_{p(k)}\lambda_{k+1,k}\inv y_{p(k)} y'_{k+1}                                                       \\
+		                                         & = y_{p(k)}(\sigma'_{k+1}(y'_k)x_k + \delta'_{k+1}(y'_k)) -c_k y'_k -\alpha_{kp(k)}y_{p(k)}\lambda_{k+1,k}\inv y_{p(k)}(y'_k x_{k}-c'_{k+1}) \\
+		                                         & = y_{p(k)}\delta'_{k+1}(y'_k) -c_k y'_k -\alpha_{kp(k)}y_{p(k)}\lambda_{k+1,k}\inv y_{p(k)}c'_{k+1} \in R'_k.
+	\end{align*}
+	%
+	So, $y_k y_k'- \alpha_{kp(k)}y_{p(k)}y_{k+1} \in R_k \cap R_k' = R_{k-1}$, which is
+	what we wanted to show. Let us now show that it is also homogeneous in this case.
+
+	By \cref{eq:delta_of_y_pk}, $c'_k$ and $c_{k+1}$ are scalar multiples of $\delta'_k
+		(y_{p(k)}) = \delta_{k+1}(y_{p(k)})$ and $\delta_{k+1}(y_k)$ respectively. So, by
+	\cref{lem:h_after_delta}, we have that
+	\begin{align*}
+		h \cdot (y_k c'_k)        & = \chi_{y_k}(h)y_k h \cdot (\xi \delta_{k+1}(y_{p(k)}))                              \\
+		                          & = \chi_{y_k}(h)y_k \chi_{x_{k+1}}(h) \chi_{y_{p(k)}}(h)\xi \delta_{k+1}(y_{p(k)})    \\
+		                          & = \chi_{y_k}(h)\chi_{x_{k+1}}(h)\chi_{y_{p(k)}}(h) y_k c'_k                          \\
+		\shortintertext{and}
+		h \cdot (y_{p(k)}c_{k+1}) & = \chi_{y_{p(k)}}(h) y_{p(k)} h \cdot (\xi' \delta_{k+1}(y_k))                       \\
+		                          & = \chi_{y_{p(k)}}(h)y_{p(k)}  \chi_{x_{k+1}}(h) \chi_{y_k}(h) \xi' \delta_{k+1}(y_k) \\
+		                          & = \chi_{y_{p(k)}}(h)  \chi_{x_{k+1}}(h) \chi_{y_k}(h) y_{p(k)}c_{k+1},
+	\end{align*}
+	%
+	for all $h \in \mcH$. Hence, $-y_k c'_k + \alpha_{kp(k)}y_{p(k)}c_{k+1} = y_k y'_k -
+		\alpha_{kp(k)}y_{p(k)}y_{k+1}$ is homogeneous.
+
+	It remains to show that it is normal in $R_{k-1}$. By \cref{eq:y_x_quasi_commute}, we
+	get that
+	\begin{equation*}
+		(y_k y_k')x_j = \beta_j x_j (y_k y'_k),
+	\end{equation*}
+	and
+	\begin{equation*}
+		(y_{p(k)}y_{k+1})x_j = \gamma_j x_j (y_{p(k)}y_{k+1}),
+	\end{equation*}
+	for all $j \in [1, k-1]$, where
+	\begin{align*}
+		\beta_j & = (\alpha'_{jk})\inv \alpha_{jk} \inv                                                                                   \\
+		        & = \left(\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(k)}\lambda'_{j,p^l(k)}\right)\inv                \\
+		        & = \left(\lambda_{j, k+1}\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=1}^{O_{-}(k)}\lambda_{j,p^l(k)}\right)\inv \\
+		        & = \left(\prod_{m = 0}^{O_{-}(k+1)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(p(k))}\lambda_{j,p^l(p(k))}\right)\inv         \\
+		        & = (\alpha_{j,k+1} \alpha_{j, p(k)})\inv                                                                                 \\
+		        & = \gamma_j.
+	\end{align*}
+	This completes the proof.
+\end{proof}
 % \section{Some definitions}
 
 % We start with the non-quantized version of cluster algebras, introduced in
