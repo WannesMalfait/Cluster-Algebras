@@ -233,10 +233,27 @@ $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$
 
 A \emph{prime element}\index{element!prime} of a not necessarily commutative domain $R$
 is a nonzero element $p \in R$ such that $p$ is \emph{normal}\index{element!normal},
-that is, $Rp = pR$ and such that the quotient $R / Rp$ is a domain. We now state a
-theorem that is quite technical, but forms the heart of the main theorem. Let us first
-fix some notation. For a function $\eta \colon [1, N] \to \bbZ$, we can define a
-predecessor and successor
+that is, $Rp = pR$ and such that the quotient $R / Rp$ is a domain. To illustrate that
+this definition corresponds to our intuition of what a prime element should be, we
+prove the following small lemma.
+\begin{lemma}\label{lem:prime_divides_product}
+	%
+	Let $p$ be a prime element in a ring $R$. If $p$ divides a product $ab$ for some $a,b
+		\in R$, then $p$ divides $a$ or $p$ divides $b$.
+\end{lemma}
+\begin{proof}
+	%
+	Note that since $p$ is normal, there is no ambiguity about dividing $ab$ on the left or
+	on the right. Indeed, if $c p = ab$ for some $c \in R$, then $ab \in Rp = pR$, and
+	there exists some $c' \in R$ such that $p c' = ab$. So, assume that $ab \in Rp$. Then
+	the image of $ab$ is zero under the quotient map $\pi \colon R \to R/Rp$. Since $Rp$ is
+	a domain, that implies that either $\pi(a) = 0$ or $\pi(b)$ is zero. So, either $a \in
+		Rp$ or $b \in Rp$.
+\end{proof}
+%
+We now state a theorem that is quite technical, but forms the heart of the main
+theorem. Let us first fix some notation. For a function $\eta \colon [1, N] \to \bbZ$,
+we can define a predecessor and successor
 function\index{function!predecessor}\index{function!successor}:
 \begin{align*}
 	p \colon [1, N] \to [1, N] \sqcup \{-\infty\} & \colon k \mapsto  \max\{j < k \mid \eta(j) = \eta(k)\}  \\
@@ -623,15 +640,25 @@ Although \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}
 not give an explicit formula for $y'_k$ in terms of $y_k$, we can make it more
 explicit, by using the following fact.
 \begin{theorem}[\protect{\cite[Proposition 3.1]{GoodearlYakimov2017QCA}}]\label{thm:normal_in_UFD}
-	Let $R$ be a CGL extension\footnote{The statement holds more generally for Noetherian $\mcH$-UFD's, but we only need this specific case.}. Every normal $\mcH$-eigenvector in $R$ is either a unit or a product of prime $\mcH$-eigenvectors. The factors are unique up to reordering and taking associates.
+	%
+	Let $R$ be a CGL extension\footnote{The statement holds more generally for Noetherian
+		$\mcH$-UFD's, but we only need this specific case.}. Every normal $\mcH$-eigenvector in
+	$R$ is either a unit or a product of prime $\mcH$-eigenvectors. The factors are unique
+	up to reordering and taking associates.
 \end{theorem}
 Let us write
 \begin{equation}\label{eq:P_of_k}
 	P(k) = \{j \in [1,  k] \mid s(j) > k\}.
 \end{equation}
-Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of $R_k$ are given by $\{y_j \mid j \in P(k)\}$.
+%
+Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of $R_k$
+are given by $\{y_j \mid j \in P(k)\}$.
 \begin{theorem}
-	With the same assumptions as \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}, there exist a collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ and $\kappa \in \bbK^\times$ such that
+	%
+	With the same assumptions as
+	\cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}, there exist a
+	collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ and $\kappa
+		\in \bbK^\times$ such that
 	\begin{equation*}
 		y'_k = y_k\inv \left(\alpha_{kp(k)}y_{p(k)}y_{k+1} + \kappa \prod_{i \in P(k-1), i\neq p(k)} y_i^{m_i}\right).
 	\end{equation*}
@@ -641,8 +668,43 @@ Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of 
 	\begin{equation*}
 		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = \kappa \prod_{i \in P(k-1)} y_i^{m_i}
 	\end{equation*}
-	for some $\kappa \in \bbK$ and a collection of nonnegative integers $\{m_i \mid i \in P(k-1)\}$, as the set $\{y_i \mid i \in P(k-1)\}$ contains all homogeneous prime elements of $R_{k-1}$ up to associates by \cref{thm:homogeneous_primes}. If $p(k) = -\infty$, then \cref{eq:y_k_y_k_prime_when_pk_inf} gives that the $\kappa$ can not be zero as $c_{k+1} \neq 0$. In this case, also $i \neq p(k)$ for all $i \in P(k-1)$. Thus, it remains to show that $\kappa \neq 0$ and $m_{p(k)} = 0$ if $p(k) \neq - \infty$.
-	If $\kappa = 0$, then $y_k y'_k = \alpha_{kp(k)}y_{p(k)}y_{k+1}$, which is a contradiction, as $y_{k+1}$ is a prime element of $R_{k+1}$ which does not divide either $y_k$ or $y'_k$.
+	%
+	for some $\kappa \in \bbK$ and a collection of nonnegative integers $\{m_i \mid i \in
+		P(k-1)\}$, as the set $\{y_i \mid i \in P(k-1)\}$ contains all homogeneous prime
+	elements of $R_{k-1}$ up to associates by \cref{thm:homogeneous_primes}. If $p(k) =
+		-\infty$, then \cref{eq:y_k_y_k_prime_when_pk_inf} gives that the $\kappa$ can not be
+	zero as $c_{k+1} \neq 0$. In this case, also $i \neq p(k)$ for all $i \in P(k-1)$.
+	Thus, it remains to show that $\kappa \neq 0$ and $m_{p(k)} = 0$ if $p(k) \neq -
+		\infty$.
+
+	If $\kappa = 0$, then $y_k y'_k = \alpha_{kp(k)}y_{p(k)}y_{k+1}$, which is a
+	contradiction, as $y_{k+1}$ is a prime element of $R_{k+1}$ which does not divide
+	either $y_k$ or $y'_k$ (cf. \cref{lem:prime_divides_product}).
+
+	If $m_{p(k)} \neq 0$ and $p(k) \neq -\infty$, then $y_{p(k)}$ is a prime element of
+	$R_{k-1}$ since $s(p(k)) = k > k-1$, and
+	\begin{equation*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} \in y_{p(k)}R_{k-1},
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		y_k y'_k \in y_{p(k)}R_{k+1}.
+	\end{equation*}
+	%
+	From \cref{thm:homogeneous_primes} we know that we can write $y_k = y_{p(k)}x_k - c_k$
+	and $y'_k = y_{p(k)}x_{k+1} - c'_k$ for some $c_k, c'_k \in R_{k-1}$. Then $y_{p(k)}$
+	does not divide $c_k$, as otherwise $y_{p(k)}$ would divide $y_k$, and they would be
+	associates by \cref{thm:normal_in_UFD}. Similarly, $y_{p(k)}$ does not divide $c'_k$.
+	Hence,
+	\begin{align*}
+		c_kc'_k & = c_k (y'_k - y_{p(k)}x_{k+1})                         \\
+		        & = y_ky'_k - y_{p(k)}x_ky'_k + c_k y_{p(k)}x_{k+1}      \\
+		        & \in (y_{p(k)} R_{k+1}) \cap R_{k-1} = y_{p(k)}R_{k-1},
+	\end{align*}
+	%
+	as $c_kc'_k \in R_{k-1}$ and $c_k y_{p(k)} \in R_{k-1}y_{p(k)} = y_{p(k)}R_{k-1}
+		\subseteq y_{p(k)}R_{k+1}$ by normality of $y_{p(k)}$ in $R_{k-1}$. So, $y_{p(k)}$
+	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
 \end{proof}
 
 % \section{Some definitions}
