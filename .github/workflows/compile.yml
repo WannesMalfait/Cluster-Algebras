@@ -7,7 +7,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-            echo "{date}={$(date +'%Y-%m-%d--%H-%M')}" >> "$GITHUB_ENV"
+            echo "{date}={$(date +'%Y-%m-%d--%H-%M')}" >> $GITHUB_ENV
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Compile LaTeX document
@@ -16,6 +16,8 @@ jobs:
           root_file: cluster_algebras.tex
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
+        env:
+          date: ${{ env.date }}
         with:
-          name: PDF-{{ env.date }}
+          name: PDF-${{ env.date }}
           path: cluster_algebras.pdf
