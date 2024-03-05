@@ -739,7 +739,7 @@ multiplicative subset such that $x E \cap e R \neq \emptyset$ for all $x \in R$ 
 
 Recall that a \emph{regular element}\index{element!regular} of a ring is a nonzero
 element that is neither a left nor a right zero-divisor.
-\begin{lemma}
+\begin{lemma}\label{lem:ore_set_ore_extension}
 	%
 	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set of
 	regular elements in $B$. If $\sigma(\bbK^\times E) = \bbK^\times E$, then $E$ is a
@@ -775,12 +775,41 @@ element that is neither a left nor a right zero-divisor.
 	all $e\in E$. Indeed, for $e \in E$ we can find $a \in R$ and $f \in E$ such that $ea =
 		r f$, and $b \in R$ and $g \in E$ such that $f b = s g$, and then
 	\begin{equation*}
-		e a b = r f b = r s g \in rs E.
+		e a b = r f b = r s g \in rs E \cap e R.
 	\end{equation*}
 
 	The statement now follows by iteratively applying this fact on an element $\sum b_i x^i
 		\in R$.
 \end{proof}
+
+We now apply this lemma to a CGL extension $R$. Let $y_1, \dots, y_N$ be the sequence
+of homogeneous prime elements from \cref{thm:homogeneous_primes}. We now claim that for
+each $j \in [1, K]$, the set, $E_j = \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq 0}\}$,
+is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and $a \in
+	R_j$, we have
+\begin{equation*}
+	y_j^k R_j \cap a E_j = R_j y_j^k \cap  a E_j \ni a y_j^k.
+\end{equation*}
+This shows that $E_j$ is an Ore set in $R_j$. Furthermore, $\sigma(\bbK^\times E_j) = \bbK^\times E_j$ because $y_j$ is homogeneous. Hence, by \cref{lem:ore_set_ore_extension}, we find that $E_j$ is also an Ore set in $R_{j + 1}$. By repeatedly applying \cref{lem:ore_set_ore_extension} we find that $E_j$ is an Ore set in $R$. Now, take $I \subseteq [1, N]$ and define
+\begin{equation*}
+	E_I = \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
+\end{equation*}
+%
+By \cref{eq:y_quasi_commute}, it is a multiplicative set. It is also an Ore set by a
+similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if $e \in
+	E$ and $f \in F$ for two Ore sets $E$ and $F$, then for every $x \in R$ the set $ef R
+	\cap x E F$ is non-empty. Using that $E$ and $F$ are Ore sets, take $y, z \in R, e' \in
+	E$ and $f' \in F$ such that $ey = xe'$ and $fz = yf'$. Then $xe'f' = eyf' = efz \in efR
+	\cap xEF$.
+
+We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$ if $a$ divides $b$ on the
+left, i.e., $b = ar$ for some $r \in R$. Call an element $y_1^{m_1}\cdots y_N^{m_N}$ a
+\emph{minimal denominator}\index{minimal denominator} of a nonzero element $v\in
+	R[E\inv]$ if
+\begin{equation*}
+	v = y_1^{-m_1}\cdots y_N^{-m_N} s
+\end{equation*}
+for some $s \in R$ such that $y_j \nmid_l s$ for all $j\in [1,N]$ with $m_j > 0$. Intuitively, this means that we can not cancel any terms.
 
 % \section{Some definitions}
 
