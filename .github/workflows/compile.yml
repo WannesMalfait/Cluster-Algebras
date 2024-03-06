@@ -9,7 +9,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-            echo "date=$(date +'%Y-%m-%d--%H-%M')" >> $GITHUB_ENV
+            echo "date=$(TZ='Europe/Brussels' date +'%Y-%m-%d--%H-%M')" >> $GITHUB_ENV
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Compile LaTeX document
