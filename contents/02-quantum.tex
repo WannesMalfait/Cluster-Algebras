@@ -467,7 +467,7 @@ elements $y_1, \dots, y_N$.
 
 \begin{theorem}\label{thm:y_prime_swapped_cgl}
 	Assume that $R$ is a CGL extension of the form \eqref{eq:default_cgl_presentation}, with a second CGL presentation of the form \eqref{eq:swapped_cgl_presentation}. Denote with $y_1, \dots, y_N$ the sequence of homogeneous prime elements from \cref{thm:homogeneous_primes}, and $\eta : [1, N] \to \bbZ$ the associated function for \eqref{eq:default_cgl_presentation}. For \eqref{eq:swapped_cgl_presentation} we write $y'_1, \dots, y'_N$ and $\eta'$.
-	\begin{enumerate}
+	\begin{enumerate}[(a)]
 		\item If $\eta(k) \neq \eta(k+1)$, then $y'_j = y_j$ for $j \neq k, k+1$ and $y'_k = y_{k+1},
 			      y'_{k+1} = y_k$.
 
@@ -645,9 +645,9 @@ elements $y_1, \dots, y_N$.
 	This completes the proof.
 \end{proof}
 
-Although \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one} does
-not give an explicit formula for $y'_k$ in terms of $y_k$, we can make it more
-explicit, by using the following fact.
+Although \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one} does not
+give an explicit formula for $y'_k$ in terms of $y_k$, we can make it more explicit, by
+using the following fact.
 \begin{theorem}[\protect{\cite[Proposition 3.1]{GoodearlYakimov2017QCA}}]\label{thm:normal_in_UFD}
 	%
 	Let $R$ be a CGL extension\footnote{The statement holds more generally for Noetherian
@@ -665,7 +665,7 @@ are given by $\{y_j \mid j \in P(k)\}$.
 \begin{theorem}
 	%
 	With the same assumptions as
-	\cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}, there exist a
+	\cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}, there exist a
 	collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ and $\kappa
 		\in \bbK^\times$ such that
 	\begin{equation*}
@@ -722,7 +722,7 @@ We now prove some results which will be crucial in proving equality between the 
 cluster algebra and the cluster algebra. Since the upper cluster algebra consists of
 intersections of localizations, it makes sense to look at what happens to the
 intersection of the localizations by the two sequences of prime elements in the setting
-of \cref{thm:y_prime_swapped_cgl}~\labelcref*{itm:eta_k_is_eta_k_plus_one}.
+of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
 
 To localize in the noncommutative setting, we need the notion of an \emph{Ore
 	set}\index{Ore set}. The idea is that we want to define a new ring $R[E\inv] = \{re\inv
@@ -818,6 +818,112 @@ left, i.e., $b = ar$ for some $r \in R$. Call an element $y_1^{m_1}\cdots y_N^{m
 %
 for some $s \in R$ such that $y_j \nmid_l s$ for all $j\in [1,N]$ with $m_j > 0$.
 Intuitively, this means that we can not cancel any terms.
+
+In what follows, we assume the setting of
+\cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. We then define for
+all $I \subseteq [1, N]$ the analogous Ore sets,
+\begin{equation*}
+	E'_{I} := \bbK^\times \prod_{j \in I}\{(y'_j)^m \mid m \in \bbZ_{\geq 0}\};
+\end{equation*}
+%
+and write $E' = E'_{[1, N]}$. Because $y'_j$ is a scalar multiple of $y_j$ for all $j
+	\neq k$, we have that $E'_I = E_I$ if $k \notin I'$. We now state the theorem that we
+want to prove.
+
+\begin{theorem}\label{thm:minimal_denominators}
+	Assume the setting of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. Let
+	\begin{equation*}
+		y_1^{m_1}\cdots y_N^{m_N} \quad \text{and} \quad y_1^{m'_1} \cdots y_{k-1}^{m'_{k-1}}(y'_k)^{m'_k}y_{k+1}^{m'_{k+1}} \cdots y_N^{m'_N}
+	\end{equation*}
+	%
+	be two minimal denominators of a nonzero element $v \in R[E\inv] \cap R[(E')\inv]$
+	(with respect to both $R[E\inv]$ and $R[(E')\inv]$). Then
+	\begin{equation*}
+		m_k = m'_k = 0 \quad \text{and} \quad m_j = m'_j,\quad \forall j \in [1, N], j \neq k.
+	\end{equation*}
+	In particular,
+	\begin{equation*}
+		R[(E_I)\inv] \cap R[(E'_{I'})\inv] = R[(E_I \cap E'_{I'})\inv] = R[(E_{(I \cap I')\setminus \{k\}})\inv]
+	\end{equation*}
+	for all $I,I' \subseteq [1, N]$.
+\end{theorem}
+
+Note that since $E_I \cap E'_{I'} \subseteq E_I, E'_{I'}$ we always have
+\begin{equation*}
+	R[(E_I)\inv] \cap R[(E'_{I'})\inv] \supseteq R[(E_I \cap E'_{I'})\inv].
+\end{equation*}
+%
+The other inclusion follows from the first part of the theorem. The last equality of
+the theorem follows from the following lemma.
+\begin{lemma}
+	For all $I, I' \subseteq [1, N]$,
+	\begin{equation*}
+		E_I \cap E'_I = E_{(I \cap I')\setminus \{k\}} = E'_{(I \cap I') \setminus \{k\}}.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	%
+	The inclusions $E_{(I \cap I')\setminus \{k\}}, E'_{(I \cap I') \setminus \{k\}}
+		\subseteq E_I \cap E'_{I'}$ are immediate. Take $e \in E_I \cap E'_{I'}$, and write
+	\begin{equation*}
+		e = \beta \prod_{j=1}^N y_j^{m_j} = \beta' \prod_{j=1}^N (y'_j)^{m'_j}
+	\end{equation*}
+	%
+	for some $\beta, \beta' \in \bbK^\times$ and $m_j, m'_j\in \bbZ_{\geq 0}$ such that
+	$m_j = 0$ for $j \notin I$ and $m'_j = 0$ for $j \notin I'$. It now remains to show
+	\begin{equation*}
+		m_k = m'_k = 0 \quad \text{and}\quad m_j = m'_j, \quad \forall j \in [1, N], j\neq k.
+	\end{equation*}
+	%
+
+	By \cref{thm:normal_in_UFD} we must have $m_N = m'_N$, as $y_N$ and $y'_N$ are prime
+	elements and associates in $R$, but do not divide $y_1, \dots, y_{N-1}$. So, we may
+	assume that $m_N = m'_N = 0$, by replacing $e$ with $e y_N^{-m_N}$ and multiplying
+	$\beta'$ by an appropriate scalar. Applying this reduction repeatedly, we reduce to the
+	case where $m_j = m'_j = 0$ for all $j \in [k+1, N]$.
+
+	We must now get rid of the ``obstacles'', $y_k$ and $y'_k$. Write, using
+	\cref{thm:y_prime_swapped_cgl},
+	\begin{equation*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = u \in R_{k-1}.
+	\end{equation*}
+	%
+	Assume that $m_k > 0$. Then,
+	\begin{equation*}
+		e y_k' = \beta \left(\prod_{j \in [1, k-1]}y_j^{m_j}y_k^{m_k-1}\right)(u+\alpha_{kp(k)}y_{p(k)}y_{k+1}).
+	\end{equation*}
+	%
+	In this expression, only $y_{k+1} \in R_{k+1}$, and it follows that $ey'_k$ has degree
+	1 with respect to $x_{k+1}$. On the other hand, we can also write
+	\begin{equation*}
+		ey'_k = \beta'\left(\prod_{j \in [1, k-1]}(y'_j)^{m'_j}\right)(y'_k)^{m'_k + 1},
+	\end{equation*}
+	where $ey'_k$ has degree $m'_k + 1$ with respect to $x_{k+1}$. So, we must have $m'_k = 0$ and consequently
+	\begin{equation*}
+		e = \beta' \prod_{j\in [1, k-1]}(y'_j)^{m'_j} \in R_{k-1}.
+	\end{equation*}
+	This contradicts the assumption that $m_k > 0$. Hence, $m_k = 0$ and by symmetry $m'_k = 0$. We can then continue as above to conclude that also $m_j = m'_j$ for all $j \in [1, k-1]$, which is what we needed to show.
+\end{proof}
+
+We now state and prove 3 lemmas that we will need for the proof of
+\cref{thm:minimal_denominators}.
+
+\begin{lemma}
+	%
+	Let $R$ be a $\bbK$-algebra that is a domain and $E$ a left or right Ore set in $R$.
+	Let $p \in R$ be a prime element that is normal in $\bbK^\times E$ and such that $Rp
+		\cap E = \emptyset$. Then $p$ is a prime element of $R[E\inv]$. Furthermore, if $s \in
+		R$ and $p \nmid s$ as elements of $R$, then $p \nmid s$ as elements of $R[E\inv]$.
+\end{lemma}
+\begin{proof}
+	%
+	Take $e \in E$. By normality of $p$ in $\bbK^\times E$, we can write $pe = \alpha f p$
+	and $ep = p \beta g$ for some $\alpha, \beta \in \bbK^\times$ and $f,g \in E$. Then $p
+		e \inv = \alpha\inv f\inv p$ and $e\inv p = p \beta\inv g \inv$. Since $p$ is prime it
+	is also normal in $R$, and we obtain that $p$ is normal in $R[E\inv]$.
+
+	\textbf{TODO: rest of proof}.
+\end{proof}
 
 % \section{Some definitions}
 
