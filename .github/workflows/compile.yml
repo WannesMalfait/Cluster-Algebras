@@ -3,6 +3,8 @@ on: [push]
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Get current date
         id: date
@@ -14,8 +16,10 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: cluster_algebras.tex
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v4
+      - name: Upload PDF file to new release
+        uses: ncipollo/release-action@v1
         with:
-          name: PDF-${{ env.date }}
-          path: cluster_algebras.pdf
+          tag: ${{ env.date }}
+          commit: "main"
+          name: ${{ env.date }}
+          artifacts: "cluster_algebras.pdf"
