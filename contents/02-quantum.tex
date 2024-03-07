@@ -922,7 +922,44 @@ We now state and prove 3 lemmas that we will need for the proof of
 		e \inv = \alpha\inv f\inv p$ and $e\inv p = p \beta\inv g \inv$. Since $p$ is prime it
 	is also normal in $R$, and we obtain that $p$ is normal in $R[E\inv]$.
 
-	\textbf{TODO: rest of proof}.
+	To see that it is prime, we go for the brute-force approach. Take $xe\inv, yf\inv \in
+		R[E\inv]$ such that their product lies in $pR[E\inv]$. We want to show that either
+	$xe\inv$ or $yf\inv$ must lie in $pR[E\inv]$. We can write
+	\begin{equation*}
+		xe\inv yf\inv = p z g\inv
+	\end{equation*}
+	%
+	for some $z \in R$ and $g \in E$. Using that $E$ is an Ore set we can write
+	\begin{equation*}
+		x e\inv y f\inv = x y' (e')\inv f\inv = xy' (fe')\inv = p z g\inv.
+	\end{equation*}
+	%
+	It is a standard fact (\cite[Lemma 6.1 (c)]{GoodearlWarfield2004NoncommutativeNR})
+	about Ore localizations, that the above is equivalent to the existence of $a,b \in R$
+	such that
+	\begin{equation*}
+		xy'a = pzb \quad \text{and} \quad fe'a = gb \in E.
+	\end{equation*}
+	%
+	Since $p$ is a prime element of $R$, we must have that either $x,y'$ or $a$ is an
+	element of $Rp$. If $x \in Rp$ then $xe\inv \in pR[E\inv]$. If $y' \in Rp$, then
+	\begin{equation*}
+		ye' = ey' \in Rp,
+	\end{equation*}
+	%
+	implies $y \in Rp$ as $Rp \cap E = \emptyset$ by assumption. Thus, $y f\inv \in
+		pR[E\inv]$. Finally, $a \in Rp$ is impossible as
+	\begin{equation*}
+		fe'a = gb \in E \cap Rp
+	\end{equation*}
+	gives a contradiction.
+
+	For the last statement, take some $pxe\inv \in R[E\inv]p \cap R$, with $x \in R$ and $e
+		\in E$. Then $pxe\inv = y$ for some $y \in R$, and hence $px = ye$. So, since $p$ is
+	prime in $Rp$, we must have $y \in Rp$ or $e\in Rp$. By assumption, $Rp \cap E =
+		\emptyset$, so $y \in Rp$ which shows that $R[E\inv] \cap R \subseteq Rp$ since the
+	other inclusion is immediate. Now, note that if $s\notin Rp$ for some $s\in R$, then if
+	$s \in R[E\inv]p$ we would have $s \in R[E\inv]p \cap R \subseteq Rp$, a contradiction.
 \end{proof}
 
 % \section{Some definitions}
