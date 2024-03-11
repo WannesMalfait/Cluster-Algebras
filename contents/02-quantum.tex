@@ -962,6 +962,74 @@ We now state and prove 3 lemmas that we will need for the proof of
 	$s \in R[E\inv]p$ we would have $s \in R[E\inv]p \cap R \subseteq Rp$, a contradiction.
 \end{proof}
 
+Let us write
+\begin{equation*}
+	s = \sum_{l_j, \dots, l_N \in \bbZ_{\geq 0}} s_{l_j,\ldots,l_N}x_j^{l_j} \cdots x_N^{l_N}
+\end{equation*}
+for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
+
+\begin{lemma}
+	If
+	\begin{equation*}
+		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j-1}s
+	\end{equation*}
+	for some $j \in [1, N], s\in R$ and $n_1,\dots,n_{j-1}\in \bbZ_{\geq 0}$, then $y_j \mid_l s$.
+\end{lemma}
+\begin{proof}
+	%
+	By assumption, $y_j s' = y_1^{n_1}\cdots y_{j-1}^{n_j - 1}s$ for some $s' \in R$. Since
+	the set
+	\begin{equation*}
+		\{x_j^{l_{j+1}}\cdots x_N^{l_N} \mid l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}\},
+	\end{equation*}
+	forms a basis for $R_{N}$ as an $R_j$-module, we must have
+	\begin{equation*}
+		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j -1} s_{l_{j+1}, \dots, l_N}
+	\end{equation*}
+	%
+	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Then, because $y_j \nmid_l y_1, \dots,
+		y_{j-1}$, and $y_j$ is a prime element of $R_j$, we must have
+	\begin{equation*}
+		y_j \mid_l s_{l_{j+1}, \ldots, l_N}
+	\end{equation*}
+	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Hence, also $y_j \mid_l s$.
+\end{proof}
+
+\begin{lemma}
+	%
+	If $y_k \mid_l s (y'_k)^n$ for some $s \in R_{k+1}$ and $n \in \bbZ_{\geq 0}$, then
+	$y_k \mid_l s$.
+\end{lemma}
+\begin{proof}
+	%
+	Using a similar argument as in the previous lemma, we find that $y_k \mid_l s$ is
+	equivalent to $y_k \mid s_l$ for all $l \in \bbZ_{\geq 0}$, where $s = \sum_{l \in
+			\bbZ_{\geq 0 }} s_l x^{k+l}$ for $s_l \in R_k$. Write
+	\begin{equation*}
+		s' = \sum \{s_l x_{k+1}^l \mid l \in \bbZ_{\geq 0}, y_k \mid s_l\}.
+	\end{equation*}
+	%
+	Then $y_k \mid_l s'$, and $y_k \mid_l s$ if and only if $s = s'$. Assume that $s \neq
+		s'$. Since $y_k \mid_l s (y'_k)^n$ and $y_k \mid_l s' (y'_k)^n$, we have that
+	\begin{equation*}
+		y_k \mid_l (s - s') (y'_k)^n.
+	\end{equation*}
+	Writing
+	\begin{equation*}
+		s - s' = s_L x^L_{k+1} + \sum_{l=0}^{L-1}s_l x_{k+1}^l
+	\end{equation*}
+	%
+	for some $L \in \bbZ_{\geq 0}$ with $s_L \neq 0$, we have $y_k \mid_l s_L$. The highest
+	degree term of $(s-s')(y'_k)^n$ with respect to $x_{k+1}$ is given by
+	\begin{equation*}
+		\xi s_L y_{p(k)}^n x_{k+1}^{L+n}
+	\end{equation*}
+	%
+	for some $\xi \in \bbK^\times$. Like in the previous lemma, we then must have $y_k \mid
+		s_L y^n_{p(k)}$, but this contradicts $y_k$ being a prime element of $R_k$ which does
+	not divide $s_L$ or $y_{p(k)}$.
+\end{proof}
+
 % \section{Some definitions}
 
 % We start with the non-quantized version of cluster algebras, introduced in
