@@ -908,7 +908,7 @@ the theorem follows from the following lemma.
 We now state and prove 3 lemmas that we will need for the proof of
 \cref{thm:minimal_denominators}.
 
-\begin{lemma}
+\begin{lemma}\label{lem:prime_in_ore_localization}
 	%
 	Let $R$ be a $\bbK$-algebra that is a domain and $E$ a left or right Ore set in $R$.
 	Let $p \in R$ be a prime element that is normal in $\bbK^\times E$ and such that $Rp
@@ -968,7 +968,7 @@ Let us write
 \end{equation*}
 for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 
-\begin{lemma}
+\begin{lemma}\label{lem:y_divides_ys}
 	If
 	\begin{equation*}
 		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j-1}s
@@ -995,7 +995,7 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Hence, also $y_j \mid_l s$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:y_divides_sy_prime}
 	%
 	If $y_k \mid_l s (y'_k)^n$ for some $s \in R_{k+1}$ and $n \in \bbZ_{\geq 0}$, then
 	$y_k \mid_l s$.
@@ -1028,6 +1028,61 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 	for some $\xi \in \bbK^\times$. Like in the previous lemma, we then must have $y_k \mid
 		s_L y^n_{p(k)}$, but this contradicts $y_k$ being a prime element of $R_k$ which does
 	not divide $s_L$ or $y_{p(k)}$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:minimal_denominators}]
+	%
+	By assumption, we have
+	\begin{equation*}
+		v = y_1^{-m_1}\cdots y_N^{-m_N} s = y_1^{-m_1'} \cdots y_{k-1}^{-m_{k-1}'}(y'_k)^{-m'_k}y_{k+1}^{-m_{k+1}'}\cdots y_N^{-m'_N}s'
+	\end{equation*}
+	%
+	for some $s, s' \in R$. Take $i\in [k+1, N]$ maximal such that $m_i \neq m'_i$. Without
+	loss of generality, we may assume that $m'_i > m_i$. Then we can write
+	\begin{equation*}
+		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s',
+	\end{equation*}
+	%
+	for some $\xi \in \bbK^\times$, making use of \cref{eq:y_quasi_commute}. Now, $y_i$ is
+	a prime element of $R_i$ which does not divide $y_1, \dots, y_{i-1}$. By
+	\cref{lem:prime_in_ore_localization}, we find that $y_i$ is prime in $R_i[(y'_k)\inv]$
+	and that it also doesn't divide $y_1, \dots, y_{i-1}$ in $R_i[(y'_k)\inv]$. By
+	comparing the coefficients of $x_{i+1}^{l_{i+1}}\cdots x_N^{l_N}$, we find
+	\begin{equation*}
+		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s_{l_{i+1},\dots, l_N} = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s'_{l_{i+1}, \dots, l_N} \in R_i.
+	\end{equation*}
+	%
+	Thus, we must have, for all $l_{i+1}, \dots, l_N \in \bbZ_{\geq 0}$, that $y_i \mid
+		s'_{l_{i+1}, \dots, l_N}$ in $R_i[(y'_k)\inv]$ and hence also in $R_i$ due to
+	\cref{lem:prime_in_ore_localization}. Consequently, $y_i \mid_l s'$, which contradicts
+	the minimality of the denominators.
+
+	We now need to prove that $m_k = m'_k = 0$. Assume that $m_k > 0$. Then, as above, we
+	obtain that
+	\begin{equation*}
+		\left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N} = \xi y_k^{m_k}\left(\prod_{j=1}^{k-1}y_j^{m_j}\right)(y'_k)^{-m_k'}s'_{l_{k+2}, \dots, l_N} \in R_{k+1},
+	\end{equation*}
+	%
+	for all $l_{k+2}, \dots, l_N \in \bbZ_{\geq 0}$, for some $\xi \in \bbK^\times$. Write
+	\begin{equation*}
+		(y'_k)^{-m'_s}s'_{l_{k+2}\dots, l_N} = s''_{l_{k+2}\dots, l_N}(y'_k)^{-m''_k},
+	\end{equation*}
+	%
+	for some $s''_{l_{k+2}, \dots, l_N} \in R_{k+1}$ and $m''_k \in \bbZ_{\geq 0}$ using
+	the fact that $\{(y'_k)^m \mid m \in \bbZ_{\geq 0}\}$ is an Ore set in $R_{k+1}$ by
+	\cref{lem:ore_set_ore_extension}. Then,
+	\begin{equation*}
+		y_k \mid_l \left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N}(y'_k)^{m''_k}.
+	\end{equation*}
+	%
+	By \cref{lem:y_divides_ys}, we find that $y_k \mid_l s_{l_{k+2}, \dots
+				l_N}(y'_k)^{m''_k}$. Hence, $y_k \mid_l s_{l_{k+2}, \dots, l_N}$ by
+	\cref{lem:y_divides_sy_prime}. Since this holds for all $l_{k+2}, \dots, l_N \in
+		\bbZ_{\geq 0}$, we find that $y_k \mid_l s$, which contradicts the minimality of the
+	denominators. Thus, $m_k = 0$, and by symmetry also $m'_k = 0$.
+
+	In the same way as we showed that $m_i = m_i'$ for all $i \in [k+1, N]$, one shows that
+	$m_i = m'_i$ for all $i \in [1, k-1]$.
 \end{proof}
 
 % \section{Some definitions}
