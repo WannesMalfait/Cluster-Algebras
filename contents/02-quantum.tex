@@ -1,3 +1,7 @@
+\newcommand{\bbr}{\mathbf{r}}
+\newcommand{\bbn}{\boldsymbol{\nu}}
+\newcommand{\oy}{\overline{y}}
+\renewcommand{\oe}{\overline{e}}
 \section{Quantum cluster algebras}
 \subsection{Quantum tori}
 
@@ -662,7 +666,7 @@ Let us write
 %
 Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of $R_k$
 are given by $\{y_j \mid j \in P(k)\}$.
-\begin{theorem}
+\begin{theorem}\label{thm:almost_cluster_mutation}
 	%
 	With the same assumptions as
 	\cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}, there exist a
@@ -714,6 +718,122 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	as $c_kc'_k \in R_{k-1}$ and $c_k y_{p(k)} \in R_{k-1}y_{p(k)} = y_{p(k)}R_{k-1}
 		\subseteq y_{p(k)}R_{k+1}$ by normality of $y_{p(k)}$ in $R_{k-1}$. So, $y_{p(k)}$
 	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:almost_mutation_toric_frame}
+	Theorem 4.8
+\end{theorem}
+
+\begin{theorem}
+
+	Assume the setting of \cref{thm:almost_cluster_mutation} and that there exists $v_{lj}
+		= \sqrt{\lambda_{jl}} \in \bbK$ for $1 \leq i < l \leq N$. Then
+	\begin{equation}  \label{eq:Omega_r_squared_one}
+		\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)} m_i e_i, e_j\right)^2  = 1, \quad \forall j \neq k
+	\end{equation}
+	and
+	\begin{equation}\label{eq:Omega_r_squared_ek}
+		\begin{aligned}
+			\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)}m_i e_i, e_k\right)^2 & = \chi_{x_{k+1}}(h_{k+1})\inv \\
+			                                                                                             & = \chi_{x_k}(h'_{k+1})
+		\end{aligned}
+	\end{equation}
+	%
+	for the collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ from
+	\cref{thm:almost_cluster_mutation,thm:almost_mutation_toric_frame}.
+
+\end{theorem}
+\begin{proof}
+
+	Denote for brevity the elements
+	\begin{align}
+		g            & = \sum_{i \in P(k-1), i\neq p(k)} m_i e_i            \\
+		\overline{g} & = \sum_{i \in P(k-1), i\neq p(k)} m_i \overline{e}_i
+	\end{align}
+	%
+	in $\bbZ^N$. By construction of the toric frames $M$ and $M'$, the element
+	$\overline{y}_j$ belongs to the image of both $M$ and $M'$ for each $j \neq k$. Recall
+	also that
+	\begin{equation*}
+		M(f)M(f') = \Omega_{\bbr}(f, f')^2 M(f')M(f)
+	\end{equation*}
+	%
+	for any two vectors $f,f' \in \bbZ^N$. Using this together with
+	\cref{eq:y_quasi_commute} and \cref{thm:almost_mutation_toric_frame}, we find
+	\begin{align*}
+		\xi_{kj}\oy_j \oy'_k & = \oy'_k \oy_j                                                                                                                            \\
+		                     & = (M(-e_k + e_{p(k)} + e_{k+1}) + \zeta M(-e_k + g))\oy_j                                                                                 \\
+		                     & = \oy_j (\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 M(-e_k + e_{p(k)} + e_{k+1}) + \zeta\Omega_{\bbr}(-e_k + g, e_j)^2 M(-e_k + g)),
+	\end{align*}
+	for some $\xi_{kj} \in \bbK$. So,
+	\begin{equation*}
+		\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 = \xi_{kj} = \Omega_{\bbr}(-e_k + g, e_j)^2
+	\end{equation*}
+	from which it follows that
+	\begin{equation*}
+		\Omega_{\bbr}(e_{p(k)} + e_{k+1} - g, e_j)^2 = 1,
+	\end{equation*}
+	since
+	\begin{equation*}
+		\Omega_{\bbr}(f, h)\Omega_{\bbr}(f',h) = \Omega_{\bbr}(f + f', h)
+	\end{equation*}
+	%
+	for any vectors $f,f',h\in \bbZ^N$. This proves \cref{eq:Omega_r_squared_one}. Now,
+	\begin{align*}
+		\Omega_{\bbr}(e_{p(k)} + e_{k+1} -g, e_k)^2
+		\overset{\eqref{eq:Omega_r_squared_one}} & {=} \Omega_{\bbr}(e_{p(k)} + e_{k+1}-g,e_k - e_{k+1})^2                     \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, \oe_k - \oe_{k+1})^2 \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, e_{k+1})^{-2}        \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_k - \overline{g}, e_{k+1})^{-2},
+	\end{align*}
+	%
+	where we used that $\Omega_{\bbn}(e_{k+1}, e_{k+1}) = 1$ in the last step. Since
+	$\oy'_k$ is homogeneous, we must have
+	\begin{equation*}
+		\chi_{M(-e_k + e_{p(k)} + e_{k+1})} = \chi_{M(-e_k + g)},
+	\end{equation*}
+	%
+	from which we obtain $\chi_{M(e_{p(k)} + e_{k+1} - g)} = 1$. Since $y_{k+1} = y_k
+		x_{k+1} - c_{k+1}$ by \cref{thm:homogeneous_primes} we also have
+	\begin{equation*}
+		\chi_{M(e_{p(k)} + e_{l+1} -g)} = \chi_{M(e_{p(k)} + e_k - g)}\chi_{x_{k+1}},
+	\end{equation*}
+	and hence
+	\begin{equation*}
+		\chi_{M(e_{p(k)} + e_k - g)} = \chi_{x_{k+1}}\inv.
+	\end{equation*}
+	%
+	Because $h_{k+1} \cdot x_j = \lambda_{k+1, k} x_j = \nu_{k, k+1}^{-2}x_j$ for all $j
+		\in [1, N]$, we find
+	\begin{equation*}
+		\Omega_{\bbn}(\oe_{p(k)}+\oe_k - \overline{g}, e_{k+1})^{-2} = \chi_{M(e_{p(k)} + e_k - g)}(h_{k+1}) = \chi_{x_{k+1}}(h_{k+1})\inv,
+	\end{equation*}
+	proving the first equality of \cref{eq:Omega_r_squared_ek}.
+
+	It now remains to show that $\chi_{x_{k+1}}(h_{k+1})\inv = \chi_{x_k}(h'_{k+1})$. By
+	the first equality of \cref{eq:Omega_r_squared_ek},
+	\begin{equation*}
+		M(e_{p(k)} + e_{k+1} - g)\oy_k = \chi_{x_{k+1}}(h_{k+1})\inv \oy_k M(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	If we now apply the same reasoning, but swap the roles of the two CGL presentations, we
+	find that
+	\begin{equation*}
+		M'(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M'(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	On the other hand, \cref{thm:almost_mutation_toric_frame} implies that $M'(e_{p(k)} +
+		e_{k+1} - g)$ is a scalar multiple of $M(e_{p(k)} + e_{k+1} - g)$, so that we find
+	\begin{equation*}
+		M(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	From \cref{eq:Omega_r_squared_one} we obtain that $M(e_{p(k)} + e_{k+1} - g)$ commutes
+	with $M(e_j)$ for all $j \neq k$. In particular, it commutes with $M(e_{p(k)} +
+		e_{k+1})$ and $M(g)$, which implies that it commutes with $\oy_k \oy'_k$, using
+	\cref{thm:almost_mutation_toric_frame}. Hence,
+	$\chi_{x_{k+1}}(h_{k+1})\chi_{x_k}(h'_{k+1}) = 1$, which is what we needed to show.
+
 \end{proof}
 
 \textbf{TODO: Finish the rest of Chapter 4 from GY.}
