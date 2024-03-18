@@ -488,12 +488,12 @@ elements $y_1, \dots, y_N$.
 			      (y_ky'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1})x_j = \gamma_j x_j (y_ky'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1}).
 		      \end{equation*}
 		      Moreover,
-		      \begin{equation*}
+		      \begin{equation}\label{eq:y_prime_in_swapped_cgl}
 			      y'_j = \begin{dcases*}
 				      \lambda_{k+1,k}y_j, & if $j=s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$                               \\
 				      y_j,                & if $j < k$, or $j>k+1$ and $j \neq s^l (k+1)$ for all $l \in \bbZ_{\geq 0}$.
 			      \end{dcases*}
-		      \end{equation*}
+		      \end{equation}
 	\end{enumerate}
 	In both cases, we can take $\eta' = \eta \circ (k,k+1)$, where $(k, k+1)$ denotes a transposition in $S_N$.
 \end{theorem}
@@ -720,9 +720,129 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
 \end{proof}
 
+At the moment, there are two issues, preventing the results of
+\cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as a cluster
+mutation statement.
+
+\begin{enumerate}
+	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. In
+	      order for this to be a mutation statement, we would need $\kappa = 1$.
+	\item In order for $y'_1, \dots, y'_N$ to be a mutated cluster of $y_1, \dots, y_N$, we would
+	      need $y'_j = y_j$ for all $j \neq k$. However, in \cref{eq:y_prime_in_swapped_cgl} we
+	      see that $y'_j = \lambda_{k+1,k}y_j$ if $j = s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$.
+\end{enumerate}
+
+We will now resolve the second of the two issues, by a normalization of the homogeneous
+prime elements, $y_1, \dots, y_N$. The first issue will be resolved by a rescaling of
+the variables $x_1, \dots, x_N$.
+
 \begin{theorem}\label{thm:almost_mutation_toric_frame}
-	Theorem 4.8
+
+	Assume the setting of \cref{thm:y_prime_swapped_cgl} and that $\sqrt{\lambda_{lj}}\in
+		\bbK$ for all $j, l \in [1, N]$.
+	\begin{enumerate}
+		\item If $\eta(k) \neq \eta(k+1)$, then $\bbr' = (k, k+1)\bbr (k, k+1)$ and $\oy'_j =
+			      \oy_{(k, k+1)j}$, for all $j \in [1, N]$. Hence, $M' = M(k, k+1)$.
+		\item If $\eta(k) = \eta(k+1)$, then $M'(e_j) = M(e_j)$ for all $j \neq k$, and
+		      \begin{equation}\label{eq:M'_of_ek}
+			      M'(e_k) = M(-e_k + e_{p(k)} + e_{k+1}) + \zeta M\left(-e_k + \sum_{i \in P(k-1), i\neq p(k)}m_ie_i\right)
+		      \end{equation}
+		      %
+		      for some $\zeta \in \bbK^\times$. Furthermore,
+		      \begin{equation*}
+			      \bbr' = \prescript{(E_{+}^\circ)^T}{}{\bbr}^{E^\circ_{+}}.
+		      \end{equation*}
+	\end{enumerate}
 \end{theorem}
+\begin{proof}
+
+	If $\eta(k) \neq \eta(k+1)$, then \cref{thm:y_prime_swapped_cgl} gives that $y'_j =
+		y_{(k,k+1)j}$ for all $j \in [1, N]$. In this case, we have $p'(j) = (k, k+1)p(j)(k,
+		k+1)$ for all $j\in [1,N]$. Indeed,
+	\begin{align*}
+		(k, k+1) p'(j) & = (k, k+1)\max\{i \in [1, j-1] \mid \eta'(i) = \eta'(j)\}                \\
+		               & = (k, k+1)\max\{i \in [1, j-1] \mid \eta((k, k+1) i) = \eta((k, k+1)j)\} \\
+		               & = \max\{ i \in [1, (k, k+1)j-1] \mid \eta(i) = \eta((k, k+1)j)\}         \\
+		               & = p((k, k+1)j),
+	\end{align*}
+	%
+	where we take the maximum to be $-\infty$ if the set is empty, and we crucially use the
+	fact that $\eta(k) \neq \eta(k+1)$. Hence,
+	\begin{align*}
+		\mcS_{\bbn'}(\oe_j) & = \prod_{0 \leq n < m \leq O'_{-}(j)}(\nu'_{(p')^m (j), (p')^n (j)})\inv                \\
+		                    & = \prod_{0 \leq n < m \leq O'_{-}(j)}\nu\inv_{(k, k+1)(p')^m (j), (k, k+1)(p')^n (j)}   \\
+		                    & = \prod_{0 \leq n < m \leq O'_{-}(j)}\nu\inv_{p^m ((k, k+1)j), p^n ((k, k+1)j)}         \\
+		                    & = \prod_{0 \leq n < m \leq O_{-}((k, k+1)j)}\nu\inv_{p^m ((k, k+1) j), p^n ((k, k+1)j)} \\
+		                    & = \mcS_{\bbn}(\oe_{(k, k+1)j}),
+	\end{align*}
+	%
+	such that $\oy'_j = \oy_{(k, k+1)j}$ for all $j \in [1, N]$, which also immediately
+	implies that $\bbr' = (k, k+1)\bbr (k, k +1)$.
+
+	If $\eta(k) = \eta(k+1)$, we can still apply the same reasoning as above to show that
+	$\mcS_{\bbn'}(\oe_j) = \mcS_{\bbn}(\oe_j)$ in the case that $j < k$ or $j > k+1$ and $j
+		\neq s^l(k+1)$ for all $l \in \bbZ_{\geq 0}$. If $j = s^l (k+1)$ for some $l \in
+		\bbZ_{\geq 0}$, then the difference between $\mcS_{\bbn'}(\oe_j)$ and
+	$\mcS_{\bbn}(\oe_j)$ is that $\mcS_{\bbn'}(\oe_j)$ will contain a term $\nu_{k+1,
+			k}\inv$ instead of $\nu_{k, k+1}\inv$. Hence
+	\begin{align*}
+		\mcS_{\bbn'}(\oe_j) & = \nu_{k+1, k}\inv \nu_{k, k+1} \mcS_{\bbn'}(\oe_j) \\
+		                    & = \nu_{k, k+1}^2 \mcS_{\bbn'}(\oe_j)                \\
+		                    & = \lambda_{k, k+1} \mcS_{\bbn'}(\oe_j).
+	\end{align*}
+	It now follows from \cref{eq:y_prime_in_swapped_cgl} that $\oy'_j = \oy_j$ for all $j\neq k$. To prove the expression for $M'(e_k) = \oy'_k$, we start with the observation that $q_{kp(k)} = \alpha_{kp(k)}$. Indeed
+	\begin{align*}
+		q_{kp(k)} & = \prod_{m=0}^{O_{-}(k)}\prod_{l=0}^{O_{-}(p(k))} \lambda_{p^m(k),p^l(p(k))}                                                                            \\
+		          & = \left(\prod_{l = 0}^{O_{-}(p(k))}\lambda_{k, p^l(p(k))}\right)\left(\prod_{m=1}^{O_{-}(k)}\prod_{l=0}^{O_{-}(p(k))} \lambda_{p^m(k),p^l(p(k))}\right) \\
+		          & = \alpha_{kp(k)}\left(\prod_{m=1}^{O_{-}(k)}\prod_{l=1}^{O_{-}(k)} \lambda_{p^m(k),p^l(k)}\right)                                                       \\
+		          & = \alpha_{kp(k)}.
+	\end{align*}
+	Thus,
+	\begin{equation*}
+		\alpha_{kp(k)}y\inv_k y_{p(k)}y_{k+1} = y_{p(k)}y_k\inv y_{k+1}.
+	\end{equation*}
+	%
+	So, by \cref{thm:almost_cluster_mutation}, we have that \cref{eq:M'_of_ek} holds, as
+	long as the coefficients agree. Since we may choose $\zeta$, it suffices to compare the
+	coefficients of $M'(e_k)$ and $M(-e_k + e_{p(k)} + e_{k+1})$, i.e., to verify that
+	\begin{equation*}
+		\mcS_{\bbn'}(\oe_k) = \mcS_{\bbr}(-e_k + e_{p(k)} + e_{k+1})\mcS_{\bbn}(\oe_{p(k)})\mcS_{\bbn}(\oe_k)\inv \mcS_{\bbn}(\oe_{k+1}).
+	\end{equation*}
+	%
+	This follows from
+	\begin{align*}
+		\mcS_{\bbr}(-e_k + e_{p(k)} + e_{k+1})
+		 & = r_{p(k),k}r_{k,k+1}r_{p(k), k+1}\inv                                                                 \\
+		 & = \Omega_{\bbn}(\oe_{p(k)}, \oe_k)\Omega_{\bbn}(\oe_k, \oe_{k+1})\Omega_{\bbn}(-\oe_{p(k)}, \oe_{k+1}) \\
+		 & = \Omega_{\bbn}(\oe_{p(k)}, \oe_k)\Omega_{\bbn}(e_k, \oe_{k+1})                                        \\
+		 & = \Omega_{\bbn}(\oe_{p(k)}, \oe_k)\Omega_{\bbn}(e_k, \oe_{k})\Omega_{\bbn}(e_k, e_{k+1})               \\
+		 & = \Omega_{\bbn}(\oe_{k}, \oe_k)\Omega_{\bbn}(e_k, e_{k+1})                                             \\
+		 & = \Omega_{\bbn}(e_k, e_{k+1})                                                                          \\
+		 & = \nu_{k, k+1},
+	\end{align*}
+	and
+	\begin{align*}
+		\mcS_{\bbn}(\oe_{p(k)})\mcS_{\bbn}(\oe_k)\inv \mcS_{\bbn}(\oe_{k+1})
+		 & = \mcS_{\bbn}(\oe_{p(k)})\prod \{\nu_{i, k+1}\inv \mid i = p^{O_{-}(k)}(k), \dots, p(k), k\}        \\
+		 & = \nu_{k, k+1}\inv  \prod \{\nu_{i, j}\inv \mid i,j = p^{O_{i}(k)}(k), \dots, p(k), k+1; \; i < j\} \\
+		 & = \nu_{k, k+1}\inv\mcS_{\bbn'}(\oe_k).
+	\end{align*}
+	%
+	It remains to show the expression for $\bbr'$. We have
+	\begin{equation*}
+		\Omega_{\bbr'}(e_l, e_j) = \Omega_{\bbn'}(\oe_l, \oe_j) = \Omega_{\bbn}((k, k+1)\oe_l, (k, k+1)\oe_j), \quad \text{ for all } l,j \in [1, N].
+	\end{equation*}
+	%
+	In particular,
+	\begin{equation*}
+		\Omega_{\bbr'}(e_l, e_j) = \Omega_{\bbn}(\oe_l, \oe_j) = \Omega_{\bbr}(e_l, e_j)
+	\end{equation*}
+	for all $l, j \neq k$, and
+	\begin{equation*}
+		\Omega_{\bbr'}(e_k, e_j) = \Omega_{\bbn}(\oe_{p(k)} + e_{k+1}, e_j) = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \oe_k, e_j) = \Omega_{\bbr}(e_{p(k)} + e_{k+1} - e_k , e_j),
+	\end{equation*}
+	for all $j \neq k$.
+\end{proof}
 
 \begin{theorem}
 
@@ -835,8 +955,6 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	$\chi_{x_{k+1}}(h_{k+1})\chi_{x_k}(h'_{k+1}) = 1$, which is what we needed to show.
 
 \end{proof}
-
-\textbf{TODO: Finish the rest of Chapter 4 from GY.}
 
 We now prove some results which will be crucial in proving equality between the upper
 cluster algebra and the cluster algebra. Since the upper cluster algebra consists of
