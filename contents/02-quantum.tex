@@ -736,6 +736,49 @@ We will now resolve the second of the two issues, by a normalization of the homo
 prime elements, $y_1, \dots, y_N$. The first issue will be resolved by a rescaling of
 the variables $x_1, \dots, x_N$.
 
+In order to be able to normalize the homogeneous prime elements, we need to be able to
+take square roots of the scalars $\lambda_{lj}$ for all $l,j \in [1, N]$. If this is
+not possible in $\bbK$, one can consider the field extension $\bbK[\sqrt{\lambda_{lj}}
+		\mid j < l \in [1, N]]$, and consider the CGL extension over this bigger field instead
+(the extension of scalars preserves the structure of the CGL extension). From now on,
+we will assume that $R$ is a CGL extension where $\sqrt{\lambda_{lj}} \in \bbK$ for all
+$l, j \in [1, N]$. We then fix a choice of
+\begin{equation*}
+	\nu_{lj} \in K \text{ such that } \nu^2_{lj} = \lambda_{lj}
+\end{equation*}
+%
+for all $l < j \in [1, N]$. Define $\nu_{ll} = 1$ and $\nu_{jl} = \nu_{lj}\inv$ for $l
+	< j \in [1, N]$. Then $\bbn = (\nu_{ij}) \in M_N(\bbK\times)$ is multiplicatively
+skew-symmetric, and $\bbn^{\cdot 2} = \boldsymbol{\lambda}$. Then analogous to the
+definition of $\mathbf{q}$, we define
+\begin{equation*}
+	r_{lj} = \Omega_{\bbn}(\oe_l, \oe_j) = \prod_{m=0}^{O_{-}(l)}\prod_{n=0}^{O_{-}(j)}\nu_{p^m(l), p^n(j)}.
+\end{equation*}
+%
+Thus, the matrix $\bbr = (r_{lj}) \in M_N(\bbK^\times)$ is multiplicatively
+skew-symmetric, and $\bbr^{\cdot 2} = \boldsymbol{q}$.
+
+The normalization is now defined as
+\begin{equation*}
+	\oy_j = \mcS_{\bbn}(\oe_j) y_j = \left(\prod_{0 \leq n < m \leq O_{-}(j)}\nu\inv_{p^m(j),p^n(j)}\right) y_j.
+\end{equation*}
+%
+We then obtain a toric frame $M \colon \bbZ^N \to \Fract{R}$ with matrix $\bbr$ and
+such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
+
+\medskip
+
+If we now consider a second CGL presentation as in \cref{eq:swapped_cgl_presentation},
+we define $\nu', \bbr'$ and $M'$ in the same way, i.e., $M'(e_j) = \oy'_j$ for all $j
+	\in [1, N]$. Since $\lambda'_{lj} = \lambda_{(k, k+1)l, (k, k+1)j}$ we also have
+\begin{equation*}
+	\bbn' = (k, k+1)\bbn (k, k+1) \in M_N(\bbK^\times).
+\end{equation*}
+\textbf{TODO: prove this.}
+
+In the next theorem we describe $\bbr'$ in terms of $\bbr$ and show that the
+normalization has the desired effect.
+
 \begin{theorem}\label{thm:almost_mutation_toric_frame}
 
 	Assume the setting of \cref{thm:y_prime_swapped_cgl} and that $\sqrt{\lambda_{lj}}\in
@@ -750,7 +793,16 @@ the variables $x_1, \dots, x_N$.
 		      %
 		      for some $\zeta \in \bbK^\times$. Furthermore,
 		      \begin{equation*}
-			      \bbr' = \prescript{(E_{+}^\circ)^T}{}{\bbr}^{E^\circ_{+}}.
+			      \bbr' = \prescript{(E_{+}^\circ)^T}{}{\bbr}^{E^\circ_{+}},
+		      \end{equation*}
+		      where $E^\circ_{+}\in M_N(\bbZ)$ is the matrix with entries
+		      \begin{equation*}
+			      (E^\circ_{+})_{lj} = \begin{dcases*}
+				      \delta_{lj} & if $j \neq k$                               \\
+				      -1          & if $l = j = k$                              \\
+				      1           & if $j=k$, and $l= p(k)$ or $k+1$            \\
+				      0           & if $j = k$, and $l \neq p(k), k,$ or $k+1$.
+			      \end{dcases*}
 		      \end{equation*}
 	\end{enumerate}
 \end{theorem}
