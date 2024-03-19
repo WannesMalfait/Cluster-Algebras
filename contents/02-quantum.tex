@@ -1,5 +1,6 @@
 \newcommand{\bbr}{\mathbf{r}}
 \newcommand{\bbn}{\boldsymbol{\nu}}
+\newcommand{\bbl}{\boldsymbol{\lambda}}
 \newcommand{\oy}{\overline{y}}
 \renewcommand{\oe}{\overline{e}}
 \chapter{Quantum cluster algebras}
@@ -382,7 +383,7 @@ $y_k$.
 
 \textbf{(Key parts of) proof of main theorem from \cite{GoodearlYakimov2017QCA}.}
 
-\subsection{The first hint at cluster mutations}
+\subsection{The main theorem}
 
 To obtain a cluster algebra structure on a symmetric CGL extension, we need to study
 how the homogeneous prime elements change when the variables $x_1, \dots, x_N$ are
@@ -722,21 +723,26 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
 \end{proof}
 
-At the moment, there are two issues, preventing the results of
+At the moment, there are three issues, preventing the results of
 \cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as a cluster
 mutation statement.
 
 \begin{enumerate}
-	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. In
-	      order for this to be a mutation statement, we would need $\kappa = 1$.
 	\item In order for $y'_1, \dots, y'_N$ to be a mutated cluster of $y_1, \dots, y_N$, we would
 	      need $y'_j = y_j$ for all $j \neq k$. However, in \cref{eq:y_prime_in_swapped_cgl} we
 	      see that $y'_j = \lambda_{k+1,k}y_j$ if $j = s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$.
+	\item In the setting of \cref{thm:y_prime_swapped_cgl}, the indexing of the $y'$-elements is
+	      different from the indexing of the $y$-elements. For a cluster mutation, the indices
+	      should remain consistent.
+	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. In
+	      order for this to be a mutation statement, we would need $\kappa = 1$.
 \end{enumerate}
 
-We will now resolve the second of the two issues, by a normalization of the homogeneous
-prime elements, $y_1, \dots, y_N$. The first issue will be resolved by a rescaling of
-the variables $x_1, \dots, x_N$.
+We will now resolve the first of the three issues, by a normalization of the
+homogeneous prime elements, $y_1, \dots, y_N$. The last issue will be resolved by a
+rescaling of the variables $x_1, \dots, x_N$, while the second issue will be adressed
+by a permutation of the cluster variables. After settling these three problems, we will
+finally be ready to state the main theorem.
 
 In order to be able to normalize the homogeneous prime elements, we need to be able to
 take square roots of the scalars $\lambda_{lj}$ for all $l,j \in [1, N]$. If this is
@@ -898,117 +904,153 @@ normalization has the desired effect.
 	for all $j \neq k$.
 \end{proof}
 
-\begin{theorem}
+We now proceed by adressing the indexing issue of the $y$ and $y'$ elements. To do
+this, we first move to a more general setting, which will be necessary for the main
+theorem. So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that
+each such $\tau$ gives rise to a CGL extension presentation of the form
+\begin{equation*}
+	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
+\end{equation*}
+%
+where
+\begin{itemize}
+	\item $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
+	      and $h_{\tau(k)}' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
+	\item $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
+	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
+\end{itemize}
 
-	Assume the setting of \cref{thm:almost_cluster_mutation} and that there exists $v_{lj}
-		= \sqrt{\lambda_{jl}} \in \bbK$ for $1 \leq i < l \leq N$. Then
-	\begin{equation}  \label{eq:Omega_r_squared_one}
-		\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)} m_i e_i, e_j\right)^2  = 1, \quad \forall j \neq k
-	\end{equation}
-	and
-	\begin{equation}\label{eq:Omega_r_squared_ek}
-		\begin{aligned}
-			\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)}m_i e_i, e_k\right)^2 & = \chi_{x_{k+1}}(h_{k+1})\inv \\
-			                                                                                             & = \chi_{x_k}(h'_{k+1})
-		\end{aligned}
-	\end{equation}
-	%
-	for the collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ from
-	\cref{thm:almost_cluster_mutation,thm:almost_mutation_toric_frame}.
+We now want to define a toric frame $M_\tau$ corresponding to this new presentation in
+such a way that the indexing issue gets resolved.
 
-\end{theorem}
-\begin{proof}
+As before, this presentation has $\bbl$-matrix given by $\bbl_\tau = \tau\inv \bbl
+	\tau$. We then define $\bbn_\tau = \tau\inv \bbn \tau$, and $\widehat{\bbr}_\tau$ the
+corresponding skew-symmetric matrix with entries
+\begin{equation*}
+	\widehat{r}_{\tau, lj} = \Omega_{\bbn_\tau}(\oe_l, \oe_j),
+\end{equation*}
+%
+for all $l, j \in [1, N]$.	Write $\oy_{\tau, 1}, \dots, \oy_{\tau, N}$ for the
+sequence of normalized homogeneous prime elements of this presentation, and
+$\widehat{M}_\tau$ as the toric frame with matrix $\widehat{\bbr}_\tau$ and such that
+$\widehat{M}_\tau (e_k) = \oy_{\tau, k}$ for all $k \in [1, N]$.
 
-	Denote for brevity the elements
-	\begin{align}
-		g            & = \sum_{i \in P(k-1), i\neq p(k)} m_i e_i            \\
-		\overline{g} & = \sum_{i \in P(k-1), i\neq p(k)} m_i \overline{e}_i
-	\end{align}
-	%
-	in $\bbZ^N$. By construction of the toric frames $M$ and $M'$, the element
-	$\overline{y}_j$ belongs to the image of both $M$ and $M'$ for each $j \neq k$. Recall
-	also that
+We now need to adress indexing issue by permuting the order of the cluster variables.
+Consider $\eta : [1, N] \bbZ$ satisfying the conditions of
+\cref{thm:homogeneous_primes} for the \emph{original} CGL presentation of $R$. For
+every element $m$ in the image of $\eta$, write
+\begin{equation*}
+	\eta\inv(m) = \{\tau(k_1), \dots, \tau(k_{|\eta\inv(m)|})\}
+\end{equation*}
+for $k_1 < \cdots < k_{|\eta\inv(m)|}$. Order the elements of $\eta\inv(m)$ in increasing order:
+\begin{equation*}
+	\tau(k_{i_1}) < \cdots < \tau(k_{i_{|\eta\inv(m)|}}).
+\end{equation*}
+We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$, i.e., the $j$-th element in the ordered list. So, $\tau_\bullet$ orders the elements in the level sets of $\eta$.
+
+We can then finally define the toric frame $M_\tau$ as
+\begin{equation*}
+	M_\tau = \widehat{M}_\tau (\tau_\bullet \tau)\inv \colon \bbZ^N \to \Fract(R),
+\end{equation*}
+which has corresponding matrix
+\begin{equation*}
+	\bbr_\tau = \prescript{(\tau_\bullet \tau)\inv}{}{ \widehat{\bbr}_\tau} ^{(\tau_\bullet \tau)\inv}.
+\end{equation*}
+
+This definition of $\tau_\bullet$ calls for some examples. At the same time, the
+examples will demonstrate how the toric frame $M_\tau$ fixes the problem with the order
+of the cluster variables.
+
+\begin{example}
+	Let us first consider $\eta \colon [1, 6] \to \bbZ$ defined as
 	\begin{equation*}
-		M(f)M(f') = \Omega_{\bbr}(f, f')^2 M(f')M(f)
+		\eta(1) = \eta(4) = \eta(6) = 1, \quad \eta(2) = \eta(5) = 2, \quad \eta(3) = 3.
 	\end{equation*}
-	%
-	for any two vectors $f,f' \in \bbZ^N$. Using this together with
-	\cref{eq:y_quasi_commute} and \cref{thm:almost_mutation_toric_frame}, we find
+	We will look at the two permutations
 	\begin{align*}
-		\xi_{kj}\oy_j \oy'_k & = \oy'_k \oy_j                                                                                                                            \\
-		                     & = (M(-e_k + e_{p(k)} + e_{k+1}) + \zeta M(-e_k + g))\oy_j                                                                                 \\
-		                     & = \oy_j (\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 M(-e_k + e_{p(k)} + e_{k+1}) + \zeta\Omega_{\bbr}(-e_k + g, e_j)^2 M(-e_k + g)),
+		\tau  & = [3,4,2,5,1,6]  \\
+		\tau' & = [3,4,2,1,5,6],
 	\end{align*}
-	for some $\xi_{kj} \in \bbK$. So,
-	\begin{equation*}
-		\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 = \xi_{kj} = \Omega_{\bbr}(-e_k + g, e_j)^2
-	\end{equation*}
-	from which it follows that
-	\begin{equation*}
-		\Omega_{\bbr}(e_{p(k)} + e_{k+1} - g, e_j)^2 = 1,
-	\end{equation*}
-	since
-	\begin{equation*}
-		\Omega_{\bbr}(f, h)\Omega_{\bbr}(f',h) = \Omega_{\bbr}(f + f', h)
-	\end{equation*}
 	%
-	for any vectors $f,f',h\in \bbZ^N$. This proves \cref{eq:Omega_r_squared_one}. Now,
+	and compute $\tau_\bullet$ and $\tau'_\bullet$. We have
 	\begin{align*}
-		\Omega_{\bbr}(e_{p(k)} + e_{k+1} -g, e_k)^2
-		\overset{\eqref{eq:Omega_r_squared_one}} & {=} \Omega_{\bbr}(e_{p(k)} + e_{k+1}-g,e_k - e_{k+1})^2                     \\
-		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, \oe_k - \oe_{k+1})^2 \\
-		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, e_{k+1})^{-2}        \\
-		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_k - \overline{g}, e_{k+1})^{-2},
+		\eta\inv(1) & = \{1, 4, 6\}                          \\
+		            & = \{\tau(5), \tau(2), \tau(6)\}        \\
+		            & = \{\tau(k_2), \tau(k_1), \tau(k_3)\},
+	\end{align*}
+	from which we obtain
+	\begin{align*}
+		\tau_\bullet(4) & = \tau_\bullet(\tau(2)) = 1, \\
+		\tau_\bullet(1) & = \tau_\bullet(\tau(5)) = 4, \\
+		\tau_\bullet(6) & = \tau_\bullet(\tau(6)) = 6.
+	\end{align*}
+	From
+	\begin{equation*}
+		\eta\inv(2) = \{2, 5\} = \{\tau(3), \tau(4)\}
+	\end{equation*}
+	%
+	we obtain $\tau_\bullet(2) = 2$ and $\tau_\bullet(5) = 5$. Since $\eta\inv(3) = \{3\}$
+	we automatically have $\tau_\bullet(3) = 3$. For $\tau'$ we find
+	\begin{align*}
+		\eta\inv(1) & = \{1, 4, 6\}                             \\
+		            & = \{\tau'(4), \tau'(2), \tau'(6)\}        \\
+		            & = \{\tau'(k_2), \tau'(k_1), \tau'(k_3)\},
+	\end{align*}
+	such that
+	\begin{align*}
+		\tau'_\bullet(4) & = \tau'_\bullet(\tau'(2)) = 1, \\
+		\tau'_\bullet(1) & = \tau'_\bullet(\tau'(4)) = 4, \\
+		\tau'_\bullet(6) & = \tau'_\bullet(\tau'(6)) = 6.
 	\end{align*}
 	%
-	where we used that $\Omega_{\bbn}(e_{k+1}, e_{k+1}) = 1$ in the last step. Since
-	$\oy'_k$ is homogeneous, we must have
+	Similarly, one finds $\tau'_\bullet(2) = 2, \tau'_\bullet(5) = 5$ and $\tau'_\bullet(3)
+		= 3$. Hence,
 	\begin{equation*}
-		\chi_{M(-e_k + e_{p(k)} + e_{k+1})} = \chi_{M(-e_k + g)},
+		\tau_\bullet = \tau'_\bullet = [4,2,3,1,5,6].
 	\end{equation*}
-	%
-	from which we obtain $\chi_{M(e_{p(k)} + e_{k+1} - g)} = 1$. Since $y_{k+1} = y_k
-		x_{k+1} - c_{k+1}$ by \cref{thm:homogeneous_primes} we also have
-	\begin{equation*}
-		\chi_{M(e_{p(k)} + e_{l+1} -g)} = \chi_{M(e_{p(k)} + e_k - g)}\chi_{x_{k+1}},
-	\end{equation*}
-	and hence
-	\begin{equation*}
-		\chi_{M(e_{p(k)} + e_k - g)} = \chi_{x_{k+1}}\inv.
-	\end{equation*}
-	%
-	Because $h_{k+1} \cdot x_j = \lambda_{k+1, k} x_j = \nu_{k, k+1}^{-2}x_j$ for all $j
-		\in [1, N]$, we find
-	\begin{equation*}
-		\Omega_{\bbn}(\oe_{p(k)}+\oe_k - \overline{g}, e_{k+1})^{-2} = \chi_{M(e_{p(k)} + e_k - g)}(h_{k+1}) = \chi_{x_{k+1}}(h_{k+1})\inv,
-	\end{equation*}
-	proving the first equality of \cref{eq:Omega_r_squared_ek}.
 
-	It now remains to show that $\chi_{x_{k+1}}(h_{k+1})\inv = \chi_{x_k}(h'_{k+1})$. By
-	the first equality of \cref{eq:Omega_r_squared_ek},
+	Now, remark that $\tau, \tau' \in \Xi_6$ and that $\tau' = \tau (4, 5) = (1,5) \tau$.
+	Hence, if $\eta$ was the function satisfying the conditions of
+	\cref{thm:homogeneous_primes} for some CGL extension of length 6, then the
+	presentations corresponding to $\tau$ and $\tau'$ would satisfy the setting of
+	\cref{thm:y_prime_swapped_cgl}. Since $\eta(1) = 1 \neq 2 = \eta(5)$, the conclusion of
+	\cref{thm:y_prime_swapped_cgl} would be that $y_{\tau, j} = y_{\tau', (4,5)j}$ for all
+	$j \in [1, N]$. Since no mutation occurs in this case, we should find that $M_\tau
+		(e_j) = M_{\tau'}(e_j)$ for all $j \in [1, N]$. Indeed
+	\begin{align*}
+		M_{\tau}(e_j)
+		 & = \oy_{\tau, (\tau_\bullet \tau)\inv (j)}        \\
+		 & = \oy_{\tau', (4,5)(\tau_\bullet \tau)\inv (j)}  \\
+		 & = \oy_{\tau', (\tau_\bullet \tau (4,5))\inv (j)} \\
+		 & = \oy_{\tau', (\tau_\bullet \tau')\inv (j)}      \\
+		 & = M_{\tau'}(e_j).
+	\end{align*}
+\end{example}
+\begin{example}
+	We now look at $\eta \colon [1,6] \to \bbZ$ defined by
 	\begin{equation*}
-		M(e_{p(k)} + e_{k+1} - g)\oy_k = \chi_{x_{k+1}}(h_{k+1})\inv \oy_k M(e_{p(k)} + e_{k+1} - g).
+		\eta(1) = \eta(3) = \eta(4) = \eta(6) = 1, \quad \eta(2) = \eta(5) = 2,
 	\end{equation*}
+	and the two permutations $\tau, \tau' \in \Xi_6$ given by
+	\begin{align*}
+		\tau  & = [2,3,4,1,6,5]  \\
+		\tau' & = [2,3,1,4,6,5].
+	\end{align*}
+	In this case $\tau_\bullet \neq \tau'_\bullet$, but
+	\begin{align*}
+		\tau_\bullet  & = [4,2,1,3,5,6]  \\
+		\tau'_\bullet & = [3,2,1,4,5,6],
+	\end{align*}
 	%
-	If we now apply the same reasoning, but swap the roles of the two CGL presentations, we
-	find that
-	\begin{equation*}
-		M'(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M'(e_{p(k)} + e_{k+1} - g).
-	\end{equation*}
-	%
-	On the other hand, \cref{thm:almost_mutation_toric_frame} implies that $M'(e_{p(k)} +
-		e_{k+1} - g)$ is a scalar multiple of $M(e_{p(k)} + e_{k+1} - g)$, so that we find
-	\begin{equation*}
-		M(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M(e_{p(k)} + e_{k+1} - g).
-	\end{equation*}
-	%
-	From \cref{eq:Omega_r_squared_one} we obtain that $M(e_{p(k)} + e_{k+1} - g)$ commutes
-	with $M(e_j)$ for all $j \neq k$. In particular, it commutes with $M(e_{p(k)} +
-		e_{k+1})$ and $M(g)$, which implies that it commutes with $\oy_k \oy'_k$, using
-	\cref{thm:almost_mutation_toric_frame}. Hence,
-	$\chi_{x_{k+1}}(h_{k+1})\chi_{x_k}(h'_{k+1}) = 1$, which is what we needed to show.
+	such that $\tau_\bullet \tau = \tau'_\bullet \tau'$. As $\tau' = \tau (3,4)$, we are
+	again in the setting of \cref{thm:y_prime_swapped_cgl}, but now in the second case, as
+	$\eta(3) = 1 = \eta(4)$. In this case, the conclusion of
+	\cref{thm:almost_mutation_toric_frame} gives that we should have $M_\tau (e_j) =
+		M_{\tau'}(e_j)$ for all $j \neq 3$. That is precisely why we need to permute
+	$\widehat{M}_\tau$ with $\tau_\bullet$ as well.
+\end{example}
 
-\end{proof}
+\textbf{TODO: rescaling of the x-elements}
 
 \subsection{Ore localizations of CGL extensions}
 
@@ -1379,7 +1421,123 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 	$m_i = m'_i$ for all $i \in [1, k-1]$.
 \end{proof}
 
-\subsection{The main theorem}
+\subsection{Proof of the main theorem}
+
+\begin{theorem}
+
+	Assume the setting of \cref{thm:almost_cluster_mutation} and that there exists $v_{lj}
+		= \sqrt{\lambda_{jl}} \in \bbK$ for $1 \leq i < l \leq N$. Then
+	\begin{equation}  \label{eq:Omega_r_squared_one}
+		\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)} m_i e_i, e_j\right)^2  = 1, \quad \forall j \neq k
+	\end{equation}
+	and
+	\begin{equation}\label{eq:Omega_r_squared_ek}
+		\begin{aligned}
+			\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)}m_i e_i, e_k\right)^2 & = \chi_{x_{k+1}}(h_{k+1})\inv \\
+			                                                                                             & = \chi_{x_k}(h'_{k+1})
+		\end{aligned}
+	\end{equation}
+	%
+	for the collection of nonnegative integers $\{m_i \mid i \in P(k-1), i\neq p(k)\}$ from
+	\cref{thm:almost_cluster_mutation,thm:almost_mutation_toric_frame}.
+
+\end{theorem}
+\begin{proof}
+
+	Denote for brevity the elements
+	\begin{align}
+		g            & = \sum_{i \in P(k-1), i\neq p(k)} m_i e_i            \\
+		\overline{g} & = \sum_{i \in P(k-1), i\neq p(k)} m_i \overline{e}_i
+	\end{align}
+	%
+	in $\bbZ^N$. By construction of the toric frames $M$ and $M'$, the element
+	$\overline{y}_j$ belongs to the image of both $M$ and $M'$ for each $j \neq k$. Recall
+	also that
+	\begin{equation*}
+		M(f)M(f') = \Omega_{\bbr}(f, f')^2 M(f')M(f)
+	\end{equation*}
+	%
+	for any two vectors $f,f' \in \bbZ^N$. Using this together with
+	\cref{eq:y_quasi_commute} and \cref{thm:almost_mutation_toric_frame}, we find
+	\begin{align*}
+		\xi_{kj}\oy_j \oy'_k & = \oy'_k \oy_j                                                                                                                            \\
+		                     & = (M(-e_k + e_{p(k)} + e_{k+1}) + \zeta M(-e_k + g))\oy_j                                                                                 \\
+		                     & = \oy_j (\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 M(-e_k + e_{p(k)} + e_{k+1}) + \zeta\Omega_{\bbr}(-e_k + g, e_j)^2 M(-e_k + g)),
+	\end{align*}
+	for some $\xi_{kj} \in \bbK$. So,
+	\begin{equation*}
+		\Omega_{\bbr}(-e_k + e_{p(k)} + e_{k+1}, e_j)^2 = \xi_{kj} = \Omega_{\bbr}(-e_k + g, e_j)^2
+	\end{equation*}
+	from which it follows that
+	\begin{equation*}
+		\Omega_{\bbr}(e_{p(k)} + e_{k+1} - g, e_j)^2 = 1,
+	\end{equation*}
+	since
+	\begin{equation*}
+		\Omega_{\bbr}(f, h)\Omega_{\bbr}(f',h) = \Omega_{\bbr}(f + f', h)
+	\end{equation*}
+	%
+	for any vectors $f,f',h\in \bbZ^N$. This proves \cref{eq:Omega_r_squared_one}. Now,
+	\begin{align*}
+		\Omega_{\bbr}(e_{p(k)} + e_{k+1} -g, e_k)^2
+		\overset{\eqref{eq:Omega_r_squared_one}} & {=} \Omega_{\bbr}(e_{p(k)} + e_{k+1}-g,e_k - e_{k+1})^2                     \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, \oe_k - \oe_{k+1})^2 \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_{k+1} - \overline{g}, e_{k+1})^{-2}        \\
+		                                         & = \Omega_{\bbn}(\oe_{p(k)} + \oe_k - \overline{g}, e_{k+1})^{-2},
+	\end{align*}
+	%
+	where we used that $\Omega_{\bbn}(e_{k+1}, e_{k+1}) = 1$ in the last step. Since
+	$\oy'_k$ is homogeneous, we must have
+	\begin{equation*}
+		\chi_{M(-e_k + e_{p(k)} + e_{k+1})} = \chi_{M(-e_k + g)},
+	\end{equation*}
+	%
+	from which we obtain $\chi_{M(e_{p(k)} + e_{k+1} - g)} = 1$. Since $y_{k+1} = y_k
+		x_{k+1} - c_{k+1}$ by \cref{thm:homogeneous_primes} we also have
+	\begin{equation*}
+		\chi_{M(e_{p(k)} + e_{l+1} -g)} = \chi_{M(e_{p(k)} + e_k - g)}\chi_{x_{k+1}},
+	\end{equation*}
+	and hence
+	\begin{equation*}
+		\chi_{M(e_{p(k)} + e_k - g)} = \chi_{x_{k+1}}\inv.
+	\end{equation*}
+	%
+	Because $h_{k+1} \cdot x_j = \lambda_{k+1, k} x_j = \nu_{k, k+1}^{-2}x_j$ for all $j
+		\in [1, N]$, we find
+	\begin{equation*}
+		\Omega_{\bbn}(\oe_{p(k)}+\oe_k - \overline{g}, e_{k+1})^{-2} = \chi_{M(e_{p(k)} + e_k - g)}(h_{k+1}) = \chi_{x_{k+1}}(h_{k+1})\inv,
+	\end{equation*}
+	proving the first equality of \cref{eq:Omega_r_squared_ek}.
+
+	It now remains to show that $\chi_{x_{k+1}}(h_{k+1})\inv = \chi_{x_k}(h'_{k+1})$. By
+	the first equality of \cref{eq:Omega_r_squared_ek},
+	\begin{equation*}
+		M(e_{p(k)} + e_{k+1} - g)\oy_k = \chi_{x_{k+1}}(h_{k+1})\inv \oy_k M(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	If we now apply the same reasoning, but swap the roles of the two CGL presentations, we
+	find that
+	\begin{equation*}
+		M'(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M'(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	On the other hand, \cref{thm:almost_mutation_toric_frame} implies that $M'(e_{p(k)} +
+		e_{k+1} - g)$ is a scalar multiple of $M(e_{p(k)} + e_{k+1} - g)$, so that we find
+	\begin{equation*}
+		M(e_{p(k)} + e_{k+1} - g)\oy'_k = \chi_{x_k}(h'_{k+1})\inv \oy'_k M(e_{p(k)} + e_{k+1} - g).
+	\end{equation*}
+	%
+	From \cref{eq:Omega_r_squared_one} we obtain that $M(e_{p(k)} + e_{k+1} - g)$ commutes
+	with $M(e_j)$ for all $j \neq k$. In particular, it commutes with $M(e_{p(k)} +
+		e_{k+1})$ and $M(g)$, which implies that it commutes with $\oy_k \oy'_k$, using
+	\cref{thm:almost_mutation_toric_frame}. Hence,
+	$\chi_{x_{k+1}}(h_{k+1})\chi_{x_k}(h'_{k+1}) = 1$, which is what we needed to show.
+
+\end{proof}
+
+\begin{proposition}\label{prop:mutation_adjacent_permutations}
+	Prop 8.13 GY
+\end{proposition}
 
 % \section{Some definitions}
 
