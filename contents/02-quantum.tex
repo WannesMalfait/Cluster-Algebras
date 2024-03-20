@@ -1,6 +1,7 @@
 \newcommand{\bbr}{\mathbf{r}}
 \newcommand{\bbn}{\boldsymbol{\nu}}
 \newcommand{\bbl}{\boldsymbol{\lambda}}
+\newcommand{\bbg}{\boldsymbol{\gamma}}
 \newcommand{\oy}{\overline{y}}
 \renewcommand{\oe}{\overline{e}}
 \chapter{Quantum cluster algebras}
@@ -1050,7 +1051,152 @@ of the cluster variables.
 	$\widehat{M}_\tau$ with $\tau_\bullet$ as well.
 \end{example}
 
-\textbf{TODO: rescaling of the x-elements}
+We now describe the rescaling of the $x$-elements that will ensure that $\zeta = 1$ in
+\cref{thm:almost_mutation_toric_frame}. The key insight, is that we can find back all
+the variables $\oy_{\tau}$ (up to a scalar multiple) by considering just the
+homogeneous prime elements of the subalgebras $R_{[j, k]}$ of the original CGL
+extension presentation.
+
+We now introduce some new notation. For $i \in [1, N]$ and $m \in \bbZ$ such that
+$s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
+\begin{equation*}
+	e_{[i, s^m(i)]} = e_i + e_{s(i)} + \cdots + e_{s^m(i)}.
+\end{equation*}
+In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$.
+\begin{theorem}\label{thm:y_square_brackets}
+	Let $R$ be a symmetric CGL extension of length $N$. For $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the following hold:
+	\begin{enumerate}[(a)]
+		\item All of the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i,
+							      s^m(i)-1]}$ are associates of each other.
+		\item All of the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i+1,
+							      s^m(i)]}$ are associates of each other.
+		\item The sets of homogeneous prime elements of \textrm{(a)} and \textrm{(b)} are equal, and
+		      the elements have leading terms of the form
+		      \begin{equation*}
+			      \xi x^{e_{[i, s^m(i)]}} = \xi x_i x_{s(i)}\cdots x_{s^m(i)}
+		      \end{equation*}
+		      %
+		      for some $\xi \in \bbK^\times$. \textbf{TODO: explain what leading term is precisely}.
+		      For each $\xi \in \bbK^\times$, there is a unique homogeneous prime element of $R_{[i,
+							      s^m(i)]}$ with such a leading term. We will write $y_{[i, s^m(i)]}$ for the prime
+		      element with leading term $x_i x_{s(i)}\cdots x_{s^m(i)}$.
+		\item The elements $y_{[i, s^m(i)]}$ satisfy the following recursive description
+		      \begin{align*}
+			      y_{[i, s^m(i)]} = y_{[i, s^{m-1}(i)]}x_{s^m (i)} - c_{[i, s^m(i) -1]} = x_i y_{[s(i), s^m(i)]} - c'_{[i+1, s^m(i)]},
+		      \end{align*}
+		      %
+		      where $c_{[i, s^m(i) -1]} \in R_{[i, s^m(i) - 1]}$ and $c'_{[s(i), s^m(i)]} \in
+			      R_{[i+1, s^m(i)]}$.
+		\item For all $k \in [1, N]$ such that $p(i) < k < s^{m+1}(i)$ we have the following variant
+		      of \cref{eq:y_x_quasi_commute}:
+		      \begin{equation*}
+			      y_{[i, s^m(i)]}x_k = \Omega_{\bbl}(e_{[i, s^m(i)]}, e_k)x_k y_{[i, s^m(i)]}.
+		      \end{equation*}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\textbf{TODO: add the proof, after introducing $\Gamma_N$}.
+\end{proof}
+
+Applying \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting
+yields the following result.
+\begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]
+	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the element
+	\begin{align*}
+		u_{[i, s^m(i)]} & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
+		                & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
+	\end{align*}
+	%
+	is a nonzero homogeneous normal element of $R_{[i+1, s^m(i) - 1]}$ which is not a
+	multiple of $y_{[s(i), s^{m-1}(i)]}$ if $m \geq 2$. It normalizes the elements of
+	$R_{[i+1, s^m(i) - 1]}$ in exactly the same way as $y_{[s(i),
+						s^{m-1}(i)]}y_{[i,s^m(i)]}$ does. Moreover,
+	\begin{equation*}
+		u_{[i, s^m(i)]} = \psi \prod_{k \in P} y^{m_k}_{[p^{O_{-}^{i+1}(k)}, k]}
+	\end{equation*}
+	where $\psi \in \bbK^\times, O^{i+1}_{-}(k) = \max\{n \in \bbZ_{\geq 0} \mid p^n(k) \geq i + 1\}$,
+	\begin{equation*}
+		P = P_{[i,s^m (i)]} = \{k \in [i, s^m(i)]\setminus \{i, s(i), \dots, s^m(i)\} \mid s(k) > s^m(i)\},
+	\end{equation*}
+	%
+	and the integers $m_k$ are those from \cref{thm:almost_cluster_mutation}. Thus, the
+	leading term of $u_{[i, s^m(i)]}$ has the form
+	\begin{equation*}
+		\lt (u_{[i, s^m(i)]}) = \pi_{[i, s^m(i)]} x^{f_{[i, s^m(i)]}}
+	\end{equation*}
+	%
+	for some $\pi_{[i, s^m(i)]} \in \bbK^\times$ and $f_{[i, s^m(i)]} = n_{i+1}e_{i+1} +
+		\cdots + n_{s^m(i) -1}e_{s^m(i)-1} \in \bbZ_{\geq 0}^N$ such that $n_{s(i)} = \cdots =
+		n_{s^{m-1}(i)} = 0$ and $n_j = n_l$ for all $i+1 \leq j \leq l \leq s^m(i)-1$ with
+	$\eta(j) = \eta(l)$.
+\end{proposition}
+
+The proposition does not apply for $m = 0$, so in this case we simply set
+\begin{equation*}
+	u_{[i, i]} = 1,
+\end{equation*}
+and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
+
+We now have the necessary definitions to describe the rescaling of the $x$-elements.
+For each $\bbg = (\gamma_1, \dots, \gamma_N) \in (\bbK^\times)^N$, one can rescale the
+generators $x_1, \dots, x_N$ of $R$ by replacing them by $\gamma_1 x_1, \dots, \gamma_N
+	x_N$. These still generate the same CGL extension, with the same $\mcH$-action and
+matrix $\bbl$. Furthermore, for $i \in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that
+$s^m(i) \neq + \infty$, the subalgebra $R_{[i, s^m(i)]}$ is the same. Since $y_{[i,
+					s^m(i)]}$ is the \emph{unique} homogeneous prime element of $R_{[i, s^m(i)]}$ with a
+leading term $x_i x_{s(i)} \cdots x_{s^m(i)}$, we find that $y_{[i, s^m(i)]}$ gets
+replaced by $(\gamma_i \gamma_{s(i)} \cdots \gamma_{s^{m(i)}})y_{[i, s^m(i)]}$ after
+the rescaling. The definition of $u_{[i, s^m(i)]}$ then implies that they get rescaled
+by
+\begin{equation*}
+	u_{[i, s^m(i)]} \mapsto \bbg^{e_{[i, s^m(i)]} + e_{[s(i), s^{m-1}(i)]} }u_{[i, s^m(i)]} =  (\gamma_i \gamma_{s(i)}^2 \cdots \gamma_{s^m(i)}^2 \gamma_{s^m(i)})u_{[i, s^m(i)]}.
+\end{equation*}
+%
+Now one has to be careful to not conclude that $\pi_{[i, s^m(i)]}$ gets scaled by
+exactly the same factor as $u_{[i, s^m(i)]}$. Indeed, the definition of $\pi_{[i,
+				s^m(i)]}$ is as the coeffient of $x^{f_{[i, s^m(i)]}}$ which gets rescaled as well.
+Hence, the scalar $\pi_{[i, s^m(i)]}$ get rescaled by the rule
+\begin{equation*}
+	\pi_{[i, s^m(i)]} \mapsto \bbg^{e_{[i, s^m(i)]}+e_{[s(i), s^{m-1}(i)]} - f_{[i, s^m(i)]}}\pi_{[i, s^m(i)]}.
+\end{equation*}
+%
+The rescaling that we need is described by the following proposition.
+\begin{proposition}
+
+	Let $R$ be a symmetric CGL extension of length $N$, for which there exist $\nu_{lj} =
+		\sqrt{\lambda_{lj}}$ for all $1 \leq l < j \leq N$. Then there exist $\bbg \in
+		(\bbK^\times)^N$ such that after applying the rescaling $x_j \mapsto \gamma_j x_j$ for
+	all $j \in [1, N]$ we have
+	\begin{equation}\label{eq:rescaling_conditions_for_pi}
+		\pi_{[i, s(i)]} = \mcS_{\bbn}(-e_i + f_{[i, s(i)]})
+	\end{equation}
+	%
+	for all $i \in [1, N]$ such that $s(i) \neq + \infty$. Every such $\bbg \in
+		(\bbK^\times)^N$ is recursively determined by
+	\begin{equation*}
+		\gamma_i \text{ is arbitrary if } p(i) = -\infty
+	\end{equation*}
+	and
+	\begin{equation*}
+		\gamma_i = \gamma_{p(i)}\inv \bbg^{f_{[p(i),i]}}\pi\inv_{[p(i), i]}\mcS_{\bbn}(-e_{p(i)} + f_{[p(i), i]})
+	\end{equation*}
+	if $p(i) \neq -\infty$. The scalars $\pi_{[p(i), i]}$ in the right hand side are taken with respect to the original generators of $R$.
+\end{proposition}
+\begin{proof}
+
+	Note that for each $i \in [1, N]$ such that $s(i) \neq -\infty$,
+	\cref{eq:rescaling_conditions_for_pi} holds if and only if
+	\begin{equation*}
+		\gamma_i \gamma_{s(i)} \gamma^{-f_{[i, s(i)]}}\pi_{[i, s(i)]} = \mcS_{\bbn}(-e_i + f_{[i, s(i)]})
+	\end{equation*}
+	%
+	This last equation is of course equivalent to
+	\begin{equation*}
+		\gamma_{s(i)} =  \gamma_{i}\inv \gamma^{f_{[i, s(i)]}}\pi_{[i, s(i)]}\inv \mcS_{\bbn}(-e_i + f_{[i, s(i)]}) \text{ for all } i \in [1, N] \text{ such that } s(i) \neq -\infty,
+	\end{equation*}
+	which is precisely the claim of the proposition.
+\end{proof}
+
 
 \subsection{Ore localizations of CGL extensions}
 
@@ -1791,4 +1937,3 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 % 	and all the $t_{ii}$ are \emph{not} roots of unity.
 % \end{definition}
 % \textbf{TODO: How to explain the root of unity part? Is there a clean way?}
-
