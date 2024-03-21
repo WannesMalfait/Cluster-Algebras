@@ -1620,6 +1620,213 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 
 \subsection{Proof of the main theorem}
 
+We begin by studying more closely the subset $\Xi_N \subset S_N$. Recall that an
+element $\tau \in \Xi_N$ has the property that $\tau([1, j])$ is an interval for all $j
+	\in [1, N]$. In particular, this means that $\tau([1, N-1]) = [1, N-1]$ or $\tau([1,
+		N-1]) = [2, N]$. Reformulating this in terms of an element $\tau' \in \Xi_{N-1}$ we
+obtain the following lemma.
+\begin{lemma}
+	For each $\tau \in \Xi_N$, there exists $\tau' \in \Xi_{N-1}$ such that either
+	\begin{equation*}
+		\tau(i) = \tau'(i), \text{ for all } i \in [1, N-1] \quad \text{and} \quad \tau(N) = N
+	\end{equation*}
+	or
+	\begin{equation*}
+		\tau(i) = \tau'(i) + 1, \text{ for all } i \in [1, N-1] \quad \text{and} \quad \tau(N) = 1.
+	\end{equation*}
+	%
+	Conversely, any element $\tau' \in \Xi_{N-1}$ defines an element $\tau \in \Xi_N$ this
+	way.
+\end{lemma}
+
+From this we obtain an alternative description of $\Xi_N$. Namely, for $k\in [1, N]$
+and $k \leq j_k \leq \cdots \leq j_1 \leq N$, define
+\begin{equation*}
+	\tau_{(j_k, \dots, j_1)} = (k,k+1, \cdots, j_k)\cdots (2,3, \cdots, j_2)(1,2,\cdots, j_1)\in S_N,
+\end{equation*}
+%
+where the right hand side is a composition of cycles.
+\begin{lemma}
+	We have the following characterization for $\Xi_N$.
+	\begin{equation*}
+		\Xi_N = \{\tau_{(j_k, \dots, j_1)} \mid k \leq j_k \leq \cdots \leq j_1 \leq N,\, k\in [1, N]\}.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	By induction on $N$. For $N = 1$, we have $\Xi_N = \{\id\}$, and $\tau_{(1)} = \id$. Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. There are two cases
+	\begin{enumerate}
+		\item There exists $\tau' \in \Xi_{N-1}$ such that $\tau(i) = \tau'(i)$ for all $i\in [1,
+				      N-1]$ and $\tau(N) = N$. Write $\tau' = \tau_{(j_k, \dots, j_1)} \in S_{N-1}$ using the
+		      induction hypothesis. Then $\tau = \tau_{(j_k, \dots, j_1)}$ but now viewed as an
+		      element of $S_N$ (since $\tau$ fixes $N$ and equals $\tau'$ on $[1, N-1]$).
+		\item Otherwise, there exists $\tau' \in \Xi_{N-1}$ such that $\tau(i) = \tau'(i)$ for all
+		      $i\in [1, N-1]$ and $\tau(N) = 1$. The induction hypothesis gives that we can write
+		      $\tau' = \tau_{(j'_k, \dots, j'_1)}$ for some $k \in [1, N - 1]$ and $k \leq j'_k \leq
+			      \cdots \leq j'_1 \leq N - 1$. Write $j_{i+1} = j'_i + 1$ for $1 \leq i \leq k$ and
+		      define $j_1 = N$. Then
+		      \begin{equation*}
+			      \tau = \tau_{(j_k, \dots, j_1)} = (k+1, \cdots, j'_k + 1) \cdots (2, 3, \cdots ,j'_1 + 1)(1,2, \cdots, N) \in S_N.
+		      \end{equation*}
+		      Indeed $\tau_{(j_k, \dots, j_1)}(N) = 1$, and for $i \in [1, N-1]$,
+		      \begin{align*}
+			      \tau_{(j_k, \dots, j_1)}(i)
+			       & = (k+1, \cdots, j'_k + 1) \cdots (2, 3, \cdots, j'_1 + 1)(1,2, \cdots, N) i \\
+			       & = (k+1, \cdots, j'_k + 1) \cdots (2, 3, \cdots, j'_1 + 1) (i+1)             \\
+			       & = \tau'(i) + 1                                                              \\
+			       & = \tau(i).
+		      \end{align*}
+	\end{enumerate}
+
+	That the other inclusion holds will be explained below.
+\end{proof}
+
+To illustrate the induction step in the proof of the previous lemma, we look at a small
+example.
+\begin{example}
+
+	Suppose $N = 4$ and $\tau = [3,4,2,1] \in \Xi_4$. Then, since $\tau(N) = \tau(4) = 1$,
+	we have $\tau' = [2,3,1] \in \Xi_{3}$. Similarly, we find $\tau'' = [1,2] \in \Xi_2$
+	and $\tau''' = [1] \in \Xi_1$. The base case gives $\tau''' = \tau_{(1)} = (1) = \id
+		\in S_1$. Then, since $\tau''(2) = 2$, the induction step gives $\tau'' = \tau_{(1)}$
+	as well, but now viewed as an element of $S_2$. Now, because $\tau'(3) = 1$, the
+	induction step now tells us that $\tau' = \tau_{(2,3)} = (2)(1,2,3) = (1,2,3) \in S_3$,
+	which is indeed the case. Finally, as $\tau(4) = 1$ we must have
+	\begin{equation*}
+		\tau = \tau_{(3,4,4)} = (3)(2,3,4)(1,2,3,4) = (2,3,4)(1,2,3,4) \in S_4.
+	\end{equation*}
+
+	Note that we also have $\tau = \tau_{(4,4)}$ which shows that the representation is not
+	unique.
+\end{example}
+
+We now use this result to show that any element $\tau \in \Xi_N$ can be built out of a
+sequence of elements of $\Xi_N$ which differ only by a transposition.
+\begin{proposition}\label{prop:eta_invariance}
+	Let $R$ be a symmetric CGL extension of length $N$ and $\tau \in \Xi_N$.
+	\begin{enumerate}[(a)]
+		\item There exists a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau$ in $\Xi_N$ such
+		      that for all $l \in [1, n]$,
+		      \begin{equation*}
+			      \tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
+		      \end{equation*}
+		      %
+		      for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$.
+		\item If $\eta : [1, N] \to \bbZ$ is a function satisfying the conditions of
+		      \cref{thm:homogeneous_primes} for the original CGL extension presentation of $R$, then
+		      \begin{equation*}
+			      \eta_\tau = \eta \tau : [1, N] \to \bbZ
+		      \end{equation*}
+		      %
+		      satisfies the conditions of \cref{thm:homogeneous_primes} for the presentation of $R$
+		      corresponding to $\tau$.
+
+		\item Furthermore, for all $1 \leq j \leq k \leq N$, the function $\eta_{[j, k]} \colon [1,
+				      k-j+1] \to \bbZ$ given by
+		      \begin{equation*}
+			      \eta_{[j,k]}(l) = \eta(j+l-1)
+		      \end{equation*}
+		      %
+		      satisfies the conditions of \cref{thm:homogeneous_primes} for the symmetric CGL
+		      extension $R_{[j,k]}$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+
+	Write $\tau = \tau_{(j_k, \dots, j_1)}$. Then we can decompose the cycle $(1,2,\dots,
+		j_1)$ as $(1, j_1)(1, j_1 - 1)\cdots (1, 2)$. For each $l \in [1, j_1 - 1]$, write
+	\begin{equation*}
+		\tau_l = (1,2,\cdots, l+1) = (1, l+1) (1, l) \cdots (1, 2).
+	\end{equation*}
+	Then
+	\begin{equation*}
+		\tau_l = (1, l+1)\tau_{l-1} = (\tau_{l-1}(l), \tau_{l-1}(l+1)) = \tau_{l-1}(l, l+1).
+	\end{equation*}
+	%
+	Furthermore, each $\tau_l \in \Xi_N$, because $\tau_l ([1, i]) = [2, i+1]$ for $i \in
+		[1, l]$ and $\tau_l ([1, i]) = [1, i]$ for $i \in [l+1, N]$. Now, we see what happens
+	when we add another cycle, $(2,3,\dots, j_2)$. Because we can apply the same type of
+	decomposition in transpositions to the cycle $(2,3,\dots, j_2)$, it suffices to show
+	that $\tau_{(j_2, j_1)} \in \Xi_N$. For $i \in [1, j_2 - 2]$, we have
+	\begin{equation*}
+		\tau_{(j_2, j_1)}([1, i]) = (2,3, \dots, j_2)(1,2,\dots,j_1)[1, i]= (2,3,\dots,j_2)[2, i+1] = [3,\dots,i+2].
+	\end{equation*}
+	For $i \in [j_2 - 1, j_1 -1]$, we have
+	\begin{equation*}
+		\tau_{(j_2,j_1)}([1, i]) = (2,3,\dots, j_2)(1,2, \dots, j_1)[1, i] = (2,3,\dots,j_2)[2,i+1] = [2, i+1],
+	\end{equation*}
+	and finally, for $i \in [j_1, N]$ we have $\tau_{(j_2,j_1)}[1,i] = [1, i]$, which proves $\tau_{(j_2, j_1)} \in \Xi_N$. Proceeding like this inductively, one shows the first part.
+
+	The second part follows from the first by applying \cref{thm:y_prime_swapped_cgl}
+	inductively. Indeed, assume that $\eta_{\tau_l}$ satisfies the conditions of
+	\cref{thm:homogeneous_primes} for the presentation corresponding to $\tau_l$. Then,
+	because $\tau_{l+1} = \tau_l (k_{l+1}, k_{l+1} + 1)$, \cref{thm:y_prime_swapped_cgl}
+	applied to the CGL presentations corresponding to $\tau_{l}$ and $\tau_{l+1}$ gives
+	that we may take $\eta' = \eta_{\tau_l}(k_{l+1}, k_{l+1}+1) = \eta_{\tau_{l+1}}$ for
+	the $\eta$-function of the presentation corresponding to $\tau_{l+1}$.
+
+	The final statement follows from the second by looking at
+	\begin{equation*}
+		\tau = [j, j+1, \dots, k, j-1,j-2, \dots , 1, k+1, k+2, \dots, N] \in \Xi_N.
+	\end{equation*}
+	%
+	By the second part, we can take $\eta_\tau$ for the $\eta$-function of
+	\cref{thm:homogeneous_primes} applied to the presentation corresponding to $\tau$.
+	Furthermore, \cref{thm:homogeneous_primes} implies that the (restriction of the) same
+	function can be used when looking at the subalgebra generated by the first $i$
+	generators $x_{\tau(1)}, \dots, x_{\tau(i)}$ for all $i \in [1, N]$. Finally, remark
+	that the subalgebra of $R$ generated by $\tau(1), \dots, \tau(k - j + 1)$ equals
+	$R_{[j, k]}$, and that $\tau(l) = j + l - 1$ for all $l \in [1, k- j + 1]$.
+
+\end{proof}
+
+\textbf{TODO: explain $\Gamma_N$}
+
+\begin{lemma}
+	Let $R$ be a symmetric CGL extension of length $N$. Take $\tau \in \Xi_N$ and $k \in [1, N]$.
+	\begin{itemize}
+		\item If $\tau(k) \geq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[p^m(\tau(k)),
+							      \tau(k)]}$, where
+		      \begin{equation*}
+			      m = \max\{n \in \bbZ_{\geq 0} \mid p^n(\tau(k)) \in \tau([1,k])\}.
+		      \end{equation*}
+		\item If $\tau(k) \leq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[\tau(k),s^m(
+							      \tau(k))]}$, where
+		      \begin{equation*}
+			      m = \max\{n \in \bbZ_{\geq 0} \mid s^n(\tau(k)) \in \tau([1,k])\}.
+		      \end{equation*}
+	\end{itemize}
+	%
+	In both cases the predecessor and successor functions are with respect to the original
+	CGL extension presentation of $R$.
+\end{lemma}
+\begin{proof}
+
+	For $k \in [1, N]$, denote by $R_{\tau, k}$, the subalgebra generated by $x_{\tau(1)},
+		\dots, x_{\tau(k)}$. Let us first tackle the case where $\tau(k) \leq \tau(1)$. Because
+	$\tau \in \Xi_N$, we have either $\tau(k) \geq \tau(j)$ for all $j\in [1, k - 1]$ or
+	$\tau(k) \leq \tau(j)$ for all $j \in [1, k-1]$. The fact that $\tau(k) \leq \tau(1)$
+	forces $\tau(k) \leq \tau(j)$ for all $j \in [1, k-1]$. We can hence write
+	\begin{equation*}
+		\tau([1, k]) = [\tau(k), \tau(i)] \quad \text{for some } i \in [1, k-1],
+	\end{equation*}
+	from which it follows that $R_{\tau, k} = R_{[\tau(k), \tau(i)]}$ and $R_{\tau, k-1} = R_{[\tau(k) + 1,\tau(i)]}$.
+	%
+	By assumption we have $\tau(k) \leq s^m(\tau(k)) \leq \tau(i)$ and $s (s^m(\tau(k))) >
+		\tau(i)$. The element $y_{[\tau(k), s^m(\tau(k))]}$ is a homogeneous prime element of
+	$R_{[\tau(k), s^m(\tau(k))]}$ by assumption. \Cref{thm:homogeneous_primes} applied to
+	this subalgebra shows that $y_{[\tau(k), s^m(\tau(k))]}$ must be a scalar multiple of
+	one of the $y$-elements for $R_{[\tau(k), s^m(\tau(k))]}$, and hence also a homogeneous
+	prime element of $R_{[\tau(k), \tau(i)]} = R_{\tau, k}$, by
+	\cref{prop:eta_invariance,thm:homogeneous_primes} as $s(s^m(\tau(k))) > \tau(i)$.
+	Because it's leading term contains $x_{\tau(k)}$ by \cref{thm:y_square_brackets}, it
+	does not belong to $R_{[\tau(k) + 1, \tau(i)]} = R_{\tau, k-1}$. But then
+	\cref{thm:homogeneous_primes} implies that it must be a scalar multiple of $y_{\tau,
+				k}$ as a homogeneous prime element of $R_{\tau, k}$ which does not lie in $R_{\tau,
+				k-1}$.
+
+	\textbf{TODO: the other case.}
+\end{proof}
+
 \begin{theorem}
 
 	Assume the setting of \cref{thm:almost_cluster_mutation} and that there exists $v_{lj}
