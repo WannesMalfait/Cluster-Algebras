@@ -1824,7 +1824,118 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 				k}$ as a homogeneous prime element of $R_{\tau, k}$ which does not lie in $R_{\tau,
 				k-1}$.
 
-	\textbf{TODO: the other case.}
+	The other case, where $\tau(k) \geq \tau(1)$, follows by a symmetry argument. Namely,
+	consider $\sigma \in \Xi_N$ given by reversing the order, i.e. $\sigma(i) = N- i + 1$
+	for all $i \in [1, N]$. By \cref{prop:eta_invariance} we can take $\eta \sigma$ for the
+	$\eta$-function with the presentation of $R$ corresponding to $\sigma$. Then note that
+	$p_\sigma (i) = \sigma (s(\sigma(i)))$ and $s_\sigma (i) = \sigma(p(\sigma(i)))$ for
+	all $i\in [1, n]$, where we define $\sigma(+\infty) = -\infty$ and $\sigma(-\infty) =
+		+\infty$. Indeed,
+	\begin{align*}
+		\sigma(s(\sigma(i))) & = \sigma\left(\min \{k \in [i+1, N]\mid \eta(k) = \eta(\sigma(i))\}\right) \\
+		                     & = \max\{k \in [1, i-1] \mid \eta(\sigma(k)) = \eta(\sigma(i))\}            \\
+		                     & = p_\sigma(i).
+	\end{align*}
+	%
+	The result is that we can apply \cref{thm:homogeneous_primes} ``in reverse'', which
+	allows us to use an analogous argument to the first case.
+\end{proof}
+
+In the setting of \cref{thm:gy_main_result} we can improve this result.
+\begin{proposition}
+	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$.
+	\begin{itemize}
+		\item If $\tau(k) \geq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[p^m(\tau(k)),
+							      \tau(k)]}$, where
+		      \begin{equation*}
+			      m = \max\{n \in \bbZ_{\geq 0} \mid p^n(\tau(k)) \in \tau([1,k])\}.
+		      \end{equation*}
+		\item If $\tau(k) \leq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[\tau(k),s^m(
+							      \tau(k))]}$, where
+		      \begin{equation*}
+			      m = \max\{n \in \bbZ_{\geq 0} \mid s^n(\tau(k)) \in \tau([1,k])\}.
+		      \end{equation*}
+	\end{itemize}
+	In both cases the predecessor and successor functions are with respect to the original
+	CGL extension presentation of $R$.
+\end{proposition}
+\begin{proof}
+	We prove the proposition by induction on $k$. Because $\tau$ does not necessarily preserve the ordering, we need to do induction on both cases at the same time. If $k=1$, then $\oy_{\tau, 1} = y_{\tau, 1} = x_{\tau(1)} = \oy_{[\tau(1), \tau(1)]}$, so both cases are fine. Assume now that $k > 1$, and that $\tau(k) < \tau(1)$.
+
+	By the previous lemma, $\oy_{\tau, k} = \xi \oy_{[\tau(k), s^m(\tau(k))]}$ for some
+	$\xi \in \bbK^\times$. It is hence sufficient to prove that the leading terms are
+	equal. As in the proof of the previous lemma, we find from $\tau(k) < \tau(1)$ that
+	$\tau([1, k]) = [\tau(k), \tau(i)]$ for some $i \in [1, k]$. Thus $R_{[\tau(k),
+						\tau(i)]} = R_{\tau, k}$ and $R_{\tau, k-1} = R_{[\tau(k) + 1, \tau(i)]}$.
+
+	In hat follows, all leading terms will be computed with respect to the standard
+	presentation of $R_{[\tau(k), \tau(i)]}$ where the generators are adjoined in the order
+	$x_{\tau(k)}, x_{\tau(k) + 1}, \dots, x_{\tau(i)}$. By
+	\cref{thm:homogeneous_primes,prop:eta_invariance},
+	\begin{equation*}
+		y_{\tau, k} = y_{\tau, p_{\tau}(k)}x_{\tau(k)} - c_{\tau, k-1}
+	\end{equation*}
+	%
+	for some $c_{\tau, k-1} \in R_{\tau, k-1}$, where, like before, $p_\tau$ is the
+	predecessor function corresponding to $\eta_\tau = \eta \tau \colon [1, N] \to \bbZ$.
+	If $p_\tau(k) = -\infty$, then $oy_{\tau, k} = x_{\tau(k)} = \oy_{[\tau(k),
+					s^m(\tau(k))]}$, because $m = 0$ in this case. Indeed, if $m>0$, then $s(\tau(k)) =
+		\tau(j)$ for some $j \in [1, k-1]$. Hence, $\eta_\tau(j) = \eta(\tau(j)) =
+		\eta(\tau(k))$, which implies $p_\tau(k) \geq j$, a contradiction with $p_\tau(k) =
+		-\infty$.
+
+	We now apply induction on $p_\tau(k)$. If $\tau(p_\tau(k)) \leq \tau(1)$, then
+	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$ for some $i' \in [1, p_\tau(k)]$
+	by the same reasoning as we used to show that $\tau([1, k]) = [\tau(k), \tau(1)]$. We
+	now claim that $\tau(p_\tau(k)) = s(\tau(k))$. First note that from $\eta_\tau (k) =
+		\eta_\tau(p_{\tau}(k))$ we get
+	\begin{equation*}
+		\eta(\tau(p_\tau(k))) = \eta(\tau(k)) = \eta(s(\tau(k))),
+	\end{equation*}
+	%
+	which shows that they belong to the same level set. Since $p_\tau(k) \in [1, k-1]$ we
+	find that $\tau(p_\tau(k)) > \tau(k)$. Now, take $\tau(j) \in [\tau(k) + 1,
+			\tau(p_\tau(k))]$ such that $\eta(\tau(j)) = \eta(\tau(k))$. We need to show that $j =
+		p_\tau(k)$. By definition of $p_\tau(k)$ we have $j \notin [p_\tau(k) + 1, k-1]$. Since
+	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$ we also have $j \not [1, p_\tau(k)
+			- 1]$. If $j = p_\tau(k)$, then we are done. If not, then $j > k$, and hence $\tau(j)
+		\notin [\tau(k), \tau(i)]$. By assumption, $\tau(j) \geq \tau(k) + 1$, so we must have
+	\begin{equation*}
+		\tau(j) > \tau(i) \geq \tau(1) \geq \tau(p_\tau(k)),
+	\end{equation*}
+	a contradiction to $\tau(j) \in [\tau(k) + 1, \tau(p_\tau(k))]$. So, the claim holds and we must have
+	\begin{equation*}
+		\max\{n \in \bbZ_{\geq 0} \mid s^n(\tau(p_\tau(k))) \in \tau([1, p\tau(k)])\} = m-1.
+	\end{equation*}
+	%
+	Since $p_\tau(k) < k$ we can apply the induction hypothesis to conclude that
+	$\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
+
+	If $\tau(p_\tau(k)) \geq \tau(1)$, then we claim that $\tau(p_\tau(k)) = s^m(\tau(k))$,
+	which will then also imply $\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$
+	using the induction hypothesis. So, assume that $\tau(j) \in [p_\tau(k), N]$ and
+	$\eta(\tau(j)) = \eta(\tau(k))$. We want to show $j=k$ or $j = p_\tau(k)$ or $\tau(j)
+		\in \tau([1, k])$. Then $j \notin [1, p_\tau(k) - 1]$, because $\tau([1, p_\tau(k)]) =
+		[\tau(i'), \tau(p\tau(k))]$ for some $i \in [1, p_\tau(k)]$. By definition of
+	$p\tau(k)$ we also have $j \notin [p_\tau(k) + 1, k -1]$. So, either $j = p_\tau(k)$,
+	or $j = k$ or $j > k$ in which case $\tau(j) \in \tau([1, k])$, proving the claim.
+
+	So, in both case we found $\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
+	We thus find
+	\begin{align*}
+		\lt(\oy_{\tau, k})
+		 & = \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]}) \lt(y_{\tau, k})                                                                                                                                              \\
+		 & = \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]}) \lt(y_{\tau, p_\tau(k)}x_{\tau(k)})                                                                                                                           \\
+		 & = \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]}) \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), p_\tau(k)]})\inv \lt(\oy_{\tau, p_\tau(k)}x_{\tau(k)})                                                                 \\
+		 & = \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]}) \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), p_\tau(k)]})\inv \Omega_{\bbn}(e_{\tau(k)}, e_{[s(\tau(k)), s^m(\tau(k))]})^{-2} x_{\tau(k)}\lt(\oy_{\tau, p_\tau(k)}) \\
+		 & = \Omega_{\bbn}(e_{\tau(k)}, e_{[s(\tau(k)), s^m(\tau(k))]})\inv x_{\tau(k)}\lt(\oy_{\tau, p_\tau(k)})                                                                                                      \\
+		 & = \lt(\oy_{[\tau(k), s^m(\tau(k))]}),
+	\end{align*}
+	%
+	where $e^\tau_{[p^m_\tau(k), p^l_\tau(k)]} = e_{p^m _\tau(k)} + e_{p^{m-1}_\tau(k)} +
+		\cdots + e_{p^l_\tau(k)}$ for $m \geq l \geq 0$.
+
+	\textbf{TODO: explain 3rd and 4th equality}
 \end{proof}
 
 \begin{theorem}
