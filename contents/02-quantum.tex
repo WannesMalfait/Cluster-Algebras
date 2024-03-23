@@ -1841,7 +1841,26 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 	allows us to use an analogous argument to the first case.
 \end{proof}
 
-In the setting of \cref{thm:gy_main_result} we can improve this result.
+In the setting of \cref{thm:gy_main_result} we can improve this result. We first prove
+a small lemma which we will need in the inductive step.
+\begin{lemma}\label{lem:symmetrization_of_sum}
+	Let $\bbr \in M_N(\bbZ)$ be a multiplicatively skew-symmetric matrix. Then, for all $j \in [2, N]$ and $f = m_1 e_1 + \dots m_j e_j, g = m_{j+1} e_{j+1} + \dots m_{N} e_N \in \bbZ^N$,
+	\begin{equation*}
+		\mcS_\bbr(f+g) = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f)\mcS_{\bbr}(g).
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	This is a straightforward calculation from the definitons.
+	\begin{align*}
+		\mcS_{\bbr}(f+g)
+		 & = \prod_{k < l}r_{kl}^{-m_k m_l}                                                                                 \\
+		 & = \prod_{k < l \leq j}r_{kl}^{-m_k m_l} \prod_{k \leq j < l}r_{kl}^{-m_k m_l} \prod_{j < k < l}r_{kl}^{-m_k m_l} \\
+		 & = \prod_{k < l \leq j}r_{kl}^{-f_k f_l} \prod_{k \leq j < l}r_{kl}^{-f_k g_l} \prod_{j < k < l}r_{kl}^{-g_k g_l} \\
+		 & = \mcS_{\bbr}(f) \prod_{k \leq j < l}r_{kl}^{-f_k g_l} \mcS_{\bbr}(g)                                            \\
+		 & = \mcS_{\bbr}(f) \prod_{k, l}r_{kl}^{-f_k g_l} \mcS_{\bbr}(g)                                                    \\
+		 & = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f) \mcS_{\bbr}(g).
+	\end{align*}
+\end{proof}
 \begin{proposition}
 	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$.
 	\begin{itemize}
@@ -1921,7 +1940,15 @@ In the setting of \cref{thm:gy_main_result} we can improve this result.
 	or $j = k$ or $j > k$ in which case $\tau(j) \in \tau([1, k])$, proving the claim.
 
 	So, in both case we found $\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
-	We thus find
+	From \cref{lem:symmetrization_of_sum}, we obtain
+	\begin{align*}
+		\mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]})
+		 & = \Omega_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), p_\tau(k)]}, e_k)\inv \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), p_\tau(k)]})\mcS_{\bbn_\tau}(e_k) \\
+		 & = \Omega_{\bbn}(e_{[s(\tau(k)), s^m(\tau(k))]}, e_{\tau(k)})\inv \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), p_\tau(k)]}),
+	\end{align*}
+	%
+	where $e^\tau_{[p^m_\tau(k), p^l_\tau(k)]} = e_{p^m _\tau(k)} + e_{p^{m-1}_\tau(k)} +
+		\cdots + e_{p^l_\tau(k)}$ for $m \geq l \geq 0$. Hence,
 	\begin{align*}
 		\lt(\oy_{\tau, k})
 		 & = \mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]}) \lt(y_{\tau, k})                                                                                                                                              \\
@@ -1932,10 +1959,7 @@ In the setting of \cref{thm:gy_main_result} we can improve this result.
 		 & = \lt(\oy_{[\tau(k), s^m(\tau(k))]}),
 	\end{align*}
 	%
-	where $e^\tau_{[p^m_\tau(k), p^l_\tau(k)]} = e_{p^m _\tau(k)} + e_{p^{m-1}_\tau(k)} +
-		\cdots + e_{p^l_\tau(k)}$ for $m \geq l \geq 0$.
-
-	\textbf{TODO: explain 3rd and 4th equality}
+	which concludes the proof of the propositon.
 \end{proof}
 
 \begin{theorem}
