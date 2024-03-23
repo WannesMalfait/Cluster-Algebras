@@ -1779,8 +1779,6 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 
 \end{proof}
 
-\textbf{TODO: explain $\Gamma_N$}
-
 \begin{lemma}
 	Let $R$ be a symmetric CGL extension of length $N$. Take $\tau \in \Xi_N$ and $k \in [1, N]$.
 	\begin{itemize}
@@ -1861,7 +1859,7 @@ a small lemma which we will need in the inductive step.
 		 & = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f) \mcS_{\bbr}(g).
 	\end{align*}
 \end{proof}
-\begin{proposition}
+\begin{proposition}\label{prop:y_tau_is_y_bracket}
 	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$.
 	\begin{itemize}
 		\item If $\tau(k) \geq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[p^m(\tau(k)),
@@ -1879,7 +1877,7 @@ a small lemma which we will need in the inductive step.
 	CGL extension presentation of $R$.
 \end{proposition}
 \begin{proof}
-	We prove the proposition by induction on $k$. Because $\tau$ does not necessarily preserve the ordering, we need to do induction on both cases at the same time. If $k=1$, then $\oy_{\tau, 1} = y_{\tau, 1} = x_{\tau(1)} = \oy_{[\tau(1), \tau(1)]}$, so both cases are fine. Assume now that $k > 1$, and that $\tau(k) < \tau(1)$.
+	We prove the proposition by induction on $k$. Because $\tau$ does not necessarily preserve the ordering, we need to do induction on both cases at the same time. If $k=1$, then $\oy_{\tau, 1} = y_{\tau, 1} = x_{\tau(1)} = \oy_{[\tau(1), \tau(1)]}$, so both cases are fine. Assume now that $k > 1$, and that $\tau(k) < \tau(1)$. The other case is analogous.
 
 	By the previous lemma, $\oy_{\tau, k} = \xi \oy_{[\tau(k), s^m(\tau(k))]}$ for some
 	$\xi \in \bbK^\times$. It is hence sufficient to prove that the leading terms are
@@ -1961,6 +1959,80 @@ a small lemma which we will need in the inductive step.
 	%
 	which concludes the proof of the propositon.
 \end{proof}
+
+We now introduce a subset of $\Xi_N$ which will play a crucial role in the proof of
+\cref{thm:gy_main_result}. Denote with $w_\circ = [N, N-1, \dots, 1]$ the longest
+element of $S_N$. Then, for $1 \leq i \leq j \leq N$ we define the following elements
+of $\Xi_N$:
+\begin{equation*}
+	\tau_{i,j} = [i+1, i+2, \dots, j, i ,j+1, j+2, \dots, N, i-1,i-2, \dots, 1] \in \Xi_N.
+\end{equation*}
+%
+We have $\tau_{1,1} = \id$,
+\begin{equation*}
+	\tau_{i, N} = [i+1, i+2, \dots, N, i, i-1, 1] = \tau_{i+1, i+1}
+\end{equation*}
+%
+for $i \in [1, N-1]$ and finally $\tau_{N, N} = w_\circ$. We then define $\Gamma_N
+	\subseteq \Xi_N$ as the subset consisting of all the $\tau_{i,j}$ for $1 \leq i \leq j
+	\leq N$. Looking only at CGL extension presentations obtained from elements of
+$\Gamma_N$ turns out to be enough. This is already illustrated by the following
+corollary.
+\begin{corollary}
+	Assume the setting of \cref{thm:gy_main_result}. Then the following sets of cluster variables are equal.
+	\begin{align*}
+		\{M_\tau(e_k) \mid \tau \in \Xi_N,\, k \in [1, N]\}
+		 & = \{M_\tau(e_k) \mid \tau \in \Gamma_N,\, k \in [1, N]\}             \\
+		 & = \{\oy_{[i,j]} \mid 1 \leq i \leq j \leq N, \, \eta(i) = \eta(j)\}.
+	\end{align*}
+\end{corollary}
+\begin{proof}
+	Because $\Gamma_N \subseteq \Xi_N$, we have
+	\begin{equation*}
+		\{M_\tau(e_k) \mid \tau \in \Gamma_N,\, k \in [1, N]\}
+		\subseteq \{M_\tau(e_k) \mid \tau \in \Xi,\, k \in [1, N]\}.
+	\end{equation*}
+	%
+	By \cref{prop:y_tau_is_y_bracket},
+	\begin{equation*}
+		\{M_\tau(e_k) \mid \tau \in \Xi_N,\, k \in [1, N]\} \subseteq
+		\{\oy_{[i,j]} \mid 1 \leq i \leq j \leq N, \, \eta(i) = \eta(j)\}.
+	\end{equation*}
+	It remains to show
+	\begin{equation*}
+		\{\oy_{[i,j]} \mid 1 \leq i \leq j \leq N, \, \eta(i) = \eta(j)\} \subseteq
+		\{M_\tau(e_k) \mid \tau \in \Gamma_N,\, k \in [1, N]\}.
+	\end{equation*}
+	%
+	Take $1 \leq i \leq j \leq N$ with $\eta(i) = \eta(j)$. Then $i = p^m(j)$, where
+	\begin{equation*}
+		m = \max \{n \in \bbZ_{\geq 0} \mid p^n(j) \in [i, j]\}.
+	\end{equation*}
+	For $k' = j - i + 1$, and
+	\begin{equation*}
+		\tau = \begin{dcases*}
+			\id = \tau_{1,1}                                                & if $i=1$    \\
+			\tau_{i-1,j} = [i, \dots, j, i-1, j+1, \dots, N, i-2, \dots, 1] & if $i > 1$,
+		\end{dcases*}
+	\end{equation*}
+	%
+	we have $\tau(1) = i \leq j = \tau(j - i + 1) = \tau(k')$ and $\tau([1, k']) = [i, j]$.
+	Hence,
+	\begin{equation*}
+		m = \max\{n \in \bbZ_{\geq 0} \mid p^n(\tau(k')) \in \tau([1, k'])\},
+	\end{equation*}
+	such that \cref{prop:y_tau_is_y_bracket} gives
+	\begin{equation*}
+		\oy_{\tau, k'} = \oy_{[p^m(\tau(k')), \tau(k')]} = \oy_{[i, j]}.
+	\end{equation*}
+	%
+	Write $k = \tau_\bullet(\tau(k'))$. Then, $M_\tau(e_k) = \oy_{\tau,
+			(\tau_\bullet\tau)\inv(k)} = \oy_{[i,j]}$, as we wanted.
+\end{proof}
+
+We now want to prove that $\zeta = 1$ in \cref{thm:almost_mutation_toric_frame}, under
+the assumptions of \cref{thm:gy_main_result}. This will be done in
+\cref{prop:mutation_adjacent_permutations}.
 
 \begin{theorem}
 
@@ -2074,8 +2146,82 @@ a small lemma which we will need in the inductive step.
 
 \end{proof}
 
+Let $R$ be a symmetric CGL extension of length $N$, and consider the two CGL extension
+presentations corresponding to $\tau_{i,j}$ and $\tau_{i, j+1}$ for some $1 \leq i \leq
+	j < N$. They have the forms
+\begin{multline}
+	R = \bbK[x_{i+1}]\cdots[x_j;\sigma_j,\delta_j][x_i;\sigma^*_i,\delta^*_i][x_{j+1}; \sigma_{j+1}, \delta_{j+1}][x_{j+2}; \sigma_{j+2}, \delta_{j+2}]\cdots \\
+	[x_N;\sigma_{N}, \delta_{N}][x_{i-1}; \sigma_{i-1}^*, \delta^*_{i-1}]\cdots[x_1; \sigma_1^*, \delta^*_1],
+\end{multline}
+and
+\begin{multline}
+	R = \bbK[x_{i+1}]\cdots[x_j;\sigma_j,\delta_j][x_{j+1}; \sigma_{j+1}, \delta_{j+1}][x_i;\sigma^*_i,\delta^*_i][x_{j+2}; \sigma_{j+2}, \delta_{j+2}]\cdots \\
+	[x_N;\sigma_{N}, \delta_{N}][x_{i-1}; \sigma_{i-1}^*, \delta^*_{i-1}]\cdots[x_1; \sigma_1^*, \delta^*_1].
+\end{multline}
+%
+By \cref{prop:eta_invariance}, we can take $\eta\tau_{i,j}$ as the $\eta$-function of
+\cref{thm:homogeneous_primes} for the CGL extension presentation corresponding to
+$\tau_{i,j}$. In particular, $\eta_{\tau_{i,j}}(j-i+1) = i$ and
+$\eta_{\tau_{i,j}}(j-i+2) = \eta(j+1)$. So, if $\eta(i) = \eta(j+1)$, then
+\cref{eq:Omega_r_squared_ek} of the previous theorem implies
+\begin{equation*}
+	1 = \chi_{x_{j+1}}(h_{j+1})\chi_{x_i}(h^*_i) = \lambda_{j+1}\lambda_i^*.
+\end{equation*}
+%
+So, $\lambda_{k}^* = \lambda_{l}\inv$ for any $k < l$ such that $\eta(k) = \eta(l)$.
+This leads to the following observation.
+\begin{proposition}\label{prop:lambda*_of_successor}
+	Let $R$ be a symmetric CGL extension of length $N$ and $a \in \bbZ$ in the image of $\eta$. Write $\eta\inv(a) = \{l, s(l), \dots, s^m(l)\}$, where $l\in [1, N]$ and $m = O_{+}(l)$. Then
+	\begin{equation*}
+		\lambda_l^* = \lambda_{s(l)}^* = \cdots = \lambda_{s^{m-1}(l)}^* = \lambda\inv_{s(l)}=\lambda\inv_{s^2(l)} = \cdots = \lambda\inv_{s^m(l)}.
+	\end{equation*}
+\end{proposition}
+
+We now finally prove mutation between adjacent pairs of toric frames. Due to being
+quite technical, we omit the proof of \cite[Theorem 6.6]{GoodearlYakimov2017QCA}, which
+provides the ground work for \cref{prop:mutation_adjacent_permutations}. We state it
+here for easy reference.
+\begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]
+	Assume the setting of \cref{thm:gy_main_result}. Then, for all $i \in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \in [1, N]$,
+	\begin{equation*}
+		\oy_{[s(i), s^m(i)]} = \begin{dcases*}
+			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)] - e_i}),                         & if $m=1$    \\
+			M_{[i, s^m(i)]}(e_{s^{m-1}(i)} + e_{s^m(i)} -e_i) + M_{[i, s^m(i)]}(g_{[i, s^m(i)]} - e_i), & if $m > 1$.
+		\end{dcases*}
+	\end{equation*}
+	\textbf{TODO: explain the toric frames $M_{[i, s^m(i)]}$}.
+\end{theorem}
+
+Write for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
+\begin{equation*}
+	\supp(g) = \{j \in [1, N] \mid g_j \neq 0\}.
+\end{equation*}
+
 \begin{proposition}\label{prop:mutation_adjacent_permutations}
-	Prop 8.13 GY
+	Assume the setting of \cref{thm:gy_main_result}. Let $\tau, \tau' \in \Xi_N$ be such that
+	\begin{equation*}
+		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
+	\end{equation*}
+	for some $k \in [1, N-1]$ such that $\tau(k) < \tau(k+1)$.
+	\begin{enumerate}[(a)]
+		\item If $\eta(\tau(k)) \neq \eta(\tau(k + 1))$, then $M_{\tau'} = M_\tau$.
+		\item If $\eta(\tau(k)) = \eta(\tau(k+1))$, set $k_\bullet = \tau_\bullet\tau(k)$. Then
+		      $(\tau')_\bullet\tau'(k) = k_\bullet$ and
+
+		      \begin{equation*}
+			      M_{\tau'}(e_j) = \begin{dcases*}
+				      M_{\tau}(e_j),                                                                         & if $j \neq k_\bullet$ \\
+				      M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(g-e_{k_\bullet}), & if $j =k_\bullet$
+			      \end{dcases*}
+		      \end{equation*}
+		      for some $g \in \bbZ^N_{\geq 0}$ such that $\supp(g)\cap \eta\inv(\eta(k_\bullet)) = \emptyset$ and $|\supp(g)\cap \eta \inv (a)| \leq 1$ for all $a \in \bbZ$. Furthermore, the vector $e_{p(k_\bullet)} + e_{s(k_\bullet)} - g \in \bbZ^N$ satisfies the identities
+		      \begin{align*}
+			       & \Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_j) = 1, \, \forall j \neq k_\bullet, \\
+			       & \Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_k)^2 = \lambda^*_k,                  \\
+			      \shortintertext{and}
+			       & \chi_{M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1.
+		      \end{align*}
+	\end{enumerate}
 \end{proposition}
 
 % \section{Some definitions}
