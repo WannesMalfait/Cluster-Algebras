@@ -349,7 +349,7 @@ and
 %
 where $\bbl$ is as defined in \cref{eq:CGL_lambda}. Write $\bmq = (q_{kj}) \in
 	M_N(\bbK^\times)$.
-\begin{proposition}[\protect{\cite[Proposition 3.11]{GoodearlYakimov2017QCA}}]
+\begin{proposition}[\protect{\cite[Proposition 3.11]{GoodearlYakimov2017QCA}}]\label{prop:y_quantum_torus}
 	The $y_k$ quasi-commute:
 	\begin{equation}\label{eq:y_quasi_commute}
 		y_k y_j = q_{kj}y_jy_k, \quad \forall j, k \in [1, N].
@@ -2499,13 +2499,31 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	Finally, since $\oy_{\tau, j}$ and $\oy_{\tau', j}$ are $\mcH$-eigenvectors for all
 	$j\in [1, N]$, we must have
 	\begin{equation*}
-		\chi_{M_tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1,
+		\chi_{M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1,
 	\end{equation*}
 	because
 	\begin{equation*}
 		M_{\tau'}(e_{k_\bullet}) =
 		M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(g-e_{k_\bullet}).
 	\end{equation*}
+\end{proof}
+
+\begin{lemma}
+	Assume that $R$ is a symmetric CGL extension of length $N$, and that $(\nu_{kj}) \in M_N(\bbK^\times)$ is a multiplicatively skew-symmetric matrix with $\nu_{kj}^2 = \lambda_{kj}$ for all $j,k \in [1, N]$. Then, for all $\tau \in \Xi_N, \theta \in X(\mcH)$, and $\xi_1, \dots, \xi_N \in \bbK^\times$, there exists at most one vector $b\in \bbZ^N$ such that $\chi_{M_\tau(b)} = \theta$ and $\Omega_{\bbr_\tau}(b, e_j)^2 = \xi_j$ for all $j \in [1, N]$.
+\end{lemma}
+\begin{proof}
+	Suppose that $b_1, b_2 \in \bbZ^N$ are such that $\chi_{M_\tau(b_1)} = \chi_{M_\tau(b_2)} = \theta$, and $\Omega_{\bbr_\tau}(b_1, e_j)^2 = \Omega_{\bbr_\tau}(b_2, e_j)^2 = \xi_j$ for all $j \in [1, N]$. From the first equality, we find
+	\begin{equation*}
+		\chi_{M_\tau(b_1)M_\tau(b_2)\inv} = 1.
+	\end{equation*}
+	%
+	The second condition implies that $M_\tau(b_1)M_\tau(b_2)\inv$ commutes with
+	$M_\tau(e_j)$ for all $j\in [1, N]$. Thus, by \cref{prop:y_quantum_torus}, it must lie
+	in the center $Z(\Fract(R))$. Now,
+	\begin{equation*}
+		Z(\Fract(R))^\mcH = \bbK,
+	\end{equation*}
+	where $Z(\Fract(R))^\mcH$ is the subalgbra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
 
 % \section{Some definitions}
