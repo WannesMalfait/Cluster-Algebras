@@ -1101,7 +1101,7 @@ In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$.
 
 Applying \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting
 yields the following result.
-\begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]
+\begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]\label{prop:def_u_brackets}
 	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the element
 	\begin{align*}
 		u_{[i, s^m(i)]} & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
@@ -2177,22 +2177,64 @@ This leads to the following observation.
 	\end{equation*}
 \end{proposition}
 
-We now finally prove mutation between adjacent pairs of toric frames. Due to being
-quite technical, we omit the proof of \cite[Theorem 6.6]{GoodearlYakimov2017QCA}, which
-provides the ground work for \cref{prop:mutation_adjacent_permutations}. We state it
-here for easy reference.
+We now finally prove mutation between adjacent pairs of toric frames. In order to do
+this, we make use of the following theorem, which we state without proof.
 \begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]
-	Assume the setting of \cref{thm:gy_main_result}. Then, for all $i \in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \in [1, N]$,
+	Assume the setting of \cref{thm:gy_main_result}. Then, for all $i \in [1, N]$ and $m \in \bbZ_{> 0}$ such that $s^m(i) \in [1, N]$,
 	\begin{equation*}
 		\oy_{[s(i), s^m(i)]} = \begin{dcases*}
 			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)] - e_i}),                         & if $m=1$    \\
 			M_{[i, s^m(i)]}(e_{s^{m-1}(i)} + e_{s^m(i)} -e_i) + M_{[i, s^m(i)]}(g_{[i, s^m(i)]} - e_i), & if $m > 1$.
 		\end{dcases*}
 	\end{equation*}
-	\textbf{TODO: explain the toric frames $M_{[i, s^m(i)]}$}.
 \end{theorem}
+%
+We have yet to explain the notation in the theorem. Fix $i \in [1, N]$ and $m\in
+	\bbZ_{>0}$ such that $s^m(i) \neq +\infty$. We consider the CGL extension presentation
+of $R_{[i, s^m(i)]}$ with the following order of the generators:
+\begin{equation*}
+	x_{i+1}, x_{i+2}, \dots, x_{s^m(i) - 1}, x_i, x_{s^m(i)}.
+\end{equation*}
+%
+Write $t = s^(m)(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
+	e_{s^m(i)}$ and index the rows and columns of matrices in $M_t(\bbZ)$ by $i, \cdots,
+	s^m(i)$. Recall from \cref{prop:def_u_brackets} that we write
+\begin{equation*}
+	O_{-}^j(k) = \max \{n \in \bbZ_{\geq 0} \mid p^n(k) \geq j\},
+\end{equation*}
+and then define, for $k \in [i, s^m(i)]$,
+\begin{equation*}
+	e'_k = \begin{dcases*}
+		e_{[p^(O^{i+1}_{-}(k)), k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
+		e_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
+		e_{[i, s^m(i)]},             & if $k = s^m(i)$.
+	\end{dcases*}
+\end{equation*}
+%
+This then gives rise to the toric frame $M_{[i, s^m(i)]}\colon \bbZ^t \to \Fract(R_{[i,
+				s^m(i)]})$, with matrix
+\begin{equation*}
+	\bbr_{[i, s^m (i)]} = (\Omega_{\bbn}(e'_k,e'_j)),
+\end{equation*}
+such that
+\begin{equation*}
+	M_{[i, s^m(i)]}(e_k) = \begin{dcases*}
+		\oy_{[p^(O^{i+1}_{-}(k)), k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
+		\oy_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
+		\oy_{[i, s^m(i)]},             & if $k = s^m(i)$.
+	\end{dcases*}
+\end{equation*}
 
-Write for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
+Finally, \cref{prop:def_u_brackets} implies that
+\begin{equation*}
+	f_{[i, s^m(i)]} = \sum\{m_k e_{[p^{O^{i+1}_{-}}(k), k]} \mid k \in P_{[i, s^m(i)]}\},
+\end{equation*}
+for the integers $m_k$ of \cref{thm:almost_cluster_mutation}, and we define
+\begin{equation*}
+	g_{[i, s^m(i)]} = \sum\{m_k e_k \mid k \in P_{[i, s^m(i)]}\}.
+\end{equation*}
+
+Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 \begin{equation*}
 	\supp(g) = \{j \in [1, N] \mid g_j \neq 0\}.
 \end{equation*}
@@ -2223,6 +2265,9 @@ Write for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		      \end{align*}
 	\end{enumerate}
 \end{proposition}
+\begin{proof}
+
+\end{proof}
 
 % \section{Some definitions}
 
