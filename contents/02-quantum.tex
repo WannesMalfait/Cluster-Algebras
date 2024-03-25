@@ -793,7 +793,7 @@ normalization has the desired effect.
 
 	Assume the setting of \cref{thm:y_prime_swapped_cgl} and that $\sqrt{\lambda_{lj}}\in
 		\bbK$ for all $j, l \in [1, N]$.
-	\begin{enumerate}
+	\begin{enumerate}[(a)]
 		\item If $\eta(k) \neq \eta(k+1)$, then $\bbr' = (k, k+1)\bbr (k, k+1)$ and $\oy'_j =
 			      \oy_{(k, k+1)j}$, for all $j \in [1, N]$. Hence, $M' = M(k, k+1)$.
 		\item If $\eta(k) = \eta(k+1)$, then $M'(e_j) = M(e_j)$ for all $j \neq k$, and
@@ -2179,11 +2179,11 @@ This leads to the following observation.
 
 We now finally prove mutation between adjacent pairs of toric frames. In order to do
 this, we make use of the following theorem, which we state without proof.
-\begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]
+\begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]\label{thm:mutation_for_bracket_frames}
 	Assume the setting of \cref{thm:gy_main_result}. Then, for all $i \in [1, N]$ and $m \in \bbZ_{> 0}$ such that $s^m(i) \in [1, N]$,
 	\begin{equation*}
 		\oy_{[s(i), s^m(i)]} = \begin{dcases*}
-			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)] - e_i}),                         & if $m=1$    \\
+			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)]} - e_i),                         & if $m=1$    \\
 			M_{[i, s^m(i)]}(e_{s^{m-1}(i)} + e_{s^m(i)} -e_i) + M_{[i, s^m(i)]}(g_{[i, s^m(i)]} - e_i), & if $m > 1$.
 		\end{dcases*}
 	\end{equation*}
@@ -2196,7 +2196,7 @@ of $R_{[i, s^m(i)]}$ with the following order of the generators:
 	x_{i+1}, x_{i+2}, \dots, x_{s^m(i) - 1}, x_i, x_{s^m(i)}.
 \end{equation*}
 %
-Write $t = s^(m)(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
+Write $t = s^m(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
 	e_{s^m(i)}$ and index the rows and columns of matrices in $M_t(\bbZ)$ by $i, \cdots,
 	s^m(i)$. Recall from \cref{prop:def_u_brackets} that we write
 \begin{equation*}
@@ -2205,7 +2205,7 @@ Write $t = s^(m)(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \b
 and then define, for $k \in [i, s^m(i)]$,
 \begin{equation*}
 	e'_k = \begin{dcases*}
-		e_{[p^(O^{i+1}_{-}(k)), k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
+		e_{[p^{O^{i+1}_{-}(k)}, k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
 		e_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
 		e_{[i, s^m(i)]},             & if $k = s^m(i)$.
 	\end{dcases*}
@@ -2219,7 +2219,7 @@ This then gives rise to the toric frame $M_{[i, s^m(i)]}\colon \bbZ^t \to \Fract
 such that
 \begin{equation*}
 	M_{[i, s^m(i)]}(e_k) = \begin{dcases*}
-		\oy_{[p^(O^{i+1}_{-}(k)), k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
+		\oy_{[p^{O^{i+1}_{-}(k)}, k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
 		\oy_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
 		\oy_{[i, s^m(i)]},             & if $k = s^m(i)$.
 	\end{dcases*}
@@ -2267,6 +2267,245 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 \end{proposition}
 \begin{proof}
 
+	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then we claim that $\tau_\bullet =
+		(\tau')_\bullet$. Suppose
+	\begin{equation*}
+		\eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
+	\end{equation*}
+	%
+	is the level set of some $a\in \bbZ$ in the image of $\eta$. If $k, k+1 \neq k_i$ for
+	all $i \in [1, n]$, then $\tau(k_i) = \tau'(k_i)$ for all $i\in [1, n]$ and it follows
+	that $\tau_\bullet (\tau(k_i)) = (\tau')_\bullet (\tau'(k_i))$ for all $i\in [1, n]$.
+	If $k = k_j$ for some $j \in [1, n]$, then it follows that $k+1 \neq k_i$ for all $i\in
+		[1, n]$, because $\eta(\tau(k)) \neq \eta(\tau(k+1))$. Furthermore, $\tau'(k+1) =
+		\tau(k)$ implies that
+	\begin{equation*}
+		\eta\inv(a) = \{\tau'(k'_1), \dots, \tau'(k'_n)
+		\mid k'_1 < \cdots < k'_n\}	,
+	\end{equation*}
+	%
+	where $k'_i = k_i$ for all $i \neq j$ and $k'_j = k+1$. So, we see that $\tau_\bullet$
+	and $(\tau')_\bullet$ agree on this level set as well. The case where $k+1 = k_j$ for
+	some $j\in [1, n]$ is analogous. This proves the claim. Thus, $\tau_\bullet \tau (k,
+		k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now follows from
+	\cref{thm:almost_mutation_toric_frame} (a).
+
+	We now consider the case where $\eta(\tau(k)) = \eta(\tau(k+1))$ which requires
+	significantly more work. Because $\tau([1, k])$ and $\tau([1, k+1])$ are intervals,
+	$\tau(k+1)$ must lie on one of the endpoints of the interval $\tau([1, k])$. The
+	assumption $\tau(k) < \tau(k+1)$ forces
+	\begin{equation*}
+		\tau'([1, k+1]) = \tau([1, k+1]) = [\tau(i), \tau(k+1)] \quad \text{and}\quad \tau([1, k]) = [\tau(i), \tau(k+1) - 1]
+	\end{equation*}
+	for some $i\in [1, k]$. But then,
+	\begin{equation*}
+		\tau'([1, k]) = \tau'([1, k+1])\setminus\{\tau'(k+1)\} = [\tau(i), \tau(k+1)] \setminus \{\tau(k)\},
+	\end{equation*}
+	%
+	forces $\tau(k) = \tau(i)$ as $\tau'([1, k])$ must also be an interval. Hence,
+	\begin{align*}
+		\tau'([1, k+1]) & = \tau([1, k+1]) = [\tau(k), \tau(k+1)], \\
+		\tau([1, k])    & = [\tau(k), \tau(k+1) - 1],              \\
+		\shortintertext{and}
+		\tau'([1, k])   & = [\tau(k) + 1, \tau(k+1)].
+	\end{align*}
+	%
+	Because $\eta(\tau(k)) = \eta(\tau(k+1))$ and $\tau(k) < \tau(k+1)$, we must have
+	\begin{equation*}
+		\tau(k+1) = s^m(\tau(k)) \text{ for some } m \in \bbZ_{\geq 0}.
+	\end{equation*}
+	%
+	This then implies
+	\begin{equation}\label{eq:level_set_tau_k}
+		\begin{aligned}
+			\eta\inv(\eta(\tau(k))) \cap \tau([1, k+1])
+			 & = \{j \in [\tau(k), s^m(\tau(k))] \mid \eta(j) = \eta(\tau(k))\} \\
+			 & = \{\tau(k), s(\tau(k)), \dots, \tau(k+1) = s^m(\tau(k))\},
+		\end{aligned}
+	\end{equation}
+	which, combined with $\tau(j) = \tau'(j)$ for $j\neq k, k+1$, gives
+	\begin{equation*}
+		\tau\inv(\eta\inv(\eta(\tau(k)))) = (\tau')\inv(\eta\inv(\eta(\tau(k)))).
+	\end{equation*}
+	%
+	Hence, as $\tau$ and $\tau'$ have the same inverse image on the level set of
+	$\eta(\tau(k))$,
+	\begin{equation*}
+		k_\bullet = \tau_\bullet(\tau(k)) = (\tau')_\bullet(\tau'(k)).
+	\end{equation*}
+	%
+	Since $\tau$ and $\tau'$ agree on the other level sets, we find that $\tau_\bullet \tau
+		= (\tau')_\bullet \tau'$, such that \cref{thm:almost_mutation_toric_frame} implies
+	$M_\tau(e_j) = M_{\tau'(e_j)}$ for all $j \neq k_\bullet$.
+
+	Now, from $\tau([1, k]) = [\tau(k), \tau(k+1) - 1] = [\tau(k), s^m(\tau(k)) - 1]$ it
+	follows that
+	\begin{equation*}
+		m - 1 = \max\{n \in \bbZ_{\geq 0} \mid s^m(\tau(k)) \in \tau([1, k])\}.
+	\end{equation*}
+	%
+	By \cref{prop:y_tau_is_y_bracket}, and similar arguments for $k+1$ and $\tau'$,
+	\begin{align*}
+		\oy_{\tau, k+1} & = \oy_{[\tau(k), s^m(\tau(k))]},     \\
+		\oy_{\tau, k}   & = \oy_{[\tau(k), s^{m-1}(\tau(k))]}, \\
+		\oy_{\tau', k}  & = \oy_{[s(\tau(k)), s^m(\tau(k))]}.
+	\end{align*}
+
+	Our goal is now to apply \cref{thm:mutation_for_bracket_frames}. To do this, we will
+	construct an isomorphism $\dot{w}$ from $\bbZ^{s^m(\tau(k)) -\tau(k) + 1} = \bbZ^{k+1}$
+	to $\bbZ e_{\tau(k)} + \cdots + \bbZ e_{s^m(\tau(k))}$ in such a way that the toric
+	frames $\wh{M}_\tau$ and $M_{[\tau(k), s^m(\tau(k))]}\dot{w}$ agree on suitable $e_j$.
+
+	Recall that
+	\begin{equation*}
+		P_{[\tau(k), s^m(\tau(k))]} = \{j \in [\tau(k), s^m(\tau(k)) -1] \mid s(j) > s^m(\tau(k))\}.
+	\end{equation*}
+	Hence, $\eta$ is injective on this set and
+	\begin{equation*}
+		Q = \{j \in [1, k-1] \mid \eta(\tau(j)) \neq \eta(\tau(l)),\, \forall l \in [j+1, k+1]\},
+	\end{equation*}
+	is in bijection with the set
+	\begin{equation*}
+		A = \eta(P_{[\tau(k), s^m(\tau(k))]}) = \eta(\tau([1, k+1])) \setminus \{\eta(\tau(k))\},
+	\end{equation*}
+	%
+	through the restriction of $\eta \tau$. The injectivety of $\eta$ on $P_{[\tau(k),
+						s^m(\tau(k))]}$ also implies
+	\begin{equation*}
+		|Q| = |A| = |P_{[\tau(k), s^m(\tau(k))]}|.
+	\end{equation*}
+	%
+	By definition of $Q$, we have $\eta(t) \neq \eta(\tau(j))$ for $j \in Q$ and $t \in
+		\tau([j+1, k +1])$. Hence,
+	\begin{equation}\label{eq:tau_1j}
+		\{t \in [\tau(k), s^m(\tau(k))] \mid \eta(t) = \eta(\tau(j))\} \subseteq \tau([1, j]), \forall j \in Q.
+	\end{equation}
+	%
+	We now differentiate two cases for $j \in Q$.
+	\begin{itemize}
+		\item If $\tau(j) \geq \tau(1)$ then $\tau([1, j]) = [\tau(i_j), \tau(j)]$ for some $i_j \in
+			      [1, j]$, and hence $\tau(j) \in P_{[\tau(k), s^m(\tau(k))]}$ by \cref{eq:tau_1j}.
+		      Furthermore,
+		      \begin{equation*}
+			      m_j = O_{-}^{\tau(k) + 1}(\tau(j)) = \max\{n \in \bbZ_{\geq 0} \mid p^n (\tau(j)) \in \tau([1, j])\},
+		      \end{equation*}
+		      such that \cref{prop:y_tau_is_y_bracket} implies
+		      \begin{equation*}
+			      \oy_{\tau, j} = \oy_{[p^m_j(\tau(j), \tau(j))]} = M_{[\tau(k), s^m(\tau(k))]}(e_{\tau(j)}).
+		      \end{equation*}
+		\item If $\tau(j) < \tau(1)$, then $\tau([1, j]) = [\tau(j), \tau(i_j)]$ for some $i_j \in
+			      [1, j-1]$. Let $m_j$ be the integer corresponding to $j$ in
+		      \cref{prop:y_tau_is_y_bracket}, and write $s^{m_j}(\tau(j)) = \tau(j^{-})$. Then
+		      $s(\tau(j^{-})) s^m(\tau(k))$ and hence $\tau(j-) \in P_{[\tau(k), s^m(\tau(k))]}$.
+		      Furthermore, $m_j = O_{-}^{\tau(k) + 1}$ such that \cref{prop:y_tau_is_y_bracket} gives
+		      \begin{equation*}
+			      \oy_{\tau, j} = \oy_{[p^{m_j}(\tau(j^{-})), \tau(j^{-})]} = M_{[\tau(k), s^m(\tau(k))]}(e_{\tau(j^{-})}).
+		      \end{equation*}
+	\end{itemize}
+
+	If $m > 1$, then we need one more definition before defining $\dot{w}$. Set, recalling
+	\cref{eq:level_set_tau_k},
+	\begin{equation*}
+		t = \max\{\tau\inv\{s(\tau(k)), \dots, s^{m-1}(\tau(k))\}\} = \max \{j \in [1, k-1] \mid \eta(\tau(j)) = \eta(\tau(k))\}.
+	\end{equation*}
+	%
+	Then, because $\tau([1, t])$ is an interval, either $\tau(t) = s^{m-1}(\tau(k))$ or
+	$\tau(t) = s(\tau(k))$. \Cref{prop:y_tau_is_y_bracket} now yields
+	\begin{equation*}
+		\oy_{\tau, t} = \oy_{[s(\tau(k)), s^{m-1}(\tau(k))]} = M_{[\tau(k), s^m(\tau(k))]}(e_{s^{m-1}(\tau(k))}).
+	\end{equation*}
+
+	Let $w \colon [1, k+1] \to [\tau(k), s^m(\tau(k))]$ be any bijection such that
+	\begin{align*}
+		w(k+1) & = s^m(\tau(k))                                                            \\
+		w(k)   & = \tau(k)                                                                 \\
+		w(t)   & = s^{m-1}(\tau(k)),\,\text{ if }m >1                                      \\
+		w(j)   & = \tau(j), \,\text{ for all }j \in Q \text{ with } \tau(j) \geq \tau(1)   \\
+		w(j)   & = \tau(j^{-}), \,\text{ for all }j \in Q \text{ with } \tau(j) < \tau(1).
+	\end{align*}
+	%
+	Such a $w$ exists, because $t,k,k+1 \notin Q, w(j) \in P_{[\tau(k), s^m(\tau(k))]}
+		\not\ni \tau(k), s^{m-1}(\tau(k)), s^m(\tau(k))$ and $\eta w(j) = \eta(\tau(j))$ for
+	all $j \in Q$. Since $|Q| = |P_{[\tau(k), s^m(\tau(k))]}|$ it follows that
+	\begin{equation}\label{eq:w_is_bijection}
+		w|_Q \colon Q \to P_{[\tau(k), s^m(\tau(k))]}\quad \text{ is a bijection.}
+	\end{equation}
+	%
+	Denote with $\dot{w}$ the isomorphism $\bbZ^{k+1} \to \bbZ e_{\tau(k)} + \cdots + \bbZ
+		e_{s^m(\tau(k))}$ such that $\dot{w}(e_j) = e_{w(j)}$ for $j\in[1, k+1]$. Then, by
+	construction, we have
+	\begin{equation*}
+		\wh{M}_\tau(e_j) = \oy_{\tau, j} = M_{[\tau(k), s^m(\tau(k))]}\dot{w}(e_j),
+	\end{equation*}
+	%
+	for $j\in Q \cup \{t, k, k+1\}$ if $m>1$ and $j \in Q \cup \{k, k+1\}$ if $m=1$. The
+	matrices of the toric frames also agree on the same sets, i.e.,
+	\begin{equation*}
+		(\bbr(\wh{M}_\tau |_{\bbZ^{k+1}}))_{lj} = ((\bbr_{[\tau(k), s^m(\tau(k))]})\dot{w})_{lj}
+	\end{equation*}
+	%
+	for $l,j \in Q \cup \{t, k, k+1\}$ if $m>1$ and $l, j \in Q \cup \{k, k+1\}$ if $m=1$.
+
+	We can now apply \cref{thm:mutation_for_bracket_frames}. Assume first that $m = 1$.
+	Then,
+	\begin{equation*}
+		\wh{M}_\tau(f) = M_{[\tau(k), s(\tau(k))]}\dot{w}(f)
+	\end{equation*}
+	for all $f \in \bbZ^N$ such that $\supp(f) \subseteq Q \cup \{k, k+1\}$. Thus, because of \cref{eq:w_is_bijection}, we obtain from \cref{thm:y_square_brackets} that
+	\begin{equation*}
+		\oy_{\tau', k} = \oy_{[s(\tau(k)), s(\tau(k))]} = \wh{M}_\tau(e_{k+1} - e_k) + \wh{M}_{\tau}(g' - e_k),
+	\end{equation*}
+	%
+	where $\supp(g') \subseteq \dot{w}\inv(P_{[\tau(k), s(\tau(k))]}) = Q$. By
+	\cref{eq:level_set_tau_k}, we find that $\tau_\bullet\tau(k+1) = s(k_\bullet)$ and
+	$p_{k\bullet} = -\infty$. Hence,
+	\begin{equation*}
+		M_{\tau'}(e_{k_\bullet}) = \wh{M}_{\tau'}(e_k) = \oy_{\tau', k} = M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(\tau_\bullet \tau(g') - e_{k\bullet})
+	\end{equation*}
+	%
+	which is what we needed to show.
+
+	If $m > 1$, the reasoning is analogous. We first observe that
+	\begin{equation*}
+		\wh{M}_\tau(f) = M_{[\tau(k), s^m(\tau(k))]}\dot{w}(f)
+	\end{equation*}
+	for all $f \in \bbZ^N$ such that $\supp(f) \subseteq Q \cup \{t, k , k+1\}$. Thus, \cref{eq:w_is_bijection,thm:mutation_for_bracket_frames} give
+	\begin{align*}
+		\oy_{\tau', k} = \oy_{[s(\tau(k)), s^m(\tau(k))]} = \wh{M}_\tau(e_t + e_{k+1} - e_k) + \wh{M}_\tau(g' - e_k),
+	\end{align*}
+	where $\supp(g) \subseteq Q$. By \cref{eq:level_set_tau_k}, we find this time that
+	\begin{equation*}
+		\tau_\bullet\tau(t) = p(k_\bullet) \quad \text{and} \quad \tau_\bullet\tau(k+1) = s(k_\bullet),
+	\end{equation*}
+	from which we obtain
+	\begin{equation*}
+		M_{\tau'}(e_{k_\bullet}) = \wh{M}_{\tau'}(e_k) = \oy_{\tau', k} = M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(\tau_\bullet \tau(g') - e_{k\bullet}),
+	\end{equation*}
+	again.
+
+	We now resolve the remaining identities. From \cref{eq:Omega_r_squared_one}, we obtain
+	\begin{equation*}
+		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -g, e_j) = 1
+	\end{equation*}
+	for all $j\neq k_\bullet$, because the subgroup generated by the $\nu_{lj}$ does not contain elements of order two by assumption. Now note that by definition of $k_\bullet$,
+	we have $\eta(k_\bullet) = \eta(\tau(k))$. Furthermore, $s(k_\bullet) =
+		\tau_\bullet\tau(k+1) \neq + \infty$ and $s(\tau(k)) \leq \tau(k+1) < + \infty$ so that
+	we obtain $\chi_{x_{\tau(k)}}(h^*_{\tau(k)})\lambda^*_{\tau(k)} =
+		\lambda^*_{k_\bullet}$ using \cref{prop:lambda*_of_successor}. Hence, \cref{eq:Omega_r_squared_ek} gives
+	\begin{equation*}
+		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_{k_\bullet})^2 = \lambda_{k_\bullet}^*.
+	\end{equation*}
+
+	Finally, since $\oy_{\tau, j}$ and $\oy_{\tau', j}$ are $\mcH$-eigenvectors for all
+	$j\in [1, N]$, we must have
+	\begin{equation*}
+		\chi_{M_tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1,
+	\end{equation*}
+	because
+	\begin{equation*}
+		M_{\tau'}(e_{k_\bullet}) =
+		M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(g-e_{k_\bullet}).
+	\end{equation*}
 \end{proof}
 
 % \section{Some definitions}
