@@ -2526,6 +2526,68 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	where $Z(\Fract(R))^\mcH$ is the subalgbra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
 
+Recall the subset $\Gamma_N$ of $\Xi_N$, consisting of the permutations of the form
+\begin{equation*}
+	\tau_{i, j} = [i+1, i+2, \dots, j, i , j+1, j+2, \dots, N, i-1, i-2, \dots, 1]
+\end{equation*}
+%
+for $1 \leq i \leq j \leq N$. We will now inductively construct quantum seeds for $\tau
+	\in \Gamma_N$. To do this, we make use of the following total order on $\Gamma_N$:
+\begin{multline*}
+	\Gamma_N = \{\tau_{1,1} = \id \prec \tau_{1,2} \prec \cdots \prec \tau_{1, N} = \tau_{2,2} \prec \tau_{2,3} \prec \cdots \prec \tau_{2,N} = \tau_{3,3} \prec \cdots\\ \cdots \prec \tau_{N-1, N-2} \prec \tau_{N-1, N-1} \tau_{N-1, N} = \tau_{N, N} = w_\circ \},
+\end{multline*}
+%
+where $w_\circ = [N, N-1, \dots, 1]$. We will write $\sigma \preceq \tau$ for $\sigma,
+	\tau \in \Gamma_N$ to say that either $\sigma = \tau$ or $\sigma \prec \tau$. Note that
+any two consecutive elements are of the form $\tau_{i, j-1} \prec \tau_{i, j}$ for some
+$1 \leq i < j \leq N$.
+
+To seach $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$ in such a
+way that
+\begin{equation*}
+	\ex_{\id} = \emptyset, \quad \ex_{w_\circ} = \ex \quad
+\end{equation*}
+%
+and $\ex_\sigma \subseteq \ex_\tau$ for all $\sigma, \tau \in \Gamma_N$ with $\sigma
+	\prec \tau$. The subsets $\ex_\tau$ are defined inductively, as follows. The base case
+is $\ex_{\id} = \emptyset$. Then, if $\tau \prec \tau'$ are consecutive elements in the
+total order, we can write
+\begin{equation*}
+	\tau = \tau_{i,j-1} \text{ and } \tau' = \tau_{i,j}
+\end{equation*}
+%
+for some $1 \leq i < j \leq N$. Expanding the definitions, we have
+\begin{align*}
+	\tau_{i, j-1} & = [i+1, i+2, \dots, j - 1, i , j, j+1, j+2, \dots, N, i-1, i-2, \dots, 1] \\
+	\tau_{i, j}   & = [i+1, i+2, \dots,j-1,  j, i , j+1, j+2, \dots, N, i-1, i-2, \dots, 1],
+\end{align*}
+%
+from which we see that
+\begin{equation*}
+	\tau' = \tau_{i,j} = (i, j)\tau_{i, j-1} = (i, j)\tau = \tau(j-i, j-i+1).
+\end{equation*}
+%
+From $\ex_\tau$ we then construct $\ex_{\tau'}$ as
+\begin{equation*}
+	\ex_{\tau'} = \begin{dcases*}
+		\ex_\tau \cup \{p(j)\}, & if $p(i) = -\infty$ and $\eta(i) = \eta(j)$ \\
+		\ex_\tau,               & otherwise.
+	\end{dcases*}
+\end{equation*}
+%
+Recall that $\ex = \{j \in [1, N] \mid s(j) \neq + \infty \} = \{p(j) \mid j \in [1,
+		N],\, p(j) \neq -\infty\}$. It follows that $\ex_{w_\circ} = \ex$, as $\sigma \preceq
+	w_\circ$ for all $\sigma\in \Gamma_N$.
+
+As before, we will index matrices of size $N \times |X|$ by the set $X$ for subsets $X
+	\subseteq \ex$. The set of such matrices with integer entries will be denoted by $M_{N
+			\times X}(\bbZ)$. We now prove a lemma from which parts (a) and (b) of
+\cref{thm:gy_main_result} for $\tau \in \Gamma_N$ will follow.
+
+\begin{lemma}
+
+\end{lemma}
+
 % \section{Some definitions}
 
 % We start with the non-quantized version of cluster algebras, introduced in
