@@ -1067,6 +1067,67 @@ of the cluster variables.
 	$\widehat{M}_\tau$ with $\tau_\bullet$ as well.
 \end{example}
 
+The following lemma, which we will need later on, justifies the observations made in
+the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
+
+\begin{lemma}\label{lem:tau_bullet}
+	\leavevmode
+	\begin{enumerate}[(a)]
+		\item For any $\tau \in \Xi_N$, the permutation $(\tau_\bullet\tau)\inv$ maps $\ex$
+		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
+		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
+				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet' = \tau_\bullet\tau$.
+		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1, N-1]$
+		      If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' = \tau_\bullet\tau
+			      (k, k +1)$.
+		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
+			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
+		      $\tau_\bullet\tau(k) = j$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}\leavevmode
+	\begin{enumerate}[(a)]
+		\item Take $j\in [1, N]$ and let $k = (\tau_\bullet \tau)\inv(j)$. Since $\tau_\bullet$
+		      preserves the level sets, we have $\eta(j) = \eta(\tau(k))$. So, $j \in \ex$ if and
+		      only if $s(j) \neq + \infty$, if and only if $j$ is not the largest element of
+		      $\eta\inv(\eta(j))$, if and only if $k$ is not the largest element of
+		      $\tau\inv(\eta\inv(\eta(j))) = \eta_\tau\inv(\eta_\tau(k))$, if and only if $s_\tau(k)
+			      \neq + \infty$.
+		\item Because $\eta(\tau(k)) = \eta(\tau(k+1)) = \eta(\tau'(k)) = \eta(\tau'(k+1))$, and
+		      $\tau(j) = \tau'(j)$ for all $j\neq k, k+1$ we have $\tau\inv(L) = (\tau')\inv(L)$ for
+		      all level sets of $\eta$. Hence $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
+		\item Suppose
+		      \begin{equation*}
+			      \eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
+		      \end{equation*}
+		      %
+		      is the level set of some $a\in \bbZ$ in the image of $\eta$. If $k, k+1 \neq k_i$ for
+		      all $i \in [1, n]$, then $\tau(k_i) = \tau'(k_i)$ for all $i\in [1, n]$ and it follows
+		      that $\tau_\bullet (\tau(k_i)) = (\tau')_\bullet (\tau'(k_i))$ for all $i\in [1, n]$.
+		      If $k = k_j$ for some $j \in [1, n]$, then it follows that $k+1 \neq k_i$ for all $i\in
+			      [1, n]$, because $\eta(\tau(k)) \neq \eta(\tau(k+1))$. Furthermore, $\tau'(k+1) =
+			      \tau(k)$ implies that
+		      \begin{equation*}
+			      \eta\inv(a) = \{\tau'(k'_1), \dots, \tau'(k'_n)
+			      \mid k'_1 < \cdots < k'_n\}	,
+		      \end{equation*}
+		      %
+		      where $k'_i = k_i$ for all $i \neq j$ and $k'_j = k+1$. So, we see that $\tau_\bullet$
+		      and $(\tau')_\bullet$ agree on this level set as well. The case where $k+1 = k_j$ for
+		      some $j\in [1, n]$ is analogous.
+		\item Write $j = O_{-}(j) \in \bbZ_{\geq 0}$. Then $i = p^m(j) \in [1, N]$ is such that $p(i)
+			      = -\infty$, and $s^m(i) = j$. Since $i < s(j) < + \infty$, we may take $\tau = \tau_{i,
+				      s(j) - 1}\in \Gamma_N$ and $\tau' = \tau_{i, s(j)} \in \Gamma_N$. Then, as we have
+		      observed before, $\tau' = \tau(k, k+1)$ where $k = s(j) - i$, and $\tau(k) = i,
+			      \tau(k+1) = s(j)$. Thus, $\eta(\tau(k)) = \eta(i) = \eta(s(j)) = \eta(\tau(k+1))$.
+		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$ we find
+		      that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots, s^m(i), i$
+		      in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the $(m+1)$-st
+		      element of $L$, when $L$ is written in increasing order. Since $p(i) = -\infty$, that
+		      element is $s^m(i) = j$.
+	\end{enumerate}
+\end{proof}
+
 We now describe the rescaling of the $x$-elements that will ensure that $\zeta = 1$ in
 \cref{thm:almost_mutation_toric_frame}. The key insight, is that we can find back all
 the variables $\oy_{\tau}$ (up to a scalar multiple) by considering just the
@@ -1794,7 +1855,7 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lem:y_tauk_y_brackets}
 	Let $R$ be a symmetric CGL extension of length $N$. Take $\tau \in \Xi_N$ and $k \in [1, N]$.
 	\begin{itemize}
 		\item If $\tau(k) \geq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[p^m(\tau(k)),
@@ -2282,28 +2343,9 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 \end{proposition}
 \begin{proof}
 
-	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then we claim that $\tau_\bullet =
-		(\tau')_\bullet$. Suppose
-	\begin{equation*}
-		\eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
-	\end{equation*}
-	%
-	is the level set of some $a\in \bbZ$ in the image of $\eta$. If $k, k+1 \neq k_i$ for
-	all $i \in [1, n]$, then $\tau(k_i) = \tau'(k_i)$ for all $i\in [1, n]$ and it follows
-	that $\tau_\bullet (\tau(k_i)) = (\tau')_\bullet (\tau'(k_i))$ for all $i\in [1, n]$.
-	If $k = k_j$ for some $j \in [1, n]$, then it follows that $k+1 \neq k_i$ for all $i\in
-		[1, n]$, because $\eta(\tau(k)) \neq \eta(\tau(k+1))$. Furthermore, $\tau'(k+1) =
-		\tau(k)$ implies that
-	\begin{equation*}
-		\eta\inv(a) = \{\tau'(k'_1), \dots, \tau'(k'_n)
-		\mid k'_1 < \cdots < k'_n\}	,
-	\end{equation*}
-	%
-	where $k'_i = k_i$ for all $i \neq j$ and $k'_j = k+1$. So, we see that $\tau_\bullet$
-	and $(\tau')_\bullet$ agree on this level set as well. The case where $k+1 = k_j$ for
-	some $j\in [1, n]$ is analogous. This proves the claim. Thus, $\tau_\bullet \tau (k,
-		k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now follows from
-	\cref{thm:almost_mutation_toric_frame} (a).
+	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then \cref{lem:tau_bullet} (c) shows that
+	$\tau_\bullet \tau (k, k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now
+	follows from \cref{thm:almost_mutation_toric_frame} (a).
 
 	We now consider the case where $\eta(\tau(k)) = \eta(\tau(k+1))$ which requires
 	significantly more work. Because $\tau([1, k])$ and $\tau([1, k+1])$ are intervals,
@@ -2877,45 +2919,79 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      \end{equation*}
 	\end{enumerate}
 \end{theorem}
-
-Before proving the theorem, we first prove a small lemma which establishes some
-properties of the permutations $\tau_\bullet \tau$. We take, as in the setting of
-\cref{thm:gy_main_result}, $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
-
-\begin{lemma}
+\begin{proof}
 	\leavevmode
 	\begin{enumerate}[(a)]
-		\item For any $\tau \in \Xi_N$, the permutation $(\tau_\bullet\tau)\inv$ maps $\ex$
-		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
-		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
-				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet' = \tau_\bullet\tau$.
-		      If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' = \tau_\bullet\tau
-			      (k, k +1)$.
-		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
-			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
-		      $\tau_\bullet\tau(k) = j$.
-	\end{enumerate}
-\end{lemma}
-\begin{proof}\leavevmode
-	\begin{enumerate}[(a)]
-		\item Take $j\in [1, N]$ and let $k = (\tau_\bullet \tau)\inv(j)$. Since $\tau_\bullet$
-		      preserves the level sets, we have $\eta(j) = \eta(\tau(k))$. So, $j \in \ex$ if and
-		      only if $s(j) \neq + \infty$, if and only if $j$ is not the largest element of
-		      $\eta\inv(\eta(j))$, if and only if $k$ is not the largest element of
-		      $\tau\inv(\eta\inv(\eta(j))) = \eta_\tau\inv(\eta_\tau(k))$, if and only if $s_\tau(k)
-			      \neq + \infty$.
-		\item This was already proven at the start of the proof of
-		      \cref{prop:mutation_adjacent_permutations}.
-		\item Write $j = O_{-}(j) \in \bbZ_{\geq 0}$. Then $i = p^m(j) \in [1, N]$ is such that $p(i)
-			      = -\infty$, and $s^m(i) = j$. Since $i < s(j) < + \infty$, we may take $\tau = \tau_{i,
-				      s(j) - 1}\in \Gamma_N$ and $\tau' = \tau_{i, s(j)} \in \Gamma_N$. Then, as we have
-		      observed before, $\tau' = \tau(k, k+1)$ where $k = s(j) - i$, and $\tau(k) = i,
-			      \tau(k+1) = s(j)$. Thus, $\eta(\tau(k)) = \eta(i) = \eta(s(j)) = \eta(\tau(k+1))$.
-		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$ we find
-		      that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots, s^m(i), i$
-		      in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the $(m+1)$-st
-		      element of $L$, when $L$ is written in increasing order. Since $p(i) = -\infty$, that
-		      element is $s^m(i) = j$.
+		\item The inclusions $\mcA_\tau \subseteq R$ and $\mcA_\tau[E\inv_\tau] \subseteq \mcT_\tau
+			      \subseteq \Fract(R)$ are clear from the definitions. The remaining inclusion, $R
+			      \subseteq \mcA_\tau[E\inv_\tau]$, will follow if we can show $x_{\tau(k)} \in
+			      \mcA_\tau[E\inv_\tau]$ for all $k \in [1, N]$. To do this we proceed by induction on
+		      $k$, using \cref{thm:homogeneous_primes}. If $p_\tau(k) = -\infty$, then $x_{\tau, k} =
+			      y_{\tau, k} \in \mcA_\tau \subseteq \mcA_\tau[E\inv_\tau]$. This also covers the base
+		      case, $k=1$. Otherwise,
+		      \begin{equation*}
+			      y_{\tau, k} = y_{\tau, p_\tau(k)}x_{\tau(k)} - c_{\tau, k}
+		      \end{equation*}
+		      %
+		      for some $c_{\tau, k} \in R_{\tau, k-1}$. By induction, $c_{\tau, k} \in
+			      \mcA_\tau[E\inv_\tau]$, and hence
+		      \begin{equation*}
+			      x_{\tau(k)} = y_{\tau, p_\tau(k)}\inv (y_{\tau, k} + c_{\tau, k}) \in \mcA_\tau[E\inv_\tau],
+		      \end{equation*}
+		      %
+		      because $y_{\tau, p_\tau(k)} \in E_\tau$ as $s_\tau(p_\tau(k)) = k \neq +\infty$.
+		\item For each $k \in [1, N]$ we have $x_k = y_{[k , k]}$. By \cref{lem:y_tauk_y_brackets},
+		      we have that $y_{\tau, 1}$ is a scalar multiple of $y_{[k,k]}$, where $\tau =
+			      \tau_{k,k} \in \Gamma_N$.
+		\item Recall that we showed using \cref{lem:ore_set_ore_extension} that $E_\tau$ was an Ore
+		      set in $R$. Then the inclusions $\mcA_\tau \subseteq R \subseteq \mcA_\tau[E\inv_\tau]$
+		      imply the equality $R[E\inv_\tau] = \mcA_\tau[E\inv_\tau]$.
+		\item The second equality is just part (c). Since $R \subseteq R[E\inv_\tau]$ for all $\tau
+			      \in \Gamma_N$, it suffices to prove that $v\in R$ for any $v \in \bigcap_{\tau\in
+				      \Gamma_N} R[E\inv_\tau]$. We may assume $v$ to be nonzero. For each $\tau \in
+			      \Gamma_N$, let
+		      \begin{equation*}
+			      \prod_{l \in [1, N]}y_{\tau, l}^{m_{\tau, l}}
+		      \end{equation*}
+		      %
+		      be a minimal denominator of $v$ with respect to the localization $R[E\inv_\tau]$. So,
+		      all $m_{\tau, l} \in \bbZ_{\geq 0}$ and $m_{\tau, l} = 0$ when $s_\tau(l) = + \infty$.
+		      We now claim that for all $\tau, \tau' \in \Gamma_N$ such that $\tau' = \tau(k, k+1)$
+		      for some $k \in [1, N- 1]$=
+		      \begin{enumerate}
+			      \item $m_{\tau, (\tau_\bullet\tau)\inv(j)} = m_{\tau', ((\tau')_\bullet\tau')\inv(j)}$ for all $j \in [1, N]$.
+			      \item If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $m_{\tau, k} = 0$.
+		      \end{enumerate}
+		      %
+		      Indeed, if $\eta(\tau(k)) = \eta(\tau(k + 1))$, then this follows from
+		      \cref{lem:tau_bullet,thm:minimal_denominators}. Otherwise we obtain from
+		      \cref{thm:y_prime_swapped_cgl} that $y_{\tau', j} = y_{\tau, (k, k+1)j}$ for all $j\in
+			      [1, N]$. Consequently, $E_\tau = E_{\tau'}$, and $m_{\tau', l} = m_{\tau, (k, k+1)j}$
+		      for all $j \in [1, N]$. The claim then follows from \cref{lem:tau_bullet} (c).
+
+		      By using the total order on $\Gamma_N$, the first part of the claim then shows that
+		      \begin{equation*}
+			      m_{\sigma, (\sigma_\bullet\sigma)\inv(j)} = m_{\tau, (\tau_\bullet\tau)\inv(j)}
+		      \end{equation*}
+		      %
+		      for all $\sigma, \tau \in \Gamma_N$ and $j \in [1, N]$. Because of
+		      \cref{lem:tau_bullet} (d), we can find $\tau, \tau' \in \Gamma_N$ such that $\tau' =
+			      \tau(k, k+1)$ for some $k\in[1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
+		      $\tau_\bullet(\tau(k)) = j$, for any $j \in \ex$. So, the second part of the claim then
+		      implies that $m_{\tau, (\tau_\bullet\tau)\inv(j)} = 0$, and hence $m_{\sigma,
+					      (\sigma_\bullet\sigma)\inv(j)} = 0$ for all $\sigma\in \Gamma_N$. In particular, this
+		      holds for $\tau = \id$, and it follows that $v \in R$.
+		\item Again, one inclusion is clear. It suffices to show $v \in R[y_k\inv \mid k \in \binv]$
+		      for
+		      \begin{equation*}
+			      v \in \bigcap_{\tau \in \Gamma_N} R[E_\tau\inv][y_k\inv \mid k \in \binv].
+		      \end{equation*}
+		      %
+		      For each $\tau \in \Gamma_N$, we can write $v = xy\inv$ for some $x \in R[E\inv_\tau]$
+		      and $y$ in the multiplicative set generated by $\{y_k \mid k \in \binv\}$. Now, we can
+		      choose (\textbf{TODO: why? (minimal denominator)}) $y$ to be the same for each $\tau
+			      \in \Gamma_N$, and hence $vy \in R[E\inv_\tau]$ for all $\tau \in \Gamma_N$. Thus,
+		      $vy\in R$ by part (d), and $v \in R[y_k\inv \mid k \in \binv]$ as we needed to show.
 	\end{enumerate}
 \end{proof}
 
