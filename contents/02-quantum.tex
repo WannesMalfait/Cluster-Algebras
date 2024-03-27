@@ -1244,7 +1244,7 @@ the main theorem.
 		      Denote by $\tB_\tau \in M_{N \times |\ex|}(\bbZ)$ the matrix with columns $b^l_\tau$
 		      for all $l \in \ex$. Write $\tB = \tB_{\id}$.
 		\item For all $\tau \in \Xi_N$, the pair $(M_\tau, \tB_\tau)$ is a quantum seed for
-		      $\Fract(R)$. The principal part of $\tB_\tau$ is skew-symmetrizable by the interges
+		      $\Fract(R)$. The principal part of $\tB_\tau$ is skew-symmetrizable by the integers
 		      $d_{\eta(k)}$ for $k \in \ex$.
 		\item All such quantum seeds are mutation-equivalent to each other. More precisely, they are
 		      linked by the following one-step mutations. Let $\tau, \tau' \in \Xi_N$ be such that
@@ -1252,7 +1252,7 @@ the main theorem.
 			      \tau' = (\tau(k), \tau(k+1))\tau = \tau (k, k+1)
 		      \end{equation*}
 		      for some $k\in [1, N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $M_{\tau'} = M_\tau$. Otherwise, if $\eta(\tau(k)) = \eta(\tau(k+1))$, then $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$, where $k_\bullet = \tau_\bullet \tau(k)$.
-		\item We have equality betwen the CGL extension $R$, the quantum cluster alegbra and the
+		\item We have equality betwen the CGL extension $R$, the quantum cluster algebra and the
 		      upper cluster algebra associated to $M$ and $\tB$:
 		      \begin{equation*}
 			      R = \mcA(M, \tB, \emptyset)_\bbK = \mcU(M, \tB, \emptyset)_\bbK.
@@ -2670,12 +2670,12 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau, \tau}.
 	\end{equation*}
 	%
-	Recalling, \cref{cor:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
+	Recalling \cref{cor:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
 	\begin{align*}
 		\mu_{k_\bullet}(M_\tau)(e_{k_\bullet})
 		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}]_{-})                                                     \\
 		 & = M_\tau(-e_{k_\bullet} + [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{+}) + M_\tau(-e_{k_\bullet} - [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{-}) \\
-		 & = M_\tau(-e_{k_\bullet} e_{p(k_\bullet)} + e_{s(k_\bullet)}) + M_\tau(-e_{k_\bullet} g)                                                           \\
+		 & = M_\tau(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)}) + M_\tau(-e_{k_\bullet} + g)                                                       \\
 		 & = M_{\tau'}(e_{k_\bullet}),
 	\end{align*}
 	such that $\mu_{k_\bullet}(M_\tau)(e_l) = M_{\tau'}(e_l)$ for all $l \in [1, N]$. Hence,
@@ -2737,6 +2737,106 @@ We can now provide a proof for \cref{thm:gy_main_result} (a) and (b), for $\tau 
 		w_\circ}$. In particular, we have constructed the mutation matrix for the initial toric
 frame $M_{\id}$.
 
+To prove parts (a) and (b) for all $\tau \in \Xi_N$ we first prove the following
+proposition, whose statement is very similar to that of \cref{lem:inductive_columns}.
+The main difference is that it applies to $\Xi_N$ and not just to $\Gamma_N$, and that
+the existence of a matrix is already assumed. With the prepatory work that we have
+done, the statement is longer than the proof.
+\begin{proposition}\label{prop:inductive_mutation}
+	Assume the setting of \cref{thm:gy_main_result}, and let $\tau, \tau' \in \Xi_N$ be such that
+	\begin{equation*}
+		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
+	\end{equation*}
+	%
+	for some $k \in [1, N-1]$, $\tau(k) < \tau(k + 1)$ and $\eta(\tau(k)) =
+		\eta(\tau(k+1))$. Set $k_\bullet = \tau_\bullet\tau(k)$.
+
+	Let $\tB_{\tau} \in M_{N \times \ex}(\bbZ)$ be a matrix with columns $b^l_\tau, l \in
+		\ex$ which satisfy
+	\begin{equation*}
+		\begin{aligned}
+			\chi_{M_\tau(b^l_{\tau})}             & = 1,                                \\
+			\Omega_{\bbr_\tau}(b^l_{\tau}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_\tau}(b^l_{\tau}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation*}
+	%
+	for all $l\in \ex$. Then, it's principal part is skew-symmetrizable and the columns
+	$b^l_{\tau'}, l \in \ex$ of the matrix $\mu_{k_\bullet}(\tB_\tau)$ satisfy
+	\begin{equation*}
+		\begin{aligned}
+			\chi_{M_{\tau'}(b^l_{{\tau'}})}             & = 1,                                \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation*}
+	%
+	for all $l \in \ex$. Furthermore, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_\tau)$ and
+	\begin{equation*}
+		b^{k_\bullet}_\tau = - b^{k_\bullet}_{\tau'} = e_{p(k_\bullet)} = e_{s(k_\bullet)} - g,
+	\end{equation*}
+	%
+	where $g\in \bbZ_{\geq 0}^N$ is the vector from
+	\cref{prop:mutation_adjacent_permutations}.
+\end{proposition}
+
+\begin{proof}
+	We follow the ideas from the proof of \cref{lem:inductive_columns}. The fact that the principal part of $\tB_\tau$ is skew-symmetrizable, follows from the assumption $(\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}}$ for all $l,k \in \ex$ and \cref{lem:principal_part_skew_symmetrizable}.
+
+	The conditions on the columns of $\tB_\tau$, \cref{prop:mutation_adjacent_permutations}
+	(b), and the uniqueness from \cref{lem:unique_b} give
+	\begin{equation*}
+		b^{k_\bullet}_\tau = e_{p(k_\bullet)} + e_{s(k_\bullet)} -g.
+	\end{equation*}
+	%
+	Recall that the entries of $\mu_{k_\bullet}(\tB_{\tau})$ are given by
+	\begin{equation*}
+		\mu_{k_\bullet}(\tB_{\tau})_{ij} = \begin{dcases*}
+			-b_{ij},                                                                            & if $i = k_\bullet$ or $j = k_\bullet$ \\
+			b_{ij} +  \frac{|b_{ik_\bullet}|b_{k_\bullet} + b_{ik_\bullet} |b_{k_\bullet}|}{2}, & otherwise,
+		\end{dcases*}
+	\end{equation*}
+	%
+	where $(b_{ij}) = \tB_\tau$. So, in particular, $b^{k_\bullet}_{\tau'} = -
+		b^{k_\bullet}$.
+
+	Finally, in exactly the same way as the proof of \cref{lem:inductive_columns}, one
+	shows that $\Omega_{\bbr_{\tau'}}(e_t, e_l) = \Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t,
+		e_l)$ for all $t, l \in [1, N]$, from which it follows that $\bbr_{\tau'} =
+		\mu_{k\bullet}(\bbr_\tau)$. Consequently, $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$ and the
+	conditions on the columns of $\tB_{\tau'}$ follow again from
+	\cref{prop:mutation_preserves_good_things,lem:equivariance_mutations}.
+
+\end{proof}
+The proof of parts (a),(b) and (c) of \cref{thm:gy_main_result} are now just a matter of putting everything together.
+\begin{proof}[Proof of \cref{thm:gy_main_result} (a), (b) and (c)]
+	We prove part (a) by induction. The uniqueness follows from \cref{lem:unique_b}. Fix $\tau \in \Xi_N$. By \cref{prop:eta_invariance}, we can find a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau \in \Xi_N$ such that for all $l \in [1, n]$ we can write
+	\begin{equation*}
+		\tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
+	\end{equation*}
+	%
+	for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. We
+	already proved the existence of $\tB_{\id}$ using \cref{lem:inductive_columns}. Then
+	for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$, then
+	\cref{prop:mutation_adjacent_permutations} (a) yields $M_{\tau_l} = M_{\tau_{l-1}}$ and
+	we can choose $\tB_{\tau_l} = \tB_{\tau_{l-1}}$. Otherwise, if $\eta(\tau_{l-1}(k_l)) =
+		\eta(\tau_l(k_l))$, we can apply \cref{prop:inductive_mutation} for $\tau_{l-1}$ and
+	$\tau_{l}$. In this case $\tB_{\tau_l} = \mu_{(k_l)_\bullet}(\tB_{\tau_{l-1}})$, where
+	$(k_l)_\bullet = (\tau_{k_l})_\bullet(\tau_{k_l}(k_l))$.
+
+	Part (b) follows as in the proofs of
+	\cref{lem:inductive_columns,prop:inductive_mutation} from
+	\cref{lem:principal_part_skew_symmetrizable}.
+
+	For part (c), the one-step mutation statement follows from
+	\cref{prop:mutation_adjacent_permutations} (a) if $\eta(\tau(k)) \neq \eta(\tau(k +
+			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
+	\cref{prop:inductive_mutation} where we swap the roles of $\tau$ if $\tau'$ if
+	$\tau'(k) = \tau(k + 1) < \tau'(k + 1) = \tau(k)$. Then, since mutation is involutive,
+	every $\tau \in \Xi_N$ can be obtained by a sequence of one-step mutations from $\id$
+	due to \cref{prop:eta_invariance} and the uniqueness of part (a), we obtain that all
+	the quantum seeds associated to $\Xi_N$ are mutation-equivalent to each other.
+\end{proof}
 % \section{Some definitions}
 
 % We start with the non-quantized version of cluster algebras, introduced in
