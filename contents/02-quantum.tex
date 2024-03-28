@@ -761,7 +761,7 @@ mutation statement.
 
 We will now resolve the first of the three issues, by a normalization of the
 homogeneous prime elements, $y_1, \dots, y_N$. The last issue will be resolved by a
-rescaling of the variables $x_1, \dots, x_N$, while the second issue will be adressed
+rescaling of the variables $x_1, \dots, x_N$, while the second issue will be addressed
 by a permutation of the cluster variables. After settling these three problems, we will
 finally be ready to state the main theorem.
 
@@ -799,7 +799,7 @@ such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
 
 If we now consider a second CGL presentation as in \cref{eq:swapped_cgl_presentation},
 we define $\nu', \bbr'$ and $M'$ in the same way, i.e., $M'(e_j) = \oy'_j$ for all $j
-	\in [1, N]$. Since $\lambda'_{lj} = \lambda_{(k, k+1)l, (k, k+1)j}$ we also have
+	\in [1, N]$. Since $\lambda'_{lj} = \lambda_{(k, k+1)l, (k, k+1)j}$, we also have
 \begin{equation*}
 	\bbn' = (k, k+1)\bbn (k, k+1) \in M_N(\bbK^\times).
 \end{equation*}
@@ -865,13 +865,13 @@ normalization has the desired effect.
 		\neq s^l(k+1)$ for all $l \in \bbZ_{\geq 0}$. If $j = s^l (k+1)$ for some $l \in
 		\bbZ_{\geq 0}$, then the difference between $\mcS_{\bbn'}(\oe_j)$ and
 	$\mcS_{\bbn}(\oe_j)$ is that $\mcS_{\bbn'}(\oe_j)$ will contain a term $\nu_{k+1,
-			k}\inv$ instead of $\nu_{k, k+1}\inv$. Hence
+			k}\inv$ instead of $\nu_{k, k+1}\inv$. Hence,
 	\begin{align*}
 		\mcS_{\bbn'}(\oe_j) & = \nu_{k+1, k}\inv \nu_{k, k+1} \mcS_{\bbn'}(\oe_j) \\
 		                    & = \nu_{k, k+1}^2 \mcS_{\bbn'}(\oe_j)                \\
 		                    & = \lambda_{k, k+1} \mcS_{\bbn'}(\oe_j).
 	\end{align*}
-	It now follows from \cref{eq:y_prime_in_swapped_cgl} that $\oy'_j = \oy_j$ for all $j\neq k$. To prove the expression for $M'(e_k) = \oy'_k$, we start with the observation that $q_{kp(k)} = \alpha_{kp(k)}$. Indeed
+	It now follows from \cref{eq:y_prime_in_swapped_cgl} that $\oy'_j = \oy_j$ for all $j\neq k$. To prove the expression for $M'(e_k) = \oy'_k$, we start with the observation that $q_{kp(k)} = \alpha_{kp(k)}$. Indeed,
 	\begin{align*}
 		q_{kp(k)} & = \prod_{m=0}^{O_{-}(k)}\prod_{l=0}^{O_{-}(p(k))} \lambda_{p^m(k),p^l(p(k))}                                                                            \\
 		          & = \left(\prod_{l = 0}^{O_{-}(p(k))}\lambda_{k, p^l(p(k))}\right)\left(\prod_{m=1}^{O_{-}(k)}\prod_{l=0}^{O_{-}(p(k))} \lambda_{p^m(k),p^l(p(k))}\right) \\
@@ -925,7 +925,7 @@ normalization has the desired effect.
 	for all $j \neq k$.
 \end{proof}
 
-We now proceed by adressing the indexing issue of the $y$ and $y'$ elements. To do
+We now proceed by addressing the indexing issue of the $y$ and $y'$ elements. To do
 this, we first move to a more general setting, which will be necessary for the main
 theorem. So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that
 each such $\tau$ gives rise to a CGL extension presentation of the form
@@ -956,7 +956,7 @@ sequence of normalized homogeneous prime elements of this presentation, and
 $\widehat{M}_\tau$ as the toric frame with matrix $\widehat{\bbr}_\tau$ and such that
 $\widehat{M}_\tau (e_k) = \oy_{\tau, k}$ for all $k \in [1, N]$.
 
-We now need to adress indexing issue by permuting the order of the cluster variables.
+We now need to address indexing issue by permuting the order of the cluster variables.
 Consider $\eta : [1, N] \bbZ$ satisfying the conditions of
 \cref{thm:homogeneous_primes} for the \emph{original} CGL presentation of $R$. For
 every element $m$ in the image of $\eta$, write
@@ -1010,7 +1010,7 @@ of the cluster variables.
 		\eta\inv(2) = \{2, 5\} = \{\tau(3), \tau(4)\}
 	\end{equation*}
 	%
-	we obtain $\tau_\bullet(2) = 2$ and $\tau_\bullet(5) = 5$. Since $\eta\inv(3) = \{3\}$
+	we obtain $\tau_\bullet(2) = 2$ and $\tau_\bullet(5) = 5$. Since $\eta\inv(3) = \{3\}$,
 	we automatically have $\tau_\bullet(3) = 3$. For $\tau'$ we find
 	\begin{align*}
 		\eta\inv(1) & = \{1, 4, 6\}                             \\
@@ -1037,7 +1037,7 @@ of the cluster variables.
 	\cref{thm:y_prime_swapped_cgl}. Since $\eta(1) = 1 \neq 2 = \eta(5)$, the conclusion of
 	\cref{thm:y_prime_swapped_cgl} would be that $y_{\tau, j} = y_{\tau', (4,5)j}$ for all
 	$j \in [1, N]$. Since no mutation occurs in this case, we should find that $M_\tau
-		(e_j) = M_{\tau'}(e_j)$ for all $j \in [1, N]$. Indeed
+		(e_j) = M_{\tau'}(e_j)$ for all $j \in [1, N]$. Indeed,
 	\begin{align*}
 		M_{\tau}(e_j)
 		 & = \oy_{\tau, (\tau_\bullet \tau)\inv (j)}        \\
@@ -1099,7 +1099,7 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 			      \neq + \infty$.
 		\item Because $\eta(\tau(k)) = \eta(\tau(k+1)) = \eta(\tau'(k)) = \eta(\tau'(k+1))$, and
 		      $\tau(j) = \tau'(j)$ for all $j\neq k, k+1$ we have $\tau\inv(L) = (\tau')\inv(L)$ for
-		      all level sets of $\eta$. Hence $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
+		      all level sets of $\eta$. Hence, $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
 		\item Suppose
 		      \begin{equation*}
 			      \eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
@@ -1124,11 +1124,11 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 				      s(j) - 1}\in \Gamma_N$ and $\tau' = \tau_{i, s(j)} \in \Gamma_N$. Then, as we have
 		      observed before, $\tau' = \tau(k, k+1)$ where $k = s(j) - i$, and $\tau(k) = i,
 			      \tau(k+1) = s(j)$. Thus, $\eta(\tau(k)) = \eta(i) = \eta(s(j)) = \eta(\tau(k+1))$.
-		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$ we find
-		      that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots, s^m(i), i$
-		      in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the $(m+1)$-st
-		      element of $L$, when $L$ is written in increasing order. Since $p(i) = -\infty$, that
-		      element is $s^m(i) = j$.
+		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$, we
+		      find that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots,
+			      s^m(i), i$ in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the
+		      $(m+1)$-st element of $L$, when $L$ is written in increasing order. Since $p(i) =
+			      -\infty$, that element is $s^m(i) = j$.
 	\end{enumerate}
 \end{proof}
 
@@ -1147,9 +1147,9 @@ In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$.
 \begin{theorem}\label{thm:y_square_brackets}
 	Let $R$ be a symmetric CGL extension of length $N$. For $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the following hold:
 	\begin{enumerate}[(a)]
-		\item All of the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i,
+		\item All the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i,
 							      s^m(i)-1]}$ are associates of each other.
-		\item All of the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i+1,
+		\item All the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i+1,
 							      s^m(i)]}$ are associates of each other.
 		\item The sets of homogeneous prime elements of \textrm{(a)} and \textrm{(b)} are equal, and
 		      the elements have leading terms of the form
@@ -1235,7 +1235,7 @@ by
 %
 Now one has to be careful to not conclude that $\pi_{[i, s^m(i)]}$ gets scaled by
 exactly the same factor as $u_{[i, s^m(i)]}$. Indeed, the definition of $\pi_{[i,
-				s^m(i)]}$ is as the coeffient of $x^{f_{[i, s^m(i)]}}$ which gets rescaled as well.
+				s^m(i)]}$ is as the coefficient of $x^{f_{[i, s^m(i)]}}$ which gets rescaled as well.
 Hence, the scalar $\pi_{[i, s^m(i)]}$ get rescaled by the rule
 \begin{equation*}
 	\pi_{[i, s^m(i)]} \mapsto \bbg^{e_{[i, s^m(i)]}+e_{[s(i), s^{m-1}(i)]} - f_{[i, s^m(i)]}}\pi_{[i, s^m(i)]}.
@@ -1261,7 +1261,7 @@ The rescaling that we need is described by the following proposition.
 	\begin{equation*}
 		\gamma_i = \gamma_{p(i)}\inv \bbg^{f_{[p(i),i]}}\pi\inv_{[p(i), i]}\mcS_{\bbn}(-e_{p(i)} + f_{[p(i), i]})
 	\end{equation*}
-	if $p(i) \neq -\infty$. The scalars $\pi_{[p(i), i]}$ in the right hand side are taken with respect to the original generators of $R$.
+	if $p(i) \neq -\infty$. The scalars $\pi_{[p(i), i]}$ in the right-hand side are taken with respect to the original generators of $R$.
 \end{proposition}
 \begin{proof}
 
@@ -1279,7 +1279,7 @@ The rescaling that we need is described by the following proposition.
 \end{proof}
 
 We will not prove here directly that this rescaling has the desired effect. That will
-be covered in \cref{prop:mutation_adjacent_permutations}. Instead we now finally state
+be covered in \cref{prop:mutation_adjacent_permutations}. Instead, we now finally state
 the main theorem.
 
 \begin{theorem}[\protect{\cite[Theorem 8.2]{GoodearlYakimov2017QCA}}]\label{thm:gy_main_result}
@@ -1317,7 +1317,7 @@ the main theorem.
 			      \tau' = (\tau(k), \tau(k+1))\tau = \tau (k, k+1)
 		      \end{equation*}
 		      for some $k\in [1, N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $M_{\tau'} = M_\tau$. Otherwise, if $\eta(\tau(k)) = \eta(\tau(k+1))$, then $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$, where $k_\bullet = \tau_\bullet \tau(k)$.
-		\item We have equality betwen the CGL extension $R$, the quantum cluster algebra and the
+		\item We have equality between the CGL extension $R$, the quantum cluster algebra and the
 		      upper cluster algebra associated to $M$ and $\tB$:
 		      \begin{equation*}
 			      R = \mcA(M, \tB, \emptyset)_\bbK = \mcU(M, \tB, \emptyset)_\bbK.
@@ -1725,7 +1725,7 @@ and $k \leq j_k \leq \cdots \leq j_1 \leq N$, define
 	\tau_{(j_k, \dots, j_1)} = (k,k+1, \cdots, j_k)\cdots (2,3, \cdots, j_2)(1,2,\cdots, j_1)\in S_N,
 \end{equation*}
 %
-where the right hand side is a composition of cycles.
+where the right-hand side is a composition of cycles.
 \begin{lemma}
 	We have the following characterization for $\Xi_N$.
 	\begin{equation*}
@@ -1747,7 +1747,7 @@ where the right hand side is a composition of cycles.
 		      \begin{equation*}
 			      \tau = \tau_{(j_k, \dots, j_1)} = (k+1, \cdots, j'_k + 1) \cdots (2, 3, \cdots ,j'_1 + 1)(1,2, \cdots, N) \in S_N.
 		      \end{equation*}
-		      Indeed $\tau_{(j_k, \dots, j_1)}(N) = 1$, and for $i \in [1, N-1]$,
+		      Indeed, $\tau_{(j_k, \dots, j_1)}(N) = 1$, and for $i \in [1, N-1]$,
 		      \begin{align*}
 			      \tau_{(j_k, \dots, j_1)}(i)
 			       & = (k+1, \cdots, j'_k + 1) \cdots (2, 3, \cdots, j'_1 + 1)(1,2, \cdots, N) i \\
@@ -1889,7 +1889,7 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 	\end{equation*}
 	from which it follows that $R_{\tau, k} = R_{[\tau(k), \tau(i)]}$ and $R_{\tau, k-1} = R_{[\tau(k) + 1,\tau(i)]}$.
 	%
-	By assumption we have $\tau(k) \leq s^m(\tau(k)) \leq \tau(i)$ and $s (s^m(\tau(k))) >
+	By assumption, we have $\tau(k) \leq s^m(\tau(k)) \leq \tau(i)$ and $s (s^m(\tau(k))) >
 		\tau(i)$. The element $y_{[\tau(k), s^m(\tau(k))]}$ is a homogeneous prime element of
 	$R_{[\tau(k), s^m(\tau(k))]}$ by assumption. \Cref{thm:homogeneous_primes} applied to
 	this subalgebra shows that $y_{[\tau(k), s^m(\tau(k))]}$ must be a scalar multiple of
@@ -1903,7 +1903,7 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 				k-1}$.
 
 	The other case, where $\tau(k) \geq \tau(1)$, follows by a symmetry argument. Namely,
-	consider $\sigma \in \Xi_N$ given by reversing the order, i.e. $\sigma(i) = N- i + 1$
+	consider $\sigma \in \Xi_N$ given by reversing the order, i.e., $\sigma(i) = N- i + 1$
 	for all $i \in [1, N]$. By \cref{prop:eta_invariance} we can take $\eta \sigma$ for the
 	$\eta$-function with the presentation of $R$ corresponding to $\sigma$. Then note that
 	$p_\sigma (i) = \sigma (s(\sigma(i)))$ and $s_\sigma (i) = \sigma(p(\sigma(i)))$ for
@@ -1928,7 +1928,7 @@ a small lemma which we will need in the inductive step.
 	\end{equation*}
 \end{lemma}
 \begin{proof}
-	This is a straightforward calculation from the definitons.
+	This is a straightforward calculation from the definitions.
 	\begin{align*}
 		\mcS_{\bbr}(f+g)
 		 & = \prod_{k < l}r_{kl}^{-m_k m_l}                                                                                 \\
@@ -1962,7 +1962,7 @@ a small lemma which we will need in the inductive step.
 	By the previous lemma, $\oy_{\tau, k} = \xi \oy_{[\tau(k), s^m(\tau(k))]}$ for some
 	$\xi \in \bbK^\times$. It is hence sufficient to prove that the leading terms are
 	equal. As in the proof of the previous lemma, we find from $\tau(k) < \tau(1)$ that
-	$\tau([1, k]) = [\tau(k), \tau(i)]$ for some $i \in [1, k]$. Thus $R_{[\tau(k),
+	$\tau([1, k]) = [\tau(k), \tau(i)]$ for some $i \in [1, k]$. Thus, $R_{[\tau(k),
 						\tau(i)]} = R_{\tau, k}$ and $R_{\tau, k-1} = R_{[\tau(k) + 1, \tau(i)]}$.
 
 	In hat follows, all leading terms will be computed with respect to the standard
@@ -1990,22 +1990,23 @@ a small lemma which we will need in the inductive step.
 		\eta(\tau(p_\tau(k))) = \eta(\tau(k)) = \eta(s(\tau(k))),
 	\end{equation*}
 	%
-	which shows that they belong to the same level set. Since $p_\tau(k) \in [1, k-1]$ we
+	which shows that they belong to the same level set. Since $p_\tau(k) \in [1, k-1]$, we
 	find that $\tau(p_\tau(k)) > \tau(k)$. Now, take $\tau(j) \in [\tau(k) + 1,
 			\tau(p_\tau(k))]$ such that $\eta(\tau(j)) = \eta(\tau(k))$. We need to show that $j =
 		p_\tau(k)$. By definition of $p_\tau(k)$ we have $j \notin [p_\tau(k) + 1, k-1]$. Since
-	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$ we also have $j \not [1, p_\tau(k)
-			- 1]$. If $j = p_\tau(k)$, then we are done. If not, then $j > k$, and hence $\tau(j)
-		\notin [\tau(k), \tau(i)]$. By assumption, $\tau(j) \geq \tau(k) + 1$, so we must have
+	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$, we also have $j \not [1,
+			p_\tau(k) - 1]$. If $j = p_\tau(k)$, then we are done. If not, then $j > k$, and hence
+	$\tau(j) \notin [\tau(k), \tau(i)]$. By assumption, $\tau(j) \geq \tau(k) + 1$, so we
+	must have
 	\begin{equation*}
 		\tau(j) > \tau(i) \geq \tau(1) \geq \tau(p_\tau(k)),
 	\end{equation*}
-	a contradiction to $\tau(j) \in [\tau(k) + 1, \tau(p_\tau(k))]$. So, the claim holds and we must have
+	a contradiction to $\tau(j) \in [\tau(k) + 1, \tau(p_\tau(k))]$. So, the claim holds, and we must have
 	\begin{equation*}
 		\max\{n \in \bbZ_{\geq 0} \mid s^n(\tau(p_\tau(k))) \in \tau([1, p\tau(k)])\} = m-1.
 	\end{equation*}
 	%
-	Since $p_\tau(k) < k$ we can apply the induction hypothesis to conclude that
+	Since $p_\tau(k) < k$, we can apply the induction hypothesis to conclude that
 	$\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
 
 	If $\tau(p_\tau(k)) \geq \tau(1)$, then we claim that $\tau(p_\tau(k)) = s^m(\tau(k))$,
@@ -2037,7 +2038,7 @@ a small lemma which we will need in the inductive step.
 		 & = \lt(\oy_{[\tau(k), s^m(\tau(k))]}),
 	\end{align*}
 	%
-	which concludes the proof of the propositon.
+	which concludes the proof of the proposition.
 \end{proof}
 
 We now introduce a subset of $\Xi_N$ which will play a crucial role in the proof of
@@ -2328,7 +2329,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\begin{enumerate}[(a)]
 		\item If $\eta(\tau(k)) \neq \eta(\tau(k + 1))$, then $M_{\tau'} = M_\tau$.
 		\item If $\eta(\tau(k)) = \eta(\tau(k+1))$, set $k_\bullet = \tau_\bullet\tau(k)$. Then
-		      $(\tau')_\bullet\tau'(k) = k_\bullet$ and
+		      $(\tau')_\bullet\tau'(k) = k_\bullet$ and,
 
 		      \begin{equation*}
 			      M_{\tau'}(e_j) = \begin{dcases*}
@@ -2430,7 +2431,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		A = \eta(P_{[\tau(k), s^m(\tau(k))]}) = \eta(\tau([1, k+1])) \setminus \{\eta(\tau(k))\},
 	\end{equation*}
 	%
-	through the restriction of $\eta \tau$. The injectivety of $\eta$ on $P_{[\tau(k),
+	through the restriction of $\eta \tau$. The injectivity of $\eta$ on $P_{[\tau(k),
 						s^m(\tau(k))]}$ also implies
 	\begin{equation*}
 		|Q| = |A| = |P_{[\tau(k), s^m(\tau(k))]}|.
@@ -2487,7 +2488,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	%
 	Such a $w$ exists, because $t,k,k+1 \notin Q, w(j) \in P_{[\tau(k), s^m(\tau(k))]}
 		\not\ni \tau(k), s^{m-1}(\tau(k)), s^m(\tau(k))$ and $\eta w(j) = \eta(\tau(j))$ for
-	all $j \in Q$. Since $|Q| = |P_{[\tau(k), s^m(\tau(k))]}|$ it follows that
+	all $j \in Q$. Since $|Q| = |P_{[\tau(k), s^m(\tau(k))]}|$, it follows that
 	\begin{equation}\label{eq:w_is_bijection}
 		w|_Q \colon Q \to P_{[\tau(k), s^m(\tau(k))]}\quad \text{ is a bijection.}
 	\end{equation}
@@ -2584,7 +2585,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\begin{equation*}
 		Z(\Fract(R))^\mcH = \bbK,
 	\end{equation*}
-	where $Z(\Fract(R))^\mcH$ is the subalgbra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
+	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
 
 Recall the subset $\Gamma_N$ of $\Xi_N$, consisting of the permutations of the form
@@ -2603,7 +2604,7 @@ where $w_\circ = [N, N-1, \dots, 1]$. We will write $\sigma \preceq \tau$ for $\
 any two consecutive elements are of the form $\tau_{i, j-1} \prec \tau_{i, j}$ for some
 $1 \leq i < j \leq N$.
 
-To seach $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$ in such a
+To each $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$ in such a
 way that
 \begin{equation*}
 	\ex_{\id} = \emptyset, \quad \ex_{w_\circ} = \ex \quad
@@ -2665,7 +2666,7 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		\tB_{\sigma, \tau})$ is a compatible pair. Indeed, if we write $t_{lj} =
 		\Omega_{\bbr_\sigma}(b^l_{\sigma, \tau}, e_j)$ for $j\in[1, N], l \in \ex_\tau$, then
 	we see that $t_{lj} = 1$ for all $l \neq j$ and that $t_{ll}$ is not a root of unity,
-	as $t_{ll}^2 = \lambda_l^*$, which is not a root of unity. Furthermore
+	as $t_{ll}^2 = \lambda_l^*$, which is not a root of unity. Furthermore,
 	\begin{align*}
 		t_{ll}^{d_{\eta(k)}}  = (\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}} = t_{kk}^{d_{\eta(l)}}
 	\end{align*}
@@ -2678,7 +2679,7 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 	total order of $\Gamma_N$.
 
 	Let $\tau \prec \tau'$ be two consecutive elements of $\Gamma_N$, and assume that the
-	existences statement holds for $\tau$. We will now show that it holds for $\tau'$ as
+	existence statement holds for $\tau$. We will now show that it holds for $\tau'$ as
 	well. Recall that we can write $\tau = \tau_{i, j-1}$ and $\tau' = \tau_{i, j}$ for
 	some $1 \leq i < j < \leq N$. Furthermore, $\tau' = (i, j)\tau = \tau(j-i, j-i+1)$ with
 	$\tau(j-i) = i < j = \tau(j - i +1)$ such that
@@ -2733,7 +2734,7 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		\Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)^2$ for all $t, l \in [1, N]$ which gives
 	$\Omega_{\bbr_{\tau'}}(e_t, e_l) = \Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)$ as
 	the subgroup of $\bbK^\times$ generated by $\{\nu_{lt} \mid l,t \in [1, N]\}$ contains
-	no elements of order 2, by assumption. Thus $\bbr_{\tau'} =
+	no elements of order 2, by assumption. Thus, $\bbr_{\tau'} =
 		\mu_{k_\bullet}(\bbr_{\tau})$, with which we can now conclude $M_{\tau'} =
 		\mu_{k_\bullet}(M_\tau)$.
 	\Cref{prop:mutation_preserves_good_things,lem:equivariance_mutations} now imply
@@ -2786,7 +2787,7 @@ frame $M_{\id}$.
 To prove parts (a) and (b) for all $\tau \in \Xi_N$ we first prove the following
 proposition, whose statement is very similar to that of \cref{lem:inductive_columns}.
 The main difference is that it applies to $\Xi_N$ and not just to $\Gamma_N$, and that
-the existence of a matrix is already assumed. With the prepatory work that we have
+the existence of a matrix is already assumed. With the preparatory work that we have
 done, the statement is longer than the proof.
 \begin{proposition}\label{prop:inductive_mutation}
 	Assume the setting of \cref{thm:gy_main_result}, and let $\tau, \tau' \in \Xi_N$ be such that
@@ -2807,7 +2808,7 @@ done, the statement is longer than the proof.
 		\end{aligned}
 	\end{equation*}
 	%
-	for all $l\in \ex$. Then, it's principal part is skew-symmetrizable and the columns
+	for all $l\in \ex$. Then, its principal part is skew-symmetrizable and the columns
 	$b^l_{\tau'}, l \in \ex$ of the matrix $\mu_{k_\bullet}(\tB_\tau)$ satisfy
 	\begin{equation*}
 		\begin{aligned}
@@ -2854,7 +2855,7 @@ done, the statement is longer than the proof.
 	\cref{prop:mutation_preserves_good_things,lem:equivariance_mutations}.
 
 \end{proof}
-The proof of parts (a),(b) and (c) of \cref{thm:gy_main_result} are now just a matter of putting everything together.
+The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a matter of putting everything together.
 \begin{proof}[Proof of \cref{thm:gy_main_result} (a), (b) and (c)]
 	We prove part (a) by induction. The uniqueness follows from \cref{lem:unique_b}. Fix $\tau \in \Xi_N$. By \cref{prop:eta_invariance}, we can find a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau \in \Xi_N$ such that for all $l \in [1, n]$ we can write
 	\begin{equation*}
@@ -2864,11 +2865,12 @@ The proof of parts (a),(b) and (c) of \cref{thm:gy_main_result} are now just a m
 	for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. We
 	already proved the existence of $\tB_{\id}$ using \cref{lem:inductive_columns}. Then
 	for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$, then
-	\cref{prop:mutation_adjacent_permutations} (a) yields $M_{\tau_l} = M_{\tau_{l-1}}$ and
-	we can choose $\tB_{\tau_l} = \tB_{\tau_{l-1}}$. Otherwise, if $\eta(\tau_{l-1}(k_l)) =
-		\eta(\tau_l(k_l))$, we can apply \cref{prop:inductive_mutation} for $\tau_{l-1}$ and
-	$\tau_{l}$. In this case $\tB_{\tau_l} = \mu_{(k_l)_\bullet}(\tB_{\tau_{l-1}})$, where
-	$(k_l)_\bullet = (\tau_{k_l})_\bullet(\tau_{k_l}(k_l))$.
+	\cref{prop:mutation_adjacent_permutations} (a) yields $M_{\tau_l} = M_{\tau_{l-1}}$,
+	and we can choose $\tB_{\tau_l} = \tB_{\tau_{l-1}}$. Otherwise, if
+	$\eta(\tau_{l-1}(k_l)) = \eta(\tau_l(k_l))$, we can apply
+	\cref{prop:inductive_mutation} for $\tau_{l-1}$ and $\tau_{l}$. In this case
+	$\tB_{\tau_l} = \mu_{(k_l)_\bullet}(\tB_{\tau_{l-1}})$, where $(k_l)_\bullet =
+		(\tau_{k_l})_\bullet(\tau_{k_l}(k_l))$.
 
 	Part (b) follows as in the proofs of
 	\cref{lem:inductive_columns,prop:inductive_mutation} from
@@ -2877,7 +2879,7 @@ The proof of parts (a),(b) and (c) of \cref{thm:gy_main_result} are now just a m
 	For part (c), the one-step mutation statement follows from
 	\cref{prop:mutation_adjacent_permutations} (a) if $\eta(\tau(k)) \neq \eta(\tau(k +
 			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
-	\cref{prop:inductive_mutation} where we swap the roles of $\tau$ if $\tau'$ if
+	\cref{prop:inductive_mutation} where we swap the roles of $\tau$ and $\tau'$ if
 	$\tau'(k) = \tau(k + 1) < \tau'(k + 1) = \tau(k)$. Then, since mutation is involutive,
 	every $\tau \in \Xi_N$ can be obtained by a sequence of one-step mutations from $\id$
 	due to \cref{prop:eta_invariance} and the uniqueness of part (a), we obtain that all
@@ -2968,7 +2970,7 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      \end{enumerate}
 		      %
 		      Indeed, if $\eta(\tau(k)) = \eta(\tau(k + 1))$, then this follows from
-		      \cref{lem:tau_bullet,thm:minimal_denominators}. Otherwise we obtain from
+		      \cref{lem:tau_bullet,thm:minimal_denominators}. Otherwise, we obtain from
 		      \cref{thm:y_prime_swapped_cgl} that $y_{\tau', j} = y_{\tau, (k, k+1)j}$ for all $j\in
 			      [1, N]$. Consequently, $E_\tau = E_{\tau'}$, and $m_{\tau', l} = m_{\tau, (k, k+1)j}$
 		      for all $j \in [1, N]$. The claim then follows from \cref{lem:tau_bullet} (c).
