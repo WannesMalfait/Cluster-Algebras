@@ -387,9 +387,9 @@ Given a seed, we can convert it to another seed through a \emph{seed
 		\item All arrows in $Q$ incident to $k$ get their orientation flipped.
 		\item $\tbx' = \{x_1', \dots, x_n'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
-		      \begin{equation*}
+		      \begin{equation}\label{eq:exchange_relation_quiver}
 			      x'_k = \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
-		      \end{equation*}
+		      \end{equation}
 		      where we take the product equal to 1 if $\{i \to k\} = \emptyset$ or $\{k \to j\} = \emptyset$.
 	\end{enumerate}
 \end{definition}
@@ -461,7 +461,7 @@ Let us now look at some examples, where we also keep track of the cluster variab
 		Q = \begin{tikzcd}
 			\bullet
 		\end{tikzcd},
-		\quad \bx = \left\{\frac{x}{2}\right\}.
+		\quad \bx = \left\{\frac{2}{x}\right\}.
 	\end{equation*}
 	%
 	If we mutate again, we end up with the original seed, as a consequence of

@@ -1,4 +1,5 @@
 \newcommand{\bbr}{\mathbf{r}}
+\newcommand{\bbq}{\mathbf{q}}
 \newcommand{\bbn}{\boldsymbol{\nu}}
 \newcommand{\bbl}{\boldsymbol{\lambda}}
 \newcommand{\bbg}{\boldsymbol{\gamma}}
@@ -6,16 +7,324 @@
 \renewcommand{\oe}{\overline{e}}
 
 \chapter{Quantum cluster algebras}
-\section{Quantum tori}
+All of the algebras that we have discussed thusfar have been commutative. Indeed, a
+cluster algebra is by construction commutative. There are, however, many interesting
+algebras arising from natural examples that are not commutative. Of these, a broad
+class is given by deformations of universal envelopping algebras and coordinate
+algebras. To also be able to study these objects through cluster algebras, we will need
+a noncommutative version of a cluster algebra. The first section of this chapter will
+be dedicated to describing how one can generalise cluster algebras to the
+noncommutative setting, obtaining so-called quantum cluster algebras.
 
-Some of the basic background needed on quantum tori, and rational actions.
+We will then compare the Grassmannians that we saw in the setting of cluster algebras,
+to quantum Grassmannians. This will be used to provide a better intuition for the
+differences between the quantum and non-quantum setting. Finally, we will look at one
+specific class of noncommutative algebras, the symmetric CGL extensions. These always
+admit a quantum cluster algebra structure, which can be written down explicitly. We
+will follow the work of \cite{GoodearlYakimov2017QCA} while working out some examples
+to get a better feel for the material.
 
 \section{Quantum cluster algebras}
 
-Toric frames, quantum seeds and mutations. Quantum Laurent phenomenon.
+The goal of this section is to generalise cluster algebras to the noncommutative
+setting. We will follow the definitions as given in \cite{GoodearlYakimov2017QCA}. We
+first fix some notation that we will use throughout.
+
+In what follows, $\bbK$ will be a field and $N \in \bbZ_{> 0}$ an integer. We denote by
+$\bbK^\times$ the multiplicative group of $\bbK$. It will be useful to consider the
+following multiplicative version of matrix multiplication. Let $D$ be a commutative
+ring or a multiplicative group. For $A = (a_{ij}) \in M_{m \times n}(D), B = (b_{ij})
+	\in M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in M_{n \times r} (\bbZ)$, we define
+\begin{equation*}
+	(\prescript{B}{}{A}^C)_{ij} = \prod_{k, l} a_{kl}^{b_{ik}c_{lj}},
+\end{equation*}
+%
+with special cases
+\begin{equation*}
+	(\prescript{B}{}{A})_{ij} = \prod_{k} a_{kj}^{b_{ik}}, \text{ and }	(A^C)_{ij} = \prod_{k} a_{ik}^{c_{kj}}.
+\end{equation*}
+%
+This product is also associative in the sense that $\prescript{B_2 B_1}{}{A}^{C_1 C_2}
+	= \prescript{B_2}{}{}(\prescript{B_1}{}{}A^{C_1})^{C_2}$.
+
+In most cases the exponent will be a column vector. Whenever we write $f \in \bbZ^N$ we
+will view $f$ as a column vector, i.e. an $N \times 1$-matrix over the integers. The
+standard basis vectors of $\bbZ^N$ will be denoted by $e_i$.
+
+For $m, n \in \bbZ$, we will write $[m, n]$ to denote the set $\{m, m+1, \dots, n-1,
+	n\} \in \bbZ$. In particular, $[m, n] = \emptyset$ if $m > n$.
+
+\subsection{Tori and rational actions}
+
+Recall that the cluster variables were initially defined as elements of the function
+field $\bbK(x_1, \dots, x_N)$. It is not so trivial, to come up with a good
+noncommutative analog of this function field. However, due to the Laurent phenomenon
+(\cref{thm:laurent_phenomenon}), it suffices to consider the algebra $\bbK[x_1^{\pm 1},
+	\dots, x_N^{\pm 1}]$. Note that this is the coordinate algebra of the
+\emph{$\bbK$-torus}\index{torus}, $(\bbK^\times)^N$. We can then apply a minimal
+deformation to this coordinate algebra to make it noncommutative. This yields a
+so-called \emph{quantum torus}\index{torus!quantum}. These quantum tori will play a
+central role in what follows.
+
+Let $\bbr \in M_N(\bbK^\times)$ be a \emph{multiplicatively
+	skew-symmetric}\index{skew-symmetric!multiplicatively} matrix, i.e., $r_{ij} =
+	r_{ji}\inv$ for all $i,j \in [1, N]$. We then write $\mcT_\bbr$ for the quantum torus
+\begin{equation*}
+	\mcT_\bbr = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)}.
+\end{equation*}
+%
+\begin{remark}
+
+	In most examples, $\bbr$ will be of the form $(q^{\Lambda_{ij}})$ for some
+	skew-symmetric matrix $\Lambda \in M_N(\bbZ)$. We will refer to $\mcT_r$ as a
+	\emph{uniparameter}\index{uniparameter} quantum tori in this case.
+\end{remark}
+%
+Before moving on to the definition of quantum seeds and mutations, we take a look at
+rational actions by tori. These will be used extensively in the context of CGL
+extensions. \medskip
+
+We borrow some definitions from \cite{GoodearlBrown2002LecturesAQC}. Let $\mcH$ be a
+group, and $A$ a $\bbK$-algebra. We say that $\mcH$ \emph{acts on $A$ by
+	automorphisms}\index{action!by automorphisms} if for every $h \in \mcH$, the map $A \to
+	A \colon x \mapsto h \cdot x$ is a $\bbK$-algebra automorphism. A nonzero element $u
+	\in A$ is called an \emph{$\mcH$-eigenvector}\index{H@$\mcH$!-eigenvector} if $\mcH
+	\cdot u \subseteq \bbK u$. So, for each $h \in \mcH$ there exists some $\lambda_h \in
+	\bbK$ such that $h \cdot u = \lambda_h u$. Since $\mcH$ acts by automorphisms,
+$\lambda_h \neq 0$ for all $h \in \mcH$. So, we get a group homomorphism $\chi_u \colon
+	\mcH \to \bbK^\times$ given by $\chi_u(h) = \lambda_h$. We call $\chi_u$ the
+\emph{$\mcH$-eigenvalue}\index{H@$\mcH$!-eigenvalue} of $u$. Associated to each
+$\mcH$-eigenvalue is its \emph{$\mcH$-eigenspace}\index{H@$\mcH$!-eigenspace}
+\begin{equation*}
+	A_\chi = \{u \in A \mid h \cdot x = \chi(h)x,\, \forall h \in \mcH \}.
+\end{equation*}
+%
+Finally, we say that the action is \emph{semisimple}\index{action!semisimple} if $A$ is
+the direct sum of its $\mcH$-eigenspaces.
+
+Now, let $\mcH$ be a \emph{$\bbK$-torus}\index{torus}, that is, a group of the form
+$(\bbK^\times)^N$. By identifying $\mcH$ with the affine variety $\{(x_1, \dots, x_N,
+	y) \in \bbK^{N+1} \mid x_1 \cdots x_N y = 1\}$, we can view it as an algebraic group.
+Assume that $\mcH$ acts on a $\bbK$-algebra $A$ by $\bbK$-algebra automorphisms. Then
+we say that the action of $\mcH$ on $A$ is \emph{rational}\index{action!rational} if it
+is semisimple, and all the corresponding $\mcH$-eigenvalues are morphisms of affine
+varieties.
+
+Write
+\begin{equation*}
+	X(\mcH) = \{\chi \in \Hom(\mcH, \bbK^\times) \mid \chi \text{ is a morphism of algebraic varieties}\},
+\end{equation*}
+%
+for the character group\index{group!character} of $\mcH$. Then a rational action is the
+same as an $X(\mcH)$-grading\index{grading} of $A$. Indeed, if we have a rational
+action on $A$, then we can write
+\begin{equation*}
+	A = \bigoplus_{\chi \in X(\mcH)} A_\chi,
+\end{equation*}
+which is graded because for $a \in A_\chi, b \in A_{\chi'}$ and all $h \in \mcH$:
+\begin{align*}
+	h \cdot (a b) = (h\cdot a)(h\cdot b)= \chi(h)a \chi'(h)b = (\chi \chi')(h)ab,
+\end{align*}
+so that $ab \in A_{\chi \chi'}$. Conversely, if
+\begin{equation*}
+	A = \bigoplus_{g \in X(\mcH)} A_g
+\end{equation*}
+is a grading, then we get a rational action through
+\begin{equation*}
+	h \cdot x = h \cdot \left(\sum_{g \in X(\mcH)} x_g \right) = \sum_{g \in X(\mcH)} g(h)x.
+\end{equation*}
+%
+Under this correspondence, the $\mcH$-eigenvectors are precisely the nonzero
+homogeneous\index{element!homogeneous} elements under the grading.
+
+\begin{example}
+	Consider the noncommutative $\bbK$-algebra $A$ generated by $x,y,z$ with relations $xy
+		-qyx = z$ and $zx = qxz$. We have an action on $A$ by $\mcH = (\bbK^\times)^2$, given
+	on the generators by
+	\begin{align*}
+		(\xi, \eta)\cdot x & = \xi x      \\
+		(\xi, \eta)\cdot y & = \eta y     \\
+		(\xi, \eta)\cdot z & = \xi\eta z.
+	\end{align*}
+	%
+	Because the action respects the relations on the generators, it follows that we can
+	extend the action to the whole of $A$, such that $\mcH$ acts by automorphisms. Note
+	that the generators are $\mcH$-eigenvectors, with $\mcH$-eigenvalues given by
+	polynomial functions. Thus, the action is rational.
+
+\end{example}
+
+\subsection{Toric frames and quantum mutations}
+
+We now proceed with the quest towards quantum cluster algebras. Recall that a cluster
+algebra is determined by an initial seed, consisting of a matrix and the intitial
+cluster variables. The mutation is completely determined by the matrix. In the
+noncommutative setting, there is one additional thing to keep track of, namely the
+multiplicatively skew-symmetric matrix $\bbr \in M_N(\bbK^\times)$. We will combine the
+data of $\bbr$ together with the data of the cluster variables in one object, called a
+\emph{toric frame}.
+
+Fix a multiplicatively skew-symmetric matrix $\bbr \in M_N(\bbK^\times)$. In the
+quantum torus $\mcT_\bbr$, we have that $Y_i Y_j = r_{ij}Y_j Y_i =
+	\prescript{e_i}{}{}\bbr^{e_j} Y_j Y_i$. Write $Y^f = Y_1 ^f{f_1} \cdots Y_N^{f_N}$ for
+$f \in \bbZ^N$. It would now be desirable to also have that
+\begin{equation*}
+	Y^f Y^g = \prescript{f^T}{}{}\bbr^g Y^g Y^f
+\end{equation*}
+for all $f, g \in \bbZ^N$. This is already true... \textbf{TODO: motivation for why move to based quantum torus...}
+
+Associated to any such matrix, is a skew-symmetric bicharacter \footnote{With a
+	bicharacter we mean a map from a direct product, such that each of the component maps
+	is a group character.}:
+\begin{equation*}
+	\Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
+	\Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
+\end{equation*}
+
+To prevent formulas from having $\frac{1}{2}$'s in the exponents, we will work with the
+quantum torus $\mcT_{\mathbf{r}^{\cdot 2}}$, where
+\begin{equation*}
+	\mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
+\end{equation*}
+This torus has a $\bbK$-basis consisting of elements
+\begin{equation*}
+	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
+	\text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
+\end{equation*}
+where
+\begin{equation*}
+	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
+\end{equation*}
+Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
+\begin{align*}
+	Y^{(e_k)}
+	 & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
+	 & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
+	 & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
+	 & = Y_K.
+\end{align*}
+Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
+\begin{equation*}
+	Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
+\end{equation*}
+Indeed,
+\begin{align*}
+	Y^{(f)}Y^{(g)}
+	 & = \mcS_{\mathbf{r}}(f)Y^f\mcS_{\mathbf{r}}(g)Y^g                                    \\
+	 & = (\prod_{i < j}r_{ij}^{-f_if_j})(\prod_{i}Y_i^{f_i})
+	(\prod_{i < j}r_{ij}^{-g_ig_j})( \prod_{i}Y_i^{g_i})                                   \\
+	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+	(\prod_{k}Y_k^{f_k})(\prod_{k}Y_k^{g_k})                                               \\
+	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
+	(\prod_{i < j}r_{ij}^{-2g_if_j})(\prod_{k}Y_k^{f_k + g_k})
+	 & (Y_i^{f_i} Y_j^{g_j} = r_{ij}^{2f_ig_j}Y_j^{g_j}Y_i^{f_i})                          \\
+	 & = (\prod_{i < j}r_{ij}^{-(f_if_j +2g_if_j + g_ig_j)})
+	(\prod_{k}Y_k^{f_k + g_k})                                                             \\
+	 & = (\prod_{i < j}r_{ij}^{f_ig_j - g_if_j})
+	(\prod_{i < j}r_{ij}^{-(f_if_j + f_ig_j + g_if_j + f_ig_j)})(\prod_{k}Y_k^{f_k + g_k}) \\
+	 & = (\prod_{i,j}r_{ij}^{f_ig_j})
+	(\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
+	 & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
+\end{align*}
+The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^{(f)} \mid f \in \bbZ^N\}$
+is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
+
+We now come to the analog of clusters in the quantum setting.
+\begin{definition}
+	A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
+	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
+	\begin{enumerate}
+		\item There is an algebra embedding $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
+		      given by $\varphi(Y_i) = M(e_i)$, such that $\mcF =
+			      \Fract(\varphi(\mcT_{\mathbf{r}^{\cdot 2}}))$.
+		\item For all $f \in \bbZ^N$, $M(f) = \varphi(Y^{(f)})$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	We can always recover the matrix $\mathbf{r}$ from the toric frame $M$,
+	since
+	\begin{align*}
+		r_{ij}
+		                         & = \Omega_{\mathbf{r}}(e_i, e_j)                    \\
+		                         & = Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv          \\
+		                         & \Big\Updownarrow                                   \\
+		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
+		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
+	\end{align*}
+	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
+\end{remark}
+Now, for quantum seeds, we'll need an extra compatibility condition:
+\begin{definition}
+	A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
+	and an $N \times n$ matrix $B$ over $\bbZ$ such that
+	\begin{enumerate}
+		\item The principal part of $\tB$ is skew-symmetrizable.
+		\item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
+	\end{enumerate}
+\end{definition}
+
+So, what is this extra compatibility? In analogy with \cref{eq:exchange_relation_quiver} we
+want to define $\mu_k(M)$ in such a way that $\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$
+and
+\begin{equation*}
+	M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
+\end{equation*}
+where $b^k$ is the $k$-th column of $B$.
+Bringing $M(e_k)$ to the other side,
+and ignoring eventual symmetrization constants we can then define
+\begin{equation*}
+	\mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
+\end{equation*}
+Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
+\begin{align*}
+	\mu_k(M)(e_k)
+	 & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
+	 & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
+	 & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
+\end{align*}
+where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
+\begin{equation*}
+	E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
+\end{equation*}
+Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
+and $E_\epsilon e_j = e_j$ for all $j \neq k$,
+we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
+In other words,
+we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
+\begin{align*}
+	M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
+\end{align*}
+On the one hand we have
+\begin{align*}
+	M'(e_k)M'(e_j)
+	 & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
+	 & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
+	 & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
+	 & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
+\end{align*}
+while $M'$ being a toric frame would imply
+\begin{align*}
+	M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
+\end{align*}
+The easiest way to make the two equations compatible,
+is to demand $\mathbf{r}' = \mathbf{r}$,
+and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
+\textbf{TODO: is this the only possible choice?}
+This leads to the following definition:
+\begin{definition}
+	Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
+	\begin{equation*}
+		t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
+	\end{equation*}
+	for $j \in \mathbf{ex}$ and $j \in [1, N]$.
+	We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
+	$t_{ij} = 1$ whenever $i \neq j$,
+	and all the $t_{ii}$ are \emph{not} roots of unity.
+\end{definition}
+\textbf{TODO: How to explain the root of unity part? Is there a clean way?}
+\textbf{TODO: rewrite the above}
 
 \textbf{TODO: fill out these stubs}
-
 \begin{lemma}\label{lem:principal_part_skew_symmetrizable}
 	GY Lemma 2.4
 \end{lemma}
@@ -88,63 +397,6 @@ $R$ is Noetherian. It will also be a domain if $R$ is a domain.
 		      That $\partial_x$ is a derivation follows from the ordinary product rule for derivatives.
 	\end{itemize}
 \end{example}
-
-\textbf{What is rational action of a torus.}
-
-We borrow some definitions from \cite{GoodearlBrown2002LecturesAQC}. Let $\mcH$ be a
-group, and $A$ a $\bbK$-algebra. We say that $\mcH$ \emph{acts on $A$ by
-	automorphisms}\index{action!by automorphisms} if for every $h \in \mcH$, the map $A \to
-	A \colon x \mapsto h \cdot x$ is a $\bbK$-algebra automorphism. A nonzero element $u
-	\in A$ is called an \emph{$\mcH$-eigenvector}\index{H@$\mcH$!-eigenvector} if $\mcH
-	\cdot u \subseteq \bbK u$. So, for each $h \in \mcH$ there exists some $\lambda_h \in
-	\bbK$ such that $h \cdot u = \lambda_h u$. Since $\mcH$ acts by automorphisms,
-$\lambda_h \neq 0$ for all $h \in \mcH$. So, we get a group homomorphism $\chi_u \colon
-	\mcH \to \bbK^\times$ given by $\chi_u(h) = \lambda_h$. We call $\chi_u$ the
-\emph{$\mcH$-eigenvalue}\index{H@$\mcH$!-eigenvalue} of $u$. Associated to each
-$\mcH$-eigenvalue is its \emph{$\mcH$-eigenspace}\index{H@$\mcH$!-eigenspace}
-\begin{equation*}
-	A_\chi = \{u \in A \mid h \cdot x = \chi(h)x \forall h \in \mcH \}.
-\end{equation*}
-%
-Finally, we say that the action is \emph{semisimple}\index{action!semisimple} if $A$ is
-the direct sum of its $\mcH$-eigenspaces.
-
-Now, let $\mcH$ be a \emph{$\bbK$-torus}\index{torus}, that is, a group of the form
-$(\bbK^\times)^r$. By identifying $\mcH$ with the affine variety $\{(x_1, \dots, x_r,
-	y) \in \bbK^{r+1} | x_1 \dots x_r y = 1\}$, we can view it as an algebraic group.
-Assume that $\mcH$ acts on a $\bbK$-algebra $A$ by $\bbK$-algebra automorphisms. Then
-we say that the action of $\mcH$ on $A$ is \emph{rational}\index{action!rational} if it
-is semisimple, and all the corresponding $\mcH$-eigenvalues are morphisms of affine
-varieties.
-
-Write
-\begin{equation*}
-	X(\mcH) = \{\chi \in \Hom(\mcH, \bbK^\times) \mid \chi \text{ is a morphism of algebraic varieties}\},
-\end{equation*}
-%
-for the character group\index{group!character} of $\mcH$. Then a rational action is the
-same as an $X(\mcH)$-grading\index{grading} of $A$. Indeed, if we have a rational
-action on $A$, then we can write
-\begin{equation*}
-	A = \bigoplus_{\chi \in X(\mcH)} A_\chi,
-\end{equation*}
-which is graded because for $a \in A_\chi, b \in A_{\chi'}$ and all $h \in \mcH$:
-\begin{align*}
-	h \cdot (a b) = (h\cdot a)(h\cdot b)= \chi(h)a \chi'(h)b = (\chi \chi')(h)ab,
-\end{align*}
-so that $ab \in A_{\chi \chi'}$. Conversely, if
-\begin{equation*}
-	A = \bigoplus_{g \in X(\mcH)} A_g
-\end{equation*}
-is a grading, then we get a rational action through
-\begin{equation*}
-	h \cdot x = h \cdot \left(\sum_{g \in X(\mcH)} x_g \right) = \sum_{g \in X(\mcH)} g(h)x.
-\end{equation*}
-%
-Under this correspondence, the $\mcH$-eigenvectors are precisely the nonzero
-homogeneous\index{element!homogeneous} elements under the grading.
-
-\textbf{TODO: Examples}.
 
 \textbf{Def CGL extension. Example of matrices, and Heisenberg algebra.}
 
@@ -237,8 +489,9 @@ Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_[j+1, N]$ via
 \end{equation*}
 %
 The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
-$\delta_k$ preserve $R_{[j, k-1]}$ and $\sigma_k^*, \delta_k^*$ preserve $R_{[j+1, k]}$
-for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ in two ways:
+$\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
+$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ in
+two ways:
 \begin{equation*}
 	R_{[j, k]} = R_{[j, k-1]}[x_k; \sigma_k, \delta_k] \text{ and } R_{[j,k]} = R_{[j+1, k]}[x_j; \sigma_j^*, \delta_j^*].
 \end{equation*}
@@ -258,11 +511,15 @@ Each $\tau \in \Xi_N$ gives rise to a CGL presentation:
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
 \end{equation*}
 %
-where $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
-and $h_{\tau(k)}' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$, while
-$\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
-$h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$
-(\cite[Proposition 3.14]{GoodearlYakimov2017QCA}).
+where
+\begin{itemize}
+	\item $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
+	      and $h_{\tau(k)}' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
+	\item
+	      $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
+	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
+\end{itemize}
+(cf. \cite[Proposition 3.14]{GoodearlYakimov2017QCA})
 
 \textbf{Homogeneous prime elements.}
 
@@ -1081,9 +1338,9 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
 		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
 				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet' = \tau_\bullet\tau$.
-		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1, N-1]$
-		      If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' = \tau_\bullet\tau
-			      (k, k +1)$.
+		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
+				      N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' =
+			      \tau_\bullet\tau (k, k +1)$.
 		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
 			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
 		      $\tau_\bullet\tau(k) = j$.
@@ -3055,257 +3312,3 @@ just a matter of putting together the inclusions from
 	from which we obtain \cref{thm:gy_main_result} (e), after applying
 	\cref{thm:intersections} (e).
 \end{proof}
-
-% \section{Some definitions}
-
-% We start with the non-quantized version of cluster algebras, introduced in
-% \cite{FominZelevinsky2002CAF}. We won't take the most general definition, since that
-% doesn't carry over as nicely to the quantized version.
-
-% \subsection{Notation}
-
-% Some of the notation that we will use throughout this paper. Let $[a,b] = \{a, a+1,
-% 	\dots, b\}$ for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an
-% integer $N$, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$
-% will be called the \emph{exchangeable} indices. Let $\mcF = \bbQ(Y_1, \dots, Y_N)$, be
-% the field of rational functions over $\bbQ$. Boldface letters will be used to denote
-% vectors, matrices, or clusters.
-
-% \subsection{Classical cluster algebras}
-
-% Before giving the definition of a cluster algebra, we need to define what seeds and
-% seed mutations are.
-% \begin{definition}[\cite{BerensteinZelevinsky2005QCA}]
-% 	A \emph{seed} is a pair $(\tilde{\mathbf{x}}, \tilde{B})$ such that
-% 	\begin{enumerate}
-% 		\item $\tilde{\mathbf{x}}$ is a \emph{free generating set} of $\mcF$.
-% 		      So, $\tilde{\mathbf{x}}$ is a set of $N$ elements $x_1, \dots, x_n \in \mcF$ that are algebraically independent, and generate $\mcF$.
-% 		\item $\tilde{B}$ is an $N \times n$ matrix over $\bbZ$ with columns labeled by the exchangeable
-% 		      indices $\ex$. Let $B$ be the $n \times n$ submatrix
-% 		      of $\tilde{B}$ consisting of all the rows with index in $\ex$.
-% 		      We call $B$ the \emph{principal part} of $\tilde{B}$, and require that it is \emph{skew-symmetrizable}.
-% 		      This means that there exists a diagonal matrix $D$ with positive entries
-% 		      such that $D\inv B D = - B^T$ i.e., $BD$ is skew-symmetric.
-% 	\end{enumerate}
-% \end{definition}
-
-% Looking only at the exchangeable indices, we get the \emph{cluster} $\mathbf{x} = \{x_i
-% 	\mid i \in \ex \} \subseteq \tilde{\mathbf{x}}$.
-% \begin{definition}
-% 	Let $(\tilde{\mathbf{x}}, \tilde{B})$ be a seed.
-% 	The \emph{seed mutation} in direction $k \in \ex$
-% 	produces a new seed $\mu_k(\tilde{\mathbf{x}}, \tB) = (\tilde{\bx}', \tB')$, where:
-% 	\begin{itemize}
-% 		\item $\tbx' = (\tbx \setminus \{x_k\}) \cup \{x_k'\}$,
-% 		      with $x_k' \in \mcF$ determined by the \emph{exchange relation}:
-% 		      \begin{equation}
-% 			      \label{eq:exchange_relation}
-% 			      x_kx_k' = \prod_{\substack{i \in [1,N] \\ b_{ik} > 0}}x_i^{b_{ik}} + \prod_{\substack{i \in [1, N] \\ b_{ik} < 0}}x_i^{-b_{ik}}.
-% 		      \end{equation}
-% 		\item $\tB'$ is given by the formula:
-% 		      \begin{equation}
-% 			      \label{eq:matrix_mutation}
-% 			      b'_{ij} =
-% 			      \begin{cases}
-% 				      -b_{ij}                                            & \text{ if } i=k \text{ or } j=k \\
-% 				      b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2} & \text{ otherwise}
-% 			      \end{cases}
-% 			      .
-% 		      \end{equation}
-% 	\end{itemize}
-% \end{definition}
-
-% \begin{remark}
-% 	These formulas seem a bit random at first sight,
-% 	but have a nice interpretation in the language of quivers.
-% 	Assume that $B$ is skew-symmetric,
-% 	and let $Q$ be the directed graph on $N$ vertices with $b_{ij}$ edges
-% 	from $i$ to $j$ if $j \in \ex$. If $b_{ij}$ is negative,
-% 	the edges have the opposite orientation.
-% 	Now, define the mutation of $Q$ at vertex $k$ as follows:
-% 	\begin{itemize}
-% 		\item For every edge connected to $k$, flip its orientation.
-% 		\item For every pair of edges $i\to k$ and $k\to j$, create an edge $i \to j$. Then
-% 		      ``cancel'' any pair of edges between $i$ and $j$ with opposite orientation.
-% 	\end{itemize}
-% 	The new matrix representing this graph, will be given precisely by \cref{eq:matrix_mutation}.
-% 	Furthermore, the exchange relation (\ref{eq:exchange_relation}) now takes the following form:
-% 	\begin{equation*}
-% 		x_kx_k' = \prod_{i \to k}x_i + \prod_{k \to j}x_i.
-% 	\end{equation*}
-% \end{remark}
-
-% \medskip
-
-% With these definitions out of the way we define the \emph{cluster algebra} associated
-% to a seed as the subalgebra of $\mcF$ generated by the union of clusters of all seeds
-% obtained through (iterative) mutations of the initial seed.
-
-% Instead of proving things now for the classical case, we will jump directly to the
-% quantized version to avoid having to prove the same results twice.
-
-% \subsection{Quantum cluster algebras}
-
-% \textbf{TODO: add more notation!}
-% We will follow the notation as presented in \cite{GoodearlYakimov2017QCA}.
-% Let $\bbK$ be any field.
-% As a first step, we move from $\bbQ(Y_1, \dots, Y_N)$ to
-% the \emph{quantum torus}
-% \begin{equation*}
-% 	\mcT_{\mathbf r} =
-% 	\frac{\bbK\langle Y_1^{\pm 1}, \dots, Y_N^{\pm 1} \rangle}{\langle Y_iY_j = r_{ij}Y_jY_i \rangle},
-% \end{equation*}
-% where $\mathbf{r} \in M_N(\bbK^*)$ is a multiplicatively skew-symmetric matrix i.e.,
-% $r_{ij} = r_{ji}\inv, r_{ii} = 1$.
-% Associated to any such matrix, is a skew-symmetric bicharacter
-% \footnote{With a bicharacter we mean a map from a direct product,
-% 	such that each of the component maps is a group character.}:
-% \begin{equation*}
-% 	\Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
-% 	\Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
-% \end{equation*}
-
-% To prevent formulas from having $\frac{1}{2}$'s in the exponents, we will work with the
-% \emph{quantum torus}\footnote{ The reason it's called a quantum torus is the following:
-% 	it is a quantization of the coordinate algebra of the torus $(\bbK^{*})^N$. }
-% $\mcT_{\mathbf{r}^{\cdot 2}}$, where
-% \begin{equation*}
-% 	\mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
-% \end{equation*}
-% This torus has a $\bbK$-basis consisting of elements
-% \begin{equation*}
-% 	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
-% 	\text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
-% \end{equation*}
-% where
-% \begin{equation*}
-% 	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
-% \end{equation*}
-% Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
-% \begin{align*}
-% 	Y^{(e_k)}
-% 	 & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
-% 	 & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
-% 	 & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
-% 	 & = Y_K.
-% \end{align*}
-% Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
-% \begin{equation*}
-% 	Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
-% \end{equation*}
-% Indeed,
-% \begin{align*}
-% 	Y^{(f)}Y^{(g)}
-% 	 & = \mcS_{\mathbf{r}}(f)Y^f\mcS_{\mathbf{r}}(g)Y^g                                    \\
-% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j})(\prod_{i}Y_i^{f_i})
-% 	(\prod_{i < j}r_{ij}^{-g_ig_j})( \prod_{i}Y_i^{g_i})                                   \\
-% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
-% 	(\prod_{k}Y_k^{f_k})(\prod_{k}Y_k^{g_k})                                               \\
-% 	 & = (\prod_{i < j}r_{ij}^{-f_if_j - g_ig_j})
-% 	(\prod_{i < j}r_{ij}^{-2g_if_j})(\prod_{k}Y_k^{f_k + g_k})
-% 	 & (Y_i^{f_i} Y_j^{g_j} = r_{ij}^{2f_ig_j}Y_j^{g_j}Y_i^{f_i})                          \\
-% 	 & = (\prod_{i < j}r_{ij}^{-(f_if_j +2g_if_j + g_ig_j)})
-% 	(\prod_{k}Y_k^{f_k + g_k})                                                             \\
-% 	 & = (\prod_{i < j}r_{ij}^{f_ig_j - g_if_j})
-% 	(\prod_{i < j}r_{ij}^{-(f_if_j + f_ig_j + g_if_j + f_ig_j)})(\prod_{k}Y_k^{f_k + g_k}) \\
-% 	 & = (\prod_{i,j}r_{ij}^{f_ig_j})
-% 	(\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
-% 	 & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
-% \end{align*}
-% The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^(f) \mid f \in \bbZ^N\}$
-% is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
-
-% We now come to the analog of clusters in the quantum setting.
-% \begin{definition}
-% 	A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
-% 	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
-% 	\begin{enumerate}
-% 		\item There is an algebra embedding $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
-% 		      given by $\varphi(Y_i) = M(e_i)$, such that $\mcF =
-% 			      \Fract(\varphi(\mcT_{\mathbf{r}^{\cdot 2}}))$.
-% 		\item For all $f \in \bbZ^N$, $M(f) = \varphi(Y^{(f)})$.
-% 	\end{enumerate}
-% \end{definition}
-% \begin{remark}
-% 	We can always recover the matrix $\mathbf{r}$ from the toric frame $M$,
-% 	since
-% 	\begin{align*}
-% 		r_{ij}
-% 		                         & = \Omega_{\mathbf{r}}(e_i, e_j)                    \\
-% 		                         & = Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv          \\
-% 		                         & \Big\Updownarrow                                   \\
-% 		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
-% 		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
-% 	\end{align*}
-% 	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
-% \end{remark}
-% Now, for quantum seeds, we'll need an extra compatibility condition:
-% \begin{definition}
-% 	A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
-% 	and an $N \times n$ matrix $B$ over $\bbZ$ such that
-% 	\begin{enumerate}
-% 		\item The principal part of $\tB$ is skew-symmetrizable.
-% 		\item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
-% 	\end{enumerate}
-% \end{definition}
-
-% So, what is this extra compatibility? In analogy with \cref{eq:exchange_relation} we
-% want to define $\mu_k(M)$ in such a way that $\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$
-% and
-% \begin{equation*}
-% 	M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
-% \end{equation*}
-% where $b^k$ is the $k$-th column of $B$.
-% Bringing $M(e_k)$ to the other side,
-% and ignoring eventual symmetrization constants we can then define
-% \begin{equation*}
-% 	\mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
-% \end{equation*}
-% Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
-% \begin{align*}
-% 	\mu_k(M)(e_k)
-% 	 & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
-% 	 & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
-% 	 & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
-% \end{align*}
-% where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
-% \begin{equation*}
-% 	E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
-% \end{equation*}
-% Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
-% and $E_\epsilon e_j = e_j$ for all $j \neq k$,
-% we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
-% In other words,
-% we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
-% \begin{align*}
-% 	M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
-% \end{align*}
-% On the one hand we have
-% \begin{align*}
-% 	M'(e_k)M'(e_j)
-% 	 & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
-% 	 & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
-% 	 & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
-% 	 & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
-% \end{align*}
-% while $M'$ being a toric frame would imply
-% \begin{align*}
-% 	M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
-% \end{align*}
-% The easiest way to make the two equations compatible,
-% is to demand $\mathbf{r}' = \mathbf{r}$,
-% and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
-% \textbf{TODO: is this the only possible choice?}
-% This leads to the following definition:
-% \begin{definition}
-% 	Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
-% 	\begin{equation*}
-% 		t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
-% 	\end{equation*}
-% 	for $j \in \mathbf{ex}$ and $j \in [1, N]$.
-% 	We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
-% 	$t_{ij} = 1$ whenever $i \neq j$,
-% 	and all the $t_{ii}$ are \emph{not} roots of unity.
-% \end{definition}
-% \textbf{TODO: How to explain the root of unity part? Is there a clean way?}
-
