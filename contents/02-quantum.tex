@@ -5,6 +5,8 @@
 \newcommand{\bbg}{\boldsymbol{\gamma}}
 \newcommand{\oy}{\overline{y}}
 \renewcommand{\oe}{\overline{e}}
+\newcommand{\epsbullet}{e_{p(k_\bullet)} + e_{s(k_\bullet)}}
+\newcommand{\ekbullet}{e_{k_\bullet}}
 
 \chapter{Quantum cluster algebras}
 All of the algebras that we have discussed thusfar have been commutative. Indeed, a
@@ -2690,7 +2692,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\begin{equation*}
 		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
 	\end{equation*}
-	for some $k \in [1, N-1]$ such that $\tau(k) < \tau(k+1)$.
+	for some $k \in [1, N-1]$.
 	\begin{enumerate}[(a)]
 		\item If $\eta(\tau(k)) \neq \eta(\tau(k + 1))$, then $M_{\tau'} = M_\tau$.
 		\item If $\eta(\tau(k)) = \eta(\tau(k+1))$, set $k_\bullet = \tau_\bullet\tau(k)$. Then
@@ -2702,16 +2704,22 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 				      M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(g-e_{k_\bullet}), & if $j =k_\bullet$
 			      \end{dcases*}
 		      \end{equation*}
-		      for some $g \in \bbZ^N_{\geq 0}$ such that $\supp(g)\cap \eta\inv(\eta(k_\bullet)) = \emptyset$ and $|\supp(g)\cap \eta \inv (a)| \leq 1$ for all $a \in \bbZ$. Furthermore, the vector $e_{p(k_\bullet)} + e_{s(k_\bullet)} - g \in \bbZ^N$ satisfies the identities
+		      for some $g \in \bbZ^N_{\geq 0}$ such that $\supp(g)\cap \eta\inv(\eta(k_\bullet)) = \emptyset$ and $|\supp(g)\cap \eta \inv (a)| \leq 1$ for all $a \in \bbZ$. Furthermore, if $\tau(k) < \tau(k +1)$, then the vector $e_{p(k_\bullet)} + e_{s(k_\bullet)} - g \in \bbZ^N$ satisfies the identities
 		      \begin{align*}
 			       & \Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_j) = 1, \, \forall j \neq k_\bullet, \\
 			       & \Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_k)^2 = \lambda^*_k,                  \\
 			      \shortintertext{and}
 			       & \chi_{M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1.
 		      \end{align*}
+		      %
+		      If $\tau(k) > \tau(k+1)$, the identities are instead satisfied by the vector
+		      $-(e_{p(k_\bullet)} + e_{s(k_\bullet)} -g) \in \bbZ^N$.
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
+
+	We will first prove the proposition for the case $\tau(k) < \tau(k+1)$. The case
+	$\tau(k) > \tau(k+1)$ will then follow from this.
 
 	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then \cref{lem:tau_bullet} (c) shows that
 	$\tau_\bullet \tau (k, k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now
@@ -2833,7 +2841,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	If $m > 1$, then we need one more definition before defining $\dot{w}$. Set, recalling
 	\cref{eq:level_set_tau_k},
 	\begin{equation*}
-		t = \max\{\tau\inv\{s(\tau(k)), \dots, s^{m-1}(\tau(k))\}\} = \max \{j \in [1, k-1] \mid \eta(\tau(j)) = \eta(\tau(k))\}.
+		t = \max\{\tau\inv\{s(\tau(k)), \dots, s^{m-1}(\tau(k))\}\} = \max \{j \in [1, k-1] \mid \eta(\tau(j)) = \eta(\tau(k))\} = p_\tau(k).
 	\end{equation*}
 	%
 	Then, because $\tau([1, t])$ is an interval, either $\tau(t) = s^{m-1}(\tau(k))$ or
@@ -2910,7 +2918,10 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\end{equation*}
 	again.
 
-	We now resolve the remaining identities. From \cref{eq:Omega_r_squared_one}, we obtain
+	We now resolve the remaining identities. Note that the $p(k)$ appearing in
+	\cref{eq:Omega_r_squared_ek,eq:Omega_r_squared_one} is with respect to the presentation
+	corresponding to $\tau$, and is hence equal to $p_\tau(k) = t$ in the current setting.
+	Consequently, \cref{eq:Omega_r_squared_one} gives
 	\begin{equation*}
 		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -g, e_j) = 1
 	\end{equation*}
@@ -2933,6 +2944,104 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		M_{\tau'}(e_{k_\bullet}) =
 		M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) + M_\tau(g-e_{k_\bullet}).
 	\end{equation*}
+
+	\medskip
+
+	We now show how the case $\tau(k) > \tau(k+1)$ can be handled. Note that in this case
+	\begin{equation*}
+		\tau'(k) = \tau(k+1) < \tau(k) = \tau'(k+1).
+	\end{equation*}
+	%
+	We can thus apply the part we already proved with the roles of $\tau$ and $\tau'$ swapped. This
+	immediately resolves case (a), since it is symmetric in $\tau$ and $\tau'$. It remains
+	to show that the conclusions of (b) for $\tau$ also hold for $\tau'$. To do this, we
+	must carefully compare $\bbr_\tau$ and $\bbr_{\tau'}$.
+
+	From \cref{thm:almost_mutation_toric_frame} we have
+	\begin{align*}
+		 & \Omega_{\wh{\bbr}_{\tau'}}(e_l, e_j) = \Omega_{\wh{\bbr}_\tau}(e_l, e_j), \, \forall l, j \neq k,                        \\
+		 & \Omega_{\wh{\bbr}_{\tau'}}(e_k, e_j) = \Omega_{\wh{\bbr}_\tau}(e_{p_\tau(k)} + e_{k+1} - e_k, e_j), \, \forall j \neq k.
+	\end{align*}
+	%
+	Thus, because $\tau_\bullet\tau = (\tau')_\bullet\tau'$ by \cref{lem:tau_bullet},
+	\begin{align*}
+		 & \Omega_{{\bbr}_{\tau'}}(e_l, e_j) = \Omega_{{\bbr}_\tau}(e_l, e_j), \, \forall l, j \neq {k_\bullet},                                                            \\
+		 & \Omega_{{\bbr}_{\tau'}}(e_{k_\bullet}, e_j) = \Omega_{{\bbr}_\tau}(e_{p({k_\bullet})} + e_{s({k_\bullet})} - e_{k_\bullet}, e_j), \, \forall j \neq {k_\bullet}.
+	\end{align*}
+	%
+	From this we we obtain
+	\begin{equation*}
+		\Omega_{\bbr_{\tau'}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_j) =
+		\Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_j)\inv  = 1\inv = 1
+	\end{equation*}
+	for all $j \neq k_\bullet$, and
+	\begin{align*}
+		\Omega_{\bbr_{\tau'}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_{k_\bullet})^2
+		 & =\Omega_{\bbr_{\tau}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet})^2 \\
+		&=\Omega_{\bbr_{\tau}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g),- e_{k_\bullet})^2 \\
+		&=\Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,e_{k_\bullet})^2 \\
+		 & =\lambda_{k_\bullet}^* .
+	\end{align*}
+	%
+	Since $M_\tau (e_j) = M_{\tau'}(e_j)$ for all $j\neq k_\bullet$ we obtain that $M_\tau
+		(f) = M_{\tau'}(f)$ for all $f\in \bbZ^N$ such that $k_\bullet \notin \supp(f)$. Thus,
+	also
+	\begin{equation*}
+		\chi_{M_{\tau'}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g))} =
+		\chi_{M_{\tau'}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} =
+		\chi_{M_{\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g)} = 1.
+	\end{equation*}
+	%
+	It remains to show
+	\begin{equation*}
+		M_{\tau}(e_{k_\bullet}) = M_{\tau'}(e_{p(k_\bullet)}+e_{s(k_\bullet)}-e_{k_\bullet}) + M_{\tau'}(g-e_{k_\bullet}).
+	\end{equation*}
+	%
+	On the one hand we have
+	\begin{equation*}
+		M_\tau(g - e_{k_\bullet}) = \Omega_{\bbr_\tau}(-e_{k_\bullet}, g) M_\tau(g) M_\tau(e_{k_\bullet})\inv,
+	\end{equation*}
+	and
+	\begin{align*}
+		M_{\tau'}(e_{k_\bullet})\inv M_\tau(g)
+		&= M_{\tau'}(e_{k_\bullet})\inv M_{\tau'}(g)\\
+		&=  \Omega_{\bbr_{\tau'}}(-e_{k_\bullet}, g)M_{\tau'}(g -e_{k_\bullet})\\
+		&=  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet})\\
+		&=  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet})\\
+		&=  \Omega_{\bbr_{\tau}}(-e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet}),
+	\end{align*}
+	such that
+	\begin{equation*}
+		M_{\tau'}(e_{k_\bullet})\inv M_\tau(g -e_{k_\bullet}) = M_{\tau'}(g - e_{k_\bullet})M_\tau (e_{k_\bullet})\inv.
+	\end{equation*}
+	%
+	On the other hand we have
+	\begin{equation*}
+		M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet}) = \Omega_{\bbr_\tau}( \ekbullet, \epsbullet)\inv  M_\tau(e_{p(k_\bullet)} + e_{s(k_\bullet)}) M_\tau (e_{k_\bullet})\inv,
+	\end{equation*}
+	and
+	\begin{align*}
+		M_{\tau'}(\ekbullet)\inv M_\tau(\epsbullet) 
+		&= M_{\tau'}(\ekbullet)\inv M_{\tau'}(\epsbullet) \\
+		&= \Omega_{\bbr_{\tau'}}(\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
+		&= \Omega_{\bbr_{\tau}}(\epsbullet-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
+		&= \Omega_{\bbr_{\tau}}(-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
+		&= \Omega_{\bbr_{\tau}}(\ekbullet, \epsbullet) M_{\tau'}(\epsbullet - \ekbullet),
+	\end{align*}
+	such that
+	\begin{equation*}
+		M_{\tau'}(\ekbullet)\inv M_\tau(\epsbullet - \ekbullet) = M_{\tau'}(\epsbullet - \ekbullet)M_\tau(\ekbullet)\inv.
+	\end{equation*}
+	%
+	Thus, using that
+	\begin{equation*}
+		M_{\tau'}(e_{k_\bullet}) = M_{\tau}(e_{p(k_\bullet)}+e_{s(k_\bullet)}-e_{k_\bullet}) + M_{\tau}(g-e_{k_\bullet}),
+	\end{equation*}
+	we obtain
+	\begin{equation*}
+		M_{\tau}(e_{k_\bullet}) = M_{\tau'}(e_{p(k_\bullet)}+e_{s(k_\bullet)}-e_{k_\bullet}) + M_{\tau'}(g-e_{k_\bullet}),
+	\end{equation*}
+	as desired. This concludes the proof of the proposition.
 \end{proof}
 
 \begin{lemma}\label{lem:unique_b}
@@ -3008,84 +3117,75 @@ Recall that $\ex = \{j \in [1, N] \mid s(j) \neq + \infty \} = \{p(j) \mid j \in
 
 As before, we will index matrices of size $N \times |X|$ by the set $X$ for subsets $X
 	\subseteq \ex$. The set of such matrices with integer entries will be denoted by $M_{N
-			\times X}(\bbZ)$. We now prove a lemma from which parts (a) and (b) of
+			\times X}(\bbZ)$. We now prove two lemmas from which parts (a) and (b) of
 \cref{thm:gy_main_result} for $\tau \in \Gamma_N$ will follow.
 
-\begin{lemma}\label{lem:inductive_columns}
-	Assume the setting of \cref{thm:gy_main_result} for some $\tau \in \Gamma_N$. For all $\sigma \in \Gamma_N$ such that $\sigma \preceq \tau$, there exists a unique matrix $\tB_{\sigma, \tau}\in M_{N \times \ex_\tau} (\bbZ)$ whose columns, $b^l_{\sigma, \tau} \in \bbZ^N$ for $l\in \ex_\tau$, satisfy
-	\begin{equation}\label{eq:conditions_for_blsigmatau}
+\begin{lemma}\label{lem:inductive_step_btautau}
+	Assume the setting of \cref{thm:gy_main_result}. Suppose that $\tau, \tau' \in \Xi_N$ are such that
+	\begin{equation*}
+		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
+	\end{equation*}
+	%
+	for some $k \in [1, N-1]$ such that $\eta(\tau(k)) = \eta(\tau(k+1))$ and $\tau(k) <
+		\tau(k+1)$. Write $k_\bullet = \tau_\bullet(\tau(k))$, and let $\wt{\ex} \subseteq \ex$
+	be a subset such that $k_\bullet \in \wt{\ex}$. Then there exists a matrix $\tB_{\tau,
+			\tau'} \in M_{N \times \wt{\ex}}(\bbZ)$ whose columns, $b^l_{\tau, \tau'} \in \bbZ^N$
+	for $l \in \wt{\ex}$ satisfy
+	\begin{equation}\label{eq:conditions_for_bltautau'}
 		\begin{aligned}
-			\chi_{M_\sigma(b^l_{\sigma, \tau})}            & = 1,                                \\
-			\Omega_{\bbr_\sigma}(b^l_{\sigma,\tau}, e_l)^2 & = \lambda^*_l,                      \\
-			\Omega_{\bbr_\sigma}(b^l_{\sigma,\tau}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+			\chi_{M_\tau(b^l_{\tau, {\tau'}})}            & = 1,                                \\
+			\Omega_{\bbr_\tau}(b^l_{\tau,{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_\tau}(b^l_{\tau,{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
 		\end{aligned}
 	\end{equation}
 	%
-	for all $l \in \ex$. The principal part of the matrix $\tB_{\sigma, \tau}$ is
-	skew-symmetrizable via the integers $\{d_{\eta(k)} \mid k \in \ex\}$.
+	for all $l \in \wt{\ex}$ if and only if there exists a matrix $\tB_{\tau', \tau'}$
+	whose columns $b^l_{\tau', \tau'} \in \bbZ^N,\,l\in \wt{\ex}$ satisfy
+	\begin{equation*}
+		\begin{aligned}
+			\chi_{M_{\tau'}(b^l_{{\tau'}, {\tau'}})}            & = 1,                                \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'},{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'},{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation*}
+	%
+	for all $l \in \wt{\ex}$.
+
+	For both implications the principal parts of the matrices $\tB_{\tau, \tau'}$ and
+	$\tB_{\tau' ,\tau'}$ are skew-symmetrizable. Furthermore, $\tB_{\tau', \tau'} =
+		\mu_{k_\bullet}(\tB_{\tau, \tau'})$, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_{\tau})$ and
+	\begin{equation*}
+		b^{k_\bullet}_{\tau, \tau'} = - b^{k_\bullet}_{\tau', \tau'} = e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,
+	\end{equation*}
+	%
+	where $g\in \bbZ_{\geq 0}^N$ is the vector from
+	\cref{prop:mutation_adjacent_permutations}.
 \end{lemma}
 \begin{proof}
 
-	The uniqueness statement is handled by \cref{lem:unique_b}. Note also that the
-	conditions of \cref{eq:conditions_for_blsigmatau} imply that $(\bbr_\sigma,
-		\tB_{\sigma, \tau})$ is a compatible pair. Indeed, if we write $t_{lj} =
-		\Omega_{\bbr_\sigma}(b^l_{\sigma, \tau}, e_j)$ for $j\in[1, N], l \in \ex_\tau$, then
-	we see that $t_{lj} = 1$ for all $l \neq j$ and that $t_{ll}$ is not a root of unity,
-	as $t_{ll}^2 = \lambda_l^*$, which is not a root of unity. Furthermore,
+	We start with the first implication. The conditions of
+	\cref{eq:conditions_for_bltautau'} imply that $(\bbr_\tau, \tB_{\tau, {\tau'}})$ is a
+	compatible pair. Indeed, if we write $t_{lj} = \Omega_{\bbr_\tau}(b^l_{\tau, {\tau'}},
+		e_j)$ for $j\in[1, N], l \in \ex_{\tau'}$, then we see that $t_{lj} = 1$ for all $l
+		\neq j$ and that $t_{ll}$ is not a root of unity, as $t_{ll}^2 = \lambda_l^*$, which is
+	not a root of unity. Furthermore,
 	\begin{align*}
 		t_{ll}^{d_{\eta(k)}}  = (\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}} = t_{kk}^{d_{\eta(l)}}
 	\end{align*}
 	%
-	by assumption, which shows that the principal part of $\tB_{\sigma, \tau}$ is
+	by assumption, which shows that the principal part of $\tB_{\tau, {\tau'}}$ is
 	skew-symmetrizable by \cref{lem:principal_part_skew_symmetrizable}.
 
-	It now remains to prove the existence statement. For $\tau = \id$, we have $\ex_{\id} =
-		\emptyset$, and there is nothing to prove. We will now proceed by induction on the
-	total order of $\Gamma_N$.
-
-	Let $\tau \prec \tau'$ be two consecutive elements of $\Gamma_N$, and assume that the
-	existence statement holds for $\tau$. We will now show that it holds for $\tau'$ as
-	well. Recall that we can write $\tau = \tau_{i, j-1}$ and $\tau' = \tau_{i, j}$ for
-	some $1 \leq i < j < \leq N$. Furthermore, $\tau' = (i, j)\tau = \tau(j-i, j-i+1)$ with
-	$\tau(j-i) = i < j = \tau(j - i +1)$ such that
-	\cref{prop:mutation_adjacent_permutations} is applicable with $k = j - i$.
-
-	By the induction hypothesis, $(\bbr_\tau, \tB_{\tau, \tau})$ is a compatible pair, and
-	consequently $(M_\tau, \tB_{\tau, \tau})$ is a quantum seed.
-
-	If $\eta(i) \neq \eta(j)$, then the existence follows easily. Indeed, $\ex_{\tau'} =
-		\ex_\tau$ and, by \cref{prop:mutation_adjacent_permutations}, $M_{\tau'} = M_\tau$,
-	such that also $\Omega_{\bbr_{\tau'}} = \Omega_{\bbr}$. So, we can take $\tB_{\sigma,
-			\tau'} = \tB_{\sigma, \tau}$ for $\sigma \preceq \tau$ and $\tB_{\tau', \tau'} =
-		\tB_{\tau, \tau}$.
-
-	If $\eta(i) = \eta(j)$, there is more work. Since $i < j$, we can write $j = s^m(i)$
-	for some $m \in \bbZ_{\geq 0}$. Then note that
+	Now, \cref{eq:conditions_for_bltautau'} and \cref{prop:mutation_adjacent_permutations}
+	(b) together with the uniqueness from \cref{lem:unique_b} give
 	\begin{equation*}
-		\tau([1, j-i]) \cap \eta\inv(\eta(i)) = \{i+1, \dots, j-1, i\} \cap \eta\inv(\eta(i))= \{i, s(i), \dots, s^{m- 1}(i)\},
-	\end{equation*}
-	%
-	so that $\tau_\bullet(\tau(j-i))$ must be the $m$-th element of $\eta\inv(\eta(i))$
-	when the elements are ordered from least to greatest. Thus,
-	\begin{equation*}
-		\tau_\bullet (\tau(j- i)) = s^{m-1}p^{O_{-}(i)}(i),
-	\end{equation*}
-	because $p^{O_{-}(i)}(i)$ is the smallest element of $\eta\inv(\eta(i))$, by definition of $O_{-}(i)$. Set, as in \cref{prop:mutation_adjacent_permutations}, $k_\bullet = \tau_\bullet(\tau(j - i))$. We now have two subcases.
-
-	First, assume that $p(i) \neq -\infty$. Then, $\ex_{\tau'} = \ex_{\tau}$, and we can
-	take $\tB_{\sigma, \tau'} = \tB_{\sigma, \tau}$ for $\sigma \in \Gamma_N$ such that
-	$\sigma \preceq \tau$. It remains to determine $\tB_{\tau', \tau'}$.
-
-	By the induction hypothesis for $\tB_{\tau, \tau}$ and
-	\cref{prop:mutation_adjacent_permutations} (b), we obtain, by uniqueness,
-	\begin{equation*}
-		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau, \tau}.
+		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau, \tau'}.
 	\end{equation*}
 	%
 	Recalling \cref{cor:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
 	\begin{align*}
 		\mu_{k_\bullet}(M_\tau)(e_{k_\bullet})
-		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}]_{-})                                                     \\
+		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}_{\tau, \tau'}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}_{\tau, \tau'}]_{-})                         \\
 		 & = M_\tau(-e_{k_\bullet} + [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{+}) + M_\tau(-e_{k_\bullet} - [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{-}) \\
 		 & = M_\tau(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)}) + M_\tau(-e_{k_\bullet} + g)                                                       \\
 		 & = M_{\tau'}(e_{k_\bullet}),
@@ -3103,8 +3203,76 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		\mu_{k_\bullet}(\bbr_{\tau})$, with which we can now conclude $M_{\tau'} =
 		\mu_{k_\bullet}(M_\tau)$.
 	\Cref{prop:mutation_preserves_good_things,lem:equivariance_mutations} now imply
-	\cref{eq:conditions_for_blsigmatau} for $\tB_{\tau', \tau'} =
-		\mu_{k_\bullet}(\tB_{\tau, \tau})$. \medskip
+	\cref{eq:conditions_for_bltautau'} for $\tB_{\tau', \tau'} = \mu_{k_\bullet}(\tB_{\tau,
+			\tau'})$.
+
+	The proof for the other implication is analogous. The difference is that we now have to consider the case $\tau(k) > \tau(k+1)$ in \cref{prop:mutation_adjacent_permutations} (b). In this case we obtain
+	\begin{equation*}
+		\epsbullet - g = - b^{k_\bullet}_{\tau', \tau'},
+	\end{equation*}
+	and
+	\begin{align*}
+		\mu_{k_\bullet}(M_{\tau'})(e_{k_\bullet})
+		 & = M_{\tau'}(-e_{k_\bullet} + [b^{k_\bullet}_{\tau', \tau'}]_{+}) + M_{\tau'}(-e_{k_\bullet} - [b^{k_\bullet}_{\tau', \tau'}]_{-})                         \\
+		 & = M_{\tau'}(-e_{k_\bullet} + [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{+}) + M_{\tau'}(-e_{k_\bullet} - [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{-}) \\
+		 & = M_{\tau'}(-e_{k_\bullet} + g) + M_{\tau'}(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)})                                                     \\
+		 & = M_{\tau}(e_{k_\bullet}).
+	\end{align*}
+	%
+	The rest of the proof can then be taken over literally from the first case, by swapping $\tau$ and $\tau'$.
+	
+\end{proof}
+The previous lemma will serve as the induction step in this lemma.
+\begin{lemma}\label{lem:inductive_columns}
+	Assume the setting of \cref{thm:gy_main_result} for some $\tau \in \Gamma_N$. For all $\sigma \in \Gamma_N$ such that $\sigma \preceq \tau$, there exists a unique matrix $\tB_{\sigma, \tau}\in M_{N \times \ex_\tau} (\bbZ)$ whose columns, $b^l_{\sigma, \tau} \in \bbZ^N$ for $l\in \ex_\tau$, satisfy
+	\begin{equation}\label{eq:conditions_for_blsigmatau}
+		\begin{aligned}
+			\chi_{M_\sigma(b^l_{\sigma, \tau})}            & = 1,                                \\
+			\Omega_{\bbr_\sigma}(b^l_{\sigma,\tau}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_\sigma}(b^l_{\sigma,\tau}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation}
+	%
+	for all $l \in \ex_\tau$. The principal part of the matrix $\tB_{\sigma, \tau}$ is
+	skew-symmetrizable via the integers $\{d_{\eta(k)} \mid k \in \ex_\tau\}$.
+\end{lemma}
+\begin{proof}
+	The uniqueness statement is handled by \cref{lem:unique_b}. The principal part of $\tB_{\sigma, \tau}$ is skew-symmetrizable by the same argument as in the proof of \cref{lem:inductive_step_btautau}.
+
+	It now remains to prove the existence statement. For $\tau = \id$, we have $\ex_{\id} =
+		\emptyset$, and there is nothing to prove. We will now proceed by induction on the
+	total ordering of $\Gamma_N$.
+
+	Let $\tau \prec \tau'$ be two consecutive elements of $\Gamma_N$, and assume that the
+	existence statement holds for $\tau$. We will now show that it holds for $\tau'$ as
+	well. Recall that we can write $\tau = \tau_{i, j-1}$ and $\tau' = \tau_{i, j}$ for
+	some $1 \leq i < j \leq N$. Furthermore, $\tau' = (i, j)\tau = \tau(j-i, j-i+1)$ with
+	$\tau(j-i) = i < j = \tau(j - i +1)$ such that
+	\cref{prop:mutation_adjacent_permutations} is applicable with $k = j - i$.
+
+	If $\eta(i) \neq \eta(j)$, then the existence follows easily. Indeed, $\ex_{\tau'} =
+		\ex_\tau$ and, by \cref{prop:mutation_adjacent_permutations}, $M_{\tau'} = M_\tau$,
+	such that also $\Omega_{\bbr_{\tau'}} = \Omega_{\bbr_\tau}$. So, we can take
+	$\tB_{\sigma, \tau'} = \tB_{\sigma, \tau}$ for $\sigma \preceq \tau$ and $\tB_{\tau',
+			\tau'} = \tB_{\tau, \tau}$.
+
+	If $\eta(i) = \eta(j)$, there is more work. Since $i < j$, we can write $j = s^m(i)$
+	for some $m \in \bbZ_{\geq 0}$. Then note that
+	\begin{equation*}
+		\tau([1, j-i]) \cap \eta\inv(\eta(i)) = \{i+1, \dots, j-1, i\} \cap \eta\inv(\eta(i))= \{i, s(i), \dots, s^{m- 1}(i)\},
+	\end{equation*}
+	%
+	so that $\tau_\bullet(\tau(j-i))$ must be the $m$-th element of $\eta\inv(\eta(i))$
+	when the elements are ordered from least to greatest. Thus,
+	\begin{equation*}
+		\tau_\bullet (\tau(j- i)) = s^{m-1}p^{O_{-}(i)}(i),
+	\end{equation*}
+	because $p^{O_{-}(i)}(i)$ is the smallest element of $\eta\inv(\eta(i))$, by definition of $O_{-}(i)$. Set, as in \cref{prop:mutation_adjacent_permutations}, $k_\bullet = \tau_\bullet(\tau(j-i)) = \tau_\bullet(\tau(k))$. We now have two subcases.
+
+	First, assume that $p(i) \neq -\infty$. Then, $\ex_{\tau'} = \ex_{\tau}$, and we can
+	take $\tB_{\sigma, \tau'} = \tB_{\sigma, \tau}$ for $\sigma \in \Gamma_N$ such that
+	$\sigma \preceq \tau$. By \cref{lem:inductive_step_btautau} we can take $\tB_{\tau',
+			\tau'} = \mu_{k_\bullet}(\tB_{\tau, \tau'})$.
 
 	In the other subcase, where $p(i) = -\infty$, we have $\ex_{\tau'} = \ex_\tau \cup
 		\{k_\bullet\}$, because $k_\bullet = s^{m-1}p^{O_{-}(i)}(i) = s^{m-1}(i) = p(j)$. We
@@ -3121,24 +3289,26 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 			e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, & if $l = k_\bullet$.
 		\end{dcases*}
 	\end{equation*}
+	%
+	By \cref{lem:inductive_step_btautau}, we can then take $\tB_{\tau', \tau'} =
+		\mu_{k_\bullet}(\tB_{\tau, \tau'})$.
 
-	As in the previous subcase, we can then take $\tB_{\tau', \tau'} =
-		\mu_{k_\bullet}(\tB_{\tau, \tau'})$. So, it remains to construct $\tB_{\sigma, \tau'}$
-	for $\sigma \in \Gamma_N$ such that $\sigma \prec \tau$. To do this, we apply our
-	induction in reverse. Take $\sigma \prec \sigma' \preceq \tau$ with $\sigma, \sigma'
-		\in \Gamma_N$ two consecutive elements. Then, as before,
+	So, it remains to construct $\tB_{\sigma, \tau'}$ for $\sigma \in \Gamma_N$ such that
+	$\sigma \prec \tau$. To do this, we apply our induction in reverse. Take $\sigma \prec
+		\sigma' \preceq \tau$ with $\sigma, \sigma' \in \Gamma_N$ two consecutive elements.
+	Then, as before,
 	\begin{equation*}
-		\sigma = \tau_{i',j' -1} \text{ and } \sigma' = \tau{i', j'}
+		\sigma = \tau_{i',j' -1} \text{ and } \sigma' = \tau_{i', j'}
 	\end{equation*}
 	for some $1 \leq i'< j' \leq N$. Write $k_\bullet' = \sigma_\bullet(\sigma(j' - i'))$. Now assume that there exists a matrix $\tB_{\sigma', \tau'} \in M_{N \times \ex_{\tau'}}(\bbZ)$ satisfying \cref{eq:conditions_for_blsigmatau}, and define
 	\begin{equation*}
 		\tB_{\sigma, \tau'} = \begin{dcases*}
-			\tB_{\sigma', \tau'},                  & if $\eta(i') \neq \eta(j')$ \\
-			\mu_{k_\bullet'}(\tB_{\sigma, \tau'}), & if $\eta(i') = \eta(j')$.
+			\tB_{\sigma', \tau'},                   & if $\eta(i') \neq \eta(j')$ \\
+			\mu_{k_\bullet'}(\tB_{\sigma', \tau'}), & if $\eta(i') = \eta(j')$.
 		\end{dcases*}
 	\end{equation*}
 	%
-	In the same way as in the first subcase, one now shows that $\tB_{\sigma, \tau'}$
+	We now apply \cref{lem:inductive_step_btautau} once more, to conclude that $\tB_{\sigma, \tau'}$
 	satisfies \cref{eq:conditions_for_blsigmatau}.
 
 \end{proof}
@@ -3149,78 +3319,8 @@ We can now provide a proof for \cref{thm:gy_main_result} (a) and (b), for $\tau 
 		w_\circ}$. In particular, we have constructed the mutation matrix for the initial toric
 frame $M_{\id}$.
 
-To prove parts (a) and (b) for all $\tau \in \Xi_N$ we first prove the following
-proposition, whose statement is very similar to that of \cref{lem:inductive_columns}.
-The main difference is that it applies to $\Xi_N$ and not just to $\Gamma_N$, and that
-the existence of a matrix is already assumed. With the preparatory work that we have
-done, the statement is longer than the proof.
-\begin{proposition}\label{prop:inductive_mutation}
-	Assume the setting of \cref{thm:gy_main_result}, and let $\tau, \tau' \in \Xi_N$ be such that
-	\begin{equation*}
-		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
-	\end{equation*}
-	%
-	for some $k \in [1, N-1]$, $\tau(k) < \tau(k + 1)$ and $\eta(\tau(k)) =
-		\eta(\tau(k+1))$. Set $k_\bullet = \tau_\bullet\tau(k)$.
-
-	Let $\tB_{\tau} \in M_{N \times \ex}(\bbZ)$ be a matrix with columns $b^l_\tau, l \in
-		\ex$ which satisfy
-	\begin{equation*}
-		\begin{aligned}
-			\chi_{M_\tau(b^l_{\tau})}             & = 1,                                \\
-			\Omega_{\bbr_\tau}(b^l_{\tau}, e_l)^2 & = \lambda^*_l,                      \\
-			\Omega_{\bbr_\tau}(b^l_{\tau}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
-		\end{aligned}
-	\end{equation*}
-	%
-	for all $l\in \ex$. Then, its principal part is skew-symmetrizable and the columns
-	$b^l_{\tau'}, l \in \ex$ of the matrix $\mu_{k_\bullet}(\tB_\tau)$ satisfy
-	\begin{equation*}
-		\begin{aligned}
-			\chi_{M_{\tau'}(b^l_{{\tau'}})}             & = 1,                                \\
-			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
-			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
-		\end{aligned}
-	\end{equation*}
-	%
-	for all $l \in \ex$. Furthermore, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_\tau)$ and
-	\begin{equation*}
-		b^{k_\bullet}_\tau = - b^{k_\bullet}_{\tau'} = e_{p(k_\bullet)} = e_{s(k_\bullet)} - g,
-	\end{equation*}
-	%
-	where $g\in \bbZ_{\geq 0}^N$ is the vector from
-	\cref{prop:mutation_adjacent_permutations}.
-\end{proposition}
-
-\begin{proof}
-	We follow the ideas from the proof of \cref{lem:inductive_columns}. The fact that the principal part of $\tB_\tau$ is skew-symmetrizable, follows from the assumption $(\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}}$ for all $l,k \in \ex$ and \cref{lem:principal_part_skew_symmetrizable}.
-
-	The conditions on the columns of $\tB_\tau$, \cref{prop:mutation_adjacent_permutations}
-	(b), and the uniqueness from \cref{lem:unique_b} give
-	\begin{equation*}
-		b^{k_\bullet}_\tau = e_{p(k_\bullet)} + e_{s(k_\bullet)} -g.
-	\end{equation*}
-	%
-	Recall that the entries of $\mu_{k_\bullet}(\tB_{\tau})$ are given by
-	\begin{equation*}
-		\mu_{k_\bullet}(\tB_{\tau})_{ij} = \begin{dcases*}
-			-b_{ij},                                                                            & if $i = k_\bullet$ or $j = k_\bullet$ \\
-			b_{ij} +  \frac{|b_{ik_\bullet}|b_{k_\bullet} + b_{ik_\bullet} |b_{k_\bullet}|}{2}, & otherwise,
-		\end{dcases*}
-	\end{equation*}
-	%
-	where $(b_{ij}) = \tB_\tau$. So, in particular, $b^{k_\bullet}_{\tau'} = -
-		b^{k_\bullet}$.
-
-	Finally, in exactly the same way as the proof of \cref{lem:inductive_columns}, one
-	shows that $\Omega_{\bbr_{\tau'}}(e_t, e_l) = \Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t,
-		e_l)$ for all $t, l \in [1, N]$, from which it follows that $\bbr_{\tau'} =
-		\mu_{k\bullet}(\bbr_\tau)$. Consequently, $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$ and the
-	conditions on the columns of $\tB_{\tau'}$ follow again from
-	\cref{prop:mutation_preserves_good_things,lem:equivariance_mutations}.
-
-\end{proof}
-The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a matter of putting everything together.
+The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a matter
+of putting everything together.
 \begin{proof}[Proof of \cref{thm:gy_main_result} (a), (b) and (c)]
 	We prove part (a) by induction. The uniqueness follows from \cref{lem:unique_b}. Fix $\tau \in \Xi_N$. By \cref{prop:eta_invariance}, we can find a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau \in \Xi_N$ such that for all $l \in [1, n]$ we can write
 	\begin{equation*}
@@ -3228,27 +3328,26 @@ The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a 
 	\end{equation*}
 	%
 	for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. We
-	already proved the existence of $\tB_{\id}$ using \cref{lem:inductive_columns}. Then
-	for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$, then
+	already proved the existence of $\tB_{\id}$ using \cref{lem:inductive_columns}. Then,
+	for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$,
 	\cref{prop:mutation_adjacent_permutations} (a) yields $M_{\tau_l} = M_{\tau_{l-1}}$,
 	and we can choose $\tB_{\tau_l} = \tB_{\tau_{l-1}}$. Otherwise, if
 	$\eta(\tau_{l-1}(k_l)) = \eta(\tau_l(k_l))$, we can apply
-	\cref{prop:inductive_mutation} for $\tau_{l-1}$ and $\tau_{l}$. In this case
+	\cref{lem:inductive_step_btautau} for $\tau_{l-1}$ and $\tau_{l}$. In this case
 	$\tB_{\tau_l} = \mu_{(k_l)_\bullet}(\tB_{\tau_{l-1}})$, where $(k_l)_\bullet =
 		(\tau_{k_l})_\bullet(\tau_{k_l}(k_l))$.
 
 	Part (b) follows as in the proofs of
-	\cref{lem:inductive_columns,prop:inductive_mutation} from
+	\cref{lem:inductive_columns,lem:inductive_step_btautau} from
 	\cref{lem:principal_part_skew_symmetrizable}.
 
 	For part (c), the one-step mutation statement follows from
 	\cref{prop:mutation_adjacent_permutations} (a) if $\eta(\tau(k)) \neq \eta(\tau(k +
 			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
-	\cref{prop:inductive_mutation} where we swap the roles of $\tau$ and $\tau'$ if
-	$\tau'(k) = \tau(k + 1) < \tau'(k + 1) = \tau(k)$. Then, since mutation is involutive,
-	every $\tau \in \Xi_N$ can be obtained by a sequence of one-step mutations from $\id$
-	due to \cref{prop:eta_invariance} and the uniqueness of part (a), we obtain that all
-	the quantum seeds associated to $\Xi_N$ are mutation-equivalent to each other.
+	\cref{lem:inductive_step_btautau}, swapping the roles of $\tau$ and $\tau'$ if needed. Then, since mutation is involutive, every $\tau \in
+		\Xi_N$ can be obtained by a sequence of one-step mutations from $\id$ due to
+	\cref{prop:eta_invariance} and the uniqueness of part (a), we obtain that all the
+	quantum seeds associated to $\Xi_N$ are mutation-equivalent to each other.
 \end{proof}
 
 \medskip
