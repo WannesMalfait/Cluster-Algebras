@@ -51,15 +51,15 @@ This product is also associative in the sense that $\prescript{B_2 B_1}{}{A}^{C_
 
 In most cases the exponent will be a column vector. Whenever we write $f \in \bbZ^N$ we
 will view $f$ as a column vector, i.e. an $N \times 1$-matrix over the integers. The
-standard basis vectors of $\bbZ^N$ will be denoted by $e_i$.
+standard basis vectors of $\bbZ^N$ will be denoted by $e_1, \dots, e_N$.
 
 For $m, n \in \bbZ$, we will write $[m, n]$ to denote the set $\{m, m+1, \dots, n-1,
 	n\} \in \bbZ$. In particular, $[m, n] = \emptyset$ if $m > n$.
 
-\subsection{Tori and rational actions}
+\subsection{Ore localizations and tori}
 
 Recall that the cluster variables were initially defined as elements of the function
-field $\bbK(x_1, \dots, x_N)$. It is not so trivial, to come up with a good
+field $\bbK(x_1, \dots, x_N)$. It is not so trivial to come up with a good
 noncommutative analog of this function field. However, due to the Laurent phenomenon
 (\cref{thm:laurent_phenomenon}), it suffices to consider the algebra $\bbK[x_1^{\pm 1},
 	\dots, x_N^{\pm 1}]$. Note that this is the coordinate algebra of the
@@ -68,93 +68,87 @@ deformation to this coordinate algebra to make it noncommutative. This yields a
 so-called \emph{quantum torus}\index{torus!quantum}. These quantum tori will play a
 central role in what follows.
 
-Let $\bbr \in M_N(\bbK^\times)$ be a \emph{multiplicatively
+Let $\bbq \in M_N(\bbK^\times)$ be a \emph{multiplicatively
 	skew-symmetric}\index{skew-symmetric!multiplicatively} matrix, i.e., $r_{ij} =
-	r_{ji}\inv$ for all $i,j \in [1, N]$. We then write $\mcT_\bbr$ for the quantum torus
+	r_{ji}\inv$ for all $i,j \in [1, N]$. Deforming the affine space coordinate algebra
+$\bbK[Y_1, \dots, Y_N]$ by $\bbq$, we obtain
 \begin{equation*}
-	\mcT_\bbr = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)}.
+	\mcA_\bbq = \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)},
+\end{equation*}
+the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then write $\mcT_\bbq$ for the \emph{quantum torus}
+\begin{equation*}
+	\mcT_\bbq = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)}.
 \end{equation*}
 %
+We will refer to the property that $X Y = qY X$ for some $q in \bbK^\times$ by saying
+that $Y_i$ and $Y_j$ \emph{quasi-commute}\index{quasi-commuting}.
 \begin{remark}
 
-	In most examples, $\bbr$ will be of the form $(q^{\Lambda_{ij}})$ for some
-	skew-symmetric matrix $\Lambda \in M_N(\bbZ)$. We will refer to $\mcT_r$ as a
-	\emph{uniparameter}\index{uniparameter} quantum tori in this case.
+	In most examples, $\bbq$ will be of the form $(q^{\Lambda_{ij}})$ for some
+	skew-symmetric matrix $\Lambda \in M_N(\bbZ)$ and $q\in \bbK^\times$. We will refer to
+	$\mcT_\bbq$ as a \emph{uniparameter}\index{uniparameter} quantum tori in this case.
 \end{remark}
 %
-Before moving on to the definition of quantum seeds and mutations, we take a look at
-rational actions by tori. These will be used extensively in the context of CGL
-extensions. \medskip
 
-We borrow some definitions from \cite{GoodearlBrown2002LecturesAQC}. Let $\mcH$ be a
-group, and $A$ a $\bbK$-algebra. We say that $\mcH$ \emph{acts on $A$ by
-	automorphisms}\index{action!by automorphisms} if for every $h \in \mcH$, the map $A \to
-	A \colon x \mapsto h \cdot x$ is a $\bbK$-algebra automorphism. A nonzero element $u
-	\in A$ is called an \emph{$\mcH$-eigenvector}\index{H@$\mcH$!-eigenvector} if $\mcH
-	\cdot u \subseteq \bbK u$. So, for each $h \in \mcH$ there exists some $\lambda_h \in
-	\bbK$ such that $h \cdot u = \lambda_h u$. Since $\mcH$ acts by automorphisms,
-$\lambda_h \neq 0$ for all $h \in \mcH$. So, we get a group homomorphism $\chi_u \colon
-	\mcH \to \bbK^\times$ given by $\chi_u(h) = \lambda_h$. We call $\chi_u$ the
-\emph{$\mcH$-eigenvalue}\index{H@$\mcH$!-eigenvalue} of $u$. Associated to each
-$\mcH$-eigenvalue is its \emph{$\mcH$-eigenspace}\index{H@$\mcH$!-eigenspace}
-\begin{equation*}
-	A_\chi = \{u \in A \mid h \cdot x = \chi(h)x,\, \forall h \in \mcH \}.
-\end{equation*}
+Even though a quantum version of the Laurent phenomenon will hold
+(\cref{thm:quantum_laurent}), we will still need to be able to invert arbitrary
+(non-zero) elements in $\mcA_\bbq$ in order to define a quantum cluster algebra. This
+requires localization in the noncommutative setting, also known as Ore localization.
+Recall that a \emph{regular element}\index{element!regular} of a ring is a nonzero
+element that is neither a left nor a right zero-divisor.
+
+The idea is that we want to define a new ring $R[E\inv] = \{re\inv \mid e \in E, r\in
+	R\}$ for some subset $E \subseteq R$ of a (noncommutative) ring $R$. In order for this
+to make sense, $E$ should be a \emph{multiplicative subset}\index{multiplicative
+	subset}, i.e., $1 \in E$ and $ef \in E$ for all $e,f \in E$. Furthermore, $E$ should
+consist of regular elements. This alone is not enough. Additionally, if $e, f \in E$,
+then for any $x, y \in R$ we should have $xe\inv yf\inv \in R[E\inv]$. This would be
+satisfied if we could write $e\inv y = y' (e')\inv$ for some $y' \in R$ and $e' \in E$.
+That condition is equivalent to $y e' = e y'$ for some $y' \in R$ and $e' \in E$, which
+in turn is equivalent to $y E \cap e R \neq \emptyset$ for all $y \in R$ and $e \in E$.
+Putting this together, we find the definition. A \emph{right Ore set}\index{Ore set} $E
+	\subseteq R$ is a multiplicative subset of regular elements such that $x E \cap e R
+	\neq \emptyset$ for all $x \in R$ and $e \in E$. One defines a left Ore set
+analogously.
+
+Let $E \subseteq R$ be a multiplicative subset of regular elements. We say that a ring
+$S \supseteq R$ is a \emph{right ring of fractions for $R$ with respect to
+	$E$}\index{ring!of fractions} if
+\begin{enumerate}
+	\item Every element of $E$ is invertible in $S$.
+	\item Every element of $S$ can be expressed in the form $re\inv$ for some $r \in R$ and $e
+		      \in E$.
+\end{enumerate}
+The following theorem justifies the definition of an Ore set.
+\begin{theorem}\cite[Theorem 6.2]{GoodearlWarfield2004NoncommutativeNR}
+	Let $E \subseteq R$ be a multiplicative subset of regular elements of a ring $R$. Then $R$ admits a right ring of fractions with respect to $E$ if and only if $E$ is a right Ore set.
+\end{theorem}
 %
-Finally, we say that the action is \emph{semisimple}\index{action!semisimple} if $A$ is
-the direct sum of its $\mcH$-eigenspaces.
+Ore localization shares many common properties with localization in the commutative
+setting. The following lemma shows, for example, that we can always find common
+denominators. On the other hand, one should also be careful. Testing equality of two
+fractions is a little bit more involved.
+\begin{lemma}[\protect{\cite[Lemma 6.1]{GoodearlWarfield2004NoncommutativeNR}}]\label{lem:ore_set_properties}
+	Let $R$ be a ring and $E$ a ring Ore set. Let $S$ be a right ring of fractions with respect to $E$.
+	\begin{enumerate}
+		\item Given fractions $s_1, \dots, s_n \in S$, we can find a common denominator. Thus, there
+		      exist $r_1, \dots, r_n \in R$ and $e \in E$ such that $s_i = r_i e\inv$ for all $i \in
+			      [1, n]$.
+		\item For $x, y \in R$ and $e, f \in E$, we have $x e \inv = y f \inv$ if and only if there
+		      exist $a,b \in R$ such that $xa = yb$ and $ea = fb$.
+	\end{enumerate}
+\end{lemma}
 
-Now, let $\mcH$ be a \emph{$\bbK$-torus}\index{torus}, that is, a group of the form
-$(\bbK^\times)^N$. By identifying $\mcH$ with the affine variety $\{(x_1, \dots, x_N,
-	y) \in \bbK^{N+1} \mid x_1 \cdots x_N y = 1\}$, we can view it as an algebraic group.
-Assume that $\mcH$ acts on a $\bbK$-algebra $A$ by $\bbK$-algebra automorphisms. Then
-we say that the action of $\mcH$ on $A$ is \emph{rational}\index{action!rational} if it
-is semisimple, and all the corresponding $\mcH$-eigenvalues are morphisms of affine
-varieties.
+As an example, note that $\mcT_\bbq$ is a right (and left) ring of fractions of
+$\mcA_\bbq$ with respect to the multiplicative subset, $E$, generated by $\bbK^\times$
+and $Y_1, \dots, Y_N$. Indeed, because the $Y_i$ quasi-commute and generate $\mcA_\bbq$
+(as an algebra), we have $e R = R e$ for all $e \in E$. Furthermore, all the nonzero
+elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 
-Write
-\begin{equation*}
-	X(\mcH) = \{\chi \in \Hom(\mcH, \bbK^\times) \mid \chi \text{ is a morphism of algebraic varieties}\},
-\end{equation*}
-%
-for the character group\index{group!character} of $\mcH$. Then a rational action is the
-same as an $X(\mcH)$-grading\index{grading} of $A$. Indeed, if we have a rational
-action on $A$, then we can write
-\begin{equation*}
-	A = \bigoplus_{\chi \in X(\mcH)} A_\chi,
-\end{equation*}
-which is graded because for $a \in A_\chi, b \in A_{\chi'}$ and all $h \in \mcH$:
-\begin{align*}
-	h \cdot (a b) = (h\cdot a)(h\cdot b)= \chi(h)a \chi'(h)b = (\chi \chi')(h)ab,
-\end{align*}
-so that $ab \in A_{\chi \chi'}$. Conversely, if
-\begin{equation*}
-	A = \bigoplus_{g \in X(\mcH)} A_g
-\end{equation*}
-is a grading, then we get a rational action through
-\begin{equation*}
-	h \cdot x = h \cdot \left(\sum_{g \in X(\mcH)} x_g \right) = \sum_{g \in X(\mcH)} g(h)x.
-\end{equation*}
-%
-Under this correspondence, the $\mcH$-eigenvectors are precisely the nonzero
-homogeneous\index{element!homogeneous} elements under the grading.
-
-\begin{example}
-	Consider the noncommutative $\bbK$-algebra $A$ generated by $x,y,z$ with relations $xy
-		-qyx = z$ and $zx = qxz$. We have an action on $A$ by $\mcH = (\bbK^\times)^2$, given
-	on the generators by
-	\begin{align*}
-		(\xi, \eta)\cdot x & = \xi x      \\
-		(\xi, \eta)\cdot y & = \eta y     \\
-		(\xi, \eta)\cdot z & = \xi\eta z.
-	\end{align*}
-	%
-	Because the action respects the relations on the generators, it follows that we can
-	extend the action to the whole of $A$, such that $\mcH$ acts by automorphisms. Note
-	that the generators are $\mcH$-eigenvectors, with $\mcH$-eigenvalues given by
-	polynomial functions. Thus, the action is rational.
-
-\end{example}
+When $R$ is a (noncommutative) domain, the set, $R \without \{0\}$, is a multiplicative
+subset of $R$ consisting of regular elements. When this is also an Ore set, we write
+$\Fract(R)$ for the corresponding ring of fractions. The quantum cluster variables will
+live in the division algebra $\Fract(\mcT_\bbq)$.
 
 \subsection{Toric frames and quantum mutations}
 
@@ -398,6 +392,80 @@ $R$ is Noetherian. It will also be a domain if $R$ is a domain.
 		      %
 		      That $\partial_x$ is a derivation follows from the ordinary product rule for derivatives.
 	\end{itemize}
+\end{example}
+
+A CGL extension will be an iterated Ore extension, together with a particular action of
+a $\bbK$-torus. This ensures some uniformity between the different generators. We now
+briefly introduce the necessary definition using \cite{GoodearlBrown2002LecturesAQC} as
+a reference.
+
+Let $\mcH$ be a group, and $A$ a $\bbK$-algebra. We say that $\mcH$ \emph{acts on $A$
+	by automorphisms}\index{action!by automorphisms} if for every $h \in \mcH$, the map $A
+	\to A \colon x \mapsto h \cdot x$ is a $\bbK$-algebra automorphism. A nonzero element
+$u \in A$ is called an \emph{$\mcH$-eigenvector}\index{H@$\mcH$!-eigenvector} if $\mcH
+	\cdot u \subseteq \bbK u$. So, for each $h \in \mcH$ there exists some $\lambda_h \in
+	\bbK$ such that $h \cdot u = \lambda_h u$. Since $\mcH$ acts by automorphisms,
+$\lambda_h \neq 0$ for all $h \in \mcH$. So, we get a group homomorphism $\chi_u \colon
+	\mcH \to \bbK^\times$ given by $\chi_u(h) = \lambda_h$. We call $\chi_u$ the
+\emph{$\mcH$-eigenvalue}\index{H@$\mcH$!-eigenvalue} of $u$. Associated to each
+$\mcH$-eigenvalue is its \emph{$\mcH$-eigenspace}\index{H@$\mcH$!-eigenspace}
+\begin{equation*}
+	A_\chi = \{u \in A \mid h \cdot x = \chi(h)x,\, \forall h \in \mcH \}.
+\end{equation*}
+%
+Finally, we say that the action is \emph{semisimple}\index{action!semisimple} if $A$ is
+the direct sum of its $\mcH$-eigenspaces.
+
+Now, let $\mcH$ be a \emph{$\bbK$-torus}\index{torus}, that is, a group of the form
+$(\bbK^\times)^N$. By identifying $\mcH$ with the affine variety $\{(x_1, \dots, x_N,
+	y) \in \bbK^{N+1} \mid x_1 \cdots x_N y = 1\}$, we can view it as an algebraic group.
+Assume that $\mcH$ acts on a $\bbK$-algebra $A$ by $\bbK$-algebra automorphisms. Then
+we say that the action of $\mcH$ on $A$ is \emph{rational}\index{action!rational} if it
+is semisimple, and all the corresponding $\mcH$-eigenvalues are morphisms of affine
+varieties.
+
+Write
+\begin{equation*}
+	X(\mcH) = \{\chi \in \Hom(\mcH, \bbK^\times) \mid \chi \text{ is a morphism of algebraic varieties}\},
+\end{equation*}
+%
+for the character group\index{group!character} of $\mcH$. Then a rational action is the
+same as an $X(\mcH)$-grading\index{grading} of $A$. Indeed, if we have a rational
+action on $A$, then we can write
+\begin{equation*}
+	A = \bigoplus_{\chi \in X(\mcH)} A_\chi,
+\end{equation*}
+which is graded because for $a \in A_\chi, b \in A_{\chi'}$ and all $h \in \mcH$:
+\begin{align*}
+	h \cdot (a b) = (h\cdot a)(h\cdot b)= \chi(h)a \chi'(h)b = (\chi \chi')(h)ab,
+\end{align*}
+so that $ab \in A_{\chi \chi'}$. Conversely, if
+\begin{equation*}
+	A = \bigoplus_{g \in X(\mcH)} A_g
+\end{equation*}
+is a grading, then we get a rational action through
+\begin{equation*}
+	h \cdot x = h \cdot \left(\sum_{g \in X(\mcH)} x_g \right) = \sum_{g \in X(\mcH)} g(h)x.
+\end{equation*}
+%
+Under this correspondence, the $\mcH$-eigenvectors are precisely the nonzero
+homogeneous\index{element!homogeneous} elements under the grading.
+
+\begin{example}
+	Consider the noncommutative $\bbK$-algebra $A$ generated by $x,y,z$ with relations $xy
+		-qyx = z$ and $zx = qxz$. We have an action on $A$ by $\mcH = (\bbK^\times)^2$, given
+	on the generators by
+	\begin{align*}
+		(\xi, \eta)\cdot x & = \xi x      \\
+		(\xi, \eta)\cdot y & = \eta y     \\
+		(\xi, \eta)\cdot z & = \xi\eta z.
+	\end{align*}
+	%
+	Because the action respects the relations on the generators, it follows that we can
+	extend the action to the whole of $A$, such that $\mcH$ acts by automorphisms. Note
+	that the generators are $\mcH$-eigenvectors, with $\mcH$-eigenvalues given by
+	polynomial functions. Thus, the action is rational.
+
 \end{example}
 
 \textbf{Def CGL extension. Example of matrices, and Heisenberg algebra.}
@@ -1453,7 +1521,7 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 			      \tau_\bullet\tau (k, k +1)$.
 		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
 			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
-		      $\tau_\bullet\tau(k) = j$.
+		      $\tau_\bullet\tau(k) = j$. \textbf{TODO: $\Gamma_N$ hasn't been introduced yet!!!}
 	\end{enumerate}
 \end{lemma}
 \begin{proof}\leavevmode
@@ -1704,22 +1772,6 @@ intersections of localizations, it makes sense to look at what happens to the
 intersection of the localizations by the two sequences of prime elements in the setting
 of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
 
-To localize in the noncommutative setting, we need the notion of an \emph{Ore
-	set}\index{Ore set}. The idea is that we want to define a new ring $R[E\inv] = \{re\inv
-	\mid e \in E, r\in R\}$ for some subset $E \subseteq R$ of a (noncommutative) domain
-$R$. In order for this to make sense, $E$ should be a \emph{multiplicative
-	subset}\index{multiplicative subset}, i.e., $1 \in E$ and $ef \in E$ for all $e,f \in
-	E$. This alone is not enough. Additionally, if $e, f \in E$, then for any $x, y \in R$
-we should have $xe\inv yf\inv \in R[E\inv]$. This would be satisfied if we could write
-$e\inv y = y' (e')\inv$ for some $y' \in R$ and $e' \in E$. That condition is
-equivalent to $y e' = e y'$ for some $y' \in R$ and $e' \in E$, which in turn is
-equivalent to $y E \cap e R \neq \emptyset$ for all $y \in R$ and $e \in E$. Putting
-this together, we find the definition. A \emph{right Ore set} $E \subseteq R$ is a
-multiplicative subset such that $x E \cap e R \neq \emptyset$ for all $x \in R$ and $e
-	\in E$. One defines a left Ore set analogously.
-
-Recall that a \emph{regular element}\index{element!regular} of a ring is a nonzero
-element that is neither a left nor a right zero-divisor.
 \begin{lemma}\label{lem:ore_set_ore_extension}
 	%
 	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set of
@@ -1914,9 +1966,8 @@ We now state and prove 3 lemmas that we will need for the proof of
 		x e\inv y f\inv = x y' (e')\inv f\inv = xy' (fe')\inv = p z g\inv.
 	\end{equation*}
 	%
-	It is a standard fact (\cite[Lemma 6.1 (c)]{GoodearlWarfield2004NoncommutativeNR})
-	about Ore localizations, that the above is equivalent to the existence of $a,b \in R$
-	such that
+	Using \cref{lem:ore_set_properties}, we find that the above is equivalent to the
+	existence of $a,b \in R$ such that
 	\begin{equation*}
 		xy'a = pzb \quad \text{and} \quad fe'a = gb \in E.
 	\end{equation*}
@@ -2952,10 +3003,10 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		\tau'(k) = \tau(k+1) < \tau(k) = \tau'(k+1).
 	\end{equation*}
 	%
-	We can thus apply the part we already proved with the roles of $\tau$ and $\tau'$ swapped. This
-	immediately resolves case (a), since it is symmetric in $\tau$ and $\tau'$. It remains
-	to show that the conclusions of (b) for $\tau$ also hold for $\tau'$. To do this, we
-	must carefully compare $\bbr_\tau$ and $\bbr_{\tau'}$.
+	We can thus apply the part we already proved with the roles of $\tau$ and $\tau'$
+	swapped. This immediately resolves case (a), since it is symmetric in $\tau$ and
+	$\tau'$. It remains to show that the conclusions of (b) for $\tau$ also hold for
+	$\tau'$. To do this, we must carefully compare $\bbr_\tau$ and $\bbr_{\tau'}$.
 
 	From \cref{thm:almost_mutation_toric_frame} we have
 	\begin{align*}
@@ -2978,8 +3029,8 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\begin{align*}
 		\Omega_{\bbr_{\tau'}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_{k_\bullet})^2
 		 & =\Omega_{\bbr_{\tau}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_{p(k_\bullet)} + e_{s(k_\bullet)} - e_{k_\bullet})^2 \\
-		&=\Omega_{\bbr_{\tau}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g),- e_{k_\bullet})^2 \\
-		&=\Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,e_{k_\bullet})^2 \\
+		 & =\Omega_{\bbr_{\tau}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g),- e_{k_\bullet})^2                                      \\
+		 & =\Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,e_{k_\bullet})^2                                           \\
 		 & =\lambda_{k_\bullet}^* .
 	\end{align*}
 	%
@@ -3004,11 +3055,11 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	and
 	\begin{align*}
 		M_{\tau'}(e_{k_\bullet})\inv M_\tau(g)
-		&= M_{\tau'}(e_{k_\bullet})\inv M_{\tau'}(g)\\
-		&=  \Omega_{\bbr_{\tau'}}(-e_{k_\bullet}, g)M_{\tau'}(g -e_{k_\bullet})\\
-		&=  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet})\\
-		&=  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet})\\
-		&=  \Omega_{\bbr_{\tau}}(-e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet}),
+		 & = M_{\tau'}(e_{k_\bullet})\inv M_{\tau'}(g)                                                                        \\
+		 & =  \Omega_{\bbr_{\tau'}}(-e_{k_\bullet}, g)M_{\tau'}(g -e_{k_\bullet})                                             \\
+		 & =  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet})     \\
+		 & =  \Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g -e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet}) \\
+		 & =  \Omega_{\bbr_{\tau}}(-e_{k_\bullet}, g)\inv M_{\tau'}(g -e_{k_\bullet}),
 	\end{align*}
 	such that
 	\begin{equation*}
@@ -3021,12 +3072,12 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\end{equation*}
 	and
 	\begin{align*}
-		M_{\tau'}(\ekbullet)\inv M_\tau(\epsbullet) 
-		&= M_{\tau'}(\ekbullet)\inv M_{\tau'}(\epsbullet) \\
-		&= \Omega_{\bbr_{\tau'}}(\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
-		&= \Omega_{\bbr_{\tau}}(\epsbullet-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
-		&= \Omega_{\bbr_{\tau}}(-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
-		&= \Omega_{\bbr_{\tau}}(\ekbullet, \epsbullet) M_{\tau'}(\epsbullet - \ekbullet),
+		M_{\tau'}(\ekbullet)\inv M_\tau(\epsbullet)
+		 & = M_{\tau'}(\ekbullet)\inv M_{\tau'}(\epsbullet)                                               \\
+		 & = \Omega_{\bbr_{\tau'}}(\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet)           \\
+		 & = \Omega_{\bbr_{\tau}}(\epsbullet-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet) \\
+		 & = \Omega_{\bbr_{\tau}}(-\ekbullet, \epsbullet)\inv M_{\tau'}(\epsbullet - \ekbullet)           \\
+		 & = \Omega_{\bbr_{\tau}}(\ekbullet, \epsbullet) M_{\tau'}(\epsbullet - \ekbullet),
 	\end{align*}
 	such that
 	\begin{equation*}
@@ -3206,7 +3257,9 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 	\cref{eq:conditions_for_bltautau'} for $\tB_{\tau', \tau'} = \mu_{k_\bullet}(\tB_{\tau,
 			\tau'})$.
 
-	The proof for the other implication is analogous. The difference is that we now have to consider the case $\tau(k) > \tau(k+1)$ in \cref{prop:mutation_adjacent_permutations} (b). In this case we obtain
+	The proof for the other implication is analogous. The difference is that we now have to
+	consider the case $\tau(k) > \tau(k+1)$ in \cref{prop:mutation_adjacent_permutations}
+	(b). In this case we obtain
 	\begin{equation*}
 		\epsbullet - g = - b^{k_\bullet}_{\tau', \tau'},
 	\end{equation*}
@@ -3215,12 +3268,13 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		\mu_{k_\bullet}(M_{\tau'})(e_{k_\bullet})
 		 & = M_{\tau'}(-e_{k_\bullet} + [b^{k_\bullet}_{\tau', \tau'}]_{+}) + M_{\tau'}(-e_{k_\bullet} - [b^{k_\bullet}_{\tau', \tau'}]_{-})                         \\
 		 & = M_{\tau'}(-e_{k_\bullet} + [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{+}) + M_{\tau'}(-e_{k_\bullet} - [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{-}) \\
-		 & = M_{\tau'}(-e_{k_\bullet} + g) + M_{\tau'}(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)})                                                     \\
+		 & = M_{\tau'}(-e_{k_\bullet} + g) + M_{\tau'}(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)})                                                         \\
 		 & = M_{\tau}(e_{k_\bullet}).
 	\end{align*}
 	%
-	The rest of the proof can then be taken over literally from the first case, by swapping $\tau$ and $\tau'$.
-	
+	The rest of the proof can then be taken over literally from the first case, by swapping
+	$\tau$ and $\tau'$.
+
 \end{proof}
 The previous lemma will serve as the induction step in this lemma.
 \begin{lemma}\label{lem:inductive_columns}
@@ -3308,8 +3362,8 @@ The previous lemma will serve as the induction step in this lemma.
 		\end{dcases*}
 	\end{equation*}
 	%
-	We now apply \cref{lem:inductive_step_btautau} once more, to conclude that $\tB_{\sigma, \tau'}$
-	satisfies \cref{eq:conditions_for_blsigmatau}.
+	We now apply \cref{lem:inductive_step_btautau} once more, to conclude that
+	$\tB_{\sigma, \tau'}$ satisfies \cref{eq:conditions_for_blsigmatau}.
 
 \end{proof}
 
@@ -3344,10 +3398,11 @@ of putting everything together.
 	For part (c), the one-step mutation statement follows from
 	\cref{prop:mutation_adjacent_permutations} (a) if $\eta(\tau(k)) \neq \eta(\tau(k +
 			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
-	\cref{lem:inductive_step_btautau}, swapping the roles of $\tau$ and $\tau'$ if needed. Then, since mutation is involutive, every $\tau \in
-		\Xi_N$ can be obtained by a sequence of one-step mutations from $\id$ due to
-	\cref{prop:eta_invariance} and the uniqueness of part (a), we obtain that all the
-	quantum seeds associated to $\Xi_N$ are mutation-equivalent to each other.
+	\cref{lem:inductive_step_btautau}, swapping the roles of $\tau$ and $\tau'$ if needed.
+	Then, since mutation is involutive, every $\tau \in \Xi_N$ can be obtained by a
+	sequence of one-step mutations from $\id$ due to \cref{prop:eta_invariance} and the
+	uniqueness of part (a), we obtain that all the quantum seeds associated to $\Xi_N$ are
+	mutation-equivalent to each other.
 \end{proof}
 
 \medskip
@@ -3460,9 +3515,8 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      For each $\tau \in \Gamma_N$, we can write $v = xy\inv$ for some $x \in R[E\inv_\tau]$
 		      and $y$ in the multiplicative set generated by $\{y_k \mid k \in \binv\}$. Now, we can
 		      choose $y$ to be the same for each $\tau \in \Gamma_N$, and hence $vy \in
-			      R[E\inv_\tau]$ for all $\tau \in \Gamma_N$ (cf.
-		      \cite[Lemma~6.1~(c)]{GoodearlWarfield2004NoncommutativeNR}). Thus, $vy\in R$ by part
-		      (d), and $v \in R[y_k\inv \mid k \in \binv]$ as we needed to show.
+			      R[E\inv_\tau]$ for all $\tau \in \Gamma_N$ (cf. \cref{lem:ore_set_properties}). Thus,
+		      $vy\in R$ by part (d), and $v \in R[y_k\inv \mid k \in \binv]$ as we needed to show.
 	\end{enumerate}
 \end{proof}
 
