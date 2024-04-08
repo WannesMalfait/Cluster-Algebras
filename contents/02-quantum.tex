@@ -1,4 +1,5 @@
 \newcommand{\bbr}{\mathbf{r}}
+\newcommand{\bbt}{\mathbf{t}}
 \newcommand{\bbq}{\mathbf{q}}
 \newcommand{\bbn}{\boldsymbol{\nu}}
 \newcommand{\bbl}{\boldsymbol{\lambda}}
@@ -76,12 +77,14 @@ $\bbK[Y_1, \dots, Y_N]$ by $\bbq$, we obtain
 	\mcA_\bbq = \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)},
 \end{equation*}
 the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then write $\mcT_\bbq$ for the \emph{quantum torus}
-\begin{equation*}
+\begin{equation}\label{eq:quantum_torus}
 	\mcT_\bbq = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)}.
-\end{equation*}
+\end{equation}
 %
-We will refer to the property that $X Y = qY X$ for some $q in \bbK^\times$ by saying
-that $Y_i$ and $Y_j$ \emph{quasi-commute}\index{quasi-commuting}.
+It has a $\bbK$-basis consisting of elements of the form $Y^f = Y_1^{f_1} \cdots
+	Y_N^{f_N}$ for $f \in \bbZ^N$. We will refer to the property that $X Y = qY X$ for some
+$q \in \bbK^\times$ by saying that $Y_i$ and $Y_j$
+\emph{quasi-commute}\index{quasi-commuting}.
 \begin{remark}
 
 	In most examples, $\bbq$ will be of the form $(q^{\Lambda_{ij}})$ for some
@@ -145,10 +148,10 @@ and $Y_1, \dots, Y_N$. Indeed, because the $Y_i$ quasi-commute and generate $\mc
 (as an algebra), we have $e R = R e$ for all $e \in E$. Furthermore, all the nonzero
 elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 
-When $R$ is a (noncommutative) domain, the set, $R \without \{0\}$, is a multiplicative
-subset of $R$ consisting of regular elements. When this is also an Ore set, we write
-$\Fract(R)$ for the corresponding ring of fractions. The quantum cluster variables will
-live in the division algebra $\Fract(\mcT_\bbq)$.
+When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
+multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
+set, we write $\Fract(R)$ for the corresponding ring of fractions. The quantum cluster
+variables will live in the division algebra $\Fract(\mcT_\bbq)$.
 
 \subsection{Toric frames and quantum mutations}
 
@@ -156,52 +159,199 @@ We now proceed with the quest towards quantum cluster algebras. Recall that a cl
 algebra is determined by an initial seed, consisting of a matrix and the intitial
 cluster variables. The mutation is completely determined by the matrix. In the
 noncommutative setting, there is one additional thing to keep track of, namely the
-multiplicatively skew-symmetric matrix $\bbr \in M_N(\bbK^\times)$. We will combine the
-data of $\bbr$ together with the data of the cluster variables in one object, called a
-\emph{toric frame}.
+multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$. It turns out that
+some sort of compatibility will be needed between the mutation matrix, $\tB$, and the
+matrix $\bbq$.
 
-Fix a multiplicatively skew-symmetric matrix $\bbr \in M_N(\bbK^\times)$. In the
-quantum torus $\mcT_\bbr$, we have that $Y_i Y_j = r_{ij}Y_j Y_i =
-	\prescript{e_i}{}{}\bbr^{e_j} Y_j Y_i$. Write $Y^f = Y_1 ^f{f_1} \cdots Y_N^{f_N}$ for
-$f \in \bbZ^N$. It would now be desirable to also have that
-\begin{equation*}
-	Y^f Y^g = \prescript{f^T}{}{}\bbr^g Y^g Y^f
-\end{equation*}
-for all $f, g \in \bbZ^N$. This is already true... \textbf{TODO: motivation for why move to based quantum torus...}
+Fix a multiplicatively skew-symmetric matrix $\bbq \in M_N (\bbK^\times)$, and a
+mutation matrix $\tB \in M_{N \times \ex}(\bbZ)$. As in the classical setting, $\ex
+	\subseteq [1, N]$ and the \emph{principal part}\index{principal part} of $\tB$ is the
+submatrix $B \in M_{\ex \times \ex}(\bbZ)$ indexed by the elements of $\ex$. Let
+$\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
 
-Associated to any such matrix, is a skew-symmetric bicharacter \footnote{With a
-	bicharacter we mean a map from a direct product, such that each of the component maps
-	is a group character.}:
-\begin{equation*}
-	\Omega_{\mathbf{r}} \colon \bbZ^N \times \bbZ^N \to \bbK^* \colon
-	\Omega_{\mathbf{r}}(e_i, e_j) = r_{ij}.
-\end{equation*}
+We now explore a naive way of generalizing the exchange relation
+(\cref{eq:exchange_relation_quiver}) to the noncommutative setting. This will give us
+the intuition needed to arrive at the right definition. Take $k \in \ex$ and write
+$b^k$ for the $k$-th column of $\tB$. We will denote with $[b^k]_{+}$ and $[b^k]_{-}$
+the positive and negative parts of $b^k \in \bbZ^N$. Thus
+\begin{align*}
+	[b^k]_{+} & = \sum_{i=1}^N \max\{0, b_{ik}\}e_k = \sum \{b_{ik}e_k \mid b_{ik} > 0, \, i \in [1, N]\}, \\
+	\shortintertext{and}
+	[b^k]_{-} & = \sum_{i=1}^N \min\{0, b_{ik}\}e_k = \sum \{b_{ik}e_k \mid b_{ik} < 0,\, i \in [1, N]\}.
+\end{align*}
+We then define $Y'_k \in \Fract(\mcT_\bbq)$ as
+\begin{equation}\label{eq:quantum_exchange_naive}
+	Y_k' = Y_k\inv \left(Y^{[b^k]_{+}} + Y^{-[b^k]_{-}}\right) = Y_k\inv \left(\prod_{b_{ik} > 0}Y_i^{b_{ik}} + \prod_{b_{ik} < 0} Y_i^{-b_{ik}}\right).
+\end{equation}
+%
+By convention we take all the products to be in increasing index\footnote{If this feels
+	arbitrary, that is because it is. This will be addressed by switching over to toric
+	frames.}, i.e., $Y^f = Y_1^{f_1}Y_2^{f_2} \cdots Y_N^{f_N}$ for $f \in \bbZ^N$. For
+this definition to work, the variables $Y_1, \dots, Y_{k-1}, Y'_k, Y_{k+1}, \dots, Y_N$
+should now be contained in another quantum torus $\mcT_{\bbq'}$. Thus, for each $j \in
+	[1, N], j \neq k$, we need $Y'_k Y_j = q'_{kj} Y_j Y'_k$ for some $q'_{kj} \in
+	\bbK^\times$. We have
+\begin{align*}
+	Y'_k Y_j
+	 & = Y_k\inv \left(\prod_{b_{ik} > 0} Y_i^{b_{ik}} + \prod_{b_{ik} < 0}Y_i^{-b_{ik}}\right) Y_j                                             \\
+	 & = Y_k\inv \left(\prod_{b_{ik} > 0} Y_i^{b_{ik}}Y_j + \prod_{b_{ik} < 0}Y_i^{-b_{ik}}Y_j\right)                                           \\
+	 & = Y_k\inv \left(Y_j \prod_{b_{ik} > 0} q_{ij}^{b_{ik}} Y_i^{b_{ik}} + Y_j \prod_{b_{ik} < 0}q_{ij}^{-b_{ik}}Y_i^{-b_{ik}}\right)         \\
+	 & = q_{kj}\inv Y_j Y_k\inv \left(\prod_{b_{ik} > 0} q_{ij}^{b_{ik}} Y_i^{b_{ik}} + \prod_{b_{ik} < 0}q_{ij}^{-b_{ik}}Y_i^{-b_{ik}}\right).
+\end{align*}
+%
+It follows that we must have
+\begin{equation}\label{eq:b_plus_is_b_minus}
+	\prod_{b_{ik} > 0}q_{ij}^{b_{ik}} = \prod_{b_{ik} < 0}q_{ij}^{ - b_{ik}},
+\end{equation}
+which is equivalent to
+\begin{equation}\label{eq:compatibility_q_b}
+	\prod_{i=1}^N q_{ij}^{b_{ik}} = 1.
+\end{equation}
+%
+Under this assumption, we then find
+\begin{equation}\label{eq:mutated_q_kj}
+	q'_{kj} = q_{kj}\inv \prod_{b_{ik} > 0}q_{ij}^{b_{ik}} = q_{kj}\inv \prod_{b_{ik} < 0}q_{ij}^{-b_{ik}}, \text{ for all } k \in \ex,\, j\in [1, N], j\neq k.
+\end{equation}
+%
+This completely determines the new matrix $\bbq' = (q'_{ij})$, as we have $q'_{ij} =
+	q_{ij}$ for $i,j \neq k$. We now introduce some notation to be able to write the above
+formulas in a slightly more compact way.
 
-To prevent formulas from having $\frac{1}{2}$'s in the exponents, we will work with the
-quantum torus $\mcT_{\mathbf{r}^{\cdot 2}}$, where
+To a multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$ we associate a
+\emph{skew-symmetric bicharacter}\index{skew-symmetric!bicharacter}
 \begin{equation*}
-	\mathbf{r}^{\cdot 2} \coloneq (r_{ij}^2) \in M_N(\bbK^*).
+	\Omega_{\bbq} \colon \bbZ^N \times \bbZ^N \to \bbK^\times \colon
+	\Omega_{\bbq}(f, g) = \prescript{f^T}{}{}\bbq^g.
 \end{equation*}
-This torus has a $\bbK$-basis consisting of elements
+%
+It is a bicharacter in the sense that each of the components is a character $\bbZ^N \to
+	\bbK^\times$. The function $\Omega_\bbq$ satisfies (or is determined by) the following
+properties
+\begin{align}
+	 & \Omega_\bbq (e_i, e_j) = q_{ij}, \quad \forall i, j \in [1, N],\label{eq:Omega_of_basis}                             \\
+	 & \Omega_\bbq (f, g) = \Omega_\bbq (g, f)\inv,\quad \forall f, g \in \bbZ^N,\label{eq:Omega_skew_symmetric}            \\
+	 & \Omega_\bbq (f + g, h) = \Omega_\bbq(f, h)\Omega_\bbq(g, h), \quad \forall f, g, h\in \bbZ^N.\label{eq:Omega_of_sum}
+\end{align}
+%
+\Cref{eq:compatibility_q_b} can now be rewritten as $\Omega_\bbq(b^k, e_j) = 1$. This leads to the following definition.
+\begin{definition}\label{def:compatible_pair}
+	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and $\bbq \in M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix.	Let $\wt{\bbt}\in M_{\ex \times N}(\bbZ)$ be the matrix with entries
+	\begin{equation*}
+		t_{kj} = \Omega_\bbq(b^k, e_j) = \prod_{i=1}^N q_{ij}^{b_{ik}}
+	\end{equation*}
+	for $k \in \ex$ and $j \in [1, N]$. We say that the pair $(\bbq, \tB)$ is \emph{compatible}\index{compatible pair} if $t_{kj} = 1$ for all $k \in \ex$ and $j \in [1, N], j\neq k$ and  $t_{kk}$ is not a root of unity, for all $k\in \ex$.
+\end{definition}
+\begin{remark}
+	The condition that $t_{kk}$ is not a root of unity is not strictly necessary to ensure that $Y'_k$ quasi-commutes with the $Y_j, j\neq k$. It is more of a technical condition that prevents certain degenerate cases, and has some useful consequences (cf. \cref{lem:principal_part_skew_symmetrizable}).
+\end{remark}
+%
+In order for $\tB$ to be a mutation matrix, the principal part of $\tB$ should be
+skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs.
+\begin{lemma}\label{lem:principal_part_skew_symmetrizable}
+	Let $(\bbq, \tB)$ be a compatible pair. Assume that there exist $d_k \in \bbZ_{>0}$ for $k \in \ex$ such that
+	\begin{equation*}
+		t_{kk}^{d_j} = t_{jj}^{d_k}, \text{ for all } j,k \in \ex.
+	\end{equation*}
+	%
+	Then the principal part of $\tB$ is skew-symmetrizable by the $d_k, k\in \ex$. This
+	holds in particular if $\bbq$ is uniparameter.
+\end{lemma}
+\begin{proof}
+	For $j,k \in \ex$ we have
+	\begin{equation*}
+		t_{kk}^{b_{kj}} = \prod_{i=1}^N t_{ki}^{b_{ij}} = \prod_{i=1}^N\prod_{l=1}^N q_{li}^{b_{lk}b_{ij}} =
+		\prod_{i=1}^N\prod_{l=1}^N q_{il}^{-b_{lk}b_{ij}} = \prod_{l=1}^N t_{jl}^{-b_{lk}} = t_{jj}^{-b_{jk}}.
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+		t_{kk}^{b_{kj} d_j} = t_{jj}^{ b_{kj}d_k} = t_{kk}^{- b_{jk} d_k},
+	\end{equation*}
+	from which we obtain $b_{kj} d_j = -b_{jk} d_k$ for all $j, k \in \ex$ due to the fact that $t_{ii}$ is not a root of unity for all $i \in \ex$.
+
+	Finally, assume that $\bbq = (q^{\Lambda_{ij}})$ for some skew-symmetric matrix
+	$\Lambda \in M_N(\bbZ)$ and $q \in \bbK^\times$ not a root of unity. Then, for each $k
+		\in \ex$,
+	\begin{equation*}
+		t_{kk} = \prod_{i=1}^N q_{ik}^{b_{ik}} = \prod_{i=1}^N q^{\Lambda_{ik}b_{ik}} = q^{m_k}
+	\end{equation*}
+	for some $m_k \in \bbZ_{> 0}$. Consequently, $t_{kk}^{m_j} = q^{m_km_j} = t_{jj}^{m_k}$ for all $k,j \in \ex$, which shows that the integers $m_k, k\in \ex$ satisfy the condition of the lemma.
+\end{proof}
+
+We now look to the mutation of the compatible pairs. Recall that the mutation of $\tB$
+in direction $k$ was given by the formula
 \begin{equation*}
-	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{m_1}\dots Y_N^{m_N}
-	\text{ for } f = (m_1, \dots, m_n)^T \in \bbZ^N,
+	b'_{ij} = \begin{dcases*}
+		-b_{ij},                                            & if $i = k$ or $j = k$ \\
+		b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj|}}{2}, & otherwise.
+	\end{dcases*}
+\end{equation*}
+%
+On the other hand, if $(\bbq, \tB)$ is a compatible pair, we know that
+\cref{eq:mutated_q_kj} holds. Let $\epsilon = \pm 1$ and $E_{\epsilon} \in M_N(\bbZ)$
+be the matrix with columns $(e_1, \dots, e_{k-1}, [-\epsilon b^k]_{+} - e_k, e_{k+1},
+	\dots, e_N)$. We then define
+\begin{equation}\label{eq:def_mutation_q}
+	\mu_k(\bbq) = \bbq' = \prescript{E_{\epsilon}^T}{}{}\bbq^{E_\epsilon}.
+\end{equation}
+%
+The choice of the sign $\epsilon = \pm 1$ corresponds precisely to choosing the first
+or second inequality in \cref{eq:mutated_q_kj}. Because of the compatibility condition,
+the definition of $\bbq'$ is independent of the choice of sign. We then define the
+\emph{mutation in direction $k \in \ex$}\index{mutation!of compatible pairs} of the
+compatible pair $(\bbq, \tB)$ to be the pair $(\mu_k (\bbq),\mu_k (\tB) )$. That this
+yields another compatible pair is a straightforward verification.
+\begin{proposition}[\protect{\cite[Proposition 2.6]{GoodearlYakimov2017QCA}}]\label{prop:mutation_preserves_good_things}
+
+	Let $(\bbq, \tB)$ be a compatible pair, and $k \in \ex$. Assume that the principal part
+	of $\tB$ is skew-symmetrizable. Then the pair $(\mu_k (\bbq), \mu_k(\tB))$ is
+	compatible, the principal par of $\mu_k(\tB)$ is skew-symmetrizable, and the
+	$\wt{\bbt}$-matrix of the new pair as in \cref{def:compatible_pair} is the same as the
+	one for the pair $(\bbq, \tB)$.
+\end{proposition}
+
+\medskip
+
+Although \cref{eq:quantum_exchange_naive} has led us on the right path, it is not
+perfect. It depends heavily on the order in which we take the products. It would be
+nice if there was some ``order-independent'' way to define the exchange relation. To do
+this, we will introduce the \emph{based quantum torus}\index{torus!based quantum} and
+\emph{toric frames}\index{toric frame}.
+
+The idea is that we want to symmetrize or balance the equation $Y_i Y_j = q_{ij} Y_j
+	Y_i$. To do this, we assume the existence of another multiplicatively skew-symmetric
+matrix $\bbr \in M_N(\bbK^\times)$ such that $\bbq = \bbr^{\cdot 2} = (r_{ij}^2)$. We
+then find that
+\begin{equation*}
+	\Omega_\bbr(e_i, e_j)\inv Y_i Y_j = r_{ji} Y_i Y_j = r_{ij} Y_j Y_i = \Omega_\bbr (e_j, e_i)\inv Y_j Y_i.
+\end{equation*}
+%
+We then define
+\begin{equation*}
+	Y^{(e_i + e_j)} = \Omega_\bbr(e_i, e_j)\inv Y_i Y_j = \Omega_\bbr(e_j, e_i)\inv Y_i Y_j.
+\end{equation*}
+%
+This new element $Y^{(e_i + e_j)}$ represents the order-independent product of $Y_i$
+and $Y_j$. This leads to the \emph{based quantum torus}\index{torus!based quantum}
+$\mcT_{\bbr^{\cdot 2}}$ which has a $\bbK$-basis consisting of elements
+\begin{equation*}
+	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{f_1}\dots Y_N^{f_N}
+	\text{ for } f = (f_1, \dots, f_n)^T \in \bbZ^N,
 \end{equation*}
 where
 \begin{equation*}
-	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-m_im_j}.
+	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-f_if_j}.
 \end{equation*}
 Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 \begin{align*}
 	Y^{(e_k)}
-	 & = \mcS_{\mathbf{r}}(e_k)Y^{e_k}                      \\
-	 & = (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k \\
-	 & = (\prod_{i < j}r_{ij}^0 )Y_k                        \\
-	 & = Y_K.
+	= \mcS_{\mathbf{r}}(e_k)Y^{e_k}
+	= (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k
+	= (\prod_{i < j}r_{ij}^0 )Y_k
+	= Y_K.
 \end{align*}
-Additionally, we have the following multiplication rule for $f,g \in \bbZ^N$:
+As desired, we have the following multiplication rule for $f,g \in \bbZ^N$:
 \begin{equation*}
-	Y^{(f)}Y^{(g)} = \Omega_{\mathbf{r}}(f,g)Y^{(f+g)}.
+	\Omega_\bbr(f,g)\inv Y^{(f)}Y^{(g)} = Y^{(f+g)} = \Omega_\bbr (g, f)\inv Y^{(g)}Y^{(f)}.
 \end{equation*}
 Indeed,
 \begin{align*}
@@ -222,13 +372,17 @@ Indeed,
 	(\prod_{i < j}r_{ij}^{-(f_i + g_j)(f_j + g_j)})(\prod_{k}Y_k^{f_k + g_k})              \\
 	 & = \Omega_{\mathbf{r}}(f,g)Y^{(f + g)}.
 \end{align*}
-The torus $\mcT_{\mathbf{r}^{\cdot 2}}$ with the basis $\{Y^{(f)} \mid f \in \bbZ^N\}$
-is called the \emph{based quantum torus} associated to the matrix $\mathbf{r}$.
 
-We now come to the analog of clusters in the quantum setting.
+\medskip
+
+We now introduce one final object, which serves multiple purposes. It combines the data
+of the matrix $\bbr$, the cluster variables $Y_1, \dots, Y_N$ and the based quantum
+torus $\mcT_{\bbr^{\cdot 2}}$ into one object. Additionally, it linearizes all the
+multiplicative identities. Another useful property is that it allows permuting the
+cluster variables, which we will need later on.
 \begin{definition}
-	A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame} if there exists
-	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^*)$ such that:
+	Let $\mcF$ be a division algebra over $\bbK$. A map $M \colon \bbZ^N \to \mcF$ is called a \emph{toric frame}\index{toric frame} if there exists
+	a multiplicatively skew-symmetric matrix $\mathbf{r} \in M_N(\bbK^\times)$ such that:
 	\begin{enumerate}
 		\item There is an algebra embedding $\varphi \colon \mcT_{\mathbf{r}^{\cdot 2}} \injto \mcF$
 		      given by $\varphi(Y_i) = M(e_i)$, such that $\mcF =
@@ -249,93 +403,84 @@ We now come to the analog of clusters in the quantum setting.
 	\end{align*}
 	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
 \end{remark}
-Now, for quantum seeds, we'll need an extra compatibility condition:
+%
+We are now ready to define the quantum analogs of seeds, mutations and cluster
+algebras.
 \begin{definition}
-	A \emph{quantum seed} is a pair $(M, \tB)$ consisting of a toric frame $M$
-	and an $N \times n$ matrix $B$ over $\bbZ$ such that
+	A \emph{quantum seed}\index{seed!quantum} is a pair $(M, \tB)$ consisting of a toric frame $M$
+	and an $N \times \ex$ matrix $\tB$ over $\bbZ$ such that
 	\begin{enumerate}
 		\item The principal part of $\tB$ is skew-symmetrizable.
-		\item The pair $(\mathbf{r}(M), \tB)$ is \emph{compatible}.
+		\item The pair $(\mathbf{r}(M), \tB)$ is compatible.
 	\end{enumerate}
 \end{definition}
-
-So, what is this extra compatibility? In analogy with
-\cref{eq:exchange_relation_quiver} we want to define $\mu_k(M)$ in such a way that
-$\mu_k(M)(e_j) = M(e_j)$ for $j \neq k$ and
-\begin{equation*}
-	M(e_k)\mu_k(M)(e_k) = M([b^k]_+) + M(-[b^k]_-),
-\end{equation*}
-where $b^k$ is the $k$-th column of $B$.
-Bringing $M(e_k)$ to the other side,
-and ignoring eventual symmetrization constants we can then define
-\begin{equation*}
-	\mu_k(M)(e_k) = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-).
-\end{equation*}
-Let $\epsilon$ be a sign $\pm 1$. Then we can rewrite the definition as
-\begin{align*}
-	\mu_k(M)(e_k)
-	 & = M(-e_k + [b^k]_+) + M(-e_k - [b^k]_-)                                    \\
-	 & = M(-e_k + [-\epsilon b^k]_+) + M(-e_k - [-\epsilon b^k]_+ + \epsilon b^k) \\
-	 & = M(E_\epsilon e_k) + M(E_\epsilon(e_k + \epsilon b^k)),
-\end{align*}
-where $E_\epsilon \in \GL_N(\bbZ)$ is the integer matrix with columns:
-\begin{equation*}
-	E_\epsilon = (e_1, \dots ,e_{k-1}, [-\epsilon b^k]_+ -e_k, e_{k+1}, \dots, e_N).
-\end{equation*}
-Since, $E_\epsilon$ maps the basis $e_1, \dots, e_N$ of $\bbZ^N$ to another basis,
-and $E_\epsilon e_j = e_j$ for all $j \neq k$,
-we can ignore it when checking that $\mu_k(M)$ defines a toric frame.
-In other words,
-we just need that $M' : \bbZ^N \to \mcF$ defines a toric frame, where
-\begin{align*}
-	M'(e_j) = M(e_j), j\neq k \quad M'(e_k) = M(e_k) + M(e_k + \epsilon b^k).
-\end{align*}
-On the one hand we have
-\begin{align*}
-	M'(e_k)M'(e_j)
-	 & = (M(e_k) + M(e_k + \epsilon b^k))M(e_j)                                                                                \\
-	 & = M(e_j)(\Omega_{\mathbf{r}}(e_k, e_j)^2 M(e_k) + \Omega_{\mathbf{r}}(e_k + \epsilon b^k, e_j)^2 M(e_k + \epsilon b^k)) \\
-	 & =\Omega_{\mathbf{r}}(e_k, e_j)^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(\epsilon b^k, e_j)^2 M(e_k + \epsilon b^k))       \\
-	 & =\mathbf{r}_{k,j}^2  M(e_j)(M(e_k) + \Omega_{\mathbf{r}}(b^k, e_j)^{2 \epsilon} M(e_k + \epsilon b^k)),
-\end{align*}
-while $M'$ being a toric frame would imply
-\begin{align*}
-	M'(e_k)M'(e_j) = (\mathbf{r}'_{k,j})^2 M'(e_j)M'(e_k).
-\end{align*}
-The easiest way to make the two equations compatible,
-is to demand $\mathbf{r}' = \mathbf{r}$,
-and $\Omega_{\mathbf{r}}(b^k, e_j) = 1$ for $j \neq k$.
-\textbf{TODO: is this the only possible choice?}
-This leads to the following definition:
-\begin{definition}
-	Let $\tilde{\mathbf{t}} \in M_{n \times N}(\bbK^*)$ be the matrix with entries
+\begin{remark}
+	Note that the compatibility is asked between $\bbr$ and $\tB$, and not between $\bbq = \bbr^{\cdot 2}$ and $\tB$. This still implies compatibility of $(\bbq, \tB)$, because
 	\begin{equation*}
-		t_{ij} = \Omega_{\mathbf{r}}(b^i, e_j) = \prod_{l = 1}^N r_{lj}^{b_{li}},
+		\Omega_\bbq(b^k, e_j) = \Omega_\bbr(b^k, e_j)^2 = \begin{dcases*}
+			1,                          & if $j \neq k$ \\
+			\text{not a root of unity}, & if $j = k$.
+		\end{dcases*}
 	\end{equation*}
-	for $j \in \mathbf{ex}$ and $j \in [1, N]$.
-	We say that $B$ and $\mathbf{r}$ are \emph{compatible} if
-	$t_{ij} = 1$ whenever $i \neq j$,
-	and all the $t_{ii}$ are \emph{not} roots of unity.
-\end{definition}
-\textbf{TODO: How to explain the root of unity part? Is there a clean way?}
-\textbf{TODO: rewrite the above}
+\end{remark}
 
-\textbf{TODO: fill out these stubs}
-\begin{lemma}\label{lem:principal_part_skew_symmetrizable}
-	GY Lemma 2.4
-\end{lemma}
-\begin{proposition}\label{prop:mutation_preserves_good_things}
-	GY Proposition 2.6
+Mutation of quantum seeds is defined by the analogon of
+\cref{eq:quantum_exchange_naive} for toric frames together with the mutation of
+compatible pairs. That this works is ensured by the following proposition.
+\begin{proposition}[\protect{\cite[Proposition 2.9, Corollary 2.11]{GoodearlYakimov2017QCA}}]\label{prop:formula_for_mutation}
+
+	For all quantum seeds $(M, \tB)$ of $\mcF$ and $k\in \ex$, there exists a toric frame
+	$\mu_k(M)$ whose matrix equals $\mu_k(\bbr(M))$ (cf. \cref{eq:def_mutation_q}). This
+	toric frame satisfies
+	\begin{align*}
+		\mu_k(M)(e_j) & = M(e_j), \text{ for all } j \neq k,         \\
+		\mu_k(M)(e_k) & = M(-e_k + [b^k]_{+}) + M(-e_k - [b^k]_{-}).
+	\end{align*}
+	%
+	The \emph{mutation of the quantum seed}\index{mutation!quantum seed} $(M, \tB)$ is then
+	defined as $(\mu_k(M), \mu_k(\tB))$. This is again a quantum seed, and mutation defined
+	this way is involutive:
+	\begin{equation*}
+		\mu^2_k (M, \tB) = (M, \tB).
+	\end{equation*}
 \end{proposition}
-\begin{corollary}\label{cor:formula_for_mutation}
-	GY Corollary 2.11
-\end{corollary}
-\begin{lemma}\label{lem:equivariance_mutations}
-	GY Lemma 2.13
-\end{lemma}
+\begin{remark}
+	Note again that the definition defines the mutation of $\bbr$ and not of the matrix $\bbq$. However, we still have $\mu_k(\bbr)^{\cdot 2} = \mu_k(\bbq)$ where $\mu_k(\bbq)$ is defined via \cref{eq:def_mutation_q}, so that the definition behaves as expected.
+\end{remark}
 
-\begin{theorem}\label{thm:quantum_laurent}
-	Quantum Laurent phenomenon.
+Let $\binv \subseteq [1, N]\setminus \ex$ be some subset. This set will determine which
+of the frozen variables will also be inverted in the cluster algebra. We then define
+the \emph{quantum cluster algebra}\index{algebra!quantum cluster} $\mcA(M, \tB,
+	\binv)_\bbK$ completely analogously to the classical setting. Namely, it is the
+$\bbK$-subalgebra of $\mcF$ generated by all the cluster variables $M'(e_j), \, j \in
+	[1, N]$ and the inverses $M'(e_l)\inv, \, l \in \binv$ for all the quantum seeds $(M',
+	\tB')$ mutation-equivalent to $(M, \tB)$.
+
+Write
+\begin{equation*}
+	\mcT\mcA_{(M, \tB)} = \bbK\langle M(e_l)^{\pm 1}, M(e_j) \mid l \in \ex \sqcup \binv,\, j \in [1, N] \setminus (\ex \sqcup \binv)\rangle.
+\end{equation*}
+%
+Then the \emph{upper quantum cluster algebra}\index{algebra!upper quantum cluster}
+$\mcU(M, \tB, \binv)_\bbK$ is defined as the intersection
+\begin{equation*}
+	\mcU(M, \tB, \binv) = \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
+\end{equation*}
+%
+where the intersection runs over all quantum seeds $(M', \tB')$ mutation-equivalent to
+the initial seed $(M, \tB)$. We note two special cases. If $\binv = \emptyset$, then
+$\mcT\mcA_{(M, \tB)} = \mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus
+	\ex$, then $\mcT\mcA_{(M, \tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the
+notation. We now have the following generalization of the Laurent phenomenon
+(\cref{thm:laurent_phenomenon}), which we will refer to as the quantum Laurent
+phenomenon.
+\begin{theorem}[\protect{\cite[Theorem 2.15]{GoodearlYakimov2017QCA}}]\label{thm:quantum_laurent}
+
+	For all quantum seeds $(M, \tB)$ of a division algebra $\mcF$ over $\bbK$ and subsets
+	$\binv \subseteq [1, N] \setminus \ex$, we have the inclusion
+	\begin{equation*}
+		\mcA(M, \tB, \binv)_{\bbK} \subseteq \mcU(M, \tB, \binv)_\bbK.
+	\end{equation*}
 \end{theorem}
 
 \section{Quantum Grassmannians}
@@ -2582,12 +2727,8 @@ the assumptions of \cref{thm:gy_main_result}. This will be done in
 	\begin{equation*}
 		\Omega_{\bbr}(e_{p(k)} + e_{k+1} - g, e_j)^2 = 1,
 	\end{equation*}
-	since
-	\begin{equation*}
-		\Omega_{\bbr}(f, h)\Omega_{\bbr}(f',h) = \Omega_{\bbr}(f + f', h)
-	\end{equation*}
 	%
-	for any vectors $f,f',h\in \bbZ^N$. This proves \cref{eq:Omega_r_squared_one}. Now,
+	due to \cref{eq:Omega_of_sum}. This proves \cref{eq:Omega_r_squared_one}. Now,
 	\begin{align*}
 		\Omega_{\bbr}(e_{p(k)} + e_{k+1} -g, e_k)^2
 		\overset{\eqref{eq:Omega_r_squared_one}} & {=} \Omega_{\bbr}(e_{p(k)} + e_{k+1}-g,e_k - e_{k+1})^2                     \\
@@ -3006,7 +3147,8 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	We can thus apply the part we already proved with the roles of $\tau$ and $\tau'$
 	swapped. This immediately resolves case (a), since it is symmetric in $\tau$ and
 	$\tau'$. It remains to show that the conclusions of (b) for $\tau$ also hold for
-	$\tau'$. To do this, we must carefully compare $\bbr_\tau$ and $\bbr_{\tau'}$.
+	$\tau'$. To do this, we must carefully compare $\bbr_\tau$ and $\bbr_{\tau'}$. We make
+	extensive use of \cref{eq:Omega_of_sum,eq:Omega_skew_symmetric}.
 
 	From \cref{thm:almost_mutation_toric_frame} we have
 	\begin{align*}
@@ -3095,6 +3237,10 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	as desired. This concludes the proof of the proposition.
 \end{proof}
 
+The following two lemmas show uniqueness and equivariance for vectors satisfying
+conditions similar to the vector $\epsbullet - g$ in
+\cref{prop:mutation_adjacent_permutations}.
+
 \begin{lemma}\label{lem:unique_b}
 	Assume that $R$ is a symmetric CGL extension of length $N$, and that $(\nu_{kj}) \in M_N(\bbK^\times)$ is a multiplicatively skew-symmetric matrix with $\nu_{kj}^2 = \lambda_{kj}$ for all $j,k \in [1, N]$. Then, for all $\tau \in \Xi_N, \theta \in X(\mcH)$, and $\xi_1, \dots, \xi_N \in \bbK^\times$, there exists at most one vector $b\in \bbZ^N$ such that $\chi_{M_\tau(b)} = \theta$ and $\Omega_{\bbr_\tau}(b, e_j)^2 = \xi_j$ for all $j \in [1, N]$.
 \end{lemma}
@@ -3111,6 +3257,39 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		Z(\Fract(R))^\mcH = \bbK,
 	\end{equation*}
 	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
+\end{proof}
+\begin{lemma}\label{lem:equivariance_mutations}
+	Let $\mcF$ be a division algebra and $\mcH$ a group acting on $\mcF$ by algebra automorphisms. Assume that $(M, \tB)$ is a quantum seed for $\mcF$ such that $M(f)$ is an $\mcH$-eigenvector for all $f \in \bbZ^N$, and that $\chi_{M(b^j)} = 1$ for all columns $b^j$ of $\tB$. Then all mutations of the seed $(M, \tB)$ share the same properties.
+\end{lemma}
+\begin{proof}
+	Denote, for brevity, $M' = \mu_k(M)$ and $\tB' = \mu_k(\tB)$. Since $\chi_{M(b^k)} = 1$ and $b^k = [b^k]_{+} + [b^k]_{-}$, we find
+	\begin{equation*}
+		\chi_{M(-e_k + [b^k]_{+})} = \chi_{M(-e_k - [b^k]_{-})}.
+	\end{equation*}
+	%
+	Thus, by \cref{prop:formula_for_mutation}, $M'(e_k)$ is an $\mcH$-eigenvector with
+	$\mcH$-eigenvalue
+	\begin{equation*}
+		\chi_{M'(e_k)} = \chi_{M(-e_k + [b^k]_{+})} = \chi_{M(-e_k - [b^k]_{-})}.
+	\end{equation*}
+	Then, since $M'(e_j) = M(e_j)$ for all $j \neq k$, we find that $M'(f)$ is an $\mcH$-eigenvector for all $f \in \bbZ^N$. Furthermore, since $\bbr(M')_{ij} = \bbr(M)_{ij}$ for all $i,j \neq k$, we have $M'(f) = M(f)$ for all $f \in \bbZ^N$ such that $k \notin \supp(f)$.
+
+	It remains to check the $\mcH$-eigenvalues of the columns $(b')^j$ of the matrix
+	$\tB'$. Because the principal part of $\tB'$ is skew-symmetrizable, we have $k \notin
+		\supp((b')^k)$ and $\chi_{M'((b')^k)} = \chi_{M((b')^k)} = \chi_{M(-b^k)} = 1$.
+	Similarly for $j \neq k$, if $b_{kj} = 0$ then $\chi_{M'((b')^j)} = \chi_{M(b^j)} = 1$.
+	If $b_{kj} \neq 0$, then
+	\begin{equation*}
+		(b')^j = b^j + \epsilon b_{kj}[b^k]_{\epsilon} - 2 b_{kj}e_k,
+	\end{equation*}
+	where $\epsilon = \sign(b_{kj})$. Thus
+	\begin{align*}
+		\chi_{M'((b')^j)}
+		 & = \chi_{M'(b^j + \epsilon b_{kj}[b^k]_\epsilon - 2b_{kj} e_k)}                                                  \\
+		 & = \chi_{M'(b^j + \epsilon b_{kj}[b^k]_\epsilon - b_{kj} e_k)}\chi_{M'(-b_{kj}e_k)}                              \\
+		 & = \chi_{M(b^j + \epsilon b_{kj}[b^k]_\epsilon - b_{kj} e_k)}\chi_{M(b_{kj}e_k - \epsilon b_{kj}[b^k]_\epsilon)} \\
+		 & = \chi_{M(b^j)} = 1.
+	\end{align*}
 \end{proof}
 
 Recall the subset $\Gamma_N$ of $\Xi_N$, consisting of the permutations of the form
@@ -3233,7 +3412,7 @@ As before, we will index matrices of size $N \times |X|$ by the set $X$ for subs
 		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau, \tau'}.
 	\end{equation*}
 	%
-	Recalling \cref{cor:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
+	Recalling \cref{prop:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
 	\begin{align*}
 		\mu_{k_\bullet}(M_\tau)(e_{k_\bullet})
 		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}_{\tau, \tau'}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}_{\tau, \tau'}]_{-})                         \\
