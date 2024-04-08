@@ -10,13 +10,13 @@
 \newcommand{\ekbullet}{e_{k_\bullet}}
 
 \chapter{Quantum cluster algebras}
-All of the algebras that we have discussed thusfar have been commutative. Indeed, a
+All the algebras that we have discussed thus far have been commutative. Indeed, a
 cluster algebra is by construction commutative. There are, however, many interesting
 algebras arising from natural examples that are not commutative. Of these, a broad
-class is given by deformations of universal envelopping algebras and coordinate
+class is given by deformations of universal enveloping algebras and coordinate
 algebras. To also be able to study these objects through cluster algebras, we will need
 a noncommutative version of a cluster algebra. The first section of this chapter will
-be dedicated to describing how one can generalise cluster algebras to the
+be dedicated to describing how one can generalize cluster algebras to the
 noncommutative setting, obtaining so-called quantum cluster algebras.
 
 We will then compare the Grassmannians that we saw in the setting of cluster algebras,
@@ -29,7 +29,7 @@ to get a better feel for the material.
 
 \section{Quantum cluster algebras}
 
-The goal of this section is to generalise cluster algebras to the noncommutative
+The goal of this section is to generalize cluster algebras to the noncommutative
 setting. We will follow the definitions as given in \cite{GoodearlYakimov2017QCA}. We
 first fix some notation that we will use throughout.
 
@@ -51,7 +51,7 @@ This product is also associative in the sense that $\prescript{B_2 B_1}{}{A}^{C_
 	= \prescript{B_2}{}{}(\prescript{B_1}{}{}A^{C_1})^{C_2}$.
 
 In most cases the exponent will be a column vector. Whenever we write $f \in \bbZ^N$ we
-will view $f$ as a column vector, i.e. an $N \times 1$-matrix over the integers. The
+will view $f$ as a column vector, i.e., an $N \times 1$-matrix over the integers. The
 standard basis vectors of $\bbZ^N$ will be denoted by $e_1, \dots, e_N$.
 
 For $m, n \in \bbZ$, we will write $[m, n]$ to denote the set $\{m, m+1, \dots, n-1,
@@ -74,11 +74,11 @@ Let $\bbq \in M_N(\bbK^\times)$ be a \emph{multiplicatively
 	r_{ji}\inv$ for all $i,j \in [1, N]$. Deforming the affine space coordinate algebra
 $\bbK[Y_1, \dots, Y_N]$ by $\bbq$, we obtain
 \begin{equation*}
-	\mcA_\bbq = \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)},
+	\mcA_\bbq = \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)},
 \end{equation*}
 the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then write $\mcT_\bbq$ for the \emph{quantum torus}
 \begin{equation}\label{eq:quantum_torus}
-	\mcT_\bbq = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = r_{ij}Y_j Y_i)}.
+	\mcT_\bbq = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)}.
 \end{equation}
 %
 It has a $\bbK$-basis consisting of elements of the form $Y^f = Y_1^{f_1} \cdots
@@ -89,7 +89,7 @@ $q \in \bbK^\times$ by saying that $Y_i$ and $Y_j$
 
 	In most examples, $\bbq$ will be of the form $(q^{\Lambda_{ij}})$ for some
 	skew-symmetric matrix $\Lambda \in M_N(\bbZ)$ and $q\in \bbK^\times$. We will refer to
-	$\mcT_\bbq$ as a \emph{uniparameter}\index{uniparameter} quantum tori in this case.
+	$\mcT_\bbq$ as a \emph{uniparameter}\index{uniparameter} quantum torus in this case.
 \end{remark}
 %
 
@@ -100,8 +100,8 @@ requires localization in the noncommutative setting, also known as Ore localizat
 Recall that a \emph{regular element}\index{element!regular} of a ring is a nonzero
 element that is neither a left nor a right zero-divisor.
 
-The idea is that we want to define a new ring $R[E\inv] = \{re\inv \mid e \in E, r\in
-	R\}$ for some subset $E \subseteq R$ of a (noncommutative) ring $R$. In order for this
+The idea is that we want to define a new ring $R[E\inv] = \{re\inv \mid r \in R,\,e \in
+	E\}$ for some subset $E \subseteq R$ of a (noncommutative) ring $R$. In order for this
 to make sense, $E$ should be a \emph{multiplicative subset}\index{multiplicative
 	subset}, i.e., $1 \in E$ and $ef \in E$ for all $e,f \in E$. Furthermore, $E$ should
 consist of regular elements. This alone is not enough. Additionally, if $e, f \in E$,
@@ -130,7 +130,7 @@ The following theorem justifies the definition of an Ore set.
 Ore localization shares many common properties with localization in the commutative
 setting. The following lemma shows, for example, that we can always find common
 denominators. On the other hand, one should also be careful. Testing equality of two
-fractions is a little bit more involved.
+fractions is a bit more involved.
 \begin{lemma}[\protect{\cite[Lemma 6.1]{GoodearlWarfield2004NoncommutativeNR}}]\label{lem:ore_set_properties}
 	Let $R$ be a ring and $E$ a ring Ore set. Let $S$ be a right ring of fractions with respect to $E$.
 	\begin{enumerate}
@@ -145,18 +145,19 @@ fractions is a little bit more involved.
 As an example, note that $\mcT_\bbq$ is a right (and left) ring of fractions of
 $\mcA_\bbq$ with respect to the multiplicative subset, $E$, generated by $\bbK^\times$
 and $Y_1, \dots, Y_N$. Indeed, because the $Y_i$ quasi-commute and generate $\mcA_\bbq$
-(as an algebra), we have $e R = R e$ for all $e \in E$. Furthermore, all the nonzero
-elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
+(as an algebra), we have $e \mcA_\bbq = \mcA_\bbq e$ for all $e \in E$. Furthermore,
+all the nonzero elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 
 When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
 multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
-set, we write $\Fract(R)$ for the corresponding ring of fractions. The quantum cluster
-variables will live in the division algebra $\Fract(\mcT_\bbq)$.
+set, we write $\Fract(R)$\index{fract@$\Fract(R)$} for the corresponding ring of
+fractions. The quantum cluster variables will live in the division algebra
+$\Fract(\mcT_\bbq)$.
 
 \subsection{Toric frames and quantum mutations}
 
 We now proceed with the quest towards quantum cluster algebras. Recall that a cluster
-algebra is determined by an initial seed, consisting of a matrix and the intitial
+algebra is determined by an initial seed, consisting of a matrix and the initial
 cluster variables. The mutation is completely determined by the matrix. In the
 noncommutative setting, there is one additional thing to keep track of, namely the
 multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$. It turns out that
@@ -170,10 +171,11 @@ submatrix $B \in M_{\ex \times \ex}(\bbZ)$ indexed by the elements of $\ex$. Let
 $\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
 
 We now explore a naive way of generalizing the exchange relation
-(\cref{eq:exchange_relation_quiver}) to the noncommutative setting. This will give us
-the intuition needed to arrive at the right definition. Take $k \in \ex$ and write
-$b^k$ for the $k$-th column of $\tB$. We will denote with $[b^k]_{+}$ and $[b^k]_{-}$
-the positive and negative parts of $b^k \in \bbZ^N$. Thus
+(\cref{eq:exchange_relation_quiver} \textbf{TODO: change to matrix version once added
+	in chapter 1}) to the noncommutative setting. This will give us the intuition needed to
+arrive at the right definition. Take $k \in \ex$ and write $b^k$ for the $k$-th column
+of $\tB$. We will denote with $[b^k]_{+}$ and $[b^k]_{-}$ the positive and negative
+parts of $b^k \in \bbZ^N$. Thus,
 \begin{align*}
 	[b^k]_{+} & = \sum_{i=1}^N \max\{0, b_{ik}\}e_k = \sum \{b_{ik}e_k \mid b_{ik} > 0, \, i \in [1, N]\}, \\
 	\shortintertext{and}
@@ -184,12 +186,12 @@ We then define $Y'_k \in \Fract(\mcT_\bbq)$ as
 	Y_k' = Y_k\inv \left(Y^{[b^k]_{+}} + Y^{-[b^k]_{-}}\right) = Y_k\inv \left(\prod_{b_{ik} > 0}Y_i^{b_{ik}} + \prod_{b_{ik} < 0} Y_i^{-b_{ik}}\right).
 \end{equation}
 %
-By convention we take all the products to be in increasing index\footnote{If this feels
-	arbitrary, that is because it is. This will be addressed by switching over to toric
-	frames.}, i.e., $Y^f = Y_1^{f_1}Y_2^{f_2} \cdots Y_N^{f_N}$ for $f \in \bbZ^N$. For
-this definition to work, the variables $Y_1, \dots, Y_{k-1}, Y'_k, Y_{k+1}, \dots, Y_N$
-should now be contained in another quantum torus $\mcT_{\bbq'}$. Thus, for each $j \in
-	[1, N], j \neq k$, we need $Y'_k Y_j = q'_{kj} Y_j Y'_k$ for some $q'_{kj} \in
+By convention, we take all the products to be in increasing index\footnote{If this
+	feels arbitrary, that is because it is. This will be addressed by switching over to
+	toric frames.}, i.e., $Y^f = Y_1^{f_1}Y_2^{f_2} \cdots Y_N^{f_N}$ for $f \in \bbZ^N$.
+For this definition to work, the variables $Y_1, \dots, Y_{k-1}, Y'_k, Y_{k+1}, \dots,
+	Y_N$ should now be contained in another quantum torus $\mcT_{\bbq'}$. Thus, for each $j
+	\in [1, N], j \neq k$, we need $Y'_k Y_j = q'_{kj} Y_j Y'_k$ for some $q'_{kj} \in
 	\bbK^\times$. We have
 \begin{align*}
 	Y'_k Y_j
@@ -245,6 +247,7 @@ properties
 	The condition that $t_{kk}$ is not a root of unity is not strictly necessary to ensure that $Y'_k$ quasi-commutes with the $Y_j, j\neq k$. It is more of a technical condition that prevents certain degenerate cases, and has some useful consequences (cf. \cref{lem:principal_part_skew_symmetrizable}).
 \end{remark}
 %
+
 In order for $\tB$ to be a mutation matrix, the principal part of $\tB$ should be
 skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs.
 \begin{lemma}\label{lem:principal_part_skew_symmetrizable}
@@ -257,6 +260,7 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 	holds in particular if $\bbq$ is uniparameter.
 \end{lemma}
 \begin{proof}
+
 	For $j,k \in \ex$ we have
 	\begin{equation*}
 		t_{kk}^{b_{kj}} = \prod_{i=1}^N t_{ki}^{b_{ij}} = \prod_{i=1}^N\prod_{l=1}^N q_{li}^{b_{lk}b_{ij}} =
@@ -277,7 +281,7 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 	for some $m_k \in \bbZ_{> 0}$. Consequently, $t_{kk}^{m_j} = q^{m_km_j} = t_{jj}^{m_k}$ for all $k,j \in \ex$, which shows that the integers $m_k, k\in \ex$ satisfy the condition of the lemma.
 \end{proof}
 
-We now look to the mutation of the compatible pairs. Recall that the mutation of $\tB$
+We now look at the mutation of the compatible pairs. Recall that the mutation of $\tB$
 in direction $k$ was given by the formula
 \begin{equation*}
 	b'_{ij} = \begin{dcases*}
@@ -296,15 +300,16 @@ be the matrix with columns $(e_1, \dots, e_{k-1}, [-\epsilon b^k]_{+} - e_k, e_{
 %
 The choice of the sign $\epsilon = \pm 1$ corresponds precisely to choosing the first
 or second inequality in \cref{eq:mutated_q_kj}. Because of the compatibility condition,
-the definition of $\bbq'$ is independent of the choice of sign. We then define the
-\emph{mutation in direction $k \in \ex$}\index{mutation!of compatible pairs} of the
-compatible pair $(\bbq, \tB)$ to be the pair $(\mu_k (\bbq),\mu_k (\tB) )$. That this
-yields another compatible pair is a straightforward verification.
+the definition of $\bbq'$ is independent of the choice of sign (cf.
+\cref{eq:b_plus_is_b_minus}). We then define the \emph{mutation in direction $k \in
+		\ex$}\index{mutation!of compatible pairs} of the compatible pair $(\bbq, \tB)$ to be
+the pair $(\mu_k (\bbq),\mu_k (\tB) )$. That this yields another compatible pair is a
+straightforward verification.
 \begin{proposition}[\protect{\cite[Proposition 2.6]{GoodearlYakimov2017QCA}}]\label{prop:mutation_preserves_good_things}
 
 	Let $(\bbq, \tB)$ be a compatible pair, and $k \in \ex$. Assume that the principal part
 	of $\tB$ is skew-symmetrizable. Then the pair $(\mu_k (\bbq), \mu_k(\tB))$ is
-	compatible, the principal par of $\mu_k(\tB)$ is skew-symmetrizable, and the
+	compatible, the principal part of $\mu_k(\tB)$ is skew-symmetrizable, and the
 	$\wt{\bbt}$-matrix of the new pair as in \cref{def:compatible_pair} is the same as the
 	one for the pair $(\bbq, \tB)$.
 \end{proposition}
@@ -349,7 +354,7 @@ Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 	= (\prod_{i < j}r_{ij}^0 )Y_k
 	= Y_K.
 \end{align*}
-As desired, we have the following multiplication rule for $f,g \in \bbZ^N$:
+Furthermore, as desired, we have the following multiplication rule for $f,g \in \bbZ^N$:
 \begin{equation*}
 	\Omega_\bbr(f,g)\inv Y^{(f)}Y^{(g)} = Y^{(f+g)} = \Omega_\bbr (g, f)\inv Y^{(g)}Y^{(f)}.
 \end{equation*}
@@ -404,8 +409,8 @@ cluster variables, which we will need later on.
 	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
 \end{remark}
 %
-We are now ready to define the quantum analogs of seeds, mutations and cluster
-algebras.
+With the necessary background out of the way, it is time to define the quantum analogs
+of seeds, mutations, and cluster algebras.
 \begin{definition}
 	A \emph{quantum seed}\index{seed!quantum} is a pair $(M, \tB)$ consisting of a toric frame $M$
 	and an $N \times \ex$ matrix $\tB$ over $\bbZ$ such that
@@ -424,7 +429,7 @@ algebras.
 	\end{equation*}
 \end{remark}
 
-Mutation of quantum seeds is defined by the analogon of
+Mutation of quantum seeds is defined by the analogue of
 \cref{eq:quantum_exchange_naive} for toric frames together with the mutation of
 compatible pairs. That this works is ensured by the following proposition.
 \begin{proposition}[\protect{\cite[Proposition 2.9, Corollary 2.11]{GoodearlYakimov2017QCA}}]\label{prop:formula_for_mutation}
@@ -445,7 +450,10 @@ compatible pairs. That this works is ensured by the following proposition.
 	\end{equation*}
 \end{proposition}
 \begin{remark}
-	Note again that the definition defines the mutation of $\bbr$ and not of the matrix $\bbq$. However, we still have $\mu_k(\bbr)^{\cdot 2} = \mu_k(\bbq)$ where $\mu_k(\bbq)$ is defined via \cref{eq:def_mutation_q}, so that the definition behaves as expected.
+
+	Because $\mu_k(\bbr)^{\cdot 2} = \mu_k(\bbq)$ where $\mu_k(\bbq)$ is defined via
+	\cref{eq:def_mutation_q}, this definition does what we expected for the quantum torus
+	$\mcT_\bbq = \mcT_{\bbr^{\cdot 2}}$.
 \end{remark}
 
 Let $\binv \subseteq [1, N]\setminus \ex$ be some subset. This set will determine which
@@ -461,19 +469,19 @@ Write
 	\mcT\mcA_{(M, \tB)} = \bbK\langle M(e_l)^{\pm 1}, M(e_j) \mid l \in \ex \sqcup \binv,\, j \in [1, N] \setminus (\ex \sqcup \binv)\rangle.
 \end{equation*}
 %
-Then the \emph{upper quantum cluster algebra}\index{algebra!upper quantum cluster}
-$\mcU(M, \tB, \binv)_\bbK$ is defined as the intersection
+We note two special cases. If $\binv = \emptyset$, then $\mcT\mcA_{(M, \tB)} =
+	\mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus \ex$, then $\mcT\mcA_{(M,
+		\tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the notation. The \emph{upper quantum
+	cluster algebra}\index{algebra!upper quantum cluster} $\mcU(M, \tB, \binv)_\bbK$ is
+then defined as the intersection
 \begin{equation*}
 	\mcU(M, \tB, \binv) = \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
 \end{equation*}
 %
 where the intersection runs over all quantum seeds $(M', \tB')$ mutation-equivalent to
-the initial seed $(M, \tB)$. We note two special cases. If $\binv = \emptyset$, then
-$\mcT\mcA_{(M, \tB)} = \mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus
-	\ex$, then $\mcT\mcA_{(M, \tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the
-notation. We now have the following generalization of the Laurent phenomenon
-(\cref{thm:laurent_phenomenon}), which we will refer to as the quantum Laurent
-phenomenon.
+the initial seed $(M, \tB)$. We now have the following generalization of the Laurent
+phenomenon (\cref{thm:laurent_phenomenon}), which we will refer to as the quantum
+Laurent phenomenon.
 \begin{theorem}[\protect{\cite[Theorem 2.15]{GoodearlYakimov2017QCA}}]\label{thm:quantum_laurent}
 
 	For all quantum seeds $(M, \tB)$ of a division algebra $\mcF$ over $\bbK$ and subsets
@@ -678,7 +686,7 @@ by setting $\lambda_{kk} = 1$ and $\lambda_{jk} = \lambda_{kj}\inv$ for $1 \leq 
 Before proceeding, let us look at some examples of CGL extensions.
 
 \begin{example}
-	Let $A_1^q$ be the $\bbK$-algebra generated by $x_1, x_2$ such that $x_2 x_1 - q x_1 x_2 = 1$. This algebra is known as the \emph{quantised Weyl algebra}\index{algebra!quantised Weyl}. It is an iterated Ore extension, with presentation
+	Let $A_1^q$ be the $\bbK$-algebra generated by $x_1, x_2$ such that $x_2 x_1 - q x_1 x_2 = 1$. This algebra is known as the \emph{quantized Weyl algebra}\index{algebra!quantized Weyl}. It is an iterated Ore extension, with presentation
 	\begin{equation*}
 		A_1^q = \bbK[x_1][x_2; \sigma, \delta],
 	\end{equation*}
@@ -3162,7 +3170,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 		 & \Omega_{{\bbr}_{\tau'}}(e_{k_\bullet}, e_j) = \Omega_{{\bbr}_\tau}(e_{p({k_\bullet})} + e_{s({k_\bullet})} - e_{k_\bullet}, e_j), \, \forall j \neq {k_\bullet}.
 	\end{align*}
 	%
-	From this we we obtain
+	From this we obtain
 	\begin{equation*}
 		\Omega_{\bbr_{\tau'}}(-(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g), e_j) =
 		\Omega_{\bbr_{\tau}}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_j)\inv  = 1\inv = 1
@@ -3259,7 +3267,12 @@ conditions similar to the vector $\epsbullet - g$ in
 	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
 \begin{lemma}\label{lem:equivariance_mutations}
-	Let $\mcF$ be a division algebra and $\mcH$ a group acting on $\mcF$ by algebra automorphisms. Assume that $(M, \tB)$ is a quantum seed for $\mcF$ such that $M(f)$ is an $\mcH$-eigenvector for all $f \in \bbZ^N$, and that $\chi_{M(b^j)} = 1$ for all columns $b^j$ of $\tB$. Then all mutations of the seed $(M, \tB)$ share the same properties.
+
+	Let $\mcF$ be a division algebra and $\mcH$ a group acting on $\mcF$ by algebra
+	automorphisms. Assume that $(M, \tB)$ is a quantum seed for $\mcF$ such that $M(f)$ is
+	an $\mcH$-eigenvector for all $f \in \bbZ^N$, and that $\chi_{M(b^j)} = 1$ for all
+	columns $b^j$ of $\tB$. Then all mutations of the seed $(M, \tB)$ share the same
+	properties.
 \end{lemma}
 \begin{proof}
 	Denote, for brevity, $M' = \mu_k(M)$ and $\tB' = \mu_k(\tB)$. Since $\chi_{M(b^k)} = 1$ and $b^k = [b^k]_{+} + [b^k]_{-}$, we find
@@ -3277,12 +3290,12 @@ conditions similar to the vector $\epsbullet - g$ in
 	It remains to check the $\mcH$-eigenvalues of the columns $(b')^j$ of the matrix
 	$\tB'$. Because the principal part of $\tB'$ is skew-symmetrizable, we have $k \notin
 		\supp((b')^k)$ and $\chi_{M'((b')^k)} = \chi_{M((b')^k)} = \chi_{M(-b^k)} = 1$.
-	Similarly for $j \neq k$, if $b_{kj} = 0$ then $\chi_{M'((b')^j)} = \chi_{M(b^j)} = 1$.
-	If $b_{kj} \neq 0$, then
+	Similarly, for $j \neq k$, if $b_{kj} = 0$ then $\chi_{M'((b')^j)} = \chi_{M(b^j)} =
+		1$. If $b_{kj} \neq 0$, then
 	\begin{equation*}
 		(b')^j = b^j + \epsilon b_{kj}[b^k]_{\epsilon} - 2 b_{kj}e_k,
 	\end{equation*}
-	where $\epsilon = \sign(b_{kj})$. Thus
+	where $\epsilon = \sign(b_{kj})$. Thus,
 	\begin{align*}
 		\chi_{M'((b')^j)}
 		 & = \chi_{M'(b^j + \epsilon b_{kj}[b^k]_\epsilon - 2b_{kj} e_k)}                                                  \\
