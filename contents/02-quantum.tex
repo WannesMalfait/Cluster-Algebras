@@ -456,6 +456,8 @@ compatible pairs. That this works is ensured by the following proposition.
 	$\mcT_\bbq = \mcT_{\bbr^{\cdot 2}}$.
 \end{remark}
 
+\subsection{Quantum cluster algebras}
+
 Let $\binv \subseteq [1, N]\setminus \ex$ be some subset. This set will determine which
 of the frozen variables will also be inverted in the cluster algebra. We then define
 the \emph{quantum cluster algebra}\index{algebra!quantum cluster} $\mcA(M, \tB,
@@ -490,6 +492,150 @@ Laurent phenomenon.
 		\mcA(M, \tB, \binv)_{\bbK} \subseteq \mcU(M, \tB, \binv)_\bbK.
 	\end{equation*}
 \end{theorem}
+
+We finish this section by looking at rank 2 quantum cluster algebras. Fix a field
+$\bbK$. There is really only one possible choice for the matrices $\bbr, \bbq \in
+	M_2(\bbK^\times)$. Namely,
+\begin{equation*}
+	\bbr = \begin{pmatrix}
+		1 & q\inv \\
+		q & 1
+	\end{pmatrix}, \quad
+	\bbq = \begin{pmatrix}
+		1   & q^{-2} \\
+		q^2 & 1
+	\end{pmatrix},
+\end{equation*}
+%
+for some $q \in \bbK^\times$. In the based quantum torus, $\mcT_{\bbr^{\cdot 2}}$, we
+have the basis consisting of elements
+\begin{equation*}
+	Y^{(f)} = \mcS_{\bbr}(f)Y^f = q^{f_1f_2}Y_1^{f_1}Y_2^{f_2}, \text{ for all } f = (f_1, f_2)^T \in \bbZ^2.
+\end{equation*}
+%
+The elements $Y_1$ and $Y_2$ satisfy
+\begin{equation*}
+	Y_2 Y_1 = q^2 Y_1 Y_2.
+\end{equation*}
+To construct a quantum seed we take $m,n \in \bbZ_{> 0}$ and
+\begin{equation*}
+	\tB = B = \begin{pmatrix}
+		0 & -m \\
+		n & 0
+	\end{pmatrix}.
+\end{equation*}
+%
+It is skew-symmetrizable by $n$ and $m$. The pair $(\bbr, \tB)$ is compatible, as long
+as $q$ is not a root of unity. Indeed,
+\begin{equation*}
+	\wt{\bbt} = \begin{pmatrix}
+		q^n & 1   \\
+		1   & q^m
+	\end{pmatrix}.
+\end{equation*}
+%
+Let $\mcF = \Fract(\mcT_\bbq)$, and define the toric frame $M \colon \bbZ^2 \to \mcF$
+by $M(f) = Y^{(f)}$. Then the pair $(M, \tB)$ defines a quantum seed.
+
+We will now look at mutations of this quantum seed. Mutating in direction 1 gives
+\begin{align*}
+	\mu_1(M)(e_1) = M_1(e_1)
+	 & = M(-e_1 + n e_2) + M(-e_1)        \\
+	 & = q^{-n}Y_1^{-1}Y_2^n + Y_1\inv    \\
+	 & = Y_1\inv (1 + q^{-n}Y_2^n) = Y_3,
+\end{align*}
+and
+\begin{equation*}
+	\mu_1(\tB) = \tB_1 = \begin{pmatrix}
+		0  & m \\
+		-n & 0
+	\end{pmatrix}.
+\end{equation*}
+%
+Of course $M_1(e_2) = M(e_2) = Y_2$. The other mutation gives $\mu_2(M)(e_1) = M(e_1) = Y_1$,
+\begin{align*}
+	\mu_2(M)(e_2) & = M(-e_2) + M(-e_2 - m e_1)     \\
+	              & = Y_2\inv + q^m Y_1^{-m}Y_2\inv \\
+	              & = (1 + q^mY_1^{-m})Y_2\inv,
+\end{align*}
+and
+\begin{equation*}
+	\mu_2(\tB) = \tB_2 = \begin{pmatrix}
+		0  & m \\
+		-n & 0
+	\end{pmatrix}.
+\end{equation*}
+%
+We now consider the chain of mutations $\mu_2 \circ \mu_1$. On the one hand,
+\begin{equation*}
+	M_{12}(e_1) = M_1(e_2) = Y_3 = Y_1 \inv (1 + q^{-n}Y_2^n),
+\end{equation*}
+and on the other hand
+\begin{align*}
+	M_{12}(e_2)
+	 & = M_1(-e_2 + m e_1) + M_1(-e_2)                          \\
+	 & = q^{m}Y_3^m Y_2\inv + Y_2\inv                           \\
+	 & = (1 + q^m Y_3^m) Y_2\inv                                \\
+	 & = (1 + q^m (Y_1 \inv (1 + q^{-n}Y_2^n))^m)Y_2\inv = Y_4.
+\end{align*}
+%
+For the matrix $\tB$, we have $\mu_2 (\mu_1(\tB)) = \tB_{12} = \tB$. Note that the expressions quickly got
+messy, even in this simple example. To simplify matters, we will from now on work with
+$n = m = 1$. Then
+\begin{equation*}
+	Y_3 = Y_1\inv (1 + q\inv Y_2),
+\end{equation*}
+and
+\begin{align*}
+	Y_4
+	 & = (1 + Y_1 \inv q (1 + q\inv Y_2))Y_2\inv \\
+	 & = (1 + q Y_1\inv + Y_1\inv Y_2)Y_2\inv    \\
+	 & = Y_1\inv (Y_1 + q + Y_2)Y_2\inv.
+\end{align*}
+%
+We continue the chain of mutations alternating between 1 and 2.
+\begin{align*}
+	Y_5
+	 & = Y_3\inv (1 + q\inv Y_4)                                                  \\
+	 & = (1 + q\inv Y_2)\inv Y_1 (1 + q\inv Y_1\inv( Y_1 + q + Y_2)Y_2\inv)       \\
+	 & = (1 + q\inv Y_2)\inv  (Y_1 + q\inv ( Y_1 + q + Y_2)Y_2\inv)               \\
+	 & = (1 + q\inv Y_2)\inv  (Y_1 Y_2 + q\inv Y_1 + 1 + q\inv Y_2)Y_2\inv        \\
+	 & = (1 + q\inv Y_2)\inv  (q^{-2} Y_2 Y_1 + q\inv Y_1 + 1 + q\inv Y_2)Y_2\inv \\
+	 & = (1 + q\inv Y_2)\inv  (1 + q\inv Y_2)(q\inv Y_1 + 1)Y_2\inv               \\
+	 & = (q\inv Y_1 + 1)Y_2\inv.
+\end{align*}
+%
+Just like in the classical setting, we have a dramatic simplification! Continuing on,
+we find
+\begin{align*}
+	Y_6
+	 & = (1 + q Y_5)Y_4 \inv                                      \\
+	 & = (1 + q(q\inv Y_1 + 1)Y_2\inv)Y_2 (Y_1 + q + Y_2)\inv Y_1 \\
+	 & = (Y_2 +  Y_1 + q)Y_2\inv Y_2 (Y_1 + q + Y_2)\inv Y_1      \\
+	 & = Y_1,
+\end{align*}
+%
+and
+\begin{align*}
+	Y_7 & = Y_5\inv (1 + q\inv Y_6)                 \\
+	    & = Y_2 (1 + q\inv Y_1)\inv (1 + q\inv Y_1) \\
+	    & = Y_2.
+\end{align*}
+%
+
+It seems that quantum cluster algebras behave similarly to the classical
+case. Indeed, this is partly true. For a given quantum seed $(M, \tB)$, define the
+\emph{exchange graph}\index{graph!exchange} as the graph with mutation-equivalent
+quantum seeds as vertices, and mutations as edges. Then the exchange graph for the
+quantum cluster algebra will equal the exchange graph for the classical cluster
+algebra, obtained by taking the ``limit'' $\bbq \to \mathbf{1}$ (\cite[Theorem
+	6.1]{BerensteinZelevinsky2005QCA})\footnote{This statement is not very precisely
+	formulated, but should at least give some intuition. Because we will not come back to
+	this, we leave at as is.}. As a consequence, the quantum cluster algebra will be
+cluster-finite precisely when the classical cluster algebra corresponding to $\tB$ is
+cluster-finite! This is the phenomenon that we observed in the example. Setting $q = 1$
+in all the equations above, gives precisely the cluster variables coming from the
+classical cluster algebra!
 
 \section{Quantum Grassmannians}
 ???
