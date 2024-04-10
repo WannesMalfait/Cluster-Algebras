@@ -974,13 +974,13 @@ presentations.
 	\end{enumerate}
 \end{definition}
 For any symmetric CGL extension, we can make new CGL presentations as follows. Set
-\begin{equation*}
+\begin{equation}\label{eq:sigma_star}
 	\sigma_j^* = (h_j^* \cdot) \in \End(R),\, \forall j \in [1, N-1].
-\end{equation*}
+\end{equation}
 Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
-\begin{equation*}
+\begin{equation}\label{eq:delta_star}
 	\delta_j^*(x_k) = x_j x_k - \lambda_{jk}x_kx_j = -\lambda_{jk} \delta_k (x_j), \, \forall k \in [j+1, N].
-\end{equation*}
+\end{equation}
 %
 The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
 $\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
@@ -1001,14 +1001,14 @@ the symmetric group $S_N$:
 \end{equation*}
 %
 Each $\tau \in \Xi_N$ gives rise to a CGL presentation:
-\begin{equation*}
+\begin{equation}\label{eq:cgl_presentation_tau}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
-\end{equation*}
+\end{equation}
 %
 where
 \begin{itemize}
 	\item $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
-	      and $h_{\tau(k)}' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
+	      and $h_{\tau(k)}'' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
 	\item
 	      $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
 	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
@@ -1216,8 +1216,11 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 	so that we must have $\delta_k(y_j) = 0$.
 \end{proof}
 
-\begin{example}
-	The goal is to find the sequence $y_1, y_2, \dots, y_6$ of homogeneous prime elements from \cref{thm:homogeneous_primes} for $R = \HeisUqn$. To do this, we make use of \cref{lem:delta_nonzero_iff_predecessor}.
+\begin{example}\label{exmp:heisenberg_primes}
+
+	The goal is to find the sequence $y_1, y_2, \dots, y_6$ of homogeneous prime elements
+	from \cref{thm:homogeneous_primes} for $R = \HeisUqn$. To do this, we make use of
+	\cref{lem:delta_nonzero_iff_predecessor}.
 
 	Since $\delta_1 = 0$ and $\delta_2 = 0$ we must have $y_1 = x_1 = E_2$ and $y_2 = x_2 =
 		E_{12}$. Let $\eta \colon [1, 6] \to \bbZ$ denote the function from
@@ -1699,7 +1702,154 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
 \end{proof}
 
-At the moment, there are three issues, preventing the results of
+\begin{example}\label{exmp:heisenberg_two_presentations}
+
+	Consider again the algebra $R = \HeisUqn$ from \cref{exmp:heisenberg}. We will now
+	compute the sequence of homogeneous primes from \cref{thm:homogeneous_primes} for two
+	different CGL extension presentations of the form
+	\cref{eq:default_cgl_presentation,eq:swapped_cgl_presentation}. The two presentations
+	that we consider correspond to the elements
+	\begin{equation*}
+		\tau = [2,3,4,1,5,6] \in \Xi_6 \quad \text{and}\quad \tau' = [2,3,1,4,5,6] \in \Xi_6.
+	\end{equation*}
+	%
+	Recalling \cref{eq:cgl_presentation_tau,eq:sigma_star,eq:delta_star}, we find the
+	presentations
+	\begin{align*}
+		R_\tau    & = \bbK[E_{12}][E_1; \sigma_3, \delta_3][F_1; \sigma_4, \delta_4][E_2; \sigma_1^*, \delta_1^*][F_{12};\sigma_5, \delta_5][F_2; \sigma_6, \delta_6], \\
+		R_{\tau'} & = \bbK[E_{12}][E_1; \sigma_3, \delta_3][E_2; \sigma_1^*, \delta_1^*][F_1; \sigma_4, \delta_4][F_{12};\sigma_5, \delta_5][F_2; \sigma_6, \delta_6],
+	\end{align*}
+	where
+	\begin{equation*}
+		\sigma_1^*(E_{12}) = q E_{12}, \quad \sigma_1^*(E_1) = q\inv E_1, \quad \sigma_1^*(F_1) = q F_1,
+	\end{equation*}
+	and
+	\begin{equation*}
+		\delta_1^*(E_{12}) = 0, \quad \delta_1^*(E_1) = E_{12}, \quad \delta_1^*(F_1) = 0.
+	\end{equation*}
+
+	Luckily, we can re-use a lot of the computations from \cref{exmp:heisenberg_primes}.
+	For example, using \cref{prop:eta_invariance} we find that the $\eta$-functions for the
+	CGL extension presentations corresponding to $\tau$ and $\tau'$ can be taken to be
+	$\eta\tau$ and $\eta \tau'$ respectively. So, the sequences of homogeneous primes will
+	be of the following forms
+	\begin{equation*}
+		\begin{tikzcd}[column sep=0pt, row sep=tiny]
+			y_{\tau,1} & & & & y_{\tau,5} \\
+			& y_{\tau,2} & y_{\tau,3} & y_{\tau,4} & & y_{\tau,6}
+		\end{tikzcd}
+		\quad\text { and }\quad
+		\begin{tikzcd}[column sep=0pt,row sep=tiny]
+			y_{\tau',1} & & & & y_{\tau',5} \\
+			& y_{\tau',2} & y_{\tau',3} & y_{\tau',4} & & y_{\tau',6}
+		\end{tikzcd}.
+	\end{equation*}
+	%
+	From this, $p_\tau(1) = p_\tau(2) = -\infty$ and hence $y_{\tau, 1} = E_{12}$ and
+	$y_{\tau, 2} = E_1$, where $p_\tau$ is the predecessor function corresponding to
+	$\eta\tau$. Similarly, $y_{\tau', 1} = E_{12}$ and $y_{\tau', 2} = E_1$. We now proceed
+	by calculating $c_{\tau, i}$ and $c_{\tau', i}$ using \cref{eq:delta_of_y_pk}, for $i
+		\in [3, 6]$.
+
+	We have
+	\begin{align*}
+		\delta_{\tau, 3}(y_{\tau, p_\tau(3)})
+		= \delta_4(y_{\tau, 2})
+		= \delta_4(E_1)
+		= 1,
+	\end{align*}
+	and hence
+	\begin{align*}
+		c_{\tau, 3}
+		 & = \alpha_{\tau, 32}\inv (\lambda_{\tau, 3} - 1)\inv \delta_{\tau, 3}(y_{\tau, p_\tau(3)}) \\
+		 & = \lambda_{43}\inv (\lambda_{4} - 1)\inv                                                  \\
+		 & = q^{-2} (q^{-2} - 1)\inv                                                                 \\
+		 & = \frac{1}{1-q^2}.
+	\end{align*}
+	Hence,
+	\begin{equation*}
+		y_{\tau, 3} = y_{\tau, 2}F_1 - \frac{1}{1-q^2} = E_1 F_1 - \frac{1}{1-q^2}.
+	\end{equation*}
+	For $c_{\tau', 3}$ we compute
+	\begin{equation*}
+		\delta_{\tau', 3}(y_{\tau', p_{\tau'}(3)}) = \delta_1^*(y_{\tau', 2}) = \delta_1^*(E_1) = (E_{12}),
+	\end{equation*}
+	and
+	\begin{align*}
+		c_{\tau', 3}
+		 & = \alpha_{\tau', 32}\inv (\lambda_{\tau', 3} - 1)\inv \delta_{\tau', 3}(y_{\tau', p_{\tau'}(3)}) \\
+		 & = \lambda_{13}\inv (\lambda_{1}^* - 1)\inv  E_{12}                                               \\
+		 & =  \frac{q}{q^2 - 1} E_{12}.
+	\end{align*}
+	Thus,
+	\begin{equation*}
+		y_{\tau', 3} = y_{\tau', 3}E_2 - \frac{q}{q^2 -1} E_{12} = E_1 E_2 - \frac{q}{q^2-1}E_{12} = q y_3.
+	\end{equation*}
+	%
+	Note that we already knew from \cref{thm:homogeneous_primes} that $y_{\tau', 3}$ and
+	$y_3$ would be scalar multiples of each other, because $R_{\tau', 3} = R_3$. Since also
+	$R_{\tau, 4} = R_{\tau', 4} = R_4$ it follows that $y_{\tau, 4}, y_{\tau', 4}$ and
+	$y_4$ will be scalar multiples of each other. We have
+	\begin{equation*}
+		y_{\tau', 4} = y_{\tau',3} F_1 - c_{\tau',4} = q y_3 F_1 - c_{\tau',4},
+	\end{equation*}
+	from which we obtain
+	\begin{equation*}
+		y_{\tau', 4} = qy_4 = y_{\tau', 3} F_1 - \frac{q}{1-q^2}.
+	\end{equation*}
+	%
+	On the other hand, for $y_{\tau, 4}$ it will be a bit easier to calculate it directly
+	using \cref{eq:delta_of_y_pk}.
+	\begin{equation*}
+		\delta_{\tau, 4}(y_{\tau, 3}) = \delta_1^*(E_1F_1) = E_{12}F_1,
+	\end{equation*}
+	so that
+	\begin{align*}
+		c_{\tau, 4}
+		 & = \alpha_{\tau, 43}\inv (\lambda_{\tau, 4} - 1)\inv \delta_1^*(y_{\tau, 3})     \\
+		 & = \lambda_{\tau, 43}\inv \lambda_{\tau, 42}\inv (\lambda_1^* - 1)\inv E_{12}F_1 \\
+		 & = \frac{1}{q^2 - 1}E_{12}F_1,
+	\end{align*}
+	and
+	\begin{align*}
+		y_{\tau, 4}
+		 & = y_{\tau, 3}E_2 + \frac{1}{1-q^2}E_{12}F_1                               \\
+		 & = E_1F_1E_2  - \frac{1}{q^2 - 1}E_{12}F_1 - \frac{1}{1-q^2}E_2            \\
+		 & = q\inv E_1E_2F_1  - q\inv\frac{q}{q^2 - 1}E_{12}F_1 - \frac{1}{1-q^2}E_2 \\
+		 & = q\inv y_{\tau', 3}F_1 - \frac{1}{1-q^2}E_2                              \\
+		 & = y_4.
+	\end{align*}
+
+	The remaing homogeneous prime elements are now easily determined. First note that
+	$R_{\tau, 5} = R_5$ and $R_{\tau, 6} = R_6$ while also $y_{\tau, p_\tau(5)} = y_{\tau,
+				1} = y_2 = y_{p(5)}$ and $y_{\tau, p_\tau(6)} = y_{\tau, 4} = y_4 = y_{p(6)}$. Thus, it
+	follows that $y_{\tau, 5} = y_5$ and $y_{\tau, 6} = y_6$. Similar arguments show that
+	$y_{\tau', 5} = y_5$ and $y_{\tau', 6} = q y_{6}$. Hence,
+	\begin{align*}
+		 & y_{\tau', 1} = y_{\tau, 1},\quad y_{\tau', 2} = y_{\tau, 2},\quad y_{\tau', 4} = qy_{\tau, 4},\quad y_{\tau', 5} = y_{\tau, 5},\quad y_{\tau', 6} = qy_{\tau, 6},
+	\end{align*}
+	in agreement with \cref{thm:y_prime_swapped_cgl}. Looking at the conclusion of \cref{thm:almost_cluster_mutation}, we should have
+	\begin{equation*}
+		y_{\tau, 3}y_{\tau', 3} = \alpha_{\tau, 32}y_{\tau, 2}y_{\tau, 4} + \kappa y_{\tau, 1}^m
+	\end{equation*}
+	%
+	for some $m \in \bbZ_{\geq 0}$ and $\kappa \in \bbK^\times$. Indeed,
+	\begin{align*}
+		y_{\tau, 3}y_{\tau',3}
+		 & = y_{\tau, 3}(E_1 E_2 - \frac{q}{q^2 - 1}E_{12})                                  \\
+		 & = y_{\tau, 3}E_1 E_2 + \frac{q}{1-q^2}E_1 F_1 E_{12} - \frac{q}{(1-q^2)^2}E_{12},
+	\end{align*}
+	%
+	and
+	\begin{align*}
+		q^2 y_{\tau, 2} y_{\tau, 4}
+		 & = q^2 E_1 y_{\tau, 3} E_2 + \frac{q^2}{1-q^2}E_1 E_{12} F_1 \\
+		 & = y_{\tau, 3} E_1 E_2 + \frac{q}{1-q^2} E_1 F_1 E_{12},
+	\end{align*}
+	so that we find $m = 1$ and $\kappa = -\frac{q}{(1-q^2)^2}$.
+\end{example}
+
+At the moment, there are three issues preventing the results of
 \cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as a cluster
 mutation statement.
 
@@ -1711,7 +1861,8 @@ mutation statement.
 	      different from the indexing of the $y$-elements. For a cluster mutation, the indices
 	      should remain consistent.
 	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. In
-	      order for this to be a mutation statement, we would need $\kappa = 1$.
+	      order for this to be a mutation statement, we would need $\kappa = 1$. In
+	      \cref{exmp:heisenberg_two_presentations} we saw a case were $\kappa \neq 1$.
 \end{enumerate}
 
 We will now resolve the first of the three issues, by a normalization of the
@@ -1912,7 +2063,7 @@ $\widehat{M}_\tau$ as the toric frame with matrix $\widehat{\bbr}_\tau$ and such
 $\widehat{M}_\tau (e_k) = \oy_{\tau, k}$ for all $k \in [1, N]$.
 
 We now need to address indexing issue by permuting the order of the cluster variables.
-Consider $\eta : [1, N] \bbZ$ satisfying the conditions of
+Consider $\eta : [1, N] \to \bbZ$ satisfying the conditions of
 \cref{thm:homogeneous_primes} for the \emph{original} CGL presentation of $R$. For
 every element $m$ in the image of $\eta$, write
 \begin{equation*}
