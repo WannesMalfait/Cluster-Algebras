@@ -347,7 +347,7 @@ Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 \begin{align*}
 	Y^{(e_k)}
 	= \mcS_{\mathbf{r}}(e_k)Y^{e_k}
-	= (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k
+	= (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta_{jk}} )Y_k
 	= (\prod_{i < j}r_{ij}^0 )Y_k
 	= Y_k.
 \end{align*}
@@ -1192,7 +1192,8 @@ where $\bbl$ is as defined in \cref{eq:CGL_lambda}. Write $\bmq = (q_{kj}) \in
 	\end{equation*}
 \end{proposition}
 
-Additionally, we have the following equations.
+Additionally, we have the following equations \cite[eq. (3.24) to
+	(3.26)]{GoodearlYakimov2017QCA}.
 \begin{align}\label{eq:y_x_quasi_commute}
 	y_j x_k            & = \alpha_{kj}\inv x_k y_j, \text{ for all } j, k \in [1, N] \text{ such that } s(j) > k                                             \\
 	\sigma_k (y_j)     & = \alpha_{kj}y_j, \text{ for } 1 \leq j \leq k \leq N \label{eq:sigma_of_y}                                                         \\
@@ -2240,51 +2241,53 @@ the variables $\oy_{\tau}$ (up to a scalar multiple) by considering just the
 homogeneous prime elements of the subalgebras $R_{[j, k]}$ of the original CGL
 extension presentation.
 
+\begin{theorem}[\protect{\cite[Theorem 5.1]{GoodearlYakimov2017QCA}}]\label{thm:y_square_brackets}
+
+	Let $R$ be a symmetric CGL extension of length $N$. For $i\in [1, N]$ and $m \in
+		\bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, there exists a unique homogeneous
+	prime element $y_{[i, s^m(i)]}$ of $R_{[i, s^m(i)]}$ with leading term $x_i x_{s(i)}
+		\cdots x_{s^m(i)}$ (\textbf{TODO: explain leading term}) such that $y_{[i, s^m(i)]}
+		\notin R_{[i, s^m(i) - 1]}, R_{[i+1, s^m(i)]}$. In particular, $y_{[i, i]} = x_i$.
+\end{theorem}
+
+\begin{example}\label{exmp:heisenberg_y_brackets}
+
+	We now compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$. Recall that the
+	$\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i = 1$ we just
+	have
+	\begin{equation*}
+		y_{[1,1]} = y_1, \quad y_{[1, 3]} = y_3, \quad y_{[1, 4]} = y_4, \quad y_{[1, 6]} = y_6,
+	\end{equation*}
+	since $R_{[1, j]} = R_j$ for all $j \in [1, 6]$.  For $i = 2$, the uniqueness of \cref{thm:y_square_brackets} implies $y_{[2,5]} = y_5$. The other cases require some actual calculations. Note that \cref{prop:eta_invariance} ensures that we can calculate the predecessors and successors in the subalgebras $R_{[i, s^m(i)]}$ as in $R$.
+
+	For $y_{[3, 4]}$ we have $\delta_4(E_1) = 1$ and hence $c_{[3,4]} = - \frac{1}{1-q^2}$
+	so that
+	\begin{equation*}
+		y_{[3, 4]} = E_1 F_1 - \frac{1}{1-q^2}.
+	\end{equation*}
+	%
+	Then, because $\delta_6(y_{[3,4]}) = \delta_6(E_1 F_1) = q\inv E_1 F_{12}$, we find
+	\begin{equation*}
+		y_{[3,6]} = y_{[3,4]} F_2 - q\inv q \frac{1}{q^{-2} - 1} q\inv E_1 F_{12}  = y_{[3,4]} F_2 - \frac{q}{1-q^2}E_1 F_{12}.
+	\end{equation*}
+	%
+	Finally, from $\delta_6(F_1) = F_{12}$ we obtain
+	\begin{equation*}
+		y_{[4,6]} = F_1 F_2 - q\inv \frac{1}{q^{-2} - 1} F_{12} = F_1 F_2 - \frac{q}{1- q^2} F_{12}.
+	\end{equation*}
+\end{example}
+
 We now introduce some new notation. For $i \in [1, N]$ and $m \in \bbZ$ such that
 $s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
 \begin{equation*}
 	e_{[i, s^m(i)]} = e_i + e_{s(i)} + \cdots + e_{s^m(i)}.
 \end{equation*}
-In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$.
-\begin{theorem}\label{thm:y_square_brackets}
-	Let $R$ be a symmetric CGL extension of length $N$. For $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the following hold:
-	\begin{enumerate}[(a)]
-		\item All the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i,
-							      s^m(i)-1]}$ are associates of each other.
-		\item All the homogeneous prime elements of $R_{[i, s^m(i)]}$ that do not lie in $R_{[i+1,
-							      s^m(i)]}$ are associates of each other.
-		\item The sets of homogeneous prime elements of \textrm{(a)} and \textrm{(b)} are equal, and
-		      the elements have leading terms of the form
-		      \begin{equation*}
-			      \xi x^{e_{[i, s^m(i)]}} = \xi x_i x_{s(i)}\cdots x_{s^m(i)}
-		      \end{equation*}
-		      %
-		      for some $\xi \in \bbK^\times$. \textbf{TODO: explain what leading term is precisely}.
-		      For each $\xi \in \bbK^\times$, there is a unique homogeneous prime element of $R_{[i,
-							      s^m(i)]}$ with such a leading term. We will write $y_{[i, s^m(i)]}$ for the prime
-		      element with leading term $x_i x_{s(i)}\cdots x_{s^m(i)}$.
-		\item The elements $y_{[i, s^m(i)]}$ satisfy the following recursive description
-		      \begin{align*}
-			      y_{[i, s^m(i)]} = y_{[i, s^{m-1}(i)]}x_{s^m (i)} - c_{[i, s^m(i) -1]} = x_i y_{[s(i), s^m(i)]} - c'_{[i+1, s^m(i)]},
-		      \end{align*}
-		      %
-		      where $c_{[i, s^m(i) -1]} \in R_{[i, s^m(i) - 1]}$ and $c'_{[s(i), s^m(i)]} \in
-			      R_{[i+1, s^m(i)]}$.
-		\item For all $k \in [1, N]$ such that $p(i) < k < s^{m+1}(i)$ we have the following variant
-		      of \cref{eq:y_x_quasi_commute}:
-		      \begin{equation*}
-			      y_{[i, s^m(i)]}x_k = \Omega_{\bbl}(e_{[i, s^m(i)]}, e_k)x_k y_{[i, s^m(i)]}.
-		      \end{equation*}
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-	\textbf{TODO: add the proof, after introducing $\Gamma_N$}.
-\end{proof}
-
-Applying \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting
+In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$. By convention $y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. Applying \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting
 yields the following result.
 \begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]\label{prop:def_u_brackets}
-	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, the element
+
+	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in
+		\bbZ_{> 0}$ such that $s^m(i) \neq + \infty$, the element
 	\begin{align*}
 		u_{[i, s^m(i)]} & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
 		                & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
@@ -2319,6 +2322,21 @@ The proposition does not apply for $m = 0$, so in this case we simply set
 	u_{[i, i]} = 1,
 \end{equation*}
 and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
+
+\begin{example}\label{exmp:heisenberg_u_bracket}
+
+	We compute the $u_{[i, s(i)]}$ for $R = \HeisUqn$. Note that in this special case
+	\begin{equation*}
+		u_{[i, s(i)]} = y_{[i, i]}y_{[s(i), s(i)]} - y_{[i, s(i)]} = x_i x_{s(i)} - y_{[i, s(i)]}.
+	\end{equation*}
+	Using \cref{exmp:heisenberg_y_brackets}, we find
+	\begin{align*}
+		 & u_{[1,3]} = E_2 E_1 - y_3 = \frac{1}{1-q^{-2}},              \\
+		 & u_{[2,5]} = E_{12}F_{12} - y_5 = (q - q\inv)E_1F_1 - q^{-1}, \\
+		 & u_{[3,4]} = E_1 F_1 - y_{[3,4]} = \frac{1}{1-q^2},           \\
+		 & u_{[4,6]} = F_1 F_2 - y_{[4,6]} = \frac{q}{1-q^2}F_{12}.
+	\end{align*}
+\end{example}
 
 We now have the necessary definitions to describe the rescaling of the $x$-elements.
 For each $\bbg = (\gamma_1, \dots, \gamma_N) \in (\bbK^\times)^N$, one can rescale the
@@ -2379,6 +2397,41 @@ The rescaling that we need is described by the following proposition.
 	\end{equation*}
 	which is precisely the claim of the proposition.
 \end{proof}
+
+\begin{example}
+
+	We now compute $\bbg$ such that \cref{eq:rescaling_conditions_for_pi} is satisfied
+	after the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
+		-\infty$, we can take $\gamma_1 = \gamma_2 = 1$. We now determine $\gamma_3$. From
+	\cref{exmp:heisenberg_u_bracket} we find $\pi_{[1, 3]} = \frac{1}{1-q^{-2}}$ and
+	$f_{[1, 3]} = 0$. Thus,
+	\begin{equation*}
+		\gamma_3 = \gamma_1\inv \bbg^{f_{[1,3]}}\pi_{[1,3]}\inv \mcS_{\bbn}(-e_1 + f_{[1,3]}) = 1-q^{-2}.
+	\end{equation*}
+	%
+	For $\gamma_4$, \cref{exmp:heisenberg_u_bracket} gives $\pi_{[3,4]} = \frac{1}{1-q^2}$
+	and $f_{[3,4]} = 0$, so that
+	\begin{equation*}
+		\gamma_4 = \gamma_3\inv \bbg^{f_{[1,4]}}\pi_{[3,4]}\inv \mcS_{\bbn}(-e_3 + f_{[3,4]}) = \frac{1-q^2}{1-q^{-2}} = q^2 \frac{1-q^2}{q^2 - 1} = -q^2.
+	\end{equation*}
+	%
+	Continuing on, $\pi_{[2,5]} = (q - q\inv)$ and $f_{[2,5]} = e_3 + e_4$, from which
+	\begin{align*}
+		\gamma_5
+		 & = \gamma_2\inv \bbg^{f_{[2,5]}}\pi_{[2,5]}\inv \mcS_{\bbn}(-e_2 + f_{[2,5]}) \\
+		 & = (1-q^{-2})(-q^2)(q-q\inv)\inv \nu_{32}\inv\nu_{42}\inv\nu_{43}             \\
+		 & = -q q^{\frac{1}{2}} q^{-\frac{1}{2}}q                                       \\
+		 & = -q^2.
+	\end{align*}
+	%
+	Finally, $\pi_{[4,6]} = \frac{q}{1-q^2}$ and $f_{[4,6]} = e_5$, so that
+	\begin{equation*}
+		\gamma_6
+		= \gamma_4\inv \bbg^{f_{[4,6]}}\pi_{[4,6]}\inv \mcS_{\bbn}(-e_4 + e_5)
+		= -q^{-2} (-q^2) q^{-1}(1-q^2)\nu_{54}\inv
+		= q^{-\frac{1}{2}}(1-q^2).
+	\end{equation*}
+\end{example}
 
 We will not prove here directly that this rescaling has the desired effect. That will
 be covered in \cref{prop:mutation_adjacent_permutations}. Instead, we now finally state
