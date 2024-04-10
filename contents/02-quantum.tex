@@ -14,11 +14,11 @@
 All the algebras that we have discussed thus far have been commutative. Indeed, a
 cluster algebra is by construction commutative. There are, however, many interesting
 algebras arising from natural examples that are not commutative. Of these, a broad
-class is given by deformations of universal enveloping algebras and coordinate
-algebras. To also be able to study these objects through cluster algebras, we will need
-a noncommutative version of a cluster algebra. The first section of this chapter will
-be dedicated to describing how one can generalize cluster algebras to the
-noncommutative setting, obtaining so-called quantum cluster algebras.
+class is given by deformations of coordinate algebras of algebraic varieties. To also
+be able to study these objects through cluster algebras, we will need a noncommutative
+version of a cluster algebra. The first section of this chapter will be dedicated to
+describing how one can generalize cluster algebras to the noncommutative setting,
+obtaining so-called quantum cluster algebras.
 
 We will then compare the Grassmannians that we saw in the setting of cluster algebras,
 to quantum Grassmannians. This will be used to provide a better intuition for the
@@ -36,9 +36,10 @@ first fix some notation that we will use throughout.
 
 In what follows, $\bbK$ will be a field and $N \in \bbZ_{> 0}$ an integer. We denote by
 $\bbK^\times$ the multiplicative group of $\bbK$. It will be useful to consider the
-following multiplicative version of matrix multiplication. Let $D$ be a commutative
-ring or a multiplicative group. For $A = (a_{ij}) \in M_{m \times n}(D), B = (b_{ij})
-	\in M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in M_{n \times r} (\bbZ)$, we define
+following multiplicative version of matrix multiplication. For $A = (a_{ij}) \in M_{m
+			\times n}(\bbK^\times), B = (b_{ij}) \in M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in
+	M_{n \times r} (\bbZ)$, we define $\prescript{B}{}{}A^C \in M_{s \times
+			r}(\bbK^\times)$ as the matrix with entries
 \begin{equation*}
 	(\prescript{B}{}{A}^C)_{ij} = \prod_{k, l} a_{kl}^{b_{ik}c_{lj}},
 \end{equation*}
@@ -97,23 +98,26 @@ $q \in \bbK^\times$ by saying that $Y_i$ and $Y_j$
 Even though a quantum version of the Laurent phenomenon will hold
 (\cref{thm:quantum_laurent}), we will still need to be able to invert arbitrary
 (non-zero) elements in $\mcA_\bbq$ in order to define a quantum cluster algebra. This
-requires localization in the noncommutative setting, also known as Ore localization.
-Recall that a \emph{regular element}\index{element!regular} of a ring is a nonzero
-element that is neither a left nor a right zero-divisor.
+requires localization in the noncommutative setting, also known as \emph{Ore
+	localization}\index{Ore localization}.
 
 The idea is that we want to define a new ring $R[E\inv] = \{re\inv \mid r \in R,\,e \in
 	E\}$ for some subset $E \subseteq R$ of a (noncommutative) ring $R$. In order for this
 to make sense, $E$ should be a \emph{multiplicative subset}\index{multiplicative
 	subset}, i.e., $1 \in E$ and $ef \in E$ for all $e,f \in E$. Furthermore, $E$ should
-consist of regular elements. This alone is not enough. Additionally, if $e, f \in E$,
-then for any $x, y \in R$ we should have $xe\inv yf\inv \in R[E\inv]$. This would be
-satisfied if we could write $e\inv y = y' (e')\inv$ for some $y' \in R$ and $e' \in E$.
-That condition is equivalent to $y e' = e y'$ for some $y' \in R$ and $e' \in E$, which
-in turn is equivalent to $y E \cap e R \neq \emptyset$ for all $y \in R$ and $e \in E$.
-Putting this together, we find the definition. A \emph{right Ore set}\index{Ore set} $E
-	\subseteq R$ is a multiplicative subset of regular elements such that $x E \cap e R
-	\neq \emptyset$ for all $x \in R$ and $e \in E$. One defines a left Ore set
-analogously.
+consist of \emph{regular elements}\index{element!regular}, i.e., nonzero elements that
+are neither left nor right zero-divisors. This alone is not enough: additionally, if
+$e, f \in E$, then for any $x, y \in R$ we should have $xe\inv yf\inv \in R[E\inv]$.
+This would be satisfied if we could write $e\inv y = y' (e')\inv$ for some $y' \in R$
+and $e' \in E$. That condition is equivalent to $y e' = e y'$ for some $y' \in R$ and
+$e' \in E$, which in turn is equivalent to $y E \cap e R \neq \emptyset$ for all $y \in
+	R$ and $e \in E$. Putting this together, we find the following definition.
+\begin{definition}
+	A \emph{right Ore set}\index{Ore set} $E
+		\subseteq R$ is a multiplicative subset of regular elements such that $x E \cap e R
+		\neq \emptyset$ for all $x \in R$ and $e \in E$. One defines a left Ore set
+	analogously. If $E$ is both a left and a right Ore set, we will just say that $E$ is an Ore set.
+\end{definition}
 
 Let $E \subseteq R$ be a multiplicative subset of regular elements. We say that a ring
 $S \supseteq R$ is a \emph{right ring of fractions for $R$ with respect to
@@ -133,13 +137,13 @@ setting. The following lemma shows, for example, that we can always find common
 denominators. On the other hand, one should also be careful. Testing equality of two
 fractions is a bit more involved.
 \begin{lemma}[\protect{\cite[Lemma 6.1]{GoodearlWarfield2004NoncommutativeNR}}]\label{lem:ore_set_properties}
-	Let $R$ be a ring and $E$ a ring Ore set. Let $S$ be a right ring of fractions with respect to $E$.
+	Let $R$ be a ring and $E$ a right Ore set. Let $S$ be a right ring of fractions with respect to $E$.
 	\begin{enumerate}
 		\item Given fractions $s_1, \dots, s_n \in S$, we can find a common denominator. Thus, there
 		      exist $r_1, \dots, r_n \in R$ and $e \in E$ such that $s_i = r_i e\inv$ for all $i \in
 			      [1, n]$.
 		\item For $x, y \in R$ and $e, f \in E$, we have $x e \inv = y f \inv$ if and only if there
-		      exist $a,b \in R$ such that $xa = yb$ and $ea = fb$.
+		      exist $a,b \in R$ such that $xa = yb$ and $ea = fb \in E$.
 	\end{enumerate}
 \end{lemma}
 
@@ -152,8 +156,9 @@ all the nonzero elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
 multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
 set, we write $\Fract(R)$\index{fract@$\Fract(R)$} for the corresponding ring of
-fractions. The quantum cluster variables will live in the division algebra
-$\Fract(\mcT_\bbq)$.
+fractions. For example, the set $\mcT_\bbq \setminus \{0\}$ forms an Ore set by a
+similar argument as above. The quantum cluster variables will live in the division
+algebra $\Fract(\mcT_\bbq)$.
 
 \subsection{Toric frames and quantum mutations}
 
@@ -178,9 +183,9 @@ arrive at the right definition. Take $k \in \ex$ and write $b^k$ for the $k$-th 
 of $\tB$. We will denote with $[b^k]_{+}$ and $[b^k]_{-}$ the positive and negative
 parts of $b^k \in \bbZ^N$. Thus,
 \begin{align*}
-	[b^k]_{+} & = \sum_{i=1}^N \max\{0, b_{ik}\}e_k = \sum \{b_{ik}e_k \mid b_{ik} > 0, \, i \in [1, N]\}, \\
+	[b^k]_{+} & = \sum_{i=1}^N \max\{0, b_{ik}\}e_i = \sum_{b_{ik} > 0} b_{ik}e_i. \\
 	\shortintertext{and}
-	[b^k]_{-} & = \sum_{i=1}^N \min\{0, b_{ik}\}e_k = \sum \{b_{ik}e_k \mid b_{ik} < 0,\, i \in [1, N]\}.
+	[b^k]_{-} & = \sum_{i=1}^N \min\{0, b_{ik}\}e_i = \sum_{b_{ik} < 0} b_{ik}e_i.
 \end{align*}
 We then define $Y'_k \in \Fract(\mcT_\bbq)$ as
 \begin{equation}\label{eq:quantum_exchange_naive}
@@ -257,8 +262,7 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 		t_{kk}^{d_j} = t_{jj}^{d_k}, \text{ for all } j,k \in \ex.
 	\end{equation*}
 	%
-	Then the principal part of $\tB$ is skew-symmetrizable by the $d_k, k\in \ex$. This
-	holds in particular if $\bbq$ is uniparameter.
+	Then the principal part of $\tB$ is skew-symmetrizable by the $d_k, k\in \ex$.
 \end{lemma}
 \begin{proof}
 
@@ -269,17 +273,9 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 	\end{equation*}
 	Thus,
 	\begin{equation*}
-		t_{kk}^{b_{kj} d_j} = t_{jj}^{ b_{kj}d_k} = t_{kk}^{- b_{jk} d_k},
+		t_{jj}^{b_{kj} d_k} = t_{kk}^{ b_{kj}d_j} = t_{jj}^{- b_{jk} d_j},
 	\end{equation*}
-	from which we obtain $b_{kj} d_j = -b_{jk} d_k$ for all $j, k \in \ex$ due to the fact that $t_{ii}$ is not a root of unity for all $i \in \ex$.
-
-	Finally, assume that $\bbq = (q^{\Lambda_{ij}})$ for some skew-symmetric matrix
-	$\Lambda \in M_N(\bbZ)$ and $q \in \bbK^\times$ not a root of unity. Then, for each $k
-		\in \ex$,
-	\begin{equation*}
-		t_{kk} = \prod_{i=1}^N q_{ik}^{b_{ik}} = \prod_{i=1}^N q^{\Lambda_{ik}b_{ik}} = q^{m_k}
-	\end{equation*}
-	for some $m_k \in \bbZ_{> 0}$. Consequently, $t_{kk}^{m_j} = q^{m_km_j} = t_{jj}^{m_k}$ for all $k,j \in \ex$, which shows that the integers $m_k, k\in \ex$ satisfy the condition of the lemma.
+	from which we obtain $b_{kj} d_j = -b_{jk} d_j$ for all $j, k \in \ex$ due to the fact that $t_{ii}$ is not a root of unity for all $i \in \ex$.
 \end{proof}
 
 We now look at the mutation of the compatible pairs. Recall that the mutation of $\tB$
@@ -353,7 +349,7 @@ Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 	= \mcS_{\mathbf{r}}(e_k)Y^{e_k}
 	= (\prod_{i < j}r_{ij}^{-\delta_{ik}\delta{jk}} )Y_k
 	= (\prod_{i < j}r_{ij}^0 )Y_k
-	= Y_K.
+	= Y_k.
 \end{align*}
 Furthermore, as desired, we have the following multiplication rule for $f,g \in \bbZ^N$:
 \begin{equation*}
@@ -472,11 +468,11 @@ Write
 	\mcT\mcA_{(M, \tB)} = \bbK\langle M(e_l)^{\pm 1}, M(e_j) \mid l \in \ex \sqcup \binv,\, j \in [1, N] \setminus (\ex \sqcup \binv)\rangle.
 \end{equation*}
 %
-We note two special cases. If $\binv = \emptyset$, then $\mcT\mcA_{(M, \tB)} =
-	\mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus \ex$, then $\mcT\mcA_{(M,
-		\tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the notation. The \emph{upper quantum
-	cluster algebra}\index{algebra!upper quantum cluster} $\mcU(M, \tB, \binv)_\bbK$ is
-then defined as the intersection
+We note two special cases. If $\ex \sqcup \binv = \emptyset$, then $\mcT\mcA_{(M, \tB)}
+	= \mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus \ex$, then
+$\mcT\mcA_{(M, \tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the notation. The
+\emph{upper quantum cluster algebra}\index{algebra!upper quantum cluster} $\mcU(M, \tB,
+	\binv)_\bbK$ is then defined as the intersection
 \begin{equation*}
 	\mcU(M, \tB, \binv) = \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
 \end{equation*}
@@ -633,7 +629,7 @@ algebra will equal the exchange graph for the classical cluster algebra, obtaine
 taking the ``limit'' $\bbq \to \mathbf{1}$ (\cite[Theorem
 	6.1]{BerensteinZelevinsky2005QCA})\footnote{This statement is not very precisely
 	formulated, but should at least give some intuition. Because we will not come back to
-	this, we leave at as is.}. As a consequence, the quantum cluster algebra will be
+	this, we leave it as is.}. As a consequence, the quantum cluster algebra will be
 cluster-finite precisely when the classical cluster algebra corresponding to $\tB$ is
 cluster-finite! This is the phenomenon that we observed in the example. Setting $q = 1$
 in all the equations above, gives precisely the cluster variables coming from the
