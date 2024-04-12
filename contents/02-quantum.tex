@@ -1172,9 +1172,9 @@ for $k \in [1, N]$. Then, for $j,k \in [1, N]$, set
 	\alpha_{kj} = \Omega_{\bbl}(e_k, \overline{e}_j) = \prod_{m=0}^{O_{-}(j)}\lambda_{k, p^m(j)} \in \bbK^\times
 \end{equation*}
 and
-\begin{equation*}
+\begin{equation}\label{eq:q_from_lambda}
 	q_{kj} = \Omega_{\bbl}(\overline{e}_k, \overline{e}_j) = \prod_{m=0}^{O_{-}(k)}\prod_{l=0}^{O_{-}(j)}\lambda_{p^m(k),p^l(j)} = \prod_{m=0}^{O_{-}(k)}\alpha_{p^m (k),j} \in \bbK^\times,
-\end{equation*}
+\end{equation}
 %
 where $\bbl$ is as defined in \cref{eq:CGL_lambda}. Write $\bmq = (q_{kj}) \in
 	M_N(\bbK^\times)$.
@@ -1780,7 +1780,7 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	\end{align*}
 	Thus,
 	\begin{equation*}
-		y_{\tau', 3} = y_{\tau', 3}E_2 - \frac{q}{q^2 -1} E_{12} = E_1 E_2 - \frac{q}{q^2-1}E_{12} = q y_3.
+		y_{\tau', 3} = y_{\tau', 2}E_2 - \frac{q}{q^2 -1} E_{12} = E_1 E_2 - \frac{q}{q^2-1}E_{12} = q y_3.
 	\end{equation*}
 	%
 	Note that we already knew from \cref{thm:homogeneous_primes} that $y_{\tau', 3}$ and
@@ -1792,7 +1792,7 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	\end{equation*}
 	from which we obtain
 	\begin{equation*}
-		y_{\tau', 4} = qy_4 = y_{\tau', 3} F_1 - \frac{q}{1-q^2}.
+		y_{\tau', 4} = qy_4 = y_{\tau', 3} F_1 - \frac{q}{1-q^2}E_2.
 	\end{equation*}
 	%
 	On the other hand, for $y_{\tau, 4}$ it will be a bit easier to calculate it directly
@@ -2087,13 +2087,13 @@ for $k_1 < \cdots < k_{|\eta\inv(m)|}$. Order the elements of $\eta\inv(m)$ in i
 We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$, i.e., the $j$-th element in the ordered list. So, $\tau_\bullet$ orders the elements in the level sets of $\eta$.
 
 We can then finally define the toric frame $M_\tau$ as
-\begin{equation*}
+\begin{equation}\label{eq:M_tau}
 	M_\tau = \widehat{M}_\tau (\tau_\bullet \tau)\inv \colon \bbZ^N \to \Fract(R),
-\end{equation*}
+\end{equation}
 which has corresponding matrix
-\begin{equation*}
-	\bbr_\tau = \prescript{(\tau_\bullet \tau)\inv}{}{ \widehat{\bbr}_\tau} ^{(\tau_\bullet \tau)\inv}.
-\end{equation*}
+\begin{equation}\label{eq:r_tau}
+	\bbr_\tau = (\tau_\bullet \tau)\widehat{\bbr}_\tau(\tau_\bullet \tau)\inv.
+\end{equation}
 
 This definition of $\tau_\bullet$ calls for some examples. At the same time, the
 examples will demonstrate how the toric frame $M_\tau$ fixes the problem with the order
@@ -2412,7 +2412,7 @@ The rescaling that we need is described by the following proposition.
 	which is precisely the claim of the proposition.
 \end{proof}
 
-\begin{example}
+\begin{example}\label{exmp:heisenberg_rescaling}
 
 	We now compute $\bbg$ such that \cref{eq:rescaling_conditions_for_pi} is satisfied
 	after the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
@@ -2502,8 +2502,9 @@ the main theorem.
 		\item For all $\tau \in \Xi_N$ and $l \in \ex$, there exists a unique vector $b^l_{\tau}\in
 			      \bbZ^N$ such that $\chi_{M_\tau (b^l_\tau)} = 1$ and
 		      \begin{equation*}
-			      \Omega_{\bbr_\tau}(b^l_\tau, e_j) = 1, \quad \forall j\in [1, N],\,j\neq l \quad \text{and} \quad \Omega_{\bbr_\tau}(b^l_{\tau}, e_l)^2 = \lambda_l^*.
+			      \Omega_{\bbr_\tau}(b^l_\tau, e_j) = 1, \quad \forall j\in [1, N],\,j\neq l \quad \text{and} \quad \Omega_{\bbr_\tau}(b^l_{\tau}, e_l)^2 = \lambda_l^*,
 		      \end{equation*}
+		      recall \cref{eq:M_tau,eq:r_tau}.
 		      %
 		      Denote by $\tB_\tau \in M_{N \times |\ex|}(\bbZ)$ the matrix with columns $b^l_\tau$
 		      for all $l \in \ex$. Write $\tB = \tB_{\id}$.
@@ -2539,35 +2540,35 @@ the main theorem.
 
 	From \cref{table:sigma_delta_heisenberg} we obtain
 	\begin{equation*}
-		\bbl = \begin{pmatrix}
+		\bbl = \begin{pmatrix*}[l]
 			1     & q     & q\inv & q      & q\inv  & q^{-2} \\
 			q\inv & 1     & q     & q\inv  & q^{-2} & q\inv  \\
 			q     & q\inv & 1     & q^{-2} & q\inv  & q      \\
 			q\inv & q     & q^2   & 1      & q      & q\inv  \\
 			q     & q^2   & q     & q\inv  & 1      & q      \\
 			q^2   & q     & q\inv & q      & q\inv  & 1
-		\end{pmatrix}.
+		\end{pmatrix*}.
 	\end{equation*}
 	Thus
 	\begin{equation*}
-		\boldsymbol{\alpha} = \begin{pmatrix}
+		\boldsymbol{\alpha} = \begin{pmatrix*}[l]
 			1     & q     & q\inv & 1      & 1      & q^{-2} \\
 			q\inv & 1     & 1     & q\inv  & q^{-2} & q^{-2} \\
 			q     & q\inv & q     & q^{-1} & q^{-2} & 1      \\
 			q\inv & q     & q     & q      & q^2    & 1      \\
 			q     & q^2   & q^2   & q      & q^2    & q^2    \\
 			q^2   & q     & q     & q^2    & 1      & q^2
-		\end{pmatrix}
-		\quad \text{and}\quad \bbq = \begin{pmatrix}
+		\end{pmatrix*}
+		\quad \text{and}\quad \bbq = \begin{pmatrix*}[l]
 			1     & q   & q\inv & 1      & 1      & q^{-2} \\
 			q\inv & 1   & 1     & q\inv  & q^{-2} & q^{-2} \\
 			q     & 1   & 1     & q^{-1} & q^{-2} & q^{-2} \\
 			1     & q   & q     & 1      & 1      & q^{-2} \\
 			1     & q^2 & q^2   & 1      & 1      & 1      \\
 			q^2   & q^2 & q^2   & q^2    & 1      & 1
-		\end{pmatrix}.
+		\end{pmatrix*}.
 	\end{equation*}
-	To find $b^1 \in \bbZ^6$ we need to solve the system of equations given by
+	To find $b^1 \in \bbZ^6$ we need to solve the system of equations\footnote{Techinically we also have the additional condtition $\chi_{M(b^1)} = 1$, but it turns out to be superfluous in this case.} given by
 	\begin{equation*}
 		\Omega_\bbr(b^1, e_j) = 1, \quad \forall j \in [2, 6] \quad \text{and}\quad \Omega_\bbr(b^1, e_1)^2 = q^2.
 	\end{equation*}
@@ -2578,14 +2579,14 @@ the main theorem.
 	%
 	Writing $\bbq = (q^{\Lambda_{ij}})$ with
 	\begin{equation*}
-		\Lambda = \begin{pmatrix}
+		\Lambda = \begin{pmatrix*}[r]
 			0  & 1 & -1 & 0  & 0  & -2 \\
 			-1 & 0 & 0  & -1 & -2 & -2 \\
 			1  & 0 & 0  & -1 & -2 & -2 \\
 			0  & 1 & 1  & 0  & 0  & -2 \\
 			0  & 2 & 2  & 0  & 0  & 0  \\
 			2  & 2 & 2  & 2  & 0  & 0
-		\end{pmatrix},
+		\end{pmatrix*},
 	\end{equation*}
 	the above equations reduce to the linear system of equations
 	\begin{equation*}
@@ -2609,23 +2610,242 @@ the main theorem.
 	\end{equation*}
 	Solving the linear system gives
 	\begin{equation*}
-		\tB = \begin{pmatrix}
+		\tB = \begin{pmatrix*}[r]
 			0  & 1  & -1 & 0  \\
 			-1 & 0  & 0  & 1  \\
 			1  & 0  & 0  & -1 \\
 			0  & -1 & 1  & 0  \\
 			0  & 1  & 0  & -1 \\
 			0  & 0  & 0  & 1
-		\end{pmatrix},
+		\end{pmatrix*},
 	\end{equation*}
 	%
 	which corresponds to the quiver
 	\begin{equation*}
+		Q =
 		\begin{tikzcd}
 			1 \rar & 2 \dar & \lar \boxed{5} \\
-			3 \uar & 4 \lar \urar & \lar \boxed{6}\\
+			3 \uar & 4 \lar \urar & \lar \boxed{6}
 		\end{tikzcd}
+		.
 	\end{equation*}
+
+	Let us now compute $\tB_{\tau}$ where $\tau = [2,3,4,1,5,6] \in \Xi_6$. Then
+	$\tau_{\bullet} = [4, 2, 1, 3, 5, 6]$ and $\tau_\bullet\tau = [2, 1, 3, 4, 5, 6]$. The
+	procedure to compute $\tB_{\tau}$ is analogous to the one above. We start with the
+	matrix $\bbl_\tau = \tau\inv \bbl \tau$. From $\bbl_\tau$ we construct the matrix
+	$\wh{\bbq}_\tau$ using the predecessor function $p_\tau$ as in \cref{eq:q_from_lambda}.
+	Explicitly,
+	\begin{equation}\label{eq:heisenberg_q_hat_tau}
+		\bbl_\tau = \begin{pmatrix*}[l]
+			1     & q     & q\inv  & q\inv & q^{-2} & q\inv  \\
+			q\inv & 1     & q^{-2} & q     & q\inv  & q      \\
+			q     & q^{2} & 1      & q\inv & q      & q\inv  \\
+			q     & q\inv & q      & 1     & q\inv  & q^{-2} \\
+			q^{2} & q     & q\inv  & q     & 1      & q      \\
+			q     & q\inv & q      & q^{2} & q\inv  & 1
+		\end{pmatrix*}
+		, \quad
+		\wh{\bbq}_\tau = \begin{pmatrix*}[l]
+			1     & q     & 1      & q\inv & q^{-2} & q^{-2} \\
+			q\inv & 1     & q^{-2} & q\inv & q^{-2} & 1      \\
+			1     & q^{2} & 1      & 1     & 1      & 1      \\
+			q     & q     & 1      & 1     & 1      & q^{-2} \\
+			q^{2} & q^{2} & 1      & 1     & 1      & 1      \\
+			q^{2} & 1     & 1      & q^{2} & 1      & 1
+		\end{pmatrix*}.
+	\end{equation}
+	%
+	Then, recalling \cref{eq:r_tau}, we find $\bbq_\tau = (\tau_\bullet \tau)
+		\wh{\bbq}_\tau (\tau_\bullet \tau)\inv$, from which we obtain the matrix $\Lambda_\tau
+		\in M_6(\bbZ)$:
+	\begin{equation}\label{eq:heisenberg_q_tau}
+		\bbq_\tau = \begin{pmatrix*}[l]
+			1     & {q^{-1}} & {q^{-2}} & {q^{-1}} & {q^{-2}} & 1        \\
+			q     & 1        & 1        & {q^{-1}} & {q^{-2}} & {q^{-2}} \\
+			q^{2} & 1        & 1        & 1        & 1        & 1        \\
+			q     & q        & 1        & 1        & 1        & {q^{-2}} \\
+			q^{2} & q^{2}    & 1        & 1        & 1        & 1        \\
+			1     & q^{2}    & 1        & q^{2}    & 1        & 1
+		\end{pmatrix*}
+		,\quad
+		\Lambda_\tau = \begin{pmatrix*}[r]
+			0 & -1 & -2 & -1 & -2 & 0  \\
+			1 & 0  & 0  & -1 & -2 & -2 \\
+			2 & 0  & 0  & 0  & 0  & 0  \\
+			1 & 1  & 0  & 0  & 0  & -2 \\
+			2 & 2  & 0  & 0  & 0  & 0  \\
+			0 & 2  & 0  & 2  & 0  & 0
+		\end{pmatrix*}.
+	\end{equation}
+	Finally,
+	\begin{align*}
+		\tB_\tau = -\Lambda_\tau \inv D_{\lambda^*} = \begin{pmatrix*}[r]
+			                                              0 & 0 & -1 & 0\\
+			                                              0 & 0 & 1 & 0\\
+			                                              1 & -1 & 0 & 1\\
+			                                              0 & 0 & -1 & 0\\
+			                                              0 & 1 & 0 & -1\\
+			                                              0 & 0 & 0 & 1
+		                                              \end{pmatrix*},
+	\end{align*}
+	%
+	which corresponds to the quiver
+	\begin{equation*}
+		Q_{\tau} =
+		\begin{tikzcd}
+			1 & 2 \dlar & \boxed{5} \lar \\
+			3 \uar \rar & 4 \urar & \boxed{6} \lar
+		\end{tikzcd}
+		.
+	\end{equation*}
+
+	We now want to see the relation with seed mutations. \Cref{thm:gy_main_result} (c) says
+	that mutation will happen between adjacent permutations, i.e., ones which differ by an
+	elementary transposition\index{elementary transposition}. Recall that an elementary
+	transposition is a transposition of the form $(i, i+1)$. We now decompose $\tau$ as a
+	sequence of permutations in $\Xi_6$ each of which differs by an elementary
+	transposition. Such decompositions will play an important role in the proof of
+	\cref{thm:gy_main_result} (cf. \cref{prop:eta_invariance}). Write $\tau' =
+		[2,3,1,4,5,6]$. Then $\tau = \tau(3,4)$. For $\tau'' = [2,1,3,4,5,6]$, we have $\tau''
+		= \tau(2,3)$, and $\tau'' = \id (1,2)$. One can compute that $\tau'_{\bullet} =
+			[3,2,1,4,5,6],\, \tau'_\bullet \tau' = [2,1,3,4,5,6]$ and
+	\begin{equation*}
+		\Lambda_{\tau'} = \begin{pmatrix*}[r]
+			0 & -1 & 1 & -1 & -2 & 0\\
+			1 & 0 & 0 & -1 & -2 & -2\\
+			-1 & 0 & 0 & -1 & -2 & -2\\
+			1 & 1 & 1 & 0 & 0 & -2\\
+			2 & 2 & 2 & 0 & 0 & 0\\
+			0 & 2 & 2 & 2 & 0 & 0
+		\end{pmatrix*},
+	\end{equation*}
+	from which one obtains
+	\begin{equation*}
+		\tB_{\tau'}
+		\begin{pmatrix*}[r]
+			0 & -1 & 1 & 0\\
+			1 & 0 & -1 & 1\\
+			-1 & 1 & 0 & -1\\
+			0 & -1 & 1 & 0\\
+			0 & 1 & 0 & -1\\
+			0 & 0 & 0 & 1
+		\end{pmatrix*},
+		\quad Q_{\tau'} =
+		\begin{tikzcd}
+			1 \dar & 2 \lar \dar & \boxed{5} \lar \\
+			3 \urar & 4 \lar \urar & \boxed{6} \lar
+		\end{tikzcd}
+		.
+	\end{equation*}
+	%
+	Because $\eta(1) \neq \eta(2)$, we do not obtain a mutation between $\tB$ and
+	$\tB_{\tau''}$. Instead, $\tB = \tB_{\tau''}$. Now, since $\tau' = \tau''(2,3)$ and
+	$\eta(\tau''(2)) = \eta(\tau''(3)) = 1$, \cref{thm:gy_main_result} (c) gives that
+	$\tB_{\tau'} = \mu_{k_\bullet}(\tB_{\tau''}) = \mu_{k_\bullet}(\tB)$ where $k_\bullet =
+		\tau''_\bullet(\tau''(2)) = \tau'_\bullet(\tau'(2)) = 1$. Indeed, the quiver
+	$Q_{\tau'}$ is obtained from $Q$ by a mutation at vertex 1. In the same way, from $\tau
+		= \tau'(3,4)$ and $\tau_\bullet(\tau(3)) = 3$, it follows that $\tB_\tau =
+		\mu_{3}(\tB_{\tau'})$ which can again be verified most easily by looking at the
+	corresponding quivers.
+
+	To finish the example, we look at the sequences of homogeneous prime elements
+	corresponding to the permutations $\tau$ and $\tau'$. First remark that $\tau$ and
+	$\tau'$ are precisely the permutations from \cref{exmp:heisenberg_two_presentations}.
+	There we had found
+	\begin{equation}\label{eq:heisenber_almost_mutation}
+		y'_{\tau, 3}y'_{\tau', 3} = q^2 y'_{\tau, 2}y'_{\tau, 4} - \frac{q}{(1-q^2)^2}y'_{\tau, 1},
+	\end{equation}
+	%
+	where the primes indicate that the rescaling of the generators and the normalization
+	has not been applied. The goal is now to compare this to the mutation statement
+	\begin{align*}
+		M_{\tau'}(e_3)
+		 & = M_{\tau}(-e_3 + [b^3_{\tau}]_{+}) + M_\tau(-e_3 - [b^3_{\tau}]_{-}) \\
+		 & = M_{\tau}(-e_3 + e_2) + M_{\tau}(-e_3 + e_1 + e_4).
+	\end{align*}
+	Recall that $\tau_\bullet\tau = [2,1,3,4,5,6] = (1,2)$ and \cref{eq:heisenberg_q_hat_tau,eq:heisenberg_q_tau}. Expanding the right-hand side gives
+	\begin{align*}
+		M_{\tau}(e_2 - e_3) + M_{\tau}(e_1 - e_3 + e_4)
+		 & = \mcS_{\bbr_\tau}(e_2 - e_3)\oy_{\tau, 1}(\oy_{\tau, 3})\inv + \mcS_{\bbr_\tau}(e_1 -e_3 + e_4)\oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4} \\
+		 & = r_{\tau, 23}\oy_{\tau, 1}(\oy_{\tau, 3})\inv + r_{\tau, 13}r_{\tau, 14}\inv r_{\tau, 34}\oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4}       \\
+		 & = \oy_{\tau, 1}(\oy_{\tau, 3})\inv + q\inv q^{\frac{1}{2}} \oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4}                                      \\
+		 & = \wh{q}_{\tau, 31}(\oy_{\tau, 3})\inv\oy_{\tau, 1} + \wh{q}_{\tau, 32}q^{-\frac{1}{2}}(\oy_{\tau, 3})\inv \oy_{\tau, 2}\oy_{\tau, 4}          \\
+		 & = (\oy_{\tau, 3})\inv\oy_{\tau, 1} + q^{\frac{3}{2}}(\oy_{\tau, 3})\inv \oy_{\tau, 2}\oy_{\tau, 4}.
+	\end{align*}
+
+	We now need to determine $\oy_{\tau, i}$ and $\oy_{\tau',i}$ for $i \in [1,4]$. From
+	\cref{exmp:heisenberg_rescaling} we know that $\gamma_1 = 1 = \gamma_2, \gamma_3 = 1
+		-q^{-2}$ and $\gamma_4 = -q^2$. Since $y'_{\tau, 1} = y'_{\tau',1} = y'_2$, it follows
+	that $\oy_{\tau, 1} = \oy_{\tau',1} = \oy_2$. Now,
+	\begin{equation*}
+		y'_{\tau, 2} = y'_{\tau', 2} = E_1
+	\end{equation*}
+	gives
+	\begin{equation*}
+		\oy_{\tau, 2} = \oy_{\tau', 2} = (1-q^{-2})y'_{\tau, 2}.
+	\end{equation*}
+	Next we determine $\oy_{\tau, 3}$ and $\oy_{\tau', 3}$. Note that we need to use the predecessor functions $p_\tau$ and $p_{\tau'}$ to determine the normalization factors for $\oy_{\tau, 3}$ and $\oy_{\tau', 3}$. From
+	\begin{equation*}
+		y'_{\tau, 3} = y'_{\tau, 2}F_1 - \frac{1}{1-q^2},
+	\end{equation*}
+	it follows that
+	\begin{equation*}
+		y_{\tau, 3} = -q^2 (1-q^{-2})y'_{\tau, 3} = y_{\tau, 2}(-q^2F_1) - 1,
+	\end{equation*}
+	and
+	\begin{equation*}
+		\oy_{\tau, 3} = \nu_{\tau, 23}\inv y_{\tau, 3} = \nu_{34}\inv y_{\tau, 3} = q y_{\tau, 3}.
+	\end{equation*}
+	On the other hand, from
+	\begin{equation*}
+		y'_{\tau', 3} = y'_{\tau', 2}E_2 - \frac{q}{q^2 - 1}E_{12},
+	\end{equation*}
+	we obtain
+	\begin{equation*}
+		y_{\tau', 3} = (1-q^{-2})y'_{\tau', 3} = y_{\tau, 2}E_2 - q\inv E_{12},
+	\end{equation*}
+	and
+	\begin{equation*}
+		\oy_{\tau', 3} = \nu_{\tau', 23}\inv y_{\tau', 3} = \nu_{31}\inv y_{\tau', 3} = q^{-\frac{1}{2}}y_{\tau', 3}.
+	\end{equation*}
+
+	To see that we are on the right track, note that we should have $\oy_{\tau', 2} =
+		M_{\tau'}(e_1)$. The latter is determined by the mutation in direction 1 of $M$, as we
+	already saw. We indeed find\textbf{TODO: uh oh!}
+	\begin{align*}
+		M_{\tau'}(e_1)
+		 & = M(-e_1 + e_3) + M(-e_1 + e_2)                                                                                       \\
+		 & = \mcS_{\bbr}(-e_1 + e_3)(\oy_1)\inv \oy_3 + \mcS_{\bbr}(-e_1 + e_2)(\oy_1)\inv \oy_2                                 \\
+		 & = r_{13} E_2\inv q^{\frac{1}{2}}(E_2 (1-q^{-2})E_1 - E_{12}) + r_{12} E_2\inv E_{12}                                  \\
+		 & = q^{-\frac{1}{2}}q^{\frac{1}{2}}(1-q^{-2})E_1 - (q^{-\frac{1}{2}}q^{\frac{1}{2}} + q^{\frac{1}{2}})E_2\inv E_{12}... \\
+		 & = (1-q^{-2})E_1                                                                                                       \\
+		 & = \oy_{\tau', 2}.
+	\end{align*}
+
+	It remains to determine $\oy_{\tau, 4}$.
+	\begin{equation*}
+		y'_{\tau, 4} = y'_{\tau,3}E_2 -\frac{1}{1-q^2}E_{12}F_1,
+	\end{equation*}
+	gives
+	\begin{equation*}
+		y_{\tau, 4} = -q^2 (1-q^{-2}) y'_{\tau, 4} = y_{\tau, 3} E_2 + q^{-2}E_{12}(-q^{-2}F_1),
+	\end{equation*}
+	and
+	\begin{equation*}
+		\oy_{\tau, 4} = \nu_{\tau, 23}\inv \nu_{\tau, 24}\inv \nu_{\tau, 34}\inv y_{\tau, 4} = \nu_{34}\inv \nu_{31}\inv \nu_{41}\inv y_{\tau, 4} = q q^{-\frac{1}{2}}q^{\frac{1}{2}} y_{\tau, 4} = qy_{\tau, 4}.
+	\end{equation*}
+
+	We can now compare the cluster mutation statement to
+	\cref{eq:heisenber_almost_mutation}.\textbf{TODO: uh oh! where is the factor
+	$q^{-\frac{1}{2}}$ in front of $y'_{\tau, 1}$??}
+	\begin{align*}
+		\oy_{\tau, 3}\oy_{\tau', 3}
+		 & = -q^3(1-q^{-2})y'_{\tau, 3}(q^{-\frac{1}{2}}(1-q^{-2}))y'_{\tau',3}                \\
+		 & = \oy_{\tau, 1} + q^{\frac{3}{2}}\oy_{\tau, 2}\oy_{\tau, 4}                         \\
+		 & = y'_{\tau, 1} + q^{\frac{3}{2}}(1-q^{-2})y'_{\tau, 2}q(-q^2)(1-q^{-2})y'_{\tau, 4}
+	\end{align*}
+
 \end{example}
 
 \subsection{Ore localizations of CGL extensions}
