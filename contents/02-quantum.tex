@@ -2345,7 +2345,7 @@ and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
 	\end{equation*}
 	Using \cref{exmp:heisenberg_y_brackets}, we find
 	\begin{align*}
-		 & u_{[1,3]} = E_2 E_1 - y_3 = \frac{1}{1-q^{-2}},              \\
+		 & u_{[1,3]} = E_2 E_1 - y_3 = \frac{1}{1-q^{-2}}E_{12},        \\
 		 & u_{[2,5]} = E_{12}F_{12} - y_5 = (q - q\inv)E_1F_1 - q^{-1}, \\
 		 & u_{[3,4]} = E_1 F_1 - y_{[3,4]} = \frac{1}{1-q^2},           \\
 		 & u_{[4,6]} = F_1 F_2 - y_{[4,6]} = \frac{q}{1-q^2}F_{12}.
@@ -2418,15 +2418,15 @@ The rescaling that we need is described by the following proposition.
 	after the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
 		-\infty$, we can take $\gamma_1 = \gamma_2 = 1$. We now determine $\gamma_3$. From
 	\cref{exmp:heisenberg_u_bracket} we find $\pi_{[1, 3]} = \frac{1}{1-q^{-2}}$ and
-	$f_{[1, 3]} = 0$. Thus,
+	$f_{[1, 3]} = e_2$. Thus,
 	\begin{equation*}
-		\gamma_3 = \gamma_1\inv \bbg^{f_{[1,3]}}\pi_{[1,3]}\inv \mcS_{\bbn}(-e_1 + f_{[1,3]}) = 1-q^{-2}.
+		\gamma_3 = \gamma_1\inv \bbg^{f_{[1,3]}}\pi_{[1,3]}\inv \mcS_{\bbn}(-e_1 + f_{[1,3]}) = (1-q^{-2})q^{\frac{1}{2}}.
 	\end{equation*}
 	%
 	For $\gamma_4$, \cref{exmp:heisenberg_u_bracket} gives $\pi_{[3,4]} = \frac{1}{1-q^2}$
 	and $f_{[3,4]} = 0$, so that
 	\begin{equation*}
-		\gamma_4 = \gamma_3\inv \bbg^{f_{[1,4]}}\pi_{[3,4]}\inv \mcS_{\bbn}(-e_3 + f_{[3,4]}) = \frac{1-q^2}{1-q^{-2}} = q^2 \frac{1-q^2}{q^2 - 1} = -q^2.
+		\gamma_4 = \gamma_3\inv \bbg^{f_{[3,4]}}\pi_{[3,4]}\inv \mcS_{\bbn}(-e_3 + f_{[3,4]}) = q^{-\frac{1}{2}}\frac{1-q^2}{1-q^{-2}} = q^{\frac{3}{2}} \frac{1-q^2}{q^2 - 1} = -q^{\frac{3}{2}}.
 	\end{equation*}
 	%
 	Continuing on, $\pi_{[2,5]} = (q - q\inv)$ and $f_{[2,5]} = e_3 + e_4$, from which
@@ -2442,8 +2442,8 @@ The rescaling that we need is described by the following proposition.
 	\begin{equation*}
 		\gamma_6
 		= \gamma_4\inv \bbg^{f_{[4,6]}}\pi_{[4,6]}\inv \mcS_{\bbn}(-e_4 + e_5)
-		= -q^{-2} (-q^2) q^{-1}(1-q^2)\nu_{54}\inv
-		= q^{-\frac{1}{2}}(1-q^2).
+		= -q^{-\frac{3}{2}} (-q^2) q^{-1}(1-q^2)\nu_{54}\inv
+		= (1-q^2).
 	\end{equation*}
 
 	For later convenience, we now determine the sequence of normalized homogeneous primes
@@ -2458,23 +2458,23 @@ The rescaling that we need is described by the following proposition.
 	Because $\gamma_1 = 1 = \gamma_2$, we have $\oy_1 = \oy'_1 = y'_1$ and $\oy_2 = \oy'_2
 		= y'_2$. For $\oy_3$ we have $\gamma_3 = (1 - q^{-2})$. Then
 	\begin{equation*}
-		(1-q^{-2})y'_3 = E_2 (1-q^{-2})E_1 - E_{12},
+		q^{\frac{1}{2}}(1-q^{-2})y'_3 = E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - E_{12},
 	\end{equation*}
-	so that $y_3 = (1-q^{-2})y'_3$ and $\oy_3 = q^{\frac{1}{2}}(1 -q^{-2})y'_3$. Similarly, because $\gamma_4 = -q^2$ we find
+	so that $y_3 = q^{\frac{1}{2}}(1-q^{-2})y'_3$ and $\oy_3 = q(1 -q^{-2})y'_3$. Similarly, because $\gamma_4 = -q^{\frac{3}{2}}$ we find
 	\begin{equation*}
-		y_4 = (1-q^2)y'_4 = (1-q^{-2})y'_3 (-q^2F_1) - E_2 = y_3 (-q^2F_1) - E_2,
+		y_4 = (1-q^2)y'_4 = q^{\frac{1}{2}}(1-q^{-2})y'_3 (-q^{\frac{3}{2}}F_1) - E_2 = y_3 (-q^2F_1) - E_2,
 	\end{equation*}
-	and $\oy_4 = q y_4 = q(1-q^2)y'_4$. From $\gamma_5 = -q^2$ we find
+	and $\oy_4 = q y_4 = (1-q^2)y'_4$. From $\gamma_5 = -q^2$ we find
 	\begin{equation*}
-		y_5 = (-q^2)y'_5 = y_2(-q^2F_1) - q(1-q^{-2})E_1(-q^2F_1) + q,
+		y_5 = (-q^{\frac{3}{2}})y'_5 = y_2(-q^{\frac{3}{2}}F_1) - q^{\frac{1}{2}}(1-q^{-2})E_1(-q^2F_1) + q^{\frac{1}{2}},
 	\end{equation*}
-	and $\oy_5 = q y_5 = -q^3 y'_5$. Finally, $\gamma_6 = q^{-\frac{1}{2}}(1-q^2)$ implies
+	and $\oy_5 = q y_5 = -q^{\frac{5}{2}} y'_5$. Finally, $\gamma_6 = (1-q^2)$ implies
 	\begin{align*}
-		y_6 & = q^{-\frac{1}{2}}(1-q^2)^2 y'_6                                                                        \\
-		    & = (1-q^2)y'_4 (q^{-\frac{1}{2}}(1-q^2)F_2) + q^{-\frac{3}{2}}(1-q^2)y'_3(-q^2F_{12}) + q^{-\frac{1}{2}} \\
-		    & = y_4(q^{-\frac{1}{2}}(1-q^2)F_2) + q^{-\frac{3}{2}}y_3(-q^2F_{12}) + q^{-\frac{1}{2}},
+		y_6 & = (1-q^2)^2 y'_6                                                                        \\
+		    & = (1-q^2)y'_4 ((1-q^2)F_2) + q^{-\frac{3}{2}}q^{\frac{1}{2}}(1-q^2)y'_3(-q^2F_{12}) +1  \\
+		    & = y_4(q^{-\frac{1}{2}}(1-q^2)F_2) + q^{-\frac{3}{2}}y_3(-q^2F_{12}) + 1,
 	\end{align*}
-	and $\oy_6 = q^2 y_6 = q^{\frac{3}{2}}(1-q^2)^2 y'_6$.
+	and $\oy_6 = q^2 y_6 = q^2(1-q^2)^2 y'_6$.
 \end{example}
 
 We will not prove here directly that this rescaling has the desired effect. That will
@@ -2771,8 +2771,12 @@ the main theorem.
 		 & = r_{\tau, 23}\oy_{\tau, 1}(\oy_{\tau, 3})\inv + r_{\tau, 13}r_{\tau, 14}\inv r_{\tau, 34}\oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4}       \\
 		 & = \oy_{\tau, 1}(\oy_{\tau, 3})\inv + q\inv q^{\frac{1}{2}} \oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4}                                      \\
 		 & = \wh{q}_{\tau, 31}(\oy_{\tau, 3})\inv\oy_{\tau, 1} + \wh{q}_{\tau, 32}q^{-\frac{1}{2}}(\oy_{\tau, 3})\inv \oy_{\tau, 2}\oy_{\tau, 4}          \\
-		 & = (\oy_{\tau, 3})\inv\oy_{\tau, 1} + q^{\frac{3}{2}}(\oy_{\tau, 3})\inv \oy_{\tau, 2}\oy_{\tau, 4}.
+		 & = (\oy_{\tau, 3})\inv\oy_{\tau, 1} + q^{\frac{3}{2}}(\oy_{\tau, 3})\inv \oy_{\tau, 2}\oy_{\tau, 4},
 	\end{align*}
+	and hence
+	\begin{equation}\label{eq:heisenberg_real_mutation}
+		\oy_{\tau, 3}\oy_{\tau',3} = \oy_{\tau, 1} + q^{\frac{3}{2}}\oy_{\tau, 2}\oy_{\tau, 4}.
+	\end{equation}
 
 	We now need to determine $\oy_{\tau, i}$ and $\oy_{\tau',i}$ for $i \in [1,4]$. From
 	\cref{exmp:heisenberg_rescaling} we know that $\gamma_1 = 1 = \gamma_2, \gamma_3 = 1
@@ -2783,7 +2787,7 @@ the main theorem.
 	\end{equation*}
 	gives
 	\begin{equation*}
-		\oy_{\tau, 2} = \oy_{\tau', 2} = (1-q^{-2})y'_{\tau, 2}.
+		\oy_{\tau, 2} = \oy_{\tau', 2} = y_{\tau, 2} = y_{\tau', 2} =  q^{\frac{1}{2}}(1-q^{-2})y'_{\tau, 2}.
 	\end{equation*}
 	Next we determine $\oy_{\tau, 3}$ and $\oy_{\tau', 3}$. Note that we need to use the predecessor functions $p_\tau$ and $p_{\tau'}$ to determine the normalization factors for $\oy_{\tau, 3}$ and $\oy_{\tau', 3}$. From
 	\begin{equation*}
@@ -2791,11 +2795,11 @@ the main theorem.
 	\end{equation*}
 	it follows that
 	\begin{equation*}
-		y_{\tau, 3} = -q^2 (1-q^{-2})y'_{\tau, 3} = y_{\tau, 2}(-q^2F_1) - 1,
+		y_{\tau, 3} = -q^2 (1-q^{-2})y'_{\tau, 3} = y_{\tau, 2}(-q^{\frac{3}{2}}F_1) - 1,
 	\end{equation*}
 	and
 	\begin{equation*}
-		\oy_{\tau, 3} = \nu_{\tau, 23}\inv y_{\tau, 3} = \nu_{34}\inv y_{\tau, 3} = q y_{\tau, 3}.
+		\oy_{\tau, 3} = \nu_{\tau, 23}\inv y_{\tau, 3} = \nu_{34}\inv y_{\tau, 3} = q y_{\tau, 3} = -q^3(1-q^{-2})y'_{\tau, 3}.
 	\end{equation*}
 	On the other hand, from
 	\begin{equation*}
@@ -2803,23 +2807,23 @@ the main theorem.
 	\end{equation*}
 	we obtain
 	\begin{equation*}
-		y_{\tau', 3} = (1-q^{-2})y'_{\tau', 3} = y_{\tau, 2}E_2 - q\inv E_{12},
+		y_{\tau', 3} = q^{\frac{1}{2}}(1-q^{-2})y'_{\tau', 3} = y_{\tau, 2}E_2 - q^{\frac{1}{2}} E_{12},
 	\end{equation*}
 	and
 	\begin{equation*}
-		\oy_{\tau', 3} = \nu_{\tau', 23}\inv y_{\tau', 3} = \nu_{31}\inv y_{\tau', 3} = q^{-\frac{1}{2}}y_{\tau', 3}.
+		\oy_{\tau', 3} = \nu_{\tau', 23}\inv y_{\tau', 3} = \nu_{31}\inv y_{\tau', 3} = q^{-\frac{1}{2}}y_{\tau', 3} = (1-q^{-2})y_{\tau',3}.
 	\end{equation*}
 
 	To see that we are on the right track, note that we should have $\oy_{\tau', 2} =
 		M_{\tau'}(e_1)$. The latter is determined by the mutation in direction 1 of $M$, as we
-	already saw. We indeed find\textbf{TODO: uh oh!}
+	already saw. We indeed find
 	\begin{align*}
 		M_{\tau'}(e_1)
 		 & = M(-e_1 + e_3) + M(-e_1 + e_2)                                                                                       \\
 		 & = \mcS_{\bbr}(-e_1 + e_3)(\oy_1)\inv \oy_3 + \mcS_{\bbr}(-e_1 + e_2)(\oy_1)\inv \oy_2                                 \\
-		 & = r_{13} E_2\inv q^{\frac{1}{2}}(E_2 (1-q^{-2})E_1 - E_{12}) + r_{12} E_2\inv E_{12}                                  \\
-		 & = q^{-\frac{1}{2}}q^{\frac{1}{2}}(1-q^{-2})E_1 - (q^{-\frac{1}{2}}q^{\frac{1}{2}} + q^{\frac{1}{2}})E_2\inv E_{12}... \\
-		 & = (1-q^{-2})E_1                                                                                                       \\
+		 & = r_{13} E_2\inv q^{\frac{1}{2}}(E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - q^{\frac{1}{2}}E_{12}) + r_{12} E_2\inv E_{12}                                  \\
+		 & = q^{-\frac{1}{2}} q^{\frac{1}{2}} E_2\inv (E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - q^{\frac{1}{2}}E_{12}) + q^{\frac{1}{2}} E_2\inv E_{12}                                  \\
+		 & = q^{\frac{1}{2}}(1-q^{-2})E_1                                                                                                     \\
 		 & = \oy_{\tau', 2}.
 	\end{align*}
 
@@ -2829,22 +2833,23 @@ the main theorem.
 	\end{equation*}
 	gives
 	\begin{equation*}
-		y_{\tau, 4} = -q^2 (1-q^{-2}) y'_{\tau, 4} = y_{\tau, 3} E_2 + q^{-2}E_{12}(-q^{-2}F_1),
+		y_{\tau, 4} = -q^2 (1-q^{-2}) y'_{\tau, 4} = y_{\tau, 3} E_2 - q^{\frac{1}{2}}E_{12}(-q^{\frac{3}{2}}F_1),
 	\end{equation*}
 	and
 	\begin{equation*}
-		\oy_{\tau, 4} = \nu_{\tau, 23}\inv \nu_{\tau, 24}\inv \nu_{\tau, 34}\inv y_{\tau, 4} = \nu_{34}\inv \nu_{31}\inv \nu_{41}\inv y_{\tau, 4} = q q^{-\frac{1}{2}}q^{\frac{1}{2}} y_{\tau, 4} = qy_{\tau, 4}.
+		\oy_{\tau, 4} = \nu_{\tau, 23}\inv \nu_{\tau, 24}\inv \nu_{\tau, 34}\inv y_{\tau, 4} = \nu_{34}\inv \nu_{31}\inv \nu_{41}\inv y_{\tau, 4} = q q^{-\frac{1}{2}}q^{\frac{1}{2}} y_{\tau, 4} = qy_{\tau, 4} = -q^3(1-q^{-2})y'_{\tau, 4}.
 	\end{equation*}
 
 	We can now compare the cluster mutation statement to
-	\cref{eq:heisenber_almost_mutation}.\textbf{TODO: uh oh! where is the factor
-	$q^{-\frac{1}{2}}$ in front of $y'_{\tau, 1}$??}
+	\cref{eq:heisenber_almost_mutation}. \Cref{eq:heisenberg_real_mutation} gives
 	\begin{align*}
-		\oy_{\tau, 3}\oy_{\tau', 3}
-		 & = -q^3(1-q^{-2})y'_{\tau, 3}(q^{-\frac{1}{2}}(1-q^{-2}))y'_{\tau',3}                \\
-		 & = \oy_{\tau, 1} + q^{\frac{3}{2}}\oy_{\tau, 2}\oy_{\tau, 4}                         \\
-		 & = y'_{\tau, 1} + q^{\frac{3}{2}}(1-q^{-2})y'_{\tau, 2}q(-q^2)(1-q^{-2})y'_{\tau, 4}
+		y'_{\tau, 3}y'_{\tau', 3}
+		&= -q^{-3}(1-q^{-2})\inv \oy_{\tau, 3} (1-q^{-2})\inv \oy_{\tau', 3}\\
+		 & = -q^{-3}(1-q^{-2})^{-2}\bigl( \oy_{\tau, 1} + q^{\frac{3}{2}}\oy_{\tau, 2}\oy_{\tau, 4}             \bigr)            \\
+		 & = -q^{-3}(1-q^{-2})^{-2}\bigl(y'_{\tau, 1} + q^{2}(1-q^{-2})y'_{\tau, 2}(-q^3)(1-q^{-2})y'_{\tau, 4}\bigr)\\
+		 &= -q (1-q^2)^{-2} y'_{\tau, 1} + q^2 y'_{\tau, 2}y'_{\tau, 4},
 	\end{align*}
+	which is precisely \cref{eq:heisenber_almost_mutation}. We see that the rescaling and normalization had the desired effect.
 
 \end{example}
 
