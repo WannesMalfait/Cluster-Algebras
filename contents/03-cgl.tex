@@ -1,15 +1,16 @@
 \chapter{CGL extensions}
 
-\textbf{Motivate section as a generic way to produce quantum cluster algebras.}
-
-In this section we will look at a purely algebraic method of placing a quantum cluster
+In this chapter we will look at a purely algebraic method of placing a quantum cluster
 algebra structure on certain class of algebras as first presented in
 \cite{GoodearlYakimov2017QCA}. Not only do these have the structure of a quantum
 cluster algebra, they also equal the corresponding upper cluster algebra. Along the way
 we will provide plenty of examples, to make it clear how the results can be applied in
 practice.
 
-\textbf{What is Ore extension. Example of Weyl algebra.}
+\section{Quantum tori and mutations hidden in CGL extensions}
+
+\subsection{CGL extensions}
+
 \begin{definition}
 	Let $R$ be a ring with unit, $\sigma \colon R \to R$ a ring endomorphism and
 	$\delta \colon R \to R$ a $\sigma$-\emph{derivation}\index{ring!-derivation}, i.e.,
@@ -124,8 +125,6 @@ homogeneous\index{element!homogeneous} elements under the grading.
 	polynomial functions. Thus, the action is rational.
 
 \end{example}
-
-\textbf{Def CGL extension. Example of matrices, and Heisenberg algebra.}
 
 The combination of a rational action by a torus and iterated Ore extensions gives rise
 to the following definition:
@@ -308,133 +307,8 @@ The following algebra will be studied extensively in what follows.
 
 \textbf{TODO: Add example of quantized matrix coordinate ring?}
 
-For a given CGL extension, there is not necessarily a unique order in which the $x_1,
-	\dots, x_N$ need to be added. The different permutations will correspond to cluster
-algebra mutations. A symmetry condition ensures that the CGL extension has enough
-presentations.
 
-\begin{definition}[\protect{\cite[Definition 3.12]{GoodearlYakimov2017QCA}	}]
-	We call a CGL extension, $R$, \emph{symmetric}\index{CGL extension!symmetric} if the following conditions hold
-	\begin{enumerate}
-		\item For all $1\leq j < k \leq N$,
-		      \begin{equation*}
-			      \delta_k (x_j) \in R_{[j+1, k-1]}.
-		      \end{equation*}
-		      %
-		      Recall that $R_{[j+1,k-1]} = \bbK$ by definition if $j +1 > k-1$.
-		\item For all $j \in [1, N]$, there exists $h^*_j \in \mcH$ such that
-		      \begin{equation*}
-			      h^*_j \cdot x_k = \lambda_{kj}\inv x_k = \lambda_{jk}x_k, \, \forall k \in [j+1, N]
-		      \end{equation*}
-		      and $h^*_j \cdot x_j = \lambda^*_j x_j$ for some $\lambda_j^*\in \bbK^\times$ which is not a root of unity.
-	\end{enumerate}
-\end{definition}
-For any symmetric CGL extension, we can make new CGL presentations as follows. Set
-\begin{equation}\label{eq:sigma_star}
-	\sigma_j^* = (h_j^* \cdot) \in \End(R),\, \forall j \in [1, N-1].
-\end{equation}
-Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
-\begin{equation}\label{eq:delta_star}
-	\delta_j^*(x_k) = x_j x_k - \lambda_{jk}x_kx_j = -\lambda_{jk} \delta_k (x_j), \, \forall k \in [j+1, N].
-\end{equation}
-%
-The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
-$\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
-$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ in
-two ways:
-\begin{equation*}
-	R_{[j, k]} = R_{[j, k-1]}[x_k; \sigma_k, \delta_k] \text{ and } R_{[j,k]} = R_{[j+1, k]}[x_j; \sigma_j^*, \delta_j^*].
-\end{equation*}
-So, we can always extend the interval $[j, k]$ to the left or the right. Doing this recursively gives rise to an iterated Ore extension presentation for $R$. For example, starting with the variable $x_N$ and always extending the interval to the left, we obtain the presentation
-\begin{equation*}
-	R = \bbK[x_N][x_{N-1}; \sigma_{N-1}^*, \delta_{N-1}^*]\cdots [x_1, \sigma_1^*, \delta_1^*].
-\end{equation*}
-%
-The types of permutations that we obtain this way consist of the following subset of
-the symmetric group $S_N$:
-\begin{equation*}
-	\Xi_N = \{\tau \in S_N \mid \tau(k) = \max (\tau ([1, k-1])) + 1 \text{ or } \tau(k) = \min (\tau ([1, k-1])) - 1, \forall k \in [2, N]\}.
-\end{equation*}
-%
-Each $\tau \in \Xi_N$ gives rise to a CGL presentation:
-\begin{equation}\label{eq:cgl_presentation_tau}
-	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
-\end{equation}
-%
-where
-\begin{itemize}
-	\item $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
-	      and $h_{\tau(k)}'' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
-	\item
-	      $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
-	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
-\end{itemize}
-(cf. \cite[Proposition 3.14]{GoodearlYakimov2017QCA})
-
-In what follows it will be convenient to use the following notation for $\tau \in S_N$:
-\begin{equation*}
-	\tau = [\tau(1), \tau(2), \dots, \tau(N)].
-\end{equation*}
-%
-The elements of $\tau \in \Xi_N$ have the property that $\tau([1, k])$ is an interval
-for each $k \in [1, N]$. Indeed, $\tau(1)$ is a singleton and hence an interval. Then,
-by induction, $\tau([1, k-1])$ is an interval, say $[i, j] \subset [1, N]$ and $\tau(k)
-	= j + 1$ or $\tau(k) = i - 1$ by definition. Hence, $\tau([1, k]) = [i-1, j]$ or
-$\tau([1, k]) = [i, j+1]$ both of which are intervals. It helps to have the mental
-picture in mind that an element $\tau \in \Xi_N$ is built iteratively by choosing some
-$\tau(1) \in [1, N]$ and then appending iteratively to the left or right until the
-whole interval $[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
-
-\begin{figure}
-	\centering
-	\begin{tikzpicture}
-		\tikzset{
-			c/.style={insert path={circle[radius=0.5pt]}},
-			d/.style={insert path={circle[radius=1.5pt]}},
-		}
-		\draw[fill] (0,0)[c]  (1,0) [c] (2,0) [d] (3,0) [c] (4,0) [c] (5,0) [c] (6,0) [c];
-		\draw[fill] (0,-1)[c] (1,-1) [d] -- (2,-1) [d] (3,-1) [c] (4,-1) [c] (5,-1) [c] (6,-1) [c];
-		\draw[fill] (0,-2)[c] (1,-2) [d] -- (2,-2) [d]  -- (3,-2) [d] (4,-2) [c] (5,-2) [c] (6,-2) [c];
-		\draw[fill] (0,-3)[c] (1,-3) [d] -- (2,-3) [d]  -- (3,-3) [d] -- (4,-3) [d] (5,-3) [c] (6,-3) [c];
-		\draw[fill] (0,-4)[d] -- (1,-4) [d] -- (2,-4) [d]  -- (3,-4) [d] -- (4,-4) [d] (5,-4) [c] (6,-4) [c];
-		\draw[fill] (0,-5)[d] -- (1,-5) [d] -- (2,-5) [d]  -- (3,-5) [d] -- (4,-5) [d] -- (5,-5) [d] (6,-5) [c];
-		\draw[fill] (0,-6)[d] -- (1,-6) [d] -- (2,-6) [d]  -- (3,-6) [d] -- (4,-6) [d] -- (5,-6) [d] -- (6,-6) [d];
-		\node (t1) at (-1,0) {$\tau([1,1])$};
-		\node (t2) at (-1,-1) {$\tau([1,2])$};
-		\node (t3) at (-1,-2) {$\tau([1,3])$};
-		\node (t4) at (-1,-3) {$\tau([1,4])$};
-		\node (t5) at (-1,-4) {$\tau([1,5])$};
-		\node (t6) at (-1,-5) {$\tau([1,6])$};
-		\node (t7) at (-1,-6) {$\tau([1,7])$};
-	\end{tikzpicture}
-	\caption{The elements of $\Xi_N$ are built by iteratively appending to the left or the right. Shown is a visual representation of the element $[3,2,4,5,1,6,7] \in \Xi_7$.}
-	\label{fig:mental_picture_Xi_N}
-\end{figure}
-
-\begin{example}
-
-	We show that the algebra $\Heis(\mcU_q(\mfn_2))$ from \cref{exmp:heisenberg} is a
-	symmetric CGL extension. The first condition is verified easily by using
-	\cref{table:sigma_delta_heisenberg}. For example, for $k = 5$ we have
-	\begin{align*}
-		 & \delta_5(x_1) = \delta_5(E_2) = (q\inv - q)F_1 \in R_{[2,4]},                   \\
-		 & \delta_5(x_2) = \delta_5(E_{12}) = (q\inv - q)(F_1E_1 - E_1 F_1) \in R_{[3,4]}, \\
-		 & \delta_5(x_3) = \delta_5(E_{1}) = 0 \in R_{[4,4]},                              \\
-		 & \delta_5(x_3) = \delta_5(F_{1}) = 0 \in R_{[5,4]} = \bbK.
-	\end{align*}
-	%
-	For the second condition, we can take
-	\begin{align*}
-		h_1^* & = h_1\inv =(1, q, q\inv), \quad h_4^* = h_4\inv = (q\inv, q, 1), \\
-		h_2^* & = h_2\inv =(q, 1, q\inv), \quad h_5^* = h_5\inv = (q\inv,1, q),  \\
-		h_3^* & = h_3\inv =(q, q\inv, 1), \quad h_6^* = h_6\inv = (1, q\inv, q).
-	\end{align*}
-	%
-	Furthermore, $\lambda_1^* = \lambda_2^* = \cdots = \lambda_6^* = q^2$ is not a root of
-	unity.
-\end{example}
-
-\textbf{Homogeneous prime elements.}
+\subsection{Homogeneous prime elements}
 
 A \emph{prime element}\index{element!prime} of a not necessarily commutative domain $R$
 is a nonzero element $p \in R$ such that $p$ is \emph{normal}\index{element!normal},
@@ -719,7 +593,7 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 
 \end{example}
 
-\section{The main theorem}
+\subsection{Almost mutations}
 
 To obtain a cluster algebra structure on a symmetric CGL extension, we need to study
 how the homogeneous prime elements change when the variables $x_1, \dots, x_N$ are
@@ -1206,6 +1080,138 @@ are given by $\{y_j \mid j \in P(k)\}$.
 	so that we find $m = 1$ and $\kappa = -\frac{q}{(1-q^2)^2}$.
 \end{example}
 
+\subsection{Symmetric CGL extensions}
+
+For a given CGL extension, there is not necessarily a unique order in which the $x_1,
+	\dots, x_N$ need to be added. The different permutations will correspond to cluster
+algebra mutations. A symmetry condition ensures that the CGL extension has enough
+presentations.
+
+\begin{definition}[\protect{\cite[Definition 3.12]{GoodearlYakimov2017QCA}	}]
+	We call a CGL extension, $R$, \emph{symmetric}\index{CGL extension!symmetric} if the following conditions hold
+	\begin{enumerate}
+		\item For all $1\leq j < k \leq N$,
+		      \begin{equation*}
+			      \delta_k (x_j) \in R_{[j+1, k-1]}.
+		      \end{equation*}
+		      %
+		      Recall that $R_{[j+1,k-1]} = \bbK$ by definition if $j +1 > k-1$.
+		\item For all $j \in [1, N]$, there exists $h^*_j \in \mcH$ such that
+		      \begin{equation*}
+			      h^*_j \cdot x_k = \lambda_{kj}\inv x_k = \lambda_{jk}x_k, \, \forall k \in [j+1, N]
+		      \end{equation*}
+		      and $h^*_j \cdot x_j = \lambda^*_j x_j$ for some $\lambda_j^*\in \bbK^\times$ which is not a root of unity.
+	\end{enumerate}
+\end{definition}
+For any symmetric CGL extension, we can make new CGL presentations as follows. Set
+\begin{equation}\label{eq:sigma_star}
+	\sigma_j^* = (h_j^* \cdot) \in \End(R),\, \forall j \in [1, N-1].
+\end{equation}
+Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
+\begin{equation}\label{eq:delta_star}
+	\delta_j^*(x_k) = x_j x_k - \lambda_{jk}x_kx_j = -\lambda_{jk} \delta_k (x_j), \, \forall k \in [j+1, N].
+\end{equation}
+%
+The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
+$\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
+$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ in
+two ways:
+\begin{equation*}
+	R_{[j, k]} = R_{[j, k-1]}[x_k; \sigma_k, \delta_k] \text{ and } R_{[j,k]} = R_{[j+1, k]}[x_j; \sigma_j^*, \delta_j^*].
+\end{equation*}
+So, we can always extend the interval $[j, k]$ to the left or the right. Doing this recursively gives rise to an iterated Ore extension presentation for $R$. For example, starting with the variable $x_N$ and always extending the interval to the left, we obtain the presentation
+\begin{equation*}
+	R = \bbK[x_N][x_{N-1}; \sigma_{N-1}^*, \delta_{N-1}^*]\cdots [x_1, \sigma_1^*, \delta_1^*].
+\end{equation*}
+%
+The types of permutations that we obtain this way consist of the following subset of
+the symmetric group $S_N$:
+\begin{equation*}
+	\Xi_N = \{\tau \in S_N \mid \tau(k) = \max (\tau ([1, k-1])) + 1 \text{ or } \tau(k) = \min (\tau ([1, k-1])) - 1, \forall k \in [2, N]\}.
+\end{equation*}
+%
+Each $\tau \in \Xi_N$ gives rise to a CGL presentation:
+\begin{equation}\label{eq:cgl_presentation_tau}
+	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
+\end{equation}
+%
+where
+\begin{itemize}
+	\item $\sigma''_{\tau(k)} = \sigma_{\tau(k)}, \delta_{\tau(k)}'' = \delta_{\tau(k)}$
+	      and $h_{\tau(k)}'' = h_{\tau(k)}$ if $\tau(k) = \max(\tau([1,k-1])) + 1$.
+	\item
+	      $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
+	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
+\end{itemize}
+(cf. \cite[Proposition 3.14]{GoodearlYakimov2017QCA})
+
+In what follows it will be convenient to use the following notation for $\tau \in S_N$:
+\begin{equation*}
+	\tau = [\tau(1), \tau(2), \dots, \tau(N)].
+\end{equation*}
+%
+The elements of $\tau \in \Xi_N$ have the property that $\tau([1, k])$ is an interval
+for each $k \in [1, N]$. Indeed, $\tau(1)$ is a singleton and hence an interval. Then,
+by induction, $\tau([1, k-1])$ is an interval, say $[i, j] \subset [1, N]$ and $\tau(k)
+	= j + 1$ or $\tau(k) = i - 1$ by definition. Hence, $\tau([1, k]) = [i-1, j]$ or
+$\tau([1, k]) = [i, j+1]$ both of which are intervals. It helps to have the mental
+picture in mind that an element $\tau \in \Xi_N$ is built iteratively by choosing some
+$\tau(1) \in [1, N]$ and then appending iteratively to the left or right until the
+whole interval $[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\tikzset{
+			c/.style={insert path={circle[radius=0.5pt]}},
+			d/.style={insert path={circle[radius=1.5pt]}},
+		}
+		\draw[fill] (0,0)[c]  (1,0) [c] (2,0) [d] (3,0) [c] (4,0) [c] (5,0) [c] (6,0) [c];
+		\draw[fill] (0,-1)[c] (1,-1) [d] -- (2,-1) [d] (3,-1) [c] (4,-1) [c] (5,-1) [c] (6,-1) [c];
+		\draw[fill] (0,-2)[c] (1,-2) [d] -- (2,-2) [d]  -- (3,-2) [d] (4,-2) [c] (5,-2) [c] (6,-2) [c];
+		\draw[fill] (0,-3)[c] (1,-3) [d] -- (2,-3) [d]  -- (3,-3) [d] -- (4,-3) [d] (5,-3) [c] (6,-3) [c];
+		\draw[fill] (0,-4)[d] -- (1,-4) [d] -- (2,-4) [d]  -- (3,-4) [d] -- (4,-4) [d] (5,-4) [c] (6,-4) [c];
+		\draw[fill] (0,-5)[d] -- (1,-5) [d] -- (2,-5) [d]  -- (3,-5) [d] -- (4,-5) [d] -- (5,-5) [d] (6,-5) [c];
+		\draw[fill] (0,-6)[d] -- (1,-6) [d] -- (2,-6) [d]  -- (3,-6) [d] -- (4,-6) [d] -- (5,-6) [d] -- (6,-6) [d];
+		\node (t1) at (-1,0) {$\tau([1,1])$};
+		\node (t2) at (-1,-1) {$\tau([1,2])$};
+		\node (t3) at (-1,-2) {$\tau([1,3])$};
+		\node (t4) at (-1,-3) {$\tau([1,4])$};
+		\node (t5) at (-1,-4) {$\tau([1,5])$};
+		\node (t6) at (-1,-5) {$\tau([1,6])$};
+		\node (t7) at (-1,-6) {$\tau([1,7])$};
+	\end{tikzpicture}
+	\caption{The elements of $\Xi_N$ are built by iteratively appending to the left or the right. Shown is a visual representation of the element $[3,2,4,5,1,6,7] \in \Xi_7$.}
+	\label{fig:mental_picture_Xi_N}
+\end{figure}
+
+\begin{example}
+
+	We show that the algebra $\Heis(\mcU_q(\mfn_2))$ from \cref{exmp:heisenberg} is a
+	symmetric CGL extension. The first condition is verified easily by using
+	\cref{table:sigma_delta_heisenberg}. For example, for $k = 5$ we have
+	\begin{align*}
+		 & \delta_5(x_1) = \delta_5(E_2) = (q\inv - q)F_1 \in R_{[2,4]},                   \\
+		 & \delta_5(x_2) = \delta_5(E_{12}) = (q\inv - q)(F_1E_1 - E_1 F_1) \in R_{[3,4]}, \\
+		 & \delta_5(x_3) = \delta_5(E_{1}) = 0 \in R_{[4,4]},                              \\
+		 & \delta_5(x_3) = \delta_5(F_{1}) = 0 \in R_{[5,4]} = \bbK.
+	\end{align*}
+	%
+	For the second condition, we can take
+	\begin{align*}
+		h_1^* & = h_1\inv =(1, q, q\inv), \quad h_4^* = h_4\inv = (q\inv, q, 1), \\
+		h_2^* & = h_2\inv =(q, 1, q\inv), \quad h_5^* = h_5\inv = (q\inv,1, q),  \\
+		h_3^* & = h_3\inv =(q, q\inv, 1), \quad h_6^* = h_6\inv = (1, q\inv, q).
+	\end{align*}
+	%
+	Furthermore, $\lambda_1^* = \lambda_2^* = \cdots = \lambda_6^* = q^2$ is not a root of
+	unity.
+\end{example}
+
+\subsection{CGL extensions as cluster algebras}
+
+\section{Formulating a precise statement}
+
 At the moment, there are three issues preventing the results of
 \cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as a cluster
 mutation statement.
@@ -1221,13 +1227,15 @@ mutation statement.
 	      order for this to be a mutation statement, we would need $\kappa = 1$. In
 	      \cref{exmp:heisenberg_two_presentations} we saw a case were $\kappa \neq 1$.
 \end{enumerate}
-
 We will now resolve the first of the three issues, by a normalization of the
 homogeneous prime elements, $y_1, \dots, y_N$. The last issue will be resolved by a
 rescaling of the variables $x_1, \dots, x_N$, while the second issue will be addressed
 by a permutation of the cluster variables. After settling these three problems, we will
 finally be ready to state the main theorem.
 
+
+
+\subsection{Normalization of the cluster variables}
 In order to be able to normalize the homogeneous prime elements, we need to be able to
 take square roots of the scalars $\lambda_{lj}$ for all $l,j \in [1, N]$. If this is
 not possible in $\bbK$, one can consider the field extension $\bbK[\sqrt{\lambda_{lj}}
@@ -1402,6 +1410,7 @@ normalization has the desired effect.
 	for all $j \neq k$.
 \end{proof}
 
+\subsection{Adressing the indexing issue}
 We now proceed by addressing the indexing issue of the $y$ and $y'$ elements. To do
 this, we first move to a more general setting, which will be necessary for the main
 theorem. So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that
@@ -1609,6 +1618,7 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 	\end{enumerate}
 \end{proof}
 
+\subsection{Rescaling of the generators}
 We now describe the rescaling of the $x$-elements that will ensure that $\zeta = 1$ in
 \cref{thm:almost_mutation_toric_frame}. The key insight, is that we can find back all
 the variables $\oy_{\tau}$ (up to a scalar multiple) by considering just the
@@ -1841,6 +1851,7 @@ We will not prove here directly that this rescaling has the desired effect. That
 be covered in \cref{prop:mutation_adjacent_permutations}. Instead, we now finally state
 the main theorem.
 
+\subsection{The precise statement}
 \begin{theorem}[\protect{\cite[Theorem 8.2]{GoodearlYakimov2017QCA}}]\label{thm:gy_main_result}
 
 	Let $R$ be a symmetric CGL extension of length $N$. Define $\ex = [1 ,N] \setminus P(N)
@@ -2215,359 +2226,8 @@ the main theorem.
 
 \end{example}
 
-\section{Ore localizations of CGL extensions}
 
-We now prove some results which will be crucial in proving equality between the upper
-cluster algebra and the cluster algebra. Since the upper cluster algebra consists of
-intersections of localizations, it makes sense to look at what happens to the
-intersection of the localizations by the two sequences of prime elements in the setting
-of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
-
-\begin{lemma}\label{lem:ore_set_ore_extension}
-	%
-	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set of
-	regular elements in $B$. If $\sigma(\bbK^\times E) = \bbK^\times E$, then $E$ is a
-	(left or right) Ore set of regular elements in $B[x;\sigma, \delta]$.
-\end{lemma}
-\begin{proof}
-	%
-	That the elements remain regular follows from $x b = 0 \iff b x = 0 \iff b = 0$ for all
-	$b \in B$.
-
-	Take $e \in E$. We only prove the case where $E$ is a right Ore set, as the case for a
-	left Ore set is completely analogous. We first show that there exist $e' \in E$ and $r
-		\in R = B[x; \sigma, \delta]$ such that $er = x e'$. Because $E$ is a right Ore set of
-	$B$, there exist $f\in E$ and $b \in B$ such that
-	\begin{equation*}
-		e b = \delta(\sigma\inv(e))f.
-	\end{equation*}
-	Because $\sigma\inv(e) \in \bbK^\times E$ by assumption, there exists some $\xi \in \bbK^\times$ such that $\xi \sigma\inv(e) \in E$.
-	Define
-	\begin{equation*}
-		e' = \xi \sigma\inv(e)f \in E.
-	\end{equation*}
-	Then
-	\begin{align*}
-		xe' & = x\xi\sigma\inv(e)f                                     \\
-		    & = \xi (\sigma(\sigma\inv(e)f)x + \delta(\sigma\inv(e)f)) \\
-		    & = \xi(e\sigma(f)x + e \delta(f) + e b)                   \\
-		    & = e(\xi (\sigma(f)x + \delta(f) + b)) \in eR.
-	\end{align*}
-
-	Now, assume that $r,s \in R$ are such that $e R \cap r E \neq \emptyset$ and $e R \cap
-		s E \neq \emptyset$ for all $e \in E$. Then, also $e R \cap rs E \neq \emptyset$ for
-	all $e\in E$. Indeed, for $e \in E$ we can find $a \in R$ and $f \in E$ such that $ea =
-		r f$, and $b \in R$ and $g \in E$ such that $f b = s g$, and then
-	\begin{equation*}
-		e a b = r f b = r s g \in rs E \cap e R.
-	\end{equation*}
-
-	The statement now follows by iteratively applying this fact on an element $\sum b_i x^i
-		\in R$.
-\end{proof}
-
-We now apply this lemma to a CGL extension $R$. Let $y_1, \dots, y_N$ be the sequence
-of homogeneous prime elements from \cref{thm:homogeneous_primes}. We now claim that for
-each $j \in [1, K]$, the set, $E_j = \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq 0}\}$,
-is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and $a \in
-	R_j$, we have
-\begin{equation*}
-	y_j^k R_j \cap a E_j = R_j y_j^k \cap  a E_j \ni a y_j^k.
-\end{equation*}
-%
-This shows that $E_j$ is an Ore set in $R_j$. Furthermore, $\sigma(\bbK^\times E_j) =
-	\bbK^\times E_j$ because $y_j$ is homogeneous. Hence, by
-\cref{lem:ore_set_ore_extension}, we find that $E_j$ is also an Ore set in $R_{j + 1}$.
-By repeatedly applying \cref{lem:ore_set_ore_extension} we find that $E_j$ is an Ore
-set in $R$. Now, take $I \subseteq [1, N]$ and define
-\begin{equation*}
-	E_I = \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
-\end{equation*}
-%
-By \cref{eq:y_quasi_commute}, it is a multiplicative set. It is also an Ore set by a
-similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if $e \in
-	E$ and $f \in F$ for two Ore sets $E$ and $F$, then for every $x \in R$ the set $ef R
-	\cap x E F$ is non-empty. Using that $E$ and $F$ are Ore sets, take $y, z \in R, e' \in
-	E$ and $f' \in F$ such that $ey = xe'$ and $fz = yf'$. Then $xe'f' = eyf' = efz \in efR
-	\cap xEF$.
-
-We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$ if $a$ divides $b$ on the
-left, i.e., $b = ar$ for some $r \in R$. Call an element $y_1^{m_1}\cdots y_N^{m_N}$ a
-\emph{minimal denominator}\index{minimal denominator} of a nonzero element $v\in
-	R[E\inv]$ if
-\begin{equation*}
-	v = y_1^{-m_1}\cdots y_N^{-m_N} s
-\end{equation*}
-%
-for some $s \in R$ such that $y_j \nmid_l s$ for all $j\in [1,N]$ with $m_j > 0$.
-Intuitively, this means that we can not cancel any terms.
-
-In what follows, we assume the setting of
-\cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. We then define for
-all $I \subseteq [1, N]$ the analogous Ore sets,
-\begin{equation*}
-	E'_{I} := \bbK^\times \prod_{j \in I}\{(y'_j)^m \mid m \in \bbZ_{\geq 0}\};
-\end{equation*}
-%
-and write $E' = E'_{[1, N]}$. Because $y'_j$ is a scalar multiple of $y_j$ for all $j
-	\neq k$, we have that $E'_I = E_I$ if $k \notin I'$. We now state the theorem that we
-want to prove.
-
-\begin{theorem}\label{thm:minimal_denominators}
-	Assume the setting of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. Let
-	\begin{equation*}
-		y_1^{m_1}\cdots y_N^{m_N} \quad \text{and} \quad y_1^{m'_1} \cdots y_{k-1}^{m'_{k-1}}(y'_k)^{m'_k}y_{k+1}^{m'_{k+1}} \cdots y_N^{m'_N}
-	\end{equation*}
-	%
-	be two minimal denominators of a nonzero element $v \in R[E\inv] \cap R[(E')\inv]$
-	(with respect to both $R[E\inv]$ and $R[(E')\inv]$). Then
-	\begin{equation*}
-		m_k = m'_k = 0 \quad \text{and} \quad m_j = m'_j,\quad \forall j \in [1, N], j \neq k.
-	\end{equation*}
-	In particular,
-	\begin{equation*}
-		R[(E_I)\inv] \cap R[(E'_{I'})\inv] = R[(E_I \cap E'_{I'})\inv] = R[(E_{(I \cap I')\setminus \{k\}})\inv]
-	\end{equation*}
-	for all $I,I' \subseteq [1, N]$.
-\end{theorem}
-
-Note that since $E_I \cap E'_{I'} \subseteq E_I, E'_{I'}$ we always have
-\begin{equation*}
-	R[(E_I)\inv] \cap R[(E'_{I'})\inv] \supseteq R[(E_I \cap E'_{I'})\inv].
-\end{equation*}
-%
-The other inclusion follows from the first part of the theorem. The last equality of
-the theorem follows from the following lemma.
-\begin{lemma}
-	For all $I, I' \subseteq [1, N]$,
-	\begin{equation*}
-		E_I \cap E'_I = E_{(I \cap I')\setminus \{k\}} = E'_{(I \cap I') \setminus \{k\}}.
-	\end{equation*}
-\end{lemma}
-\begin{proof}
-	%
-	The inclusions $E_{(I \cap I')\setminus \{k\}}, E'_{(I \cap I') \setminus \{k\}}
-		\subseteq E_I \cap E'_{I'}$ are immediate. Take $e \in E_I \cap E'_{I'}$, and write
-	\begin{equation*}
-		e = \beta \prod_{j=1}^N y_j^{m_j} = \beta' \prod_{j=1}^N (y'_j)^{m'_j}
-	\end{equation*}
-	%
-	for some $\beta, \beta' \in \bbK^\times$ and $m_j, m'_j\in \bbZ_{\geq 0}$ such that
-	$m_j = 0$ for $j \notin I$ and $m'_j = 0$ for $j \notin I'$. It now remains to show
-	\begin{equation*}
-		m_k = m'_k = 0 \quad \text{and}\quad m_j = m'_j, \quad \forall j \in [1, N], j\neq k.
-	\end{equation*}
-	%
-
-	By \cref{thm:normal_in_UFD} we must have $m_N = m'_N$, as $y_N$ and $y'_N$ are prime
-	elements and associates in $R$, but do not divide $y_1, \dots, y_{N-1}$. So, we may
-	assume that $m_N = m'_N = 0$, by replacing $e$ with $e y_N^{-m_N}$ and multiplying
-	$\beta'$ by an appropriate scalar. Applying this reduction repeatedly, we reduce to the
-	case where $m_j = m'_j = 0$ for all $j \in [k+1, N]$.
-
-	We must now get rid of the ``obstacles'', $y_k$ and $y'_k$. Write, using
-	\cref{thm:y_prime_swapped_cgl},
-	\begin{equation*}
-		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = u \in R_{k-1}.
-	\end{equation*}
-	%
-	Assume that $m_k > 0$. Then,
-	\begin{equation*}
-		e y_k' = \beta \left(\prod_{j \in [1, k-1]}y_j^{m_j}y_k^{m_k-1}\right)(u+\alpha_{kp(k)}y_{p(k)}y_{k+1}).
-	\end{equation*}
-	%
-	In this expression, only $y_{k+1} \in R_{k+1}$, and it follows that $ey'_k$ has degree
-	1 with respect to $x_{k+1}$. On the other hand, we can also write
-	\begin{equation*}
-		ey'_k = \beta'\left(\prod_{j \in [1, k-1]}(y'_j)^{m'_j}\right)(y'_k)^{m'_k + 1},
-	\end{equation*}
-	where $ey'_k$ has degree $m'_k + 1$ with respect to $x_{k+1}$. So, we must have $m'_k = 0$ and consequently
-	\begin{equation*}
-		e = \beta' \prod_{j\in [1, k-1]}(y'_j)^{m'_j} \in R_{k-1}.
-	\end{equation*}
-	This contradicts the assumption that $m_k > 0$. Hence, $m_k = 0$ and by symmetry $m'_k = 0$. We can then continue as above to conclude that also $m_j = m'_j$ for all $j \in [1, k-1]$, which is what we needed to show.
-\end{proof}
-
-We now state and prove 3 lemmas that we will need for the proof of
-\cref{thm:minimal_denominators}.
-
-\begin{lemma}\label{lem:prime_in_ore_localization}
-	%
-	Let $R$ be a $\bbK$-algebra that is a domain and $E$ a left or right Ore set in $R$.
-	Let $p \in R$ be a prime element that is normal in $\bbK^\times E$ and such that $Rp
-		\cap E = \emptyset$. Then $p$ is a prime element of $R[E\inv]$. Furthermore, if $s \in
-		R$ and $p \nmid s$ as elements of $R$, then $p \nmid s$ as elements of $R[E\inv]$.
-\end{lemma}
-\begin{proof}
-	%
-	Take $e \in E$. By normality of $p$ in $\bbK^\times E$, we can write $pe = \alpha f p$
-	and $ep = p \beta g$ for some $\alpha, \beta \in \bbK^\times$ and $f,g \in E$. Then $p
-		e \inv = \alpha\inv f\inv p$ and $e\inv p = p \beta\inv g \inv$. Since $p$ is prime it
-	is also normal in $R$, and we obtain that $p$ is normal in $R[E\inv]$.
-
-	To see that it is prime, we go for the brute-force approach. Take $xe\inv, yf\inv \in
-		R[E\inv]$ such that their product lies in $pR[E\inv]$. We want to show that either
-	$xe\inv$ or $yf\inv$ must lie in $pR[E\inv]$. We can write
-	\begin{equation*}
-		xe\inv yf\inv = p z g\inv
-	\end{equation*}
-	%
-	for some $z \in R$ and $g \in E$. Using that $E$ is an Ore set we can write
-	\begin{equation*}
-		x e\inv y f\inv = x y' (e')\inv f\inv = xy' (fe')\inv = p z g\inv.
-	\end{equation*}
-	%
-	Using \cref{lem:ore_set_properties}, we find that the above is equivalent to the
-	existence of $a,b \in R$ such that
-	\begin{equation*}
-		xy'a = pzb \quad \text{and} \quad fe'a = gb \in E.
-	\end{equation*}
-	%
-	Since $p$ is a prime element of $R$, we must have that either $x,y'$ or $a$ is an
-	element of $Rp$. If $x \in Rp$ then $xe\inv \in pR[E\inv]$. If $y' \in Rp$, then
-	\begin{equation*}
-		ye' = ey' \in Rp,
-	\end{equation*}
-	%
-	implies $y \in Rp$ as $Rp \cap E = \emptyset$ by assumption. Thus, $y f\inv \in
-		pR[E\inv]$. Finally, $a \in Rp$ is impossible as
-	\begin{equation*}
-		fe'a = gb \in E \cap Rp
-	\end{equation*}
-	gives a contradiction.
-
-	For the last statement, take some $pxe\inv \in R[E\inv]p \cap R$, with $x \in R$ and $e
-		\in E$. Then $pxe\inv = y$ for some $y \in R$, and hence $px = ye$. So, since $p$ is
-	prime in $Rp$, we must have $y \in Rp$ or $e\in Rp$. By assumption, $Rp \cap E =
-		\emptyset$, so $y \in Rp$ which shows that $R[E\inv] \cap R \subseteq Rp$ since the
-	other inclusion is immediate. Now, note that if $s\notin Rp$ for some $s\in R$, then if
-	$s \in R[E\inv]p$ we would have $s \in R[E\inv]p \cap R \subseteq Rp$, a contradiction.
-\end{proof}
-
-Let us write
-\begin{equation*}
-	s = \sum_{l_j, \dots, l_N \in \bbZ_{\geq 0}} s_{l_j,\ldots,l_N}x_j^{l_j} \cdots x_N^{l_N}
-\end{equation*}
-for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
-
-\begin{lemma}\label{lem:y_divides_ys}
-	If
-	\begin{equation*}
-		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j-1}s
-	\end{equation*}
-	for some $j \in [1, N], s\in R$ and $n_1,\dots,n_{j-1}\in \bbZ_{\geq 0}$, then $y_j \mid_l s$.
-\end{lemma}
-\begin{proof}
-	%
-	By assumption, $y_j s' = y_1^{n_1}\cdots y_{j-1}^{n_j - 1}s$ for some $s' \in R$. Since
-	the set
-	\begin{equation*}
-		\{x_j^{l_{j+1}}\cdots x_N^{l_N} \mid l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}\},
-	\end{equation*}
-	forms a basis for $R_{N}$ as an $R_j$-module, we must have
-	\begin{equation*}
-		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j -1} s_{l_{j+1}, \dots, l_N}
-	\end{equation*}
-	%
-	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Then, because $y_j \nmid_l y_1, \dots,
-		y_{j-1}$, and $y_j$ is a prime element of $R_j$, we must have
-	\begin{equation*}
-		y_j \mid_l s_{l_{j+1}, \ldots, l_N}
-	\end{equation*}
-	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Hence, also $y_j \mid_l s$.
-\end{proof}
-
-\begin{lemma}\label{lem:y_divides_sy_prime}
-	%
-	If $y_k \mid_l s (y'_k)^n$ for some $s \in R_{k+1}$ and $n \in \bbZ_{\geq 0}$, then
-	$y_k \mid_l s$.
-\end{lemma}
-\begin{proof}
-	%
-	Using a similar argument as in the previous lemma, we find that $y_k \mid_l s$ is
-	equivalent to $y_k \mid s_l$ for all $l \in \bbZ_{\geq 0}$, where $s = \sum_{l \in
-			\bbZ_{\geq 0 }} s_l x^{k+l}$ for $s_l \in R_k$. Write
-	\begin{equation*}
-		s' = \sum \{s_l x_{k+1}^l \mid l \in \bbZ_{\geq 0}, y_k \mid s_l\}.
-	\end{equation*}
-	%
-	Then $y_k \mid_l s'$, and $y_k \mid_l s$ if and only if $s = s'$. Assume that $s \neq
-		s'$. Since $y_k \mid_l s (y'_k)^n$ and $y_k \mid_l s' (y'_k)^n$, we have that
-	\begin{equation*}
-		y_k \mid_l (s - s') (y'_k)^n.
-	\end{equation*}
-	Writing
-	\begin{equation*}
-		s - s' = s_L x^L_{k+1} + \sum_{l=0}^{L-1}s_l x_{k+1}^l
-	\end{equation*}
-	%
-	for some $L \in \bbZ_{\geq 0}$ with $s_L \neq 0$, we have $y_k \mid_l s_L$. The highest
-	degree term of $(s-s')(y'_k)^n$ with respect to $x_{k+1}$ is given by
-	\begin{equation*}
-		\xi s_L y_{p(k)}^n x_{k+1}^{L+n}
-	\end{equation*}
-	%
-	for some $\xi \in \bbK^\times$. Like in the previous lemma, we then must have $y_k \mid
-		s_L y^n_{p(k)}$, but this contradicts $y_k$ being a prime element of $R_k$ which does
-	not divide $s_L$ or $y_{p(k)}$.
-\end{proof}
-
-\begin{proof}[Proof of \cref{thm:minimal_denominators}]
-	%
-	By assumption, we have
-	\begin{equation*}
-		v = y_1^{-m_1}\cdots y_N^{-m_N} s = y_1^{-m_1'} \cdots y_{k-1}^{-m_{k-1}'}(y'_k)^{-m'_k}y_{k+1}^{-m_{k+1}'}\cdots y_N^{-m'_N}s'
-	\end{equation*}
-	%
-	for some $s, s' \in R$. Take $i\in [k+1, N]$ maximal such that $m_i \neq m'_i$. Without
-	loss of generality, we may assume that $m'_i > m_i$. Then we can write
-	\begin{equation*}
-		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s',
-	\end{equation*}
-	%
-	for some $\xi \in \bbK^\times$, making use of \cref{eq:y_quasi_commute}. Now, $y_i$ is
-	a prime element of $R_i$ which does not divide $y_1, \dots, y_{i-1}$. By
-	\cref{lem:prime_in_ore_localization}, we find that $y_i$ is prime in $R_i[(y'_k)\inv]$
-	and that it also doesn't divide $y_1, \dots, y_{i-1}$ in $R_i[(y'_k)\inv]$. By
-	comparing the coefficients of $x_{i+1}^{l_{i+1}}\cdots x_N^{l_N}$, we find
-	\begin{equation*}
-		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s_{l_{i+1},\dots, l_N} = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s'_{l_{i+1}, \dots, l_N} \in R_i.
-	\end{equation*}
-	%
-	Thus, we must have, for all $l_{i+1}, \dots, l_N \in \bbZ_{\geq 0}$, that $y_i \mid
-		s'_{l_{i+1}, \dots, l_N}$ in $R_i[(y'_k)\inv]$ and hence also in $R_i$ due to
-	\cref{lem:prime_in_ore_localization}. Consequently, $y_i \mid_l s'$, which contradicts
-	the minimality of the denominators.
-
-	We now need to prove that $m_k = m'_k = 0$. Assume that $m_k > 0$. Then, as above, we
-	obtain that
-	\begin{equation*}
-		\left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N} = \xi y_k^{m_k}\left(\prod_{j=1}^{k-1}y_j^{m_j}\right)(y'_k)^{-m_k'}s'_{l_{k+2}, \dots, l_N} \in R_{k+1},
-	\end{equation*}
-	%
-	for all $l_{k+2}, \dots, l_N \in \bbZ_{\geq 0}$, for some $\xi \in \bbK^\times$. Write
-	\begin{equation*}
-		(y'_k)^{-m'_s}s'_{l_{k+2}\dots, l_N} = s''_{l_{k+2}\dots, l_N}(y'_k)^{-m''_k},
-	\end{equation*}
-	%
-	for some $s''_{l_{k+2}, \dots, l_N} \in R_{k+1}$ and $m''_k \in \bbZ_{\geq 0}$ using
-	the fact that $\{(y'_k)^m \mid m \in \bbZ_{\geq 0}\}$ is an Ore set in $R_{k+1}$ by
-	\cref{lem:ore_set_ore_extension}. Then,
-	\begin{equation*}
-		y_k \mid_l \left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N}(y'_k)^{m''_k}.
-	\end{equation*}
-	%
-	By \cref{lem:y_divides_ys}, we find that $y_k \mid_l s_{l_{k+2}, \dots
-				l_N}(y'_k)^{m''_k}$. Hence, $y_k \mid_l s_{l_{k+2}, \dots, l_N}$ by
-	\cref{lem:y_divides_sy_prime}. Since this holds for all $l_{k+2}, \dots, l_N \in
-		\bbZ_{\geq 0}$, we find that $y_k \mid_l s$, which contradicts the minimality of the
-	denominators. Thus, $m_k = 0$, and by symmetry also $m'_k = 0$.
-
-	In the same way as we showed that $m_i = m_i'$ for all $i \in [k+1, N]$, one shows that
-	$m_i = m'_i$ for all $i \in [1, k-1]$.
-\end{proof}
-
-\section{Proof of the main theorem}
+\section{Rescaling the generators}
 
 We begin by studying more closely the subset $\Xi_N \subset S_N$. Recall that an
 element $\tau \in \Xi_N$ has the property that $\tau([1, j])$ is an interval for all $j
@@ -3543,6 +3203,10 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	as desired. This concludes the proof of the proposition.
 \end{proof}
 
+
+\subsection{Mutation between adjacent presentations}
+
+\section{Constructing quantum seeds}
 The following two lemmas show uniqueness and equivariance for vectors satisfying
 conditions similar to the vector $\epsbullet - g$ in
 \cref{prop:mutation_adjacent_permutations}.
@@ -3857,6 +3521,7 @@ The previous lemma will serve as the induction step in this lemma.
 
 \end{proof}
 
+\subsection{Proof of parts a,b,c of the main result}
 We can now provide a proof for \cref{thm:gy_main_result} (a) and (b), for $\tau \in
 	\Gamma_N$. Indeed, these follow immediately, by taking $(\sigma, \tau) = (\tau,
 	w_\circ)$ in \cref{lem:inductive_columns}, and writing $\tB_{\tau} = \tB_{\tau,
@@ -3895,7 +3560,360 @@ of putting everything together.
 	mutation-equivalent to each other.
 \end{proof}
 
-\medskip
+
+\section{The upper cluster algebra}
+\subsection{Ore localizations of CGL extensions}
+We now prove some results which will be crucial in proving equality between the upper
+cluster algebra and the cluster algebra. Since the upper cluster algebra consists of
+intersections of localizations, it makes sense to look at what happens to the
+intersection of the localizations by the two sequences of prime elements in the setting
+of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
+
+\begin{lemma}\label{lem:ore_set_ore_extension}
+	%
+	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set of
+	regular elements in $B$. If $\sigma(\bbK^\times E) = \bbK^\times E$, then $E$ is a
+	(left or right) Ore set of regular elements in $B[x;\sigma, \delta]$.
+\end{lemma}
+\begin{proof}
+	%
+	That the elements remain regular follows from $x b = 0 \iff b x = 0 \iff b = 0$ for all
+	$b \in B$.
+
+	Take $e \in E$. We only prove the case where $E$ is a right Ore set, as the case for a
+	left Ore set is completely analogous. We first show that there exist $e' \in E$ and $r
+		\in R = B[x; \sigma, \delta]$ such that $er = x e'$. Because $E$ is a right Ore set of
+	$B$, there exist $f\in E$ and $b \in B$ such that
+	\begin{equation*}
+		e b = \delta(\sigma\inv(e))f.
+	\end{equation*}
+	Because $\sigma\inv(e) \in \bbK^\times E$ by assumption, there exists some $\xi \in \bbK^\times$ such that $\xi \sigma\inv(e) \in E$.
+	Define
+	\begin{equation*}
+		e' = \xi \sigma\inv(e)f \in E.
+	\end{equation*}
+	Then
+	\begin{align*}
+		xe' & = x\xi\sigma\inv(e)f                                     \\
+		    & = \xi (\sigma(\sigma\inv(e)f)x + \delta(\sigma\inv(e)f)) \\
+		    & = \xi(e\sigma(f)x + e \delta(f) + e b)                   \\
+		    & = e(\xi (\sigma(f)x + \delta(f) + b)) \in eR.
+	\end{align*}
+
+	Now, assume that $r,s \in R$ are such that $e R \cap r E \neq \emptyset$ and $e R \cap
+		s E \neq \emptyset$ for all $e \in E$. Then, also $e R \cap rs E \neq \emptyset$ for
+	all $e\in E$. Indeed, for $e \in E$ we can find $a \in R$ and $f \in E$ such that $ea =
+		r f$, and $b \in R$ and $g \in E$ such that $f b = s g$, and then
+	\begin{equation*}
+		e a b = r f b = r s g \in rs E \cap e R.
+	\end{equation*}
+
+	The statement now follows by iteratively applying this fact on an element $\sum b_i x^i
+		\in R$.
+\end{proof}
+
+We now apply this lemma to a CGL extension $R$. Let $y_1, \dots, y_N$ be the sequence
+of homogeneous prime elements from \cref{thm:homogeneous_primes}. We now claim that for
+each $j \in [1, K]$, the set, $E_j = \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq 0}\}$,
+is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and $a \in
+	R_j$, we have
+\begin{equation*}
+	y_j^k R_j \cap a E_j = R_j y_j^k \cap  a E_j \ni a y_j^k.
+\end{equation*}
+%
+This shows that $E_j$ is an Ore set in $R_j$. Furthermore, $\sigma(\bbK^\times E_j) =
+	\bbK^\times E_j$ because $y_j$ is homogeneous. Hence, by
+\cref{lem:ore_set_ore_extension}, we find that $E_j$ is also an Ore set in $R_{j + 1}$.
+By repeatedly applying \cref{lem:ore_set_ore_extension} we find that $E_j$ is an Ore
+set in $R$. Now, take $I \subseteq [1, N]$ and define
+\begin{equation*}
+	E_I = \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
+\end{equation*}
+%
+By \cref{eq:y_quasi_commute}, it is a multiplicative set. It is also an Ore set by a
+similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if $e \in
+	E$ and $f \in F$ for two Ore sets $E$ and $F$, then for every $x \in R$ the set $ef R
+	\cap x E F$ is non-empty. Using that $E$ and $F$ are Ore sets, take $y, z \in R, e' \in
+	E$ and $f' \in F$ such that $ey = xe'$ and $fz = yf'$. Then $xe'f' = eyf' = efz \in efR
+	\cap xEF$.
+
+We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$ if $a$ divides $b$ on the
+left, i.e., $b = ar$ for some $r \in R$. Call an element $y_1^{m_1}\cdots y_N^{m_N}$ a
+\emph{minimal denominator}\index{minimal denominator} of a nonzero element $v\in
+	R[E\inv]$ if
+\begin{equation*}
+	v = y_1^{-m_1}\cdots y_N^{-m_N} s
+\end{equation*}
+%
+for some $s \in R$ such that $y_j \nmid_l s$ for all $j\in [1,N]$ with $m_j > 0$.
+Intuitively, this means that we can not cancel any terms.
+
+In what follows, we assume the setting of
+\cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. We then define for
+all $I \subseteq [1, N]$ the analogous Ore sets,
+\begin{equation*}
+	E'_{I} := \bbK^\times \prod_{j \in I}\{(y'_j)^m \mid m \in \bbZ_{\geq 0}\};
+\end{equation*}
+%
+and write $E' = E'_{[1, N]}$. Because $y'_j$ is a scalar multiple of $y_j$ for all $j
+	\neq k$, we have that $E'_I = E_I$ if $k \notin I'$. We now state the theorem that we
+want to prove.
+
+\begin{theorem}\label{thm:minimal_denominators}
+	Assume the setting of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. Let
+	\begin{equation*}
+		y_1^{m_1}\cdots y_N^{m_N} \quad \text{and} \quad y_1^{m'_1} \cdots y_{k-1}^{m'_{k-1}}(y'_k)^{m'_k}y_{k+1}^{m'_{k+1}} \cdots y_N^{m'_N}
+	\end{equation*}
+	%
+	be two minimal denominators of a nonzero element $v \in R[E\inv] \cap R[(E')\inv]$
+	(with respect to both $R[E\inv]$ and $R[(E')\inv]$). Then
+	\begin{equation*}
+		m_k = m'_k = 0 \quad \text{and} \quad m_j = m'_j,\quad \forall j \in [1, N], j \neq k.
+	\end{equation*}
+	In particular,
+	\begin{equation*}
+		R[(E_I)\inv] \cap R[(E'_{I'})\inv] = R[(E_I \cap E'_{I'})\inv] = R[(E_{(I \cap I')\setminus \{k\}})\inv]
+	\end{equation*}
+	for all $I,I' \subseteq [1, N]$.
+\end{theorem}
+
+Note that since $E_I \cap E'_{I'} \subseteq E_I, E'_{I'}$ we always have
+\begin{equation*}
+	R[(E_I)\inv] \cap R[(E'_{I'})\inv] \supseteq R[(E_I \cap E'_{I'})\inv].
+\end{equation*}
+%
+The other inclusion follows from the first part of the theorem. The last equality of
+the theorem follows from the following lemma.
+\begin{lemma}
+	For all $I, I' \subseteq [1, N]$,
+	\begin{equation*}
+		E_I \cap E'_I = E_{(I \cap I')\setminus \{k\}} = E'_{(I \cap I') \setminus \{k\}}.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	%
+	The inclusions $E_{(I \cap I')\setminus \{k\}}, E'_{(I \cap I') \setminus \{k\}}
+		\subseteq E_I \cap E'_{I'}$ are immediate. Take $e \in E_I \cap E'_{I'}$, and write
+	\begin{equation*}
+		e = \beta \prod_{j=1}^N y_j^{m_j} = \beta' \prod_{j=1}^N (y'_j)^{m'_j}
+	\end{equation*}
+	%
+	for some $\beta, \beta' \in \bbK^\times$ and $m_j, m'_j\in \bbZ_{\geq 0}$ such that
+	$m_j = 0$ for $j \notin I$ and $m'_j = 0$ for $j \notin I'$. It now remains to show
+	\begin{equation*}
+		m_k = m'_k = 0 \quad \text{and}\quad m_j = m'_j, \quad \forall j \in [1, N], j\neq k.
+	\end{equation*}
+	%
+
+	By \cref{thm:normal_in_UFD} we must have $m_N = m'_N$, as $y_N$ and $y'_N$ are prime
+	elements and associates in $R$, but do not divide $y_1, \dots, y_{N-1}$. So, we may
+	assume that $m_N = m'_N = 0$, by replacing $e$ with $e y_N^{-m_N}$ and multiplying
+	$\beta'$ by an appropriate scalar. Applying this reduction repeatedly, we reduce to the
+	case where $m_j = m'_j = 0$ for all $j \in [k+1, N]$.
+
+	We must now get rid of the ``obstacles'', $y_k$ and $y'_k$. Write, using
+	\cref{thm:y_prime_swapped_cgl},
+	\begin{equation*}
+		y_k y'_k - \alpha_{kp(k)}y_{p(k)}y_{k+1} = u \in R_{k-1}.
+	\end{equation*}
+	%
+	Assume that $m_k > 0$. Then,
+	\begin{equation*}
+		e y_k' = \beta \left(\prod_{j \in [1, k-1]}y_j^{m_j}y_k^{m_k-1}\right)(u+\alpha_{kp(k)}y_{p(k)}y_{k+1}).
+	\end{equation*}
+	%
+	In this expression, only $y_{k+1} \in R_{k+1}$, and it follows that $ey'_k$ has degree
+	1 with respect to $x_{k+1}$. On the other hand, we can also write
+	\begin{equation*}
+		ey'_k = \beta'\left(\prod_{j \in [1, k-1]}(y'_j)^{m'_j}\right)(y'_k)^{m'_k + 1},
+	\end{equation*}
+	where $ey'_k$ has degree $m'_k + 1$ with respect to $x_{k+1}$. So, we must have $m'_k = 0$ and consequently
+	\begin{equation*}
+		e = \beta' \prod_{j\in [1, k-1]}(y'_j)^{m'_j} \in R_{k-1}.
+	\end{equation*}
+	This contradicts the assumption that $m_k > 0$. Hence, $m_k = 0$ and by symmetry $m'_k = 0$. We can then continue as above to conclude that also $m_j = m'_j$ for all $j \in [1, k-1]$, which is what we needed to show.
+\end{proof}
+
+We now state and prove 3 lemmas that we will need for the proof of
+\cref{thm:minimal_denominators}.
+
+\begin{lemma}\label{lem:prime_in_ore_localization}
+	%
+	Let $R$ be a $\bbK$-algebra that is a domain and $E$ a left or right Ore set in $R$.
+	Let $p \in R$ be a prime element that is normal in $\bbK^\times E$ and such that $Rp
+		\cap E = \emptyset$. Then $p$ is a prime element of $R[E\inv]$. Furthermore, if $s \in
+		R$ and $p \nmid s$ as elements of $R$, then $p \nmid s$ as elements of $R[E\inv]$.
+\end{lemma}
+\begin{proof}
+	%
+	Take $e \in E$. By normality of $p$ in $\bbK^\times E$, we can write $pe = \alpha f p$
+	and $ep = p \beta g$ for some $\alpha, \beta \in \bbK^\times$ and $f,g \in E$. Then $p
+		e \inv = \alpha\inv f\inv p$ and $e\inv p = p \beta\inv g \inv$. Since $p$ is prime it
+	is also normal in $R$, and we obtain that $p$ is normal in $R[E\inv]$.
+
+	To see that it is prime, we go for the brute-force approach. Take $xe\inv, yf\inv \in
+		R[E\inv]$ such that their product lies in $pR[E\inv]$. We want to show that either
+	$xe\inv$ or $yf\inv$ must lie in $pR[E\inv]$. We can write
+	\begin{equation*}
+		xe\inv yf\inv = p z g\inv
+	\end{equation*}
+	%
+	for some $z \in R$ and $g \in E$. Using that $E$ is an Ore set we can write
+	\begin{equation*}
+		x e\inv y f\inv = x y' (e')\inv f\inv = xy' (fe')\inv = p z g\inv.
+	\end{equation*}
+	%
+	Using \cref{lem:ore_set_properties}, we find that the above is equivalent to the
+	existence of $a,b \in R$ such that
+	\begin{equation*}
+		xy'a = pzb \quad \text{and} \quad fe'a = gb \in E.
+	\end{equation*}
+	%
+	Since $p$ is a prime element of $R$, we must have that either $x,y'$ or $a$ is an
+	element of $Rp$. If $x \in Rp$ then $xe\inv \in pR[E\inv]$. If $y' \in Rp$, then
+	\begin{equation*}
+		ye' = ey' \in Rp,
+	\end{equation*}
+	%
+	implies $y \in Rp$ as $Rp \cap E = \emptyset$ by assumption. Thus, $y f\inv \in
+		pR[E\inv]$. Finally, $a \in Rp$ is impossible as
+	\begin{equation*}
+		fe'a = gb \in E \cap Rp
+	\end{equation*}
+	gives a contradiction.
+
+	For the last statement, take some $pxe\inv \in R[E\inv]p \cap R$, with $x \in R$ and $e
+		\in E$. Then $pxe\inv = y$ for some $y \in R$, and hence $px = ye$. So, since $p$ is
+	prime in $Rp$, we must have $y \in Rp$ or $e\in Rp$. By assumption, $Rp \cap E =
+		\emptyset$, so $y \in Rp$ which shows that $R[E\inv] \cap R \subseteq Rp$ since the
+	other inclusion is immediate. Now, note that if $s\notin Rp$ for some $s\in R$, then if
+	$s \in R[E\inv]p$ we would have $s \in R[E\inv]p \cap R \subseteq Rp$, a contradiction.
+\end{proof}
+
+Let us write
+\begin{equation*}
+	s = \sum_{l_j, \dots, l_N \in \bbZ_{\geq 0}} s_{l_j,\ldots,l_N}x_j^{l_j} \cdots x_N^{l_N}
+\end{equation*}
+for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
+
+\begin{lemma}\label{lem:y_divides_ys}
+	If
+	\begin{equation*}
+		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j-1}s
+	\end{equation*}
+	for some $j \in [1, N], s\in R$ and $n_1,\dots,n_{j-1}\in \bbZ_{\geq 0}$, then $y_j \mid_l s$.
+\end{lemma}
+\begin{proof}
+	%
+	By assumption, $y_j s' = y_1^{n_1}\cdots y_{j-1}^{n_j - 1}s$ for some $s' \in R$. Since
+	the set
+	\begin{equation*}
+		\{x_j^{l_{j+1}}\cdots x_N^{l_N} \mid l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}\},
+	\end{equation*}
+	forms a basis for $R_{N}$ as an $R_j$-module, we must have
+	\begin{equation*}
+		y_j \mid_l y_1^{n_1}\cdots y_{j-1}^{n_j -1} s_{l_{j+1}, \dots, l_N}
+	\end{equation*}
+	%
+	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Then, because $y_j \nmid_l y_1, \dots,
+		y_{j-1}$, and $y_j$ is a prime element of $R_j$, we must have
+	\begin{equation*}
+		y_j \mid_l s_{l_{j+1}, \ldots, l_N}
+	\end{equation*}
+	for all $l_{j+1}, \dots, l_N \in \bbZ_{\geq 0}$. Hence, also $y_j \mid_l s$.
+\end{proof}
+
+\begin{lemma}\label{lem:y_divides_sy_prime}
+	%
+	If $y_k \mid_l s (y'_k)^n$ for some $s \in R_{k+1}$ and $n \in \bbZ_{\geq 0}$, then
+	$y_k \mid_l s$.
+\end{lemma}
+\begin{proof}
+	%
+	Using a similar argument as in the previous lemma, we find that $y_k \mid_l s$ is
+	equivalent to $y_k \mid s_l$ for all $l \in \bbZ_{\geq 0}$, where $s = \sum_{l \in
+			\bbZ_{\geq 0 }} s_l x^{k+l}$ for $s_l \in R_k$. Write
+	\begin{equation*}
+		s' = \sum \{s_l x_{k+1}^l \mid l \in \bbZ_{\geq 0}, y_k \mid s_l\}.
+	\end{equation*}
+	%
+	Then $y_k \mid_l s'$, and $y_k \mid_l s$ if and only if $s = s'$. Assume that $s \neq
+		s'$. Since $y_k \mid_l s (y'_k)^n$ and $y_k \mid_l s' (y'_k)^n$, we have that
+	\begin{equation*}
+		y_k \mid_l (s - s') (y'_k)^n.
+	\end{equation*}
+	Writing
+	\begin{equation*}
+		s - s' = s_L x^L_{k+1} + \sum_{l=0}^{L-1}s_l x_{k+1}^l
+	\end{equation*}
+	%
+	for some $L \in \bbZ_{\geq 0}$ with $s_L \neq 0$, we have $y_k \mid_l s_L$. The highest
+	degree term of $(s-s')(y'_k)^n$ with respect to $x_{k+1}$ is given by
+	\begin{equation*}
+		\xi s_L y_{p(k)}^n x_{k+1}^{L+n}
+	\end{equation*}
+	%
+	for some $\xi \in \bbK^\times$. Like in the previous lemma, we then must have $y_k \mid
+		s_L y^n_{p(k)}$, but this contradicts $y_k$ being a prime element of $R_k$ which does
+	not divide $s_L$ or $y_{p(k)}$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:minimal_denominators}]
+	%
+	By assumption, we have
+	\begin{equation*}
+		v = y_1^{-m_1}\cdots y_N^{-m_N} s = y_1^{-m_1'} \cdots y_{k-1}^{-m_{k-1}'}(y'_k)^{-m'_k}y_{k+1}^{-m_{k+1}'}\cdots y_N^{-m'_N}s'
+	\end{equation*}
+	%
+	for some $s, s' \in R$. Take $i\in [k+1, N]$ maximal such that $m_i \neq m'_i$. Without
+	loss of generality, we may assume that $m'_i > m_i$. Then we can write
+	\begin{equation*}
+		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s',
+	\end{equation*}
+	%
+	for some $\xi \in \bbK^\times$, making use of \cref{eq:y_quasi_commute}. Now, $y_i$ is
+	a prime element of $R_i$ which does not divide $y_1, \dots, y_{i-1}$. By
+	\cref{lem:prime_in_ore_localization}, we find that $y_i$ is prime in $R_i[(y'_k)\inv]$
+	and that it also doesn't divide $y_1, \dots, y_{i-1}$ in $R_i[(y'_k)\inv]$. By
+	comparing the coefficients of $x_{i+1}^{l_{i+1}}\cdots x_N^{l_N}$, we find
+	\begin{equation*}
+		y_i^{m'_i - m_i}\left(\prod_{j\in [1, i-1] \setminus \{k\}}y_j^{m'_j}\right)s_{l_{i+1},\dots, l_N} = \xi \left(\prod_{j = 1}^{i-1}y_j^{m_i}\right)(y'_k)^{-m'_k} s'_{l_{i+1}, \dots, l_N} \in R_i.
+	\end{equation*}
+	%
+	Thus, we must have, for all $l_{i+1}, \dots, l_N \in \bbZ_{\geq 0}$, that $y_i \mid
+		s'_{l_{i+1}, \dots, l_N}$ in $R_i[(y'_k)\inv]$ and hence also in $R_i$ due to
+	\cref{lem:prime_in_ore_localization}. Consequently, $y_i \mid_l s'$, which contradicts
+	the minimality of the denominators.
+
+	We now need to prove that $m_k = m'_k = 0$. Assume that $m_k > 0$. Then, as above, we
+	obtain that
+	\begin{equation*}
+		\left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N} = \xi y_k^{m_k}\left(\prod_{j=1}^{k-1}y_j^{m_j}\right)(y'_k)^{-m_k'}s'_{l_{k+2}, \dots, l_N} \in R_{k+1},
+	\end{equation*}
+	%
+	for all $l_{k+2}, \dots, l_N \in \bbZ_{\geq 0}$, for some $\xi \in \bbK^\times$. Write
+	\begin{equation*}
+		(y'_k)^{-m'_s}s'_{l_{k+2}\dots, l_N} = s''_{l_{k+2}\dots, l_N}(y'_k)^{-m''_k},
+	\end{equation*}
+	%
+	for some $s''_{l_{k+2}, \dots, l_N} \in R_{k+1}$ and $m''_k \in \bbZ_{\geq 0}$ using
+	the fact that $\{(y'_k)^m \mid m \in \bbZ_{\geq 0}\}$ is an Ore set in $R_{k+1}$ by
+	\cref{lem:ore_set_ore_extension}. Then,
+	\begin{equation*}
+		y_k \mid_l \left(\prod_{j=1}^{k-1}y_j^{m'_j}\right)s_{l_{k+2}, \dots, l_N}(y'_k)^{m''_k}.
+	\end{equation*}
+	%
+	By \cref{lem:y_divides_ys}, we find that $y_k \mid_l s_{l_{k+2}, \dots
+				l_N}(y'_k)^{m''_k}$. Hence, $y_k \mid_l s_{l_{k+2}, \dots, l_N}$ by
+	\cref{lem:y_divides_sy_prime}. Since this holds for all $l_{k+2}, \dots, l_N \in
+		\bbZ_{\geq 0}$, we find that $y_k \mid_l s$, which contradicts the minimality of the
+	denominators. Thus, $m_k = 0$, and by symmetry also $m'_k = 0$.
+
+	In the same way as we showed that $m_i = m_i'$ for all $i \in [k+1, N]$, one shows that
+	$m_i = m'_i$ for all $i \in [1, k-1]$.
+\end{proof}
+
+\subsection{Proof of parts d,e of the main result}
 
 We now turn to the last two statements of \cref{thm:gy_main_result}. For this we will
 not need the normalizations of the $x$-elements or the $y$-elements. Let, in what
