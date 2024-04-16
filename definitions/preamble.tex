@@ -21,7 +21,12 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{convention}[theorem]{Convention}
+
+\newtheorem{condition}{Condition}
+\renewcommand*{\thecondition}{\Alph{condition}}
+\crefname{condition}{condition}{conditions}
+
+\newtheorem*{convention}{Convention}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{prop*}{Proposition}

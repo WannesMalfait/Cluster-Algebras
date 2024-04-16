@@ -9,7 +9,7 @@ practice.
 
 \textbf{TODO: better introduction: give examples of algebras that are CGL, mention that this resolves some conjectures...}
 
-\section{Quantum tori and mutations hidden in CGL extensions}
+\section{Quantum tori and mutations hidden in CGL extensions}\label{sec:cgl_introduction}
 
 We start with a quick introduction to CGL extensions, and work our way to understanding
 how a cluster algebra structure arises naturally. The focus is on building a solid
@@ -646,14 +646,16 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 	\cref{thm:homogeneous_primes} for the algebra $\HeisUqn$ can be taken to be $\eta
 		\colon [1, 6] \to \bbZ$ with $\eta(1)=\eta(3)=\eta(4)=\eta(6) = 1$ and $\eta(2) =
 		\eta(5) = 2$. The sequence of homogeneous prime elements is given by
-	\begin{align*}
-		y_1 & = E_2                                                                      \\
-		y_2 & = E_{12}                                                                   \\
-		y_3 & = y_1 E_1 - \frac{1}{1- q^{-2}}E_{12}                                      \\
-		y_4 & = y_3 F_1 - \frac{1}{1-q^2} E_2                                            \\
-		y_5 & = y_2 F_{12} - (q - q\inv) E_1 F_1 - q \inv                                \\
-		y_6 & = y_4 F_2 - \frac{1}{1-q^2} \Bigl(q y_3 F_{12} - \frac{1}{1 - q^2} \Bigr).
-	\end{align*}
+	\begin{equation}\label{eq:heisenberg_hom_primes}
+		\begin{aligned}
+			y_1 & = E_2                                                                      \\
+			y_2 & = E_{12}                                                                   \\
+			y_3 & = y_1 E_1 - \frac{1}{1- q^{-2}}E_{12}                                      \\
+			y_4 & = y_3 F_1 - \frac{1}{1-q^2} E_2                                            \\
+			y_5 & = y_2 F_{12} - (q - q\inv) E_1 F_1 - q \inv                                \\
+			y_6 & = y_4 F_2 - \frac{1}{1-q^2} \Bigl(q y_3 F_{12} - \frac{1}{1 - q^2} \Bigr).
+		\end{aligned}
+	\end{equation}
 	%
 	To visualize $\eta$ as well as the predecessor and successor functions, we can think of
 	them arranged as follows.
@@ -779,7 +781,7 @@ elements $y_1, \dots, y_N$.
 			      y_k y'_k - \alpha_{k p(k)} y_{p(k)} y_{k+1}
 		      \end{equation*}
 		      is a homogeneous normal element of $R_{k-1}$, where we take $y_{-\infty} = 1 =
-			      \alpha_{k, -\infty}$. From \cref{eq:y_x_quasi_commute} we know that $y_{p(k)}y_{k+1}
+			      \alpha_{k, -\infty}$. It normalizes the elements of $R_{k-1}$ in exactly the same way that $y_{p(k)}y_{k+1}$ does. Namely, from \cref{eq:y_x_quasi_commute} we know that $y_{p(k)}y_{k+1}
 			      x_j = \gamma_j y_{p(k)}y_{k+1}$ for some $\gamma_j \in \bbK$ for each $j \in [1, k-1]$.
 		      Then, also
 		      \begin{equation*}
@@ -1363,59 +1365,94 @@ section (cf. \cref{thm:gy_main_result}).
 	corresponding to pairs of adjacent permutations $\tau' = \tau(k, k+1)$.
 \end{theorem*}
 
-\section{Formulating a precise statement}
+\section{Formulating a precise statement}\label{sec:formulating_theorem}
 
-At the moment, there are three issues preventing the results of
-\cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as a cluster
-mutation statement.
+Our goal is now to be able to formulate a precise statement on the cluster algebra
+structure of symmetric CGL extensions. At the moment, there are three issues preventing
+the results of \cref{thm:almost_cluster_mutation,thm:y_prime_swapped_cgl} to be used as
+a cluster mutation statement.
 
 \begin{enumerate}
 	\item In order for $y'_1, \dots, y'_N$ to be a mutated cluster of $y_1, \dots, y_N$, we would
 	      need $y'_j = y_j$ for all $j \neq k$. However, in \cref{eq:y_prime_in_swapped_cgl} we
 	      see that $y'_j = \lambda_{k+1,k}y_j$ if $j = s^l(k+1)$ for some $l \in \bbZ_{\geq 0}$.
 	\item In the setting of \cref{thm:y_prime_swapped_cgl}, the indexing of the $y'$-elements is
-	      different from the indexing of the $y$-elements. For a cluster mutation, the indices
-	      should remain consistent.
-	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. In
-	      order for this to be a mutation statement, we would need $\kappa = 1$. In
-	      \cref{exmp:heisenberg_two_presentations} we saw a case were $\kappa \neq 1$.
+	      different from the indexing of the $y$-elements, i.e., we have $y'_j = y_{(k,k+1)j}$
+	      when $\eta(k) \neq \eta(k+1)$. For a cluster mutation, the indices should remain
+	      consistent.
+	\item The factor $\kappa \in \bbK^\times$ appearing in \cref{thm:almost_cluster_mutation}. At
+	      the moment we have no control over this factor. After reformulating the conclusion of
+	      \cref{thm:almost_cluster_mutation} in terms of toric frames, the corresponding factor
+	      should equal one.
 \end{enumerate}
+
 We will now resolve the first of the three issues, by a normalization of the
 homogeneous prime elements, $y_1, \dots, y_N$. The last issue will be resolved by a
-rescaling of the variables $x_1, \dots, x_N$, while the second issue will be addressed
-by a permutation of the cluster variables. After settling these three problems, we will
-finally be ready to state the main theorem.
+normalization of the variables $x_1, \dots, x_N$, while the second issue will be
+addressed by a permutation of the cluster variables. After settling these three
+problems, we will finally be ready to state the main theorem precisely and in full
+generality.
 
 \subsection{Normalization of the cluster variables}
-In order to be able to normalize the homogeneous prime elements, we need to be able to
-take square roots of the scalars $\lambda_{lj}$ for all $l,j \in [1, N]$. If this is
-not possible in $\bbK$, one can consider the field extension $\bbK[\sqrt{\lambda_{lj}}
-		\mid j < l \in [1, N]]$, and consider the CGL extension over this bigger field instead
-(the extension of scalars preserves the structure of the CGL extension). From now on,
-we will assume that $R$ is a CGL extension where $\sqrt{\lambda_{lj}} \in \bbK$ for all
-$l, j \in [1, N]$. We then fix a choice of
-\begin{equation*}
-	\nu_{lj} \in K \text{ such that } \nu^2_{lj} = \lambda_{lj}
-\end{equation*}
-%
-for all $l < j \in [1, N]$. Define $\nu_{ll} = 1$ and $\nu_{jl} = \nu_{lj}\inv$ for $l
-	< j \in [1, N]$. Then $\bbn = (\nu_{ij}) \in M_N(\bbK\times)$ is multiplicatively
-skew-symmetric, and $\bbn^{\cdot 2} = \boldsymbol{\lambda}$. Then analogous to the
-definition of $\mathbf{q}$, we define
-\begin{equation*}
-	r_{lj} = \Omega_{\bbn}(\oe_l, \oe_j) = \prod_{m=0}^{O_{-}(l)}\prod_{n=0}^{O_{-}(j)}\nu_{p^m(l), p^n(j)}.
-\end{equation*}
-%
-Thus, the matrix $\bbr = (r_{lj}) \in M_N(\bbK^\times)$ is multiplicatively
-skew-symmetric, and $\bbr^{\cdot 2} = \boldsymbol{q}$.
 
-The normalization is now defined as
+The first step in adressing the three problems is to translate the results from
+\cref{sec:cgl_introduction} to the language of toric frames. In addition to being
+needed for the definiton of a quantum cluster algebra, doing so will allow rescaling
+and reindexing of the cluster variables more easily. We will now show that an
+appropriate normalization resolves the first issue.
+
+\medskip
+
+For the toric frames we need to move over to the based quantum torus which requires a
+matrix $\bbr$ such that $\bbr^{\cdot 2} = \bbq$. This puts an extra condition on the
+base field. We need to be able to take square roots of the scalars $\lambda_{lj}$ for
+all $l,j \in [1, N]$. If this is not possible in $\bbK$, one can consider the field
+extension $\bbK[\sqrt{\lambda_{lj}} \mid j < l \in [1, N]]$, and consider the CGL
+extension over this bigger field instead (the extension of scalars preserves the
+structure of the CGL extension). In what follows we will hence assume the following
+condition.
+
+\begin{condition}\label{cond:square_roots}
+	$R$ is a CGL extension where $\sqrt{\lambda_{lj}} \in \bbK$ for all
+	$l, j \in [1, N]$, and a choice of
+	\begin{equation*}
+		\nu_{lj} \in \bbK \text{ such that } \nu^2_{lj} = \lambda_{lj}\text{ for all } l < j \in [1,N],
+	\end{equation*}
+	has been fixed.
+\end{condition}
+
+Define $\nu_{ll} \defeq 1$ and $\nu_{jl} \defeq \nu_{lj}\inv$ for $l < j \in [1, N]$.
+Then $\bbn \defeq (\nu_{ij}) \in M_N(\bbK^\times)$\index{nu@$\bbn$} is multiplicatively
+skew-symmetric, and $\bbn^{\cdot 2} = \boldsymbol{\lambda}$. Then analogous to the
+definition of $\bbq$, we define
 \begin{equation*}
-	\oy_j = \mcS_{\bbn}(\oe_j) y_j = \left(\prod_{0 \leq n < m \leq O_{-}(j)}\nu\inv_{p^m(j),p^n(j)}\right) y_j.
+	r_{lj} \defeq \Omega_{\bbn}(\oe_l, \oe_j) = \prod_{m=0}^{O_{-}(l)}\prod_{n=0}^{O_{-}(j)}\nu_{p^m(l), p^n(j)}.
 \end{equation*}
 %
-We then obtain a toric frame $M \colon \bbZ^N \to \Fract{R}$ with matrix $\bbr$ and
-such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
+Thus, the matrix $\bbr \defeq (r_{lj}) \in M_N(\bbK^\times)$\index{r@$\bbr$} is
+multiplicatively skew-symmetric, and $\bbr^{\cdot 2} = \bbq$.
+
+From \cref{thm:homogeneous_primes} it follows that the leading term of $y_k$ is given
+by
+\begin{equation*}
+	x_k x_{p(k)} \cdots x_{p^{O_{-}(k)}} = x^{\oe_k}.
+\end{equation*}
+%
+Furthermore,
+\begin{equation*}
+	x^{\oe_k}x^{\oe_j} = \Omega_{\bbl}(\oe_k, \oe_j)x^{\oe_j}x^{\oe_k} = q_{kj}x^{\oe_j}x^{\oe_k}.
+\end{equation*}
+%
+In the based quantum torus we would consider the normalized variables $x^{(\oe_k)} =
+	\mcS_{\bbn}(\oe_k)x^{\oe_k}$ instead. Since the $y_k$ quasi-commute in the same way as
+their leading terms, it makes sense to normalize them in the same way:
+\begin{equation}\label{eq:normalization_y}
+	\oy_j \defeq \mcS_{\bbn}(\oe_j) y_j = \left(\prod_{0 \leq n < m \leq O_{-}(j)}\nu\inv_{p^m(j),p^n(j)}\right) y_j.
+\end{equation}
+\index{y k overline@$\oy_k$}
+
+Using \cref{prop:y_quantum_torus} we then obtain a toric frame $M \colon \bbZ^N \to
+	\Fract(R)$ with matrix $\bbr$ and such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
 
 \begin{example}\label{exmp:heisenberg_y_normalization}
 
@@ -1433,21 +1470,22 @@ such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
 	\end{equation*}
 \end{example}
 
-If we now consider a second CGL presentation as in \cref{eq:swapped_cgl_presentation},
-we define $\bbn', \bbr'$ and $M'$ in the same way, i.e., $M'(e_j) = \oy'_j$ for all $j
-	\in [1, N]$. Since $\lambda'_{lj} = \lambda_{(k, k+1)l, (k, k+1)j}$, we also have
+For a second CGL presentation as in \cref{eq:swapped_cgl_presentation}, we define
+$\bbn', \bbr'$ and $M'$ in the same way, i.e., $M'(e_j) = \oy'_j$ for all $j \in [1,
+		N]$. Note that the vectors $\oe_k \in \bbZ^N$ should be computed with respect to the
+predecessor function corresponding to this presentation instead. Since $\lambda'_{lj} =
+	\lambda_{(k, k+1)l, (k, k+1)j}$, we also have
 \begin{equation*}
 	\bbn' = (k, k+1)\bbn (k, k+1) \in M_N(\bbK^\times).
 \end{equation*}
-\textbf{TODO: prove this.}
 
 In the next theorem we describe $\bbr'$ in terms of $\bbr$ and show that the
 normalization has the desired effect.
 
 \begin{theorem}\label{thm:almost_mutation_toric_frame}
 
-	Assume the setting of \cref{thm:y_prime_swapped_cgl} and that $\sqrt{\lambda_{lj}}\in
-		\bbK$ for all $j, l \in [1, N]$.
+	Assume the setting of \cref{thm:y_prime_swapped_cgl} and that \cref{cond:square_roots}
+	is satisfied.
 	\begin{enumerate}[(a)]
 		\item If $\eta(k) \neq \eta(k+1)$, then $\bbr' = (k, k+1)\bbr (k, k+1)$ and $\oy'_j =
 			      \oy_{(k, k+1)j}$, for all $j \in [1, N]$. Hence, $M' = M(k, k+1)$.
@@ -1460,7 +1498,7 @@ normalization has the desired effect.
 		      \begin{equation*}
 			      \bbr' = \prescript{(E_{+}^\circ)^T}{}{\bbr}^{E^\circ_{+}},
 		      \end{equation*}
-		      where $E^\circ_{+}\in M_N(\bbZ)$ is the matrix with entries
+		      where $E^\circ_{+}\in M_N(\bbZ)$\index{E circ plus@$E^\circ_{+}$} is the matrix with entries
 		      \begin{equation*}
 			      (E^\circ_{+})_{lj} = \begin{dcases*}
 				      \delta_{lj} & if $j \neq k$                               \\
@@ -1562,10 +1600,14 @@ normalization has the desired effect.
 \end{proof}
 
 \subsection{Addressing the indexing issue}
+
 We now proceed by addressing the indexing issue of the $y$ and $y'$ elements. To do
-this, we first move to a more general setting, which will be necessary for the main
-theorem. So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that
-each such $\tau$ gives rise to a CGL extension presentation of the form
+this we first describe everything in terms of the original presentation and the
+elements $\tau \in \Xi_N$. Then, by choosing a canonical ordering for the level set of
+the function $\eta$, we will ensure that the indices align.
+
+So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that each such
+$\tau$ gives rise to a CGL extension presentation of the form
 \begin{equation*}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
 \end{equation*}
@@ -1582,16 +1624,18 @@ We now want to define a toric frame $M_\tau$ corresponding to this new presentat
 such a way that the indexing issue gets resolved.
 
 As before, this presentation has $\bbl$-matrix given by $\bbl_\tau = \tau\inv \bbl
-	\tau$. We then define $\bbn_\tau = \tau\inv \bbn \tau$, and $\widehat{\bbr}_\tau$ the
-corresponding skew-symmetric matrix with entries
+	\tau$\index{lambda tau@$\bbl_\tau$}. We then define $\bbn_\tau = \tau\inv \bbn
+	\tau$\index{nu tau@$\bbn_\tau$}, and $\widehat{\bbr}_\tau$\index{r hat
+	tau@$\wh{r}_\tau$} the corresponding skew-symmetric matrix with entries
 \begin{equation*}
-	\widehat{r}_{\tau, lj} = \Omega_{\bbn_\tau}(\oe_l, \oe_j),
+	\widehat{r}_{\tau, lj} = \Omega_{\bbn_\tau}(\oe_{\tau, l}, \oe_{\tau, j}),
 \end{equation*}
 %
-for all $l, j \in [1, N]$.	Write $\oy_{\tau, 1}, \dots, \oy_{\tau, N}$ for the
-sequence of normalized homogeneous prime elements of this presentation, and
-$\widehat{M}_\tau$ as the toric frame with matrix $\widehat{\bbr}_\tau$ and such that
-$\widehat{M}_\tau (e_k) = \oy_{\tau, k}$ for all $k \in [1, N]$.
+for all $l, j \in [1, N]$.	Write $\oy_{\tau, 1}, \dots, \oy_{\tau, N}$\index{y k
+	overline tau@$\oy_{\tau, k}$} for the sequence of normalized homogeneous prime elements
+of this presentation, and $\widehat{M}_\tau$\index{M hat tau@$\wh{M}_\tau$} as the
+toric frame with matrix $\widehat{\bbr}_\tau$ and such that $\widehat{M}_\tau (e_k) =
+	\oy_{\tau, k}$ for all $k \in [1, N]$.
 
 We now need to address indexing issue by permuting the order of the cluster variables.
 Consider $\eta : [1, N] \to \bbZ$ satisfying the conditions of
@@ -1600,20 +1644,22 @@ every element $m$ in the image of $\eta$, write
 \begin{equation*}
 	\eta\inv(m) = \{\tau(k_1), \dots, \tau(k_{|\eta\inv(m)|})\}
 \end{equation*}
-for $k_1 < \cdots < k_{|\eta\inv(m)|}$. Order the elements of $\eta\inv(m)$ in increasing order:
+for $k_1 < \cdots < k_{|\eta\inv(m)|}$. Sort the elements of $\eta\inv(m)$ in increasing order:
 \begin{equation*}
 	\tau(k_{i_1}) < \cdots < \tau(k_{i_{|\eta\inv(m)|}}).
 \end{equation*}
-We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$, i.e., the $j$-th element in the ordered list. So, $\tau_\bullet$ orders the elements in the level sets of $\eta$.
+We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$\index{tau bullet@$\tau_\bullet$}, i.e., the $j$-th element in the sorted list. So, $\tau_\bullet$ sorts the elements in the level sets of $\eta$, effectively ``unscrambling'' the permutation $\tau$.
 
 We can then finally define the toric frame $M_\tau$ as
 \begin{equation}\label{eq:M_tau}
 	M_\tau = \widehat{M}_\tau (\tau_\bullet \tau)\inv \colon \bbZ^N \to \Fract(R),
 \end{equation}
+\index{M tau@$M_\tau$}
 which has corresponding matrix
 \begin{equation}\label{eq:r_tau}
 	\bbr_\tau = (\tau_\bullet \tau)\widehat{\bbr}_\tau(\tau_\bullet \tau)\inv.
 \end{equation}
+\index{r tau@$\bbr_\tau$}
 
 This definition of $\tau_\bullet$ calls for some examples. At the same time, the
 examples will demonstrate how the toric frame $M_\tau$ fixes the problem with the order
@@ -1714,29 +1760,18 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 \begin{lemma}\label{lem:tau_bullet}
 	\leavevmode
 	\begin{enumerate}[(a)]
-		\item For any $\tau \in \Xi_N$, the permutation $(\tau_\bullet\tau)\inv$ maps $\ex$
-		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
 		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
 				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet' = \tau_\bullet\tau$.
 		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
 				      N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' =
 			      \tau_\bullet\tau (k, k +1)$.
-		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
-			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
-		      $\tau_\bullet\tau(k) = j$. \textbf{TODO: $\Gamma_N$ hasn't been introduced yet!!!}
 	\end{enumerate}
 \end{lemma}
 \begin{proof}\leavevmode
 	\begin{enumerate}[(a)]
-		\item Take $j\in [1, N]$ and let $k = (\tau_\bullet \tau)\inv(j)$. Since $\tau_\bullet$
-		      preserves the level sets, we have $\eta(j) = \eta(\tau(k))$. So, $j \in \ex$ if and
-		      only if $s(j) \neq + \infty$, if and only if $j$ is not the largest element of
-		      $\eta\inv(\eta(j))$, if and only if $k$ is not the largest element of
-		      $\tau\inv(\eta\inv(\eta(j))) = \eta_\tau\inv(\eta_\tau(k))$, if and only if $s_\tau(k)
-			      \neq + \infty$.
 		\item Because $\eta(\tau(k)) = \eta(\tau(k+1)) = \eta(\tau'(k)) = \eta(\tau'(k+1))$, and
 		      $\tau(j) = \tau'(j)$ for all $j\neq k, k+1$ we have $\tau\inv(L) = (\tau')\inv(L)$ for
-		      all level sets of $\eta$. Hence, $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
+		      all level sets, $L$, of $\eta$. Hence, $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
 		\item Suppose
 		      \begin{equation*}
 			      \eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
@@ -1756,38 +1791,40 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 		      where $k'_i = k_i$ for all $i \neq j$ and $k'_j = k+1$. So, we see that $\tau_\bullet$
 		      and $(\tau')_\bullet$ agree on this level set as well. The case where $k+1 = k_j$ for
 		      some $j\in [1, n]$ is analogous.
-		\item Write $j = O_{-}(j) \in \bbZ_{\geq 0}$. Then $i = p^m(j) \in [1, N]$ is such that $p(i)
-			      = -\infty$, and $s^m(i) = j$. Since $i < s(j) < + \infty$, we may take $\tau = \tau_{i,
-				      s(j) - 1}\in \Gamma_N$ and $\tau' = \tau_{i, s(j)} \in \Gamma_N$. Then, as we have
-		      observed before, $\tau' = \tau(k, k+1)$ where $k = s(j) - i$, and $\tau(k) = i,
-			      \tau(k+1) = s(j)$. Thus, $\eta(\tau(k)) = \eta(i) = \eta(s(j)) = \eta(\tau(k+1))$.
-		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$, we
-		      find that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots,
-			      s^m(i), i$ in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the
-		      $(m+1)$-st element of $L$, when $L$ is written in increasing order. Since $p(i) =
-			      -\infty$, that element is $s^m(i) = j$.
 	\end{enumerate}
 \end{proof}
 
-\subsection{Rescaling of the generators}
-We now describe the rescaling of the $x$-elements that will ensure that $\zeta = 1$ in
-\cref{thm:almost_mutation_toric_frame}. The key insight, is that we can find back all
-the variables $\oy_{\tau}$ (up to a scalar multiple) by considering just the
-homogeneous prime elements of the subalgebras $R_{[j, k]}$ of the original CGL
-extension presentation.
+\subsection{Normalization of the generators}
+
+The last issue to resolve is that of the factor $\zeta$ in
+\cref{thm:almost_mutation_toric_frame}. One approach could be to try to figure out a
+different normalization for the $y$-elements directly. It turns out to be easier to
+rescale them indirectly through a normalization of the generators. For now we only
+describe the normalization needed, but leave the technical proof that it works for
+\cref{sec:normalizing_generators}.
+
+\medskip
+
+The key insight, is that we can find back all the variables $\oy_{\tau}$ (up to a
+scalar multiple) by considering just the homogeneous prime elements of the subalgebras
+$R_{[j, k]}$ of the original CGL extension presentation.
 
 \begin{theorem}[\protect{\cite[Theorem 5.1]{GoodearlYakimov2017QCA}}]\label{thm:y_square_brackets}
 
 	Let $R$ be a symmetric CGL extension of length $N$. For $i\in [1, N]$ and $m \in
 		\bbZ_{\geq 0}$ such that $s^m(i) \neq + \infty$, there exists a unique homogeneous
-	prime element $y_{[i, s^m(i)]}$ of $R_{[i, s^m(i)]}$ with leading term $x_i x_{s(i)}
-		\cdots x_{s^m(i)}$ such that $y_{[i, s^m(i)]} \notin R_{[i, s^m(i) - 1]}, R_{[i+1,
-						s^m(i)]}$. In particular, $y_{[i, i]} = x_i$.
+	prime element $y_{[i, s^m(i)]}$\index{y i smi@$y_{[i, s^m(i)]}$} of $R_{[i, s^m(i)]}$
+	with leading term $x_i x_{s(i)} \cdots x_{s^m(i)}$ such that $y_{[i, s^m(i)]} \notin
+		R_{[i, s^m(i) - 1]}, R_{[i+1, s^m(i)]}$. In particular, $y_{[i, i]} = x_i$.
 \end{theorem}
+
+We will show later that all the elements $y_{\tau, k}$ for $k \in [1, N]$ and $\tau \in
+	\Xi_N$ are of of the form $\xi y_{[i, s^m(i)]}$ for some $\xi \in \bbK^\times, i \in
+	[1, N]$ and $m \in \bbZ_{\geq 0}$ (cf. \cref{lem:y_tauk_y_brackets}).
 
 \begin{example}\label{exmp:heisenberg_y_brackets}
 
-	We now compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$. Recall that the
+	We compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$. Recall that the
 	$\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i = 1$ we just
 	have
 	\begin{equation*}
@@ -1815,18 +1852,23 @@ extension presentation.
 We now introduce some new notation. For $i \in [1, N]$ and $m \in \bbZ$ such that
 $s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
 \begin{equation*}
-	e_{[i, s^m(i)]} = e_i + e_{s(i)} + \cdots + e_{s^m(i)}.
+	e_{[i, s^m(i)]} \defeq e_i + e_{s(i)} + \cdots + e_{s^m(i)}.
 \end{equation*}
-In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, n]$. By convention $y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. Applying \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting
-yields the following result.
+\index{e i smi@$e_{[i, s^m(i)]}$}
+
+In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, N]$. By convention
+$y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. Applying
+\cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting yields the
+following result.
 \begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]\label{prop:def_u_brackets}
 
 	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in
 		\bbZ_{> 0}$ such that $s^m(i) \neq + \infty$, the element
 	\begin{align*}
-		u_{[i, s^m(i)]} & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
-		                & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
+		u_{[i, s^m(i)]} & \defeq y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
+		                & \defeq y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
 	\end{align*}
+	\index{u i smi@$u_{[i, s^m(i)]}$}
 	%
 	is a nonzero homogeneous normal element of $R_{[i+1, s^m(i) - 1]}$ which is not a
 	multiple of $y_{[s(i), s^{m-1}(i)]}$ if $m \geq 2$. It normalizes the elements of
@@ -1845,6 +1887,7 @@ yields the following result.
 	\begin{equation*}
 		\lt (u_{[i, s^m(i)]}) = \pi_{[i, s^m(i)]} x^{f_{[i, s^m(i)]}}
 	\end{equation*}
+	\index{pi i smi@$\pi_{[i, s^m(i)]}$}\index{f i smi@$f_{[i, s^m(i)]}$}
 	%
 	for some $\pi_{[i, s^m(i)]} \in \bbK^\times$ and $f_{[i, s^m(i)]} = n_{i+1}e_{i+1} +
 		\cdots + n_{s^m(i) -1}e_{s^m(i)-1} \in \bbZ_{\geq 0}^N$ such that $n_{s(i)} = \cdots =
@@ -1860,7 +1903,8 @@ and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
 
 \begin{example}\label{exmp:heisenberg_u_bracket}
 
-	We compute the $u_{[i, s(i)]}$ for $R = \HeisUqn$. Note that in this special case
+	We compute the elements $u_{[i, s(i)]}$ for $R = \HeisUqn$. Note that in this special
+	case
 	\begin{equation*}
 		u_{[i, s(i)]} = y_{[i, i]}y_{[s(i), s(i)]} - y_{[i, s(i)]} = x_i x_{s(i)} - y_{[i, s(i)]}.
 	\end{equation*}
@@ -1873,17 +1917,17 @@ and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
 	\end{align*}
 \end{example}
 
-We now have the necessary definitions to describe the rescaling of the $x$-elements.
-For each $\bbg = (\gamma_1, \dots, \gamma_N) \in (\bbK^\times)^N$, one can rescale the
-generators $x_1, \dots, x_N$ of $R$ by replacing them by $\gamma_1 x_1, \dots, \gamma_N
-	x_N$. These still generate the same CGL extension, with the same $\mcH$-action and
-matrix $\bbl$. Furthermore, for $i \in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that
-$s^m(i) \neq + \infty$, the subalgebra $R_{[i, s^m(i)]}$ is the same. Since $y_{[i,
-					s^m(i)]}$ is the \emph{unique} homogeneous prime element of $R_{[i, s^m(i)]}$ with a
-leading term $x_i x_{s(i)} \cdots x_{s^m(i)}$, we find that $y_{[i, s^m(i)]}$ gets
-replaced by $(\gamma_i \gamma_{s(i)} \cdots \gamma_{s^{m(i)}})y_{[i, s^m(i)]}$ after
-the rescaling. The definition of $u_{[i, s^m(i)]}$ then implies that they get rescaled
-by
+We now have the necessary definitions to describe the normalization of the
+$x$-elements. For each $\bbg = (\gamma_1, \dots, \gamma_N) \in (\bbK^\times)^N$, one
+can rescale the generators $x_1, \dots, x_N$ of $R$ by replacing them by $\gamma_1 x_1,
+	\dots, \gamma_N x_N$. These still generate the same CGL extension, with the same
+$\mcH$-action and matrix $\bbl$. Furthermore, for $i \in [1, N]$ and $m \in \bbZ_{\geq
+		0}$ such that $s^m(i) \neq + \infty$, the subalgebra $R_{[i, s^m(i)]}$ is the same.
+Since $y_{[i, s^m(i)]}$ is the \emph{unique} homogeneous prime element of $R_{[i,
+					s^m(i)]}$ with a leading term $x_i x_{s(i)} \cdots x_{s^m(i)}$, we find that $y_{[i,
+					s^m(i)]}$ gets replaced by $(\gamma_i \gamma_{s(i)} \cdots \gamma_{s^{m(i)}})y_{[i,
+					s^m(i)]}$ after the rescaling. The definition of $u_{[i, s^m(i)]}$ then implies that
+they get rescaled by
 \begin{equation*}
 	u_{[i, s^m(i)]} \mapsto \bbg^{e_{[i, s^m(i)]} + e_{[s(i), s^{m-1}(i)]} }u_{[i, s^m(i)]} =  (\gamma_i \gamma_{s(i)}^2 \cdots \gamma_{s^m(i)}^2 \gamma_{s^m(i)})u_{[i, s^m(i)]}.
 \end{equation*}
@@ -1896,13 +1940,12 @@ Hence, the scalar $\pi_{[i, s^m(i)]}$ get rescaled by the rule
 	\pi_{[i, s^m(i)]} \mapsto \bbg^{e_{[i, s^m(i)]}+e_{[s(i), s^{m-1}(i)]} - f_{[i, s^m(i)]}}\pi_{[i, s^m(i)]}.
 \end{equation*}
 %
-The rescaling that we need is described by the following proposition.
+The normalization that we need is described by the following proposition.
 \begin{proposition}
 
-	Let $R$ be a symmetric CGL extension of length $N$, for which there exist $\nu_{lj} =
-		\sqrt{\lambda_{lj}}$ for all $1 \leq l < j \leq N$. Then there exist $\bbg \in
-		(\bbK^\times)^N$ such that after applying the rescaling $x_j \mapsto \gamma_j x_j$ for
-	all $j \in [1, N]$ we have
+	Let $R$ be a symmetric CGL extension of length $N$ satisfying \cref{cond:square_roots}.
+	Then there exist $\bbg \in (\bbK^\times)^N$ such that after applying the normalization
+	$x_j \mapsto \gamma_j x_j$ for all $j \in [1, N]$ we have
 	\begin{equation}\label{eq:rescaling_conditions_for_pi}
 		\pi_{[i, s(i)]} = \mcS_{\bbn}(-e_i + f_{[i, s(i)]})
 	\end{equation}
@@ -1914,7 +1957,7 @@ The rescaling that we need is described by the following proposition.
 	\end{equation*}
 	and
 	\begin{equation*}
-		\gamma_i = \gamma_{p(i)}\inv \bbg^{f_{[p(i),i]}}\pi\inv_{[p(i), i]}\mcS_{\bbn}(-e_{p(i)} + f_{[p(i), i]})
+		\gamma_i \defeq \gamma_{p(i)}\inv \bbg^{f_{[p(i),i]}}\pi\inv_{[p(i), i]}\mcS_{\bbn}(-e_{p(i)} + f_{[p(i), i]})
 	\end{equation*}
 	if $p(i) \neq -\infty$. The scalars $\pi_{[p(i), i]}$ in the right-hand side are taken with respect to the original generators of $R$.
 \end{proposition}
@@ -1933,10 +1976,14 @@ The rescaling that we need is described by the following proposition.
 	which is precisely the claim of the proposition.
 \end{proof}
 
+\begin{condition}\label{cond:normalization_generators}
+	$R$ is a symmetric CGL extension such that \cref{eq:rescaling_conditions_for_pi} is satisfied.
+\end{condition}
+
 \begin{example}\label{exmp:heisenberg_rescaling}
 
-	We now compute $\bbg$ such that \cref{eq:rescaling_conditions_for_pi} is satisfied
-	after the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
+	We compute $\bbg$ such that \cref{eq:rescaling_conditions_for_pi} is satisfied after
+	the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
 		-\infty$, we can take $\gamma_1 = \gamma_2 = 1$. We now determine $\gamma_3$. From
 	\cref{exmp:heisenberg_u_bracket} we find $\pi_{[1, 3]} = \frac{1}{1-q^{-2}}$ and
 	$f_{[1, 3]} = e_2$. Thus,
@@ -1968,58 +2015,70 @@ The rescaling that we need is described by the following proposition.
 	\end{equation*}
 
 	For later convenience, we now determine the sequence of normalized homogeneous primes
-	of $R = \HeisUqn$ if the rescaling $x_i \mapsto \gamma_i x_i$ has been applied. Denote
-	the original sequence of homogeneous primes with $y'_1, \dots, y'_6$. Note that the
-	rescaling of the generators does not change the subalgebras $R_1, \dots, R_3$, and
-	hence \cref{thm:homogeneous_primes} guarantees that $\oy_1, \dots, \oy_N$ will be
-	scalar multiples of $y'_1, \dots, y'_N$ respectively. Furthermore, the matrix $\bbl$
-	remains the same, so the normalization constants $\mcS_{\bbn}(\oe_i)$ remain unchanged,
-	and we can re-use the work from \cref{exmp:heisenberg_y_normalization}.
+	of $R = \HeisUqn$ if the normalization $x_i \mapsto \gamma_i x_i$ has been applied.
+	Denote the original sequence of homogeneous primes with $y'_1, \dots, y'_6$ (cf.
+	\cref{eq:heisenberg_hom_primes}). Note that the normalization of the generators does
+	not change the subalgebras $R_1, \dots, R_3$, and hence \cref{thm:homogeneous_primes}
+	guarantees that $\oy_1, \dots, \oy_N$ will be scalar multiples of $y'_1, \dots, y'_N$
+	respectively. Furthermore, the matrix $\bbl$ remains the same, so the normalization
+	constants $\mcS_{\bbn}(\oe_i)$ remain unchanged, and we can re-use the work from
+	\cref{exmp:heisenberg_y_normalization}.
 
-	Because $\gamma_1 = 1 = \gamma_2$, we have $\oy_1 = \oy'_1 = y'_1$ and $\oy_2 = \oy'_2
-		= y'_2$. For $\oy_3$ we have $\gamma_3 = (1 - q^{-2})$. Then
+	Let us write $\wt{E}_2, \wt{E}_{12}, \wt{E}_1, \wt{F}_1, \wt{F}_{12}, \wt{F}_2$ for the
+	normalized generators. Because $\gamma_1 = 1 = \gamma_2$, we have $\oy_1 = \oy'_1 =
+		y'_1$ and $\oy_2 = \oy'_2 = y'_2$. For $\oy_3$ we have $\gamma_3 = (1 - q^{-2})$. Then
 	\begin{equation*}
-		q^{\frac{1}{2}}(1-q^{-2})y'_3 = E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - E_{12},
+		q^{\frac{1}{2}}(1-q^{-2})y'_3 = E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - E_{12} = \wt{E}_2\wt{E}_1 - \wt{E}_{12},
 	\end{equation*}
 	so that $y_3 = q^{\frac{1}{2}}(1-q^{-2})y'_3$ and $\oy_3 = q(1 -q^{-2})y'_3$. Similarly, because $\gamma_4 = -q^{\frac{3}{2}}$ we find
 	\begin{equation*}
-		y_4 = (1-q^2)y'_4 = q^{\frac{1}{2}}(1-q^{-2})y'_3 (-q^{\frac{3}{2}}F_1) - E_2 = y_3 (-q^2F_1) - E_2,
+		y_4 = (1-q^2)y'_4 = q^{\frac{1}{2}}(1-q^{-2})y'_3 (-q^{\frac{3}{2}}F_1) - E_2 = y_3 \wt{F}_1 - \wt{E}_2,
 	\end{equation*}
 	and $\oy_4 = q y_4 = (1-q^2)y'_4$. From $\gamma_5 = -q^2$ we find
 	\begin{equation*}
-		y_5 = (-q^{\frac{3}{2}})y'_5 = y_2(-q^{\frac{3}{2}}F_1) - q^{\frac{1}{2}}(1-q^{-2})E_1(-q^2F_1) + q^{\frac{1}{2}},
+		y_5 = (-q^{\frac{3}{2}})y'_5 = y_2\wt{F_1} -q^{\frac{1}{2}} \wt{E}_1\wt{F}_1 + q^{\frac{1}{2}},
 	\end{equation*}
 	and $\oy_5 = q y_5 = -q^{\frac{5}{2}} y'_5$. Finally, $\gamma_6 = (1-q^2)$ implies
 	\begin{align*}
-		y_6 & = (1-q^2)^2 y'_6                                                                       \\
-		    & = (1-q^2)y'_4 ((1-q^2)F_2) + q^{-\frac{3}{2}}q^{\frac{1}{2}}(1-q^2)y'_3(-q^2F_{12}) +1 \\
-		    & = y_4(q^{-\frac{1}{2}}(1-q^2)F_2) + q^{-\frac{3}{2}}y_3(-q^2F_{12}) + 1,
+		y_6 & = (1-q^2)^2 y'_6                                                                          \\
+		    & = (1-q^2)y'_4 ((1-q^2)F_2) - q^{-\frac{1}{2}}q^{\frac{1}{2}}(1-q^{-2})y'_3(-q^2F_{12}) +1 \\
+		    & = y_4\wt{F}_2 + q^{-\frac{3}{2}}y_3\wt{F}_{12} + 1,
 	\end{align*}
 	and $\oy_6 = q^2 y_6 = q^2(1-q^2)^2 y'_6$.
+
+	It is clear that the normalization simplifies the constants appearing in the
+	expressions for the homogeneous prime elements.
 \end{example}
 
-We will not prove here directly that this rescaling has the desired effect. That will
-be covered in \cref{prop:mutation_adjacent_permutations}. Instead, we now finally state
-the main theorem.
-
 \subsection{The precise statement}
-\begin{theorem}[\protect{\cite[Theorem 8.2]{GoodearlYakimov2017QCA}}]\label{thm:gy_main_result}
 
-	Let $R$ be a symmetric CGL extension of length $N$. Define $\ex = [1 ,N] \setminus P(N)
-		= \{k \in [1, N] \mid s(k) \neq +\infty\}$ where $s$ is the predecessor function as in
-	\cref{thm:homogeneous_primes}. Assume that the base field $\bbK$ contains square roots
-	$\nu_{lj} = \sqrt{\lambda_{lj}}$ such that $\bbn = (\nu_{lj})$ is a multiplicatively
-	skew-symmetric matrix and the subgroup of $\bbK^\times$ generated by $\{\nu_{lj} \mid 1
-		\leq j < l \leq N\}$ does not contain elements of order 2. Assume also that there exist
-	positive integers $d_i, i\in \img(\eta)$ such that
+We now finally state the main result. Afterwards we work out an example in detail, to
+understand the precise statement. The result requires two extra conditions that we have
+not yet mentioned. The first condition will be used to ensure uniqueness of squareroots
+of certain scalars.\begin{condition}\label{cond:no_order_two}
+	The subgroup of $\bbK^\times$ generated by $\{\nu_{lj} \mid 1 \leq j < l \leq N\}$ does not contain elements of order two.
+\end{condition}
+%
+Now, let $R$ be a symmetric CGL extension of length $N$, and define
+\begin{equation}\label{eq:ex}
+	\ex \defeq [1 ,N] \setminus P(N) = \{k \in [1, N] \mid s(k) \neq +\infty\}
+\end{equation}
+where $s$ is the predecessor function as in
+\cref{thm:homogeneous_primes}. The second condition is used to ensure that principal part of the matrix $B_\tau$ in the statement is
+skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
+\begin{condition}\label{cond:lambda_star_to_the_d}
+	There exist positive integers $d_i \in \bbZ_{>0}$ for $i$ in the image of $\eta$ such that
 	\begin{equation*}
 		(\lambda^*_l)^{d_{\eta(j)}} = (\lambda^*_j)^{d_{\eta(l)}}, \quad \forall j, l \in \ex.
 	\end{equation*}
-	%
-	Let the sequence of generators $x_1, \dots, x_N$ of $R$ be rescaled such that
-	\cref{eq:rescaling_conditions_for_pi} is satisfied.
+\end{condition}
 
-	Then the following hold
+\begin{theorem}[\protect{\cite[Theorem 8.2]{GoodearlYakimov2017QCA}}]\label{thm:gy_main_result}
+
+	Let $R$ be a symmetric CGL extension of length $N$, and write $\ex$ as in \cref{eq:ex}.
+	Assume that
+	\cref{cond:square_roots,cond:normalization_generators,cond:no_order_two,cond:lambda_star_to_the_d}
+	are satisfied. Then the following hold:
 	\begin{enumerate}[(a)]
 		\item For all $\tau \in \Xi_N$ and $l \in \ex$, there exists a unique vector $b^l_{\tau}\in
 			      \bbZ^N$ such that $\chi_{M_\tau (b^l_\tau)} = 1$ and
@@ -2044,7 +2103,7 @@ the main theorem.
 		      \begin{equation*}
 			      R = \mcA(M, \tB, \emptyset)_\bbK = \mcU(M, \tB, \emptyset)_\bbK.
 		      \end{equation*}
-		\item Finally, let $\binv$ be any subset of $P(N) = \frz$. Then
+		\item Finally, let $\binv$ be any subset of the frozen variables $\frz \defeq = P(N)$. Then
 		      \begin{equation*}
 			      R[y_k\inv \mid k \in \binv] = \mcA(M, \tB, \binv)_{\bbK} = \mcU(M, \tB, \binv)_{\bbK}.
 		      \end{equation*}
@@ -2224,11 +2283,11 @@ the main theorem.
 
 	We now want to see the relation with seed mutations. \Cref{thm:gy_main_result} (c) says
 	that mutation will happen between adjacent permutations, i.e., ones which differ by an
-	elementary transposition\index{elementary transposition}. Recall that an elementary
-	transposition is a transposition of the form $(i, i+1)$. We now decompose $\tau$ as a
-	sequence of permutations in $\Xi_6$ each of which differs by an elementary
-	transposition. Such decompositions will play an important role in the proof of
-	\cref{thm:gy_main_result} (cf. \cref{prop:eta_invariance}). Write $\tau' =
+	elementary transposition\index{elementary transposition}. Recall that an
+	\emph{elementary transposition} is a transposition of the form $(i, i+1)$. We now
+	decompose $\tau$ as a sequence of permutations in $\Xi_6$ each of which differs by an
+	elementary transposition. Such decompositions will play an important role in the proof
+	of \cref{thm:gy_main_result} (cf. \cref{prop:eta_invariance}). Write $\tau' =
 		[2,3,1,4,5,6]$. Then $\tau = \tau(3,4)$. For $\tau'' = [2,1,3,4,5,6]$, we have $\tau''
 		= \tau(2,3)$, and $\tau'' = \id (1,2)$. One can compute that $\tau'_{\bullet} =
 			[3,2,1,4,5,6],\, \tau'_\bullet \tau' = [2,1,3,4,5,6]$ and
@@ -2279,8 +2338,9 @@ the main theorem.
 		y'_{\tau, 3}y'_{\tau', 3} = q^2 y'_{\tau, 2}y'_{\tau, 4} - \frac{q}{(1-q^2)^2}y'_{\tau, 1},
 	\end{equation}
 	%
-	where the primes indicate that the rescaling of the generators and the normalization
-	has not been applied. The goal is now to compare this to the mutation statement
+	where the primes indicate that the normalization of the generators and the
+	normalization \cref{eq:normalization_y} has not been applied. The goal is now to
+	compare this to the mutation statement
 	\begin{align*}
 		M_{\tau'}(e_3)
 		 & = M_{\tau}(-e_3 + [b^3_{\tau}]_{+}) + M_\tau(-e_3 - [b^3_{\tau}]_{-}) \\
@@ -2372,12 +2432,12 @@ the main theorem.
 		 & = -q (1-q^2)^{-2} y'_{\tau, 1} + q^2 y'_{\tau, 2}y'_{\tau, 4},
 	\end{align*}
 	%
-	which is precisely \cref{eq:heisenber_almost_mutation}. We see that the rescaling and
-	normalization had the desired effect.
+	which is precisely \cref{eq:heisenber_almost_mutation}. We see that the normalization
+	had the desired effect.
 
 \end{example}
 
-\section{Rescaling the generators}
+\section{Normalizing the generators}\label{sec:normalizing_generators}
 
 We begin by studying more closely the subset $\Xi_N \subset S_N$. Recall that an
 element $\tau \in \Xi_N$ has the property that $\tau([1, j])$ is an interval for all $j
@@ -2621,13 +2681,11 @@ a small lemma which we will need in the inductive step.
 \begin{proposition}\label{prop:y_tau_is_y_bracket}
 	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$.
 	\begin{itemize}
-		\item If $\tau(k) \geq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[p^m(\tau(k)),
-							      \tau(k)]}$, where
+		\item If $\tau(k) \geq \tau(1)$, then $\oy_{\tau,k} = y_{[p^m(\tau(k)), \tau(k)]}$, where
 		      \begin{equation*}
 			      m = \max\{n \in \bbZ_{\geq 0} \mid p^n(\tau(k)) \in \tau([1,k])\}.
 		      \end{equation*}
-		\item If $\tau(k) \leq \tau(1)$, then $y_{\tau,k}$ is a scalar multiple of $y_{[\tau(k),s^m(
-							      \tau(k))]}$, where
+		\item If $\tau(k) \leq \tau(1)$, then $\oy_{\tau,k} = y_{[\tau(k),s^m( \tau(k))]}$, where
 		      \begin{equation*}
 			      m = \max\{n \in \bbZ_{\geq 0} \mid s^n(\tau(k)) \in \tau([1,k])\}.
 		      \end{equation*}
@@ -3029,7 +3087,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	We will first prove the proposition for the case $\tau(k) < \tau(k+1)$. The case
 	$\tau(k) > \tau(k+1)$ will then follow from this.
 
-	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then \cref{lem:tau_bullet} (c) shows that
+	If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then \cref{lem:tau_bullet} (b) shows that
 	$\tau_\bullet \tau (k, k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now
 	follows from \cref{thm:almost_mutation_toric_frame} (a).
 
@@ -4087,6 +4145,37 @@ Note that $\mcT$ is a quantum torus because of \cref{eq:y_quasi_commute}. Conseq
 $E_\tau$ consists of normal elements in $\mcA_\tau$, and is thus an Ore set in
 $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 
+\begin{lemma}\label{lem:tau_bullet_ex_gamma}
+	\leavevmode
+	\begin{enumerate}[(a)]
+		\item For any $\tau \in \Xi_N$, the permutation $(\tau_\bullet\tau)\inv$ maps $\ex$
+		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
+		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
+			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
+		      $\tau_\bullet\tau(k) = j$. \textbf{TODO: $\Gamma_N$ hasn't been introduced yet!!!}
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}[(a)]
+		\item Take $j\in [1, N]$ and let $k = (\tau_\bullet \tau)\inv(j)$. Since $\tau_\bullet$
+		      preserves the level sets, we have $\eta(j) = \eta(\tau(k))$. So, $j \in \ex$ if and
+		      only if $s(j) \neq + \infty$, if and only if $j$ is not the largest element of
+		      $\eta\inv(\eta(j))$, if and only if $k$ is not the largest element of
+		      $\tau\inv(\eta\inv(\eta(j))) = \eta_\tau\inv(\eta_\tau(k))$, if and only if $s_\tau(k)
+			      \neq + \infty$.
+		\item Write $j = O_{-}(j) \in \bbZ_{\geq 0}$. Then $i = p^m(j) \in [1, N]$ is such that $p(i)
+			      = -\infty$, and $s^m(i) = j$. Since $i < s(j) < + \infty$, we may take $\tau = \tau_{i,
+				      s(j) - 1}\in \Gamma_N$ and $\tau' = \tau_{i, s(j)} \in \Gamma_N$. Then, as we have
+		      observed before, $\tau' = \tau(k, k+1)$ where $k = s(j) - i$, and $\tau(k) = i,
+			      \tau(k+1) = s(j)$. Thus, $\eta(\tau(k)) = \eta(i) = \eta(s(j)) = \eta(\tau(k+1))$.
+		      Write $L = \eta\inv(\eta(\tau(k)))$. Since $\tau$ is increasing on $[1, k - 1]$, we
+		      find that $\tau$ maps the elements of $[1, k] \cap \tau\inv(L)$ to $s(i), \dots,
+			      s^m(i), i$ in that order. So, $\tau_\bullet\tau(k) = \tau_\bullet(i)$ equals the
+		      $(m+1)$-st element of $L$, when $L$ is written in increasing order. Since $p(i) =
+			      -\infty$, that element is $s^m(i) = j$.
+	\end{enumerate}
+\end{proof}
+
 \begin{theorem}\label{thm:intersections}
 	Let $R$ be a symmetric CGL extension of length $N$.
 	\begin{enumerate}[(a)]
@@ -4156,10 +4245,10 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      \end{equation*}
 		      %
 		      for all $\sigma, \tau \in \Gamma_N$ and $j \in [1, N]$. Because of
-		      \cref{lem:tau_bullet} (d), we can find $\tau, \tau' \in \Gamma_N$ such that $\tau' =
-			      \tau(k, k+1)$ for some $k\in[1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
-		      $\tau_\bullet(\tau(k)) = j$, for any $j \in \ex$. So, the second part of the claim then
-		      implies that $m_{\tau, (\tau_\bullet\tau)\inv(j)} = 0$, and hence $m_{\sigma,
+		      \cref{lem:tau_bullet_ex_gamma} (b), we can find $\tau, \tau' \in \Gamma_N$ such that
+		      $\tau' = \tau(k, k+1)$ for some $k\in[1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$
+		      and $\tau_\bullet(\tau(k)) = j$, for any $j \in \ex$. So, the second part of the claim
+		      then implies that $m_{\tau, (\tau_\bullet\tau)\inv(j)} = 0$, and hence $m_{\sigma,
 					      (\sigma_\bullet\sigma)\inv(j)} = 0$ for all $\sigma\in \Gamma_N$. In particular, this
 		      holds for $\tau = \id$, and it follows that $v \in R$.
 		\item Again, one inclusion is clear. It suffices to show $v \in R[y_k\inv \mid k \in \binv]$
@@ -4186,8 +4275,8 @@ just a matter of putting together the inclusions from
 	\end{equation*}
 	%
 	Indeed, the right-hand side is multiplicatively generated by $\bbK^\times$ together
-	with the set $\{ M_\tau(e_j) \mid j \in \ex\}$. By \cref{lem:tau_bullet} (a), this last
-	set is the same as the set
+	with the set $\{ M_\tau(e_j) \mid j \in \ex\}$. By \cref{lem:tau_bullet_ex_gamma} (a),
+	this last set is the same as the set
 	\begin{equation*}
 		\{ \wh{M}_\tau(e_j) \mid j \in [1, N] s_\tau(j) \neq + \infty\} = \{ \oy_{\tau, j} \mid j \in [1, N] s_\tau(j) \neq + \infty\}.
 	\end{equation*}
