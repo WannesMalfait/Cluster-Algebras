@@ -178,6 +178,7 @@ to the following definition:
 	\begin{equation*}
 		R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots [x_N; \sigma_N, \delta_N]
 	\end{equation*}
+	\index{sigma k@$\sigma_k$}\index{delta k@$\delta k$}
 	%
 	is called a \emph{CGL\footnote{CGL extensions are named after G. Cauchon, K. Goodearl
 			and E. Letzter.} extension}\index{CGL extension} if it is equipped with a rational
@@ -381,10 +382,11 @@ prove the following small lemma.
 	%
 	Let $p$ be a normal element of $R$ and take $a,b \in R$. Write $\pi : \colon R \to R /
 		Rp$ for the quotient map. Then, for all $x \in R$, $x \in Rp$ if and only if $\pi(x) =
-		0$. If $p$ is prime, and $\pi(ab) = \pi(a)\pi(b) = 0$, then either $\pi(a) = 0$ or $\pi(b) =
-		0$ as $R/Rp$ is a domain. Hence, $a \in Rp$ or $b \in Rp$. Conversely, if $\pi(a)\pi(b) =
-		0$ in $R/Rp$, then we have $ab \in Rp$ from which we obtain $a \in Rp$ or $b \in Rp$ by
-	assumption. Thus, $\pi(a) = 0$ or $\pi(b) = 0$ which shows that $R/ Rp$ is a domain.
+		0$. If $p$ is prime, and $\pi(ab) = \pi(a)\pi(b) = 0$, then either $\pi(a) = 0$ or
+	$\pi(b) = 0$ as $R/Rp$ is a domain. Hence, $a \in Rp$ or $b \in Rp$. Conversely, if
+	$\pi(a)\pi(b) = 0$ in $R/Rp$, then we have $ab \in Rp$ from which we obtain $a \in Rp$
+	or $b \in Rp$ by assumption. Thus, $\pi(a) = 0$ or $\pi(b) = 0$ which shows that $R/
+		Rp$ is a domain.
 \end{proof}
 %
 We now state a theorem that is quite technical, but forms the heart of the main
@@ -431,7 +433,7 @@ where we take $\max \emptyset = - \infty$ and $\min \emptyset = + \infty$ (cf.
 		\end{cases}
 	\end{equation*}
 	%
-    \index{y k@$y_k$}
+	\index{y k@$y_k$}
 	are homogeneous and have the property that for every $k \in [1, N]$,
 	\begin{equation}\label{eq:list_of_ys_in_R_k}
 		\{y_j \mid j \in [1, k], s(j) > k\}
@@ -444,7 +446,12 @@ where we take $\max \emptyset = - \infty$ and $\min \emptyset = + \infty$ (cf.
 
 \begin{convention}
 
-    In what follows, there will be plenty of formulas in which the predecessor and successor function of \cref{thm:homogeneous_primes} appear. It will be convenient to assume that $a_{\pm \infty}$ will be the neutral element in the context that it appears. For example, we have $y_{-\infty} = 1$, but $c_{\pm \infty} = 0$ in the context of \cref{thm:homogeneous_primes}. When $a \in \bbK^\times$ we will always mean $a_{\pm\infty} = 1$. When $a \in \bbZ^N$ we will always mean $a_{\pm\infty} = 0$. 
+	In what follows, there will be plenty of formulas in which the predecessor and
+	successor function of \cref{thm:homogeneous_primes} appear. It will be convenient to
+	assume that $a_{\pm \infty}$ will be the neutral element in the context that it
+	appears. For example, in the context of \cref{thm:homogeneous_primes} we would have
+	$y_{p(k)} = 1$ when $p(k) = -\infty$. When $a \in \bbK^\times$ we will always mean
+	$a_{\pm\infty} = 1$. When $a \in \bbZ^N$ we will always mean $a_{\pm\infty} = 0$.
 \end{convention}
 
 To compute the elements $y_1, \dots, y_N$, some additional facts come in handy. For
@@ -452,7 +459,7 @@ this, we introduce some further notation and relations related to CGL extensions
 what follows, $R$ is a CGL extension and the elements $y_k, k \in [1, N]$ and the
 functions $p$ and $s$ are as in \cref{thm:homogeneous_primes}.
 
-Let $O_{\pm} \colon [1, N] \to \bbZ_{\geq 0}$\index{O pm@$O_{\pm}$} be the order
+Let $O_{\pm} \colon [1, N] \to \bbZ_{\geq 0}$\index{O pm k@$O_{\pm}(k)$} be the order
 functions\index{function!order} given by
 \begin{align*}
 	O_{+}(k) & \defeq \max\{m \in \bbZ_{\geq 0} \mid s^m(k) \neq + \infty\}   \\
@@ -516,8 +523,8 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 \begin{example}\label{exmp:heisenberg_primes}
 
 	The goal is to find the sequence $y_1, y_2, \dots, y_6$ of homogeneous prime elements
-	from \cref{thm:homogeneous_primes} for $R = \HeisUqn$\index{Heis@$\HeisUqn$}. To do this, we make use of
-	\cref{lem:delta_nonzero_iff_predecessor}.
+	from \cref{thm:homogeneous_primes} for $R = \HeisUqn$\index{Heis@$\HeisUqn$}. To do
+	this, we make use of \cref{lem:delta_nonzero_iff_predecessor}.
 
 	Since $\delta_1 = 0$ and $\delta_2 = 0$ we must have $y_1 = x_1 = E_2$ and $y_2 = x_2 =
 		E_{12}$. Let $\eta \colon [1, 6] \to \bbZ$ denote the function from
@@ -661,12 +668,20 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 
 \subsection{Almost mutations}
 
-We seen how one obtains a quantum torus from a CGL extension. Namely, by considering the sequence $y_1, \dots, y_N$ of homogeneous prime elements from \cref{thm:homogeneous_primes}. To obtain a quantum cluster algebra structure, we should be able to find other elements in $R$ that are obtained by some mutation-like rule from the $y$-elements. By construction, the sequence $y_1, \dots, y_N$ from \cref{thm:homogeneous_primes} depends heavily on the order in which the generators $x_1 \dots, x_N$ are adjoined. Changing the order will yield different sequences of homogeneous prime elements. It turns out that these sequences are related to each other by mutations.
+We seen how one obtains a quantum torus from a CGL extension. Namely, by considering
+the sequence $y_1, \dots, y_N$ of homogeneous prime elements from
+\cref{thm:homogeneous_primes}. To obtain a quantum cluster algebra structure, we should
+be able to find other elements in $R$ that are obtained by some mutation-like rule from
+the $y$-elements. By construction, the sequence $y_1, \dots, y_N$ from
+\cref{thm:homogeneous_primes} depends heavily on the order in which the generators $x_1
+	\dots, x_N$ are adjoined. Changing the order will yield different sequences of
+homogeneous prime elements. It turns out that these sequences are related to each other
+by mutations.
 
 \medskip
 
-We consider the most basic case, when we swap the order
-of two adjacent variables $x_k, x_{k+1}$. So, we have a CGL extension
+We consider the most basic case, when we swap the order of two adjacent variables $x_k,
+	x_{k+1}$. So, we have a CGL extension
 \begin{equation}\label{eq:default_cgl_presentation}
 	R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots[x_k; \sigma_k, \delta_k][x_{k+1};\sigma_{k+1}, \delta_{k+1}]\cdots[x_N; \sigma_N, \delta_N],
 \end{equation}
@@ -677,14 +692,15 @@ such that we can also write $R$ as a CGL extension of the form
 	[x_{k+2}; \sigma_{k+2}, \delta_{k+2}]\cdots[x_N; \sigma_N, \delta_N].
 \end{multline}
 %
-Such a pair of CGL extension presentations will be referred to as \emph{adjacent}\index{adjacent presentations}. We will denote the chain of algebras as
+Such a pair of CGL extension presentations will be referred to as
+\emph{adjacent}\index{adjacent presentations}. We will denote the chain of algebras as
 \begin{equation*}
 	\bbK = R'_0 \subset R'_1  = \bbK[x_1] \subset R'_2 = \bbK[x_1][x_2; \sigma_2, \delta_2] \subset \cdots \subset R'_N = R
 \end{equation*}
 %
-for the presentation \eqref{eq:swapped_cgl_presentation}.
-We first look at what restrictions this places on the $\sigma_i, \sigma_i '$ and
-$\delta_i,\delta_i'$ appearing in the CGL presentations.
+for the presentation \eqref{eq:swapped_cgl_presentation}. We first look at what
+restrictions this places on the $\sigma_i, \sigma_i '$ and $\delta_i,\delta_i'$
+appearing in the CGL presentations.
 \begin{lemma}\label{lem:swapped_cgl_sigma_delta}
 	Let $R$ be a CGL extension with adjacent presentations of the form \eqref{eq:default_cgl_presentation} and \eqref{eq:swapped_cgl_presentation}. Then
 	\begin{equation}\label{eq:sigma_prime}
@@ -732,9 +748,9 @@ $\delta_i,\delta_i'$ appearing in the CGL presentations.
 		\lambda'_{k,k+1}x_k x_{k+1} - \lambda'_{k,k+1} \delta'_{k+1}(x_{k+1}) = x_{k+1} x_k = \lambda_{k+1, k} x_k x_{k+1} + \delta_{k+1}(x_k).
 	\end{equation*}
 	%
-	Then, since $\delta'_{k+1}(x_{k+1}) \in R'_k $ and $\delta_{k+1}(x_k) \in R_k$ are linearly
-	independent from $x_k x_{k+1}$ over $R_{k-1}$, we must have $\lambda_{k,k+1}' =
-		\lambda_{k+1,k}$ and
+	Then, since $\delta'_{k+1}(x_{k+1}) \in R'_k $ and $\delta_{k+1}(x_k) \in R_k$ are
+	linearly independent from $x_k x_{k+1}$ over $R_{k-1}$, we must have $\lambda_{k,k+1}'
+		= \lambda_{k+1,k}$ and
 	\begin{equation*}
 		-\lambda'_{k,k+1}\delta'_{k+1}(x_{k+1}) = \delta_{k+1}(x_k) \in R'_k \cap R_k = R_{k-1},
 	\end{equation*}
@@ -939,7 +955,8 @@ using the following fact.
 	Let $R$ be a CGL extension\footnote{The statement holds more generally for Noetherian
 		$\mcH$-UFD's, but we only need this specific case.}. Every normal $\mcH$-eigenvector in
 	$R$ is either a unit or a product of prime $\mcH$-eigenvectors. The factors are unique
-	up to reordering and taking associates\index{associates}, i.e. multiplication by elements of $\bbK^\times$.
+	up to reordering and taking associates\index{associates}, i.e. multiplication by
+	elements of $\bbK^\times$.
 \end{theorem}
 Let us write
 \begin{equation}\label{eq:P_of_k}
@@ -948,7 +965,9 @@ Let us write
 \index{P k@$P(k)$}
 %
 Then in the context of \cref{thm:homogeneous_primes}, the homogeneous primes of $R_k$
-are given by $\{y_j \mid j \in P(k)\}$. The following theorem now describes $y'_k$ in terms of $y_1, \dots, y_N$ in a way that is very reminiscent of quantum cluster mutations.
+are given by $\{y_j \mid j \in P(k)\}$. The following theorem now describes $y'_k$ in
+terms of $y_1, \dots, y_N$ in a way that is very reminiscent of quantum cluster
+mutations.
 \begin{theorem}\label{thm:almost_cluster_mutation}
 	%
 	With the same assumptions as
@@ -1003,11 +1022,18 @@ are given by $\{y_j \mid j \in P(k)\}$. The following theorem now describes $y'_
 	divides either $c_k$ or $c'_k$ in $R_{k-1}$, a contradiction.
 \end{proof}
 
-We explore the results of \cref{thm:almost_cluster_mutation} in \cref{exmp:heisenberg_two_presentations}. Because it will be convenient for the example to first introduce some additional notation and definitions, we defer it to the next subsection.
+We explore the results of \cref{thm:almost_cluster_mutation} in
+\cref{exmp:heisenberg_two_presentations}. Because it will be convenient for the example
+to first introduce some additional notation and definitions, we defer it to the next
+subsection.
 
 \subsection{Symmetric CGL extensions}
 
-In order to construct mutations, the previous subsection tells us that we should consider different CGL extension presentations. It might not always be the case that a CGL extension has different presentations. A symmetry condition ensures that the CGL extension has enough presentations for our purposes of constructing a quantum cluster algebra.
+In order to construct mutations, the previous subsection tells us that we should
+consider different CGL extension presentations. It might not always be the case that a
+CGL extension has different presentations. A symmetry condition ensures that the CGL
+extension has enough presentations for our purposes of constructing a quantum cluster
+algebra.
 
 \begin{definition}[\protect{\cite[Definition 3.12]{GoodearlYakimov2017QCA}}]
 	We call a CGL extension, $R$, \emph{symmetric}\index{CGL extension!symmetric} if the following conditions hold
@@ -1017,25 +1043,24 @@ In order to construct mutations, the previous subsection tells us that we should
 			      \delta_k (x_j) \in R_{[j+1, k-1]}.
 		      \end{equation*}
 		      %
-		      Recall that $R_{[j+1,k-1]} = \bbK$ by definition if $j +1 > k-1$.
+		      Recall that $R_{[j+1,k-1]} \defeq \bbK$ if $j +1 > k-1$.
 		\item For all $j \in [1, N]$, there exists $h^*_j \in \mcH$ such that
 		      \begin{equation*}
 			      h^*_j \cdot x_k = \lambda_{kj}\inv x_k = \lambda_{jk}x_k, \, \forall k \in [j+1, N]
 		      \end{equation*}
-          and $h^*_j \cdot x_j = \lambda^*_j x_j$\index{h k star@$h_k^*$}\index{lambda k star@$\lambda_k^*$} for some $\lambda_j^*\in \bbK^\times$ which is not a root of unity.
+		      and $h^*_j \cdot x_j = \lambda^*_j x_j$\index{h k star@$h_k^*$}\index{lambda k star@$\lambda_k^*$} for some $\lambda_j^*\in \bbK^\times$ which is not a root of unity.
 	\end{enumerate}
 \end{definition}
-\begin{remark}
-    The property of being symmetric depends on the chosen presentation. It is possible that the conditions might be satisfied for one presentation, but not for another.
-\end{remark}
 For any symmetric CGL extension, we can make new CGL presentations as follows. Set
 \begin{equation}\label{eq:sigma_star}
-	\sigma_j^* = (h_j^* \cdot) \in \End(R),\, \forall j \in [1, N-1].
+	\sigma_j^* \defeq (h_j^* \cdot) \in \End(R),\, \forall j \in [1, N-1].
 \end{equation}
+\index{sigma k star@$\sigma_k^*$}
 Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
 \begin{equation}\label{eq:delta_star}
-	\delta_j^*(x_k) = x_j x_k - \lambda_{jk}x_kx_j = -\lambda_{jk} \delta_k (x_j), \, \forall k \in [j+1, N].
+	\delta_j^*(x_k) \defeq x_j x_k - \lambda_{jk}x_kx_j = -\lambda_{jk} \delta_k (x_j), \, \forall k \in [j+1, N].
 \end{equation}
+\index{delta k star@$\delta_k^*$}
 %
 The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
 $\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
@@ -1048,15 +1073,16 @@ So, we can always extend the interval $[j, k]$ to the left or the right. Doing t
 \begin{equation*}
 	R = \bbK[x_N][x_{N-1}; \sigma_{N-1}^*, \delta_{N-1}^*]\cdots [x_1, \sigma_1^*, \delta_1^*].
 \end{equation*}
-\textbf{TODO: add symbols to index!}
 %
 The types of permutations that we obtain this way consist of the following subset of
 the symmetric group $S_N$:
 \begin{equation*}
-	\Xi_N = \{\tau \in S_N \mid \tau(k) = \max (\tau ([1, k-1])) + 1 \text{ or } \tau(k) = \min (\tau ([1, k-1])) - 1, \forall k \in [2, N]\}.
+	\Xi_N \defeq \{\tau \in S_N \mid \tau(k) = \max (\tau ([1, k-1])) + 1 \text{ or } \tau(k) = \min (\tau ([1, k-1])) - 1, \forall k \in [2, N]\}.
 \end{equation*}
+\index{Xi N@$\Xi_N$}
 %
-Each $\tau \in \Xi_N$ gives rise to a CGL presentation:
+Each $\tau \in \Xi_N$ gives rise to a CGL presentation (cf. \cite[Proposition
+	3.14]{GoodearlYakimov2017QCA}):
 \begin{equation}\label{eq:cgl_presentation_tau}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
 \end{equation}
@@ -1069,7 +1095,6 @@ where
 	      $\sigma''_{\tau(k)} = \sigma^*_{\tau(k)}, \delta_{\tau(k)}'' = \delta^*_{\tau(k)}$ and
 	      $h_{\tau(k)}'' = h_{\tau(k)}^*$ if $\tau(k) = \min(\tau([1,k-1])) - 1$.
 \end{itemize}
-(cf. \cite[Proposition 3.14]{GoodearlYakimov2017QCA})
 
 In what follows it will be convenient to use the following notation for $\tau \in S_N$:
 \begin{equation*}
@@ -1111,6 +1136,26 @@ whole interval $[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
 	\label{fig:mental_picture_Xi_N}
 \end{figure}
 
+\begin{remark}
+
+	The property of being symmetric depends on the chosen presentation. It is possible that
+	the conditions might be satisfied for one presentation, but not for another. If the
+	symmetry condition was satisfied for every presentation, then every order of adjoining
+	the generators would yield a valid presentation. Indeed, from the above we know that if
+	$R$ is symmetric with respect to a certain presentation, then each $\tau \in \Xi_N$
+	yields a valid CGL extension presentation by adjoining the generators in the order
+	$x_{\tau(1)}, \dots, x_{\tau(N)}$. If $R$ was also symmetric for each of these
+	presentations, then for each $\tau, \tau' \in \Xi_N$ we would have that $\tau'\tau$
+	yields a valid presentation. By induction we then conclude that each element of the
+	subgroup of $S_N$ generated by $\Xi_N$ would yield a valid presentation. Call this
+	subgroup $G$. It remains to show that $G = S_N$.
+
+	For each $i \in [1, N]$, the cycle $(1,2, \dots, i) = [2,3,\dots,i , 1, i+1, i+2,
+		\dots, N]$ is contained in $\Xi_N$. Then since $(1,2, \dots, i+1)\inv (1, 2, \dots, i)
+		= (i, i+1)$ for all $i \in [1, N-1]$ and $S_N$ is generated by the transpositions $(i,
+		i+1),\, i \in [1, N-1]$ it follows that $G = S_N$.
+\end{remark}
+
 \begin{example}
 
 	We show that the algebra $\Heis(\mcU_q(\mfn_2))$ from \cref{exmp:heisenberg} is a
@@ -1138,9 +1183,9 @@ We now look at an example of \cref{thm:almost_cluster_mutation} in action.
 
 \begin{example}\label{exmp:heisenberg_two_presentations}
 
-	Consider again the algebra $R = \HeisUqn$\index{Heis@$\HeisUqn$} from \cref{exmp:heisenberg}. We will now
-	compute the sequence of homogeneous primes from \cref{thm:homogeneous_primes} for two
-	different CGL extension presentations of the form
+	Consider again the algebra $R = \HeisUqn$\index{Heis@$\HeisUqn$} from
+	\cref{exmp:heisenberg}. We will now compute the sequence of homogeneous primes from
+	\cref{thm:homogeneous_primes} for two different CGL extension presentations of the form
 	\cref{eq:default_cgl_presentation,eq:swapped_cgl_presentation}. The two presentations
 	that we consider correspond to the elements
 	\begin{equation*}
@@ -1285,7 +1330,38 @@ We now look at an example of \cref{thm:almost_cluster_mutation} in action.
 
 \subsection{CGL extensions as cluster algebras}
 
-\textbf{TODO: formulate (imprecise version of) the main theorem}
+Let $R$ be a CGL extension. From \cref{thm:homogeneous_primes} we obtain a sequence
+$y_1, \dots, y_N$ of homogeneous prime elements which quasi-commute. If a different CGL
+extension presentation is chosen, then this yields a different sequence of homogeneous
+prime elements. When $R$ is a symmetric CGL extension, we obtain a presentation for
+each $\tau \in \Xi_N$. Suppose that $\tau, \tau' \in \Xi_N$ are a pair of
+\emph{adjacent permutations}\index{adjacent permutation}, i.e., such that $\tau' = \tau
+	(k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a transposition.
+Then the two presentations obtained this way will be adjacent presentations as in the
+setting of \cref{thm:y_prime_swapped_cgl}:
+\begin{align*}
+	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k)}; \sigma_{\tau, k}, \delta_{\tau, k}][x_{\tau(k+1)};\sigma_{\tau, k+1}, \delta_{\tau, k+1}] \cdots [x_\tau(N); \sigma_{\tau, N}, \delta_{\tau, N}]        \\
+	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k+1)}; \sigma_{\tau', k}, \delta_{\tau', k}][x_{\tau(k)};\sigma_{\tau', k+1}, \delta_{\tau', k+1}] \cdots [x_\tau(N); \sigma_{\tau', N}, \delta_{\tau', N}].
+\end{align*}
+%
+Up to a suitable rescaling, \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation}
+then tell us that the sequence of homogeneous prime elements $y_{\tau', 1}, \dots,
+	y_{\tau', N}$ corresponding to the presentation corresponding to $\tau'$ is obtained
+from $y_{\tau, 1}, \dots, y_{\tau, N}$ by a reordering or by a mutation of $y_{\tau,
+			k}$. We summarize these findings (together with some extrapolated conjectures) in the
+following imprecise statement. Formulating a precise statement will be done in the next
+section (cf. \cref{thm:gy_main_result}).
+
+\begin{theorem*}
+	%
+	Let $R$ be a symmetric CGL extension. Then it has the structure of a quantum cluster
+	algebra which equals the corresponding upper cluster algebra. For each $\tau \in
+		\Xi_N$, the sequence of homogeneous prime elements $y_{\tau, 1}, \dots, y_{\tau, N}$ of
+	\cref{thm:homogeneous_primes} for the presentation corresponding to $\tau$ form the
+	cluster variables of a quantum seed (up to a reordering and rescaling). All such
+	quantum seeds are mutation-equivalent to each other, and mutations occur between seeds
+	corresponding to pairs of adjacent permutations $\tau' = \tau(k, k+1)$.
+\end{theorem*}
 
 \section{Formulating a precise statement}
 
