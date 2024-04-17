@@ -178,7 +178,7 @@ to the following definition:
 	\begin{equation*}
 		R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots [x_N; \sigma_N, \delta_N]
 	\end{equation*}
-	\index{sigma k@$\sigma_k$}\index{delta k@$\delta k$}
+	\index{sigma k@$\sigma_k$}\index{delta k@$\delta_k$}
 	%
 	is called a \emph{CGL\footnote{CGL extensions are named after G. Cauchon, K. Goodearl
 			and E. Letzter.} extension}\index{CGL extension} if it is equipped with a rational
@@ -1395,9 +1395,9 @@ generality.
 
 \subsection{Normalization of the cluster variables}
 
-The first step in adressing the three problems is to translate the results from
+The first step in addressing the three problems is to translate the results from
 \cref{sec:cgl_introduction} to the language of toric frames. In addition to being
-needed for the definiton of a quantum cluster algebra, doing so will allow rescaling
+needed for the definition of a quantum cluster algebra, doing so will allow rescaling
 and reindexing of the cluster variables more easily. We will now show that an
 appropriate normalization resolves the first issue.
 
@@ -1456,10 +1456,11 @@ Using \cref{prop:y_quantum_torus} we then obtain a toric frame $M \colon \bbZ^N 
 
 \begin{example}\label{exmp:heisenberg_y_normalization}
 
-	Suppose that $\sqrt{q} \in \bbK$ for the algebra $\HeisUqn$. We now compute the $\oy_i,
-		i\in [1,6]$. Since $\oe_1 = e_1$ and $\oe_2 = e_2$, it follows that $\oy_1 = y_1$ and
-	$\oy_2 = y_2$. Then, from $\oe_3 = e_3 + e_1$, we obtain $\oy_3 = \nu_{13}\inv y_3 =
-		q^{\frac{1}{2}}y_3$. For $\oy_4$ we have $\oe_4 = e_4 + e_3 + e_1$ and
+	Suppose that $\sqrt{q} \in \bbK$ for the algebra $\HeisUqn$\index{Heis@$\HeisUqn$}. We
+	now compute the $\oy_i, i\in [1,6]$. Since $\oe_1 = e_1$ and $\oe_2 = e_2$, it follows
+	that $\oy_1 = y_1$ and $\oy_2 = y_2$. Then, from $\oe_3 = e_3 + e_1$, we obtain $\oy_3
+		= \nu_{13}\inv y_3 = q^{\frac{1}{2}}y_3$. For $\oy_4$ we have $\oe_4 = e_4 + e_3 + e_1$
+	and
 	\begin{equation*}
 		\oy_4 = \nu_{31}\nu_{41}\nu_{43}y_4 = q^{\frac{1}{2}}q^{-\frac{1}{2}}q y_4 = qy_4.
 	\end{equation*}
@@ -1625,8 +1626,8 @@ such a way that the indexing issue gets resolved.
 
 As before, this presentation has $\bbl$-matrix given by $\bbl_\tau = \tau\inv \bbl
 	\tau$\index{lambda tau@$\bbl_\tau$}. We then define $\bbn_\tau = \tau\inv \bbn
-	\tau$\index{nu tau@$\bbn_\tau$}, and $\widehat{\bbr}_\tau$\index{r hat
-	tau@$\wh{r}_\tau$} the corresponding skew-symmetric matrix with entries
+	\tau$\index{nu tau@$\bbn_\tau$}, and $\widehat{\bbr}_\tau$\index{r tau
+	hat@$\wh{r}_\tau$} the corresponding skew-symmetric matrix with entries
 \begin{equation*}
 	\widehat{r}_{\tau, lj} = \Omega_{\bbn_\tau}(\oe_{\tau, l}, \oe_{\tau, j}),
 \end{equation*}
@@ -1819,14 +1820,14 @@ $R_{[j, k]}$ of the original CGL extension presentation.
 \end{theorem}
 
 We will show later that all the elements $y_{\tau, k}$ for $k \in [1, N]$ and $\tau \in
-	\Xi_N$ are of of the form $\xi y_{[i, s^m(i)]}$ for some $\xi \in \bbK^\times, i \in
+	\Xi_N$ are of the form $\xi y_{[i, s^m(i)]}$ for some $\xi \in \bbK^\times, i \in
 	[1, N]$ and $m \in \bbZ_{\geq 0}$ (cf. \cref{lem:y_tauk_y_brackets}).
 
 \begin{example}\label{exmp:heisenberg_y_brackets}
 
-	We compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$. Recall that the
-	$\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i = 1$ we just
-	have
+	We compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$\index{Heis@$\HeisUqn$}.
+	Recall that the $\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i
+		= 1$ we just have
 	\begin{equation*}
 		y_{[1,1]} = y_1, \quad y_{[1, 3]} = y_3, \quad y_{[1, 4]} = y_4, \quad y_{[1, 6]} = y_6,
 	\end{equation*}
@@ -1903,8 +1904,8 @@ and hence $\pi_{[i,i]} = 1, f_{[i,i]} = 0$.
 
 \begin{example}\label{exmp:heisenberg_u_bracket}
 
-	We compute the elements $u_{[i, s(i)]}$ for $R = \HeisUqn$. Note that in this special
-	case
+	We compute the elements $u_{[i, s(i)]}$ for $R = \HeisUqn$\index{Heis@$\HeisUqn$}. Note
+	that in this special case
 	\begin{equation*}
 		u_{[i, s(i)]} = y_{[i, i]}y_{[s(i), s(i)]} - y_{[i, s(i)]} = x_i x_{s(i)} - y_{[i, s(i)]}.
 	\end{equation*}
@@ -1983,10 +1984,10 @@ The normalization that we need is described by the following proposition.
 \begin{example}\label{exmp:heisenberg_rescaling}
 
 	We compute $\bbg$ such that \cref{eq:rescaling_conditions_for_pi} is satisfied after
-	the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$. Since $p(1) = p(2) =
-		-\infty$, we can take $\gamma_1 = \gamma_2 = 1$. We now determine $\gamma_3$. From
-	\cref{exmp:heisenberg_u_bracket} we find $\pi_{[1, 3]} = \frac{1}{1-q^{-2}}$ and
-	$f_{[1, 3]} = e_2$. Thus,
+	the rescaling $x_i \mapsto \gamma_i x_i$ for $R = \HeisUqn$\index{Heis@$\HeisUqn$}.
+	Since $p(1) = p(2) = -\infty$, we can take $\gamma_1 = \gamma_2 = 1$. We now determine
+	$\gamma_3$. From \cref{exmp:heisenberg_u_bracket} we find $\pi_{[1, 3]} =
+		\frac{1}{1-q^{-2}}$ and $f_{[1, 3]} = e_2$. Thus,
 	\begin{equation*}
 		\gamma_3 = \gamma_1\inv \bbg^{f_{[1,3]}}\pi_{[1,3]}\inv \mcS_{\bbn}(-e_1 + f_{[1,3]}) = (1-q^{-2})q^{\frac{1}{2}}.
 	\end{equation*}
@@ -2054,7 +2055,7 @@ The normalization that we need is described by the following proposition.
 
 We now finally state the main result. Afterwards we work out an example in detail, to
 understand the precise statement. The result requires two extra conditions that we have
-not yet mentioned. The first condition will be used to ensure uniqueness of squareroots
+not yet mentioned. The first condition will be used to ensure uniqueness of square roots
 of certain scalars.\begin{condition}\label{cond:no_order_two}
 	The subgroup of $\bbK^\times$ generated by $\{\nu_{lj} \mid 1 \leq j < l \leq N\}$ does not contain elements of order two.
 \end{condition}
@@ -2063,9 +2064,11 @@ Now, let $R$ be a symmetric CGL extension of length $N$, and define
 \begin{equation}\label{eq:ex}
 	\ex \defeq [1 ,N] \setminus P(N) = \{k \in [1, N] \mid s(k) \neq +\infty\}
 \end{equation}
-where $s$ is the predecessor function as in
-\cref{thm:homogeneous_primes}. The second condition is used to ensure that principal part of the matrix $\tB_\tau$ in the statement is
-skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
+\index{ex@$\ex$}
+%
+where $s$ is the predecessor function as in \cref{thm:homogeneous_primes}. The second
+condition is used to ensure that principal part of the matrix $\tB_\tau$ in the
+statement is skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
 \begin{condition}\label{cond:lambda_star_to_the_d}
 	There exist positive integers $d_i \in \bbZ_{>0}$ for $i$ in the image of $\eta$ such that
 	\begin{equation*}
@@ -2112,12 +2115,12 @@ skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
 
 \begin{example}
 
-	We now apply the main theorem to $R = \HeisUqn$. We have $\ex = [1,4]$. Assume that
-	there exists $\sqrt{q} \in \bbK$. Then the subgroup of $\bbK^\times$ generated by the
-	elements of $\bbn$ only contains half-integer powers of $q$. Since $q$ is not a root of
-	unity, none of these have order 2. Since $\lambda_l^* = q^2$ for all $l \in [1, 6]$ it
-	suffices to pick $d_{\eta(j)} = 1$ for all $j \in [1, 6]$. Let us now calculate the
-	mutation matrix $\tB = \tB_{\id}$.
+	We now apply the main theorem to $R = \HeisUqn$\index{Heis@$\HeisUqn$}. We have $\ex =
+		[1,4]$. Assume that there exists $\sqrt{q} \in \bbK$. Then the subgroup of
+	$\bbK^\times$ generated by the elements of $\bbn$ only contains half-integer powers of
+	$q$. Since $q$ is not a root of unity, none of these have order 2. Since $\lambda_l^* =
+		q^2$ for all $l \in [1, 6]$ it suffices to pick $d_{\eta(j)} = 1$ for all $j \in [1,
+			6]$. Let us now calculate the mutation matrix $\tB = \tB_{\id}$.
 
 	From \cref{table:sigma_delta_heisenberg} we obtain
 	\begin{equation*}
@@ -2130,7 +2133,7 @@ skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
 			q^2   & q     & q\inv & q      & q\inv  & 1
 		\end{pmatrix*}.
 	\end{equation*}
-	Thus
+	Thus,
 	\begin{equation*}
 		\boldsymbol{\alpha} = \begin{pmatrix*}[l]
 			1     & q     & q\inv & 1      & 1      & q^{-2} \\
@@ -2439,7 +2442,17 @@ skew-symmetrizable (cf. \cref{lem:principal_part_skew_symmetrizable}).
 
 \section{Normalizing the generators}\label{sec:normalizing_generators}
 
-The goal of this chapter is to show that \cref{cond:normalization_generators} had the desired effect. This is by far the most technical part of the proof of \cref{thm:gy_main_result}. We begin by characterizing the subset $\Xi_N \subseteq S_N$ in a different way. From this we obtain a description of the $\eta$-functions of the presentations corresponding to the different permutations $\tau \in \Xi_N$. Finally we derive two important results which form the backbone of the proof of \cref{thm:gy_main_result}. The first, \cref{prop:y_tau_is_y_bracket}, provides an alternate description of the cluster variables $\oy_{\tau, k}$ in terms of the homogeneous prime elements of the subalgebras $R_{[j, k]}$. The second, \cref{prop:mutation_adjacent_permutations}, essentially proves mutation between adjacent presentations. 
+The goal of this chapter is to show that \cref{cond:normalization_generators} had the
+desired effect. This is by far the most technical part of the proof of
+\cref{thm:gy_main_result}. We begin by characterizing the subset $\Xi_N \subseteq S_N$
+differently. From this we obtain a description of the $\eta$-functions of the
+presentations corresponding to the different permutations $\tau \in \Xi_N$. Finally, we
+derive two important results which form the backbone of the proof of
+\cref{thm:gy_main_result}. The first, \cref{prop:y_tau_is_y_bracket}, provides an
+alternate description of the cluster variables $\oy_{\tau, k}$ in terms of the
+homogeneous prime elements of the subalgebras $R_{[j, k]}$. The second,
+\cref{prop:mutation_adjacent_permutations}, essentially proves mutation between
+adjacent presentations.
 
 \subsection{The subset $\Xi_N \subseteq S_N$}
 
@@ -2479,7 +2492,9 @@ where the right-hand side is a composition of cycles.
 \begin{proof}
 	We only show that each element of $\Xi_N$ can be written as an element $\tau_{(j_k, \dots, j_1)}$. The other inclusion follows from \cref{prop:eta_invariance} (a) below.
 
-	By induction on $N$. For $N = 1$, we have $\Xi_N = \{\id\}$, and $\tau_{(1)} = \id$. Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. There are two cases
+	By induction on $N$. For $N = 1$, we have $\Xi_N = \{\id\}$, and $\tau_{(1)} = \id$.
+	Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. There are two
+	cases
 	\begin{enumerate}
 		\item There exists $\tau' \in \Xi_{N-1}$ such that $\tau(i) = \tau'(i)$ for all $i\in [1,
 				      N-1]$ and $\tau(N) = N$. Write $\tau' = \tau_{(j_k, \dots, j_1)} \in S_{N-1}$ using the
@@ -2604,7 +2619,12 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 
 \subsection{An alternative description of the cluster variables}
 
-Using the results from the previous subsection, we can now prove that all the cluster variables coming from the seeds indexed by $\tau \in \Xi_N$ are actually obtained by considering the cluster variables coming from the subalgebras $R_{[j,k]}$ of the original CGL extension presentation. This result will be used in \cref{prop:mutation_adjacent_permutations}, and later on in the proof of \cref{thm:gy_main_result}.
+Using the results from the previous subsection, we can now prove that all the cluster
+variables coming from the seeds indexed by $\tau \in \Xi_N$ are actually obtained by
+considering the cluster variables coming from the subalgebras $R_{[j,k]}$ of the
+original CGL extension presentation. This result will be used in
+\cref{prop:mutation_adjacent_permutations}, and later on in the proof of
+\cref{thm:gy_main_result}.
 
 \begin{lemma}\label{lem:y_tauk_y_brackets}
 	Let $R$ be a symmetric CGL extension of length $N$. Take $\tau \in \Xi_N$ and $k \in [1, N]$.
@@ -2670,7 +2690,9 @@ In the setting of \cref{thm:gy_main_result} we can improve this result. We first
 a small lemma which we will need in the inductive step.
 \begin{lemma}\label{lem:symmetrization_of_sum}
 
-	Let $\bbr \in M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Then, for all $j \in [2, N]$ and $f = m_1 e_1 + \dots + m_j e_j, g = m_{j+1} e_{j+1} + \dots + m_{N} e_N \in \bbZ^N$,
+	Let $\bbr \in M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Then, for
+	all $j \in [2, N]$ and $f = m_1 e_1 + \dots + m_j e_j, g = m_{j+1} e_{j+1} + \dots +
+		m_{N} e_N \in \bbZ^N$,
 	\begin{equation*}
 		\mcS_\bbr(f+g) = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f)\mcS_{\bbr}(g).
 	\end{equation*}
@@ -2788,9 +2810,9 @@ a small lemma which we will need in the inductive step.
 \end{proof}
 
 We now introduce a subset of $\Xi_N$ which will play a crucial role in the proof of
-\cref{thm:gy_main_result}. Denote with $w_\circ \defeq [N, N-1, \dots, 1]$\index{w circ@$w_\circ$} the longest
-element of $S_N$. Then, for $1 \leq i \leq j \leq N$ we define the following elements
-of $\Xi_N$:
+\cref{thm:gy_main_result}. Denote with $w_\circ \defeq [N, N-1, \dots, 1]$\index{w
+	circ@$w_\circ$} the longest element of $S_N$. Then, for $1 \leq i \leq j \leq N$ we
+define the following elements of $\Xi_N$:
 \begin{equation*}
 	\tau_{i,j} \defeq [i+1, i+2, \dots, j, i ,j+1, j+2, \dots, N, i-1,i-2, \dots, 1] \in \Xi_N.
 \end{equation*}
@@ -2802,10 +2824,10 @@ We have $\tau_{1,1} = \id$,
 \end{equation*}
 %
 for $i \in [1, N-1]$ and finally $\tau_{N, N} = w_\circ$. We then define $\Gamma_N
-	\subseteq \Xi_N$\index{Gamma N@$\Gamma_N$} as the subset consisting of all the $\tau_{i,j}$ for $1 \leq i \leq j
-	\leq N$. Looking only at CGL extension presentations obtained from elements of
-$\Gamma_N$ turns out to be enough. This is already illustrated by the following
-corollary.
+	\subseteq \Xi_N$\index{Gamma N@$\Gamma_N$} as the subset consisting of all the
+$\tau_{i,j}$ for $1 \leq i \leq j \leq N$. Looking only at CGL extension presentations
+obtained from elements of $\Gamma_N$ turns out to be enough. This is already
+illustrated by the following corollary.
 \begin{corollary}
 	Assume the setting of \cref{thm:gy_main_result}. Then the following sets of cluster variables are equal.
 	\begin{align*}
@@ -2862,11 +2884,25 @@ corollary.
 
 We now want to prove that $\zeta = 1$ in \cref{thm:almost_mutation_toric_frame}, under
 the assumptions of \cref{thm:gy_main_result}. This will be done in
-\cref{prop:mutation_adjacent_permutations}. \textbf{TODO: finish intro to this subsection}
+\cref{prop:mutation_adjacent_permutations}. In doing so, we will derive the conditions
+of \cref{thm:gy_main_result} (a) for the column which gets mutated. In the next section
+these conditions will be used to inductively build the matrix $\tB_\tau$.
 
+\medskip
+
+Recall from \cref{thm:almost_cluster_mutation,thm:almost_mutation_toric_frame} that the
+mutation in direction $k$ is determined by the vector
+\begin{equation*}
+	e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1),\,i\neq p(k)} m_i e_i \in \bbZ^N.
+\end{equation*}
+%
+In order to construct the full mutation matrix, it will be necessary to figure out what
+restrictions this vector has. This is established in the next theorem.
 \begin{theorem}
 
-	Assume the setting of \cref{thm:almost_cluster_mutation} and \cref{cond:square_roots}. Let $h'_{k+1} \in \mcH$ be such $\sigma'_{k+1} = (h'_{k+1}\cdot)$ as in \cref{def:cgl_extension}. Then
+	Assume the setting of \cref{thm:almost_cluster_mutation} and \cref{cond:square_roots}.
+	Let $h'_{k+1} \in \mcH$ be such $\sigma'_{k+1} = (h'_{k+1}\cdot)$ as in
+	\cref{def:cgl_extension}. Then
 	\begin{equation}  \label{eq:Omega_r_squared_one}
 		\Omega_{\bbr}\left(e_{p(k)} + e_{k+1} - \sum_{i \in P(k-1), i\neq p(k)} m_i e_i, e_j\right)^2  = 1, \quad \forall j \neq k
 	\end{equation}
@@ -2971,9 +3007,10 @@ the assumptions of \cref{thm:gy_main_result}. This will be done in
 
 \end{proof}
 
-Let $R$ be a symmetric CGL extension of length $N$, and consider the two CGL extension
-presentations corresponding to $\tau_{i,j}$ and $\tau_{i, j+1}$ for some $1 \leq i \leq
-	j < N$. They have the forms
+For \cref{thm:gy_main_result} (a) we want to rewrite \cref{eq:Omega_r_squared_ek}
+slightly. To do so, we make the following observation. Consider the two adjacent
+permutations $\tau_{i,j} \in \Gamma_N$ and $\tau_{i, j+1} \in \Gamma_N$ for some $1
+	\leq i \leq j < N$. The corresponding CGL extension presentations have the forms
 \begin{multline}
 	R = \bbK[x_{i+1}]\cdots[x_j;\sigma_j,\delta_j][x_i;\sigma^*_i,\delta^*_i][x_{j+1}; \sigma_{j+1}, \delta_{j+1}][x_{j+2}; \sigma_{j+2}, \delta_{j+2}]\cdots \\
 	[x_N;\sigma_{N}, \delta_{N}][x_{i-1}; \sigma_{i-1}^*, \delta^*_{i-1}]\cdots[x_1; \sigma_1^*, \delta^*_1],
@@ -2993,8 +3030,8 @@ $\eta_{\tau_{i,j}}(j-i+2) = \eta(j+1)$. So, if $\eta(i) = \eta(j+1)$, then
 	1 = \chi_{x_{j+1}}(h_{j+1})\chi_{x_i}(h^*_i) = \lambda_{j+1}\lambda_i^*.
 \end{equation*}
 %
-So, $\lambda_{k}^* = \lambda_{l}\inv$ for any $k < l$ such that $\eta(k) = \eta(l)$.
-This leads to the following observation.
+Since $1 \leq i \leq j < N$ were arbitrary we find $\lambda_{k}^* = \lambda_{l}\inv$
+for any $k < l$ such that $\eta(k) = \eta(l)$. This gives the following proposition.
 \begin{proposition}\label{prop:lambda*_of_successor}
 	Let $R$ be a symmetric CGL extension of length $N$ and $a \in \bbZ$ in the image of $\eta$. Write $\eta\inv(a) = \{l, s(l), \dots, s^m(l)\}$, where $l\in [1, N]$ and $m = O_{+}(l)$. Then
 	\begin{equation*}
@@ -3002,21 +3039,17 @@ This leads to the following observation.
 	\end{equation*}
 \end{proposition}
 
-We now finally prove mutation between adjacent pairs of toric frames. In order to do
-this, we make use of the following theorem, which we state without proof.
-\begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]\label{thm:mutation_for_bracket_frames}
-	Assume the setting of \cref{thm:gy_main_result}. Then, for all $i \in [1, N]$ and $m \in \bbZ_{> 0}$ such that $s^m(i) \in [1, N]$,
-	\begin{equation*}
-		\oy_{[s(i), s^m(i)]} = \begin{dcases*}
-			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)]} - e_i),                         & if $m=1$    \\
-			M_{[i, s^m(i)]}(e_{s^{m-1}(i)} + e_{s^m(i)} -e_i) + M_{[i, s^m(i)]}(g_{[i, s^m(i)]} - e_i), & if $m > 1$.
-		\end{dcases*}
-	\end{equation*}
-\end{theorem}
-%
-We have yet to explain the notation in the theorem. Fix $i \in [1, N]$ and $m\in
-	\bbZ_{>0}$ such that $s^m(i) \neq +\infty$. We consider the CGL extension presentation
-of $R_{[i, s^m(i)]}$ with the following order of the generators:
+\medskip
+
+In order to prove that $\zeta = 1$ in \cref{thm:almost_mutation_toric_frame} under the
+assumptions of \cref{cond:square_roots,cond:no_order_two,cond:normalization_generators}
+we need to keep track precisely of all the coefficients. It turns out that this is best
+done by looking at the elements $y_{[i, s^m(i)]}$ instead of the elements $y_{\tau,
+			k}$. To do so, we introduce some new notation.
+
+Fix $i \in [1, N]$ and $m\in \bbZ_{>0}$ such that $s^m(i) \neq +\infty$. We consider
+the CGL extension presentation of $R_{[i, s^m(i)]}$ with the following order of the
+generators:
 \begin{equation*}
 	x_{i+1}, x_{i+2}, \dots, x_{s^m(i) - 1}, x_i, x_{s^m(i)}.
 \end{equation*}
@@ -3025,11 +3058,13 @@ Write $t = s^m(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
 	e_{s^m(i)}$ and index the rows and columns of matrices in $M_t(\bbZ)$ by $i, \cdots,
 	s^m(i)$. Recall from \cref{prop:def_u_brackets} that we write
 \begin{equation*}
-	O_{-}^j(k) = \max \{n \in \bbZ_{\geq 0} \mid p^n(k) \geq j\},
+	O_{-}^j(k) \defeq \max \{n \in \bbZ_{\geq 0} \mid p^n(k) \geq j\},
 \end{equation*}
+\index{O j minus k@$O_{-}^j(k)$}
+%
 and then define, for $k \in [i, s^m(i)]$,
 \begin{equation*}
-	e'_k = \begin{dcases*}
+	e'_k \defeq \begin{dcases*}
 		e_{[p^{O^{i+1}_{-}(k)}, k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
 		e_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
 		e_{[i, s^m(i)]},             & if $k = s^m(i)$.
@@ -3039,16 +3074,17 @@ and then define, for $k \in [i, s^m(i)]$,
 This then gives rise to the toric frame $M_{[i, s^m(i)]}\colon \bbZ^t \to \Fract(R_{[i,
 				s^m(i)]})$, with matrix
 \begin{equation*}
-	\bbr_{[i, s^m (i)]} = (\Omega_{\bbn}(e'_k,e'_j)),
+	\bbr_{[i, s^m (i)]} \defeq (\Omega_{\bbn}(e'_k,e'_j)),
 \end{equation*}
 such that
 \begin{equation*}
-	M_{[i, s^m(i)]}(e_k) = \begin{dcases*}
+	M_{[i, s^m(i)]}(e_k) \defeq \begin{dcases*}
 		\oy_{[p^{O^{i+1}_{-}(k)}, k]}, & if $k \in [i+1, s^m(i) - 1]$ \\
 		\oy_{[i, s^{m-1}(i)]},         & if $k=i$                     \\
 		\oy_{[i, s^m(i)]},             & if $k = s^m(i)$.
 	\end{dcases*}
 \end{equation*}
+\index{M i smi@$M_{[i, s^m(i)]}$}
 
 Finally, \cref{prop:def_u_brackets} implies that
 \begin{equation*}
@@ -3056,16 +3092,35 @@ Finally, \cref{prop:def_u_brackets} implies that
 \end{equation*}
 for the integers $m_k$ of \cref{thm:almost_cluster_mutation}, and we define
 \begin{equation*}
-	g_{[i, s^m(i)]} = \sum\{m_k e_k \mid k \in P_{[i, s^m(i)]}\}.
+	g_{[i, s^m(i)]} \defeq \sum\{m_k e_k \mid k \in P_{[i, s^m(i)]}\}.
 \end{equation*}
+%
+In this setting one can obtain the following version of a mutation statement. We omit
+the long and technical proof.
+
+\begin{theorem}[\protect{\cite[Theorem 6.6]{GoodearlYakimov2017QCA}}]\label{thm:mutation_for_bracket_frames}
+	Let $R$ be a symmetric CGL extension such that \cref{cond:square_roots,cond:no_order_two,cond:normalization_generators} are satisfied. Then, for all $i \in [1, N]$ and $m \in \bbZ_{> 0}$ such that $s^m(i) \in [1, N]$,
+	\begin{equation*}
+		\oy_{[s(i), s^m(i)]} = \begin{dcases*}
+			M_{[i, s(i)]}(e_{s(i)} - e_i) + M_{[i, s(i)]}(g_{[i, s(i)]} - e_i),                         & if $m=1$    \\
+			M_{[i, s^m(i)]}(e_{s^{m-1}(i)} + e_{s^m(i)} -e_i) + M_{[i, s^m(i)]}(g_{[i, s^m(i)]} - e_i), & if $m > 1$.
+		\end{dcases*}
+	\end{equation*}
+\end{theorem}
+
+The main task for the proof of \cref{prop:mutation_adjacent_permutations} will be to
+convert the result of \cref{thm:mutation_for_bracket_frames} back to the setting of
+\cref{thm:gy_main_result}. This relies heavily on \cref{prop:y_tau_is_y_bracket}.
 
 Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 \begin{equation*}
-	\supp(g) = \{j \in [1, N] \mid g_j \neq 0\}.
+	\supp(g) \defeq \{j \in [1, N] \mid g_j \neq 0\}.
 \end{equation*}
+\index{supp g@$\supp(g)$}
+We can now finally prove mutation between adjacent presentations.
 
 \begin{proposition}\label{prop:mutation_adjacent_permutations}
-	Assume the setting of \cref{thm:gy_main_result}. Let $\tau, \tau' \in \Xi_N$ be such that
+	Let $R$ be a symmetric CGL extension such that \cref{cond:square_roots,cond:no_order_two,cond:normalization_generators} are satisfied. Let $\tau, \tau' \in \Xi_N$ be such that
 	\begin{equation*}
 		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
 	\end{equation*}
@@ -3302,10 +3357,10 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	\begin{equation*}
 		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -g, e_j) = 1
 	\end{equation*}
-	for all $j\neq k_\bullet$, because the subgroup generated by the $\nu_{lj}$ does not contain elements of order two by assumption. Now note that by definition of $k_\bullet$,
+	for all $j\neq k_\bullet$, because of \cref{cond:no_order_two}. Now note that by definition of $k_\bullet$,
 	we have $\eta(k_\bullet) = \eta(\tau(k))$. Furthermore, $s(k_\bullet) =
 		\tau_\bullet\tau(k+1) \neq + \infty$ and $s(\tau(k)) \leq \tau(k+1) < + \infty$ so that
-	we obtain $\chi_{x_{\tau(k)}}(h^*_{\tau(k)})\lambda^*_{\tau(k)} =
+	we obtain $\chi_{x_{\tau(k)}}(h^*_{\tau(k)}) = \lambda^*_{\tau(k)} =
 		\lambda^*_{k_\bullet}$ using \cref{prop:lambda*_of_successor}. Hence, \cref{eq:Omega_r_squared_ek} gives
 	\begin{equation*}
 		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, e_{k_\bullet})^2 = \lambda_{k_\bullet}^*.
@@ -3422,15 +3477,36 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 	as desired. This concludes the proof of the proposition.
 \end{proof}
 
-\subsection{Mutation between adjacent presentations}
-
 \section{Constructing quantum seeds}
-The following two lemmas show uniqueness and equivariance for vectors satisfying
-conditions similar to the vector $\epsbullet - g$ in
-\cref{prop:mutation_adjacent_permutations}.
+
+We will now use the results of \cref{prop:mutation_adjacent_permutations} to prove
+parts (a), (b) and (c) of \cref{thm:gy_main_result}. We begin with a short outline of
+the proof.
+
+From \cref{prop:mutation_adjacent_permutations} we obtain the column
+$b^{k_\bullet}_{\tau} = \epsbullet - g$ of the matrix $\tB_\tau$, where $k_\bullet =
+	\tau_\bullet(\tau(k))$, whenever we have a pair of adjacent permutations $\tau, \tau'$
+such that $\tau(k) < \tau(k+1)$ and $\eta(\tau(k)) = \eta(\tau(k+1))$. This only gives
+some columns. The other columns will be constructed inductively through
+mutation. This is achieved for the most part in \cref{lem:inductive_columns}.
+
+A priori, there might be some issues with this approach. \Cref{prop:eta_invariance} (a)
+gives a way to reach $\tau$ by a sequence of adjacent permutations, but this sequence
+is not necessarily unique. It could be possible that two different sequences would
+yield different columns. This is resolved by showing uniqueness of vectors satisfying
+similar conditions to the vector $\epsbullet -g$ in
+\cref{prop:mutation_adjacent_permutations}. This will be shown in \cref{lem:unique_b}.
+Furthermore, we show that these conditions are preserved under mutation. This makes it
+possible to keep those conditions on all the columns, and ensures uniqueness for the
+whole matrix $\tB_\tau$.
+
+\subsection{Recursive construction of the columns}
+
+We start by showing uniqueness for vectors satisfying conditions similar to the vector
+$\epsbullet - g$ in \cref{prop:mutation_adjacent_permutations}.
 
 \begin{lemma}\label{lem:unique_b}
-	Assume that $R$ is a symmetric CGL extension of length $N$, and that $(\nu_{kj}) \in M_N(\bbK^\times)$ is a multiplicatively skew-symmetric matrix with $\nu_{kj}^2 = \lambda_{kj}$ for all $j,k \in [1, N]$. Then, for all $\tau \in \Xi_N, \theta \in X(\mcH)$, and $\xi_1, \dots, \xi_N \in \bbK^\times$, there exists at most one vector $b\in \bbZ^N$ such that $\chi_{M_\tau(b)} = \theta$ and $\Omega_{\bbr_\tau}(b, e_j)^2 = \xi_j$ for all $j \in [1, N]$.
+	Assume that $R$ is a symmetric CGL extension of length $N$ satisfying \cref{cond:square_roots}. Then, for all $\tau \in \Xi_N, \theta \in X(\mcH)$, and $\xi_1, \dots, \xi_N \in \bbK^\times$, there exists at most one vector $b\in \bbZ^N$ such that $\chi_{M_\tau(b)} = \theta$ and $\Omega_{\bbr_\tau}(b, e_j)^2 = \xi_j$ for all $j \in [1, N]$.
 \end{lemma}
 \begin{proof}
 	Suppose that $b_1, b_2 \in \bbZ^N$ are such that $\chi_{M_\tau(b_1)} = \chi_{M_\tau(b_2)} = \theta$, and $\Omega_{\bbr_\tau}(b_1, e_j)^2 = \Omega_{\bbr_\tau}(b_2, e_j)^2 = \xi_j$ for all $j \in [1, N]$. From the first equality, we find
@@ -3444,8 +3520,11 @@ conditions similar to the vector $\epsbullet - g$ in
 	\begin{equation*}
 		Z(\Fract(R))^\mcH = \bbK,
 	\end{equation*}
-	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ \cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
+	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ (\cite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}). Hence, $M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
+
+That these conditions are preserved under mutation will follow from the next lemma,
+together with \cref{prop:mutation_preserves_good_things}.
 \begin{lemma}\label{lem:equivariance_mutations}
 
 	Let $\mcF$ be a division algebra and $\mcH$ a group acting on $\mcF$ by algebra
@@ -3485,13 +3564,128 @@ conditions similar to the vector $\epsbullet - g$ in
 	\end{align*}
 \end{proof}
 
-Recall the subset $\Gamma_N$ of $\Xi_N$, consisting of the permutations of the form
+In the next lemma we assume existence of the matrix $\tB_\tau$ or $\tB_{\tau'}$ and use
+it to prove existence of the other through mutation. This will then be used to
+construct the mutation matrices inductively in \cref{lem:inductive_columns}. Here we
+will need for the first time \cref{cond:lambda_star_to_the_d} to show that the
+principal parts of the matrices are skew-symmetrizable.
+
+As before, we will index matrices of size $N \times |X|$ by the set $X$ for subsets $X
+	\subseteq \ex$. The set of such matrices with integer entries will be denoted by $M_{N
+			\times X}(\bbZ)$.
+\begin{lemma}\label{lem:inductive_step_btautau}
+	Assume the setting of \cref{thm:gy_main_result}. Suppose that $\tau, \tau' \in \Xi_N$ are such that
+	\begin{equation*}
+		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
+	\end{equation*}
+	%
+	for some $k \in [1, N-1]$ such that $\eta(\tau(k)) = \eta(\tau(k+1))$ and $\tau(k) <
+		\tau(k+1)$. Write $k_\bullet = \tau_\bullet(\tau(k))$, and let $\wt{\ex} \subseteq \ex$
+	be a subset such that $k_\bullet \in \wt{\ex}$. Then there exists a matrix $\tB_{\tau}
+		\in M_{N \times \wt{\ex}}(\bbZ)$ whose columns, $b^l_{\tau} \in \bbZ^N$ for $l \in
+		\wt{\ex}$ satisfy
+	\begin{equation}\label{eq:conditions_for_bltautau'}
+		\begin{aligned}
+			\chi_{M_\tau(b^l_{\tau})}             & = 1,                                \\
+			\Omega_{\bbr_\tau}(b^l_{\tau}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_\tau}(b^l_{\tau}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation}
+	%
+	for all $l \in \wt{\ex}$ if and only if there exists a matrix $\tB_{\tau'}$ whose
+	columns $b^l_{\tau'} \in \bbZ^N,\,l\in \wt{\ex}$ satisfy
+	\begin{equation*}
+		\begin{aligned}
+			\chi_{M_{\tau'}(b^l_{{\tau'}})}             & = 1,                                \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
+			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
+		\end{aligned}
+	\end{equation*}
+	%
+	for all $l \in \wt{\ex}$.
+
+	For both implications the principal parts of the matrices $\tB_{\tau}$ and
+	$\tB_{\tau'}$ are skew-symmetrizable. Furthermore, $\tB_{\tau'} =
+		\mu_{k_\bullet}(\tB_{\tau})$, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_{\tau})$ and
+	\begin{equation*}
+		b^{k_\bullet}_{\tau} = - b^{k_\bullet}_{\tau'} = e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,
+	\end{equation*}
+	%
+	where $g\in \bbZ_{\geq 0}^N$ is the vector from
+	\cref{prop:mutation_adjacent_permutations}.
+\end{lemma}
+\begin{proof}
+
+	We start with the first implication. The conditions of
+	\cref{eq:conditions_for_bltautau'} imply that $(\bbr_\tau, \tB_{\tau})$ is a compatible
+	pair. Indeed, if we write $t_{lj} = \Omega_{\bbr_\tau}(b^l_{\tau}, e_j)$ for $j\in[1,
+			N],\, l \in \wt{\ex}$, then we see that $t_{lj} = 1$ for all $l \neq j$ and that
+	$t_{ll}$ is not a root of unity, as $t_{ll}^2 = \lambda_l^*$, which is not a root of
+	unity. Furthermore,
+	\begin{align*}
+		t_{ll}^{d_{\eta(k)}}  = (\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}} = t_{kk}^{d_{\eta(l)}}
+	\end{align*}
+	%
+	by \cref{cond:lambda_star_to_the_d}, which shows that the principal part of
+	$\tB_{\tau}$ is skew-symmetrizable by \cref{lem:principal_part_skew_symmetrizable}.
+
+	Now, \cref{eq:conditions_for_bltautau'} and \cref{prop:mutation_adjacent_permutations}
+	(b) together with the uniqueness from \cref{lem:unique_b} give
+	\begin{equation*}
+		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau}.
+	\end{equation*}
+	%
+	Recalling \cref{prop:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
+	\begin{align*}
+		\mu_{k_\bullet}(M_\tau)(e_{k_\bullet})
+		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}_{\tau}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}_{\tau}]_{-})                                       \\
+		 & = M_\tau(-e_{k_\bullet} + [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{+}) + M_\tau(-e_{k_\bullet} - [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{-}) \\
+		 & = M_\tau(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)}) + M_\tau(-e_{k_\bullet} + g)                                                       \\
+		 & = M_{\tau'}(e_{k_\bullet}),
+	\end{align*}
+	such that $\mu_{k_\bullet}(M_\tau)(e_l) = M_{\tau'}(e_l)$ for all $l \in [1, N]$. Hence,
+	\begin{equation*}
+		\Omega_{\bbr_{\tau'}}(e_t, e_l)^2 M_{\tau'}(e_l)M_{\tau'}(e_t) = M_{\tau'}(e_t)M_{\tau'}(e_l) = \Omega_{\mu_{k_\bullet}(\bbr_{\tau})}(e_t, e_l)^2 M_{\tau'}(e_l)M_{\tau'}(e_t),
+	\end{equation*}
+	%
+	for all $t, l \in [1, N]$. Consequently, $\Omega_{\bbr_{\tau'}}(e_t, e_l)^2 =
+		\Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)^2$ for all $t, l \in [1, N]$ which gives
+	$\Omega_{\bbr_{\tau'}}(e_t, e_l) = \Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)$ due
+	to \cref{cond:no_order_two}. Thus, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_{\tau})$, with
+	which we can now conclude $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$.
+	\Cref{prop:mutation_preserves_good_things,lem:equivariance_mutations} now imply
+	\cref{eq:conditions_for_bltautau'} for $\tB_{\tau'} = \mu_{k_\bullet}(\tB_{\tau})$.
+
+	The proof for the other implication is analogous. The difference is that we now have to
+	consider the case $\tau(k) > \tau(k+1)$ in \cref{prop:mutation_adjacent_permutations}
+	(b). In this case we obtain
+	\begin{equation*}
+		\epsbullet - g = - b^{k_\bullet}_{\tau'},
+	\end{equation*}
+	and
+	\begin{align*}
+		\mu_{k_\bullet}(M_{\tau'})(e_{k_\bullet})
+		 & = M_{\tau'}(-e_{k_\bullet} + [b^{k_\bullet}_{\tau'}]_{+}) + M_{\tau'}(-e_{k_\bullet} - [b^{k_\bullet}_{\tau'}]_{-})                                       \\
+		 & = M_{\tau'}(-e_{k_\bullet} + [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{+}) + M_{\tau'}(-e_{k_\bullet} - [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{-}) \\
+		 & = M_{\tau'}(-e_{k_\bullet} + g) + M_{\tau'}(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)})                                                         \\
+		 & = M_{\tau}(e_{k_\bullet}).
+	\end{align*}
+	%
+	The rest of the proof can then be taken over literally from the first case, by swapping
+	$\tau$ and $\tau'$.
+
+\end{proof}
+
+We will first construct the matrices $\tB_\tau$ only for the elements $\tau \in
+	\Gamma_N$\index{Gamma N@$\Gamma_N$}. Recall that the subset $\Gamma_N$ of $\Xi_N$,
+consists of permutations of
+the form
 \begin{equation*}
 	\tau_{i, j} = [i+1, i+2, \dots, j, i , j+1, j+2, \dots, N, i-1, i-2, \dots, 1]
 \end{equation*}
 %
-for $1 \leq i \leq j \leq N$. We will now inductively construct quantum seeds for $\tau
-	\in \Gamma_N$. To do this, we make use of the following total order on $\Gamma_N$:
+for $1 \leq i \leq j \leq N$. To do the induction, we make use of the following total
+order on $\Gamma_N$:
 \begin{multline*}
 	\Gamma_N = \{\tau_{1,1} = \id \prec \tau_{1,2} \prec \cdots \prec \tau_{1, N} = \tau_{2,2} \prec \tau_{2,3} \prec \cdots \prec \tau_{2,N} = \tau_{3,3} \prec \cdots\\ \cdots \prec \tau_{N-1, N-2} \prec \tau_{N-1, N-1} \tau_{N-1, N} = \tau_{N, N} = w_\circ \},
 \end{multline*}
@@ -3501,16 +3695,16 @@ where $w_\circ = [N, N-1, \dots, 1]$. We will write $\sigma \preceq \tau$ for $\
 any two consecutive elements are of the form $\tau_{i, j-1} \prec \tau_{i, j}$ for some
 $1 \leq i < j \leq N$.
 
-To each $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$ in such a
-way that
+To each $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$\index{ex
+	tau@$\ex_\tau$} in such a way that
 \begin{equation*}
 	\ex_{\id} = \emptyset, \quad \ex_{w_\circ} = \ex \quad
 \end{equation*}
 %
 and $\ex_\sigma \subseteq \ex_\tau$ for all $\sigma, \tau \in \Gamma_N$ with $\sigma
 	\prec \tau$. The subsets $\ex_\tau$ are defined inductively, as follows. The base case
-is $\ex_{\id} = \emptyset$. Then, if $\tau \prec \tau'$ are consecutive elements in the
-total order, we can write
+is $\ex_{\id} \defeq \emptyset$. Then, if $\tau \prec \tau'$ are consecutive elements
+in the total order, we can write
 \begin{equation*}
 	\tau = \tau_{i,j-1} \text{ and } \tau' = \tau_{i,j}
 \end{equation*}
@@ -3528,7 +3722,7 @@ from which we see that
 %
 From $\ex_\tau$ we then construct $\ex_{\tau'}$ as
 \begin{equation*}
-	\ex_{\tau'} = \begin{dcases*}
+	\ex_{\tau'} \defeq \begin{dcases*}
 		\ex_\tau \cup \{p(j)\}, & if $p(i) = -\infty$ and $\eta(i) = \eta(j)$ \\
 		\ex_\tau,               & otherwise.
 	\end{dcases*}
@@ -3538,117 +3732,6 @@ Recall that $\ex = \{j \in [1, N] \mid s(j) \neq + \infty \} = \{p(j) \mid j \in
 		N],\, p(j) \neq -\infty\}$. It follows that $\ex_{w_\circ} = \ex$, as $\sigma \preceq
 	w_\circ$ for all $\sigma\in \Gamma_N$.
 
-As before, we will index matrices of size $N \times |X|$ by the set $X$ for subsets $X
-	\subseteq \ex$. The set of such matrices with integer entries will be denoted by $M_{N
-			\times X}(\bbZ)$. We now prove two lemmas from which parts (a) and (b) of
-\cref{thm:gy_main_result} for $\tau \in \Gamma_N$ will follow.
-
-\begin{lemma}\label{lem:inductive_step_btautau}
-	Assume the setting of \cref{thm:gy_main_result}. Suppose that $\tau, \tau' \in \Xi_N$ are such that
-	\begin{equation*}
-		\tau' = (\tau(k), \tau(k+1))\tau = \tau(k, k+1)
-	\end{equation*}
-	%
-	for some $k \in [1, N-1]$ such that $\eta(\tau(k)) = \eta(\tau(k+1))$ and $\tau(k) <
-		\tau(k+1)$. Write $k_\bullet = \tau_\bullet(\tau(k))$, and let $\wt{\ex} \subseteq \ex$
-	be a subset such that $k_\bullet \in \wt{\ex}$. Then there exists a matrix $\tB_{\tau,
-			\tau'} \in M_{N \times \wt{\ex}}(\bbZ)$ whose columns, $b^l_{\tau, \tau'} \in \bbZ^N$
-	for $l \in \wt{\ex}$ satisfy
-	\begin{equation}\label{eq:conditions_for_bltautau'}
-		\begin{aligned}
-			\chi_{M_\tau(b^l_{\tau, {\tau'}})}            & = 1,                                \\
-			\Omega_{\bbr_\tau}(b^l_{\tau,{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
-			\Omega_{\bbr_\tau}(b^l_{\tau,{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
-		\end{aligned}
-	\end{equation}
-	%
-	for all $l \in \wt{\ex}$ if and only if there exists a matrix $\tB_{\tau', \tau'}$
-	whose columns $b^l_{\tau', \tau'} \in \bbZ^N,\,l\in \wt{\ex}$ satisfy
-	\begin{equation*}
-		\begin{aligned}
-			\chi_{M_{\tau'}(b^l_{{\tau'}, {\tau'}})}            & = 1,                                \\
-			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'},{\tau'}}, e_l)^2 & = \lambda^*_l,                      \\
-			\Omega_{\bbr_{\tau'}}(b^l_{{\tau'},{\tau'}}, e_j)   & = 1, \forall j \in [1, N], j\neq l,
-		\end{aligned}
-	\end{equation*}
-	%
-	for all $l \in \wt{\ex}$.
-
-	For both implications the principal parts of the matrices $\tB_{\tau, \tau'}$ and
-	$\tB_{\tau' ,\tau'}$ are skew-symmetrizable. Furthermore, $\tB_{\tau', \tau'} =
-		\mu_{k_\bullet}(\tB_{\tau, \tau'})$, $\bbr_{\tau'} = \mu_{k_\bullet}(\bbr_{\tau})$ and
-	\begin{equation*}
-		b^{k_\bullet}_{\tau, \tau'} = - b^{k_\bullet}_{\tau', \tau'} = e_{p(k_\bullet)} + e_{s(k_\bullet)} - g,
-	\end{equation*}
-	%
-	where $g\in \bbZ_{\geq 0}^N$ is the vector from
-	\cref{prop:mutation_adjacent_permutations}.
-\end{lemma}
-\begin{proof}
-
-	We start with the first implication. The conditions of
-	\cref{eq:conditions_for_bltautau'} imply that $(\bbr_\tau, \tB_{\tau, {\tau'}})$ is a
-	compatible pair. Indeed, if we write $t_{lj} = \Omega_{\bbr_\tau}(b^l_{\tau, {\tau'}},
-		e_j)$ for $j\in[1, N], l \in \ex_{\tau'}$, then we see that $t_{lj} = 1$ for all $l
-		\neq j$ and that $t_{ll}$ is not a root of unity, as $t_{ll}^2 = \lambda_l^*$, which is
-	not a root of unity. Furthermore,
-	\begin{align*}
-		t_{ll}^{d_{\eta(k)}}  = (\lambda^*_l)^{d_{\eta(k)}} = (\lambda^*_k)^{d_{\eta(l)}} = t_{kk}^{d_{\eta(l)}}
-	\end{align*}
-	%
-	by assumption, which shows that the principal part of $\tB_{\tau, {\tau'}}$ is
-	skew-symmetrizable by \cref{lem:principal_part_skew_symmetrizable}.
-
-	Now, \cref{eq:conditions_for_bltautau'} and \cref{prop:mutation_adjacent_permutations}
-	(b) together with the uniqueness from \cref{lem:unique_b} give
-	\begin{equation*}
-		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g = b^{k_\bullet}_{\tau, \tau'}.
-	\end{equation*}
-	%
-	Recalling \cref{prop:formula_for_mutation} and that $g \in \bbZ_{\geq 0}^N$, we find
-	\begin{align*}
-		\mu_{k_\bullet}(M_\tau)(e_{k_\bullet})
-		 & = M_\tau(-e_{k_\bullet} + [b^{k_\bullet}_{\tau, \tau'}]_{+}) + M_\tau(-e_{k_\bullet} - [b^{k_\bullet}_{\tau, \tau'}]_{-})                         \\
-		 & = M_\tau(-e_{k_\bullet} + [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{+}) + M_\tau(-e_{k_\bullet} - [e_{p(k_\bullet)} + e_{s(k_\bullet)} - g]_{-}) \\
-		 & = M_\tau(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)}) + M_\tau(-e_{k_\bullet} + g)                                                       \\
-		 & = M_{\tau'}(e_{k_\bullet}),
-	\end{align*}
-	such that $\mu_{k_\bullet}(M_\tau)(e_l) = M_{\tau'}(e_l)$ for all $l \in [1, N]$. Hence,
-	\begin{equation*}
-		\Omega_{\bbr_{\tau'}}(e_t, e_l)^2 M_{\tau'}(e_l)M_{\tau'}(e_t) = M_{\tau'}(e_t)M_{\tau'}(e_l) = \Omega_{\mu_{k_\bullet}(\bbr_{\tau})}(e_t, e_l)^2 M_{\tau'}(e_l)M_{\tau'}(e_t),
-	\end{equation*}
-	%
-	for all $t, l \in [1, N]$. Consequently, $\Omega_{\bbr_{\tau'}}(e_t, e_l)^2 =
-		\Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)^2$ for all $t, l \in [1, N]$ which gives
-	$\Omega_{\bbr_{\tau'}}(e_t, e_l) = \Omega_{\mu_{k_\bullet}(\bbr_\tau)}(e_t, e_l)$ as
-	the subgroup of $\bbK^\times$ generated by $\{\nu_{lt} \mid l,t \in [1, N]\}$ contains
-	no elements of order 2, by assumption. Thus, $\bbr_{\tau'} =
-		\mu_{k_\bullet}(\bbr_{\tau})$, with which we can now conclude $M_{\tau'} =
-		\mu_{k_\bullet}(M_\tau)$.
-	\Cref{prop:mutation_preserves_good_things,lem:equivariance_mutations} now imply
-	\cref{eq:conditions_for_bltautau'} for $\tB_{\tau', \tau'} = \mu_{k_\bullet}(\tB_{\tau,
-			\tau'})$.
-
-	The proof for the other implication is analogous. The difference is that we now have to
-	consider the case $\tau(k) > \tau(k+1)$ in \cref{prop:mutation_adjacent_permutations}
-	(b). In this case we obtain
-	\begin{equation*}
-		\epsbullet - g = - b^{k_\bullet}_{\tau', \tau'},
-	\end{equation*}
-	and
-	\begin{align*}
-		\mu_{k_\bullet}(M_{\tau'})(e_{k_\bullet})
-		 & = M_{\tau'}(-e_{k_\bullet} + [b^{k_\bullet}_{\tau', \tau'}]_{+}) + M_{\tau'}(-e_{k_\bullet} - [b^{k_\bullet}_{\tau', \tau'}]_{-})                         \\
-		 & = M_{\tau'}(-e_{k_\bullet} + [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{+}) + M_{\tau'}(-e_{k_\bullet} - [-e_{p(k_\bullet)} - e_{s(k_\bullet)} + g]_{-}) \\
-		 & = M_{\tau'}(-e_{k_\bullet} + g) + M_{\tau'}(-e_{k_\bullet} + e_{p(k_\bullet)} + e_{s(k_\bullet)})                                                         \\
-		 & = M_{\tau}(e_{k_\bullet}).
-	\end{align*}
-	%
-	The rest of the proof can then be taken over literally from the first case, by swapping
-	$\tau$ and $\tau'$.
-
-\end{proof}
-The previous lemma will serve as the induction step in this lemma.
 \begin{lemma}\label{lem:inductive_columns}
 	Assume the setting of \cref{thm:gy_main_result} for some $\tau \in \Gamma_N$. For all $\sigma \in \Gamma_N$ such that $\sigma \preceq \tau$, there exists a unique matrix $\tB_{\sigma, \tau}\in M_{N \times \ex_\tau} (\bbZ)$ whose columns, $b^l_{\sigma, \tau} \in \bbZ^N$ for $l\in \ex_\tau$, satisfy
 	\begin{equation}\label{eq:conditions_for_blsigmatau}
@@ -3679,8 +3762,8 @@ The previous lemma will serve as the induction step in this lemma.
 	If $\eta(i) \neq \eta(j)$, then the existence follows easily. Indeed, $\ex_{\tau'} =
 		\ex_\tau$ and, by \cref{prop:mutation_adjacent_permutations}, $M_{\tau'} = M_\tau$,
 	such that also $\Omega_{\bbr_{\tau'}} = \Omega_{\bbr_\tau}$. So, we can take
-	$\tB_{\sigma, \tau'} = \tB_{\sigma, \tau}$ for $\sigma \preceq \tau$ and $\tB_{\tau',
-			\tau'} = \tB_{\tau, \tau}$.
+	$\tB_{\sigma, \tau'} \defeq \tB_{\sigma, \tau}$ for $\sigma \preceq \tau$ and
+	$\tB_{\tau', \tau'} \defeq \tB_{\tau, \tau}$.
 
 	If $\eta(i) = \eta(j)$, there is more work. Since $i < j$, we can write $j = s^m(i)$
 	for some $m \in \bbZ_{\geq 0}$. Then note that
@@ -3696,13 +3779,17 @@ The previous lemma will serve as the induction step in this lemma.
 	because $p^{O_{-}(i)}(i)$ is the smallest element of $\eta\inv(\eta(i))$, by definition of $O_{-}(i)$. Set, as in \cref{prop:mutation_adjacent_permutations}, $k_\bullet = \tau_\bullet(\tau(j-i)) = \tau_\bullet(\tau(k))$. We now have two subcases.
 
 	First, assume that $p(i) \neq -\infty$. Then, $\ex_{\tau'} = \ex_{\tau}$, and we can
-	take $\tB_{\sigma, \tau'} = \tB_{\sigma, \tau}$ for $\sigma \in \Gamma_N$ such that
-	$\sigma \preceq \tau$. By \cref{lem:inductive_step_btautau} we can take $\tB_{\tau',
-			\tau'} = \mu_{k_\bullet}(\tB_{\tau, \tau'})$.
+	take $\tB_{\sigma, \tau'} \defeq \tB_{\sigma, \tau}$ for $\sigma \in \Gamma_N$ such
+	that $\sigma \preceq \tau$. By \cref{lem:inductive_step_btautau} we can take
+	$\tB_{\tau', \tau'} \defeq \mu_{k_\bullet}(\tB_{\tau, \tau'})$.
 
 	In the other subcase, where $p(i) = -\infty$, we have $\ex_{\tau'} = \ex_\tau \cup
-		\{k_\bullet\}$, because $k_\bullet = s^{m-1}p^{O_{-}(i)}(i) = s^{m-1}(i) = p(j)$. We
-	now need to create a new column. We take $b^{k_\bullet}_{\tau, \tau'} =
+		\{k_\bullet\}$, because
+	\begin{equation*}
+		k_\bullet = s^{m-1}p^{O_{-}(i)}(i) = s^{m-1}(i) = p(j).
+	\end{equation*}
+	%
+	We now need to create a new column. We take $b^{k_\bullet}_{\tau, \tau'} \defeq
 		e_{p(k_\bullet)} + e_{s(k_\bullet)} - g$, where $g \in \bbZ_{\geq 0}^N$ is again the
 	vector from \cref{prop:mutation_adjacent_permutations}. This column satisfies
 	\cref{eq:conditions_for_blsigmatau}, precisely because of
@@ -3710,13 +3797,13 @@ The previous lemma will serve as the induction step in this lemma.
 	$b^l_{\tau, \tau}$ of $\tB_{\tau, \tau}$ satisfy \cref{eq:conditions_for_blsigmatau}.
 	So, we can take $\tB_{\tau, \tau'}$ as the matrix with columns
 	\begin{equation*}
-		b^l_{\tau, \tau'} = \begin{dcases*}
+		b^l_{\tau, \tau'} \defeq \begin{dcases*}
 			b^l_{\tau, \tau},                        & if $l \neq k_\bullet$ \\
 			e_{p(k_\bullet)} + e_{s(k_\bullet)} - g, & if $l = k_\bullet$.
 		\end{dcases*}
 	\end{equation*}
 	%
-	By \cref{lem:inductive_step_btautau}, we can then take $\tB_{\tau', \tau'} =
+	By \cref{lem:inductive_step_btautau}, we can then take $\tB_{\tau', \tau'} \defeq
 		\mu_{k_\bullet}(\tB_{\tau, \tau'})$.
 
 	So, it remains to construct $\tB_{\sigma, \tau'}$ for $\sigma \in \Gamma_N$ such that
@@ -3728,23 +3815,25 @@ The previous lemma will serve as the induction step in this lemma.
 	\end{equation*}
 	for some $1 \leq i'< j' \leq N$. Write $k_\bullet' = \sigma_\bullet(\sigma(j' - i'))$. Now assume that there exists a matrix $\tB_{\sigma', \tau'} \in M_{N \times \ex_{\tau'}}(\bbZ)$ satisfying \cref{eq:conditions_for_blsigmatau}, and define
 	\begin{equation*}
-		\tB_{\sigma, \tau'} = \begin{dcases*}
+		\tB_{\sigma, \tau'} \defeq \begin{dcases*}
 			\tB_{\sigma', \tau'},                   & if $\eta(i') \neq \eta(j')$ \\
 			\mu_{k_\bullet'}(\tB_{\sigma', \tau'}), & if $\eta(i') = \eta(j')$.
 		\end{dcases*}
 	\end{equation*}
 	%
-	We now apply \cref{lem:inductive_step_btautau} once more, to conclude that
-	$\tB_{\sigma, \tau'}$ satisfies \cref{eq:conditions_for_blsigmatau}.
+	Applying \cref{lem:inductive_step_btautau} once more, we conclude that $\tB_{\sigma,
+			\tau'}$ satisfies \cref{eq:conditions_for_blsigmatau}.
 
 \end{proof}
 
-\subsection{Proof of parts a,b,c of the main result}
-We can now provide a proof for \cref{thm:gy_main_result} (a) and (b), for $\tau \in
-	\Gamma_N$. Indeed, these follow immediately, by taking $(\sigma, \tau) = (\tau,
-	w_\circ)$ in \cref{lem:inductive_columns}, and writing $\tB_{\tau} = \tB_{\tau,
-		w_\circ}$. In particular, we have constructed the mutation matrix for the initial toric
-frame $M_{\id}$.
+\subsection{Proof of parts (a), (b) and (c) of the main result}
+
+We now have everything in place for the proof of parts (a), (b) and (c). We first
+remark that \cref{lem:inductive_columns} establishes parts (a) and (b) of
+\cref{thm:gy_main_result} for $\tau \in \Gamma$. Indeed, it suffices to take $(\sigma,
+	\tau) = (\tau, w_\circ)$ and set $\tB_\tau \defeq \tB_{\tau, w_\circ}$, because
+$\ex_{w_\circ} = \ex$. In particular, because $\id \in \Gamma_N$, we have constructed
+the mutation matrix $\tB = \tB_{\id}$ for the initial toric frame $M = M_{\id}$.
 
 The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a matter
 of putting everything together.
@@ -3754,9 +3843,9 @@ of putting everything together.
 		\tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
 	\end{equation*}
 	%
-	for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. We
-	already proved the existence of $\tB_{\id}$ using \cref{lem:inductive_columns}. Then,
-	for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$,
+	for some $k_l \in [1, N-1]$ such that $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. As
+	remarked above, the existence of $\tB_{\id}$ follows from \cref{lem:inductive_columns}.
+	Then, for $l \in [1, n]$, if $\eta(\tau_{l-1}(k_l)) \neq \eta(\tau_l(k_l))$,
 	\cref{prop:mutation_adjacent_permutations} (a) yields $M_{\tau_l} = M_{\tau_{l-1}}$,
 	and we can choose $\tB_{\tau_l} = \tB_{\tau_{l-1}}$. Otherwise, if
 	$\eta(\tau_{l-1}(k_l)) = \eta(\tau_l(k_l))$, we can apply
@@ -3772,19 +3861,38 @@ of putting everything together.
 	\cref{prop:mutation_adjacent_permutations} (a) if $\eta(\tau(k)) \neq \eta(\tau(k +
 			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
 	\cref{lem:inductive_step_btautau}, swapping the roles of $\tau$ and $\tau'$ if needed.
-	Then, since mutation is involutive, every $\tau \in \Xi_N$ can be obtained by a
-	sequence of one-step mutations from $\id$ due to \cref{prop:eta_invariance} and the
-	uniqueness of part (a), we obtain that all the quantum seeds associated to $\Xi_N$ are
-	mutation-equivalent to each other.
+	Finally, since mutation is involutive, every $\tau \in \Xi_N$ can be obtained by a
+	sequence of one-step mutations from $\id\in \Xi_N$ due to \cref{prop:eta_invariance}
+	(a), and the uniqueness of part (a), we obtain that all the quantum seeds associated to
+	$\Xi_N$ are mutation-equivalent to each other.
 \end{proof}
 
 \section{The upper cluster algebra}
+
+The goal of this final section is to prove equality between the symmetric CGL extension
+$R$, the quantum cluster algebra, and the upper quantum cluster algebra. Let $E_\tau$
+be the multiplicative subset of $R$ generated by $\bbK^\times$ and $M_\tau(e_l)$ for $l
+	\in \ex$. We will show that this is an Ore set. The idea is to construct the following
+chain of inclusions:
+\begin{equation*}
+	R \subseteq \mcA(M, \tB, \emptyset)_\bbK \subseteq \mcU(M, \tB, \emptyset) \subseteq \bigcap_{\tau \in \Gamma_N} R[E_{\tau}\inv] \subseteq R.
+\end{equation*}
+
+The first inclusion will be shown by proving that for each $j \in [1, N]$, the
+generator $x_j \in R$ is a cluster variable for some toric frame $M_\tau$. The second
+inclusion is just the quantum Laurent phenomenon (cf. \cref{thm:quantum_laurent}). The
+hardest inclusion is the last one. For this we will need to study the intersections of
+the Ore localizations by the homogeneous prime elements more carefully. The first step
+to proving this inclusion will be \cref{thm:minimal_denominators}. The inclusion is
+then proven in \cref{thm:intersections} (d) using an inductive argument based on the
+total order on $\Gamma_N$.
+
 \subsection{Ore localizations of CGL extensions}
-We now prove some results which will be crucial in proving equality between the upper
-cluster algebra and the cluster algebra. Since the upper cluster algebra consists of
-intersections of localizations, it makes sense to look at what happens to the
-intersection of the localizations by the two sequences of prime elements in the setting
-of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
+
+We first focus on what happens to the intersection of the localizations of the two
+sequences of prime elements in the setting of \cref{thm:y_prime_swapped_cgl}. The main
+goal is to prove \cref{thm:minimal_denominators}. This will be done by a careful
+analysis of the denominators that can appear.
 
 \begin{lemma}\label{lem:ore_set_ore_extension}
 	%
@@ -3807,7 +3915,7 @@ of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
 	Because $\sigma\inv(e) \in \bbK^\times E$ by assumption, there exists some $\xi \in \bbK^\times$ such that $\xi \sigma\inv(e) \in E$.
 	Define
 	\begin{equation*}
-		e' = \xi \sigma\inv(e)f \in E.
+		e' \defeq \xi \sigma\inv(e)f \in E.
 	\end{equation*}
 	Then
 	\begin{align*}
@@ -3831,9 +3939,9 @@ of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}.
 
 We now apply this lemma to a CGL extension $R$. Let $y_1, \dots, y_N$ be the sequence
 of homogeneous prime elements from \cref{thm:homogeneous_primes}. We now claim that for
-each $j \in [1, K]$, the set, $E_j = \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq 0}\}$,
-is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and $a \in
-	R_j$, we have
+each $j \in [1, K]$, the set, $E_j \defeq \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq
+		0}\}$, is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and
+$a \in R_j$, we have
 \begin{equation*}
 	y_j^k R_j \cap a E_j = R_j y_j^k \cap  a E_j \ni a y_j^k.
 \end{equation*}
@@ -3844,8 +3952,9 @@ This shows that $E_j$ is an Ore set in $R_j$. Furthermore, $\sigma(\bbK^\times E
 By repeatedly applying \cref{lem:ore_set_ore_extension} we find that $E_j$ is an Ore
 set in $R$. Now, take $I \subseteq [1, N]$ and define
 \begin{equation*}
-	E_I = \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
+	E_I \defeq \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
 \end{equation*}
+\index{E I@$E_I$}
 %
 By \cref{eq:y_quasi_commute}, it is a multiplicative set. It is also an Ore set by a
 similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if $e \in
@@ -3854,10 +3963,10 @@ similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if
 	E$ and $f' \in F$ such that $ey = xe'$ and $fz = yf'$. Then $xe'f' = eyf' = efz \in efR
 	\cap xEF$.
 
-We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$ if $a$ divides $b$ on the
-left, i.e., $b = ar$ for some $r \in R$. Call an element $y_1^{m_1}\cdots y_N^{m_N}$ a
-\emph{minimal denominator}\index{minimal denominator} of a nonzero element $v\in
-	R[E\inv]$ if
+We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$\index{divides
+	left$\mid_l$} if $a$ divides $b$ on the left, i.e., $b = ar$ for some $r \in R$. Call
+an element $y_1^{m_1}\cdots y_N^{m_N}$ a \emph{minimal denominator}\index{minimal
+	denominator} of a nonzero element $v\in R[E\inv]$ if
 \begin{equation*}
 	v = y_1^{-m_1}\cdots y_N^{-m_N} s
 \end{equation*}
@@ -4130,13 +4239,12 @@ for $s \in R$ and $j \in [1, N]$ where each $s_{l_j, \dots, l_N} \in R_{j-1}$.
 	$m_i = m'_i$ for all $i \in [1, k-1]$.
 \end{proof}
 
-\subsection{Proof of parts d,e of the main result}
+\subsection{Proof of parts (d) and (e) of the main result}
 
-We now turn to the last two statements of \cref{thm:gy_main_result}. For this we will
-not need the normalizations of the $x$-elements or the $y$-elements. Let, in what
-follows, $R$ be a symmetric CGL extension of length $N$, and fix a function $\eta
-	\colon [1, N] \to \bbZ$ satisfying the assumptions of \cref{thm:homogeneous_primes}.
-Then, for each $\tau \in \Xi_N$, we have a CGL extension presentation of the form
+Let, in what follows, $R$ be a symmetric CGL extension of length $N$, and fix a
+function $\eta \colon [1, N] \to \bbZ$ satisfying the assumptions of
+\cref{thm:homogeneous_primes}. Then, for each $\tau \in \Xi_N$, we have a CGL extension
+presentation of the form
 \begin{equation*}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma''_{\tau(2)}, \delta''_{\tau(2)}] \cdots [x_{\tau(N)}; \sigma''_{\tau(N)}, \delta''_{\tau(N)}].
 \end{equation*}
@@ -4147,14 +4255,20 @@ predecessor and successor functions corresponding to $\eta_\tau$ and let $y_{\ta
 	\dots, y_{\tau, N}$ be the sequence of homogeneous prime elements of
 \cref{thm:homogeneous_primes} for this presentation. Finally, denote
 \begin{align*}
-	\mcA_\tau & = \text{ the $\bbK$-subalgebra of $R$ generated by } \{y_{\tau, k} \mid k \in [1, N]\}                                                   \\
-	\mcT_\tau & = \text{ the $\bbK$-subalgebra of $\Fract(R)$ generated by } \{y_{\tau, k}^{\pm} \mid k \in [1, N]\}                                     \\
-	E_\tau    & = \text{ the multiplicative subset of $\mcA_\tau$ generated by } \bbK \sqcup \{y_{\tau, k} \mid k \in [1, N], s_\tau(k) \neq + \infty\}.
+	\mcA_\tau & \defeq \text{ the $\bbK$-subalgebra of $R$ generated by } \{y_{\tau, k} \mid k \in [1, N]\}                                                   \\
+	\mcT_\tau & \defeq \text{ the $\bbK$-subalgebra of $\Fract(R)$ generated by } \{y_{\tau, k}^{\pm 1} \mid k \in [1, N]\}                                   \\
+	E_\tau    & \defeq \text{ the multiplicative subset of $\mcA_\tau$ generated by } \bbK \sqcup \{y_{\tau, k} \mid k \in [1, N], s_\tau(k) \neq + \infty\}.
 \end{align*}
+\index{A tau@$\mcA_\tau$}\index{T tau@$\mcT_\tau$}\index{E tau@$E_\tau$}
 
-Note that $\mcT$ is a quantum torus because of \cref{eq:y_quasi_commute}. Consequently,
-$E_\tau$ consists of normal elements in $\mcA_\tau$, and is thus an Ore set in
-$\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
+Note that $\mcT_\tau$ is a quantum torus because of \cref{eq:y_quasi_commute}.
+Consequently, $E_\tau$ consists of normal elements in $\mcA_\tau$, and is thus an Ore
+set in $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
+
+The following lemma ensures that every element $j \in \ex$ gets mutated when
+considering only the elements of $\Gamma_N$. The first part of the lemma will be used
+to describe the set $E_\tau$ in terms of the cluster variables of the toric frame
+$M_\tau$.
 
 \begin{lemma}\label{lem:tau_bullet_ex_gamma}
 	\leavevmode
@@ -4163,7 +4277,7 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      bijectively onto the set $\{j \in [1, N] \mid s_\tau(j) \neq + \infty\}$.
 		\item For each $j \in \ex$ there exist $\tau, \tau'\in \Gamma_N$ such that $\tau' = \tau(k,
 			      k+1)$ for some $k \in [1, N-1]$ with $\eta(\tau(k)) = \eta(\tau(k+1))$ and
-		      $\tau_\bullet\tau(k) = j$. \textbf{TODO: $\Gamma_N$ hasn't been introduced yet!!!}
+		      $\tau_\bullet\tau(k) = j$.
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -4186,6 +4300,9 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 			      -\infty$, that element is $s^m(i) = j$.
 	\end{enumerate}
 \end{proof}
+
+With this lemma out of the way, we can prove the following theorem, which proves the
+necessary inclusions for \cref{thm:gy_main_result} parts (d) and (e).
 
 \begin{theorem}\label{thm:intersections}
 	Let $R$ be a symmetric CGL extension of length $N$.
@@ -4238,7 +4355,7 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 		      be a minimal denominator of $v$ with respect to the localization $R[E\inv_\tau]$. So,
 		      all $m_{\tau, l} \in \bbZ_{\geq 0}$ and $m_{\tau, l} = 0$ when $s_\tau(l) = + \infty$.
 		      We now claim that for all $\tau, \tau' \in \Gamma_N$ such that $\tau' = \tau(k, k+1)$
-		      for some $k \in [1, N- 1]$=
+		      for some $k \in [1, N- 1]$:
 		      \begin{enumerate}
 			      \item $m_{\tau, (\tau_\bullet\tau)\inv(j)} = m_{\tau', ((\tau')_\bullet\tau')\inv(j)}$ for all $j \in [1, N]$.
 			      \item If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $m_{\tau, k} = 0$.
@@ -4276,9 +4393,9 @@ $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 	\end{enumerate}
 \end{proof}
 
-We are now ready to prove parts (d) and (e) of \cref{thm:gy_main_result}, which is now
-just a matter of putting together the inclusions from
-\cref{thm:intersections,thm:quantum_laurent} with some simple observations.
+Proving parts (d) and (e) of \cref{thm:gy_main_result}, is now just a matter of putting
+together the inclusions from \cref{thm:intersections,thm:quantum_laurent} with some
+simple observations.
 \begin{proof}[Proof of \cref{thm:gy_main_result} parts (d) and (e).]
 	First observe that for each $\tau\in \Xi_N$, we have
 	\begin{equation*}
