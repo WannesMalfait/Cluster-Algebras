@@ -18,18 +18,20 @@ explicitly. We will follow the work of \cite{GoodearlYakimov2017QCA} while worki
 some examples to get a better feel for the material.
 
 Let us now first fix some notation. In what follows, $\bbK$ will be a field and $N \in
-	\bbZ_{> 0}$ an integer. We denote by $\bbK^\times$ the multiplicative group of $\bbK$.
-It will be useful to consider the following multiplicative version of matrix
-multiplication. For $A = (a_{ij}) \in M_{m \times n}(\bbK^\times), B = (b_{ij}) \in
-	M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in M_{n \times r} (\bbZ)$, we define
-$\prescript{B}{}{}A^C \in M_{s \times r}(\bbK^\times)$ as the matrix with entries
+	\bbZ_{> 0}$ an integer. We denote by $\bbK^\times$\index{K times@$\bbK^\times$} the
+multiplicative group of $\bbK$. It will be useful to consider the following
+multiplicative version of matrix multiplication. For $A = (a_{ij}) \in M_{m \times
+			n}(\bbK^\times), B = (b_{ij}) \in M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in M_{n
+			\times r} (\bbZ)$, we define $\prescript{B}{}{}A^C \in M_{s \times r}(\bbK^\times)$ as
+the matrix with entries
 \begin{equation*}
-	(\prescript{B}{}{A}^C)_{ij} = \prod_{k, l} a_{kl}^{b_{ik}c_{lj}},
+	(\prescript{B}{}{}A^C)_{ij}  \defeq \prod_{k, l} a_{kl}^{b_{ik}c_{lj}},
 \end{equation*}
+\index{B A C@$\prescript{B}{}{}A^C$}
 %
 with special cases
 \begin{equation*}
-	(\prescript{B}{}{A})_{ij} = \prod_{k} a_{kj}^{b_{ik}}, \text{ and }	(A^C)_{ij} = \prod_{k} a_{ik}^{c_{kj}}.
+	(\prescript{B}{}{}A)_{ij} \defeq \prod_{k} a_{kj}^{b_{ik}}, \text{ and }	(A^C)_{ij} \defeq \prod_{k} a_{ik}^{c_{kj}}.
 \end{equation*}
 %
 This product is also associative in the sense that $\prescript{B_2 B_1}{}{A}^{C_1 C_2}
@@ -39,10 +41,11 @@ In most cases the exponent will be a column vector. Whenever we write $f \in \bb
 will view $f$ as a column vector, i.e., an $N \times 1$-matrix over the integers. The
 standard basis vectors of $\bbZ^N$ will be denoted by $e_1, \dots, e_N$.
 
-The group of permutations on $N$ elements will be denoted by $S_N$. The group $S_N$ will be viewed as embedded in $\GL_N(\bbZ)$ via permutation matrices.
+The group of permutations on $N$ elements will be denoted by $S_N$. The group $S_N$
+will be viewed as embedded in $\GL_N(\bbZ)$ via permutation matrices.
 
-For $m, n \in \bbZ$, we will write $[m, n]$ to denote the set $\{m, m+1, \dots, n-1,
-	n\} \in \bbZ$. In particular, $[m, n] = \emptyset$ if $m > n$.
+For $j, k \in \bbZ$, we will write $[j, k]$\index{j k@$[j, k]$} to denote the set $\{j,
+	j+1, \dots, k-1, k\} \in \bbZ$. In particular, $[j, k] = \emptyset$ if $j > k$.
 
 \section{Ore localizations and tori}
 
@@ -61,12 +64,16 @@ Let $\bbq \in M_N(\bbK^\times)$ be a \emph{multiplicatively
 	r_{ji}\inv$ for all $i,j \in [1, N]$. Deforming the affine space coordinate algebra
 $\bbK[Y_1, \dots, Y_N]$ by $\bbq$, we obtain
 \begin{equation*}
-	\mcA_\bbq = \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)},
+	\mcA_\bbq \defeq \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)},
 \end{equation*}
-the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then write $\mcT_\bbq$ for the \emph{quantum torus}
+\index{A q@$\mcA_\bbq$}
+%
+the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then
+write $\mcT_\bbq$ for the \emph{quantum torus}
 \begin{equation}\label{eq:quantum_torus}
-	\mcT_\bbq = \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)}.
+	\mcT_\bbq \defeq \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)}.
 \end{equation}
+\index{T q@$\mcT_\bbq$}
 %
 It has a $\bbK$-basis consisting of elements of the form $Y^f = Y_1^{f_1} \cdots
 	Y_N^{f_N}$ for $f \in \bbZ^N$. We will refer to the property that $X Y = qY X$ for some
@@ -140,7 +147,7 @@ all the nonzero elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 
 When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
 multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
-set, we write $\Fract(R)$\index{fract@$\Fract(R)$} for the corresponding ring of
+set, we write $\Fract(R)$\index{fract R@$\Fract(R)$} for the corresponding ring of
 fractions. For example, the set $\mcT_\bbq \setminus \{0\}$ forms an Ore set by a
 similar argument as above. The quantum cluster variables will live in the division
 algebra $\Fract(\mcT_\bbq)$.
@@ -164,17 +171,18 @@ $\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
 We now explore a naive way of generalizing the exchange relation
 (\cref{eq:exchange_relation_quiver} \textbf{TODO: change to matrix version once added
 	in chapter 1}) to the noncommutative setting. This will give us the intuition needed to
-arrive at the right definition. Take $k \in \ex$ and write $b^k$ for the $k$-th column
-of $\tB$. We will denote with $[b^k]_{+}$ and $[b^k]_{-}$ the positive and negative
-parts of $b^k \in \bbZ^N$. Thus,
+arrive at the right definition. Take $k \in \ex$ and write $b^k$\index{b k@$b^k$} for
+the $k$-th column of $\tB$. We will denote with $[b^k]_{+}$\index{b k
+	plusminus@$[b^k]_{\pm}$} and $[b^k]_{-}$ the positive and negative parts of $b^k \in
+	\bbZ^N$. Thus,
 \begin{align*}
-	[b^k]_{+} & = \sum_{i=1}^N \max\{0, b_{ik}\}e_i = \sum_{b_{ik} > 0} b_{ik}e_i. \\
+	[b^k]_{+} & \defeq \sum_{i=1}^N \max\{0, b_{ik}\}e_i = \sum_{b_{ik} > 0} b_{ik}e_i. \\
 	\shortintertext{and}
-	[b^k]_{-} & = \sum_{i=1}^N \min\{0, b_{ik}\}e_i = \sum_{b_{ik} < 0} b_{ik}e_i.
+	[b^k]_{-} & \defeq \sum_{i=1}^N \min\{0, b_{ik}\}e_i = \sum_{b_{ik} < 0} b_{ik}e_i.
 \end{align*}
 We then define $Y'_k \in \Fract(\mcT_\bbq)$ as
 \begin{equation}\label{eq:quantum_exchange_naive}
-	Y_k' = Y_k\inv \left(Y^{[b^k]_{+}} + Y^{-[b^k]_{-}}\right) = Y_k\inv \left(\prod_{b_{ik} > 0}Y_i^{b_{ik}} + \prod_{b_{ik} < 0} Y_i^{-b_{ik}}\right).
+	Y_k' \defeq Y_k\inv \left(Y^{[b^k]_{+}} + Y^{-[b^k]_{-}}\right) = Y_k\inv \left(\prod_{b_{ik} > 0}Y_i^{b_{ik}} + \prod_{b_{ik} < 0} Y_i^{-b_{ik}}\right).
 \end{equation}
 %
 By convention, we take all the products to be in increasing index\footnote{If this
@@ -214,8 +222,9 @@ To a multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$ we assoc
 \emph{skew-symmetric bicharacter}\index{skew-symmetric!bicharacter}
 \begin{equation*}
 	\Omega_{\bbq} \colon \bbZ^N \times \bbZ^N \to \bbK^\times \colon
-	\Omega_{\bbq}(f, g) = \prescript{f^T}{}{}\bbq^g.
+	(f,g) \mapsto \Omega_{\bbq}(f, g) \defeq \prescript{f^T}{}{}\bbq^g.
 \end{equation*}
+\index{Omega q@$\Omega_\bbq(f,g)$}
 %
 It is a bicharacter in the sense that each of the components is a character $\bbZ^N \to
 	\bbK^\times$. The function $\Omega_\bbq$ satisfies (or is determined by) the following
@@ -228,7 +237,10 @@ properties
 %
 \Cref{eq:compatibility_q_b} can now be rewritten as $\Omega_\bbq(b^k, e_j) = 1$. This leads to the following definition.
 \begin{definition}\label{def:compatible_pair}
-	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and $\bbq \in M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix.	Let $\wt{\bbt}\in M_{\ex \times N}(\bbZ)$ be the matrix with entries
+
+	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and $\bbq \in
+		M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Let $\wt{\bbt}\in M_{\ex
+				\times N}(\bbZ)$\index{t tilde@$\wt{\bbt}$} be the matrix with entries
 	\begin{equation*}
 		t_{kj} = \Omega_\bbq(b^k, e_j) = \prod_{i=1}^N q_{ij}^{b_{ik}}
 	\end{equation*}
@@ -242,7 +254,9 @@ properties
 In order for $\tB$ to be a mutation matrix, the principal part of $\tB$ should be
 skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs.
 \begin{lemma}\label{lem:principal_part_skew_symmetrizable}
-	Let $(\bbq, \tB)$ be a compatible pair. Assume that there exist $d_k \in \bbZ_{>0}$ for $k \in \ex$ such that
+
+	Let $(\bbq, \tB)$ be a compatible pair. Assume that there exist $d_k \in \bbZ_{>0}$ for
+	$k \in \ex$ such that
 	\begin{equation*}
 		t_{kk}^{d_j} = t_{jj}^{d_k}, \text{ for all } j,k \in \ex.
 	\end{equation*}
@@ -266,9 +280,9 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 We now look at the mutation of the compatible pairs. Recall that the mutation of $\tB$
 in direction $k$ was given by the formula
 \begin{equation*}
-	b'_{ij} = \begin{dcases*}
+	b'_{ij} \defeq \begin{dcases*}
 		-b_{ij},                                            & if $i = k$ or $j = k$ \\
-		b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj|}}{2}, & otherwise.
+		b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2}, & otherwise.
 	\end{dcases*}
 \end{equation*}
 %
@@ -277,7 +291,7 @@ On the other hand, if $(\bbq, \tB)$ is a compatible pair, we know that
 be the matrix with columns $(e_1, \dots, e_{k-1}, [-\epsilon b^k]_{+} - e_k, e_{k+1},
 	\dots, e_N)$. We then define
 \begin{equation}\label{eq:def_mutation_q}
-	\mu_k(\bbq) = \bbq' = \prescript{E_{\epsilon}^T}{}{}\bbq^{E_\epsilon}.
+	\mu_k(\bbq) \defeq \bbq' = \prescript{E_{\epsilon}^T}{}{}\bbq^{E_\epsilon}.
 \end{equation}
 %
 The choice of the sign $\epsilon = \pm 1$ corresponds precisely to choosing the first
@@ -321,13 +335,17 @@ This new element $Y^{(e_i + e_j)}$ represents the order-independent product of $
 and $Y_j$. This leads to the \emph{based quantum torus}\index{torus!based quantum}
 $\mcT_{\bbr^{\cdot 2}}$ which has a $\bbK$-basis consisting of elements
 \begin{equation*}
-	Y^{(f)} \coloneq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{f_1}\dots Y_N^{f_N}
+	Y^{(f)} \defeq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{f_1}\dots Y_N^{f_N}
 	\text{ for } f = (f_1, \dots, f_n)^T \in \bbZ^N,
 \end{equation*}
+\index{Y f@$Y^{(f)}$}
+%
 where
 \begin{equation*}
-	\mcS_{\mathbf{r}}(f) \coloneq \prod_{i < j}r_{ij}^{-f_if_j}.
+	\mcS_{\mathbf{r}}(f) \defeq \prod_{i < j}r_{ij}^{-f_if_j}.
 \end{equation*}
+\index{S r@$\mcS_\bbr(f)$}
+%
 Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 \begin{align*}
 	Y^{(e_k)}
@@ -443,14 +461,14 @@ compatible pairs. That this works is ensured by the following proposition.
 Let $\binv \subseteq [1, N]\setminus \ex$ be some subset. This set will determine which
 of the frozen variables will also be inverted in the cluster algebra. We then define
 the \emph{quantum cluster algebra}\index{algebra!quantum cluster} $\mcA(M, \tB,
-	\binv)_\bbK$ completely analogously to the classical setting. Namely, it is the
-$\bbK$-subalgebra of $\mcF$ generated by all the cluster variables $M'(e_j), \, j \in
-	[1, N]$ and the inverses $M'(e_l)\inv, \, l \in \binv$ for all the quantum seeds $(M',
-	\tB')$ mutation-equivalent to $(M, \tB)$.
+	\binv)_\bbK$\index{A M B inv@$\mcA(M, \tB, \binv)_\bbK$} completely analogously to the
+classical setting. Namely, it is the $\bbK$-subalgebra of $\mcF$ generated by all the
+cluster variables $M'(e_j), \, j \in [1, N]$ and the inverses $M'(e_l)\inv, \, l \in
+	\binv$ for all the quantum seeds $(M', \tB')$ mutation-equivalent to $(M, \tB)$.
 
 Write
 \begin{equation*}
-	\mcT\mcA_{(M, \tB)} = \bbK\langle M(e_l)^{\pm 1}, M(e_j) \mid l \in \ex \sqcup \binv,\, j \in [1, N] \setminus (\ex \sqcup \binv)\rangle.
+	\mcT\mcA_{(M, \tB)} \defeq \bbK\langle M(e_l)^{\pm 1}, M(e_j) \mid l \in \ex \sqcup \binv,\, j \in [1, N] \setminus (\ex \sqcup \binv)\rangle.
 \end{equation*}
 %
 We note two special cases. If $\ex \sqcup \binv = \emptyset$, then $\mcT\mcA_{(M, \tB)}
@@ -459,8 +477,9 @@ $\mcT\mcA_{(M, \tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the notation. Th
 \emph{upper quantum cluster algebra}\index{algebra!upper quantum cluster} $\mcU(M, \tB,
 	\binv)_\bbK$ is then defined as the intersection
 \begin{equation*}
-	\mcU(M, \tB, \binv) = \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
+	\mcU(M, \tB, \binv) \defeq \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
 \end{equation*}
+\index{U M B inv@$\mcU(M, \tB, \binv)_\bbK$}
 %
 where the intersection runs over all quantum seeds $(M', \tB')$ mutation-equivalent to
 the initial seed $(M, \tB)$. We now have the following generalization of the Laurent
@@ -479,11 +498,11 @@ We finish this section by looking at rank 2 quantum cluster algebras. Fix a fiel
 $\bbK$. There is really only one possible choice for the matrices $\bbr, \bbq \in
 	M_2(\bbK^\times)$. Namely,
 \begin{equation*}
-	\bbr = \begin{pmatrix}
+	\bbr \defeq \begin{pmatrix}
 		1 & q\inv \\
 		q & 1
 	\end{pmatrix}, \quad
-	\bbq = \begin{pmatrix}
+	\bbq \defeq \begin{pmatrix}
 		1   & q^{-2} \\
 		q^2 & 1
 	\end{pmatrix},
@@ -501,7 +520,7 @@ The elements $Y_1$ and $Y_2$ satisfy
 \end{equation*}
 To construct a quantum seed we take $m,n \in \bbZ_{> 0}$ and
 \begin{equation*}
-	\tB = B = \begin{pmatrix}
+	\tB \defeq B = \begin{pmatrix}
 		0 & -m \\
 		n & 0
 	\end{pmatrix}.
@@ -522,9 +541,9 @@ by $M(f) = Y^{(f)}$. Then the pair $(M, \tB)$ defines a quantum seed.
 We will now look at mutations of this quantum seed. Mutating in direction 1 gives
 \begin{align*}
 	\mu_1(M)(e_1) = M_1(e_1)
-	 & = M(-e_1 + n e_2) + M(-e_1)        \\
-	 & = q^{-n}Y_1^{-1}Y_2^n + Y_1\inv    \\
-	 & = Y_1\inv (1 + q^{-n}Y_2^n) = Y_3,
+	 & = M(-e_1 + n e_2) + M(-e_1)             \\
+	 & = q^{-n}Y_1^{-1}Y_2^n + Y_1\inv         \\
+	 & = Y_1\inv (1 + q^{-n}Y_2^n) \defeq Y_3,
 \end{align*}
 and
 \begin{equation*}
@@ -556,10 +575,10 @@ We now consider the chain of mutations $\mu_2 \circ \mu_1$. On the one hand,
 and on the other hand
 \begin{align*}
 	M_{12}(e_2)
-	 & = M_1(-e_2 + m e_1) + M_1(-e_2)                          \\
-	 & = q^{m}Y_3^m Y_2\inv + Y_2\inv                           \\
-	 & = (1 + q^m Y_3^m) Y_2\inv                                \\
-	 & = (1 + q^m (Y_1 \inv (1 + q^{-n}Y_2^n))^m)Y_2\inv = Y_4.
+	 & = M_1(-e_2 + m e_1) + M_1(-e_2)                               \\
+	 & = q^{m}Y_3^m Y_2\inv + Y_2\inv                                \\
+	 & = (1 + q^m Y_3^m) Y_2\inv                                     \\
+	 & = (1 + q^m (Y_1 \inv (1 + q^{-n}Y_2^n))^m)Y_2\inv \defeq Y_4.
 \end{align*}
 %
 For the matrix $\tB$, we have $\mu_2 (\mu_1(\tB)) = \tB_{12} = \tB$. Note that the
@@ -579,7 +598,7 @@ and
 We continue the chain of mutations alternating between 1 and 2.
 \begin{align*}
 	Y_5
-	 & = Y_3\inv (1 + q\inv Y_4)                                                  \\
+	 & \defeq Y_3\inv (1 + q\inv Y_4)                                             \\
 	 & = (1 + q\inv Y_2)\inv Y_1 (1 + q\inv Y_1\inv( Y_1 + q + Y_2)Y_2\inv)       \\
 	 & = (1 + q\inv Y_2)\inv  (Y_1 + q\inv ( Y_1 + q + Y_2)Y_2\inv)               \\
 	 & = (1 + q\inv Y_2)\inv  (Y_1 Y_2 + q\inv Y_1 + 1 + q\inv Y_2)Y_2\inv        \\
@@ -592,7 +611,7 @@ Just like in the classical setting, we have a dramatic simplification! Continuin
 we find
 \begin{align*}
 	Y_6
-	 & = (1 + q Y_5)Y_4 \inv                                      \\
+	 & \defeq (1 + q Y_5)Y_4 \inv                                 \\
 	 & = (1 + q(q\inv Y_1 + 1)Y_2\inv)Y_2 (Y_1 + q + Y_2)\inv Y_1 \\
 	 & = (Y_2 +  Y_1 + q)Y_2\inv Y_2 (Y_1 + q + Y_2)\inv Y_1      \\
 	 & = Y_1,
@@ -600,7 +619,7 @@ we find
 %
 and
 \begin{align*}
-	Y_7 & = Y_5\inv (1 + q\inv Y_6)                 \\
+	Y_7 & \defeq Y_5\inv (1 + q\inv Y_6)            \\
 	    & = Y_2 (1 + q\inv Y_1)\inv (1 + q\inv Y_1) \\
 	    & = Y_2.
 \end{align*}
