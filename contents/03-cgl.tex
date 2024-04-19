@@ -189,7 +189,7 @@ to the following definition:
 	\begin{equation*}
 		R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots [x_N; \sigma_N, \delta_N]
 	\end{equation*}
-	\index{sigma k@$\sigma_k$}\index{delta k@$\delta_k$}
+	\index{sigma k@$\sigma_k$}\index{delta k@$\delta_k$}%
 	%
 	is called a \emph{CGL\footnote{CGL extensions are named after G. Cauchon, K. Goodearl
 			and E. Letzter.} extension}\index{CGL extension} if it is equipped with a rational
@@ -563,13 +563,13 @@ where we take $p^0 = s^0 \defeq \id$. Define
 \begin{equation*}
 	\overline{e}_k \defeq \sum_{m=0}^{O_{-}(k)} e_{p^m(k)} \in \bbZ^N,
 \end{equation*}
-\index{e k@$\oe_k$}
+\index{e k@$\oe_k$}%
 %
 for $k \in [1, N]$. Then, for $j,k \in [1, N]$, set
 \begin{equation*}
 	\alpha_{kj} \defeq \Omega_{\bbl}(e_k, \overline{e}_j) = \prod_{m=0}^{O_{-}(j)}\lambda_{k, p^m(j)} \in \bbK^\times
 \end{equation*}
-\index{alpha kj@$\alpha_{kj}$}
+\index{alpha kj@$\alpha_{kj}$}%
 and
 \begin{equation}\label{eq:q_from_lambda}
 	q_{kj} \defeq \Omega_{\bbl}(\overline{e}_k, \overline{e}_j) = \prod_{m=0}^{O_{-}(k)}\prod_{l=0}^{O_{-}(j)}\lambda_{p^m(k),p^l(j)} = \prod_{m=0}^{O_{-}(k)}\alpha_{p^m (k),j} \in \bbK^\times,
@@ -1202,7 +1202,7 @@ the symmetric group $S_N$:
 \begin{equation*}
 	\Xi_N \defeq \{\tau \in S_N \mid \tau(k) = \max (\tau ([1, k-1])) + 1 \text{ or } \tau(k) = \min (\tau ([1, k-1])) - 1, \forall k \in [2, N]\}.
 \end{equation*}
-\index{Xi N@$\Xi_N$}
+\index{Xi N@$\Xi_N$}%
 %
 Each $\tau \in \Xi_N$ gives rise to a CGL presentation (cf. \cite[Proposition
 	3.14]{GoodearlYakimov2017QCA}):
@@ -1976,7 +1976,7 @@ $s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
 \begin{equation*}
 	e_{[i, s^m(i)]} \defeq e_i + e_{s(i)} + \cdots + e_{s^m(i)}.
 \end{equation*}
-\index{e i smi@$e_{[i, s^m(i)]}$}
+\index{e i smi@$e_{[i, s^m(i)]}$}%
 
 In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, N]$. By convention
 $y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. Applying
@@ -2601,7 +2601,7 @@ and $k \leq j_k \leq \cdots \leq j_1 \leq N$, define
 \begin{equation*}
 	\tau_{(j_k, \dots, j_1)} \defeq (k,k+1, \cdots, j_k)\cdots (2,3, \cdots, j_2)(1,2,\cdots, j_1)\in S_N,
 \end{equation*}
-\index{tau jk j one@$\tau_{(j_k, \dots, j_1)}$}
+\index{tau jk j one@$\tau_{(j_k, \dots, j_1)}$}%
 %
 where the right-hand side is a composition of cycles.
 \begin{lemma}
@@ -2937,7 +2937,7 @@ define the following elements of $\Xi_N$:
 \begin{equation*}
 	\tau_{i,j} \defeq [i+1, i+2, \dots, j, i ,j+1, j+2, \dots, N, i-1,i-2, \dots, 1] \in \Xi_N.
 \end{equation*}
-\index{tau i j@$\tau_{i,j}$}
+\index{tau i j@$\tau_{i,j}$}%
 %
 We have $\tau_{1,1} = \id$,
 \begin{equation*}
@@ -3181,7 +3181,7 @@ Write $t = s^m(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
 \begin{equation*}
 	O_{-}^j(k) \defeq \max \{n \in \bbZ_{\geq 0} \mid p^n(k) \geq j\},
 \end{equation*}
-\index{O j minus k@$O_{-}^j(k)$}
+\index{O j minus k@$O_{-}^j(k)$}%
 %
 and then define, for $k \in [i, s^m(i)]$,
 \begin{equation*}
@@ -3205,7 +3205,7 @@ such that
 		\oy_{[i, s^m(i)]},             & if $k = s^m(i)$.
 	\end{dcases*}
 \end{equation*}
-\index{M i smi@$M_{[i, s^m(i)]}$}
+\index{M i smi@$M_{[i, s^m(i)]}$}%
 
 Finally, \cref{prop:def_u_brackets} implies that
 \begin{equation*}
@@ -3237,7 +3237,7 @@ Write, for $g = g_1e_1 + \dots g_N e_N \in \bbZ^N$,
 \begin{equation*}
 	\supp(g) \defeq \{j \in [1, N] \mid g_j \neq 0\}.
 \end{equation*}
-\index{supp g@$\supp(g)$}
+\index{supp g@$\supp(g)$}%
 We can now finally prove mutation between adjacent presentations.
 
 \begin{proposition}\label{prop:mutation_adjacent_permutations}
@@ -4074,7 +4074,7 @@ set in $R$. Now, take $I \subseteq [1, N]$ and define
 \begin{equation*}
 	E_I \defeq \bbK^\times \prod_{j \in I}\{y_j^m \mid m \in \bbZ_{\geq 0}\}.
 \end{equation*}
-\index{E I@$E_I$}
+\index{E I@$E_I$}%
 %
 By \cref{eq:y_quasi_commute}, it is a multiplicative set. It is also an Ore set by a
 similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if $e \in
