@@ -2,300 +2,317 @@
 Mostly use \cite{FominWilliams2021IntroductionCA_1-3} as reference together with
 Geoffrey's notes.
 
-\section{Combinatorial integer sequences}
+\section{Combinatorial integer sequences}\label{sec:integer_sequences}
 
 In this section we will look at some integer sequences coming from number theory or
 combinatorial data, and observe some interesting patterns. In the next section we will
 see how these can all be viewed as special instances of a much more general framework.
 
+\textbf{TODO: add positivity to examples}
+
+\medskip
+
 Let us start with the simplest of the sequences.
-\begin{definition}
+\begin{example}
+
 	Let $a_n$ be the sequence defined through the recursion relation
 	\begin{equation}
 		\label{eq:somos_4}
 		a_{n+4} = \frac{a_{n+3}a_{n+1}+ a_{n+2}^2}{a_n}
 	\end{equation}
-	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the \emph{Somos-4}\index{Somos-4 sequence} sequence, named after its inventor, Michael Somos.
-\end{definition}
-Computing the first few terms of the sequence, we find:
-\begin{align*}
-	a_4    & = \frac{1 \cdot 1 + 1^2}{1} = 2                                           \\
-	a_5    & = \frac{2 \cdot 1 + 1^2}{1} = 3                                           \\
-	a_6    & = \frac{3 \cdot 1 + 2^2}{1} = 7                                           \\
-	a_7    & = \frac{7 \cdot 2 + 3^2}{2} = 23                                          \\
-	a_8    & = \frac{23 \cdot 3 + 7^2}{2} = \frac{118}{2} = 59                         \\
-	a_9    & = \frac{59 \cdot 7 + 23^2}{3} = \frac{942}{3} = 314                       \\
-	a_{10} & = \frac{314 \cdot 23 + 59^2}{7} = \frac{10703}{7} = 1529                  \\
-	a_{11} & = \frac{1529 \cdot 59 + 314^2}{23} = \frac{188807}{23} = 8209             \\
-	a_{12} & = \frac{8209 \cdot 314 + 1529^2}{59} = \frac{4915467}{59} = 83313         \\
-	a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
-\end{align*}
-From the definition of the sequence, there is no reason, a priori, to assume that all its elements would be integers. However, somewhat remarkably, the denominators seem to always cancel out perfectly. In the next section we will prove that all the terms in the sequence are indeed integers,
-as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}.
+	%
+	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the
+	\emph{Somos-4}\index{Somos-4 sequence} sequence, named after its inventor, Michael
+	Somos. Computing the first few terms of the sequence, we find:
+	\begin{align*}
+		 & \begin{aligned}
+			   a_4 & = \frac{1 \cdot 1 + 1^2}{1} = 2                   \\
+			   a_5 & = \frac{2 \cdot 1 + 1^2}{1} = 3                   \\
+			   a_6 & = \frac{3 \cdot 1 + 2^2}{1} = 7                   \\
+			   a_7 & = \frac{7 \cdot 2 + 3^2}{2} = 23                  \\
+			   a_8 & = \frac{23 \cdot 3 + 7^2}{2} = \frac{118}{2} = 59 \\
+		   \end{aligned}
+		 &
+		\begin{aligned}
+			a_9    & = \frac{59 \cdot 7 + 23^2}{3} = \frac{942}{3} = 314                       \\
+			a_{10} & = \frac{314 \cdot 23 + 59^2}{7} = \frac{10703}{7} = 1529                  \\
+			a_{11} & = \frac{1529 \cdot 59 + 314^2}{23} = \frac{188807}{23} = 8209             \\
+			a_{12} & = \frac{8209 \cdot 314 + 1529^2}{59} = \frac{4915467}{59} = 83313         \\
+			a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
+		\end{aligned}
+	\end{align*}
+	%
+	From the definition of the sequence, there is no reason, a priori, to assume that all
+	its elements would be integers. However, somewhat remarkably, the denominators seem to
+	always cancel out perfectly. In the next section we will prove that all the terms in
+	the sequence are indeed integers, as a corollary of the \emph{Laurent
+		phenomenon}\index{Laurent!-phenomenon}.
+\end{example}
 
-The next family of integer sequences comes from \emph{$\SL_2(\bbZ)$-frieze
-	patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
-	to a horizontal strip, often found just below the roofline, which is decorated with
-	patterns.}\index{frieze pattern}. The idea of a frieze pattern is best explained
-through an example (\cite{Coxeter1971FriezePatterns}). Take for example the following
-pattern:
-\begin{equation*}
-	\dots\quad
-	\begin{tikzcd}[
-			sep = 0.2em, cramped,
-		]
-		&0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0\\
-		1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
-		&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
-		3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
-		&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
-		4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
-		&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
-		0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0
-	\end{tikzcd}
-	\quad
-	\dots
-\end{equation*}
-The defining property is that the $2 \times 2$ diamonds
-\begin{equation*}
-	\begin{matrix}
-		  & b &   \\
-		a &   & d \\
-		  & c &
-	\end{matrix}
-\end{equation*}
-formed by adjacent elements, can be seen as an element of $\SL_2 (\bbZ)$, i.e., $ad - bc = 1$. Other than the bounding rows of ones and zeros, there is no additional requirement. In what follows we will omit the irrelevant row of zeros. One could ask if it is always possible to construct such a pattern for any number of rows. If so, one might be interested in knowing how many such patterns there are. Furthermore, one might notice that the pattern is periodic, repeating every 7 columns. In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes a translation and reflection.
-\begin{equation*}
-	\dots\quad
-	\begin{tikzcd}[
-			sep = 0.2em, cramped,
-			execute at end picture = {
-					\draw[blue, dashed, rounded corners]
-					($(\tikzcdmatrixname-1-1.north west) + (-0.3, 0.05)$) -- ($(\tikzcdmatrixname-1-11.north east)+ (0.3, 0.05)$)--($(\tikzcdmatrixname-6-6.south) + (0,-0.05)$) -- cycle;
-					\draw[red, dashed, rounded corners]
-					($(\tikzcdmatrixname-6-8.south west) + (-0.3, -0.05)$) -- ($(\tikzcdmatrixname-6-18.south east)+ (0.3, -0.05)$)--($(\tikzcdmatrixname-1-13.north) + (0,0.05)$) -- cycle;
-				}
-		]
-		1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
-		&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
-		3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
-		&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
-		4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
-		&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
-	\end{tikzcd}
-	\quad
-	\dots
-\end{equation*}
+\begin{example}\label{exmp:frieze_patterns}
 
-To make such a pattern, we start with the observation that the rest of the pattern is
-completely determined by a lattice path from top to bottom. Indeed, using the
-$\SL_2(\bbZ)$ rule, one can fill in the rest of the pattern. For example, say we
-started with the following partially filled in pattern:
-\begin{equation*}
-	\dots\quad
-	\begin{tikzcd}[
-			sep = 0.2em, cramped,
-		]
-		1&&1&&1&&1&&1&&1&&1\\
-		&a\\
-		b\\
-		&1&&1&&1&&1&&1&&1\\
-	\end{tikzcd}
-	\quad
-	\dots
-\end{equation*}
-then we could fill out the rest as follows
-\begin{equation*}
-	\dots\quad
-	\begin{tikzcd}[
-			sep = 0.2em, cramped,
-		]
-		1&&1&&1&&1&&1&&1&&1\\
-		&a&& \frac{1+a+b}{ab} && b && \frac{1+a}{b} && \frac{1+b}{a} && a\\
-		b&& \frac{1+a}{b} &&  \frac{1+b}{a} && a && \frac{1+a+b}{ab} && b\\
-		&1&&1&&1&&1&&1&&1\\
-	\end{tikzcd}
-	\quad
-	\dots
-\end{equation*}
-Since all the denominators are monomials in $a$ and $b$, it follows that when $a = b = 1$, all the
-elements will be integers, as required.
-
-It seems that we somehow got lucky in this case. There is again, a priori, no reason to
-assume that for any number of rows, we will always be able to choose the initial
-integers such that all the fractions simplify. The fact that this is possible, follows
-again from the ``Laurent phenomenon''\index{Laurent!-phenomenon}, on which we can now
-shed a bit more light. Let $a_1, a_2, \dots, a_n$ be the initial integers chosen on the
-lattice path. Then, in this context, the Laurent phenomenon states that all the other
-elements of the frieze pattern can be written as Laurent
-polynomials\index{Laurent!-polynomial} in $a_1 , \dots, a_n$ with coefficients in
-$\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice path
-from top to bottom consisting of only ones, will yield a frieze pattern. This already
-proves the existence of such frieze patterns for any number of rows. We will return to
-the other questions in the next section.
-
-Let us now look at a final example, coming from triangulations of $n$-gons. We first
-recall the following theorem from Euclidean geometry.
-\begin{theorem}[Ptolomy's Theorem]
-	Let $A,B,C,D$ be distinct points on a circle, in cyclic order (\cref{fig:ptolomy}).
-	These determine vertices of a quadrilateral, where the side, and diagonal lengths
-	satisfy the following rule:
+	The next family of integer sequences comes from \emph{$\SL_2(\bbZ)$-frieze
+		patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
+		to a horizontal strip, often found just below the roofline, which is decorated with
+		patterns.}\index{frieze pattern}\index{SL 2 Z@$\SL_2(\bbZ)$}. The idea of a frieze
+	pattern is best explained through an example (\cite{Coxeter1971FriezePatterns}). Take
+	for example the following pattern:
 	\begin{equation*}
-		|AC| \cdot |BD| = |AB|\cdot |CD| + |AD| \cdot |BC|.
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+			]
+			&0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0\\
+			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
+			3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
+			&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+			4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0
+		\end{tikzcd}
+		\quad
+		\dots
 	\end{equation*}
-\end{theorem}
+	The defining property is that the $2 \times 2$ diamonds
+	\begin{equation*}
+		\begin{matrix}
+			  & b &   \\
+			a &   & d \\
+			  & c &
+		\end{matrix}
+	\end{equation*}
+	formed by adjacent elements, can be seen as an element of $\SL_2 (\bbZ)$, i.e., $ad - bc = 1$. Other than the bounding rows of ones and zeros, there is no additional requirement. In what follows we will omit the irrelevant row of zeros. One could ask if it is always possible to construct such a pattern for any number of rows. If so, one might be interested in knowing how many such patterns there are. Furthermore, one might notice that the pattern is periodic, repeating every 7 columns. In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes a translation and reflection.
+	\begin{equation*}
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+				execute at end picture = {
+						\draw[blue, dashed, rounded corners]
+						($(\tikzcdmatrixname-1-1.north west) + (-0.3, 0.05)$) -- ($(\tikzcdmatrixname-1-11.north east)+ (0.3, 0.05)$)--($(\tikzcdmatrixname-6-6.south) + (0,-0.05)$) -- cycle;
+						\draw[red, dashed, rounded corners]
+						($(\tikzcdmatrixname-6-8.south west) + (-0.3, -0.05)$) -- ($(\tikzcdmatrixname-6-18.south east)+ (0.3, -0.05)$)--($(\tikzcdmatrixname-1-13.north) + (0,0.05)$) -- cycle;
+					}
+			]
+			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
+			3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
+			&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+			3&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+		\end{tikzcd}
+		\quad
+		\dots
+	\end{equation*}
 
-\begin{figure}
-	\centering
+	To make such a pattern, we start with the observation that the rest of the pattern is
+	completely determined by a lattice path from top to bottom. Indeed, using the
+	$\SL_2(\bbZ)$ rule, one can fill in the rest of the pattern. For example, say we
+	started with the following partially filled in pattern:
+	\begin{equation*}
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+			]
+			1&&1&&1&&1&&1&&1&&1\\
+			&a\\
+			b\\
+			&1&&1&&1&&1&&1&&1\\
+		\end{tikzcd}
+		\quad
+		\dots
+	\end{equation*}
+	then we could fill out the rest as follows
+	\begin{equation*}
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+			]
+			1&&1&&1&&1&&1&&1&&1\\
+			&a&& \frac{1+a+b}{ab} && b && \frac{1+a}{b} && \frac{1+b}{a} && a\\
+			b&& \frac{1+a}{b} &&  \frac{1+b}{a} && a && \frac{1+a+b}{ab} && b\\
+			&1&&1&&1&&1&&1&&1\\
+		\end{tikzcd}
+		\quad
+		\dots
+	\end{equation*}
+	Since all the denominators are monomials in $a$ and $b$, it follows that when $a = b = 1$, all the
+	elements will be integers, as required.
 
-	\begin{tikzpicture}
-		\coordinate (center) at (0,0);
-		\def\radius{2.5cm}
-		\draw (center) circle[radius=\radius];
+	It seems that we somehow got lucky in this case. There is again, a priori, no reason to
+	assume that for any number of rows, we will always be able to choose the initial
+	integers such that all the fractions simplify. The fact that this is possible, follows
+	again from the ``Laurent phenomenon''\index{Laurent!-phenomenon}, on which we can now
+	shed a bit more light. Let $a_1, a_2, \dots, a_n$ be the initial integers chosen on the
+	lattice path. Then, in this context, the Laurent phenomenon states that all the other
+	elements of the frieze pattern can be written as Laurent
+	polynomials\index{Laurent!-polynomial} in $a_1 , \dots, a_n$ with coefficients in
+	$\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice path
+	from top to bottom consisting of only ones, will yield a frieze pattern. This already
+	proves the existence of such frieze patterns for any number of rows. We will return to
+	the other questions in the next section.
+\end{example}
 
-		% points on the circle
-		\path (center) ++(-120:\radius) coordinate (A);
-		\path (center) ++(-30:\radius) coordinate (B);
-		\path (center) ++(40:\radius) coordinate (C);
-		\path (center) ++(150:\radius) coordinate (D);
+\begin{example}
 
-		\begin{scriptsize}
-			% Chords
-			\draw[color=red, line width=1pt] (A) -- node[left] {$AD$} (D);
-			\draw[color=red, line width=1pt] (B) -- node[left] {$BC$} (C);
-			\draw[color=blue, line width=1pt] (A) -- node[above] {$AB$} (B);
-			\draw[color=blue, line width=1pt] (D) -- node[above] {$DC$} (C);
-			\draw[color=violet, line width=1pt] (A) -- node[above=8pt, near start] {$AC$} (C);
-			\draw[color=violet, line width=1pt] (D) -- node[above=2pt, near start] {$BD$} (B);
+	Let us now look at a final example, coming from triangulations of $n$-gons. We first
+	recall the following theorem from Euclidean geometry.
+	\begin{theorem}[Ptolomy's Theorem]
+		Let $A,B,C,D$ be distinct points on a circle, in cyclic order (\cref{fig:ptolomy}).
+		These determine vertices of a quadrilateral, where the side, and diagonal lengths
+		satisfy the following rule:
+		\begin{equation*}
+			|AC| \cdot |BD| = |AB|\cdot |CD| + |AD| \cdot |BC|.
+		\end{equation*}
+	\end{theorem}
 
-			% Draw the points over the chords
-			\fill[black] (A) circle[radius=2pt] ++(-120:1em) node {$A$};
-			\fill[black] (B) circle[radius=2pt] ++(-30:1em) node {$B$};
-			\fill[black] (C) circle[radius=2pt] ++(40:1em) node {$C$};
-			\fill[black] (D) circle[radius=2pt] ++(150:1em) node {$D$};
+	\begin{figure}
+		\centering
 
-		\end{scriptsize}
-	\end{tikzpicture}
-	\caption{Ptolomy's theorem:
-	${\color{violet} |AC| \cdot |BD|}
-		= {\color{red} |AD|\cdot |BC|} + {\color{blue} |AB| \cdot |CD|}$.}
-	\label{fig:ptolomy}
-\end{figure}
+		\begin{tikzpicture}
+			\coordinate (center) at (0,0);
+			\def\radius{2.5cm}
+			\draw (center) circle[radius=\radius];
 
-This rule allows to compute the length of one of the diagonals in terms of the other,
-given the side lengths. We will now apply this to triangulations of polygons.
+			% points on the circle
+			\path (center) ++(-120:\radius) coordinate (A);
+			\path (center) ++(-30:\radius) coordinate (B);
+			\path (center) ++(40:\radius) coordinate (C);
+			\path (center) ++(150:\radius) coordinate (D);
 
-Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
-connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
-$n$, we obtain a polygon with $n$-sides. A triangulation\index{triangulations!of
-	polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
-partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
-detail in a later section, and will therefore keep things brief here. For now, it is
-enough to understand things visually (cf. \cref{fig:triangulations}).
+			\begin{scriptsize}
+				% Chords
+				\draw[color=red, line width=1pt] (A) -- node[left] {$AD$} (D);
+				\draw[color=red, line width=1pt] (B) -- node[left] {$BC$} (C);
+				\draw[color=blue, line width=1pt] (A) -- node[above] {$AB$} (B);
+				\draw[color=blue, line width=1pt] (D) -- node[above] {$DC$} (C);
+				\draw[color=violet, line width=1pt] (A) -- node[above=8pt, near start] {$AC$} (C);
+				\draw[color=violet, line width=1pt] (D) -- node[above=2pt, near start] {$BD$} (B);
 
-\begin{figure}
-	\centering
+				% Draw the points over the chords
+				\fill[black] (A) circle[radius=2pt] ++(-120:1em) node {$A$};
+				\fill[black] (B) circle[radius=2pt] ++(-30:1em) node {$B$};
+				\fill[black] (C) circle[radius=2pt] ++(40:1em) node {$C$};
+				\fill[black] (D) circle[radius=2pt] ++(150:1em) node {$D$};
 
-	\begin{tikzpicture}
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
-		\draw[] (h.corner 1) -- (h.corner 3);
-		\draw[] (h.corner 1) -- (h.corner 4);
-		\draw[] (h.corner 1) -- (h.corner 5);
-	\end{tikzpicture}
-	\begin{tikzpicture}
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
-		\draw[] (h.corner 2) -- (h.corner 5);
-		\draw[] (h.corner 2) -- (h.corner 4);
-		\draw[] (h.corner 1) -- (h.corner 5);
-	\end{tikzpicture}
-	\begin{tikzpicture}
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
-		\draw[] (h.corner 1) -- (h.corner 3);
-		\draw[] (h.corner 3) -- (h.corner 5);
-		\draw[] (h.corner 1) -- (h.corner 5);
-	\end{tikzpicture}
+			\end{scriptsize}
+		\end{tikzpicture}
+		\caption{Ptolomy's theorem:
+		${\color{violet} |AC| \cdot |BD|}
+			= {\color{red} |AD|\cdot |BC|} + {\color{blue} |AB| \cdot |CD|}$.}
+		\label{fig:ptolomy}
+	\end{figure}
 
-	\caption{Some triangulations of a hexagon.}
-	\label{fig:triangulations}
-\end{figure}
+	This rule allows to compute the length of one of the diagonals in terms of the other,
+	given the side lengths. We will now apply this to triangulations of polygons.
 
-Starting from a triangulation, $T$, we obtain a new triangulation, $T'$, by
-``flipping'' a diagonal. Any diagonal in a triangulation lies on precisely 2 triangles.
-These two triangles form a quadrilateral. To flip the diagonal, you replace it with the
-other diagonal of that quadrilateral. Again, this is most easily seen visually:
-\begin{equation*}
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
-		\draw[] (h.corner 1) -- (h.corner 3);
-		\draw[dashed] (h.corner 1) -- (h.corner 4);
-		\draw[] (h.corner 1) -- (h.corner 5);
-	\end{tikzpicture}
-	\quad \leadsto \quad
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
-		\draw[] (h.corner 1) -- (h.corner 3);
-		\draw[dashed] (h.corner 3) -- (h.corner 5);
-		\draw[] (h.corner 1) -- (h.corner 5);
-	\end{tikzpicture}
-\end{equation*}
-%
-Now, using Ptolomy's theorem, the length of the new diagonal can be computed given that
-we knew the lengths of all the edges in the previous triangulation. We now ignore
-Euclidean geometry, and just use Ptolomy's theorem as a recurrence relation to
-construct a collection of numbers as follows: Pick a triangulation and set all the edge
-lengths equal to one. Then at each step, choose a diagonal in the triangulation and
-flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
-the collection. For example, we could obtain a sequence starting like this (we omit the
-ones on the sides):
-\begin{equation*}
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 4);
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
-	\end{tikzpicture}
-	\leadsto
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
-		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
-	\end{tikzpicture}
-	\leadsto
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
-		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
-		\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
-	\end{tikzpicture}
-	\leadsto
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
-		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
-		\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
-	\end{tikzpicture}
-	\leadsto
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
-		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
-		\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
-	\end{tikzpicture}
-	\leadsto
-	\begin{tikzpicture}[baseline]
-		\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
-		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
-		\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
-		\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {1} (h.corner 1);
-	\end{tikzpicture}
-	\leadsto \cdots
-\end{equation*}
-%
-Once again, we observe that we only obtain integers. Furthermore, there seems to be a
-limit to which integers we can obtain this way. This hints at a hidden periodicity. The
-Laurent phenomenon offers an explanation for why we only obtain integers: the lengths
-of the diagonals are Laurent polynomials in the originally chosen lengths.
+	Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
+	connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
+	$n$, we obtain a polygon with $n$-sides. A triangulation\index{triangulations!of
+		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
+	partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
+	detail in a later section, and will therefore keep things brief here. For now, it is
+	enough to understand things visually:
+	\begin{center}
+
+		\begin{tikzpicture}
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\draw[] (h.corner 1) -- (h.corner 3);
+			\draw[] (h.corner 1) -- (h.corner 4);
+			\draw[] (h.corner 1) -- (h.corner 5);
+		\end{tikzpicture}
+		\begin{tikzpicture}
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\draw[] (h.corner 2) -- (h.corner 5);
+			\draw[] (h.corner 2) -- (h.corner 4);
+			\draw[] (h.corner 1) -- (h.corner 5);
+		\end{tikzpicture}
+		\begin{tikzpicture}
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\draw[] (h.corner 1) -- (h.corner 3);
+			\draw[] (h.corner 3) -- (h.corner 5);
+			\draw[] (h.corner 1) -- (h.corner 5);
+		\end{tikzpicture}
+	\end{center}
+
+	Starting from a triangulation, $T$, we obtain a new triangulation, $T'$, by
+	``flipping'' a diagonal. Any diagonal in a triangulation lies on precisely 2 triangles.
+	These two triangles form a quadrilateral. To flip the diagonal, you replace it with the
+	other diagonal of that quadrilateral. Again, this is most easily seen visually:
+	\begin{equation*}
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+			\draw[] (h.corner 1) -- (h.corner 3);
+			\draw[dashed] (h.corner 1) -- (h.corner 4);
+			\draw[] (h.corner 1) -- (h.corner 5);
+		\end{tikzpicture}
+		\quad \leadsto \quad
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+			\draw[] (h.corner 1) -- (h.corner 3);
+			\draw[dashed] (h.corner 3) -- (h.corner 5);
+			\draw[] (h.corner 1) -- (h.corner 5);
+		\end{tikzpicture}
+	\end{equation*}
+	%
+	Now, using Ptolomy's theorem, the length of the new diagonal can be computed given that
+	we knew the lengths of all the edges in the previous triangulation. We now ignore
+	Euclidean geometry, and just use Ptolomy's theorem as a recurrence relation to
+	construct a collection of numbers as follows: Pick a triangulation and set all the edge
+	lengths equal to one. Then at each step, choose a diagonal in the triangulation and
+	flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
+	the collection. For example, we could obtain a sequence starting like this (we omit the
+	ones on the sides):
+	\begin{equation*}
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 4);
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+		\end{tikzpicture}
+		\leadsto
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 3);
+			\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+		\end{tikzpicture}
+		\leadsto
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
+			\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+			\draw[] (h.corner 1) -- node[fill=white, font=\footnotesize] {1} (h.corner 5);
+		\end{tikzpicture}
+		\leadsto
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {3} (h.corner 5);
+			\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+			\draw[dashed] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
+		\end{tikzpicture}
+		\leadsto
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
+			\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+			\draw[] (h.corner 2) -- node[fill=white, font=\footnotesize] {4} (h.corner 6);
+		\end{tikzpicture}
+		\leadsto
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
+			\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {3} (h.corner 6);
+			\draw[] (h.corner 3) -- node[fill=white, font=\footnotesize] {2} (h.corner 5);
+			\draw[dashed] (h.corner 3) -- node[fill=white, font=\footnotesize] {1} (h.corner 1);
+		\end{tikzpicture}
+		\leadsto \cdots
+	\end{equation*}
+	%
+	Once again, we observe that we only obtain integers. Furthermore, there seems to be a
+	limit to which integers we can obtain this way. This hints at a hidden periodicity. The
+	Laurent phenomenon offers an explanation for why we only obtain integers: the lengths
+	of the diagonals are Laurent polynomials in the originally chosen lengths.
+\end{example}
 
 There are many more examples like the three that we just gave. One can look at wiring
 diagrams, generalized Somos sequences, Markov Triples, knight recurrence, the
@@ -306,13 +323,13 @@ refrain from delving deeper into this interesting world. We refer interested rea
 
 \section{Quivers and mutations}
 
-As observed in the previous section, the examples share some common features. The most
-prominent of these was the Laurent phenomenon. There are some more subtle similarities,
-which will become clear in this section. The main role will be played by quivers, and
-their mutations.
+As observed in the previous section, the examples share some common features such as
+the Laurent phenomenon, and positivity. There are some more subtle similarities, which
+will become clear in this section. The main role will be played by quivers, and their
+mutations.
 
 \begin{definition}[Quivers]
-	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:triangulations}).
+	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:quivers}).
 \end{definition}
 
 \begin{figure}
@@ -338,7 +355,7 @@ their mutations.
 
 We will now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
 for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Now, fix an integer
-$N$, and a subset $\ex subset.eq [1, N]$ of size $n$. The elements of $\ex$ will be
+$N$, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$ will be
 called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N]
 	\setminus \ex$ will be called \emph{frozen}\index{frozen}. Finally, let $\mcF = \bbQ
 	(X_1, \dots, X_N)$ be the field of rational functions over $\bbQ$, in $N$ variables.
@@ -363,9 +380,9 @@ Given a seed, we can convert it to another seed through a \emph{seed
 \begin{definition}
 	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$.
 	We define the \emph{mutation in direction $k$} of the seed
-	$(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx) = (Q', \tbx')$, where
+	$(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx) \defeq (Q', \tbx')$, where
 	\begin{enumerate}
-		\item $Q'_0 = Q_0$.
+		\item $Q'_0 \defeq Q_0$.
 		\item For every pair of vertices $i,j$ with $s$ arrows $i \to k$ and $t$ arrows $k \to j$ we
 		      ``collapse'' these arrows into $s\cdot t$ arrows $i \to j$, cancelling pairwise with
 		      any arrows $j \to i$.
@@ -382,13 +399,13 @@ Given a seed, we can convert it to another seed through a \emph{seed
 				      & k \ar[ur, leftarrow, "t"]
 			      \end{tikzcd}
 		      \end{equation*}
-		      Here we take $r$ to be negative, if the arrows actually point the other way.
+		      Here we take $r$ to be negative, if the arrows actually point the other way, as the path $i \to k \to j$.
 		      If $i,j$ are both frozen, then we ignore this step.
-		\item All arrows in $Q$ incident to $k$ get their orientation flipped.
+		\item All arrows in $Q$ starting or ending in $k$ get their orientation flipped.
 		\item $\tbx' = \{x_1', \dots, x_n'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
 		      \begin{equation}\label{eq:exchange_relation_quiver}
-			      x'_k = \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
+			      x'_k \defeq \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
 		      \end{equation}
 		      where we take the product equal to 1 if $\{i \to k\} = \emptyset$ or $\{k \to j\} = \emptyset$.
 	\end{enumerate}
@@ -397,7 +414,7 @@ Given a seed, we can convert it to another seed through a \emph{seed
 Before we give some examples, we prove a small lemma, which will also be useful for the
 examples.
 \begin{lemma}\label{lem:mutation_involution}
-	Seed mutation at a fixed vertex is an involution, i.e., $\mu_k \circ \mu_k = id$.
+	Seed mutation at a fixed vertex is an \emph{involution}\index{involution}, i.e., $\mu_k \circ \mu_k = id$.
 \end{lemma}
 
 \begin{proof}
@@ -410,7 +427,7 @@ examples.
 	arrows incident to $k$. Consequently, the mutation introduces $s \cdot t$ arrows $j \to
 		i$ which cancel out exactly the arrows from the first mutation.
 
-	To see that the cluster variables remain unchanged is a simple calculation:
+	That the cluster variables remain unchanged is a simple calculation:
 	\begin{align*}
 		x_k''
 		 & = \frac{1}{x_k'}\left(\prod_{k \to i}x_i' + \prod_{j \to k} x_j'\right)                                                \\
@@ -441,9 +458,10 @@ We begin with an example to illustrate the mutation of the quiver.
 	%
 	The arrow $1 \to 2$ combined with the arrow $2 \to 4$ introduces one new arrow $1 \to
 		4$ which cancels out the existing arrow $4 \to 1$. The arrow $1 \to 2$ combines with
-	the 2 arrows $2 \to 3$ to create 2 new arrows $1 \to 3$,one of which cancels out with
+	the 2 arrows $2 \to 3$ to create 2 new arrows $1 \to 3$, one of which cancels out with
 	the existing arrow $3 \to 1$. Finally, the arrow $1 \to 2$ combined with the arrow $2
-		\to 5$ yields an arrow $1 \to 5$. The arrows incident to the vertex 6 remain unchanged.
+		\to 5$ yields an arrow $1 \to 5$. The arrows starting or ending in the vertex 6 remain
+	unchanged.
 \end{example}
 
 Let us now look at some examples, where we also keep track of the cluster variables.
@@ -465,11 +483,11 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	\end{equation*}
 	%
 	If we mutate again, we end up with the original seed, as a consequence of
-	\cref{lem:mutation_involution}. It is of course also straightforward to verify
+	\cref{lem:mutation_involution}. It is of course also straightforward to verify it
 	directly.
 \end{example}
-\begin{example}
-	The next simplest example is the $A_2$ quiver:
+\begin{example}\label{exmp:A2_quiver}
+	The next simplest example is the \emph{$A_2$ quiver}\index{quiver!$A_2$}:
 	\begin{equation*}
 		Q = \begin{tikzcd}
 			1 \rar &2
@@ -491,7 +509,7 @@ Let us now look at some examples, where we also keep track of the cluster variab
 		\mu_2(\mu_1(Q)) = \begin{tikzcd}
 			1 \rar & 2
 		\end{tikzcd},
-		\quad  \mu_2(\mu_1(\bx)) = \left\{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_2}\right\}.
+		\quad  \mu_2(\mu_1(\bx)) = \left\{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_1 x_2}\right\}.
 	\end{equation*}
 	%
 	Although we are back at the original quiver, the cluster variables are completely
@@ -526,43 +544,16 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	We have our original seed, except that the arrow in the quiver has been reversed, and
 	that $x_1$ and $x_2$ have swapped places. In other words, after 5 mutations, the roles
 	of 1 and 2 have swapped. It follows that another 5 swaps will give back the original
-	seed. If one takes a close look at the obtained cluster variables, then we see that
-	these correspond exactly to those that we found when trying to construct a frieze
-	pattern with 2 rows. This is no coincidence, and we will come back to this later.
-\end{example}
-\begin{example}
-	In this example, we look at the Markov quiver:
-	\begin{equation*}
-		\begin{tikzcd}[column sep= small]
-			& 1 \ar[ld, shift left] \ar[ld, shift right]\\
-			2 \ar[rr, shift left] \ar[rr, shift right] && 3 \ar[lu, shift left] \ar[lu, shift right]
-		\end{tikzcd},
-	\end{equation*}
-	%
-	which possesses the special property that it remains invariant under mutations at any
-	vertex. Let us see what happens to the cluster variables as we mutate in a cyclic order
-	of the vertices:
-	\begin{align*}
-		\bx            & = \{x, y, z\}                                                                                                                                                                               \\
-		\mu_1(\bx)     & = \left\{\frac{y^2 + z^2}{x}, y, z\right\}                                                                                                                                                  \\
-		\mu_{12}(\bx)  & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y}, z\right\}                                                                                                         \\
-		\mu_{123}(\bx) & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y},\right.                                                                                                            \\
-		               & \left. \frac{x^{4} z^{4} + x^{2} y^{6} + 4 x^{2} y^{4} z^{2} + 5 x^{2} y^{2} z^{4} + 2 x^{2} z^{6} + y^{8} + 4 y^{6} z^{2} + 6 y^{4} z^{4} + 4 y^{2} z^{6} + z^{8}}{x^{4} y^{2} z} \right\}
-	\end{align*}
-	%
-	Mutating again at the first vertex gives the new cluster variable
-	\begin{align*}
-		 & \frac{x^{8} z^{6} + 4 x^{6} y^{4} z^{4} + 8 x^{6} y^{2} z^{6} + 4 x^{6} z^{8} + x^{4} y^{10} + 8 x^{4} y^{8} z^{2} + 24 x^{4} y^{6} z^{4} + 34 x^{4} y^{4} z^{6} + 23 x^{4} y^{2} z^{8}}{x^7y^4z^2} \\&+ \frac{6 x^{4} z^{10} + 2 x^{2} y^{12} + 14 x^{2} y^{10} z^{2} + 40 x^{2} y^{8} z^{4} + 60 x^{2} y^{6} z^{6} + 50 x^{2} y^{4} z^{8} + 22 x^{2} y^{2} z^{10} + 4 x^{2} z^{12}}{x^7 y^4 z^2}\\ &+ \frac{y^{14} + 7 y^{12} z^{2} + 21 y^{10} z^{4} + 35 y^{8} z^{6} + 35 y^{6} z^{8} + 21 y^{4} z^{10} + 7 y^{2} z^{12} + z^{14}}{x^{7} y^{4} z^{2}}.
-	\end{align*}
-	%
-	Because the author doesn't want to spend too much time fiddling with alignment points
-	to get long fractions to fit on a page, we will stop here. Mutating at vertex 2 would
-	yield another fraction with 65 terms (with positive integer coefficients) in the
-	numerator, and the expression $x^{12}y^7z^4$ in the denominator.
+	seed.
+
+	If one takes a close look at the obtained cluster variables, then we see that these
+	correspond exactly to those that we found when trying to construct a frieze pattern
+	with 2 rows (cf. \cref{exmp:frieze_patterns}). This is no coincidence, and we will come
+	back to this later.
 \end{example}
 
 \begin{example}
-	As a last example, we look at the $A_3$ quiver
+	The logical follow-up to the $A_2$ quiver is the \emph{$A_3$ quiver}\index{quiver!$A_3$}
 	\begin{equation*}
 		Q =
 		\begin{tikzcd}
@@ -642,6 +633,44 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	that no mutations introduce new cluster variables.
 \end{example}
 
+\begin{example}\label{exmp:markov_quiver}
+	As a last example, we look at the \emph{Markov quiver}\index{quiver!Markov}:
+	\begin{equation*}
+		\begin{tikzcd}[column sep= small]
+			& 1 \ar[ld, shift left] \ar[ld, shift right]\\
+			2 \ar[rr, shift left] \ar[rr, shift right] && 3 \ar[lu, shift left] \ar[lu, shift right]
+		\end{tikzcd},
+	\end{equation*}
+	%
+	which possesses the special property that it remains invariant under mutations at any
+	vertex (up to a simultaneous flipping of all the arrows). Let us see what happens to
+	the cluster variables as we mutate in a cyclic order of the vertices. Denote for
+	brevity $x \defeq x_1, y \defeq x_2$ and $z \defeq x_3$ for the cluster variables
+	corresponding to the vertices $1,2$ and $3$ respectively.
+	\begin{align*}
+		\bx            & = \{x, y, z\}                                                                                                                                                                               \\
+		\mu_1(\bx)     & = \left\{\frac{y^2 + z^2}{x}, y, z\right\}                                                                                                                                                  \\
+		\mu_{12}(\bx)  & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y}, z\right\}                                                                                                         \\
+		\mu_{123}(\bx) & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y},\right.                                                                                                            \\
+		               & \left. \frac{x^{4} z^{4} + x^{2} y^{6} + 4 x^{2} y^{4} z^{2} + 5 x^{2} y^{2} z^{4} + 2 x^{2} z^{6} + y^{8} + 4 y^{6} z^{2} + 6 y^{4} z^{4} + 4 y^{2} z^{6} + z^{8}}{x^{4} y^{2} z} \right\}
+	\end{align*}
+	%
+	Mutating again at the first vertex gives the new cluster variable
+	\begin{align*}
+		 & \frac{x^{8} z^{6} + 4 x^{6} y^{4} z^{4} + 8 x^{6} y^{2} z^{6} + 4 x^{6} z^{8} + x^{4} y^{10} + 8 x^{4} y^{8} z^{2} + 24 x^{4} y^{6} z^{4} + 34 x^{4} y^{4} z^{6} + 23 x^{4} y^{2} z^{8}}{x^7y^4z^2} \\&+ \frac{6 x^{4} z^{10} + 2 x^{2} y^{12} + 14 x^{2} y^{10} z^{2} + 40 x^{2} y^{8} z^{4} + 60 x^{2} y^{6} z^{6} + 50 x^{2} y^{4} z^{8} + 22 x^{2} y^{2} z^{10} + 4 x^{2} z^{12}}{x^7 y^4 z^2}\\ &+ \frac{y^{14} + 7 y^{12} z^{2} + 21 y^{10} z^{4} + 35 y^{8} z^{6} + 35 y^{6} z^{8} + 21 y^{4} z^{10} + 7 y^{2} z^{12} + z^{14}}{x^{7} y^{4} z^{2}}.
+	\end{align*}
+	%
+	Because the author does not want to spend too much time fiddling with alignment points
+	to get long fractions to fit on a page, we will stop here. Mutating at vertex 2 would
+	yield another fraction with 65 terms (with positive integer coefficients) in the
+	numerator, and the expression $x^{12}y^7z^4$ in the denominator.
+
+	Unlike the previous examples, the cluster variables do not simplify. In fact, one can
+	show, that the number of cluster variables is infinite (cf.
+	\cref{thm:cluster_finite_classification}). This is contrast to the quiver itself, whose
+	only mutation corresponds to a reversal of all the arrows.
+\end{example}
+
 From these examples we can observe a few things:
 \begin{enumerate}
 	\item Even though a sequence of mutations might result in the same quiver, the corresponding
@@ -657,9 +686,9 @@ notion of a \emph{cluster algebra}\index{algebra!cluster}. From
 \cref{lem:mutation_involution} it follows that the process of applying mutations is
 invertible. This means that we get a well-defined notion of
 \emph{mutation-equivalence}\index{mutation!-equivalence} of seeds. Two seeds are
-equivalent if one can be obtained from the other through a sequence of mutations.
-Choose some initial seed $(Q, \tbx)$, and write $\mathbf{c} = \tbx \setminus \bx =
-	\{x_i \in \tbx' \mid i \in \frz\}$.
+\emph{equivalent}\index{seed!equivalent} if one can be obtained from the other through
+a sequence of mutations. Choose some initial seed $(Q, \tbx)$, and write $\mathbf{c}
+	\defeq \tbx \setminus \bx = \{x_i \in \tbx' \mid i \in \frz\}$.
 \begin{definition}
 	The \emph{cluster algebra} $\mcA (Q, \tbx)$ is the subalgebra of $\mcF$ generated by
 	$\mathbf{c}^\pm$ and all cluster variables $\bx'$ for seeds $(Q', \tbx')$
@@ -679,19 +708,18 @@ many cluster variables, we say that the cluster algebra is
 	cluster algebra is of finite type instead of calling it cluster-finite.}.
 
 Mutation-finite cluster algebras need not be cluster-finite. For example, the Markov
-quiver is mutation-finite (the mutation class consists of one element), but has
-infinitely many cluster variables. The inverse implication is true, any cluster-finite
-cluster algebra is automatically also mutation-finite. Indeed, suppose that there are
-finitely many cluster variables, but infinitely many distinct quivers. By the
-pigeonhole principle, there is some cluster which appears in infinitely many seeds.
-Since there are only finitely many variables in the cluster, one of them has to appear
-in an infinite number of exchange rules, but that leads to infinitely many new cluster
-variables.
+quiver (\cref{exmp:markov_quiver}) is mutation-finite but has infinitely many cluster
+variables. The inverse implication is true, any cluster-finite cluster algebra is
+automatically also mutation-finite. Indeed, suppose that there are finitely many
+cluster variables, but infinitely many distinct quivers. By the pigeonhole principle,
+there is some cluster which appears in infinitely many seeds. Since there are only
+finitely many variables in the cluster, one of them has to appear in an infinite number
+of exchange rules, but that leads to infinitely many new cluster variables.
 
 Remarkably, it is possible to classify the cluster- and mutation-finite cluster
 algebras. To state the classification more precisely, the following lemma is useful:
 \begin{lemma}
-	Let $Q$ be an unoriented finite tree. Then any two orientations of $Q$ are mutation-equivalent through mutations at only sources and sinks. Recall that a source is a vertex such that all arrows incident to the vertex point away from the vertex, while a sink is a vertex such that all incident arrows point to the vertex.
+	Let $Q$ be an unoriented finite tree. Then any two orientations of $Q$ are mutation-equivalent through mutations at only sources and sinks. Recall that a \emph{source}\index{source} is a vertex such that all arrows incident to the vertex point away from the vertex, while a \emph{sink}\index{sink} is a vertex such that all incident arrows point to the vertex.
 \end{lemma}
 
 \begin{proof}
@@ -711,18 +739,25 @@ algebras. To state the classification more precisely, the following lemma is use
 \end{proof}
 Some converse of this theorem is also true, but the proof is no longer purely combinatorial, and requires advanced techniques:
 \begin{theorem}[\cite{CalderoKeller2006TriangulatedCat}]
-	Let $Q$ and $Q'$ be two acyclic quivers (without oriented cycles) which are mutation-equivalent. Then $Q$ can be transformed into $Q'$ via a sequence of mutations at sources and sinks.
+
+	Let $Q$ and $Q'$ be two acyclic quivers (without oriented cycles) which are
+	mutation-equivalent. Then $Q$ can be transformed into $Q'$ via a sequence of mutations
+	at sources and sinks. In particular, if an acyclic quiver is mutation-equivalent to an
+	orientation of a tree, then it must be an orientation of the same tree. So, two
+	non-isomorphic trees are never mutation-equivalent to each other.
 \end{theorem}
-This implies in particular that if an acyclic quiver is mutation-equivalent to an
-orientation of a tree, then it must be an orientation of the same tree. So, two
-non-isomorphic trees are never mutation-equivalent to each other.
 
 We will state the classification theorem without proof, since it is interesting, but
 not very relevant for the rest of the thesis. A complete proof can be found in, e.g.,
 \cite{FominZelevinsky2003CAFin} or \cite{FominWilliams2021IntroductionCA_4-5}.
-\begin{theorem}[Fomin--Zelevinsky]
+\begin{theorem}[Fomin--Zelevinsky]\label{thm:cluster_finite_classification}
+
 	A cluster algebra $\mcA (Q, \tbx)$ is cluster-finite if and only if $Q$ is
-	mutation-equivalent to a simply-laced (of type $ADE$) Dynkin diagram\footnote{When matrices are used instead of quivers (see later), then all Dynkin diagrams appear.}. In this case there is a bijective correspondence between the cluster variables and the almost positive roots $\Phi_{\geq -1}$, given by
+	mutation-equivalent to a simply-laced, i.e., of type $ADE$, Dynkin
+	diagram\footnote{When matrices are used instead of quivers (see later), then all Dynkin
+		diagrams appear.}\index{Dynkin diagram}. In this case there is a bijective
+	correspondence between the cluster variables and the almost positive roots $\Phi_{\geq
+			-1}$, given by
 	\begin{equation*}
 		\alpha \leftrightarrow \frac{P_\alpha (\tbx)}{x^\alpha},
 	\end{equation*}
@@ -741,11 +776,12 @@ We can write the positive roots of $A_3$ as $\{\alpha_1, \alpha_2, \alpha_3, \al
 We already saw that cluster-finite cluster algebras are mutation-finite. Beyond those,
 which other cluster algebras are mutation-finite? It turns out that, other than a few
 exceptions, the only other ones are those originating from triangulations of surfaces
-with boundary and punctures (which we will discuss later)
-(\cite{FeliksonShapiroTumarkin2012SkewSCA}). If one considers a more general version of
-cluster algebras, then the classification stays roughly the same
-(\cite{FeliksonPavel2023cluster}). An example of a quiver that is not mutation-finite,
-is the following:
+with boundary and punctures (which we will discuss later
+\cref{sec:triangulations_of_surfaces}) (\cite{FeliksonShapiroTumarkin2012SkewSCA}). If
+one considers a more general version of cluster algebras, namely those with
+\emph{coefficients} (cf. \cref{sec:cluster_algebras_coefficients}), then the
+classification stays roughly the same (\cite{FeliksonPavel2023cluster}). An example of
+a quiver that is not mutation-finite, is the following:
 \begin{equation*}
 	Q =
 	\begin{tikzcd}[sep = small]
@@ -772,7 +808,9 @@ quivers
 	\end{tikzcd}
 \end{equation*}
 %
-Repeating the same mutations will only increase the amount of arrows. \medskip
+where the notation $\begin{tikzcd}[cramped]
+		a \ar[r, "r"] &b
+	\end{tikzcd}$ indicates that there are $r$ arrows from vertex $a$ to vertex $b$. Repeating the same mutations will only increase the amount of arrows. \medskip
 
 Let us now look at the third and fourth observation that we made from the examples:
 that all the cluster variables are Laurent polynomials with positive integer
@@ -787,14 +825,16 @@ alluded-to \emph{Laurent phenomenon}.
 \end{theorem}
 This theorem was proven already by Fomin and Zelevinsky in their paper introducing cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all the coefficients would be positive. This was first proven by Lee and Schiffler for the types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}). Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more general case as well as a number of other open conjectures (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
 
-\begin{proof}[Proof of \cref{thm:laurent_phenomenon}]
-	TODO
-\end{proof}
+\subsection{Integer sequences from cluster algebras}
 
-We finish this section by revisiting the examples from the first section. TODO
+We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
+algebras. \textbf{TODO: revisit the examples}
+
+\subsection{Skew-symmetrizable matrices}
+\subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
 
 \section{The Grassmannian}
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
 $k=2$. Correspondence with triangulations.
-\section{Triangulations of surfaces}
+\section{Triangulations of surfaces}\label{sec:triangulations_of_surfaces}
 Explain how to generalize to marked surfaces with punctures.
