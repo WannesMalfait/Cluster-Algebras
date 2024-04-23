@@ -2,7 +2,9 @@
 Mostly use \cite{FominWilliams2021IntroductionCA_1-3} as reference together with
 Geoffrey's notes.
 
-\section{Combinatorial integer sequences}\label{sec:integer_sequences}
+\section{Cluster algebras from quivers}
+
+\subsection{Combinatorial integer sequences}\label{sec:integer_sequences}
 
 In this section we will look at some integer sequences coming from number theory or
 combinatorial data, and observe some interesting patterns. In the next section we will
@@ -67,7 +69,7 @@ Let us start with the simplest of the sequences.
 			&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
 			3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
 			&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
-			4&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+			3&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
 			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
 			0&&0&&0&&0&&0&&0&&0&&0&&0&&0&&0
 		\end{tikzcd}
@@ -122,7 +124,7 @@ Let us start with the simplest of the sequences.
 		\quad
 		\dots
 	\end{equation*}
-	then we could fill out the rest as follows
+	then the rest has to be filled out as follows
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -136,8 +138,9 @@ Let us start with the simplest of the sequences.
 		\quad
 		\dots
 	\end{equation*}
-	Since all the denominators are monomials in $a$ and $b$, it follows that when $a = b = 1$, all the
-	elements will be integers, as required.
+	%
+	Since all the denominators are monomials in $a$ and $b$, it follows that when $a = b =
+		1$, all the elements will be integers, as required.
 
 	It seems that we somehow got lucky in this case. There is again, a priori, no reason to
 	assume that for any number of rows, we will always be able to choose the initial
@@ -321,7 +324,7 @@ refrain from delving deeper into this interesting world. We refer interested rea
 \cite[Chapter 3.4]{FominWilliams2021IntroductionCA_1-3} and
 \cite{FominZelevinsky2002Laurent}.
 
-\section{Quivers and mutations}
+\subsection{Quivers and mutations}
 
 As observed in the previous section, the examples share some common features such as
 the Laurent phenomenon, and positivity. There are some more subtle similarities, which
@@ -402,7 +405,7 @@ Given a seed, we can convert it to another seed through a \emph{seed
 		      Here we take $r$ to be negative, if the arrows actually point the other way, as the path $i \to k \to j$.
 		      If $i,j$ are both frozen, then we ignore this step.
 		\item All arrows in $Q$ starting or ending in $k$ get their orientation flipped.
-		\item $\tbx' = \{x_1', \dots, x_n'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
+		\item $\tbx' = \{x_1', \dots, x_N'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
 		      \begin{equation}\label{eq:exchange_relation_quiver}
 			      x'_k \defeq \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
@@ -681,6 +684,8 @@ From these examples we can observe a few things:
 	\item The Laurent polynomials have coefficients in the positive integers.
 \end{enumerate}
 
+\subsection{The cluster algebra}
+
 To have the correct setting to explain the above observations, we must introduce the
 notion of a \emph{cluster algebra}\index{algebra!cluster}. From
 \cref{lem:mutation_involution} it follows that the process of applying mutations is
@@ -823,18 +828,31 @@ alluded-to \emph{Laurent phenomenon}.
 \begin{theorem}[Laurent Phenomenon\index{Laurent!-phenomenon}]\label{thm:laurent_phenomenon}
 	Let $\mcA (Q, \tbx)$ be a cluster algebra. Each of the cluster variables can be written as a Laurent polynomial in $\tbx$ with integer coefficients.
 \end{theorem}
-This theorem was proven already by Fomin and Zelevinsky in their paper introducing cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all the coefficients would be positive. This was first proven by Lee and Schiffler for the types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}). Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more general case as well as a number of other open conjectures (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+%
+This theorem was proven already by Fomin and Zelevinsky in their paper introducing
+cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all
+the coefficients would be positive. This was first proven by Lee and Schiffler for the
+types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}).
+Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
+general case as well as a number of other open conjectures
+(\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
 
-\subsection{Integer sequences from cluster algebras}
+\subsection{Integer sequences revisited}
 
 We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
 algebras. \textbf{TODO: revisit the examples}
 
+\section{Ice quivers and coefficients}
+\subsection{Ice quivers}
 \subsection{Skew-symmetrizable matrices}
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
 
-\section{The Grassmannian}
+\section{Cluster algebras from surfaces}
+
+\subsection{The Grassmannian}
+
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
 $k=2$. Correspondence with triangulations.
-\section{Triangulations of surfaces}\label{sec:triangulations_of_surfaces}
+\subsection{Marked surfaces with punctures}\label{sec:triangulations_of_surfaces}
 Explain how to generalize to marked surfaces with punctures.
+\subsection{Examples}
