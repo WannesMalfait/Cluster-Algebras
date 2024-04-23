@@ -4,20 +4,62 @@ Geoffrey's notes.
 
 \section{Cluster algebras from quivers}
 
+This first section serves as an introduction to cluster algebras. We will first look at
+some examples of integer sequences arising from number theory or from combinatorial
+data. In these examples, a few recurring observations will occur. These observations
+will be explained by viewing each of the examples under the lens of cluster algebra
+theory. We do not yet provide the most general definition of a cluster algebra, which
+will instead be done in \cref{sec:ice_quivers_and_coefficients}. Instead, we focus on
+the simplest case of a cluster algebra associated to a quiver. This case is easier to
+grasp, and allows understanding the general concepts without getting distracted by
+technical details.
+
 \subsection{Combinatorial integer sequences}\label{sec:integer_sequences}
 
-In this section we will look at some integer sequences coming from number theory or
-combinatorial data, and observe some interesting patterns. In the next section we will
-see how these can all be viewed as special instances of a much more general framework.
+Let us start by looking at some integer sequences coming from number theory or
+combinatorial data. Along the way we observe some interesting patterns which will be
+explained by viewing these sequences as arising from a cluster algebra. \medskip
 
-\textbf{TODO: add positivity to examples}
+\begin{example}\label{exmp:markov_sequence}
+	Consider the sequence given by the recurrence relation
+	\begin{equation*}
+		x_{n+3} = \frac{x_{n+1}^2 + x_{n+2}^2}{x_n},
+	\end{equation*}
+	with initial conditions $x_0 = x_1 = x_2 = 1$. Computing the first few terms gives
+	\begin{equation*}
+		1,1,1,2,5,29,433,37666,48928105,\dots
+	\end{equation*}
+	%
+	Even though the recurrence relation involves a fraction, all the terms of the sequence
+	are positive integers. We will explain this later, as a consequence of a more general
+	fact about cluster algebras. Another way to observe this is as follows. For each $n \in
+		\bbZ_{\geq0}$, the triple $(x_n, x_{n+1}, x_{n+2})$ satisfies the equation
+	\begin{equation}\label{eq:markov_diophantine}
+		x_n^2 + x_{n+1}^2 + x_{n+2}^2 = 3 x_n x_{n+1}x_{n+2},
+	\end{equation}
+	known as the \emph{Markov equation}\index{Markov!equation}\footnote{It is named after Andrey Markov. This is the same mathematician after whom Markov chains are named.}. The case $n = 0$ is clear. Then, by induction, we have
+	\begin{equation}\label{eq:markov_mutation_simplified}
+		x_{n+3} = \frac{x_{n+1}^2 + x_{n+2}^2}{x_n} = \frac{3 x_n x_{n+1}x_{n+2} - x_n^2}{x_2} = 3 x_{n+1} x_{n+2} - x_n,
+	\end{equation}
+	so that
+	\begin{align*}
+		x_{n+3}^2 + x_{n+2}^2 + x_{n+1}^2
+		 & = (3 x_{n+1}x_{n+2} - x_n)^2 + x_{n+1}^2 + x_{n+2}^2                            \\
+		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_{n+1} x_{n+2} x_n + x_n^2 + x_{n+1}^2 + x_{n+2}^2 \\
+		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_n x_{n+1} x_{n+2} + 3 x_n x_{n+1} x_{n+2}         \\
+		 & = 9 x_{n+1}^2 x_{n+2}^2 - 3 x_n x_{n+1} x_{n+2}                                 \\
+		 & = 3 ( x_{n+1} x_{n+2}-  x_n) x_{n+1} x_{n+2}                                    \\
+		 & = 3 x_{n+3} x_{n+1} x_{n+2}.
+	\end{align*}
+	%
+	The intermediate result, \cref{eq:markov_mutation_simplified}, also immediately implies
+	that all the terms in the sequence are integers. That they are positive follows from
+	the recurrence relation itself.
+\end{example}
 
-\medskip
+\begin{example}\label{exmp:somos4}
 
-Let us start with the simplest of the sequences.
-\begin{example}
-
-	Let $a_n$ be the sequence defined through the recursion relation
+	Let $a_n$ be the sequence defined through the recurrence relation
 	\begin{equation}
 		\label{eq:somos_4}
 		a_{n+4} = \frac{a_{n+3}a_{n+1}+ a_{n+2}^2}{a_n}
@@ -25,7 +67,8 @@ Let us start with the simplest of the sequences.
 	%
 	with initial conditions $a_0 = a_1 = a_2 = a_3 = 1$. This sequence is known as the
 	\emph{Somos-4}\index{Somos-4 sequence} sequence, named after its inventor, Michael
-	Somos. Computing the first few terms of the sequence, we find:
+	Somos. It can be seen as a slight generalization of the sequence from
+	\cref{exmp:markov_sequence}. Computing the first few terms of the sequence, we find:
 	\begin{align*}
 		 & \begin{aligned}
 			   a_4 & = \frac{1 \cdot 1 + 1^2}{1} = 2                   \\
@@ -44,11 +87,11 @@ Let us start with the simplest of the sequences.
 		\end{aligned}
 	\end{align*}
 	%
-	From the definition of the sequence, there is no reason, a priori, to assume that all
-	its elements would be integers. However, somewhat remarkably, the denominators seem to
-	always cancel out perfectly. In the next section we will prove that all the terms in
-	the sequence are indeed integers, as a corollary of the \emph{Laurent
-		phenomenon}\index{Laurent!-phenomenon}.
+	Just like in the previous example, there is no reason, a priori, to assume that all the
+	elements of the sequence would be integers. However, somewhat remarkably, the
+	denominators seem to always cancel out perfectly. Viewing this sequence through the
+	cluster algebra framework, it will follow immediately that all the terms are indeed
+	integers, as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}.
 \end{example}
 
 \begin{example}\label{exmp:frieze_patterns}
@@ -84,7 +127,13 @@ Let us start with the simplest of the sequences.
 			  & c &
 		\end{matrix}
 	\end{equation*}
-	formed by adjacent elements, can be seen as an element of $\SL_2 (\bbZ)$, i.e., $ad - bc = 1$. Other than the bounding rows of ones and zeros, there is no additional requirement. In what follows we will omit the irrelevant row of zeros. One could ask if it is always possible to construct such a pattern for any number of rows. If so, one might be interested in knowing how many such patterns there are. Furthermore, one might notice that the pattern is periodic, repeating every 7 columns. In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes a translation and reflection.
+	formed by adjacent elements, can be seen as an element of $\SL_2 (\bbZ)$, i.e., $ad - bc = 1$. Other than the bounding rows of ones and zeros, there is no additional requirement. In what follows we will omit the irrelevant row of zeros.
+
+	One could ask if it is always possible to construct such a pattern for any number of
+	rows. If so, one might be interested in knowing how many such patterns there are.
+	Furthermore, one might notice that the pattern is periodic, repeating every 7 columns.
+	In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes
+	a translation and reflection.
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -153,90 +202,95 @@ Let us start with the simplest of the sequences.
 	$\bbZ$, i.e., as an element of $\bbZ [a_1 ^\pm, \dots, a_n^\pm]$. So, any lattice path
 	from top to bottom consisting of only ones, will yield a frieze pattern. This already
 	proves the existence of such frieze patterns for any number of rows. We will return to
-	the other questions in the next section.
+	the other questions in \cref{sec:sequences_revisited}.
 \end{example}
 
-\begin{example}
+The last example will be based on the following theorem from Euclidean geometry.
+\begin{theorem}[Ptolomy's Theorem]\label{thm:ptolomy}
 
-	Let us now look at a final example, coming from triangulations of $n$-gons. We first
-	recall the following theorem from Euclidean geometry.
-	\begin{theorem}[Ptolomy's Theorem]
-		Let $A,B,C,D$ be distinct points on a circle, in cyclic order (\cref{fig:ptolomy}).
-		These determine vertices of a quadrilateral, where the side, and diagonal lengths
-		satisfy the following rule:
-		\begin{equation*}
-			|AC| \cdot |BD| = |AB|\cdot |CD| + |AD| \cdot |BC|.
-		\end{equation*}
-	\end{theorem}
+	Let $A,B,C,D$ be distinct points on a circle, in cyclic order (\cref{fig:ptolomy}).
+	These determine vertices of a quadrilateral, where the side, and diagonal lengths
+	satisfy the following rule:
+	\begin{equation*}
+		|AC| \cdot |BD| = |AB|\cdot |CD| + |AD| \cdot |BC|.
+	\end{equation*}
+\end{theorem}
 
-	\begin{figure}
-		\centering
+\begin{figure}
+	\centering
 
-		\begin{tikzpicture}
-			\coordinate (center) at (0,0);
-			\def\radius{2.5cm}
-			\draw (center) circle[radius=\radius];
+	\begin{tikzpicture}
+		\coordinate (center) at (0,0);
+		\def\radius{2cm}
+		\draw (center) circle[radius=\radius];
 
-			% points on the circle
-			\path (center) ++(-120:\radius) coordinate (A);
-			\path (center) ++(-30:\radius) coordinate (B);
-			\path (center) ++(40:\radius) coordinate (C);
-			\path (center) ++(150:\radius) coordinate (D);
+		% points on the circle
+		\path (center) ++(-120:\radius) coordinate (A);
+		\path (center) ++(-30:\radius) coordinate (B);
+		\path (center) ++(40:\radius) coordinate (C);
+		\path (center) ++(150:\radius) coordinate (D);
 
-			\begin{scriptsize}
-				% Chords
-				\draw[color=red, line width=1pt] (A) -- node[left] {$AD$} (D);
-				\draw[color=red, line width=1pt] (B) -- node[left] {$BC$} (C);
-				\draw[color=blue, line width=1pt] (A) -- node[above] {$AB$} (B);
-				\draw[color=blue, line width=1pt] (D) -- node[above] {$DC$} (C);
-				\draw[color=violet, line width=1pt] (A) -- node[above=8pt, near start] {$AC$} (C);
-				\draw[color=violet, line width=1pt] (D) -- node[above=2pt, near start] {$BD$} (B);
+		\begin{scriptsize}
+			% Chords
+			\draw[color=red, line width=1pt] (A) -- node[left] {$AD$} (D);
+			\draw[color=red, line width=1pt] (B) -- node[left] {$BC$} (C);
+			\draw[color=blue, line width=1pt] (A) -- node[above] {$AB$} (B);
+			\draw[color=blue, line width=1pt] (D) -- node[above] {$DC$} (C);
+			\draw[color=violet, line width=1pt] (A) -- node[above=8pt, near start] {$AC$} (C);
+			\draw[color=violet, line width=1pt] (D) -- node[above=2pt, near start] {$BD$} (B);
 
-				% Draw the points over the chords
-				\fill[black] (A) circle[radius=2pt] ++(-120:1em) node {$A$};
-				\fill[black] (B) circle[radius=2pt] ++(-30:1em) node {$B$};
-				\fill[black] (C) circle[radius=2pt] ++(40:1em) node {$C$};
-				\fill[black] (D) circle[radius=2pt] ++(150:1em) node {$D$};
+			% Draw the points over the chords
+			\fill[black] (A) circle[radius=2pt] ++(-120:1em) node {$A$};
+			\fill[black] (B) circle[radius=2pt] ++(-30:1em) node {$B$};
+			\fill[black] (C) circle[radius=2pt] ++(40:1em) node {$C$};
+			\fill[black] (D) circle[radius=2pt] ++(150:1em) node {$D$};
 
-			\end{scriptsize}
-		\end{tikzpicture}
-		\caption{Ptolomy's theorem:
-		${\color{violet} |AC| \cdot |BD|}
-			= {\color{red} |AD|\cdot |BC|} + {\color{blue} |AB| \cdot |CD|}$.}
-		\label{fig:ptolomy}
-	\end{figure}
+		\end{scriptsize}
+	\end{tikzpicture}
+	\caption{Ptolomy's theorem:
+	${\color{violet} |AC| \cdot |BD|}
+		= {\color{red} |AD|\cdot |BC|} + {\color{blue} |AB| \cdot |CD|}$.}
+	\label{fig:ptolomy}
+\end{figure}
 
-	This rule allows to compute the length of one of the diagonals in terms of the other,
-	given the side lengths. We will now apply this to triangulations of polygons.
+\begin{example}\label{exmp:triangulations}
+
+	Note that \cref{thm:ptolomy} allows one to compute the length of one of the diagonals
+	in terms of the other, given the side lengths. We will now apply this to triangulations
+	of polygons.
 
 	Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
 	connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
 	$n$, we obtain a polygon with $n$-sides. A triangulation\index{triangulations!of
 		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
 	partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
-	detail in a later section, and will therefore keep things brief here. For now, it is
-	enough to understand things visually:
-	\begin{center}
+	detail in \cref{sec:triangulations_of_surfaces}, and will therefore keep things brief
+	here. For now, it is enough to understand things visually (cf.
+	\cref{fig:hexagon_triangulations}).
+	\begin{figure}[ht]
+		\centering
 
 		\begin{tikzpicture}
-			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
 			\draw[] (h.corner 1) -- (h.corner 3);
 			\draw[] (h.corner 1) -- (h.corner 4);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
 		\begin{tikzpicture}
-			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
 			\draw[] (h.corner 2) -- (h.corner 5);
 			\draw[] (h.corner 2) -- (h.corner 4);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
 		\begin{tikzpicture}
-			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 3cm]{};
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
 			\draw[] (h.corner 1) -- (h.corner 3);
 			\draw[] (h.corner 3) -- (h.corner 5);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
-	\end{center}
+		\caption{The triangulations of a regular hexagon up to rotation.}
+		\label{fig:hexagon_triangulations}
+	\end{figure}
 
 	Starting from a triangulation, $T$, we obtain a new triangulation, $T'$, by
 	``flipping'' a diagonal. Any diagonal in a triangulation lies on precisely 2 triangles.
@@ -244,24 +298,24 @@ Let us start with the simplest of the sequences.
 	other diagonal of that quadrilateral. Again, this is most easily seen visually:
 	\begin{equation*}
 		\begin{tikzpicture}[baseline]
-			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
 			\draw[] (h.corner 1) -- (h.corner 3);
 			\draw[dashed] (h.corner 1) -- (h.corner 4);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
 		\quad \leadsto \quad
 		\begin{tikzpicture}[baseline]
-			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 2cm]{};
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 1.5cm]{};
 			\draw[] (h.corner 1) -- (h.corner 3);
 			\draw[dashed] (h.corner 3) -- (h.corner 5);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
 	\end{equation*}
 	%
-	Now, using Ptolomy's theorem, the length of the new diagonal can be computed given that
-	we knew the lengths of all the edges in the previous triangulation. We now ignore
+	Using Ptolomy's theorem, the length of the new diagonal can be computed given that we
+	knew the lengths of all the edges in the previous triangulation. We now ignore
 	Euclidean geometry, and just use Ptolomy's theorem as a recurrence relation to
-	construct a collection of numbers as follows: Pick a triangulation and set all the edge
+	construct a collection of numbers as follows. Pick a triangulation and set all the edge
 	lengths equal to one. Then at each step, choose a diagonal in the triangulation and
 	flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
 	the collection. For example, we could obtain a sequence starting like this (we omit the
@@ -318,24 +372,30 @@ Let us start with the simplest of the sequences.
 \end{example}
 
 There are many more examples like the three that we just gave. One can look at wiring
-diagrams, generalized Somos sequences, Markov Triples, knight recurrence, the
-Gale-Robinson sequence, etc. As the focus of this thesis is not on number theory, we
-refrain from delving deeper into this interesting world. We refer interested readers to
-\cite[Chapter 3.4]{FominWilliams2021IntroductionCA_1-3} and
-\cite{FominZelevinsky2002Laurent}.
+diagrams, generalized Somos sequences, knight recurrence, the Gale-Robinson sequence,
+etc. As the focus of this thesis is not on number theory, we refrain from delving
+deeper into this interesting world. We refer interested readers to \cite[Chapter
+	3.4]{FominWilliams2021IntroductionCA_1-3} and \cite{FominZelevinsky2002Laurent}.
 
-\subsection{Quivers and mutations}
+\subsection{Quivers, seeds and mutations}\label{sec:quivers_seeds_mutations}
 
-As observed in the previous section, the examples share some common features such as
-the Laurent phenomenon, and positivity. There are some more subtle similarities, which
-will become clear in this section. The main role will be played by quivers, and their
-mutations.
+In the examples from \cref{sec:integer_sequences} we made a couple of observations. In
+each case, the sequence consisted of positive integers, something which was not so
+obvious from the initial definitions. For
+\cref{exmp:frieze_patterns,exmp:triangulations}, we also found some form of finiteness
+and periodicity. There are some more subtle similarities, which will be explained in
+detail in \cref{sec:sequences_revisited}. Before that, we must introduce the notion of
+a cluster algebra. These can be constructed from a quiver, as we now explain.
 
 \begin{definition}[Quivers]
-	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles (vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite arrows) (cf. \cref{fig:quivers}).
+
+	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles
+	(vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite
+	arrows) (cf. \cref{fig:quivers}). For a quiver $Q$, we will denote the set of vertices
+	with $Q_0$\index{Q 0@$Q_0$}.
 \end{definition}
 
-\begin{figure}
+\begin{figure}[ht]
 	\centering
 	\begin{equation*}
 		\begin{tikzcd}
@@ -356,12 +416,12 @@ mutations.
 	\label{fig:quivers}
 \end{figure}
 
-We will now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
-for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Now, fix an integer
-$N$, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$ will be
-called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N]
-	\setminus \ex$ will be called \emph{frozen}\index{frozen}. Finally, let $\mcF = \bbQ
-	(X_1, \dots, X_N)$ be the field of rational functions over $\bbQ$, in $N$ variables.
+Let us now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
+for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an integer $N
+	\in \bbZ_{\geq 0}$. Finally, let $\mcF = \bbQ (Y_1, \dots, Y_N)$ be the \emph{field of
+	rational functions}\index{rational function field} over $\bbQ$, in $N$ variables. Thus,
+$\mcF$ consists of fractions $P/Q$ where $P, Q\in \bbQ[Y_1, \dots, Y_N]$ are
+polynomials in the variables $Y_1, \dots, Y_N$ and $Q$ is non-zero.
 
 \begin{definition}
 	We call a pair $(Q, \tbx)$ a \emph{seed}\index{seed} if
@@ -369,21 +429,17 @@ called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1
 		\item $Q$ is a quiver with vertices $Q_0 = [1, N]$.
 		\item $\tbx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\tbx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
 	\end{enumerate}
-	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!-variables}.
+	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!variables}.
 \end{definition}
 
-Although not strictly necessary, we will assume that the quiver $Q$ contains no arrows
-between the frozen vertices, i.e., the vertices in $Q_0 \cap \frz$. Arrows between
-exchangeable and frozen vertices are allowed. When drawing a quiver, the frozen
-vertices will be drawn with a box, while the exchangeable vertices will just be drawn
-normally.
-
-Given a seed, we can convert it to another seed through a \emph{seed
-	mutation}\index{seed!-mutation}.
+Just like in nature, a seed on it own is not so interesting. We are interested in what
+one can obtain from the seed. From a given seed, we can make another seed through a
+process known as \emph{seed mutation}\index{seed!mutation}.
 \begin{definition}
-	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$.
-	We define the \emph{mutation in direction $k$} of the seed
-	$(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx) \defeq (Q', \tbx')$, where
+
+	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$. We define the
+	\emph{mutation in direction $k$} of the seed $(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx)
+		\defeq (Q', \tbx') = (\mu_k(Q), \mu_k(\tbx))$\index{mu k@$\mu_k$}, where
 	\begin{enumerate}
 		\item $Q'_0 \defeq Q_0$.
 		\item For every pair of vertices $i,j$ with $s$ arrows $i \to k$ and $t$ arrows $k \to j$ we
@@ -414,33 +470,7 @@ Given a seed, we can convert it to another seed through a \emph{seed
 	\end{enumerate}
 \end{definition}
 
-Before we give some examples, we prove a small lemma, which will also be useful for the
-examples.
-\begin{lemma}\label{lem:mutation_involution}
-	Seed mutation at a fixed vertex is an \emph{involution}\index{involution}, i.e., $\mu_k \circ \mu_k = id$.
-\end{lemma}
-
-\begin{proof}
-	We first show that the quiver remains unchanged. For arrows incident to $k$, the
-	mutation reverses the orientation. So, applying it twice yields the same orientation.
-	Now, the only other part of the quiver that changes is at pairs of vertices $i,j$ with
-	$s$ arrows $i \to k$ and $t$ arrows $k \to j$. Applying a single mutation introduces
-	$s\cdot t$ new arrows $i \to j$. When applying the mutation the second time, we now
-	have $s$ arrows $k \to i$ and $t$ arrows $j \to k$, due to the orientation flip of the
-	arrows incident to $k$. Consequently, the mutation introduces $s \cdot t$ arrows $j \to
-		i$ which cancel out exactly the arrows from the first mutation.
-
-	That the cluster variables remain unchanged is a simple calculation:
-	\begin{align*}
-		x_k''
-		 & = \frac{1}{x_k'}\left(\prod_{k \to i}x_i' + \prod_{j \to k} x_j'\right)                                                \\
-		 & = x_k \left(\prod_{i \to k} x_i + \prod_{k \to j}x_j\right)^{-1} \left(\prod_{k \to i}x_i + \prod_{j \to k} x_j\right) \\
-		 & = x_k,
-	\end{align*}
-	where we use that the exchange rule is unchanged by an orientation flip of all the arrows.
-\end{proof}
-
-We begin with an example to illustrate the mutation of the quiver.
+Let us first look at an example involving only the mutation of the quiver.
 \begin{example}
 	We mutate the given quiver at vertex 2:
 	\begin{equation*}
@@ -467,9 +497,34 @@ We begin with an example to illustrate the mutation of the quiver.
 	unchanged.
 \end{example}
 
-Let us now look at some examples, where we also keep track of the cluster variables.
+Before we give some examples of seed mutation, we prove a small lemma, which will also
+be useful for the examples.
+\begin{lemma}\label{lem:mutation_involution}
+	Seed mutation at a fixed vertex is an \emph{involution}\index{involution}, i.e., $\mu_k \circ \mu_k = id$.
+\end{lemma}
+
+\begin{proof}
+	We first show that the quiver remains unchanged. For arrows incident to $k$, the
+	mutation reverses the orientation. So, applying it twice yields the same orientation.
+	Now, the only other part of the quiver that changes is at pairs of vertices $i,j$ with
+	$s$ arrows $i \to k$ and $t$ arrows $k \to j$. Applying a single mutation introduces
+	$s\cdot t$ new arrows $i \to j$. When applying the mutation the second time, we now
+	have $s$ arrows $k \to i$ and $t$ arrows $j \to k$, due to the orientation flip of the
+	arrows incident to $k$. Consequently, the mutation introduces $s \cdot t$ arrows $j \to
+		i$ which cancel out exactly the arrows from the first mutation.
+
+	That the cluster variables remain unchanged is a simple calculation:
+	\begin{align*}
+		x_k''
+		 & = \frac{1}{x_k'}\left(\prod_{k \to i}x_i' + \prod_{j \to k} x_j'\right)                                                \\
+		 & = x_k \left(\prod_{i \to k} x_i + \prod_{k \to j}x_j\right)^{-1} \left(\prod_{k \to i}x_i + \prod_{j \to k} x_j\right) \\
+		 & = x_k,
+	\end{align*}
+	where we use that the exchange rule is unchanged by an orientation flip of all the arrows.
+\end{proof}
+
 \begin{example}
-	The simplest example is the quiver consisting of a single vertex:
+	The simplest example is the seed $(Q, \bx)$ where $Q$ is the quiver consisting of a single vertex:
 	\begin{equation*}
 		Q = \begin{tikzcd}
 			\bullet
@@ -490,7 +545,7 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	directly.
 \end{example}
 \begin{example}\label{exmp:A2_quiver}
-	The next simplest example is the \emph{$A_2$ quiver}\index{quiver!$A_2$}:
+	The next simplest example is the $A_2$ quiver\index{quiver!$A_2$}:
 	\begin{equation*}
 		Q = \begin{tikzcd}
 			1 \rar &2
@@ -552,11 +607,11 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	If one takes a close look at the obtained cluster variables, then we see that these
 	correspond exactly to those that we found when trying to construct a frieze pattern
 	with 2 rows (cf. \cref{exmp:frieze_patterns}). This is no coincidence, and we will come
-	back to this later.
+	back to this in \cref{sec:sequences_revisited}.
 \end{example}
 
 \begin{example}
-	The logical follow-up to the $A_2$ quiver is the \emph{$A_3$ quiver}\index{quiver!$A_3$}
+	The logical follow-up to the $A_2$ quiver is the $A_3$ quiver\index{quiver!$A_3$}
 	\begin{equation*}
 		Q =
 		\begin{tikzcd}
@@ -637,7 +692,7 @@ Let us now look at some examples, where we also keep track of the cluster variab
 \end{example}
 
 \begin{example}\label{exmp:markov_quiver}
-	As a last example, we look at the \emph{Markov quiver}\index{quiver!Markov}:
+	As a last example, we look at the \emph{Markov quiver}\index{quiver!Markov}\index{Markov!quiver}:
 	\begin{equation*}
 		\begin{tikzcd}[column sep= small]
 			& 1 \ar[ld, shift left] \ar[ld, shift right]\\
@@ -649,7 +704,15 @@ Let us now look at some examples, where we also keep track of the cluster variab
 	vertex (up to a simultaneous flipping of all the arrows). Let us see what happens to
 	the cluster variables as we mutate in a cyclic order of the vertices. Denote for
 	brevity $x \defeq x_1, y \defeq x_2$ and $z \defeq x_3$ for the cluster variables
-	corresponding to the vertices $1,2$ and $3$ respectively.
+	corresponding to the vertices $1,2$ and $3$ respectively. Because the exchange relation
+	is invariant under a flipping of all the arrows and the Markov quiver is rotationally
+	symmetric, the exchange relation will always be of the form
+	\begin{equation*}
+		w' = \frac{u^2 + v^2}{w},
+	\end{equation*}
+	%
+	where $u, v$ and $w$ are the cluster variables of the seed being mutated. Thus, we
+	obtain
 	\begin{align*}
 		\bx            & = \{x, y, z\}                                                                                                                                                                               \\
 		\mu_1(\bx)     & = \left\{\frac{y^2 + z^2}{x}, y, z\right\}                                                                                                                                                  \\
@@ -670,11 +733,14 @@ Let us now look at some examples, where we also keep track of the cluster variab
 
 	Unlike the previous examples, the cluster variables do not simplify. In fact, one can
 	show, that the number of cluster variables is infinite (cf.
-	\cref{thm:cluster_finite_classification}). This is contrast to the quiver itself, whose
-	only mutation corresponds to a reversal of all the arrows.
+	\cref{thm:cluster_finite_classification}). This is in contrast to the quiver itself,
+	whose only mutation corresponds to a reversal of all the arrows.
 \end{example}
 
-From these examples we can observe a few things:
+\subsection{The cluster algebra}
+
+From the examples of \cref{sec:quivers_seeds_mutations} we gather the following
+observations:
 \begin{enumerate}
 	\item Even though a sequence of mutations might result in the same quiver, the corresponding
 	      cluster variables might be different.
@@ -684,24 +750,21 @@ From these examples we can observe a few things:
 	\item The Laurent polynomials have coefficients in the positive integers.
 \end{enumerate}
 
-\subsection{The cluster algebra}
-
 To have the correct setting to explain the above observations, we must introduce the
-notion of a \emph{cluster algebra}\index{algebra!cluster}. From
+notion of a \emph{cluster algebra}\index{cluster!algebra}. From
 \cref{lem:mutation_involution} it follows that the process of applying mutations is
 invertible. This means that we get a well-defined notion of
 \emph{mutation-equivalence}\index{mutation!-equivalence} of seeds. Two seeds are
 \emph{equivalent}\index{seed!equivalent} if one can be obtained from the other through
-a sequence of mutations. Choose some initial seed $(Q, \tbx)$, and write $\mathbf{c}
-	\defeq \tbx \setminus \bx = \{x_i \in \tbx' \mid i \in \frz\}$.
+a sequence of mutations.
 \begin{definition}
-	The \emph{cluster algebra} $\mcA (Q, \tbx)$ is the subalgebra of $\mcF$ generated by
-	$\mathbf{c}^\pm$ and all cluster variables $\bx'$ for seeds $(Q', \tbx')$
+	Choose some \emph{initial seed}\index{seed!initial} $(Q, \tbx)$.
+	The \emph{cluster algebra} $\mcA (Q, \tbx)$\index{A Q x@$\mcA(Q, \tbx)$} is the subalgebra of $\mcF$ generated by
+	all cluster variables $\bx'$ for seeds $(Q', \tbx')$
 	mutation-equivalent to the initial seed $(Q, \tbx)$.
 \end{definition}
 \begin{remark}
-	Note that
-	$\mathbf{c}$ is the same for any two mutation-equivalent seeds, so the definition of
+	Note that the definition of
 	the cluster algebra only depends on the equivalence class of a seed.
 \end{remark}
 
@@ -714,7 +777,7 @@ many cluster variables, we say that the cluster algebra is
 
 Mutation-finite cluster algebras need not be cluster-finite. For example, the Markov
 quiver (\cref{exmp:markov_quiver}) is mutation-finite but has infinitely many cluster
-variables. The inverse implication is true, any cluster-finite cluster algebra is
+variables. The inverse implication is true. Any cluster-finite cluster algebra is
 automatically also mutation-finite. Indeed, suppose that there are finitely many
 cluster variables, but infinitely many distinct quivers. By the pigeonhole principle,
 there is some cluster which appears in infinitely many seeds. Since there are only
@@ -745,11 +808,11 @@ algebras. To state the classification more precisely, the following lemma is use
 Some converse of this theorem is also true, but the proof is no longer purely combinatorial, and requires advanced techniques:
 \begin{theorem}[\cite{CalderoKeller2006TriangulatedCat}]
 
-	Let $Q$ and $Q'$ be two acyclic quivers (without oriented cycles) which are
-	mutation-equivalent. Then $Q$ can be transformed into $Q'$ via a sequence of mutations
-	at sources and sinks. In particular, if an acyclic quiver is mutation-equivalent to an
-	orientation of a tree, then it must be an orientation of the same tree. So, two
-	non-isomorphic trees are never mutation-equivalent to each other.
+	Let $Q$ and $Q'$ be two acyclic quivers\index{quiver!acyclic} (without oriented cycles)
+	which are mutation-equivalent. Then $Q$ can be transformed into $Q'$ via a sequence of
+	mutations at sources and sinks. In particular, if an acyclic quiver is
+	mutation-equivalent to an orientation of a tree, then it must be an orientation of the
+	same tree. So, two non-isomorphic trees are never mutation-equivalent to each other.
 \end{theorem}
 
 We will state the classification theorem without proof, since it is interesting, but
@@ -758,9 +821,8 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 \begin{theorem}[Fomin--Zelevinsky]\label{thm:cluster_finite_classification}
 
 	A cluster algebra $\mcA (Q, \tbx)$ is cluster-finite if and only if $Q$ is
-	mutation-equivalent to a simply-laced, i.e., of type $ADE$, Dynkin
-	diagram\footnote{When matrices are used instead of quivers (see later), then all Dynkin
-		diagrams appear.}\index{Dynkin diagram}. In this case there is a bijective
+	mutation-equivalent to a simply-laced, i.e., of type $ADE$, Dynkin diagram\index{Dynkin
+		diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In this case there is a bijective
 	correspondence between the cluster variables and the almost positive roots $\Phi_{\geq
 			-1}$, given by
 	\begin{equation*}
@@ -768,6 +830,41 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 	\end{equation*}
 	where $P_\alpha (\bx)$ is a polynomial in $\tbx$.
 \end{theorem}
+
+\begin{figure}[ht]
+	\centering
+	\begin{align*}
+		 &
+		\begin{aligned}
+			 & A_n \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
+				             \bullet \rar \& \bullet \rar \&\dots \rar \&\bullet
+			             \end{tikzcd}               \\
+			 & D_n \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
+				             \&\&\&\&\bullet \\
+				             \bullet \rar \& \bullet \rar \&\dots \rar \& \bullet \drar \urar \\
+				             \&\&\&\&\bullet
+			             \end{tikzcd}
+		\end{aligned}
+		 &   &
+		\begin{aligned}
+			 & E_6 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
+				             \&\&\bullet\\
+				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet
+			             \end{tikzcd}                                 \\
+			 & E_7 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
+				             \&\&\bullet\\
+				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet \rar \& \bullet
+			             \end{tikzcd}                 \\
+			 & E_8 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
+				             \&\&\bullet\\
+				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet \rar \& \bullet\rar \& \bullet
+			             \end{tikzcd}
+		\end{aligned}
+	\end{align*}
+
+	\caption{The simply-laced Dynkin diagrams. They are indexed by the number of vertices.}
+	\label{fig:dynkin_diagrams_ade}
+\end{figure}
 
 To understand the correspondence with the almost positive roots a bit better, we return
 to the $A_3$ quiver. We obtained a total of $9 = 3 + 6$ cluster variables:
@@ -781,12 +878,9 @@ We can write the positive roots of $A_3$ as $\{\alpha_1, \alpha_2, \alpha_3, \al
 We already saw that cluster-finite cluster algebras are mutation-finite. Beyond those,
 which other cluster algebras are mutation-finite? It turns out that, other than a few
 exceptions, the only other ones are those originating from triangulations of surfaces
-with boundary and punctures (which we will discuss later
-\cref{sec:triangulations_of_surfaces}) (\cite{FeliksonShapiroTumarkin2012SkewSCA}). If
-one considers a more general version of cluster algebras, namely those with
-\emph{coefficients} (cf. \cref{sec:cluster_algebras_coefficients}), then the
-classification stays roughly the same (\cite{FeliksonPavel2023cluster}). An example of
-a quiver that is not mutation-finite, is the following:
+with boundary and punctures (which we will discuss in
+\cref{sec:cluster_algebras_surfaces}) (\cite{FeliksonShapiroTumarkin2012SkewSCA}). An
+example of a quiver that is not mutation-finite, is the following:
 \begin{equation*}
 	Q =
 	\begin{tikzcd}[sep = small]
@@ -813,9 +907,11 @@ quivers
 	\end{tikzcd}
 \end{equation*}
 %
-where the notation $\begin{tikzcd}[cramped]
+where the notation $\begin{tikzcd}[cramped, sep=small]
 		a \ar[r, "r"] &b
-	\end{tikzcd}$ indicates that there are $r$ arrows from vertex $a$ to vertex $b$. Repeating the same mutations will only increase the amount of arrows. \medskip
+	\end{tikzcd}$ indicates that there are $r$ arrows from vertex $a$ to vertex $b$. Repeating the same mutations will only increase the amount of arrows.
+
+\medskip
 
 Let us now look at the third and fourth observation that we made from the examples:
 that all the cluster variables are Laurent polynomials with positive integer
@@ -831,23 +927,37 @@ alluded-to \emph{Laurent phenomenon}.
 %
 This theorem was proven already by Fomin and Zelevinsky in their paper introducing
 cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all
-the coefficients would be positive. This was first proven by Lee and Schiffler for the
-types of cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}).
-Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
-general case as well as a number of other open conjectures
-(\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+the coefficients would be positive. This was first proven by Lee and Schiffler for
+cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}).
 
-\subsection{Integer sequences revisited}
+\subsection{Integer sequences revisited}\label{sec:sequences_revisited}
 
 We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
 algebras. \textbf{TODO: revisit the examples}
 
-\section{Ice quivers and coefficients}
+\section{Ice quivers and coefficients}\label{sec:ice_quivers_and_coefficients}
 \subsection{Ice quivers}
+
+, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$ will be
+called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N]
+	\setminus \ex$ will be called \emph{frozen}\index{frozen}Although not strictly necessary, we will assume that the quiver $Q$ contains no arrows
+between the frozen vertices, i.e., the vertices in $Q_0 \cap \frz$. Arrows between
+exchangeable and frozen vertices are allowed. When drawing a quiver, the frozen
+vertices will be drawn with a box, while the exchangeable vertices will just be drawn
+normally.
+
+Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
+general case as well as a number of other open conjectures
+(\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+
+If one considers a more general version of cluster algebras, namely those with
+\emph{coefficients} (cf. \cref{sec:cluster_algebras_coefficients}), then the
+classification stays roughly the same (\cite{FeliksonPavel2023cluster}).
+
 \subsection{Skew-symmetrizable matrices}
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
 
-\section{Cluster algebras from surfaces}
+\section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
 
 \subsection{The Grassmannian}
 
