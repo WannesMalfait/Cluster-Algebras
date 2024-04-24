@@ -39,7 +39,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	\end{equation}
 	known as the \emph{Markov equation}\index{Markov!equation}\footnote{It is named after Andrey Markov. This is the same mathematician after whom Markov chains are named.}. The case $n = 0$ is clear. Then, by induction, we have
 	\begin{equation}\label{eq:markov_mutation_simplified}
-		x_{n+3} = \frac{x_{n+1}^2 + x_{n+2}^2}{x_n} = \frac{3 x_n x_{n+1}x_{n+2} - x_n^2}{x_2} = 3 x_{n+1} x_{n+2} - x_n,
+		x_{n+3} = \frac{x_{n+1}^2 + x_{n+2}^2}{x_n} = \frac{3 x_n x_{n+1}x_{n+2} - x_n^2}{x_n} = 3 x_{n+1} x_{n+2} - x_n,
 	\end{equation}
 	so that
 	\begin{align*}
@@ -395,7 +395,7 @@ a cluster algebra. These can be constructed from a quiver, as we now explain.
 	with $Q_0$\index{Q 0@$Q_0$}.
 \end{definition}
 
-\begin{figure}[ht]
+\begin{figure}[ht!]
 	\centering
 	\begin{equation*}
 		\begin{tikzcd}
@@ -421,16 +421,24 @@ for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an intege
 	\in \bbZ_{\geq 0}$. Finally, let $\mcF = \bbQ (Y_1, \dots, Y_N)$ be the \emph{field of
 	rational functions}\index{rational function field} over $\bbQ$, in $N$ variables. Thus,
 $\mcF$ consists of fractions $P/Q$ where $P, Q\in \bbQ[Y_1, \dots, Y_N]$ are
-polynomials in the variables $Y_1, \dots, Y_N$ and $Q$ is non-zero.
+polynomials in the variables $Y_1, \dots, Y_N$, and $Q$ is non-zero.
 
 \begin{definition}
-	We call a pair $(Q, \tbx)$ a \emph{seed}\index{seed} if
+	We call a pair $(Q, \bx)$ a \emph{labeled seed}\index{seed!labeled} if
 	\begin{enumerate}
 		\item $Q$ is a quiver with vertices $Q_0 = [1, N]$.
-		\item $\tbx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\tbx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
+		\item $\bx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\bx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
 	\end{enumerate}
-	The set $\bx = \{x_i \mid i \in \ex\} \subseteq \tbx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!variables}.
+	The set $\bx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!variables}.
 \end{definition}
+%
+One can also talk about \emph{unlabeled seeds}\index{seed!unlabeled}. An unlabeled seed
+is an equivalence class of labeled seeds which are equal up to a simultaneous
+re-indexing of the quiver vertices and the cluster variables. We will not need
+unlabeled seeds as much, and will hence adopt the following convention.
+\begin{convention}
+	From now on, when we say \emph{seed}, we will always mean a labeled seed.
+\end{convention}
 
 Just like in nature, a seed on it own is not so interesting. We are interested in what
 one can obtain from the seed. From a given seed, we can make another seed through a
@@ -438,8 +446,8 @@ process known as \emph{seed mutation}\index{seed!mutation}.
 \begin{definition}
 
 	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$. We define the
-	\emph{mutation in direction $k$} of the seed $(Q, \tbx)$ to be the seed $\mu_k(Q, \tbx)
-		\defeq (Q', \tbx') = (\mu_k(Q), \mu_k(\tbx))$\index{mu k@$\mu_k$}, where
+	\emph{mutation in direction $k$} of the seed $(Q, \bx)$ to be the seed $\mu_k(Q, \bx)
+		\defeq (Q', \bx') = (\mu_k(Q), \mu_k(\bx))$\index{mu k@$\mu_k$}, where
 	\begin{enumerate}
 		\item $Q'_0 \defeq Q_0$.
 		\item For every pair of vertices $i,j$ with $s$ arrows $i \to k$ and $t$ arrows $k \to j$ we
@@ -461,7 +469,7 @@ process known as \emph{seed mutation}\index{seed!mutation}.
 		      Here we take $r$ to be negative, if the arrows actually point the other way, as the path $i \to k \to j$.
 		      If $i,j$ are both frozen, then we ignore this step.
 		\item All arrows in $Q$ starting or ending in $k$ get their orientation flipped.
-		\item $\tbx' = \{x_1', \dots, x_N'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
+		\item $\bx' = \{x_1', \dots, x_N'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
 		      \begin{equation}\label{eq:exchange_relation_quiver}
 			      x'_k \defeq \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
@@ -707,9 +715,9 @@ be useful for the examples.
 	corresponding to the vertices $1,2$ and $3$ respectively. Because the exchange relation
 	is invariant under a flipping of all the arrows and the Markov quiver is rotationally
 	symmetric, the exchange relation will always be of the form
-	\begin{equation*}
+	\begin{equation}\label{eq:markov_exchange_relation}
 		w' = \frac{u^2 + v^2}{w},
-	\end{equation*}
+	\end{equation}
 	%
 	where $u, v$ and $w$ are the cluster variables of the seed being mutated. Thus, we
 	obtain
@@ -758,10 +766,10 @@ invertible. This means that we get a well-defined notion of
 \emph{equivalent}\index{seed!equivalent} if one can be obtained from the other through
 a sequence of mutations.
 \begin{definition}
-	Choose some \emph{initial seed}\index{seed!initial} $(Q, \tbx)$.
-	The \emph{cluster algebra} $\mcA (Q, \tbx)$\index{A Q x@$\mcA(Q, \tbx)$} is the subalgebra of $\mcF$ generated by
-	all cluster variables $\bx'$ for seeds $(Q', \tbx')$
-	mutation-equivalent to the initial seed $(Q, \tbx)$.
+	Choose some \emph{initial seed}\index{seed!initial} $(Q, \bx)$.
+	The \emph{cluster algebra} $\mcA (Q, \bx)$\index{A Q x@$\mcA(Q, \bx)$} is the subalgebra of $\mcF$ generated by
+	all cluster variables $\bx'$ for seeds $(Q', \bx')$
+	mutation-equivalent to the initial seed $(Q, \bx)$.
 \end{definition}
 \begin{remark}
 	Note that the definition of
@@ -820,15 +828,15 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 \cite{FominZelevinsky2003CAFin} or \cite{FominWilliams2021IntroductionCA_4-5}.
 \begin{theorem}[Fomin--Zelevinsky]\label{thm:cluster_finite_classification}
 
-	A cluster algebra $\mcA (Q, \tbx)$ is cluster-finite if and only if $Q$ is
-	mutation-equivalent to a simply-laced, i.e., of type $ADE$, Dynkin diagram\index{Dynkin
+	A cluster algebra $\mcA (Q, \bx)$ is cluster-finite if and only if $Q$ is
+	mutation-equivalent to a simply-laced, i.e., of type ADE, Dynkin diagram\index{Dynkin
 		diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In this case there is a bijective
 	correspondence between the cluster variables and the almost positive roots $\Phi_{\geq
 			-1}$, given by
 	\begin{equation*}
-		\alpha \leftrightarrow \frac{P_\alpha (\tbx)}{x^\alpha},
+		\alpha \leftrightarrow \frac{P_\alpha (\bx)}{x^\alpha},
 	\end{equation*}
-	where $P_\alpha (\bx)$ is a polynomial in $\tbx$.
+	where $P_\alpha (\bx)$ is a polynomial in $\bx$.
 \end{theorem}
 
 \begin{figure}[ht]
@@ -850,11 +858,11 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 			 & E_6 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
 				             \&\&\bullet\\
 				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet
-			             \end{tikzcd}                                 \\
+			             \end{tikzcd}                                \\
 			 & E_7 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
 				             \&\&\bullet\\
 				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet \rar \& \bullet
-			             \end{tikzcd}                 \\
+			             \end{tikzcd}                \\
 			 & E_8 \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
 				             \&\&\bullet\\
 				             \bullet \rar \& \bullet \rar \&\bullet \rar\uar \& \bullet \rar \& \bullet \rar \& \bullet\rar \& \bullet
@@ -873,7 +881,14 @@ to the $A_3$ quiver. We obtained a total of $9 = 3 + 6$ cluster variables:
 	 & \frac{x_2 + 1}{x_1}, \frac{x_1 + x_3}{x_2}, \frac{x_2 + 1}{x_3},                                             \\
 	 & \frac{x_1+x_3+x_2x_3}{x_1x_2}, \frac{x_1+x_3+x_1x_2}{x_2x_3}, \frac{x_1x_2 + x_1 + x_3 + x_2x_3}{x_1x_2x_3}.
 \end{align*}
-We can write the positive roots of $A_3$ as $\{\alpha_1, \alpha_2, \alpha_3, \alpha_1 + \alpha_2, \alpha_2 + \alpha_3, \alpha_1 + \alpha_2 + \alpha_3\}$ for some choice of simple roots $\alpha_1, \alpha_2, \alpha_3$. The simple roots correspond to the second row of cluster variables, while the other positive roots correspond to the last row by looking at the exponents in the denominator. In the theorem, one also includes the additive inverses of the simple roots, i.e., $-\alpha_1, -\alpha_2, -\alpha_3$, such that the original cluster variables are counted as well.
+%
+We can write the positive roots of $A_3$ as $\{\alpha_1, \alpha_2, \alpha_3, \alpha_1 +
+	\alpha_2, \alpha_2 + \alpha_3, \alpha_1 + \alpha_2 + \alpha_3\}$ for some choice of
+simple roots $\alpha_1, \alpha_2, \alpha_3$. The simple roots correspond to the second
+row of cluster variables, while the other positive roots correspond to the last row by
+looking at the exponents in the denominator. In the theorem, one also includes the
+additive inverses of the simple roots, i.e., $-\alpha_1, -\alpha_2, -\alpha_3$, such
+that the original cluster variables are counted as well.
 
 We already saw that cluster-finite cluster algebras are mutation-finite. Beyond those,
 which other cluster algebras are mutation-finite? It turns out that, other than a few
@@ -922,18 +937,146 @@ the fractions to Laurent polynomials. For example, the fraction $\frac{x^3 +
 		y^3}{x(x+y)}$ simplifies to $\frac{x^2 - xy + y^2}{x}$. We now formulate the much
 alluded-to \emph{Laurent phenomenon}.
 \begin{theorem}[Laurent Phenomenon\index{Laurent!-phenomenon}]\label{thm:laurent_phenomenon}
-	Let $\mcA (Q, \tbx)$ be a cluster algebra. Each of the cluster variables can be written as a Laurent polynomial in $\tbx$ with integer coefficients.
+
+	Let $\mcA (Q, \bx)$ be a cluster algebra. Each of the cluster variables can be written
+	as a Laurent polynomial in $\bx$ with integer coefficients.
 \end{theorem}
 %
-This theorem was proven already by Fomin and Zelevinsky in their paper introducing
-cluster algebras(\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that all
-the coefficients would be positive. This was first proven by Lee and Schiffler for
-cluster algebras coming from quivers (\cite{LeeSchiffler2015PositivityCA}).
+This theorem was already proven by Fomin and Zelevinsky in their paper introducing
+cluster algebras (\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured that
+all the coefficients would be positive. This remained an open conjecture for quite some
+time, and was first proven by Lee and Schiffler for cluster algebras coming from
+quivers (\cite{LeeSchiffler2015PositivityCA}).
 
 \subsection{Integer sequences revisited}\label{sec:sequences_revisited}
 
 We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
-algebras. \textbf{TODO: revisit the examples}
+algebras.
+
+\begin{example}
+
+	As one might have guessed from the names, the sequence $(x_n)_{n \in \bbZ_{>0}}$ from
+	\cref{exmp:markov_sequence} is related to the Markov quiver from
+	\cref{exmp:markov_quiver}. Let us call a triplet $(x,y,z) \in \bbZ_{> 0}^3$ a
+	\emph{Markov triplet}\index{Markov!triplet} if it satisfies the Markov equation
+	\cref{eq:markov_diophantine}:
+	\begin{equation*}
+		x^2 + y^2 + z^2 = 3 x y z.
+	\end{equation*}
+	%
+	From \cref{exmp:markov_sequence} we know that any triple of consecutive elements in the
+	sequence $(x_n)_{n \in \bbZ_{\geq 0}}$ satisfies the Markov equation. A consequence of
+	the proof was that if $(x,y,z)$ is a Markov triplet, then so is
+	\begin{equation*}
+		(3 yz -x, y, z) = (\frac{y^2 + z^2}{x}, y, z).
+	\end{equation*}
+	%
+	From the symmetry of the Markov equation, it follows that $(x, \frac{x^2 + z^2}{y}, z)$
+	and $(x, y, \frac{x^2 + y^2}{z})$ are also Markov triplets. Comparing this to the
+	exchange relation for the Markov quiver, \cref{eq:markov_exchange_relation}, we see
+	that mutation sends Markov triplets to Markov triplets. The Laurent phenomenon now also
+	provides an alternative proof that the sequence $(x_n)_{n\in \bbZ_{\geq 0}}$ consists
+	only of integers. Indeed, since $x_0 = x_1 = x_2 = 1$, all the denominators are one,
+	because they are monomials in the variables $x_0, x_1$ and $x_2$. Starting from the
+	initial triplet $(1,1,1)$ and mutating in all possible directions yields
+	\cref{fig:markov_exchange_graph}, where we identify triplets which are equal up to a
+	permutation of the entries. Such graphs are known as \emph{exchange
+		graphs}\index{exchange!graph}. The nodes consist of unlabeled seeds, and edges
+	correspond to mutations.
+
+	\begin{figure}[ht!]
+		\centering
+		\begin{tikzpicture}[
+				scale = 0.8,
+				x = 5pt,
+				y = 2.3pt,
+				%  V/.style = ,
+				every edge quotes/.style = {auto,sloped,font=\footnotesize} ]
+			% \begin{scope}[nodes=V]
+			\node (0) at (0,0)  {$(1,1,1)$};
+			\node (1) at (16,0)    {$(2,1,1)$};
+			\node (12) at (32,0)          {$(2,5,1)$};
+			%
+			\node (121) at (48, 32)    {$(13,5,1)$};
+			\node (1212)  at (64, 48) {$(13,34,1)$};
+			\node (12121) at (85, 56) {$(89,34,1)$};
+			\node (12123) at (85, 40) {$(13,34,1325)$};
+			\node (1213)  at (64, 16) {$(13,5,194)$};
+			\node (12131) at (85, 28) {$(2897,5,194)$};
+			\node (12132) at (85, 8) {$(13,75961,194)$};
+			%
+			\node (123) at (48, -32)    {$(2,5,29)$};
+			\node (1232)  at (64, -48) {$(2,169,29)$};
+			\node (12323) at (85, -56) {$(2,169,985)$};
+			\node (12321) at (85, -40) {$(14701,169,29)$};
+			\node (1231)  at (64, -16) {$(433,5,29)$};
+			\node (12313) at (85, -28) {$(433,5,6466)$};
+			\node (12312) at (85, -8) {$(433,37666,29)$};
+			% \end{scope}
+			\draw   (0)  edge["$\mu_1$"] (1)
+			(1)  edge["$\mu_2$"] (12)
+			%
+			(12)  edge["$\mu_1$"] (121)
+			(121)  edge["$\mu_2$"] (1212)
+			(1212)  edge["$\mu_1$"] (12121)
+			(1212)  edge["$\mu_3$"] (12123)
+			(121)  edge["$\mu_3$"] (1213)
+			(1213)  edge["$\mu_1$"] (12131)
+			(1213)  edge["$\mu_2$"] (12132)
+			%
+			(12)  edge["$\mu_3$"] (123)
+			(123)  edge["$\mu_2$"] (1232)
+			(1232)  edge["$\mu_1$"] (12321)
+			(1232)  edge["$\mu_3$"] (12323)
+			(123)  edge["$\mu_1$"] (1231)
+			(1231)  edge["$\mu_3$"] (12313)
+			(1231)  edge["$\mu_2$"] (12312)
+			;
+		\end{tikzpicture}
+
+		\caption{A part of the exchange graph of the Markov quiver, where the nodes are labeled by the corresponding Markov triplet.}
+		\label{fig:markov_exchange_graph}
+	\end{figure}
+\end{example}
+
+\begin{example}
+
+	The recurrence relation \cref{eq:somos_4}, defining the Somos-4 sequence can also be
+	recovered from the seed mutations corresponding to a certain quiver. Namely, consider
+	the seed
+	\begin{equation*}
+		Q =
+		\begin{tikzcd}[sep=large]
+			1 \drar[shift left] \drar[shift right] & 2 \lar \dlar[shift left] \dlar[shift right] \\
+			4 \uar \rar & 3 \uar[shift left] \uar \uar[shift right]
+		\end{tikzcd}
+		,\quad
+		\bx = \{ x_1, x_2, x_3, x_4\}
+	\end{equation*}
+	%
+	Mutating at the first vertex gives the seed
+	\begin{equation*}
+		\mu_1(Q) =
+		\begin{tikzcd}[sep=large]
+			1 \dar \rar & 2 \dlar[shift left] \dlar[shift right]  \\
+			4 \rar[shift left] \rar[shift right] \rar & 3 \uar \ular[shift left] \ular[shift right]
+		\end{tikzcd}
+		,\quad
+		\mu_1(\bx) = \left\{ \frac{x_2 x_4 + x_3^2}{x_1}, x_2, x_3, x_4\right\}
+	\end{equation*}
+	%
+	We now note that $\mu_1(Q)$ is given by relabeling the vertices of $Q$ via $1 \mapsto
+		2, 2 \mapsto 3, 3 \mapsto 4, 4\mapsto 1$, and that $\mu_1(x_1)$ is given by the same
+	formula as \cref{eq:somos_4}. Thus, by mutating consecutively at the vertices
+	$1,2,3,4,1,2,3,4,\dots$ the new cluster variables will correspond to the terms in the
+	Somos-4 sequence. The Laurent phenomenon now guarantees that the sequence consists of
+	integers when we set $a_0 = a_1 = a_2 = a_3 = 1$, as the denominators of all the terms
+	will be monomials in $a_0, a_1, a_2$ and $a_3$.
+\end{example}
+
+\begin{example}
+	\textbf{TODO: frieze patterns}
+\end{example}
 
 \section{Ice quivers and coefficients}\label{sec:ice_quivers_and_coefficients}
 \subsection{Ice quivers}
