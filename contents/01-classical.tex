@@ -418,10 +418,12 @@ a cluster algebra. These can be constructed from a quiver, as we now explain.
 
 Let us now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
 for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an integer $N
-	\in \bbZ_{\geq 0}$. Finally, let $\mcF = \bbQ (Y_1, \dots, Y_N)$ be the \emph{field of
-	rational functions}\index{rational function field} over $\bbQ$, in $N$ variables. Thus,
-$\mcF$ consists of fractions $P/Q$ where $P, Q\in \bbQ[Y_1, \dots, Y_N]$ are
-polynomials in the variables $Y_1, \dots, Y_N$, and $Q$ is non-zero.
+	\in \bbZ_{\geq 0}$, and a field $\bbK$ of characteristic zero. Finally, let $\mcF =
+	\bbK (Y_1, \dots, Y_N)$ be the \emph{field of rational functions}\index{rational
+	function field} over $\bbK$, in $N$ variables. Thus, $\mcF$ consists of fractions $P/Q$
+where $P, Q\in \bbK[Y_1, \dots, Y_N]$ are polynomials in the variables $Y_1, \dots,
+	Y_N$, and $Q$ is non-zero. In most cases we will take $\bbK = \bbC$ or $\bbK = \bbQ$.
+This does not impact the definitions that follow in a meaningfull way.
 
 \begin{definition}
 	We call a pair $(Q, \bx)$ a \emph{labeled seed}\index{seed!labeled} if
@@ -951,15 +953,17 @@ quivers (\cite{LeeSchiffler2015PositivityCA}).
 \subsection{Integer sequences revisited}\label{sec:sequences_revisited}
 
 We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
-algebras.
+algebras. The theory of cluster algebras will provide convenient explanations for the
+observations made. However, all the mentioned observations were already known long
+before cluster algebras were invented.
 
 \begin{example}
 
 	As one might have guessed from the names, the sequence $(x_n)_{n \in \bbZ_{>0}}$ from
 	\cref{exmp:markov_sequence} is related to the Markov quiver from
-	\cref{exmp:markov_quiver}. Let us call a triplet $(x,y,z) \in \bbZ_{> 0}^3$ a
-	\emph{Markov triplet}\index{Markov!triplet} if it satisfies the Markov equation
-	\cref{eq:markov_diophantine}:
+	\cref{exmp:markov_quiver}\index{Markov!quiver}. Let us call a triplet $(x,y,z) \in
+		\bbZ_{> 0}^3$ a \emph{Markov triplet}\index{Markov!triplet} if it satisfies the Markov
+	equation \cref{eq:markov_diophantine}:
 	\begin{equation*}
 		x^2 + y^2 + z^2 = 3 x y z.
 	\end{equation*}
@@ -1041,9 +1045,9 @@ algebras.
 
 \begin{example}
 
-	The recurrence relation \cref{eq:somos_4}, defining the Somos-4 sequence can also be
-	recovered from the seed mutations corresponding to a certain quiver. Namely, consider
-	the seed
+	The recurrence relation \cref{eq:somos_4}, defining the Somos-4 sequence\index{Somos-4
+		sequence} can also be recovered from the seed mutations corresponding to a certain
+	quiver. Namely, consider the seed
 	\begin{equation*}
 		Q =
 		\begin{tikzcd}[sep=large]
@@ -1075,27 +1079,170 @@ algebras.
 \end{example}
 
 \begin{example}
-	\textbf{TODO: frieze patterns}
+
+	We already gave an idea of how the Laurent phenomenon can be used to construct frieze
+	patterns in \cref{exmp:frieze_patterns}\index{frieze pattern}. We can now make this
+	more precise. Namely, to make a frieze pattern with $n$ rows (excluding the bounding
+	rows of ones and zeros), one should consider the $A_n$ quiver (cf.
+	\cref{fig:dynkin_diagrams_ade}). It will be easiest to explain this with an example.
+	Consider again the frieze pattern:
+	\begin{equation*}
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+			]
+			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			&1&&2&&2&&3&&1&&2&&4&&1&&2&&2&&3\\
+			3&&1&&3&&5&&2&&1&&7&&3&&1&&3&&5\\
+			&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+			3&&1&&2&&4&&1&&2&&2&&3&&1&&2&&4\\
+			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1
+		\end{tikzcd}
+		\quad
+		\dots
+	\end{equation*}
+	%
+	In this case we need (an orientation of) the $A_4$ quiver. We can choose any lattice
+	path from top to bottom. Then, the edges are oriented so that they always point from
+	left to right.
+	\begin{equation*}
+		\dots\quad
+		\begin{tikzcd}[
+				sep = 0.2em, cramped,
+			]
+			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			&1&&2&&2\drar[shorten=-0.15em] &&3&&1&&2&&4&&1&&2&&2&&3\\
+			3&&1&&3&&5 \drar[shorten=-0.15em] &&2&&1&&7&&3&&1&&3&&5\\
+			&2&&1&&7&&3&&1&&3&&5&&2&&1&&7&&3\\
+			3&&1&&2&&4\urar[shorten=-0.15em] &&1&&2&&2&&3&&1&&2&&4\\
+			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1
+		\end{tikzcd}
+		\quad
+		\dots
+	\end{equation*}
+	%
+	Mutating at a sink or a source, only changes the orientation of the edges, and does not
+	introduce new edges. For example, mutation at a sink gives
+	\begin{equation*}
+		\begin{tikzcd}
+			\cdots b \rar &d & \lar c \cdots & \, \rar[rightsquigarrow, "\mu_d"] & \,&
+			\cdots  b & \lar \rar d & c \cdots
+		\end{tikzcd}
+	\end{equation*}
+	%
+	The mutated cluster variable corresponding to $d$ is then given by $d' = \frac{bc +
+			1}{d}$. If we call this $a$, then find that $ad - bc = 1$, which is precisely the
+	$\SL_2(\bbZ)$ diamond rule. Similarly, mutation at a source would compute $d$ in terms
+	of $a$ in the $\SL_2(\bbZ)$ diamond. In the example, mutation at the vertex labeled 3
+	results in changing the lattice path from $2 \to 5 \to 3 \gets 4$ to $2 \to 5 \gets 7
+		\to 4$. Applying the Laurent phenomenon now shows that all the entries in the frieze
+	pattern are Laurent polynomials in the entries of the initial lattice path. In
+	particular, if one starts with a lattice path consisting of only ones, then all the
+	entries will be integers. Do note that there exist frieze patterns which do not have a
+	lattice path from top to bottom consisting of only ones:
+	\begin{equation*}
+		\begin{tikzcd}[sep=0.2em,cramped]
+			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
+			&1&&2&&4&&1&&2&&4&&1&&2&&4&&1&&2\\
+			3&&1&&7&&3&&1&&7&&3&&1&&7&&3&&1\\
+			&2&&3&&5&&2&&3&&5&&2&&3&&5&&2&&3\\
+			3&&5&&2&&3&&5&&2&&3&&5&&2&&3&&5\\
+			&7&&3&&1&&7&&3&&1&&7&&3&&1&&7&&3\\
+			2&&4&&1&&2&&4&&1&&2&&4&&1&&2&&4\\
+			&1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1
+		\end{tikzcd}
+	\end{equation*}
+
+	The periodicity of the frieze patterns can also be explained through cluster algebras.
+	It follows in part from \cref{thm:cluster_finite_classification}. A more precise
+	conclusion about the periodicity can be obtained using more advanced results. For
+	example, \cite[Theorem 8.8]{FominZelevinsky2007CA4Coefficients} gives that the period
+	divides $2(n + 1 + 2) = 2n +6$. Indeed, in the frieze pattern of
+	\cref{exmp:frieze_patterns} we had observed a period of $7$ which is exactly half of
+	$2\cdot 4 + 6 = 14$. For a more detailed overview of the connections between cluster
+	algebras and frieze patterns, we refer the reader to the survey paper
+	\cite{BaurFaberGratz2018ConwayCoxeterFriezes}.
 \end{example}
 
+For \cref{exmp:triangulations} it will be more convenient to use a more general
+definition of a cluster algebra. Namely, that of a cluster algebra with coefficients.
+
 \section{Ice quivers and coefficients}\label{sec:ice_quivers_and_coefficients}
+
+In the previous section we looked at cluster algebras coming from quivers. These are in
+some sense the simplest kind of cluster algebras. In some cases, a more general notion
+is needed. For example \cref{exmp:triangulations} will involve quivers with certain
+vertices being frozen. When looking at quantum cluster algebras, we will need
+skew-symmetrizable cluster algebras. All of these will be looked at in this section. To
+avoid confusion, we will be very precise in this chapter with the names and
+definitions.
+
 \subsection{Ice quivers}
 
-, and a subset $\ex \subseteq [1, N]$ of size $n$. The elements of $\ex$ will be
-called \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N]
-	\setminus \ex$ will be called \emph{frozen}\index{frozen}Although not strictly necessary, we will assume that the quiver $Q$ contains no arrows
-between the frozen vertices, i.e., the vertices in $Q_0 \cap \frz$. Arrows between
-exchangeable and frozen vertices are allowed. When drawing a quiver, the frozen
+Recall that in \cref{exmp:triangulations}, the length of a diagonal was obtained using
+Ptolomy's theorem. The calculation involves the lengths of some of the diagonals, as
+well as the lengths of some of the sides. Thus, the cluster variables should be
+associated with both the diagonals as well as the sides. This poses a slight problem.
+It is not possible to perform a flip on one of the sides of the $n$-gon. To fix this,
+we will make a distinction between \emph{exchangeable} and \emph{frozen} vertices. This
+leads to the notion of an \emph{ice quiver}\index{quiver!ice}.
+
+Fix a subset $\ex \subseteq [1, N]$. The elements of $\ex$ will be called
+\emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N] \setminus
+	\ex$ will be called \emph{frozen}\index{frozen}. An \emph{ice quiver} is then just the
+same as a normal quiver, except that we distinguish between the frozen and exchangeable
+vertices. Although not strictly necessary, we will assume that the quiver $Q$ contains
+no arrows between the frozen vertices, i.e., the vertices in $Q_0 \cap \frz$. Arrows
+between exchangeable and frozen vertices are allowed. When drawing a quiver, the frozen
 vertices will be drawn with a box, while the exchangeable vertices will just be drawn
 normally.
 
-Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
-general case as well as a number of other open conjectures
-(\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+The definition of a seed remains very similar in this context. The naming will become
+clear later.
+\begin{definition}
 
-If one considers a more general version of cluster algebras, namely those with
-\emph{coefficients} (cf. \cref{sec:cluster_algebras_coefficients}), then the
-classification stays roughly the same (\cite{FeliksonPavel2023cluster}).
+	A \emph{skew-symmetric labeled seed of geometric type}\index{seed!skew-symmetric of
+		geometric type} is a tuple $(\tQ, \tbx)$, where $\tQ$ is an ice quiver, and $\tbx =
+		\{x_1, \dots, x_N\}$ is a free generating set of $\mcF$. The set $\tbx$ will be
+	referred to as the \emph{extended cluster}\index{cluster!extended}, while the set $\bx
+		= \{x_i \in \tbx \mid i \in \ex\}$ will be called the \emph{cluster}. The elements of
+	$\bx$ will be called \emph{cluster variables}\index{cluster!variable}, while the
+	elements of $\tbx \setminus \bx$ will be called \emph{frozen variables}.
+\end{definition}
+
+A seed such as in the previous section will be referred to as a \emph{skew-symmetric
+	labeled seed of geometric type without coefficients}. It corresponds to the special
+case where $\frz = \emptyset$. In the literature, the suffix ``with coefficients'' is
+sometimes appended to indicate that $\frz \neq \emptyset$.
+
+Seed mutation is now defined analogously, except that mutation can only be done at the
+exchangeable indices, and that potential new arrows between frozen vertices in the ice
+quiver are discarded. We then obtain the following definition.
+\begin{definition}
+
+	Let $\binv \subseteq \frz$ be any subset and $(\tQ, \tbx)$ be a skew-symmetric labeled
+	seed of geometric type. Write $R = \bbK[x_i, x_j^{\pm 1} \mid i \in \frz \setminus
+		\binv,\, j \in \binv]$. Then the \emph{skew-symmetric cluster algebra of geometric
+		type}\index{skew-symmetric!cluster algebra of geometric type}, $\mcA(\tQ, \tbx,
+		\binv)$\index{A Qt xt inv@$\mcA(\tQ, \tbx, \binv)$} is the $R$-subalgebra of $\mcF$
+	generated by all the cluster variables of all the clusters of seeds mutation-equivalent
+	to $(\tQ, \tbx)$.
+\end{definition}
+
+The main theorems from the previous section carry over with some small modifications.
+\begin{theorem}
+
+	Let $\mcA(\tQ, \tbx, \binv)$ be a skew-symmetric cluster algebra of geometric type.
+	\textbf{TODO: figure out if positivity conjecture proven in this case or not...}
+\end{theorem}
+
+% Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
+% general case as well as a number of other open conjectures
+% (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+
+% If one considers a more general version of cluster algebras, namely those with
+% \emph{coefficients} (cf. \cref{sec:cluster_algebras_coefficients}), then the
+% classification stays roughly the same (\cite{FeliksonPavel2023cluster}).
 
 \subsection{Skew-symmetrizable matrices}
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
