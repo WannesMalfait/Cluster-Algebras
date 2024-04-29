@@ -169,8 +169,7 @@ submatrix $B \in M_{\ex \times \ex}(\bbZ)$ indexed by the elements of $\ex$. Let
 $\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
 
 We now explore a naive way of generalizing the exchange relation
-(\cref{eq:exchange_relation_quiver} \textbf{TODO: change to matrix version once added
-	in chapter 1}) to the noncommutative setting. This will give us the intuition needed to
+(\cref{eq:exchange_relation_matrix}) to the noncommutative setting. This will give us the intuition needed to
 arrive at the right definition. Take $k \in \ex$ and write $b^k$\index{b k@$b^k$} for
 the $k$-th column of $\tB$. We will denote with $[b^k]_{+}$\index{b k
 	plusminus@$[b^k]_{\pm}$} and $[b^k]_{-}$ the positive and negative parts of $b^k \in
@@ -277,8 +276,9 @@ skew-symmetrizable. Interestingly, this is almost automatic for compatible pairs
 	from which we obtain $b_{kj} d_j = -b_{jk} d_j$ for all $j, k \in \ex$ due to the fact that $t_{ii}$ is not a root of unity for all $i \in \ex$.
 \end{proof}
 
-We now look at the mutation of the compatible pairs. Recall that the mutation of $\tB$
-in direction $k$ was given by the formula
+We now look at the mutation of the compatible pairs. Recall from
+\cref{eq:mutation_rule_matrix_condensed} that the mutation of $\tB$ in direction $k$
+was given by the formula
 \begin{equation*}
 	b'_{ij} \defeq \begin{dcases*}
 		-b_{ij},                                            & if $i = k$ or $j = k$ \\
@@ -641,9 +641,9 @@ taking the ``limit'' $\bbq \to \mathbf{1}$ (\cite[Theorem
 cluster-finite precisely when the classical cluster algebra corresponding to $\tB$ is
 cluster-finite! This is the phenomenon that we observed in the example. Setting $q = 1$
 in all the equations above, gives precisely the cluster variables coming from the
-classical cluster algebra!
-\textbf{TODO: exchange graph relies on unlabeled seeds: up to permutation of the basis vectors.}
-\textbf{TODO: mention positivity in the quantum case. \cite{Davison2018PositivityQuantumCA}}
+classical cluster algebra! \textbf{TODO: exchange graph relies on unlabeled seeds: up
+	to permutation of the basis vectors.} \textbf{TODO: mention positivity in the quantum
+	case. \cite{Davison2018PositivityQuantumCA}}
 
 \section{Quantum Grassmannians}
 ???

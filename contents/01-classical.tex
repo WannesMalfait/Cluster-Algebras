@@ -469,7 +469,6 @@ process known as \emph{seed mutation}\index{seed!mutation}.
 			      \end{tikzcd}
 		      \end{equation*}
 		      Here we take $r$ to be negative, if the arrows actually point the other way, as the path $i \to k \to j$.
-		      If $i,j$ are both frozen, then we ignore this step.
 		\item All arrows in $Q$ starting or ending in $k$ get their orientation flipped.
 		\item $\bx' = \{x_1', \dots, x_N'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
@@ -839,11 +838,11 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 \cite{FominZelevinsky2003CAFin} or \cite{FominWilliams2021IntroductionCA_4-5}.
 \begin{theorem}[Fomin--Zelevinsky]\label{thm:cluster_finite_classification}
 
-	A cluster algebra $\mcA (Q, \bx)$ is cluster-finite if and only if $Q$ is
-	mutation-equivalent to a simply-laced, i.e., of type ADE, Dynkin diagram\index{Dynkin
-		diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In this case there is a bijective
-	correspondence between the cluster variables and the almost positive roots $\Phi_{\geq
-			-1}$, given by
+	A cluster algebra $\mcA (Q, \bx)$ is cluster-finite if and only if each connected
+	component of $Q$ is mutation-equivalent to a simply-laced, i.e., of type ADE, Dynkin
+	diagram\index{Dynkin diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In this case there
+	is a bijective correspondence between the cluster variables and the almost positive
+	roots $\Phi_{\geq -1}$, given by
 	\begin{equation*}
 		\alpha \leftrightarrow \frac{P_\alpha (\bx)}{x^\alpha},
 	\end{equation*}
@@ -1340,8 +1339,8 @@ The main theorems from the previous section carry over with some small modificat
 	Let $\mcA(\tQ, \tbx, \binv)$ be a skew-symmetric cluster algebra of geometric type.
 	\begin{itemize}
 		\item It is cluster-finite if and only if the ice quiver $\tQ$ is mutation-equivalent to an
-		      ice quiver whose principal part is a simply-laced Dynkin diagram
-		      \cite{FominZelevinsky2003CAFin}.
+		      ice quiver such that the connected components of its principal part are simply-laced
+		      Dynkin diagrams \cite{FominZelevinsky2003CAFin}.
 		\item It is mutation-finite if and only if it is either cluster-finite, obtained from a
 		      surface or is one of a few exceptions \cite{FeliksonPavel2023cluster}.
 		\item The Laurent phenomenon holds. More precisely, let $(\tQ', \tbx')$ be any seed
@@ -1378,8 +1377,8 @@ for $i \in [1, N]$ and $k \in \ex$. It is not a square matrix because we assume 
 there are no arrows between frozen vertices. The $|\ex| \times |\ex|$ submatrix $B \in
 	M_{\ex \times \ex}(\bbZ)$ of $\tB$ given by the rows in $\ex$ will be called the
 \emph{principal part}\index{principal part} of $\tB$. Note that the principal part of
-$\tB$ is \emph{skew-symmetric}\index{skew-symmetric}, i.e., $b_{ik} = - b_{ki}$ for all
-$i,k \in \ex$ or equivalently $B^T = - B$.
+$\tB$ is \emph{skew-symmetric}\index{skew-symmetric}\index{matrix!skew-symmetric},
+i.e., $b_{ik} = - b_{ki}$ for all $i,k \in \ex$ or equivalently $B^T = - B$.
 
 Conversely, starting from a matrix $\tB \in M_{N \times \ex}(\bbZ)$ whose principal
 part is skew-symmetric, one can associate an ice quiver $\tQ$, by placing $b_{ik}$
@@ -1415,15 +1414,214 @@ arrows from the vertex $i$ to the vertex $k$, for each $i \in [1, N]$ and $k \in
 	\end{equation*}
 \end{example}
 
-We now want to describe what happens to the matrix $\tB$ after mutation. \textbf{TODO:
-	derive matrix mutation rule from quiver mutation} \textbf{TODO: Show that we can
-	actually take skew-symmetrizable}
+Let $\tQ$ be an ice quiver with associated matrix $\tB$. We now want to describe what
+happens to the matrix $\tB$ after mutation. Take some $k \in \ex$, and denote the
+elements of $\mu_k(\tB)$ with $b'_{ij}$.
+\begin{enumerate}
+	\item The vertices of $\tQ$ remain unchanged under mutation. Thus, $\mu_k(\tB) \in M_{N
+				      \times \ex}(\bbZ)$.
+	\item For $i \in [1, N]$ and $j \in \ex$, we need to create a new arrow $i \to j$ for each
+	      path $i \to k \to j$. There is a path $i \to k \to j$ if and only if $b_{ik} >0$ and
+	      $b_{kj} > 0$. The number of paths $i\to j\to k$ is then given by $b_{ik}b_{kj}$.
+	      Conversely, we need to create an arrow $j \to i$ for each path $j \to k \to i$. Such
+	      paths exist if $b_{ik} <0$ and $b_{kj} < 0$. In this case, the number of paths is also
+	      given by $b_{ik}b_{kj}$.
+	\item Finally, for $i \in [1,N]$, we need to flip the orientation of all the arrows $i \to k$
+	      or $k \to i$. This translates to setting $b'_{ij} = -b_{ij}$ for all $i \in [1, N]$ and
+	      $j \in \ex$ such that $i = k$ or $j = k$.
+\end{enumerate}
+As a result we derive the following mutation rule for the mutation in direction $k\in \ex$:
+\begin{equation}\label{eq:mutation_rule_matrix_expanded}
+	b'_{ij} \defeq \begin{dcases*}
+		-b_{ij},               & if $i = k$ or $j = k$  \\
+		b_{ij} + b_{ik}b_{kj}, & if $b_{ik},b_{kj} > 0$ \\
+		b_{ij} - b_{ik}b_{kj}, & if $b_{ik},b_{kj} < 0$ \\
+		b_{ij},                & otherwise,
+	\end{dcases*}
+	\quad \text{for } i \in [1, N],\,j \in \ex.
+\end{equation}
+%
+This can be further condensed into the following rule.
+\begin{equation}\label{eq:mutation_rule_matrix_condensed}
+	b'_{ij} \defeq \begin{dcases*}
+		-b_{ij},                                            & if $i = k$ or $j = k$ \\
+		b_{ij} + \frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2}, & otherwise.
+	\end{dcases*}
+\end{equation}
 
-% Later, in a groundbreaking paper, Gross, Hacking, Keel and Kontsevich proved the more
-% general case as well as a number of other open conjectures
-% (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+To express the exchange relation in terms of the matrix $\tB$ we first introduce some
+notation. Write $[b_{ij}]_{+} = \max\{b_{ij}, 0\}$ and $[b_{ij}]_{-} \defeq
+	\min\{b_{ij}, 0\}$. Then the exchange rule \cref{eq:exchange_relation_quiver}
+translates into
+\begin{equation}\label{eq:exchange_relation_matrix}
+	x'_k = \frac{1}{x_k}\left(\prod_{i=1}^n x_i^{[b_{ik}]_{+}} + \prod_{i=1}^{N} x_i^{-[b_{ik}]_{-}}\right).
+\end{equation}
+
+Because working with the matrix $\tB$ is equivalent to working with the ice quiver
+$\tQ$, we will use the same name for the corresponding seeds and cluster algebras.
+\begin{definition}
+
+	A \emph{skew-symmetric labeled seed of geometric type}\index{seed!skew-symmetric of
+		geometric type} if a tuple $(\tB, \tbx)$, where $\tB \in M_{N \times \ex}(\bbZ)$ has
+	skew-symmetric principal part, and $\tbx = \{x_1, \dots, x_N\}$ is a free generating
+	set of $\mcF$. The mutation of the seed $(\tB, \tbx)$ in direction $k \in \ex$ is given
+	by the seed $(\mu_k(\tB), \mu_k(\tbx))$ where $\mu_k(\tB)$ is given by
+	\cref{eq:mutation_rule_matrix_condensed} and $\mu_k(\tbx)$ is given by $\{x_1', \dots,
+		x_N'\}$ where $x_i' = x_i$ for $i\neq k$ and $x'_k$ is given by
+	\cref{eq:exchange_relation_matrix}. The \emph{skew-symmetric cluster algebra of
+		geometric type}\index{skew-symmetric!cluster algebra of geometric type}, $\mcA(\tB,
+		\ex, \binv)$\index{A Bt xt inv@$\mcA(\tB, \tbx, \binv)$} is then defined completely
+	analogously to the version with ice quivers.
+\end{definition}
+
+Interestingly, note that for \emph{any} matrix $\tB \in M_{N\times \ex}(\bbZ)$, the
+mutation rule \cref{eq:mutation_rule_matrix_expanded}, defines an involution. Indeed,
+if $i = k$ or $j = k$ then $b''_{ij} = -b'_{ij} = b_{ij}$. Otherwise, if $b_{ik} > 0$
+and $b_{kj} >0$, then $b'_{ik} = -b_{ik} < 0$ and $b'_{kj} = -b_{kj} < 0$ so that
+\begin{equation*}
+	b''_{ij} = b'_{ij} - b'_{ik}b'_{kj} = b_{ij} + b_{ik}b_{kj} - b_{ik}b_{kj} = b_{ij}.
+\end{equation*}
+%
+Similarly, if $b_{ik} < 0$ and $b_{kj} < 0$. In the other cases mutation does not
+change $b_{ij}$.
+
+Additionally, remark that if $B$ is the principal part of $\tB$, then the principal
+part of $\mu_k(\tB)$ is given by $\mu_k(B)$. Thus, the mutation of $B$ does not depend
+on the entries of $\tB$ which are not contained in $B$.
+
+One might wonder if we can simply drop the skew-symmetric condition on the principal
+part of $\tB$ all together. It turns out that in order to have a nice enough ``exchange
+pattern'', the minimal requirement is that the principal part of $\tB$ and all matrices
+mutation-equivalent to it should be \emph{sign-
+	skew-symmetric}\index{skew-symmetric!sign-}\index{matrix!sign-skew-symmetric}
+(\cite[Proposition 4.3]{FominZelevinsky2002CAF}). A matrix $B \in M_N(\bbZ)$ is said to
+be sign-skew-symmetric if for all $i,j \in [1, N]$, the entries $b_{ij}$ and $b_{ji}$
+are both zero, or have opposite signs. In particular, skew-symmetric matrices are sign
+skew-symmetric. The problem is that mutation of a sign-skew-symmetric matrix might
+yield a matrix which is no longer sign-skew-symmetric.
+
+\begin{example}
+	Consider the sign-skew-symmetric matrix
+	\begin{equation*}
+		C = \begin{pmatrix}
+			0  & 1  & -1 \\
+			-2 & 0  & 4  \\
+			3  & -1 & 0
+		\end{pmatrix}.
+	\end{equation*}
+	%
+	Mutation in direction $1$ using \cref{eq:mutation_rule_matrix_expanded} gives the
+	matrix
+	\begin{equation*}
+		\mu_1(C) = \begin{pmatrix}
+			0  & -1 & 1 \\
+			2  & 0  & 2 \\
+			-3 & 2  & 0
+		\end{pmatrix},
+	\end{equation*}
+	which is no longer sign-skew-symmetric.
+\end{example}
+
+There is a class of matrices between sign-skew-symmetric matrices and skew-symmetric
+matrices. These are the \emph{skew-symmetrizable
+	matrices}\index{matrix!skew-symmetrizable}. A matrix $B \in M_N(\bbZ)$ is said to be
+skew-symmetrizable if there exist $d_1, \dots, d_N \in \bbZ_{\geq 0}$ such that
+\begin{equation}\label{eq:skew_symmetrizable}
+	d_i b_{ij} = -d_j b_{ji}\quad  \text{ for all } i,j \in [1, N].
+\end{equation}
+%
+We say that $B$ is skew-symmetrizable by the integers $d_1, \dots, d_N$. Write $D \in
+	M_N{\bbZ}$ for the diagonal matrix with the elements $d_1, \dots, d_N$ on the diagonal.
+Then \cref{eq:skew_symmetrizable} translates to $(DB)^T = -DB$, i.e., the matrix $DB$
+is skew-symmetric.
+
+\begin{proposition}\label{prop:mutation_preserves_skew_symmetrizable}
+	Suppose that $B \in M_N(\bbZ)$ is skew-symmetrizable by the positive integers $d_1, \dots, d_N \in \bbZ_{>0}$. Then $B$ is sign-skew-symmetric, and for any $k \in [1, N]$, the matrix $\mu_k(B)$ is sign-skew-symmetric and skew-symmetrizable by the same integers.
+\end{proposition}
+\begin{proof}
+	Since the integers $d_1, \dots, d_N$ are strictly positive, \cref{eq:skew_symmetrizable} implies that $B$ is sign-skew-symmetric. Furthermore, for $i,j \in [1, N]$ we have
+	\begin{equation*}
+		d_i b'_{ij} = - d_i  b_{ij} = d_j b_{ji} = -d_j b'_{ji}
+	\end{equation*}
+	if $i =k$ or $j = k$, and
+	\begin{align*}
+		d_i b'_{ij}
+		 & = d_i b_{ij} + \frac{|d_i b_{ik}|b_{kj} + d_i b_{ik}|b_{kj}|}{2}         \\
+		 & = - d_j b_{ji} + \frac{|d_k b_{ki}|b_{kj} - d_k b_{ki}|b_{kj}|}{2}       \\
+		 & = - d_j b_{ji} + \frac{ - |b_{ki}| d_j b_{jk} - b_{ki}|d_jb_{jk}|}{2}    \\
+		 & = - d_j\left( b_{ji} + \frac{|b_{jk}|b_{ki} +  b_{jk}|b_{ki}|}{2}\right) \\
+		 & = - d_jb'_{ji},
+	\end{align*}
+	otherwise.
+\end{proof}
+
+It is now a natural question to ask whether all sign-skew-symmetric matrices which
+remain sign-skew-symmetric under mutations are skew-symmetrizable. This turns out not
+to be the case. For example, for $\alpha, \beta, \gamma \in \bbZ_{>0}$ such that
+$\alpha\beta\gamma \geq 0$, the matrix
+\begin{equation*}
+	\begin{pmatrix}
+		0             & 2\alpha         & -2\alpha \beta \\
+		-\beta \gamma & 0               & 2 \beta        \\
+		\gamma        & - \alpha \gamma & 0
+	\end{pmatrix}
+\end{equation*}
+%
+is sign-skew-symmetric, not skew-symmetrizable, and it remains sign-skew-symmetric
+under any sequence of mutations (\cite[Proposition 4.7]{FominZelevinsky2002CAF}). In
+practice, however, one always restricts to the skew-symmetric or skew-symmetrizable
+case.
+\begin{definition}
+
+	A pair $(\tB, \tbx)$, where $\tB \in M_{N \times \ex}(\bbZ)$ is such that its principal
+	part is skew-symmetrizable and $\tbx = \{x_1, \dots, x_N\}$ is a free generating set of
+	$\mcF$ is called a \emph{labeled seed of geometric type}\index{seed!of geometric type}.
+	Seed mutation and the corresponding \emph{cluster algebra of geometric
+		type}\index{cluster algebra!of geometric type} are defined completely analogously as in
+	the case of skew-symmetric seeds of geometric type.
+\end{definition}
+
+The main results from the skew-symmetric case also hold in the skew-symmetrizable case.
+The cluster-finite classification now encompasses all the Dynkin diagrams. We refer the
+reader to \cite[Chapter 5]{FominWilliams2021IntroductionCA_4-5} for a good overview of
+Cartan matrices, Dynkin diagrams and the classification.
+\begin{theorem}[\protect{\cite[Theorem 1.4]{FominZelevinsky2003CAFin}}]
+
+	Let $\mcA(\tB, \tbx, \binv)$ be a cluster algebra of geometric type. Write $A(B) \in
+		M_{\ex \times \ex}(\bbZ)$ for the matrix with entries
+	\begin{equation*}
+		(a_{ij}) = \begin{dcases*}
+			2,         & if $i = j$     \\
+			-|b_{ij}|, & if $i \neq j$.
+		\end{dcases*}
+	\end{equation*}
+	%
+	Then $\mcA(\tB, \tbx, \binv)$ is cluster-finite if and only if $A(B)$ is a \emph{Cartan
+		matrix of finite type}\index{matrix!Cartan}, i.e., $a_{ij}a_{ji} \leq 3$ for all $i
+		\neq j$.
+\end{theorem}
+
+The mutation-finite classification remains roughly the same. One has to replace quivers
+by \emph{diagrams}\index{diagram} and surfaces by \emph{orbifolds}\index{orbifold}
+(\cite{FeliksonPavel2023cluster}). Since we will not need this result, we refrain from
+giving the relevant definitions.
+
+Finally, the Laurent phenomenon and positivity still hold without any changes. Proving
+positivity in this setting took a long time, and required advanced methods. It was
+shown along with some other open conjectures at the time in a groundbreaking paper by
+Gross, Hacking, Keel and Kontsevich
+(\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
+
+\textbf{TODO: rank 2 cluster algebras example}
 
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
+
+We now finally tackle the most generally notion of a cluster algebra. After giving the
+relevant definitions, we will explain how the previous definitions are special cases,
+and justify the terminology used. Finally we will give an overview of the various
+definitions and the important theorems.
+
+\textbf{TODO: coefficients}
 
 \section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
 
