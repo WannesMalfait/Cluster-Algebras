@@ -423,15 +423,15 @@ for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an intege
 	function field} over $\bbK$, in $N$ variables. Thus, $\mcF$ consists of fractions $P/Q$
 where $P, Q\in \bbK[Y_1, \dots, Y_N]$ are polynomials in the variables $Y_1, \dots,
 	Y_N$, and $Q$ is non-zero. In most cases we will take $\bbK = \bbC$ or $\bbK = \bbQ$.
-This does not impact the definitions that follow in a meaningfull way.
+This does not impact the definitions that follow in a meaningful way.
 
 \begin{definition}
-	We call a pair $(Q, \bx)$ a \emph{labeled seed}\index{seed!labeled} if
+	We call a pair $(Q, \bx)$ a \emph{labeled seed}\index{seed!labeled} in $\mcF$ if
 	\begin{enumerate}
 		\item $Q$ is a quiver with vertices $Q_0 = [1, N]$.
-		\item $\bx = \{x_1, \dots, x_N\}$ is a \emph{free generating set} of $\mcF$. That is, $\bx$ is a set of $N$ algebraically independent elements that generate $\mcF$.
+		\item $\bx = (x_1, \dots, x_N)$ is a \emph{free generating set} of $\mcF$. That is, $\bx$ is a tuple of $N$ algebraically independent elements that generate $\mcF$.
 	\end{enumerate}
-	The set $\bx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!variable}.
+	The tuple $\bx$ will be referred to as the \emph{cluster}\index{cluster}. The elements of $\bx$ will be called \emph{cluster variables}\index{cluster!variable}.
 \end{definition}
 %
 One can also talk about \emph{unlabeled seeds}\index{seed!unlabeled}. An unlabeled seed
@@ -470,7 +470,7 @@ process known as \emph{seed mutation}\index{seed!mutation}.
 		      \end{equation*}
 		      Here we take $r$ to be negative, if the arrows actually point the other way, as the path $i \to k \to j$.
 		\item All arrows in $Q$ starting or ending in $k$ get their orientation flipped.
-		\item $\bx' = \{x_1', \dots, x_N'\}$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
+		\item $\bx' = (x_1', \dots, x_N')$, where $x_i' = x_i$ for $i \neq k$, and $x'_k$
 		      is given by the \emph{exchange relation}\index{exchange relation}
 		      \begin{equation}\label{eq:exchange_relation_quiver}
 			      x'_k \defeq \frac{1}{x_k} \left(\prod_{i \to k} x_i + \prod_{k \to j} x_j\right),
@@ -538,7 +538,7 @@ be useful for the examples.
 		Q = \begin{tikzcd}
 			\bullet
 		\end{tikzcd},
-		\quad \bx = \{x\}.
+		\quad \bx = (x).
 	\end{equation*}
 	%
 	Mutating at the only vertex gives
@@ -546,7 +546,7 @@ be useful for the examples.
 		Q = \begin{tikzcd}
 			\bullet
 		\end{tikzcd},
-		\quad \bx = \left\{\frac{2}{x}\right\}.
+		\quad \bx = \left(\frac{2}{x}\right).
 	\end{equation*}
 	%
 	If we mutate again, we end up with the original seed, as a consequence of
@@ -559,7 +559,7 @@ be useful for the examples.
 		Q = \begin{tikzcd}
 			1 \rar &2
 		\end{tikzcd},
-		\quad \bx = \left\{x_1, x_2\right\}.
+		\quad \bx = \left(x_1, x_2\right).
 	\end{equation*}
 	%
 	If we apply a mutation at the first vertex, we obtain:
@@ -567,7 +567,7 @@ be useful for the examples.
 		\mu_1(Q) = \begin{tikzcd}
 			1 & \lar 2
 		\end{tikzcd},
-		\quad \mu_1(\bx) = \left\{\frac{1+x_2}{x_1}, x_2\right\}.
+		\quad \mu_1(\bx) = \left(\frac{1+x_2}{x_1}, x_2\right).
 	\end{equation*}
 	%
 	We already know that mutating at the first vertex again will yield the same seed, so
@@ -576,7 +576,7 @@ be useful for the examples.
 		\mu_2(\mu_1(Q)) = \begin{tikzcd}
 			1 \rar & 2
 		\end{tikzcd},
-		\quad  \mu_2(\mu_1(\bx)) = \left\{\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_1 x_2}\right\}.
+		\quad  \mu_2(\mu_1(\bx)) = \left(\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_1 x_2}\right).
 	\end{equation*}
 	%
 	Although we are back at the original quiver, the cluster variables are completely
@@ -587,7 +587,7 @@ be useful for the examples.
 		\mu_{121}(Q) = \begin{tikzcd}
 			1 &\lar 2
 		\end{tikzcd},
-		\quad  \mu_{121}(\bx) = \left\{\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\right\}.
+		\quad  \mu_{121}(\bx) = \left(\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\right).
 	\end{equation*}
 	%
 	The expression for the first cluster variable looks complicated, but can be
@@ -596,7 +596,7 @@ be useful for the examples.
 		\mu_{1212}(Q) = \begin{tikzcd}
 			1 \rar& 2
 		\end{tikzcd},
-		\quad  \mu_{1212}(\bx) = \left\{\frac{x_1 + 1}{x_2}, x_1\right\}.
+		\quad  \mu_{1212}(\bx) = \left(\frac{x_1 + 1}{x_2}, x_1\right).
 	\end{equation*}
 	%
 	Once again, some simplification has taken place. We mutate a final time at the first
@@ -605,7 +605,7 @@ be useful for the examples.
 		\mu_{12121}(Q) = \begin{tikzcd}
 			1 &\lar 2
 		\end{tikzcd},
-		\quad  \mu_{12121}(\bx) = \left\{x_2, x_1\right\}.
+		\quad  \mu_{12121}(\bx) = \left(x_2, x_1\right).
 	\end{equation*}
 
 	We have our original seed, except that the arrow in the quiver has been reversed, and
@@ -626,7 +626,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[] & 2 \rar[] &3
 		\end{tikzcd},
-		\quad \bx = \left\{x_1, x_2, x_3\right\}.
+		\quad \bx = \left(x_1, x_2, x_3\right).
 	\end{equation*}
 	Mutation in direction 2 gives
 	\begin{equation*}
@@ -634,7 +634,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[leftarrow] \ar[rr, bend right] & 2 \rar[leftarrow]& 3
 		\end{tikzcd},
-		\quad \mu_2(\bx) = \left\{x_1, \frac{x_1 + x_3}{x_2}, x_3\right\}.
+		\quad \mu_2(\bx) = \left(x_1, \frac{x_1 + x_3}{x_2}, x_3\right).
 	\end{equation*}
 	If we instead apply a mutation in direction 1, we find
 	\begin{equation*}
@@ -642,7 +642,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[leftarrow] & 2 \rar[]& 3
 		\end{tikzcd},
-		\quad \mu_1(\bx) = \left\{\frac{x_2 + 1}{x_1}, x_2, x_3\right\}.
+		\quad \mu_1(\bx) = \left(\frac{x_2 + 1}{x_1}, x_2, x_3\right).
 	\end{equation*}
 	Finally, a mutation in direction 3 would give
 	\begin{equation*}
@@ -650,7 +650,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[] & 2 \rar[leftarrow]& 3
 		\end{tikzcd},
-		\quad \mu_3(\bx) = \left\{x_1, x_2, \frac{x_2 + 1}{x_3}\right\}.
+		\quad \mu_3(\bx) = \left(x_1, x_2, \frac{x_2 + 1}{x_3}\right).
 	\end{equation*}
 	Mutating in direction 1 on $\mu_2(Q)$ gives
 	\begin{equation*}
@@ -658,7 +658,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[] \ar[rr,leftarrow, bend right] & 2 & 3
 		\end{tikzcd},
-		\quad \mu_{21}(\bx) = \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, x_3\right\}.
+		\quad \mu_{21}(\bx) = \left(\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, x_3\right).
 	\end{equation*}
 	If we now mutate in direction 3, we obtain
 	\begin{equation*}
@@ -666,7 +666,7 @@ be useful for the examples.
 		\begin{tikzcd}
 			1 \rar[] \ar[rr, bend right] & 2 & 3
 		\end{tikzcd},
-		\quad \mu_{213}(\bx) = \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
+		\quad \mu_{213}(\bx) = \left(\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right).
 	\end{equation*}
 	It seems that the expressions keep getting messier and messier. We mutate again in direction 2:
 	\begin{equation*}
@@ -676,7 +676,7 @@ be useful for the examples.
 		\end{tikzcd},
 	\end{equation*}
 	\begin{equation*}
-		\mu_{2132}(\bx)= \left\{\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_2 + 1}{x_1}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
+		\mu_{2132}(\bx)= \left(\frac{x_1 + x_3 + x_2x_3}{x_1x_2}, \frac{x_2 + 1}{x_1}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right).
 	\end{equation*}
 	Somehow, some miraculous cancelation happened.
 	Note that the expression $\frac{x_2 + 1}{x_2}$ already appeared previously.
@@ -688,13 +688,13 @@ be useful for the examples.
 		\end{tikzcd},
 	\end{equation*}
 	\begin{equation*}
-		\mu_{2131}(\bx) = \left\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right\}.
+		\mu_{2131}(\bx) = \left(\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, \frac{x_1 x_2 + x_1 + x_3 + x_2 x_3}{x_1x_2x_3}\right).
 	\end{equation*}
 	This still introduces a new expression.
 	Interestingly, these are all the possible expressions we can obtain!
 	If we now mutate in, say, direction 3, we would get as cluster
 	\begin{equation*}
-		\mu_{21313} = \left\{\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, x_1 \right\}.
+		\mu_{21313} = \left(\frac{x_1 + x_3 + x_1x_2}{x_2x_3}, \frac{x_1 + x_3}{x_2}, x_1 \right).
 	\end{equation*}
 	This is again a dramatic cancelation. One can check manually
 	that no mutations introduce new cluster variables.
@@ -723,11 +723,11 @@ be useful for the examples.
 	where $u, v$ and $w$ are the cluster variables of the seed being mutated. Thus, we
 	obtain
 	\begin{align*}
-		\bx            & = \{x, y, z\}                                                                                                                                                                               \\
-		\mu_1(\bx)     & = \left\{\frac{y^2 + z^2}{x}, y, z\right\}                                                                                                                                                  \\
-		\mu_{12}(\bx)  & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y}, z\right\}                                                                                                         \\
-		\mu_{123}(\bx) & = \left\{\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y},\right.                                                                                                            \\
-		               & \left. \frac{x^{4} z^{4} + x^{2} y^{6} + 4 x^{2} y^{4} z^{2} + 5 x^{2} y^{2} z^{4} + 2 x^{2} z^{6} + y^{8} + 4 y^{6} z^{2} + 6 y^{4} z^{4} + 4 y^{2} z^{6} + z^{8}}{x^{4} y^{2} z} \right\}
+		\bx            & = \{x, y, z\}                                                                                                                                                                              \\
+		\mu_1(\bx)     & = \left(\frac{y^2 + z^2}{x}, y, z\right)                                                                                                                                                   \\
+		\mu_{12}(\bx)  & = \left(\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y}, z\right)                                                                                                          \\
+		\mu_{123}(\bx) & = \left(\frac{y^2 + z^2}{x}, \frac{y^4 + 2 z^2y^2 +z^4 + z^2x^2 }{x^2y},\right.                                                                                                            \\
+		               & \left. \frac{x^{4} z^{4} + x^{2} y^{6} + 4 x^{2} y^{4} z^{2} + 5 x^{2} y^{2} z^{4} + 2 x^{2} z^{6} + y^{8} + 4 y^{6} z^{2} + 6 y^{4} z^{4} + 4 y^{2} z^{6} + z^{8}}{x^{4} y^{2} z} \right)
 	\end{align*}
 	%
 	Mutating again at the first vertex gives the new cluster variable
@@ -1153,7 +1153,7 @@ before cluster algebras were invented.
 			4 \uar \rar & 3 \uar[shift left] \uar \uar[shift right]
 		\end{tikzcd}
 		,\quad
-		\bx = \{ x_1, x_2, x_3, x_4\}
+		\bx = ( x_1, x_2, x_3, x_4)
 	\end{equation*}
 	%
 	Mutating at the first vertex gives the seed
@@ -1164,7 +1164,7 @@ before cluster algebras were invented.
 			4 \rar[shift left] \rar[shift right] \rar & 3 \uar \ular[shift left] \ular[shift right]
 		\end{tikzcd}
 		,\quad
-		\mu_1(\bx) = \left\{ \frac{x_2 x_4 + x_3^2}{x_1}, x_2, x_3, x_4\right\}
+		\mu_1(\bx) = \left( \frac{x_2 x_4 + x_3^2}{x_1}, x_2, x_3, x_4\right)
 	\end{equation*}
 	%
 	We now note that $\mu_1(Q)$ is given by relabeling the vertices of $Q$ via $1 \mapsto
@@ -1306,11 +1306,11 @@ clear later.
 \begin{definition}
 
 	A \emph{skew-symmetric labeled seed of geometric type}\index{seed!skew-symmetric of
-		geometric type} is a tuple $(\tQ, \tbx)$, where $\tQ$ is an ice quiver, and $\tbx =
-		\{x_1, \dots, x_N\}$ is a free generating set of $\mcF$. The set $\tbx$ will be
-	referred to as the \emph{extended cluster}\index{cluster!extended}, while the set $\bx
-		= \{x_i \in \tbx \mid i \in \ex\}$ will be called the \emph{cluster}. The elements of
-	$\bx$ will be called \emph{cluster variables}\index{cluster!variable}, while the
+		geometric type} in $\mcF$ is a tuple $(\tQ, \tbx)$, where $\tQ$ is an ice quiver, and
+	$\tbx = (x_1, \dots, x_N)$ is a free generating set of $\mcF$. The tuple $\tbx$ will be
+	referred to as the \emph{extended cluster}\index{cluster!extended}, while the tuple
+	$\bx = (x_i \in \tbx \mid i \in \ex)$ will be called the \emph{cluster}. The elements
+	of $\bx$ will be called \emph{cluster variables}\index{cluster!variable}, while the
 	elements of $\tbx \setminus \bx$ will be called \emph{frozen variables}.
 \end{definition}
 
@@ -1325,12 +1325,12 @@ quiver are discarded. We then obtain the following definition.
 \begin{definition}
 
 	Let $\binv \subseteq \frz$ be any subset and $(\tQ, \tbx)$ be a skew-symmetric labeled
-	seed of geometric type. Write $R = \bbK[x_i, x_j^{\pm 1} \mid i \in \frz \setminus
-		\binv,\, j \in \binv]$. Then the \emph{skew-symmetric cluster algebra of geometric
-		type}\index{skew-symmetric!cluster algebra of geometric type}, $\mcA(\tQ, \tbx,
-		\binv)$\index{A Qt xt inv@$\mcA(\tQ, \tbx, \binv)$} is the $R$-subalgebra of $\mcF$
-	generated by all the cluster variables of all the clusters of seeds mutation-equivalent
-	to $(\tQ, \tbx)$.
+	seed of geometric type in $\mcF$. Write $R = \bbK[x_i, x_j^{\pm 1} \mid i \in \frz
+		\setminus \binv,\, j \in \binv]$. Then the \emph{skew-symmetric cluster algebra of
+		geometric type}\index{skew-symmetric!cluster algebra of geometric type}, $\mcA(\tQ,
+		\tbx, \binv)$\index{A Qt xt inv@$\mcA(\tQ, \tbx, \binv)$} is the $R$-subalgebra of
+	$\mcF$ generated by all the cluster variables of all the clusters of seeds
+	mutation-equivalent to $(\tQ, \tbx)$.
 \end{definition}
 
 The main theorems from the previous section carry over with some small modifications.
@@ -1450,11 +1450,11 @@ This can be further condensed into the following rule.
 \end{equation}
 
 To express the exchange relation in terms of the matrix $\tB$ we first introduce some
-notation. Write $[b_{ij}]_{+} = \max\{b_{ij}, 0\}$ and $[b_{ij}]_{-} \defeq
+notation. Write $[b_{ij}]_{+} \defeq \max\{b_{ij}, 0\}$ and $[b_{ij}]_{-} \defeq
 	\min\{b_{ij}, 0\}$. Then the exchange rule \cref{eq:exchange_relation_quiver}
 translates into
 \begin{equation}\label{eq:exchange_relation_matrix}
-	x'_k = \frac{1}{x_k}\left(\prod_{i=1}^n x_i^{[b_{ik}]_{+}} + \prod_{i=1}^{N} x_i^{-[b_{ik}]_{-}}\right).
+	x'_k = \frac{1}{x_k}\left(\prod_{i=1}^N x_i^{[b_{ik}]_{+}} + \prod_{i=1}^{N} x_i^{-[b_{ik}]_{-}}\right).
 \end{equation}
 
 Because working with the matrix $\tB$ is equivalent to working with the ice quiver
@@ -1462,12 +1462,16 @@ $\tQ$, we will use the same name for the corresponding seeds and cluster algebra
 \begin{definition}
 
 	A \emph{skew-symmetric labeled seed of geometric type}\index{seed!skew-symmetric of
-		geometric type} if a tuple $(\tB, \tbx)$, where $\tB \in M_{N \times \ex}(\bbZ)$ has
-	skew-symmetric principal part, and $\tbx = \{x_1, \dots, x_N\}$ is a free generating
-	set of $\mcF$. The mutation of the seed $(\tB, \tbx)$ in direction $k \in \ex$ is given
-	by the seed $(\mu_k(\tB), \mu_k(\tbx))$ where $\mu_k(\tB)$ is given by
-	\cref{eq:mutation_rule_matrix_condensed} and $\mu_k(\tbx)$ is given by $\{x_1', \dots,
-		x_N'\}$ where $x_i' = x_i$ for $i\neq k$ and $x'_k$ is given by
+		geometric type} in $\mcF$ if a tuple $(\tB, \tbx)$, where $\tB \in M_{N \times
+				\ex}(\bbZ)$ has skew-symmetric principal part, and $\tbx = (x_1, \dots, x_N)$ is a free
+	generating set of $\mcF$. The principal part $B$ of $\tB$ will be called the
+	\emph{exchange matrix}\index{matrix!exchange}, while $\tB$ will be referred to as the
+	\emph{extended exchange matrix}\index{matrix!extended exchange}.
+
+	The mutation of the seed $(\tB, \tbx)$ in direction $k \in \ex$ is given by the seed
+	$(\mu_k(\tB), \mu_k(\tbx))$ where $\mu_k(\tB)$ is given by
+	\cref{eq:mutation_rule_matrix_condensed} and $\mu_k(\tbx)$ is given by $(x_1', \dots,
+		x_N')$ where $x_i' = x_i$ for $i\neq k$ and $x'_k$ is given by
 	\cref{eq:exchange_relation_matrix}. The \emph{skew-symmetric cluster algebra of
 		geometric type}\index{skew-symmetric!cluster algebra of geometric type}, $\mcA(\tB,
 		\ex, \binv)$\index{A Bt xt inv@$\mcA(\tB, \tbx, \binv)$} is then defined completely
@@ -1571,12 +1575,12 @@ is sign-skew-symmetric, not skew-symmetrizable, and it remains sign-skew-symmetr
 under any sequence of mutations (\cite[Proposition 4.7]{FominZelevinsky2002CAF}). In
 practice, however, one always restricts to the skew-symmetric or skew-symmetrizable
 case.
-\begin{definition}
+\begin{definition}\label{def:cluster_algebra_geometric_type}
 
 	A pair $(\tB, \tbx)$, where $\tB \in M_{N \times \ex}(\bbZ)$ is such that its principal
-	part is skew-symmetrizable and $\tbx = \{x_1, \dots, x_N\}$ is a free generating set of
-	$\mcF$ is called a \emph{labeled seed of geometric type}\index{seed!of geometric type}.
-	Seed mutation and the corresponding \emph{cluster algebra of geometric
+	part is skew-symmetrizable and $\tbx = (x_1, \dots, x_N)$ is a free generating set of
+	$\mcF$ is called a \emph{labeled seed of geometric type}\index{seed!of geometric type}
+	in $\mcF$. Seed mutation and the corresponding \emph{cluster algebra of geometric
 		type}\index{cluster algebra!of geometric type} are defined completely analogously as in
 	the case of skew-symmetric seeds of geometric type.
 \end{definition}
@@ -1616,12 +1620,326 @@ Gross, Hacking, Keel and Kontsevich
 
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
 
-We now finally tackle the most generally notion of a cluster algebra. After giving the
-relevant definitions, we will explain how the previous definitions are special cases,
-and justify the terminology used. Finally we will give an overview of the various
-definitions and the important theorems.
+We now finally tackle the most general notion of a cluster algebra, as it was
+originally introduced by Fomin and Zelevinsky in \cite{FominZelevinsky2002CAF}. In the
+next section we will give an overview of the various definitions and state in which
+generality the main theorems hold.
 
-\textbf{TODO: coefficients}
+\medskip
+
+We start with a new definition.
+\begin{definition}
+
+	A \emph{semifield}\index{semifield} $(\bbP, \oplus, \cdot)$ is a set
+	$\bbP$\index{P@$\bbP$} equipped with two binary operations $\oplus \colon \bbP \times
+		\bbP \to \bbP$ and $\cdot \colon \bbP \times \bbP \to \bbP$ such that
+	\begin{enumerate}
+		\item $(\bbP, \cdot)$ is an abelian multiplicative group.
+		\item The \emph{auxiliary addition}\index{auxiliary addition}, $\oplus$, is commutative,
+		      associative and distributive with respect to the multiplication in $(\bbP, \cdot)$.
+		      Thus, for all $a,b,c \in \bbP$:
+		      \begin{align*}
+			       & a \oplus b = b \oplus a                                \\
+			       & (a \oplus b) \oplus c =  a \oplus (b \oplus c)         \\
+			       & a \cdot (b \oplus c) = (a \cdot b) \oplus (a \cdot c)  \\
+			       & (a \oplus b) \cdot c = (a \cdot c) \oplus (b \cdot c).
+		      \end{align*}
+		      %
+		      Note that the last equality follows from the third because $(\bbP, \cdot)$ is abelian.
+	\end{enumerate}
+	%
+	As is common for multiplicative groups, we will simply denote the multiplication by
+	concatenation. Thus $ab \defeq a \cdot b$ for all $a, b \in \bbP$.
+\end{definition}
+
+Another way to think about a semifield, is as a field where the additive structure does
+not have a neutral element or inverses. The structure $(\bbP, \oplus)$ is called a
+\emph{semigroup}\index{semigroup}.
+
+An immediate consequence of the definition is that $(\bbP, \cdot)$ is
+\emph{torsion-free}\index{group!torsion-free}, i.e., if $p^n = 1$ for some $p\in \bbP$
+and $n \in \bbZ$ with $n\geq 2$ then $p = 1$. Indeed, if $p^n = 1$ for some $p \in
+	\bbP$ and $n \in \bbZ$ with $n \geq 2$, then
+\begin{equation*}
+	p
+	= p \frac{p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}{ p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}
+	= \frac{p^n \oplus p^{n-1} \oplus \cdots \oplus p}{ p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}
+	= \frac{p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}{ p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}
+	=1.
+\end{equation*}
+
+\begin{example}
+
+	The \emph{trivial semifield}\index{semifield!trivial} is the semifield $(\{1\}, \oplus,
+		\cdot)$ where $(\{1\}, \cdot)$ is the trivial group and $1 \oplus 1 = 1$. By the
+	discussion above, it is the only finite semifield, since all non-trivial torsion-free
+	(abelian) groups have infinite order.
+\end{example}
+\begin{example}
+
+	A semifield that will play an important role is the \emph{tropical
+		semifield}\index{semifield!tropical}. Let $\Trop(\bmu) = \Trop(u_1, \dots, u_N)$ be an
+	abelian group freely generated by the variables $\bmu \defeq \{u_1, \dots, u_N\}$. Then
+	$\Trop(\bmu)$ consists of elements of the form $\prod_{i=1}^N u_i^{a_i}$ with $a_1,
+		\dots, a_N \in \bbZ$. It becomes a semifield for the auxiliary addition
+	\begin{equation*}
+		\prod_{i=1}^N u_i^{a_i}  \oplus \prod_{i=1}^N u_i^{b_i} =  \prod_{i=1}^N u_i^{\min\{a_i, b_i\}}.
+	\end{equation*}
+	Indeed, for all $a,b,c \in \bbZ$ we have
+	\begin{align*}
+		 & \min \{a,b \} = \min \{b, a\}                    \\
+		 & \min \{a, \min\{b,c\}\} = \min\{\min\{a,b\}, c\} \\
+		 & a \min \{a, b\} + c = \min\{a + c, b + c\},
+	\end{align*}
+	%
+	from which the commutativity, associativity and distributivity of $\oplus$ follow.
+
+\end{example}
+
+\begin{example}
+
+	There is a \emph{universal semifield}\index{semifield!universal} $\bbQ_{{\tsf}}(\bmu)$
+	with $\bmu = \{u_1, \dots, u_N\}$. The elements of $\bbQ_{\tsf}(\bmu)$ are rational
+	functions in $\bmu$ with a \emph{subtraction-free expression}\index{subtraction-free},
+	i.e., $f(\bmu) \in \bbQ_{\tsf}(\bmu)$ can be written as $p(\bmu) / q (\bmu)$ with $p, q
+		\in \bbQ[\bmu]$ nonzero polynomials with nonnegative coefficients. For example, the
+	element $u^2 - u + 1$ is in $\bbQ_{\tsf}(u)$, because it can be writen as the
+	subtraction-free expression $\frac{u^3 + 1}{u + 1}$.
+
+	The semifield $\bbQ_{{\tsf}}(\bmu)$ is universal in the sense that it satifies the
+	following universal property. For every semifield $\bbP$ and $a_1, \dots, a_N \in
+		\bbP$, there is a unique semifield homomorphism $\pi \colon \bbQ_{\tsf}(\bmu) \to \bbP$
+	such that $\pi(u_i) = a_i$ for all $i \in [1, N]$. The idea is that one sends an
+	element $f(\bmu) = p(\bmu) / q(\bmu)$ to the element $p(\bma) / q(\bma)$ where $p(\bmu)
+		/ q(\bmu)$ is a subtraction-free expression for $f(\bmu)$ and $\bma = \{a_1, \dots,
+		a_N\}$.
+\end{example}
+
+Let $(\bbP, \oplus, \cdot)$ be a semifield. From the multiplicative group $(\bbP,
+	\cdot)$, we can also make the \emph{group algebra}\index{group!algebra} $\bbK[\bbP]$.
+Recall that this is the algebra with basis $\bbP$ and multiplication defined via
+\begin{equation*}
+	\left(\sum_{a \in \bbP} \lambda_a a\right)\left(\sum_{b \in \bbP}\mu_b b\right) = \sum_{a,b \in \bbP} \lambda_a \mu_b ab.
+\end{equation*}
+%
+Note that the auxiliary addition, $\oplus$, is not used in the definition of the group
+algebra. The group algebra $\bbK[\Trop(\bmu)]$ is just the algebra of Laurent
+polynomials in $\bmu$.
+\begin{proposition}
+
+	Let $(\bbP, \cdot)$ be a torsion-free abelian group. Then the group algebra
+	$\bbK[\bbP]$ is a \emph{domain}\index{domain}, i.e., $x y = 0$ implies $x = 0$ or $y =
+		0$ for all $x,y \in \bbK[\bbP]$.
+\end{proposition}
+\begin{proof}
+
+	Take $x,y \in \bbK[\bbP]$. We can write $x$ and $y$ as linear combinations of a finite
+	number of elements in $\bbP$. The subgroup, $\bbG$, of $\bbP$ generated by these
+	elements is then a finitely generated abelian torsion-free group. Thus, by the
+	fundamental theorem of finitely generated abelian groups, $\bbG$ must be isomorphic to
+	$\bbZ^n$ for some $n \in \bbZ_{\geq 0}$. Finally, remark that $\bbK[\bbZ^n]$ is
+	isomorphic to the algebra of Laurent polynomials in $n$ variables, which is a domain.
+	Since $x,y,xy \in \bbK[\bbG]$ it follows that $xy = 0$ if and only if either $x = 0$ or
+	$y = 0$.
+\end{proof}
+
+\begin{remark}
+
+	If one drops the assumption that $\bbP$ is abelian from the proposition, then the
+	statement becomes the famous Kaplansky conjecture\index{Kaplansky conjecture}. This
+	conjecture still remains open in general.
+\end{remark}
+
+Fix an integer $1 \leq n \leq N$ and a semifield $\bbP$. Because $\bbK[\bbP]$ is a
+domain we can consider $\mcF \defeq \bbK[\bbP](Y_1, \dots, Y_n)$, the field of rational
+functions with coefficients in $\bbK[\bbP]$.
+\begin{definition}
+
+	A \emph{labeled seed}\index{seed!labeled} in $\mcF$ is a triple $(B, \bx, \by)$ where
+	\begin{itemize}
+		\item $B \in M_{n \times n}(\bbZ)$ is a skew-symemtrizable matrix, called the \emph{exchange matrix}\index{matrix!exchange}.
+		\item $\bx = (x_1, \dots, x_n)$ is a free generating set of $\mcF$, called the \emph{cluster}\index{cluster}.
+		\item $\by = (y_1, \dots, y_n)$ is a tuple of elements in $\bbP$, called the \emph{coefficient tuple}\index{coefficient tuple}.
+	\end{itemize}
+\end{definition}
+%
+The main difference from the previous definitions is the coefficient tuple $\by$. These
+coefficients will play a role similar to the frozen variables of the extended cluster.
+
+\begin{definition}
+	Let $(B, \bx, \by)$ be a labeled seed in $\mcF$, and $k \in [1, n]$. The \emph{mutation in direction $k$} of $(B, \bx, \by)$ is the labeled seed $\mu_k(B, \bx, \by) = (B', \bx', \by')$ where
+	\begin{itemize}
+		\item The entries of $B'$ are given by the \emph{matrix mutation}\index{matrix!mutation}
+		      \cref{eq:mutation_rule_matrix_condensed}.
+		\item The cluster $\bx' = (x_1', \dots, x_n')$ is given by $x_i' = x_i$ for $i \neq k$ and
+		      $x'_k$ is given by the \emph{exchange relation}\index{exchange relation}
+		      \begin{equation}\label{eq:exchange_relation_coefficients}
+			      x'_k = \frac{1}{x_k}\left(\frac{y_k}{y_k \oplus 1} \prod_{i=1}^n x_i^{[b_{ik}]_{+}} + \frac{1}{y_k \oplus 1}\prod_{i=1}^n x_i^{-[b_{ik}]_{-}}\right).
+		      \end{equation}
+		\item The coefficient tuple $\by' = (y'_1, \dots, y'_n)$ is given by the
+		      \emph{$Y$-mutation}\index{Y-mutation@$Y$-mutation}
+		      \begin{equation}\label{eq:Y_mutation}
+			      y'_i = \begin{dcases*}
+				      y_k\inv,                                        & if $i = k$     \\
+				      y_i y_k^{[b_{ki}]_{+}}(y_k \oplus 1)^{-b_{ki}}, & if $i \neq k$.
+			      \end{dcases*}
+		      \end{equation}
+	\end{itemize}
+\end{definition}
+
+Again, the main difference lies in the behavior of the coefficients. Their mutation is
+very different from that of the cluster variables. All the coefficients are changed
+during mutation, while only the cluster variable $x_k$ gets mutated. As one would
+expect given the names, seed mutations are also involutive in this setting.
+
+\begin{proposition}\label{prop:seed_mutation_involutive}
+
+	Let $(B, \bx, \by)$ be a labeled seed in $\mcF$, and $k \in [1, n]$. Then
+	$\mu_k(\mu_k(B, \bx, \by)) = (B, \bx, \by)$.
+\end{proposition}
+\begin{proof}
+
+	We have already shown that matrix mutation is involutive. Write $(B', \bx', \by')
+		\defeq \mu_k(B, \bx, \by)$ and $(B'', \bx'', \by'') \defeq \mu_k(B', \bx', \by')$. Then
+	$x''_i = x'_i = x_i$ for all $i \neq k$, and
+	\begin{align*}
+		x_k''
+		 & = \frac{1}{x_k'}\left(\frac{y'_k}{y'_k \oplus 1} \prod_{i=1}^n x_i^{[b'_{ik}]_{+}} + \frac{1}{y'_k \oplus 1}\prod_{i=1}^n x_i^{-[b'_{ik}]_{-}}\right)          \\
+		 & = \frac{1}{x_k'}\left(\frac{y_k\inv}{y_k\inv \oplus 1} \prod_{i=1}^n x_i^{[-b_{ik}]_{+}} + \frac{1}{y_k\inv \oplus 1}\prod_{i=1}^n x_i^{-[-b_{ik}]_{-}}\right) \\
+		 & = \frac{1}{x_k'}\left(\frac{1}{1 \oplus y_k} \prod_{i=1}^n x_i^{-[b_{ik}]_{-}} + \frac{y_k}{1 \oplus y_k}\prod_{i=1}^n x_i^{[b_{ik}]_{+}}\right)               \\
+		 & = x_k.
+	\end{align*}
+	Finally, for $i \neq k$, we have
+	\begin{align*}
+		y''_i
+		 & = y_i' (y'_k)^{[b'_{ki}]_{+}}(y'_k \oplus 1)^{-b'_{ki}}                                                   \\
+		 & = y_i' (y_k)^{-[-b_{ki}]_{+}}(y_k\inv \oplus 1)^{b_{ki}}                                                  \\
+		 & = y_i y_k^{[b_{ki}]_{+}}(y_k \oplus 1)^{-b_{ki}} (y_k)^{[b_{ki}]_{-}}y_k^{-b_{ki}}(y_k \oplus 1)^{b_{ki}} \\
+		 & = y_i y_k^{[b_{ki}]_{+} + [b_{ki}]_{-} - b_{ki}}                                                          \\
+		 & = y_i.
+	\end{align*}
+\end{proof}
+
+As before, we will call two labeled seeds $(B, \bx, \by)$ and $(B', \bx', \by)$
+\emph{mutation-equivalent}\index{mutation-equivalent} if they can be obtained from each
+other through a sequence of seed mutations. We now define the cluster algebra and upper
+cluster algebra as usual.
+\begin{definition}
+
+	Let $(B, \bx, \by)$ be a labeled seed in $\mcF$. The \emph{cluster
+		algebra}\index{cluster algebra}\index{algebra!cluster}\index{cluster!algebra}, $\mcA(B,
+		\bx, \by)$\index{A B x y@$\mcA(B, \bx, \by)$} is the $\mcF$-subalgebra generated by all
+	the cluster variables in all the seeds mutation equivalent to the initial seed $(B,
+		\bx, \by)$. The \emph{upper cluster algebra}\index{cluster
+		algebra!upper}\index{algebra!upper cluster}, $\mcU(B, \bx, \by)$\index{U B x y@$\mcU(B,
+			\bx, \by)$} is the $\mcF$-subalgebra
+	\begin{equation*}
+		\mcU(B, \bx, \by) = \bigcap_{(B', \bx', \by')} \bbK[\bbP][(x_1')^{\pm 1}, \dots, (x'_n)^{\pm 1}],
+	\end{equation*}
+	%
+	where the intersection runs over all seeds mutation-equivalent to the initial seed.
+\end{definition}
+
+We now explain how this definition generalizes all the previously seen definitions. The
+cluster algebra, $\mcA(B, \bx, \by)$ is said to be of \emph{geometric
+	type}\index{cluster algebra!of geometric type} if $\bbP = \Trop(\bmu)$ for some $\bmu =
+	(u_1, \dots, u_m)$. How does this agree with \cref{def:cluster_algebra_geometric_type}? 
+
+To start, let us denote the generators of $\bbP$ by $x_{n+1}, \dots, x_N$, i.e., $\bbP
+	= \Trop(x_{n+1}, \dots, x_N)$. Furthermore, to make it clear where we are going, we
+will write $\ex \defeq [1, n]$ and $\frz \defeq [n+1, N]$. Because the elements of
+$\by$ lie in $\bbP$, they have the form
+\begin{equation*}\label{eq:coefficients_from_frozen}
+	y_k = \prod_{i = n+1}^N x_i^{b_{ik}} = \prod_{i \in \frz} x_i^{b_{ik}},
+\end{equation*}
+%
+for some $b_{ik} \in \bbZ$. Define the extended exchange matrix $\tB \in M_{N \times
+			\ex}(\bbZ)$ as the matrix with principal part $B$, and whose other entries are
+determined by \cref{eq:coefficients_from_frozen}. Finally, write $\tbx \defeq (x_1,
+	\dots, x_N)$ and $\binv \defeq \frz$. We now claim that the cluster algebras $\mcA(B,
+	\bx, \by)$ and $\mcA(\tB, \tbx, \binv)$ are equal.
+
+We already remarked that the group algebra $\bbK[\Trop(x_{n+1}, \dots, x_{N})]$ is just
+the algebra of Laurent polynomials in $x_{n+1}, \dots, x_N$. Thus
+\begin{equation*}
+	\bbK[\Trop(x_{n+1}, \dots, x_N)] = \bbK[x_{n+1}^{\pm 1}, \dots, x_N^{\pm 1}] = \bbK[x_i, x_j^{\pm 1} \mid i \in \frz \setminus \binv,\,j \in \binv].
+\end{equation*}
+%
+It remains to show that \cref{eq:coefficients_from_frozen} is compatible with the two
+versions of the exchange relation
+(\cref{eq:exchange_relation_matrix,eq:exchange_relation_coefficients}) and that the
+$Y$-mutation (\cref{eq:Y_mutation}) coincides with the mutation of the extended
+exchange matrix given by \cref{eq:mutation_rule_matrix_condensed}.
+
+Indeed,
+\begin{equation*}
+	y_k \oplus 1 = \prod_{i \in \frz} x_i^{b_{ik}} \oplus \prod_{i \in \frz} x_i^0 = \prod_{i \in \frz}x_i^{\min\{b_{ik}, 0\}} = \prod_{i \in \frz} x_i^{[b_{ik}]_{-}},
+\end{equation*}
+so that
+\begin{align*}
+	\frac{1}{y_k \oplus 1}   & = \prod_{i \in \frz} x_i^{-[b_{ik}]_{-}},                                                 \\
+	\shortintertext{and}
+	\frac{y_k}{y_k \oplus 1} & = \prod_{i \in \frz} x_i^{b_{ik} - [b_{ik}]_{-}} = \prod_{i \in \frz} x_i^{[b_{ik}]_{+}}.
+\end{align*}
+%
+This shows the equality between \cref{eq:exchange_relation_matrix} and
+\cref{eq:exchange_relation_coefficients}. Finally,
+\begin{equation*}
+	y_k' = y_k\inv = \prod_{i \in \frz}x_i^{-b_{ik}} = \prod_{i \in \frz}x_i^{b'_{ik}},
+\end{equation*}
+and for $j\neq k$ we have
+\begin{equation*}
+	y'_j = y_j y_k^{[b_{jk}]_{+}}(y_k \oplus 1)^{-b_{jk}} = \prod_{i \in \frz}x_i^{b_{ij} + b_{ik}[b_{kj}]_{+} - b_{kj}[b_{ik}]_{-}} = \prod_{i \in \frz}x_i^{b'_{ij}},
+\end{equation*}
+%
+because
+\begin{align*}
+	\frac{|b_{ik}|b_{kj} + b_{ik}|b_{kj}|}{2}
+	 & =\frac{([b_{ik}]_{+} - [b_{ik}]_{-})([b_{kj}]_{+} + [b_{kj}]_{-}) + ([b_{ik}]_{+} + [b_{ik}]_{-})([b_{kj}]_{+} - [b_{kj}]_{-})}{2} \\
+	 & =\frac{2([b_{ik}]_{+} + [b_{ik}]_{-})[b_{kj}]_{+} - 2([b_{kj}]_{+} + [b_{kj}]_{-})[b_{ik}]_{-}}{2}                                 \\
+	 & =  b_{ik}[b_{kj}]_{+} - b_{kj}[b_{ik}]_{-}.
+\end{align*}
+
+\textbf{TODO: example of rank 2}
+
+\subsection{An overview of the various definitions}
+
+Given all the different versions of cluster algebras that we have seen, an overview is
+due. Let $\mcA(B, \bx, \by)$ be a cluster algebra.
+\begin{itemize}
+	\item We say that $\mcA(B, \bx, \by)$ is a cluster algebra of \emph{geometric
+		      type}\index{cluster algebra!of geometric type}, if the semifield $\bbP$ is chosen to be
+	      a tropical semifield.
+	\item We say that $\mcA(B, \bx, \by)$ is a cluster algebra \emph{without
+		      coefficients}\index{cluster algebra!without coefficients} if $y_1 = \cdots = y_n = 1$.
+	      Conversely, a cluster algebra \emph{with coefficients}\index{cluster algebra!with
+		      coefficients} is a cluster algebra such that the coefficient tuple $\by$ is nontrivial.
+	\item We say that $\mcA(B, \bx, \by)$ is a \emph{skew-symmetric} cluster
+	      algebra\index{cluster algebra!skew-symmmetric} if the matrix $B$ is skew-symmetric. In
+	      this case, it is often convenient to replace $B$ by a quiver $Q$.
+	\item When $\mcA(B, \bx, \by)$ is a cluster algebra of geometric type, it can alternatively
+	      be described by a tuple $(\tB, \tbx)$, consisting of an extended exchange matrix and an
+	      extended cluster. In this case the coefficient tuple $\by$ corresponds to the frozen
+	      variables via \cref{eq:coefficients_from_frozen}.
+\end{itemize}
+
+We now give a (historic) overview of the main results that we have mentioned.
+\begin{itemize}
+	\item The Laurent phenomenon was established in full generality in the paper introducing
+	      cluster algebras (\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured
+	      positivity.
+	\item The classification of cluster-finite cluster algebras was done in the follow-up paper,
+	      again in full generality (\cite{FominZelevinsky2003CAFin}).
+	\item The classification of mutation-finite cluster algebras was started in
+	      \cite{FeliksonShapiroTumarkin2012SkewSCA} for the skew-symmetric case without
+	      coefficients. A follow-up paper, extended the classification to the skew-symmetrizable
+	      case. The classification was finished in \cite{FeliksonPavel2023cluster}, by handling
+	      the case with coefficients.
+	\item In \cite{LeeSchiffler2015PositivityCA}, Lee and Schiffler proved positivity in the
+	      skew-symmetric case. The skew-symmetrizable case for cluster algebras of geometric type
+	      was proven as a consequence of the results in
+	      \cite{GrossHackingKeelKontsevich2018CanonicalBCA}.
+\end{itemize}
 
 \section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
 

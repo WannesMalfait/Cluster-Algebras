@@ -2,13 +2,17 @@
 
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage[shortlabels]{enumitem}
+% Adds bibliography to toc.
+% Need to load before index so it doesn't mess it up...
+\usepackage{tocbibind}
 \usepackage{imakeidx}
-\makeindex
+\makeindex[intoc] % Add index to bibliography.
 \usepackage[bookmarksdepth=2]{hyperref}
 \usepackage{cleveref}
 \usepackage{tikz-cd}
 \usepackage{aligned-overset}
 \usepackage{microtype}
+
 % \usepackage{fancyhdr}
 % \pagestyle{fancy}
 
