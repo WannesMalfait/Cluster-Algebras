@@ -216,7 +216,7 @@ The last example will be based on the following theorem from Euclidean geometry.
 	\end{equation*}
 \end{theorem}
 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
 
 	\begin{tikzpicture}
@@ -260,8 +260,8 @@ The last example will be based on the following theorem from Euclidean geometry.
 	of polygons.
 
 	Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
-	connecting these points through sides $P_{i, i+1}$, where the indices are taken modulo
-	$n$, we obtain a polygon with $n$-sides. A triangulation\index{triangulations!of
+	connecting the points $i$ and $i +1$ for $i \in [1, n]$, where the indices are taken
+	modulo $n$, we obtain a polygon with $n$ sides. A triangulation\index{triangulations!of
 		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
 	partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
 	detail in \cref{sec:triangulations_of_surfaces}, and will therefore keep things brief
@@ -288,7 +288,7 @@ The last example will be based on the following theorem from Euclidean geometry.
 			\draw[] (h.corner 3) -- (h.corner 5);
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
-		\caption{The triangulations of a regular hexagon up to rotation.}
+		\caption{The triangulations of a regular hexagon up to rotations and reflections.}
 		\label{fig:hexagon_triangulations}
 	\end{figure}
 
@@ -311,12 +311,12 @@ The last example will be based on the following theorem from Euclidean geometry.
 			\draw[] (h.corner 1) -- (h.corner 5);
 		\end{tikzpicture}
 	\end{equation*}
-	%
+
 	Using Ptolomy's theorem, the length of the new diagonal can be computed given that we
 	knew the lengths of all the edges in the previous triangulation. We now ignore
 	Euclidean geometry, and just use Ptolomy's theorem as a recurrence relation to
 	construct a collection of numbers as follows. Pick a triangulation and set all the edge
-	lengths equal to one. Then at each step, choose a diagonal in the triangulation and
+	lengths equal to one. Then, at each step, choose a diagonal in the triangulation and
 	flip it. Compute its edge length using Ptolomy's theorem. This is the next number in
 	the collection. For example, we could obtain a sequence starting like this (we omit the
 	ones on the sides):
@@ -1354,7 +1354,546 @@ The main theorems from the previous section carry over with some small modificat
 	\end{itemize}
 \end{theorem}
 
-\textbf{TODO: triangulations example revisited.}
+\begin{example}
+
+	Consider again the setting of \cref{exmp:triangulations}. There is a clear distinction
+	between the sides and the diagonals of the $n$-gon. The diagonals can be changed
+	through flips, but the sides remain fixed. Thus, if we associate the edges with
+	vertices of a quiver, we will need to make the sides frozen vertices. Concretely, one
+	associates an ice quiver to a triangularisation as follows (cf.
+	\cref{fig:triangularisation_quiver}):
+	\begin{itemize}
+		\item The vertices of the ice quiver are the edges of the triangularisation.
+		\item The frozen vertices are the sides, and the exchangeable vertices are the diagonals.
+		\item For each triangle in the triangularisation, place arrows in clockwise
+		      order\footnote{The choice between clockwise and anti-clockwise is arbitrary. The only
+			      important thing is to the same orientation for all the triangles.} connecting the three
+		      edges of the triangle (except between frozen vertices).
+	\end{itemize}
+
+	\begin{figure}[ht!]
+
+		\begin{center}
+			\begin{tikzpicture}[
+					R/.style = {rectangle, fill=black, inner sep=0.7ex},
+					B/.style = {circle, fill=black, inner sep=0.7ex},
+					every edge/.style= {draw, gray},
+				]
+				\coordinate (center) at (0,0);
+				\def\radius{18ex}
+
+				% points on the circle
+				\begin{scope}[rotate=22.5]
+					\path (center) ++(0:\radius) coordinate (A);
+					\path (center) ++(45:\radius) coordinate (B);
+					\path (center) ++(90:\radius) coordinate (C);
+					\path (center) ++(135:\radius) coordinate (D);
+					\path (center) ++(180:\radius) coordinate (E);
+					\path (center) ++(225:\radius) coordinate (F);
+					\path (center) ++(270:\radius) coordinate (G);
+					\path (center) ++(315:\radius) coordinate (H);
+				\end{scope}
+
+				% Sides with frozen verts
+				\begin{scope}[nodes=R]
+					\path (A) edge node (AB) {} (B);
+					\path (B) edge node (BC) {} (C);
+					\path (C) edge node (CD) {} (D);
+					\path (D) edge node (DE) {} (E);
+					\path (E) edge node (EF) {} (F);
+					\path (F) edge node (FG) {} (G);
+					\path (G) edge node (GH) {} (H);
+					\path (H) edge node (HA) {} (A);
+				\end{scope}
+
+				% Diagonals with exchangeable verts
+				\begin{scope}[nodes=B]
+					\path (A) edge node (AC) {} (C);
+					\path (A) edge node (AD) {} (D);
+					\path (A) edge node (AG) {} (G);
+					\path (D) edge node (DG) {} (G);
+					\path (E) edge node (EG) {} (G);
+				\end{scope}
+
+				% Quiver edges
+				\begin{scope}[every edge/.style={draw, -Latex,black,line width=0.2ex}]
+					\path (AB) edge (AC);
+					\path (AC) edge (BC);
+					\path (AC) edge (AD);
+					\path (CD) edge (AC);
+					\path (AD) edge (CD);
+					\path (AD) edge (AG);
+					\path (DG) edge (AD);
+					\path (AG) edge (DG);
+					\path (AG) edge (HA);
+					\path (GH) edge (AG);
+					\path (DE) edge (DG);
+					\path (DG) edge (EG);
+					\path (EG) edge (FG);
+					\path (EF) edge (EG);
+				\end{scope}
+
+			\end{tikzpicture}
+			\hspace{1cm}
+			\begin{tikzpicture}[
+					R/.style = {rectangle, fill=black, inner sep=0.7ex},
+					B/.style = {circle, fill=black, inner sep=0.7ex},
+					every edge/.style= {draw, gray},
+				]
+				\coordinate (center) at (0,0);
+				\def\radius{18ex}
+
+				% points on the circle
+				\begin{scope}[rotate=22.5]
+					\path (center) ++(0:\radius) coordinate (A);
+					\path (center) ++(45:\radius) coordinate (B);
+					\path (center) ++(90:\radius) coordinate (C);
+					\path (center) ++(135:\radius) coordinate (D);
+					\path (center) ++(180:\radius) coordinate (E);
+					\path (center) ++(225:\radius) coordinate (F);
+					\path (center) ++(270:\radius) coordinate (G);
+					\path (center) ++(315:\radius) coordinate (H);
+				\end{scope}
+
+				% Sides with frozen verts
+				\begin{scope}[nodes=R]
+					\path (A) edge node (AB) {} (B);
+					\path (B) edge node (BC) {} (C);
+					\path (C) edge node (CD) {} (D);
+					\path (D) edge node (DE) {} (E);
+					\path (E) edge node (EF) {} (F);
+					\path (F) edge node (FG) {} (G);
+					\path (G) edge node (GH) {} (H);
+					\path (H) edge node (HA) {} (A);
+				\end{scope}
+
+				% Diagonals with exchangeable verts
+				\begin{scope}[nodes=B]
+					\path (A) edge node (AC) {} (C);
+					\path (A) edge node (AD) {} (D);
+					\path (A) edge node (AE) {} (E);
+					\path (A) edge node (AF) {} (F);
+					\path (A) edge node (AG) {} (G);
+				\end{scope}
+
+				% Quiver edges
+				\begin{scope}[every edge/.style={draw, -Latex,black,line width=0.2ex}]
+					\path (AB) edge (AC);
+					\path (AC) edge (BC);
+
+					\path (AC) edge (AD);
+					\path (AD) edge (CD);
+					\path (CD) edge (AC);
+
+					\path (AD) edge (AE);
+					\path (AE) edge (DE);
+					\path (DE) edge (AD);
+
+					\path (AE) edge (AF);
+					\path (AF) edge (EF);
+					\path (EF) edge (AE);
+
+					\path (AF) edge (AG);
+					\path (AG) edge (FG);
+					\path (FG) edge (AF);
+
+					\path (GH) edge (AG);
+					\path (AG) edge (HA);
+				\end{scope}
+			\end{tikzpicture}
+		\end{center}
+
+		\caption{The quiver associated to a triangularisation.}
+		\label{fig:triangularisation_quiver}
+	\end{figure}
+
+	Let us now verify that flips of diagonals really correspond to mutations of the
+	associated quiver. Recall that a diagonal is the side of precisely two triangles in a
+	triangulation. These two triangles form a quadraliteral, and the flip of the diagonal
+	is obtained by replacing it with the other diagonal of the quadraliteral. Now remark
+	that in the associated quiver, the vertex corresponding to the diagonal is only
+	connected to the vertices corresponding to the sides of this quadraliteral. Thus, it
+	suffices to consider a single quadrilateral in the triangulation. This case is quickly
+	verified (cf. \cref{fig:flip_quad_is_mutation}).
+	\begin{figure}[ht!]
+		\centering
+		\begin{equation*}
+			\begin{tikzpicture}[
+					baseline,
+					D/.style={diamond, fill=black, inner sep = 0.4ex},
+					L/.style={draw,circle, inner sep = 0.5ex},
+					x = 15ex,
+					y = 10ex,
+				]
+				% Rectangle vertices
+				\begin{scope}[nodes=L]
+					\node (A) at (-1,-1) {l};
+					\node (B) at (-1, 1) {i};
+					\node (C) at ( 1, 1) {j};
+					\node (D) at ( 1,-1) {k};
+				\end{scope}
+				\begin{scope}[nodes=D]
+					% Nodes on the edges
+					\draw[gray] (A) -- node (AB) {} (B) -- node (BC) {} (C) -- node (CD) {} (D) -- node (DA) {} (A);
+					% Diagonal
+					\draw[gray] (A) -- node[circle] (AC) {} (C);
+					% Quiver edges
+					\begin{scope}[every edge/.style={draw, Latex-,black,line width=0.2ex}]
+						\path (AC) edge (BC);
+						\path (BC) edge[dashed] (AB);
+						\path (AB) edge (AC);
+
+						\path (AC) edge (DA);
+						\path (DA) edge[dashed] (CD);
+						\path (CD) edge (AC);
+					\end{scope}
+				\end{scope}
+			\end{tikzpicture}
+			\quad \longleftrightarrow \quad
+			\begin{tikzpicture}[
+					baseline,
+					D/.style={diamond, fill=black, inner sep = 0.4ex},
+					L/.style={draw,circle, inner sep = 0.5ex},
+					x = 15ex,
+					y = 10ex,
+				]
+				% Rectangle vertices
+				\begin{scope}[nodes=L]
+					\node (A) at (-1,-1) {l};
+					\node (B) at (-1, 1) {i};
+					\node (C) at ( 1, 1) {j};
+					\node (D) at ( 1,-1) {k};
+				\end{scope}
+				\begin{scope}[nodes=D]
+					% Nodes on the edges
+					\draw[gray] (A) -- node (AB) {} (B) -- node (BC) {} (C) -- node (CD) {} (D) -- node (DA) {} (A);
+					% Diagonal
+					\draw[gray] (B) -- node[circle] (BD) {} (D);
+					% Quiver edges
+					\begin{scope}[every edge/.style={draw, -Latex,black,line width=0.2ex}]
+						\path (AB) edge (BD);
+						\path (BD) edge (DA);
+						\path (DA) edge[dashed] (AB);
+
+						\path (CD) edge (BD);
+						\path (BD) edge (BC);
+						\path (BC) edge[dashed] (CD);
+					\end{scope}
+				\end{scope}
+			\end{tikzpicture}
+		\end{equation*}
+
+		\caption{A flip in a quadraliteral corresponds with a mutation of the associated quiver. The diamonds indicate that the vertices might be frozen or exchangeable, and the dashed lines indicate that the arrows should be ignored if the vertices are frozen.}
+		\label{fig:flip_quad_is_mutation}
+	\end{figure}
+
+	Let $\Delta$ be a triangulation of an $n$-gon, and let $\tQ(\Delta)$ be the associated
+	ice quiver as above. We have shown that mutations of $\tQ(\Delta)$ correspond to flips
+	of the triangulation $\Delta$. It can be shown that every triangulation can obtained
+	from another triangulation by a sequence of flips, which implies that all the
+	triangulations are mutation-equivalent to each other (\cite[Proposition
+		3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}).
+
+	We also have an extended cluster $\tbx(\Delta)$. Let us write $P_{ij}$ for the element
+	of the extended cluster corresponding to the edge between $i$ and $j$. Thus, for
+	example, the frozen variables are given by $P_{i, i+1}$ where the indices are taken
+	modulo $n$. Note that it is not obvious at all that this makes sense. A priori, there
+	could be multiple (extended) clusters corresponding to a given triangulation. For
+	example, in \cref{exmp:A2_quiver,exmp:markov_quiver} there are seeds with the same
+	quiver but different clusters. In this case however, the triangulations correspond
+	exactly to the (unlabeled) seeds. In fact, as we will see later on, this holds more
+	generally for cluster algebras coming from surfaces (\cite[Theorem
+		7.11]{FominShapiroThurston2008CATriangulatedSurfacesI}).
+
+	To determine the exchange relation, it suffices once again to consider the situation as
+	in \cref{fig:flip_quad_is_mutation}. There we see that exchange relation is given by
+	\begin{equation}\label{eq:exchange_flip_quad}
+		P_{ik}P_{jl} = P_{ij}P_{lk} + P_{il}P_{jk}.
+	\end{equation}
+	%
+	This is precisely the same relation as in Ptolomy's theorem (\cref{thm:ptolomy}). Thus,
+	the ``edge lengths'' that we computed in \cref{exmp:triangulations} correspond to
+	cluster variables. The Laurent phenomenon guarantees that these will be Laurent
+	polynomials with integer coefficients in the extended cluster variables of the initial
+	triangulation. Since we chose the original edge lengths to be one, all the resulting
+	edge lengths were integers. We can now say something more. Since the frozen variables
+	do not need to be inverted, we can set the side lengths to be any integers in the
+	initial triangulation.
+
+	Let us denote the corresponding skew-symmetric cluster algebra of geometric type by
+	$\mcA(\Delta) \defeq \mcA(\tQ(\Delta), \tbx(\Delta))$. It is mutation-finite, because
+	there are only finitely many triangulations of an $n$-gon. It is for this exact reason
+	that all the cluster algebras coming from surfaces will be mutation-finite as well. For
+	$\mcA(\Delta)$ we can say more. It is actually cluster-finite. Indeed, consider the
+	triangulation obtained by the diagonals $P_{1, 3}, P_{1,4}, \dots, P_{1,n-2}$. It
+	corresponds to the second triangulation of \cref{fig:triangularisation_quiver}. The
+	principal part of the corresponding quiver is just a path graph on $n-3$ vertices,
+	i.e., an orientation of the Dynkin diagram $A_{n-3}$. By the classification of
+	cluster-finite cluster algebras, it follows that $\mcA(\Delta)$ is cluster-finite. This
+	explains why only finitely many integers appeared in \cref{exmp:triangulations}.
+
+	Let us now specifically look at the case of a hexagon. We start with the seed
+	\begin{equation*}
+		\Delta =
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
+			\draw (h.corner 1) -- (h.corner 3);
+			\draw (h.corner 1) -- (h.corner 4);
+			\draw (h.corner 1) -- (h.corner 5);
+			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
+		\end{tikzpicture}
+		,\quad \tQ(\Delta) =
+		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
+			\boxed{P_{12}} \rar & P_{13} \rar \dar & P_{14} \rar \dar & P_{15} \rar \dar & \boxed{P_{61}}\\
+			& \boxed{P_{23}} & \boxed{P_{34}} \ular & \boxed{P_{45}} \ular & \boxed{P_{56}} \ular
+		\end{tikzcd}
+		,\quad \bx(\Delta) = (P_{13}, P_{14}, P_{15}).
+	\end{equation*}
+	Flipping the diagonal $P_{14}$ gives
+	\begin{equation*}
+		\Delta' =
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
+			\draw (h.corner 1) -- (h.corner 3);
+			\draw (h.corner 3) -- (h.corner 5);
+			\draw (h.corner 1) -- (h.corner 5);
+			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
+		\end{tikzpicture}
+		,\quad \tQ(\Delta') =
+		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
+			\boxed{P_{12}} \rar & P_{13} \ar[rr, bend left] \dar & P_{35} \lar \drar & P_{15} \lar \rar & \boxed{P_{61}}\\
+			& \boxed{P_{23}} & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
+		\end{tikzcd}
+		,\quad \bx(\Delta') = (P_{13}, P_{35}, P_{15}),
+	\end{equation*}
+	%
+	where
+	\begin{equation*}
+		P_{35} = \frac{P_{13}P_{45} + P_{15}P_{34}}{P_{14}}.
+	\end{equation*}
+	Similarly, by flipping the diagonals $P_{13}$ and $P_{15}$ instead, one obtains
+	\begin{equation*}
+		P_{24} = \frac{P_{12}P_{34} + P_{23}P_{14}}{P_{13}}, \quad \text{and}\quad P_{46} = \frac{P_{61}P_{45} + P_{14}P_{56}}{P_{15}}.
+	\end{equation*}
+	%
+	From the triangulation $\Delta'$, we obtain by a flip of the diagonal $P_{13}$, the
+	seed
+	\begin{equation*}
+		\Delta'' =
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
+			\draw (h.corner 2) -- (h.corner 5);
+			\draw (h.corner 3) -- (h.corner 5);
+			\draw (h.corner 1) -- (h.corner 5);
+			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
+		\end{tikzpicture}
+		,\quad \tQ(\Delta'') =
+		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
+			\boxed{P_{12}} \ar[rrr, bend left=50]  & \lar P_{25} \rar & P_{35} \dlar \drar & P_{15} \ar[ll, bend right] \rar & \boxed{P_{61}}\\
+			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
+		\end{tikzcd}
+		,\quad \bx(\Delta'') = (P_{25}, P_{35}, P_{15}),
+	\end{equation*}
+	where
+	\begin{equation*}
+		P_{25} = \frac{P_{12}P_{35} + P_{23}P_{15}}{P_{13}} = \frac{P_{12}P_{13}P_{45} + P_{12}P_{15}P_{34}+P_{23}P_{14}P_{15}}{P_{13}P_{14}}.
+	\end{equation*}
+	We now flip the diagonal $P_{15}$, which gives the seed
+	\begin{equation*}
+		\Delta''' =
+		\begin{tikzpicture}[baseline]
+			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
+			\draw (h.corner 2) -- (h.corner 5);
+			\draw (h.corner 3) -- (h.corner 5);
+			\draw (h.corner 2) -- (h.corner 6);
+			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
+		\end{tikzpicture}
+		,\quad \tQ(\Delta''') =
+		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
+			\boxed{P_{12}} \ar[rrrr, bend left] & P_{25} \ar[rr, bend left] \rar & P_{35} \dlar \drar & P_{26} \ar[lll, bend right=50] \drar & \lar \boxed{P_{61}}\\
+			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ar[llu, bend right=10]
+		\end{tikzcd}
+		,\quad \bx(\Delta''') = (P_{25}, P_{35}, P_{26}),
+	\end{equation*}
+	where
+	\begin{equation*}
+		P_{26} = \frac{P_{12}P_{56} + P_{25}P_{61}}{P_{15}} = \frac{P_{12}P_{13}P_{45}P_{61} + P_{12}P_{15}P_{34}P_{61}+P_{23}P_{14}P_{15}P_{61} + P_{12}P_{56}P_{13}P_{14}}{P_{13}P_{14}P_{15}}.
+	\end{equation*}
+	%
+	Finally, flipping the diagonal $P_{25}$ in $\Delta'''$ gives
+	\begin{align*}
+		P_{36}
+		 & = \frac{P_{23}P_{56} + P_{26}P_{35}}{P_{25}}                                                                                                                                                      \\
+		 & = \frac{P_{13}P_{14}}{P_{12}P_{13}P_{45} + P_{12}P_{15}P_{34}+P_{23}P_{14}P_{15}}\left(P_{23}P_{56} + \frac{P_{13}P_{45} + P_{15}P_{34}}{P_{14}}\frac{P_{12}P_{56} + P_{25}P_{61}}{P_{15}}\right) \\
+		 & = \frac{P_{13}P_{56}}{P_{15}} + \frac{1}{P_{25}}\left(\frac{(P_{13}P_{45} + P_{15}P_{34})P_{25}P_{61}}{P_{14}P_{15}}\right)                                                                       \\
+		 & =\frac{P_{13}P_{14}P_{56} + P_{13}P_{45}P_{61} + P_{15}P_{34}P_{61}}{P_{14}P_{15}}.
+	\end{align*}
+	%
+	With that, we have expressed all the cluster variables in terms of the original
+	extended cluster. As expected from the Laurent phenomenon, all the cluster variables
+	are Laurent polynomials with positive integer coefficients. Furthermore, none of the
+	frozen variables appear in the denominators.
+
+	As remarked above, the unlabeled seeds are in one-to-one correspondence with the
+	triangulations. Thus, the exchange graph of the cluster algebra can be visualized by
+	only looking at the triangulations. For $n = 4$, the exchange graph is not so
+	interesting:
+	\begin{center}
+		\begin{tikzpicture}[
+				every node/.style={draw, minimum size = 8ex, shape=regular polygon, regular polygon sides =4}
+			]
+			\node[name=Q1] at (-10ex, 0) {};
+			\draw (Q1.corner 2) -- (Q1.corner 4);
+			\node[name=Q2] at (10ex, 0) {};
+			\draw (Q2.corner 1) -- (Q2.corner 3);
+
+			\draw (Q1) edge[dashed] (Q2);
+		\end{tikzpicture}
+	\end{center}
+	For $n=5$, things get a bit more interesting.
+	\begin{center}
+		\begin{tikzpicture}[
+				every node/.style={draw, minimum size = 7ex, shape=regular polygon, regular polygon sides =5}
+			]
+			\def\radius{15ex}
+			\begin{scope}[rotate=90]
+				\node[name=P1] at (0:\radius) {};
+				\draw (P1.corner 1) -- (P1.corner 3);
+				\draw (P1.corner 1) -- (P1.corner 4);
+				\node[name=P2] at (72:\radius) {};
+				\draw (P2.corner 2) -- (P2.corner 4);
+				\draw (P2.corner 1) -- (P2.corner 4);
+				\node[name=P3] at (144:\radius) {};
+				\draw (P3.corner 2) -- (P3.corner 4);
+				\draw (P3.corner 2) -- (P3.corner 5);
+				\node[name=P4] at (216:\radius) {};
+				\draw (P4.corner 3) -- (P4.corner 5);
+				\draw (P4.corner 2) -- (P4.corner 5);
+				\node[name=P5] at (288:\radius) {};
+				\draw (P5.corner 3) -- (P5.corner 5);
+				\draw (P5.corner 1) -- (P5.corner 3);
+
+				\draw[dashed] (P1) -- (P2) -- (P3) -- (P4) -- (P5) -- (P1);
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	%
+	Finally, consider the exchange graph of the hexagon
+	(\cref{fig:hexagon_exchange_graph}).
+	\begin{figure}[ht!]
+		\centering
+		\begin{tikzpicture}[
+				every node/.style={draw, minimum size = 5ex, shape=regular polygon, regular polygon sides =6},
+			]
+			\def\radius{20ex}
+			\begin{scope}[rotate=90]
+				\node[name=H1] at (0:\radius) {};
+				\draw (H1.corner 3) -- (H1.corner 5);
+				\draw (H1.corner 1) -- (H1.corner 3);
+				\draw (H1.corner 1) -- (H1.corner 5);
+				\node[name=H2] at (72:\radius) {};
+				\draw (H2.corner 1) -- (H2.corner 3);
+				\draw (H2.corner 1) -- (H2.corner 4);
+				\draw (H2.corner 1) -- (H2.corner 5);
+				\node[name=H3] at (144:\radius) {};
+				\draw (H3.corner 2) -- (H3.corner 4);
+				\draw (H3.corner 1) -- (H3.corner 4);
+				\draw (H3.corner 1) -- (H3.corner 5);
+				\node[name=H4] at (216:\radius) {};
+				\draw (H4.corner 2) -- (H4.corner 4);
+				\draw (H4.corner 2) -- (H4.corner 5);
+				\draw (H4.corner 1) -- (H4.corner 5);
+				\node[name=H5] at (288:\radius) {};
+				\draw (H5.corner 3) -- (H5.corner 5);
+				\draw (H5.corner 2) -- (H5.corner 5);
+				\draw (H5.corner 1) -- (H5.corner 5);
+
+				\draw[dashed] (H1) -- (H2) -- (H3) -- (H4) -- (H5) -- (H1);
+
+				\node[name=H7, below right=12ex and 5ex of H5] {};
+				\node[name=H8, below left=12ex and 5ex of H2] {};
+				\node[name=H9, below=5ex of H1] {};
+				\node[name=H10, below=27ex of H9] {};
+				\node[name=H11, below right=10ex and 5ex of H9] {};
+				\node[name=H12, below left=10ex and 5ex of H9] {};
+				\node[name=H13, below=13ex of H10] {};
+				\node[name=H14, below=30ex of H5] {};
+				\node[name=H15, below=30ex of H2] {};
+
+				\draw (H13.corner 2) -- (H13.corner 4);
+				\draw (H13.corner 6) -- (H13.corner 4);
+				\draw (H13.corner 6) -- (H13.corner 2);
+
+				\draw (H14.corner 2) -- (H14.corner 4);
+				\draw (H14.corner 2) -- (H14.corner 6);
+				\draw (H14.corner 2) -- (H14.corner 5);
+
+				\draw (H15.corner 2) -- (H15.corner 4);
+				\draw (H15.corner 1) -- (H15.corner 4);
+				\draw (H15.corner 6) -- (H15.corner 4);
+
+				\draw (H8.corner 1) -- (H8.corner 3);
+				\draw (H8.corner 1) -- (H8.corner 4);
+				\draw (H8.corner 6) -- (H8.corner 4);
+
+				\draw (H7.corner 3) -- (H7.corner 5);
+				\draw (H7.corner 2) -- (H7.corner 6);
+				\draw (H7.corner 2) -- (H7.corner 5);
+
+				\draw (H9.corner 3) -- (H9.corner 5);
+				\draw (H9.corner 1) -- (H9.corner 3);
+				\draw (H9.corner 3) -- (H9.corner 6);
+
+				\draw (H11.corner 3) -- (H11.corner 5);
+				\draw (H11.corner 2) -- (H11.corner 6);
+				\draw (H11.corner 3) -- (H11.corner 6);
+
+				\draw (H12.corner 4) -- (H12.corner 6);
+				\draw (H12.corner 1) -- (H12.corner 3);
+				\draw (H12.corner 3) -- (H12.corner 6);
+
+				\draw (H10.corner 3) -- (H10.corner 6);
+				\draw (H10.corner 6) -- (H10.corner 4);
+				\draw (H10.corner 6) -- (H10.corner 2);
+
+				\begin{scope}[every path/.style={dashed}]
+					\draw (H2) -- (H8) -- (H15) -- (H13) -- (H14) -- (H7) -- (H5);
+					\draw (H9) -- (H11) -- (H10) -- (H12) -- (H9);
+					\draw (H9) -- (H1);
+					\draw (H8) -- (H12);
+					\draw (H7) -- (H11);
+					\draw (H15) -- (H3);
+					\draw (H14) -- (H4);
+					\draw (H13) -- (H10);
+				\end{scope}
+			\end{scope}
+		\end{tikzpicture}
+
+		\caption{The exchange graph of the hexagon.}
+		\label{fig:hexagon_exchange_graph}
+	\end{figure}
+
+	Note that the exchange graph of the hexagon is built out of pentagons and
+	quadrilaterals. By ``freezing'' a diagonal, the hexagon splits into either a triangle
+	and a pentagon, or two quadrilaterals. In the first case the exchange graph of the
+	pentagon appears, which is again a pentagon. In the latter case the direct product of
+	the exchange graph of the quadraliteral with itself appears, which creates a
+	quadrilateral.
+
+	More generally, one can remark that the exchange graph is the edge-graph of a convex
+	polytope. This polytope is known as the \emph{associahedron}\index{associahedron}. The
+	name comes from comparing all the ways a multiplication $a_1 \cdot a_2 \cdots a_{n-1}$
+	can be interpreted by placing brackets. The edges then correspond to expressions which
+	can be obtained from each other by a single application of the associativity rule. For
+	example, for $n=4$ we only have the expressions $a(bc)$ and $(ab)c$, while for $n=5$ we
+	have the five expressions
+	\begin{equation*}
+		a(b(cd)), a((bc)d), (a(bc))d, ((ab)c)d, (ab)(cd).
+	\end{equation*}
+	%
+	The other cluster-finite cluster algebras have exchange graphs which are so-called
+	\emph{generalized} associahedra (\cite[Theorem 1.13]{FominZelevinsky2003CAFin}).
+\end{example}
 
 \subsection{Skew-symmetrizable matrices}
 
