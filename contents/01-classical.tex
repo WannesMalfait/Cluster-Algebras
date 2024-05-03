@@ -1589,7 +1589,7 @@ The main results from the skew-symmetric case also hold in the skew-symmetrizabl
 The cluster-finite classification now encompasses all the Dynkin diagrams. We refer the
 reader to \cite[Chapter 5]{FominWilliams2021IntroductionCA_4-5} for a good overview of
 Cartan matrices, Dynkin diagrams and the classification.
-\begin{theorem}[\protect{\cite[Theorem 1.4]{FominZelevinsky2003CAFin}}]
+\begin{theorem}[\protect{\cite[Theorem 1.4]{FominZelevinsky2003CAFin}}]\label{thm:cluster_finite_general_case}
 
 	Let $\mcA(\tB, \tbx, \binv)$ be a cluster algebra of geometric type. Write $A(B) \in
 		M_{\ex \times \ex}(\bbZ)$ for the matrix with entries
@@ -1849,9 +1849,9 @@ To start, let us denote the generators of $\bbP$ by $x_{n+1}, \dots, x_N$, i.e.,
 	= \Trop(x_{n+1}, \dots, x_N)$. Furthermore, to make it clear where we are going, we
 will write $\ex \defeq [1, n]$ and $\frz \defeq [n+1, N]$. Because the elements of
 $\by$ lie in $\bbP$, they have the form
-\begin{equation*}\label{eq:coefficients_from_frozen}
+\begin{equation}\label{eq:coefficients_from_frozen}
 	y_k = \prod_{i = n+1}^N x_i^{b_{ik}} = \prod_{i \in \frz} x_i^{b_{ik}},
-\end{equation*}
+\end{equation}
 %
 for some $b_{ik} \in \bbZ$. Define the extended exchange matrix $\tB \in M_{N \times
 			\ex}(\bbZ)$ as the matrix with principal part $B$, and whose other entries are
@@ -1899,10 +1899,30 @@ because
 	 & =\frac{2([b_{ik}]_{+} + [b_{ik}]_{-})[b_{kj}]_{+} - 2([b_{kj}]_{+} + [b_{kj}]_{-})[b_{ik}]_{-}}{2}                                 \\
 	 & =  b_{ik}[b_{kj}]_{+} - b_{kj}[b_{ik}]_{-}.
 \end{align*}
+%
+This shows that \cref{def:cluster_algebra_geometric_type} agrees with the new
+definition of a cluster algebra of geometric type.
+
+\medskip
+
+In most cases, one restricts to cluster algebras of geometric type. There are multiple
+reasons for this.
+\begin{itemize}
+	\item Almost all examples of algebras appearing ``in nature'', which have a cluster algebra
+	      structure, are cluster algebras of geometric type. We will see more of this in
+	      \cref{sec:algebra_cluster_algebra_structure}.
+	\item Cluster algebras of geometric type are easier to introduce, and can be approached
+	      through more geometric means, such as triangulations of surfaces (cf.
+	      \cref{sec:triangulations_of_surfaces}).
+	\item For many cases it is sufficient to consider cluster algebras of geometric type. For
+	      example, for positivity, the general case follows from the case of geometric type via
+	      \cite[Theorem 3.7]{FominZelevinsky2007CA4Coefficients} as pointed out in \cite[Theorem
+		      4.2]{LeeSchiffler2015PositivityCA}.
+\end{itemize}
 
 \textbf{TODO: example of rank 2}
 
-\subsection{An overview of the various definitions}
+\subsection{An overview of the various definitions and results}
 
 Given all the different versions of cluster algebras that we have seen, an overview is
 due. Let $\mcA(B, \bx, \by)$ be a cluster algebra.
@@ -1922,28 +1942,36 @@ due. Let $\mcA(B, \bx, \by)$ be a cluster algebra.
 	      extended cluster. In this case the coefficient tuple $\by$ corresponds to the frozen
 	      variables via \cref{eq:coefficients_from_frozen}.
 \end{itemize}
+%
+We now give an overview of the main results that we have mentioned. The Laurent
+phenomenon was established by Fomin and Zelevinsky in full generality in their paper
+introducing cluster algebras.
+\begin{theorem}[\protect{\cite[Theorem 3.1]{FominZelevinsky2002CAF},\cite[Proposition 11.2]{FominZelevinsky2003CAFin}}]
 
-We now give a (historic) overview of the main results that we have mentioned.
-\begin{itemize}
-	\item The Laurent phenomenon was established in full generality in the paper introducing
-	      cluster algebras (\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They conjectured
-	      positivity.
-	\item The classification of cluster-finite cluster algebras was done in the follow-up paper,
-	      again in full generality (\cite{FominZelevinsky2003CAFin}).
-	\item The classification of mutation-finite cluster algebras was started in
-	      \cite{FeliksonShapiroTumarkin2012SkewSCA} for the skew-symmetric case without
-	      coefficients. A follow-up paper, extended the classification to the skew-symmetrizable
-	      case. The classification was finished in \cite{FeliksonPavel2023cluster}, by handling
-	      the case with coefficients.
-	\item In \cite{LeeSchiffler2015PositivityCA}, Lee and Schiffler proved positivity in the
-	      skew-symmetric case. The skew-symmetrizable case for cluster algebras of geometric type
-	      was proven as a consequence of the results in
-	      \cite{GrossHackingKeelKontsevich2018CanonicalBCA}.
-\end{itemize}
+	Let $\mcA(B, \bx, \by)$ be a cluster algebra. Then any cluster variable can be written
+	as a Laurent polynomial in the cluster variables of any other cluster with coefficients
+	in $\bbZ[\bbP]$. If $\mcA(B, \bx, \by)$ is of geometric type, the Laurent polynomial
+	can be taken such that the frozen variables are not inverted.
+\end{theorem}
 
-\section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
+In the follow-up paper \cite{FominZelevinsky2003CAFin}, they classified cluster-finite
+cluster algebras, again in full generality. The classification is exactly the same as
+\cref{thm:cluster_finite_general_case}.
 
+Because mutation-finiteness is a property of the extended exchange matrix $\tB$, it
+only really makes sense to talk about this for cluster algebras of geometric type. The
+classification of mutation-finite cluster algebras was started in
+\cite{FeliksonShapiroTumarkin2012SkewSCA}, where they handled the skew-symmetric case
+without coefficients. The full classification was finished in
+\cite{FeliksonPavel2023cluster} as we already mentioned before.
+
+Finally, positivity was proven in the skew-symmetric case by Lee and Schiffler
+(\cite{LeeSchiffler2015PositivityCA}). The skew-symmetrizable case was proven in
+\cite{GrossHackingKeelKontsevich2018CanonicalBCA}.
+
+\section{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
 \subsection{The Grassmannian}
+\section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
 
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
 $k=2$. Correspondence with triangulations.
