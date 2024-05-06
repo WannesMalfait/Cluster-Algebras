@@ -2161,7 +2161,8 @@ Gross, Hacking, Keel and Kontsevich
 
 	In this example we consider rank 2 skew-symmetrizable cluster algebras of geometric
 	type. The \emph{rank}\index{cluster algebra!rank} of a cluster algebra is the number of
-	elements in any given cluster, i.e., the size of $\ex$.
+	elements in any given cluster, i.e., the size of $\ex$. We will assume, for simplicity
+	that $\frz = \emptyset$.
 
 	The diagonal elements of a skew-symmetrizable matrix are always zero, so all possible
 	$2\times2$ skew-symemtrizable integer matrices are of the form\footnote{In fact, all
@@ -2332,6 +2333,19 @@ Gross, Hacking, Keel and Kontsevich
 			x_{10} & =x_{2}.
 		\end{aligned}
 	\end{align*}
+
+	The cluster algebra $\mcA(1,4)$ no longer meets the criterium of
+	\cref{thm:cluster_finite_general_case}, so it should have an infinite number of cluster
+	variables. Starting with $x_1 = x_2 = 1$ we obtain the sequence $x_1, x_2, x_3, \dots$
+	\begin{equation*}
+		1,1,2,17,9,386,43,8857,206,203321,987,4667522,4729,107149681\dots
+	\end{equation*}
+	and the sequence $x_2, x_1, x_0, \dots$
+	\begin{equation*}
+		1,1,2,3,41,14,937,67,21506,321,493697,1538,11333521,\dots
+	\end{equation*}
+	%
+	As predicted, we do not find periodicity in this case.
 \end{example}
 
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
@@ -2383,6 +2397,9 @@ and $n \in \bbZ$ with $n\geq 2$ then $p = 1$. Indeed, if $p^n = 1$ for some $p \
 	= \frac{p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}{ p^{n-1} \oplus p^{n-2} \oplus \cdots \oplus 1}
 	=1.
 \end{equation*}
+
+\renewcommand{\bmu}{\mathbf{u}}
+\renewcommand{\bma}{\mathbf{a}}
 
 \begin{example}
 
@@ -2636,7 +2653,112 @@ reasons for this.
 		      4.2]{LeeSchiffler2015PositivityCA}.
 \end{itemize}
 
-\textbf{TODO: example of rank 2}
+\begin{example}
+
+	Consider the skew-symmetric cluster algebra $\mcA(Q, (x_1, x_2), (y_1, y_2))$ where $Q$
+	is the $A_2$ quiver and $y_1, y_2$ are elements of some semifield $\bbP$. Thus, our
+	initial seed is of the form
+	\begin{equation*}
+		Q = 1 \to 2, \quad \bx = (x_1, x_2), \quad \by = (y_1, y_2).
+	\end{equation*}
+	%
+	We now compute the other seeds of $\mcA(Q, \bx, \by)$. Alternating between a mutation
+	at the first or the second vertex yields \cref{table:A2_quiver_coefficients}. After $5$
+	mutations we end up with the original (unlabeled) seed.
+	\begin{table}[ht!]
+		\centering
+		\bgroup
+		\renewcommand{\arraystretch}{2.5}
+		\begin{tabular}{c|c|c|c}
+			              & $\displaystyle Q$         & $\displaystyle \bx$                                                                                                     & $\displaystyle \by$                                                                \\
+			\hline
+			$\mu_1$       & $\displaystyle 1 \gets 2$ & $\displaystyle \frac{x_2 + y_1}{x_1(y_1 \oplus 1)}, x_2$                                                                & $\displaystyle y_1\inv, \frac{y_1y_2}{y_1 \oplus 1}$                               \\[5pt]
+			\hline
+			$\mu_{12}$    & $\displaystyle 1 \to 2$   & $\displaystyle \frac{x_2 + y_1}{x_1(y_1 \oplus 1)}, \frac{x_1 y_1 y_2 + y_1 + x_2}{x_1x_2(y_1y_2\oplus y_1 \oplus 1)}$  & $\displaystyle \frac{y_1y_2}{y_2\oplus y_1\oplus 1}, \frac{y_1 \oplus 1}{y_1 y_2}$ \\[5pt]
+			\hline
+			$\mu_{121}$   & $\displaystyle 1 \gets 2$ & $\displaystyle \frac{x_1y_2 + 1}{x_1(y_2 \oplus 1)}, \frac{x_1 y_1 y_2 + y_1 + x_2}{x_1x_2(y_1y_2\oplus y_1 \oplus 1)}$ & $\displaystyle \frac{y_1y_2\oplus y_1\oplus 1}{y_2}, \frac{1}{y_1(y_2 \oplus 1)}$  \\[5pt]
+			\hline
+			$\mu_{1212}$  & $\displaystyle 1 \to 2$   & $\displaystyle \frac{x_1y_2 + 1}{x_2(y_2 \oplus 1)},x_1$                                                                & $\displaystyle y_2\inv, y_1(y_2 \oplus 1)$                                         \\[5pt]
+			\hline
+			$\mu_{12121}$ & $\displaystyle 1 \gets 2$ & $\displaystyle x_2,x_1$                                                                                                 & $\displaystyle y_2, y_1$
+		\end{tabular}
+		\egroup
+
+		\caption{The possible mutations for the $A_2$ quiver.}
+		\label{table:A2_quiver_coefficients}
+	\end{table}
+
+	We now want to see the connection with frozen vertices. For this we consider the ice
+	quiver
+	\begin{equation*}
+		\tQ = \begin{tikzcd}[sep=small]
+			\boxed{3} \dar \drar & \boxed{4} \dar \\
+			1 \rar & 2 \dar \\
+			\boxed{5} \uar & \boxed{6}
+		\end{tikzcd},
+	\end{equation*}
+	%
+	whose principal part is the $A_2$ quiver. Mutation at the first vertex gives
+	\begin{equation*}
+		\mu_1(\tQ) = \begin{tikzcd}[sep=small]
+			\boxed{3} \ar[dr, shift left] \ar[dr, shift right] & \boxed{4} \dar \\
+			1 \uar \dar & 2 \lar \dar \\
+			\boxed{5} \urar & \boxed{6}
+		\end{tikzcd},\quad
+		\mu_1(\bx) = \left(\frac{x_3x_5 + x_2}{x_1}, x_2\right).
+	\end{equation*}
+	We now continue mutating, alternating between the first and second vertex.
+		{
+			\everymath={\displaystyle}
+			\begin{equation*}
+				\begin{array}{rc}
+					\mu_{12}(\tQ) = \begin{tikzcd}[sep=small, ampersand replacement=\&]
+						                \boxed{3} \dar \ar[dr, shift left, leftarrow] \ar[dr, shift right, leftarrow] \& \boxed{4} \dlar \\
+						                1  \rar \& 2 \uar \dlar  \\
+						                \boxed{5} \& \boxed{6} \uar
+					                \end{tikzcd},\quad &
+					\mu_{12}(\bx) = \left(\frac{x_3x_5 + x_2}{x_1}, \frac{x_{1} x_{3}^{2} x_{4} x_{5} + x_{2} x_{6} + x_{3} x_{5} x_{6}}{x_{1} x_{2}}\right)                 \\
+					\hline
+					\mu_{121}(\tQ) = \begin{tikzcd}[sep=small, ampersand replacement=\&]
+						                 \boxed{3}  \& \boxed{4}  \\
+						                 1  \uar \urar \& 2 \lar \dlar  \\
+						                 \boxed{5} \& \boxed{6} \uar
+					                 \end{tikzcd},\quad                                                  &
+					\mu_{121}(\bx) = \left(\frac{x_{1} x_{3} x_{4} + x_{6}}{x_{2}}, \frac{x_{1} x_{3}^{2} x_{4} x_{5} + x_{2} x_{6} + x_{3} x_{5} x_{6}}{x_{1} x_{2}}\right) \\
+					\hline
+					\mu_{1212}(\tQ) = \begin{tikzcd}[sep=small, ampersand replacement=\&]
+						                  \boxed{3} \ar[dr] \& \boxed{4}  \\
+						                  1  \uar \rar \urar \& 2 \dar \\
+						                  \boxed{5} \urar \& \boxed{6} \ular
+					                  \end{tikzcd},\quad                                                 &
+					\mu_{1212}(\bx) = \left(\frac{x_{1} x_{3} x_{4} + x_{6}}{x_{2}}, x_1\right)                                                                              \\
+					\hline
+					\mu_{12121}(\tQ) = \begin{tikzcd}[sep=small, ampersand replacement=\&]
+						                   \boxed{3} \dar \drar \& \boxed{4} \dlar \\
+						                   1  \drar \& 2 \lar  \\
+						                   \boxed{5}\urar \& \boxed{6}
+					                   \end{tikzcd},\quad                                                &
+					\mu_{12121}(\bx) = \left(x_2, x_1\right)
+				\end{array}
+			\end{equation*}
+		}%
+	%
+	Swapping vertices $1$ and $2$ in $\mu_{12121}(\tQ)$ gives the quiver $\tQ$, so that
+	this last seed is the same as the first seed, when viewed as unlabeled seeds. To relate
+	the obtained expressions for the cluster variables with those in
+	\cref{table:A2_quiver_coefficients} we first set $\bbP = \Trop(x_3, x_4, x_5, x_6)$.
+	Then using \cref{eq:coefficients_from_frozen}, we see that we should have
+	\begin{equation*}
+		y_1 = x_3x_5, \quad \text{and} \quad y_2 = x_3x_4x_6\inv.
+	\end{equation*}
+	%
+	This indeed works out:
+	\begin{align*}
+		 & \frac{x_2 + y_1}{x_1(y_1 \oplus 1)} = \frac{x_2 + x_3 x_5}{x_1(x_3x_5\oplus 1)} = \frac{x_2 + x_3 x_5}{x_1},                                                                                                                       \\
+		 & \frac{x_1y_1y_2 + y_1 + x_2}{x_1x_2(y_1y_2 \oplus y_1 \oplus 1)} = \frac{x_1x_3^2x_4x_5x_6\inv + x_3x_5 + x_2}{x_1x_2(x_1x_3^2x_4x_5x_6\inv \oplus x_3 x_5 \oplus 1)} = \frac{x_1 x_3^2 x_4 x_5 + x_3 x_5 x_6 + x_2 x_6}{x_1 x_2}, \\
+		 & \frac{x_1 y_2 + 1}{x_1 (y_2 \oplus 1)} = \frac{x_1 x_3 x_4 x_6\inv + 1}{x_2 (x_3 x_4 x_6\inv \oplus 1)} = \frac{x_1 x_3 x_4 + x_6}{x_2}.
+	\end{align*}
+\end{example}
 
 \subsection{An overview of the various definitions and results}
 
@@ -2647,8 +2769,9 @@ due. Let $\mcA(B, \bx, \by)$ be a cluster algebra.
 		      type}\index{cluster algebra!of geometric type}, if the semifield $\bbP$ is chosen to be
 	      a tropical semifield.
 	\item We say that $\mcA(B, \bx, \by)$ is a cluster algebra \emph{without
-		      coefficients}\index{cluster algebra!without coefficients} if $y_1 = \cdots = y_n = 1$.
-	      Conversely, a cluster algebra \emph{with coefficients}\index{cluster algebra!with
+		      coefficients}\index{cluster algebra!without coefficients} or \emph{with trivial
+		      coefficients}\index{cluster algebra!with trivial coefficients} if $y_1 = \cdots = y_n =
+		      1$. Conversely, a cluster algebra \emph{with coefficients}\index{cluster algebra!with
 		      coefficients} is a cluster algebra such that the coefficient tuple $\by$ is nontrivial.
 	\item We say that $\mcA(B, \bx, \by)$ is a \emph{skew-symmetric} cluster
 	      algebra\index{cluster algebra!skew-symmmetric} if the matrix $B$ is skew-symmetric. In
@@ -2687,10 +2810,11 @@ Finally, positivity was proven in the skew-symmetric case by Lee and Schiffler
 
 \section{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
 \subsection{The Grassmannian}
-\section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
-
 Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
 $k=2$. Correspondence with triangulations.
+
+\section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
+
 \subsection{Marked surfaces with punctures}\label{sec:triangulations_of_surfaces}
 Explain how to generalize to marked surfaces with punctures.
 
