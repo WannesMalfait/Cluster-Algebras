@@ -619,7 +619,7 @@ be useful for the examples.
 	back to this in \cref{sec:sequences_revisited}.
 \end{example}
 
-\begin{example}
+\begin{example}\label{exmp:A3_quiver}
 	The logical follow-up to the $A_2$ quiver is the $A_3$ quiver\index{quiver!$A_3$}
 	\begin{equation*}
 		Q =
@@ -1732,7 +1732,9 @@ The main theorems from the previous section carry over with some small modificat
 	With that, we have expressed all the cluster variables in terms of the original
 	extended cluster. As expected from the Laurent phenomenon, all the cluster variables
 	are Laurent polynomials with positive integer coefficients. Furthermore, none of the
-	frozen variables appear in the denominators.
+	frozen variables appear in the denominators. Comparing the obtained Laurent polynomials
+	with those from \cref{exmp:A3_quiver}, we see that the only difference lies in the
+	frozen variables appearing as extra coefficients.
 
 	As remarked above, the unlabeled seeds are in one-to-one correspondence with the
 	triangulations. Thus, the exchange graph of the cluster algebra can be visualized by
@@ -1972,9 +1974,9 @@ elements of $\mu_k(\tB)$ with $b'_{ij}$.
 As a result we derive the following mutation rule for the mutation in direction $k\in \ex$:
 \begin{equation}\label{eq:mutation_rule_matrix_expanded}
 	b'_{ij} \defeq \begin{dcases*}
-		-b_{ij},               & if $i = k$ or $j = k$  \\
-		b_{ij} + b_{ik}b_{kj}, & if $b_{ik},b_{kj} > 0$ \\
-		b_{ij} - b_{ik}b_{kj}, & if $b_{ik},b_{kj} < 0$ \\
+		-b_{ij},               & if $i = k$ or $j = k$        \\
+		b_{ij} + b_{ik}b_{kj}, & if $b_{ik}$ and $b_{kj} > 0$ \\
+		b_{ij} - b_{ik}b_{kj}, & if $b_{ik}$ and $b_{kj} < 0$ \\
 		b_{ij},                & otherwise,
 	\end{dcases*}
 	\quad \text{for } i \in [1, N],\,j \in \ex.
@@ -2155,7 +2157,182 @@ shown along with some other open conjectures at the time in a groundbreaking pap
 Gross, Hacking, Keel and Kontsevich
 (\cite{GrossHackingKeelKontsevich2018CanonicalBCA}).
 
-\textbf{TODO: rank 2 cluster algebras example}
+\begin{example}
+
+	In this example we consider rank 2 skew-symmetrizable cluster algebras of geometric
+	type. The \emph{rank}\index{cluster algebra!rank} of a cluster algebra is the number of
+	elements in any given cluster, i.e., the size of $\ex$.
+
+	The diagonal elements of a skew-symmetrizable matrix are always zero, so all possible
+	$2\times2$ skew-symemtrizable integer matrices are of the form\footnote{In fact, all
+		$2\times 2$ sign-skew-symmetric integer matrices are of this form.}
+	\begin{equation*}
+		B_\epsilon(n,m) \defeq \epsilon\begin{pmatrix}
+			0 & -m \\
+			n & 0
+		\end{pmatrix}
+	\end{equation*}
+	%
+	for some $n,m \in \bbZ_{\geq 0}$ and $\epsilon \in \{\pm\}$. The matrix $B_\epsilon(n,
+		m)$ is skew-symmetrizable by the integers $n$ and $m$:
+	\begin{equation*}
+		\pm
+		\begin{pmatrix}
+			n & 0 \\
+			0 & m
+		\end{pmatrix}
+		\begin{pmatrix}
+			0 & -m \\
+			n & 0
+		\end{pmatrix}
+		= \pm \begin{pmatrix}
+			0  & -nm \\
+			nm & 0
+		\end{pmatrix}.
+	\end{equation*}
+
+	Just like the $A_2$ quiver, the exchange matrix $B_\epsilon(n,m)$ is $2$-periodic.
+	Indeed, using \cref{eq:mutation_rule_matrix_expanded} we find
+	\begin{equation*}
+		\mu_1(B_\epsilon(n,m)) = \epsilon\begin{pmatrix}
+			0  & m \\
+			-n & 0
+		\end{pmatrix}
+		= -\epsilon \begin{pmatrix}
+			0 & -m \\
+			n & 0
+		\end{pmatrix}
+		= B_{-\epsilon}(n, m)
+	\end{equation*}
+	and
+	\begin{equation*}
+		\mu_2(B_\epsilon(n,m)) = \epsilon\begin{pmatrix}
+			0  & m \\
+			-n & 0
+		\end{pmatrix}
+		= -\epsilon \begin{pmatrix}
+			0 & -m \\
+			n & 0
+		\end{pmatrix}
+		=  B_{-\epsilon}(n,m).
+	\end{equation*}
+
+	Write $\mcA(n,m) \defeq \mcA(B_{+}(n,m), (x_1, x_2))$. Note that the labeled seeds
+	$(B_{+}(n,m), (x_1, x_2))$ and $(B_{-}(m, n), (x_2, x_1))$ are the same as unlabeled
+	seeds, so that there is no harm in restricting to $\epsilon = +$. We will use the
+	shorthand $B(n,m) \defeq B_{+}(n,m)$. Define, for $i \in \bbZ$,
+	\begin{equation*}
+		x_i \defeq  \begin{dcases*}
+			\mu_1 (x_{i-2}), & if $i > 0$ and $i$ is odd      \\
+			\mu_2 (x_{i-2}), & if $i > 0$ and $i$ is even     \\
+			\mu_1 (x_{i+2}), & if $i \leq 0$ and $i$ is odd   \\
+			\mu_2 (x_{i+2}), & if $i \leq 0$ and $i$ is even.
+		\end{dcases*}
+	\end{equation*}
+	%
+	We do not need to specify with respect to what seed the mutations are taken, because
+	the exchange relation, \cref{eq:exchange_relation_matrix}, is the same for $B_{+}(n,m)$
+	as for $B_{-}(n,m)$. We thus find
+	\begin{equation}\label{eq:recurrence_rank2}
+		x_i x_{i+2} = \begin{dcases*}
+			x_{i+1}^n + 1, & if $i$ is odd   \\
+			x_{i+1}^m + 1, & if $i$ is even.
+		\end{dcases*}
+	\end{equation}
+	%
+	The seeds of $\mcA(n,m)$ are given by
+	\begin{equation*}
+		\begin{tikzcd}[sep=scriptsize, row sep= 0.1em, ampersand replacement=\&]
+			\& (x_{-1}, x_0) \& (x_{1}, x_0) \& (x_1, x_2) \& (x_3, x_2) \& (x_3, x_4)\\
+			\cdots \rar[dash, "\mu_2"] \&\begin{pmatrix}
+				0 & -m \\
+				n & 0
+			\end{pmatrix}
+			\rar[dash, "\mu_1"] \&\begin{pmatrix}
+				0  & m \\
+				-n & 0
+			\end{pmatrix}
+			\rar[dash, "\mu_2"] \&\begin{pmatrix}
+				0 & -m \\
+				n & 0
+			\end{pmatrix}
+			\rar[dash, "\mu_1"] \&\begin{pmatrix}
+				0  & m \\
+				-n & 0
+			\end{pmatrix}
+			\rar[dash, "\mu_2"] \&\begin{pmatrix}
+				0 & -m \\
+				n & 0
+			\end{pmatrix}
+			\rar[dash, "\mu_1"] \& \cdots
+		\end{tikzcd}
+	\end{equation*}
+
+	If $n=m=0$, then $B_{\epsilon}(n,m)$ is just the zero-matrix, and corresponds to the
+	quiver with two vertices and no arrows, i.e., two copies of the $A_1$ quiver. The
+	cluster variables are given by
+	\begin{equation*}
+		\dots x_1, x_2, x_3 =\frac{2}{x_1}, x_4=\frac{2}{x_2}, x_5=x_1, x_6=x_2, \dots
+	\end{equation*}
+	%
+	The cluster algebra $\mcA(0,0)$ is just a direct sum of two copies of the cluster
+	algebra coming from the $A_1$ quiver.
+
+	If $n=m=1$ then $B(n,m)$ corresponds to the $A_2$ quiver. Thus $\mcA(1,1)$ has the
+	cluster algebras from \cref{exmp:A2_quiver}:
+	\begin{equation*}
+		\dots, x_1, x_2, x_3=\frac{1 + x_2}{x_1}, x_4=\frac{1 + x_1 + x_2}{x_1x_2}, x_5=\frac{1 + x_1}{x_2}, x_6=x_1, x_7=x_2, \dots
+	\end{equation*}
+
+	We now delve into new territory by looking at $\mcA(1,2)$. Using
+	\cref{eq:recurrence_rank2}, we find
+	\begin{align*}
+		x_3 & = \frac{x_2 + 1}{x_1},                                                                                     \\
+		x_4 & = \frac{x_3^2 + 1}{x_2} =  \frac{x_2^2 + 2x_2 + 1 + x_1^2}{x_1^2 x_2},                                     \\
+		x_5 & = \frac{x_4 + 1}{x_3},                                                                                     \\
+		    & = \frac{x_1}{x_2+1}\frac{x_2^2 + 2x_2 +1 + x_1^2 + x_1^2 x_2}{x_1^2 x_2}                                   \\
+		    & = \frac{(x_2 +1)(x_1^2 + x_2 + 1)}{x_1 x_2(x_2 + 1)}                                                       \\
+		    & = \frac{x_1^2 + x_2 + 1}{x_1x_2},                                                                          \\
+		x_6 & = \frac{x_5^2 +1}{x_4}                                                                                     \\
+		    & = \frac{x_1^2 x_2}{x_2^2 + 2x_2 + x_1^2 + 1}\frac{(x_1^2 + x_2 + 1)^2 + x_1^2 x_2^2}{x_1^2x_2^2}           \\
+		    & = \frac{x_1^4 + 2x_2x_1^2 + x_1^2 + x_1^2 x_2^2+ x_2^2 + 2 x_2 + x_1^2 + 1}{(x_2^2 + 2x_2 + x_1^2 + 1)x_2} \\
+		    & = \frac{(x_1^2 + 1)(x_2^2 + 2x_2 + x_1^2 + 1)}{(x_2^2 + 2x_2 + x_1^2 + 1)x_2}                              \\
+		    & = \frac{x_1^2 + 1}{x_2}.
+	\end{align*}
+	%
+	Finally,
+	\begin{align*}
+		x_7 & = \frac{x_6 +1}{x_5} = \frac{x_1x_2}{x_1^2 + x_2 + 1}\frac{x_1^2 +1 + x_2}{x_2} = x_1 \\
+		\shortintertext{and}
+		x_8 & = \frac{x_7^2 + 1}{x_6} = \frac{x_2}{x_1^2 + 1}(x_1^2 + 1) = x_2.
+	\end{align*}
+	%
+	Thus, we see that $\mcA(1,2)$ is cluster-finite. This agrees with
+	\cref{thm:cluster_finite_general_case}, since $1 \cdot 2 \leq 3$. We should also find
+	that $\mcA(1,3)$ is cluster-finite. If we take $x_1 = x_2 = 1$, then we find the
+	sequence
+	\begin{equation*}
+		\dots, 1, 1, 2, 9, 5, 14, 3, 2, 1, 1, \dots
+	\end{equation*}
+	%
+	which suggests that there are only finitely many cluster variables. A tedious
+	calculation shows that indeed
+	\begin{align*}
+		\begin{aligned}
+			x_{3} & =\frac{x_{2} + 1}{x_{1}},                                     \\
+			x_{5} & =\frac{x_{1}^{3} + x_{2}^{2} + 2 x_{2} + 1}{x_{1}^{2} x_{2}}, \\
+			x_{7} & =\frac{x_{1}^{3} + x_{2} + 1}{x_{1} x_{2}},                   \\
+			x_{9} & =x_{1},                                                       \\
+		\end{aligned}
+		 &  &
+		\begin{aligned}
+			x_{4}  & =\frac{x_{1}^{3} + x_{2}^{3} + 3 x_{2}^{2} + 3 x_{2} + 1}{x_{1}^{3} x_{2}},                                       \\
+			x_{6}  & =\frac{x_{1}^{6} + 3 x_{1}^{3} x_{2} + 2 x_{1}^{3} + x_{2}^{3} + 3 x_{2}^{2} + 3 x_{2} + 1}{x_{1}^{3} x_{2}^{2}}, \\
+			x_{8}  & =\frac{x_{1}^{3} + 1}{x_{2}},                                                                                     \\
+			x_{10} & =x_{2}.
+		\end{aligned}
+	\end{align*}
+\end{example}
 
 \subsection{Cluster algebras with coefficients}\label{sec:cluster_algebras_coefficients}
 
