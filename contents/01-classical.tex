@@ -1354,7 +1354,7 @@ The main theorems from the previous section carry over with some small modificat
 	\end{itemize}
 \end{theorem}
 
-\begin{example}
+\begin{example}\label{exmp:triangulations_revisited}
 
 	Consider again the setting of \cref{exmp:triangulations}. There is a clear distinction
 	between the sides and the diagonals of the $n$-gon. The diagonals can be changed
@@ -1608,7 +1608,7 @@ The main theorems from the previous section carry over with some small modificat
 	To determine the exchange relation, it suffices once again to consider the situation as
 	in \cref{fig:flip_quad_is_mutation}. There we see that exchange relation is given by
 	\begin{equation}\label{eq:exchange_flip_quad}
-		P_{ik}P_{jl} = P_{ij}P_{lk} + P_{il}P_{jk}.
+		P_{ik}P_{jl} = P_{ij}P_{kl} + P_{il}P_{jk}.
 	\end{equation}
 	%
 	This is precisely the same relation as in Ptolomy's theorem (\cref{thm:ptolomy}). Thus,
@@ -1644,7 +1644,7 @@ The main theorems from the previous section carry over with some small modificat
 		\end{tikzpicture}
 		,\quad \tQ(\Delta) =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
-			\boxed{P_{12}} \rar & P_{13} \rar \dar & P_{14} \rar \dar & P_{15} \rar \dar & \boxed{P_{61}}\\
+			\boxed{P_{12}} \rar & P_{13} \rar \dar & P_{14} \rar \dar & P_{15} \rar \dar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} & \boxed{P_{34}} \ular & \boxed{P_{45}} \ular & \boxed{P_{56}} \ular
 		\end{tikzcd}
 		,\quad \bx(\Delta) = (P_{13}, P_{14}, P_{15}).
@@ -1661,7 +1661,7 @@ The main theorems from the previous section carry over with some small modificat
 		\end{tikzpicture}
 		,\quad \tQ(\Delta') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
-			\boxed{P_{12}} \rar & P_{13} \ar[rr, bend left] \dar & P_{35} \lar \drar & P_{15} \lar \rar & \boxed{P_{61}}\\
+			\boxed{P_{12}} \rar & P_{13} \ar[rr, bend left] \dar & P_{35} \lar \drar & P_{15} \lar \rar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
 		\end{tikzcd}
 		,\quad \bx(\Delta') = (P_{13}, P_{35}, P_{15}),
@@ -1673,7 +1673,7 @@ The main theorems from the previous section carry over with some small modificat
 	\end{equation*}
 	Similarly, by flipping the diagonals $P_{13}$ and $P_{15}$ instead, one obtains
 	\begin{equation*}
-		P_{24} = \frac{P_{12}P_{34} + P_{23}P_{14}}{P_{13}}, \quad \text{and}\quad P_{46} = \frac{P_{61}P_{45} + P_{14}P_{56}}{P_{15}}.
+		P_{24} = \frac{P_{12}P_{34} + P_{23}P_{14}}{P_{13}}, \quad \text{and}\quad P_{46} = \frac{P_{16}P_{45} + P_{14}P_{56}}{P_{15}}.
 	\end{equation*}
 	%
 	From the triangulation $\Delta'$, we obtain by a flip of the diagonal $P_{13}$, the
@@ -1689,7 +1689,7 @@ The main theorems from the previous section carry over with some small modificat
 		\end{tikzpicture}
 		,\quad \tQ(\Delta'') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
-			\boxed{P_{12}} \ar[rrr, bend left=50]  & \lar P_{25} \rar & P_{35} \dlar \drar & P_{15} \ar[ll, bend right] \rar & \boxed{P_{61}}\\
+			\boxed{P_{12}} \ar[rrr, bend left=50]  & \lar P_{25} \rar & P_{35} \dlar \drar & P_{15} \ar[ll, bend right] \rar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
 		\end{tikzcd}
 		,\quad \bx(\Delta'') = (P_{25}, P_{35}, P_{15}),
@@ -1710,23 +1710,23 @@ The main theorems from the previous section carry over with some small modificat
 		\end{tikzpicture}
 		,\quad \tQ(\Delta''') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
-			\boxed{P_{12}} \ar[rrrr, bend left] & P_{25} \ar[rr, bend left] \rar & P_{35} \dlar \drar & P_{26} \ar[lll, bend right=50] \drar & \lar \boxed{P_{61}}\\
+			\boxed{P_{12}} \ar[rrrr, bend left] & P_{25} \ar[rr, bend left] \rar & P_{35} \dlar \drar & P_{26} \ar[lll, bend right=50] \drar & \lar \boxed{P_{16}}\\
 			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ar[llu, bend right=10]
 		\end{tikzcd}
 		,\quad \bx(\Delta''') = (P_{25}, P_{35}, P_{26}),
 	\end{equation*}
 	where
 	\begin{equation*}
-		P_{26} = \frac{P_{12}P_{56} + P_{25}P_{61}}{P_{15}} = \frac{P_{12}P_{13}P_{45}P_{61} + P_{12}P_{15}P_{34}P_{61}+P_{23}P_{14}P_{15}P_{61} + P_{12}P_{56}P_{13}P_{14}}{P_{13}P_{14}P_{15}}.
+		P_{26} = \frac{P_{12}P_{56} + P_{25}P_{16}}{P_{15}} = \frac{P_{12}P_{13}P_{45}P_{16} + P_{12}P_{15}P_{34}P_{16}+P_{23}P_{14}P_{15}P_{16} + P_{12}P_{56}P_{13}P_{14}}{P_{13}P_{14}P_{15}}.
 	\end{equation*}
 	%
 	Finally, flipping the diagonal $P_{25}$ in $\Delta'''$ gives
 	\begin{align*}
 		P_{36}
 		 & = \frac{P_{23}P_{56} + P_{26}P_{35}}{P_{25}}                                                                                                                                                      \\
-		 & = \frac{P_{13}P_{14}}{P_{12}P_{13}P_{45} + P_{12}P_{15}P_{34}+P_{23}P_{14}P_{15}}\left(P_{23}P_{56} + \frac{P_{13}P_{45} + P_{15}P_{34}}{P_{14}}\frac{P_{12}P_{56} + P_{25}P_{61}}{P_{15}}\right) \\
-		 & = \frac{P_{13}P_{56}}{P_{15}} + \frac{1}{P_{25}}\left(\frac{(P_{13}P_{45} + P_{15}P_{34})P_{25}P_{61}}{P_{14}P_{15}}\right)                                                                       \\
-		 & =\frac{P_{13}P_{14}P_{56} + P_{13}P_{45}P_{61} + P_{15}P_{34}P_{61}}{P_{14}P_{15}}.
+		 & = \frac{P_{13}P_{14}}{P_{12}P_{13}P_{45} + P_{12}P_{15}P_{34}+P_{23}P_{14}P_{15}}\left(P_{23}P_{56} + \frac{P_{13}P_{45} + P_{15}P_{34}}{P_{14}}\frac{P_{12}P_{56} + P_{25}P_{16}}{P_{15}}\right) \\
+		 & = \frac{P_{13}P_{56}}{P_{15}} + \frac{1}{P_{25}}\left(\frac{(P_{13}P_{45} + P_{15}P_{34})P_{25}P_{16}}{P_{14}P_{15}}\right)                                                                       \\
+		 & =\frac{P_{13}P_{14}P_{56} + P_{13}P_{45}P_{16} + P_{15}P_{34}P_{16}}{P_{14}P_{15}}.
 	\end{align*}
 	%
 	With that, we have expressed all the cluster variables in terms of the original
@@ -2165,7 +2165,7 @@ Gross, Hacking, Keel and Kontsevich
 	that $\frz = \emptyset$.
 
 	The diagonal elements of a skew-symmetrizable matrix are always zero, so all possible
-	$2\times2$ skew-symemtrizable integer matrices are of the form\footnote{In fact, all
+	$2\times2$ skew-symmetrizable integer matrices are of the form\footnote{In fact, all
 		$2\times 2$ sign-skew-symmetric integer matrices are of this form.}
 	\begin{equation*}
 		B_\epsilon(n,m) \defeq \epsilon\begin{pmatrix}
@@ -2490,7 +2490,7 @@ functions with coefficients in $\bbK[\bbP]$.
 
 	A \emph{labeled seed}\index{seed!labeled} in $\mcF$ is a triple $(B, \bx, \by)$ where
 	\begin{itemize}
-		\item $B \in M_{n \times n}(\bbZ)$ is a skew-symemtrizable matrix, called the \emph{exchange matrix}\index{matrix!exchange}.
+		\item $B \in M_{n \times n}(\bbZ)$ is a skew-symmetrizable matrix, called the \emph{exchange matrix}\index{matrix!exchange}.
 		\item $\bx = (x_1, \dots, x_n)$ is a free generating set of $\mcF$, called the \emph{cluster}\index{cluster}.
 		\item $\by = (y_1, \dots, y_n)$ is a tuple of elements in $\bbP$, called the \emph{coefficient tuple}\index{coefficient tuple}.
 	\end{itemize}
@@ -2643,7 +2643,7 @@ reasons for this.
 \begin{itemize}
 	\item Almost all examples of algebras appearing ``in nature'', which have a cluster algebra
 	      structure, are cluster algebras of geometric type. We will see more of this in
-	      \cref{sec:algebra_cluster_algebra_structure}.
+	      \cref{sec:cluster_algebras_surfaces}.
 	\item Cluster algebras of geometric type are easier to introduce, and can be approached
 	      through more geometric means, such as triangulations of surfaces (cf.
 	      \cref{sec:triangulations_of_surfaces}).
@@ -2808,12 +2808,227 @@ Finally, positivity was proven in the skew-symmetric case by Lee and Schiffler
 (\cite{LeeSchiffler2015PositivityCA}). The skew-symmetrizable case was proven in
 \cite{GrossHackingKeelKontsevich2018CanonicalBCA}.
 
-\section{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
-\subsection{The Grassmannian}
-Definition of Grassmannian. Plucker coordinates, algebra relations. Special case of
-$k=2$. Correspondence with triangulations.
-
 \section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
+
+Thusfar, we have only considered cluster algebras on their own. Although we used
+properties of cluster algebras to prove things about other structures, we have not yet
+looked at algebras which have a cluster algebra structure. We will illustrate such a
+case by looking at the Grassmannian. The cluster algebra structure will be the one that
+we obtained from triangulations of an $n$-gon (cf.
+\cref{exmp:triangulations_revisited}). Afterwards we will see how this example can be
+generalized to triangulations of marked surfaces, of which $n$-gons are a special case.
+Finally, using these techniques we find a different cluster algebra structure on the
+coordinate algebra of the Grassmannian.
+
+\subsection{The Grassmannian}
+
+Consider the set of all $k$-dimensional linear subspaces in an $m$-dimensional complex
+vector space. This set is called the \emph{Grassmannian}\index{Grassmannian}, and
+denoted with $\Gr_{k,m}(\bbC)$\index{Gr km C@$\Gr_{k,m}(\bbC)$}. This set also has a
+geometric structure, as we now explain.
+
+Recall that the $n$-dimensional projective space $P^n(\bbC)$ is the set of equivalence
+classes $(\bbC^{n+1} \setminus \{0\}) / \sim$ where $ (x_1, \dots, x_{n+1}) \sim (y_1,
+	\dots, y_{n+1})$ if and only there exists some $\lambda \in \bbC$ such that
+$\lambda(x_1, \dots, x_{n+1}) = (y_1, \dots, y_{n+1})$. We will denote the equivalence
+class of an element $v = (x_1, \dots, x_{n+1}) \in \bbC^{n+1} \setminus \{0\}$ by $[v]
+	= [x_1 \colon x_2 \colon \dotsb \colon x_{n+1}]$, and refer to $x_1, \dots, x_n$ as the
+\emph{homogeneous coordinates}\index{homogeneous!coordinates} of $[v]$.
+
+Now, fix a basis of $\bbC^m$, and let $V$ be a $k$-dimensional linear subspace of
+$\bbC^m$. Then $V$ is the span of $k$ linearly independent vectors $v_1, v_2, \dots,
+	v_k \in \bbC^m$. Thus, the matrix $M_V \in M_{m \times k}(\bbC)$ with columns $v_1,
+	\dots, v_k$ has full rank. For $1 \leq i_1 < \dotsb < i_k \leq m$, we define $P_{\{i_1,
+			\dots, i_k\}}(M_V)$ as the determinant of the $k \times k$ submatrix of $M_V$ indexed
+by the rows $i_1, \dots, i_k$. Thus, the $P_{\{i_1, \dots, i_k\}}$ are the maximal
+minors of $M_V$. For $n = \binom{m}{k} - 1$, we then obtain a map
+\begin{equation*}
+	\iota \colon \Gr_{k, m}(\bbC) \injto P^n(\bbC) \colon V \mapsto [P_{\{i_1, \dotsc, i_k\}}(M_V)]_{1 \leq i_1 < \cdots < i_k \leq m}.
+\end{equation*}
+%
+It is not immediately obvious that this is well-defined. There are two things to check:
+\begin{enumerate}
+	\item It does not depend on the choice of $v_1, \dots, v_k$ spanning $V$.
+	\item For every $V \in \Gr_{k, m}$, not all the $P_{\{i_1, \dots, i_k\}}$ are zero.
+\end{enumerate}
+
+In the first case, the matrix $M_V$ is replaced by a matrix of the form $M_V Q$ for
+some invertible matrix $Q \in M_k(\bbC)$. All the $k \times k$ submatrices of $M_V$ are
+then also multiplied by the same matrix $Q$. Thus, $P_{\{i_1, \dots, i_k\}}(M_V Q) =
+	\det(Q) P_{\{i_1, \dots, i_k\}}$ for all $1 \leq i_1 < \dotsb < i_k \leq m$. Since
+homogeneous coordinates are defined up to a simultaneous rescaling, there is no issue.
+As a consequence, we can safely use the notation $P_J (V) \defeq P_{\{i_1, \dotsc,
+			i_k\}} (M_V)$ for $J = \{i_1, \dotsc, i_k\}$ any $k$-element subset of $[1, m]$ without
+there being any ambiguity.
+
+For the second case, recall from linear algebra that the rank of a matrix is also given
+by the maximal size of a nonzero minor. Since $M_V$ has full rank, it follows that at
+least one of the $P_J(M_V)$ is nonzero.
+
+We will refer to the $P_J(V)$ for $J \subseteq [1,m]$ with $|J| = k$ as the
+\emph{Plücker coordinates}\index{Plücker!coordinates} of $V$. One can show that the map
+$\iota \colon \Gr_{k, m}(\bbC) \to P^N(\bbC)$ is an embedding, known as the
+\emph{Plücker embedding}\index{Plücker!embedding}. From this, it follows that
+$\Gr_{k,m}(\bbC)$ is a projective variety. We will not really need this fact for our
+purposes. Instead we want to look at the \emph{homogeneous coordinate
+	ring}\index{homogeneous!coordinate algebra} $\bbC[\Gr_{k,m}]$ which is defined as the
+algebra generated by the Plücker coordinates $P_J$. More precisely, consider the
+polynomial algebra $R = \bbK[x_J \mid J\subseteq [1, m], |J| = k]$, and the ideal $I$
+generated by all the polynomials $f \in R$ such that $f(P_{J_1}, \dots, P_{J_N})(V) =
+	0$ for all $V \in \Gr_{k, m}$. Then we define the homogeneous coordinate algebra of
+$\Gr_{k,m}(\bbC)$ as
+\begin{equation*}
+	\bbC[\Gr_{k,m}] \defeq R / I.
+\end{equation*}
+%
+In other words, it is the algebra generated by the $P_J$ and all the relations they
+satisfy. To see how this works, we look at an example.
+\begin{example}
+
+	We consider the Grassmannian $\Gr_{2, m}(\bbC)$. Let us denote the $\binom{m}{2}$
+	Plücker coordinates by $P_{ij} = P_{\{i,j\}}$ for $1 \leq i < j \leq m$. We now claim
+	that
+	\begin{equation*}
+		P_{ik}(V)P_{jl}(V) = P_{ij}(V)P_{kl}(V) + P_{il}(V)P_{jk}(V)
+	\end{equation*}
+	%
+	for all $V \in \Gr_{2,m}(\bbC)$ and $1 \leq i < j < k < l \leq m$. First note that this
+	relation makes sense to write down, because it is homogeneous and hence unaffected by a
+	simultaneous rescaling of all the Plücker coordinates. Choose a matrix $M_V$ and let
+	the $4 \times 2$ submatrix of $M_V$ spanned by the rows $i,j,k,l$ be given by
+	\begin{equation*}
+		\begin{pmatrix}
+			a & b \\
+			c & d \\
+			e & f \\
+			g & h
+		\end{pmatrix}.
+	\end{equation*}
+	%
+	We need to show that
+	\begin{equation*}
+		\begin{vmatrix}
+			a & b \\
+			e & f
+		\end{vmatrix}
+		\begin{vmatrix}
+			c & d \\
+			g & h
+		\end{vmatrix}
+		=
+		\begin{vmatrix}
+			a & b \\
+			c & d \\
+		\end{vmatrix}
+		\begin{vmatrix}
+			e & f \\
+			g & h \\
+		\end{vmatrix}
+		+
+		\begin{vmatrix}
+			a & b \\
+			g & h \\
+		\end{vmatrix}
+		\begin{vmatrix}
+			e & f \\
+			c & d \\
+		\end{vmatrix}.
+	\end{equation*}
+	%
+	This is just a simple verification. Indeed,
+	\begin{equation*}
+		\begin{vmatrix}
+			a & b \\
+			e & f
+		\end{vmatrix}
+		\begin{vmatrix}
+			c & d \\
+			g & h
+		\end{vmatrix}
+		=
+		(af - be)(ch -dg) = acfh - adfg - bceh + bdeg,
+	\end{equation*}
+	and
+	\begin{align*}
+		\begin{vmatrix}
+			a & b \\
+			c & d \\
+		\end{vmatrix}
+		\begin{vmatrix}
+			e & f \\
+			g & h \\
+		\end{vmatrix}
+		+
+		\begin{vmatrix}
+			a & b \\
+			g & h \\
+		\end{vmatrix}
+		\begin{vmatrix}
+			e & f \\
+			c & d \\
+		\end{vmatrix} & =
+		(ad-bc)(eh-fg) + (ah-bg)(cf-de)                                                       \\
+		                            & = adeh - adfg - bceh + bcfg + acfh - adeh - bcfg + bdeg \\
+		                            & = -adfg - bceh + acfh + bdeg.
+	\end{align*}
+
+	Thus, in the coordinate algebra $\bbC[\Gr_{2,m}]$ we have
+	\begin{equation}\label{eq:plucker_relation}
+		P_{ik}P_{jl} = P_{ij}P_{kl} + P_{il}P_{jk}, \quad \text{for all } \, 1\leq i < j < k < l \leq m.
+	\end{equation}
+\end{example}
+
+The relations \cref{eq:plucker_relation}, are known as \emph{Plücker
+	relations}\index{Plücker!relations}. More generally, in $\Gr_{k,m}(\bbC)$ we have the
+Plücker relations
+\begin{equation*}
+	\sum_{l = 1}^{k + 1} (-1)^l P_{\{i_1, \dots, i_{k - 1}, j_l\}}P_{\{j_1, \dotsc, j_{k+1}\}\setminus \{j_l\}} = 0,
+\end{equation*}
+%
+for all $1 \leq i_1 < \dotsb < i_{k-1} \leq m$ and $1 \leq j_1 < \dotsb < j_{k+1} \leq
+	m$. One can show that the ideal of relations in $\bbC[\Gr_{k,m}]$ is generated by all
+the Plücker relations. Thus, in particular, the algebra $\bbC[\Gr_{2,m}]$ is generated
+by the $P_{ij}$ together with the relations \cref{eq:plucker_relation}.
+
+\medskip
+
+We now show that the coordinate algebra $\bbC[\Gr_{2,n+3}]$ has a cluster algebra
+structure of geometric type. This means that we can find a skew-symmetrizable matrix
+$\tB \in M_{N \times \ex}$, and some elements $x_1, \dots, x_N \in \bbC[\Gr_{2, n+3}]$
+such that $\mcA(\tB, (x_1, \dots, x_N)) = \bbC[\Gr_{2, n+3}]$. One can actually show
+that $\bbC[\Gr_{k,m}]$ has a cluster algebra structure even if $k \neq 2$
+(\cite{Scott2006GrassmanniansCA}).
+
+As the astute reader will have noticed, the relations, \cref{eq:plucker_relation}, are
+exactly the same ones as \cref{eq:exchange_flip_quad} from
+\cref{exmp:triangulations_revisited}. We should thus expect that the cluster algebra
+structure of $\bbC[\Gr_{2,n+3}]$ is that of the cluster algebra obtained from
+triangulations of an $n+3$-gon. To make this more precise, we need the following
+proposition.
+\begin{proposition}[\protect{\cite[Proposition 6.2.1]{FominWilliams2021IntroductionCA_6}}]
+
+	Let $\mcA$ be a cluster algebra of geometric type (with $\bbK = \bbC$). Let $\mcX$
+	denote the set of cluster variables in $\mcA$, and let $X$ be a rational affine
+	irreducible algebraic variety of dimension $N$. Suppose we are given a family of
+	nonzero regular functions
+	\begin{equation*}
+		\{\varphi_z \colon z \in \mcX \} \cup \{\varphi_i \mid i \in \frz\} \subseteq \bbC[X]
+	\end{equation*}
+	satisfying:
+	\begin{itemize}
+		\item The functions $\varphi_z,\, z\in \mcX$ and $\varphi_i,\, i \in \frz$ generate
+		      $\bbC[X]$.
+		\item Every exchange relation in $\mcA$ is valid in $\bbC[X]$.
+	\end{itemize}
+	Then there is a unique $\bbC$-algebra isomorphism
+	\begin{align*}
+		\varphi \colon \mcA & \to \bbC[X]                         \\
+		z                   & \mapsto \varphi_z,\quad z \in \mcX  \\
+		x_i                 & \mapsto \varphi_i,\quad i \in \frz.
+	\end{align*}
+\end{proposition}
+
+\textbf{TODO: explain and apply the proposition.}
 
 \subsection{Marked surfaces with punctures}\label{sec:triangulations_of_surfaces}
 Explain how to generalize to marked surfaces with punctures.
@@ -2822,3 +3037,5 @@ Explain how to generalize to marked surfaces with punctures.
 % 	\textbf{TODO: markov cluster algebra not upper cluster algebra: see https://www.math.uni-bonn.de/people/sefil/Papers/punct.pdf}
 % \end{example}
 \subsection{Examples}
+
+% \subsection{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
