@@ -1,13 +1,20 @@
 %% PACKAGES
 
+\usepackage[style=alphabetic, maxnames=4]{biblatex}
+\addbibresource{references.bib}
+
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage[shortlabels]{enumitem}
-% Adds bibliography to toc.
-% Need to load before index so it doesn't mess it up...
-\usepackage{tocbibind}
 \usepackage{imakeidx}
 \makeindex[intoc] % Add index to bibliography.
 \usepackage[bookmarksdepth=2]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+	colorlinks=true,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
 \usepackage{cleveref}
 \usepackage{tikz-cd}
 \usepackage{aligned-overset}
