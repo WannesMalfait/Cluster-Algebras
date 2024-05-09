@@ -1602,8 +1602,7 @@ The main theorems from the previous section carry over with some small modificat
 	example, in \cref{exmp:A2_quiver,exmp:markov_quiver} there are seeds with the same
 	quiver but different clusters. In this case however, the triangulations correspond
 	exactly to the (unlabeled) seeds. In fact, as we will see later on, this holds more
-	generally for cluster algebras coming from surfaces (\cite[Theorem
-		7.11]{FominShapiroThurston2008CATriangulatedSurfacesI}).
+	generally for cluster algebras coming from surfaces \parencite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}.
 
 	To determine the exchange relation, it suffices once again to consider the situation as
 	in \cref{fig:flip_quad_is_mutation}. There we see that exchange relation is given by
@@ -1622,8 +1621,8 @@ The main theorems from the previous section carry over with some small modificat
 
 	Let us denote the corresponding skew-symmetric cluster algebra of geometric type by
 	$\mcA(\Delta) \defeq \mcA(\tQ(\Delta), \tbx(\Delta))$. It is mutation-finite, because
-	there are only finitely many triangulations of an $n$-gon. It is for this exact reason
-	that all the cluster algebras coming from surfaces will be mutation-finite as well. For
+	there are only finitely many triangulations of an $n$-gon. More generally, we will see
+	that all the cluster algebras coming from surfaces will be mutation-finite as well \parencite[Corollary 12.2]{FominShapiroThurston2008CATriangulatedSurfacesI}. For
 	$\mcA(\Delta)$ we can say more. It is actually cluster-finite. Indeed, consider the
 	triangulation obtained by the diagonals $P_{1, 3}, P_{1,4}, \dots, P_{1,n-2}$. It
 	corresponds to the second triangulation of \cref{fig:triangularisation_quiver}. The
@@ -1749,7 +1748,7 @@ The main theorems from the previous section carry over with some small modificat
 			\node[name=Q2] at (10ex, 0) {};
 			\draw (Q2.corner 1) -- (Q2.corner 3);
 
-			\draw (Q1) edge[dashed] (Q2);
+			\draw (Q1) edge[densely dashed, shorten <=1ex, shorten >=1.5ex] (Q2);
 		\end{tikzpicture}
 	\end{center}
 	For $n=5$, things get a bit more interesting.
@@ -1775,7 +1774,13 @@ The main theorems from the previous section carry over with some small modificat
 				\draw (P5.corner 3) -- (P5.corner 5);
 				\draw (P5.corner 1) -- (P5.corner 3);
 
-				\draw[dashed] (P1) -- (P2) -- (P3) -- (P4) -- (P5) -- (P1);
+				% Fake nodes to have some padding. 
+				% Can't set outer sep on original nodes because it messes up the diagonals.
+				\begin{scope}[nodes={draw=none, outer sep = 1.5ex}]
+					\foreach \x in {1,...,5} {\node[name=P\x'] at (P\x) {};}
+				\end{scope}
+
+				\draw[densely dashed] (P1') -- (P2') -- (P3') -- (P4') -- (P5') -- (P1');
 			\end{scope}
 		\end{tikzpicture}
 	\end{center}
@@ -1810,8 +1815,7 @@ The main theorems from the previous section carry over with some small modificat
 				\draw (H5.corner 2) -- (H5.corner 5);
 				\draw (H5.corner 1) -- (H5.corner 5);
 
-				\draw[dashed] (H1) -- (H2) -- (H3) -- (H4) -- (H5) -- (H1);
-
+				\node[name=H6, below=30ex of H2] {};
 				\node[name=H7, below right=12ex and 5ex of H5] {};
 				\node[name=H8, below left=12ex and 5ex of H2] {};
 				\node[name=H9, below=5ex of H1] {};
@@ -1820,7 +1824,6 @@ The main theorems from the previous section carry over with some small modificat
 				\node[name=H12, below left=10ex and 5ex of H9] {};
 				\node[name=H13, below=13ex of H10] {};
 				\node[name=H14, below=30ex of H5] {};
-				\node[name=H15, below=30ex of H2] {};
 
 				\draw (H13.corner 2) -- (H13.corner 4);
 				\draw (H13.corner 6) -- (H13.corner 4);
@@ -1830,9 +1833,9 @@ The main theorems from the previous section carry over with some small modificat
 				\draw (H14.corner 2) -- (H14.corner 6);
 				\draw (H14.corner 2) -- (H14.corner 5);
 
-				\draw (H15.corner 2) -- (H15.corner 4);
-				\draw (H15.corner 1) -- (H15.corner 4);
-				\draw (H15.corner 6) -- (H15.corner 4);
+				\draw (H6.corner 2) -- (H6.corner 4);
+				\draw (H6.corner 1) -- (H6.corner 4);
+				\draw (H6.corner 6) -- (H6.corner 4);
 
 				\draw (H8.corner 1) -- (H8.corner 3);
 				\draw (H8.corner 1) -- (H8.corner 4);
@@ -1858,15 +1861,22 @@ The main theorems from the previous section carry over with some small modificat
 				\draw (H10.corner 6) -- (H10.corner 4);
 				\draw (H10.corner 6) -- (H10.corner 2);
 
-				\begin{scope}[every path/.style={dashed}]
-					\draw (H2) -- (H8) -- (H15) -- (H13) -- (H14) -- (H7) -- (H5);
-					\draw (H9) -- (H11) -- (H10) -- (H12) -- (H9);
-					\draw (H9) -- (H1);
-					\draw (H8) -- (H12);
-					\draw (H7) -- (H11);
-					\draw (H15) -- (H3);
-					\draw (H14) -- (H4);
-					\draw (H13) -- (H10);
+				% Fake nodes to have some padding. 
+				% Can't set outer sep on original nodes because it messes up the diagonals.
+				\begin{scope}[nodes={draw=none, outer sep = 1ex}]
+					\foreach \x in {1,...,14} {\node[name=H\x'] at (H\x) {};}
+				\end{scope}
+
+				\begin{scope}[every path/.style={densely dashed}]
+					\draw (H1') -- (H2') -- (H3') -- (H4') -- (H5') -- (H1');
+					\draw (H2') -- (H8') -- (H6') -- (H13') -- (H14') -- (H7') -- (H5');
+					\draw (H9') -- (H11') -- (H10') -- (H12') -- (H9');
+					\draw (H9') -- (H1');
+					\draw (H8') -- (H12');
+					\draw (H7') -- (H11');
+					\draw (H6') -- (H3');
+					\draw (H14') -- (H4');
+					\draw (H13') -- (H10');
 				\end{scope}
 			\end{scope}
 		\end{tikzpicture}
@@ -2743,8 +2753,11 @@ reasons for this.
 		}%
 	%
 	Swapping vertices $1$ and $2$ in $\mu_{12121}(\tQ)$ gives the quiver $\tQ$, so that
-	this last seed is the same as the first seed, when viewed as unlabeled seeds. To relate
-	the obtained expressions for the cluster variables with those in
+	this last seed is the same as the first seed, when viewed as unlabeled seeds. Remark
+	that by adding frozen vertices to $Q$, the quiver is no longer 2-periodic, but now has
+	a half period of $5$, corresponding to that of the clusters.
+
+	To relate the obtained expressions for the cluster variables with those in
 	\cref{table:A2_quiver_coefficients} we first set $\bbP = \Trop(x_3, x_4, x_5, x_6)$.
 	Then using \cref{eq:coefficients_from_frozen}, we see that we should have
 	\begin{equation*}
@@ -3117,7 +3130,153 @@ algebras is that they give a unified framework to study these behaviors.
 
 \subsection{Marked surfaces with punctures}\label{sec:triangulations_of_surfaces}
 
-Explain how to generalize to marked surfaces with punctures.
+From the triangulation of a regular polygon, we obtained an interesting cluster algebra
+structure, with seeds in one-to-one correspondence with the triangulations.
+Furthermore, this cluster algebra turned out to be related to the homogeneous
+coordinate ring of a Grassmannian. We now look at a more general way of turning
+triangulations into cluster algebras, developped by
+\textcite[postnote]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+
+\medskip
+The first step is to generalize the type of object on which we consider triangulations. A (filled in) polygon is homeomorphic to a closed disc, a type of 2-dimensional surface with boundary. The objects we will be working with are connected, oriented, 2-dimensional Riemann surfaces with boundary. Although it sounds quite abstract, it is in fact very concrete due to the following classification.
+\begin{theorem}
+
+	Let $S$ be a connected, oriented, 2-dimensional Riemann surface with boundary. Then $S$
+	is homeomorphic to the unique compact orientable surface $\Sigma_{g,b}$ with genus $g$
+	and $b$ boundary circles, for some $g, b \in \bbZ_{\geq 0}$. The surfaces
+	$\Sigma_{g,b}$ are constructed iteratively as follows. The surface $\Sigma_{0,0}$ is
+	just a 2-dimensional sphere. To increase the genus by one, a handle is attached. Thus,
+	for example, $\Sigma_{1,0}$ is a torus. To increase the number of boundary components
+	by one, an open disc is removed from the interior of the surface. Thus, for example,
+	$\Sigma_{0,1}$ is a closed disc, while $\Sigma_{0,2}$ is an annulus. The surfaces
+	$\Sigma_{g,b}$ for $g,b \in [0,2]$ are illustrated in
+	\cref{fig:surfaces_classification}.
+\end{theorem}
+
+\begin{figure}[ht!]
+
+	\centering
+	\begin{tikzpicture}[x = 5ex, y= 5ex, every node/.style={minimum size=7ex}]
+		\node[draw, shape=circle] (sphere) at (0,0) {};
+		% Make it look "3D".
+		\draw[densely dotted] (sphere.west) parabola[bend pos=0.5] bend +(0,-0.15) (sphere.east);
+		\draw[densely dotted, gray] (sphere.west) parabola[bend pos=0.5] bend +(0,+0.15) (sphere.east);
+		\node[above right= 0.02 of sphere] {$\Sigma_{0,0}$};
+
+		\node[draw, shape=circle, right= 2 of sphere] (disc) {};
+		\node[above right= 0.02 of disc] {$\Sigma_{0,1}$};
+
+		\node[draw, shape=circle, right= 2 of disc] (annulus) {};
+		\node[draw, shape=circle, fill, scale = 0.25] at (annulus) {};
+		\node[above right= 0.02 of annulus] {$\Sigma_{0,2}$};
+
+		\node[below= 1.5 of sphere, shape=circle] (torus){};
+		\node[draw, shape=circle, xscale=1.1, yscale=0.8] at (torus) {};
+		\draw (torus.center) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (torus.center) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right= 0.02 of torus] {$\Sigma_{1,0}$};
+
+		\node[below = 1.5 of disc, shape=circle] (S11) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below = 0.4 of S11.center] (S11Hole1) {};
+		\draw (S11Hole1.south west) .. controls +(120:2) and +(60:2) .. (S11Hole1.south east);
+		\draw (S11) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S11) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right=0.02 of S11] {$\Sigma_{1,1}$};
+
+		\node[below = 1.5 of annulus, shape=circle] (S12) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below left= 0.5 of S12.center] (S12Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below right= 0.5 of S12.center] (S12Hole2) {};
+		\draw (S12Hole1.south west) .. controls +(150:2) and +(50:2) .. (S12Hole2.south east);
+		\draw (S12Hole1.south east) parabola[bend pos = 0.5] bend +(0, 0.2) (S12Hole2.south west);
+		\draw (S12) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S12) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right=0.02 of S12] {$\Sigma_{1,2}$};
+
+		\node[below= 1.5 of torus, shape= circle] (S20) {};
+		\node[draw, shape= circle, xscale=1.2, yscale=0.8] at (S20) {};
+		\coordinate[left=0.25 of S20.center] (S20a);
+		\coordinate[right=0.25 of S20.center] (S20b);
+		\draw (S20a) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S20a) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\draw (S20b) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S20b) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right=0.02 of S20] {$\Sigma_{2,0}$};
+
+		\node[below = 1.5 of S11, shape=circle] (S21) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below = 0.4 of S21.center] (S21Hole1) {};
+		\draw (S21Hole1.south west) .. controls +(150:2.5) and +(30:2.5) .. (S21Hole1.south east);
+		\coordinate[left=0.25 of S21.center] (S21a);
+		\coordinate[right=0.25 of S21.center] (S21b);
+		\draw (S21a) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S21a) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\draw (S21b) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S21b) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right=0.02 of S21] {$\Sigma_{2,1}$};
+
+		\node[below = 1.5 of S12, shape=circle] (S22) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below left= 0.5 of S22.center] (S22Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, fill, below right= 0.5 of S22.center] (S22Hole2) {};
+		\draw (S22Hole1.south west) .. controls +(140:2) and +(40:2) .. (S22Hole2.south east);
+		\draw (S22Hole1.south east) parabola[bend pos = 0.5] bend +(0, 0.2) (S22Hole2.south west);
+		\coordinate[left=0.25 of S22.center] (S22a);
+		\coordinate[right=0.25 of S22.center] (S22b);
+		\draw (S22a) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S22a) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\draw (S22b) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
+		\draw (S22b) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
+		\node[above right=0.02 of S22] {$\Sigma_{2,2}$};
+
+	\end{tikzpicture}
+	\caption{The surfaces $\Sigma_{g,b}$ for $g,b \in [0,2]$. The filled in circles indicate the boundaries.}
+	\label{fig:surfaces_classification}
+\end{figure}
+
+Just like the $n$-gon has some distinguished points on the boundary, we will be
+considering surfaces as above with specially marked points.
+
+\begin{definition}
+
+	Let $S$ be a connected, oriented, 2-dimensional Riemann surface with boundary, and $M$
+	a finite set of \emph{marked points}\index{marked point} in the closure of $S$. Then we
+	call the tuple $(S, M)$ a \emph{bordered surface with marked points}\index{surface!with
+		marked points}. The marked points in the interior of $S$, i.e., not on one of the
+	boundary circles, will be called \emph{punctures}\index{puncture}.
+
+	We assume that every boundary component has at least one marked point. Furthermore, to
+	prevent cases with only one or no triangulations we exclude:
+	\begin{itemize}
+		\item The sphere with one, two or three punctures.
+		\item A \emph{monogon}\index{monogon}, i.e., a disc with one marked point on the boundary,
+		      with zero or one punctures.
+		\item A \emph{bigon}\index{bigon}, i.e., a disc with two marked points on the boundary, with
+		      zero punctures.
+		\item A triangle with zero punctures.
+	\end{itemize}
+\end{definition}
+
+Under the above definition, an $n$-gon is a tuple $(\bbD, \{x_1, \dotsc, x_n\})$ where
+$\bbD$ is a closed disc, and $x_1, \dotsc, x_n$ are $n$ distinct points on the boundary
+of $\bbD$. To make triangulations, we first need the analogous concept of a diagonal.
+
+\begin{definition}
+
+	Two curves $\gamma \colon [0,1] \to S$ and $\gamma' \colon [0,1] \to S$ are said to be
+	\emph{isotopic}\index{isotopic} if $\gamma$ can be deformed into $\gamma'$ by a
+	homeomorphism of $S$ fixing $M$, without causing self-intersections along the way.
+
+	An \emph{arc}\index{arc} $\gamma$ in $(S, M)$ is an equivalence class of isotopic
+	curves in $S$ such that:
+	\begin{itemize}
+		\item The endpoints of $\gamma$ are marked points in $M$.
+		\item $\gamma$ does not intersect itself, except possibly in the endpoints.
+		\item Except at the endpoints, no other part of $\gamma$ intersects with $M$ or with the
+		      boundary of $S$.
+		\item $\gamma$ does not cut out an unpunctured monogon or digon.
+	\end{itemize}
+\end{definition}
+
+For an $n$-gon, an arc is precisely a diagonal.
+\textbf{TODO: figure good and bad curves.}
 
 % \begin{example}\label{exmp:markov_upper_via_triangulation}
 % 	\textbf{TODO: markov cluster algebra not upper cluster algebra: see https://www.math.uni-bonn.de/people/sefil/Papers/punct.pdf}
