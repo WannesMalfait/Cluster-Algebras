@@ -1333,6 +1333,14 @@ quiver are discarded. We then obtain the following definition.
 	mutation-equivalent to $(\tQ, \tbx)$.
 \end{definition}
 
+\begin{remark}
+
+	The choice of $\inv$ does not have a big impact on the structure of the cluster
+	algebra. It is more of a technical addition to allow placing cluster algebra structures
+	on algebras were some of the frozen variables can be inverted. We will write $\mcA(\tQ,
+		\tbx) \defeq \mcA(\tQ, \tbx, \emptyset)$.
+\end{remark}
+
 The main theorems from the previous section carry over with some small modifications.
 \begin{theorem}
 
@@ -1360,15 +1368,15 @@ The main theorems from the previous section carry over with some small modificat
 	between the sides and the diagonals of the $n$-gon. The diagonals can be changed
 	through flips, but the sides remain fixed. Thus, if we associate the edges with
 	vertices of a quiver, we will need to make the sides frozen vertices. Concretely, one
-	associates an ice quiver to a triangularisation as follows (cf.
-	\cref{fig:triangularisation_quiver}):
+	associates an ice quiver to a triangulation as follows (cf.
+	\cref{fig:triangulation_quiver}):
 	\begin{itemize}
-		\item The vertices of the ice quiver are the edges of the triangularisation.
+		\item The vertices of the ice quiver are the edges of the triangulation.
 		\item The frozen vertices are the sides, and the exchangeable vertices are the diagonals.
-		\item For each triangle in the triangularisation, place arrows in clockwise
-		      order\footnote{The choice between clockwise and anti-clockwise is arbitrary. The only
-			      important thing is to the same orientation for all the triangles.} connecting the three
-		      edges of the triangle (except between frozen vertices).
+		\item For each triangle in the triangulation, place arrows in clockwise order\footnote{The
+			      choice between clockwise and anti-clockwise is arbitrary. The only important thing is
+			      to the same orientation for all the triangles.} connecting the three edges of the
+		      triangle (except between frozen vertices).
 	\end{itemize}
 
 	\begin{figure}[ht!]
@@ -1503,8 +1511,8 @@ The main theorems from the previous section carry over with some small modificat
 			\end{tikzpicture}
 		\end{center}
 
-		\caption{The quiver associated to a triangularisation.}
-		\label{fig:triangularisation_quiver}
+		\caption{The quiver associated to a triangulation.}
+		\label{fig:triangulation_quiver}
 	\end{figure}
 
 	Let us now verify that flips of diagonals really correspond to mutations of the
@@ -1587,22 +1595,22 @@ The main theorems from the previous section carry over with some small modificat
 		\label{fig:flip_quad_is_mutation}
 	\end{figure}
 
-	Let $\Delta$ be a triangulation of an $n$-gon, and let $\tQ(\Delta)$ be the associated
-	ice quiver as above. We have shown that mutations of $\tQ(\Delta)$ correspond to flips
-	of the triangulation $\Delta$. It can be shown that every triangulation can obtained
-	from another triangulation by a sequence of flips, which implies that all the
-	triangulations are mutation-equivalent to each other (\cite[Proposition
+	Let $T$ be a triangulation of an $n$-gon, and let $\tQ(T)$ be the associated ice quiver
+	as above. We have shown that mutations of $\tQ(T)$ correspond to flips of the
+	triangulation $T$. It can be shown that every triangulation can obtained from another
+	triangulation by a sequence of flips, which implies that all the triangulations are
+	mutation-equivalent to each other (\cite[Proposition
 		3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}).
 
-	We also have an extended cluster $\tbx(\Delta)$. Let us write $P_{ij}$ for the element
-	of the extended cluster corresponding to the edge between $i$ and $j$. Thus, for
-	example, the frozen variables are given by $P_{i, i+1}$ where the indices are taken
-	modulo $n$. Note that it is not obvious at all that this makes sense. A priori, there
-	could be multiple (extended) clusters corresponding to a given triangulation. For
-	example, in \cref{exmp:A2_quiver,exmp:markov_quiver} there are seeds with the same
-	quiver but different clusters. In this case however, the triangulations correspond
-	exactly to the (unlabeled) seeds. In fact, as we will see later on, this holds more
-	generally for cluster algebras coming from surfaces \parencite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}.
+	We also have an extended cluster $\tbx(T)$. Let us write $P_{ij}$ for the element of
+	the extended cluster corresponding to the edge between $i$ and $j$. Thus, for example,
+	the frozen variables are given by $P_{i, i+1}$ where the indices are taken modulo $n$.
+	Note that it is not obvious at all that this makes sense. A priori, there could be
+	multiple (extended) clusters corresponding to a given triangulation. For example, in
+	\cref{exmp:A2_quiver,exmp:markov_quiver} there are seeds with the same quiver but
+	different clusters. In this case however, the triangulations correspond exactly to the
+	(unlabeled) seeds. In fact, as we will see later on, this holds more generally for
+	cluster algebras coming from surfaces \parencite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}.
 
 	To determine the exchange relation, it suffices once again to consider the situation as
 	in \cref{fig:flip_quad_is_mutation}. There we see that exchange relation is given by
@@ -1620,20 +1628,20 @@ The main theorems from the previous section carry over with some small modificat
 	initial triangulation.
 
 	Let us denote the corresponding skew-symmetric cluster algebra of geometric type by
-	$\mcA(\Delta) \defeq \mcA(\tQ(\Delta), \tbx(\Delta))$. It is mutation-finite, because
-	there are only finitely many triangulations of an $n$-gon. More generally, we will see
-	that all the cluster algebras coming from surfaces will be mutation-finite as well \parencite[Corollary 12.2]{FominShapiroThurston2008CATriangulatedSurfacesI}. For
-	$\mcA(\Delta)$ we can say more. It is actually cluster-finite. Indeed, consider the
-	triangulation obtained by the diagonals $P_{1, 3}, P_{1,4}, \dots, P_{1,n-2}$. It
-	corresponds to the second triangulation of \cref{fig:triangularisation_quiver}. The
-	principal part of the corresponding quiver is just a path graph on $n-3$ vertices,
-	i.e., an orientation of the Dynkin diagram $A_{n-3}$. By the classification of
-	cluster-finite cluster algebras, it follows that $\mcA(\Delta)$ is cluster-finite. This
-	explains why only finitely many integers appeared in \cref{exmp:triangulations}.
+	$\mcA(T) \defeq \mcA(\tQ(T), \tbx(T))$. It is mutation-finite, because there are only
+	finitely many triangulations of an $n$-gon. More generally, we will see that all the
+	cluster algebras coming from surfaces will be mutation-finite as well \parencite[Corollary 12.2]{FominShapiroThurston2008CATriangulatedSurfacesI}. For $\mcA(T)$
+	we can say more. It is actually cluster-finite. Indeed, consider the triangulation
+	obtained by the diagonals $P_{1, 3}, P_{1,4}, \dots, P_{1,n-2}$. It corresponds to the
+	second triangulation of \cref{fig:triangulation_quiver}. The principal part of the
+	corresponding quiver is just a path graph on $n-3$ vertices, i.e., an orientation of
+	the Dynkin diagram $A_{n-3}$. By the classification of cluster-finite cluster algebras,
+	it follows that $\mcA(T)$ is cluster-finite. This explains why only finitely many
+	integers appeared in \cref{exmp:triangulations}.
 
 	Let us now specifically look at the case of a hexagon. We start with the seed
 	\begin{equation*}
-		\Delta =
+		T =
 		\begin{tikzpicture}[baseline]
 			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
 			\draw (h.corner 1) -- (h.corner 3);
@@ -1641,16 +1649,16 @@ The main theorems from the previous section carry over with some small modificat
 			\draw (h.corner 1) -- (h.corner 5);
 			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
 		\end{tikzpicture}
-		,\quad \tQ(\Delta) =
+		,\quad \tQ(T) =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
 			\boxed{P_{12}} \rar & P_{13} \rar \dar & P_{14} \rar \dar & P_{15} \rar \dar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} & \boxed{P_{34}} \ular & \boxed{P_{45}} \ular & \boxed{P_{56}} \ular
 		\end{tikzcd}
-		,\quad \bx(\Delta) = (P_{13}, P_{14}, P_{15}).
+		,\quad \bx(T) = (P_{13}, P_{14}, P_{15}).
 	\end{equation*}
 	Flipping the diagonal $P_{14}$ gives
 	\begin{equation*}
-		\Delta' =
+		T' =
 		\begin{tikzpicture}[baseline]
 			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
 			\draw (h.corner 1) -- (h.corner 3);
@@ -1658,12 +1666,12 @@ The main theorems from the previous section carry over with some small modificat
 			\draw (h.corner 1) -- (h.corner 5);
 			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
 		\end{tikzpicture}
-		,\quad \tQ(\Delta') =
+		,\quad \tQ(T') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
 			\boxed{P_{12}} \rar & P_{13} \ar[rr, bend left] \dar & P_{35} \lar \drar & P_{15} \lar \rar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
 		\end{tikzcd}
-		,\quad \bx(\Delta') = (P_{13}, P_{35}, P_{15}),
+		,\quad \bx(T') = (P_{13}, P_{35}, P_{15}),
 	\end{equation*}
 	%
 	where
@@ -1675,10 +1683,9 @@ The main theorems from the previous section carry over with some small modificat
 		P_{24} = \frac{P_{12}P_{34} + P_{23}P_{14}}{P_{13}}, \quad \text{and}\quad P_{46} = \frac{P_{16}P_{45} + P_{14}P_{56}}{P_{15}}.
 	\end{equation*}
 	%
-	From the triangulation $\Delta'$, we obtain by a flip of the diagonal $P_{13}$, the
-	seed
+	From the triangulation $T'$, we obtain by a flip of the diagonal $P_{13}$, the seed
 	\begin{equation*}
-		\Delta'' =
+		T'' =
 		\begin{tikzpicture}[baseline]
 			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
 			\draw (h.corner 2) -- (h.corner 5);
@@ -1686,12 +1693,12 @@ The main theorems from the previous section carry over with some small modificat
 			\draw (h.corner 1) -- (h.corner 5);
 			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
 		\end{tikzpicture}
-		,\quad \tQ(\Delta'') =
+		,\quad \tQ(T'') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
 			\boxed{P_{12}} \ar[rrr, bend left=50]  & \lar P_{25} \rar & P_{35} \dlar \drar & P_{15} \ar[ll, bend right] \rar & \boxed{P_{16}}\\
 			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ular
 		\end{tikzcd}
-		,\quad \bx(\Delta'') = (P_{25}, P_{35}, P_{15}),
+		,\quad \bx(T'') = (P_{25}, P_{35}, P_{15}),
 	\end{equation*}
 	where
 	\begin{equation*}
@@ -1699,7 +1706,7 @@ The main theorems from the previous section carry over with some small modificat
 	\end{equation*}
 	We now flip the diagonal $P_{15}$, which gives the seed
 	\begin{equation*}
-		\Delta''' =
+		T''' =
 		\begin{tikzpicture}[baseline]
 			\node[name=h, shape=regular polygon, draw, regular polygon sides = 6, minimum size = 9ex]{};
 			\draw (h.corner 2) -- (h.corner 5);
@@ -1707,19 +1714,19 @@ The main theorems from the previous section carry over with some small modificat
 			\draw (h.corner 2) -- (h.corner 6);
 			\foreach \x in {1,2,...,6} {\node[circle, fill=white, font=\scriptsize, inner sep= 0.2ex] at (h.corner \x) {\x};}
 		\end{tikzpicture}
-		,\quad \tQ(\Delta''') =
+		,\quad \tQ(T''') =
 		\begin{tikzcd}[sep=tiny, cells={nodes={font=\footnotesize}}]
 			\boxed{P_{12}} \ar[rrrr, bend left] & P_{25} \ar[rr, bend left] \rar & P_{35} \dlar \drar & P_{26} \ar[lll, bend right=50] \drar & \lar \boxed{P_{16}}\\
 			& \boxed{P_{23}} \uar & \boxed{P_{34}} \uar  & \boxed{P_{45}} & \boxed{P_{56}} \ar[llu, bend right=10]
 		\end{tikzcd}
-		,\quad \bx(\Delta''') = (P_{25}, P_{35}, P_{26}),
+		,\quad \bx(T''') = (P_{25}, P_{35}, P_{26}),
 	\end{equation*}
 	where
 	\begin{equation*}
 		P_{26} = \frac{P_{12}P_{56} + P_{25}P_{16}}{P_{15}} = \frac{P_{12}P_{13}P_{45}P_{16} + P_{12}P_{15}P_{34}P_{16}+P_{23}P_{14}P_{15}P_{16} + P_{12}P_{56}P_{13}P_{14}}{P_{13}P_{14}P_{15}}.
 	\end{equation*}
 	%
-	Finally, flipping the diagonal $P_{25}$ in $\Delta'''$ gives
+	Finally, flipping the diagonal $P_{25}$ in $T'''$ gives
 	\begin{align*}
 		P_{36}
 		 & = \frac{P_{23}P_{56} + P_{26}P_{35}}{P_{25}}                                                                                                                                                      \\
@@ -2169,9 +2176,9 @@ shown along with some other open conjectures at the time in a groundbreaking pap
 \begin{example}
 
 	In this example we consider rank 2 skew-symmetrizable cluster algebras of geometric
-	type. The \emph{rank}\index{cluster algebra!rank} of a cluster algebra is the number of
-	elements in any given cluster, i.e., the size of $\ex$. We will assume, for simplicity
-	that $\frz = \emptyset$.
+	type. The \emph{rank}\index{cluster algebra!rank}\index{rank!cluster algebra} of a
+	cluster algebra is the number of elements in any given cluster, i.e., the size of
+	$\ex$. We will assume, for simplicity that $\frz = \emptyset$.
 
 	The diagonal elements of a skew-symmetrizable matrix are always zero, so all possible
 	$2\times2$ skew-symmetrizable integer matrices are of the form\footnote{In fact, all
@@ -3080,17 +3087,17 @@ algebraic variety of dimension $N$'' is.
 \end{itemize}
 
 We now check that the conditions of the proposition are satisfied. As mentioned, we
-take $X \defeq \wh{\Gr}_{2, n+3}$, and $\mcA \defeq \mcA(\Delta)$ as in
-\cref{exmp:triangulations_revisited}, where $\Delta$ is a triangulation of an
-$(n+3)$-gon. It is well known \cite[Proposition 12.7]{FominZelevinsky2003CAFin} that
-$X$ is a rational irreducible affine algebraic variety. The dimension of $X$ is $2 (n+3
-	- 2) + 1 = 2n +3$. An extended cluster of $\mcA$ has $n+3$ frozen variables
-corresponding to the sides of the $(n+3)$-gon, and $n$ cluster variables corresponding
-to the diagonals, for a total of $n+3 + n = 2n +3$ variables in each extended cluster.
-Note that none of the $P_{ij}$ are zero, since the matrix $M_{ij}$ with a one at index
-$i1$ and $j2$ and zeros everywhere else has $P_{ij}(M_{ij}) = \det(I_2) = 1$. That the
-$P_{ij}$ generate $\bbC[X]$ is by construction. Finally, that every exchange relation
-in $\mcA$ is valid in $\bbC[X]$ follows from noting that the Ptolomy relations
+take $X \defeq \wh{\Gr}_{2, n+3}$, and $\mcA \defeq \mcA(T)$ as in
+\cref{exmp:triangulations_revisited}, where $T$ is a triangulation of an $(n+3)$-gon.
+It is well known \cite[Proposition 12.7]{FominZelevinsky2003CAFin} that $X$ is a
+rational irreducible affine algebraic variety. The dimension of $X$ is $2 (n+3 - 2) + 1
+	= 2n +3$. An extended cluster of $\mcA$ has $n+3$ frozen variables corresponding to the
+sides of the $(n+3)$-gon, and $n$ cluster variables corresponding to the diagonals, for
+a total of $n+3 + n = 2n +3$ variables in each extended cluster. Note that none of the
+$P_{ij}$ are zero, since the matrix $M_{ij}$ with a one at index $i1$ and $j2$ and
+zeros everywhere else has $P_{ij}(M_{ij}) = \det(I_2) = 1$. That the $P_{ij}$ generate
+$\bbC[X]$ is by construction. Finally, that every exchange relation in $\mcA$ is valid
+in $\bbC[X]$ follows from noting that the Ptolomy relations
 \cref{eq:exchange_flip_quad} are exactly the same as the Plücker relations
 \cref{eq:plucker_relation}.
 
@@ -3120,8 +3127,8 @@ has been resolved in the skew-symmetric case using additive categorification by
 \textcite{CerulliKeller2013LinearIndependenceCMSSCA}. A consequence of the results of
 \textcite{GrossHackingKeelKontsevich2018CanonicalBCA} is that the cluster monomials
 form a basis if and only if the cluster algebra is cluster-finite. Thus, because
-$\mcA(\Delta)$ is cluster-finite, we find that the cluster monomials of $\bbC[\Gr_{2,
-			n+3}]$ form a basis.
+$\mcA(T)$ is cluster-finite, we find that the cluster monomials of $\bbC[\Gr_{2, n+3}]$
+form a basis.
 
 The two consequences for the Grassmannian that we mentioned were known long before
 cluster algebras were introduced. However, the notions of total positivity and
@@ -3139,18 +3146,18 @@ triangulations into cluster algebras, developped by
 
 \medskip
 The first step is to generalize the type of object on which we consider triangulations. A (filled in) polygon is homeomorphic to a closed disc, a type of 2-dimensional surface with boundary. The objects we will be working with are connected, oriented, 2-dimensional Riemann surfaces with boundary. Although it sounds quite abstract, it is in fact very concrete due to the following classification.
-\begin{theorem}
+\begin{theorem}\label{thm:classification_surfaces}
 
 	Let $S$ be a connected, oriented, 2-dimensional Riemann surface with boundary. Then $S$
-	is homeomorphic to the unique compact orientable surface $\Sigma_{g,b}$ with genus $g$
-	and $b$ boundary circles, for some $g, b \in \bbZ_{\geq 0}$. The surfaces
-	$\Sigma_{g,b}$ are constructed iteratively as follows. The surface $\Sigma_{0,0}$ is
-	just a 2-dimensional sphere. To increase the genus by one, a handle is attached. Thus,
-	for example, $\Sigma_{1,0}$ is a torus. To increase the number of boundary components
-	by one, an open disc is removed from the interior of the surface. Thus, for example,
-	$\Sigma_{0,1}$ is a closed disc, while $\Sigma_{0,2}$ is an annulus. The surfaces
-	$\Sigma_{g,b}$ for $g,b \in [0,2]$ are illustrated in
-	\cref{fig:surfaces_classification}.
+	is homeomorphic to the unique compact orientable surface $\Sigma_{g,b}$\index{Sigma g
+		b@$\Sigma_{g,b}$} with \emph{genus}\index{surface!genus}$g$ and $b$ boundary circles,
+	for some $g, b \in \bbZ_{\geq 0}$. The surfaces $\Sigma_{g,b}$ are constructed
+	iteratively as follows. The surface $\Sigma_{0,0}$ is just a 2-dimensional sphere. To
+	increase the genus by one, a handle is attached. Thus, for example, $\Sigma_{1,0}$ is a
+	torus. To increase the number of boundary components by one, an open disc is removed
+	from the interior of the surface. Thus, for example, $\Sigma_{0,1}$ is a closed disc,
+	while $\Sigma_{0,2}$ is an annulus. The surfaces $\Sigma_{g,b}$ for $g,b \in [0,2]$ are
+	illustrated in \cref{fig:surfaces_classification}.
 \end{theorem}
 
 \begin{figure}[ht!]
@@ -3186,7 +3193,7 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[below = 1.5 of annulus, shape=circle] (S12) {};
 		\node[draw, shape=circle, scale = 0.25, fill, below left= 0.5 of S12.center] (S12Hole1) {};
 		\node[draw, shape=circle, scale = 0.25, fill, below right= 0.5 of S12.center] (S12Hole2) {};
-		\draw (S12Hole1.south west) .. controls +(150:2) and +(50:2) .. (S12Hole2.south east);
+		\draw (S12Hole1.south west) .. controls +(150:2) and +(30:2) .. (S12Hole2.south east);
 		\draw (S12Hole1.south east) parabola[bend pos = 0.5] bend +(0, 0.2) (S12Hole2.south west);
 		\draw (S12) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
 		\draw (S12) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
@@ -3238,9 +3245,10 @@ considering surfaces as above with specially marked points.
 
 	Let $S$ be a connected, oriented, 2-dimensional Riemann surface with boundary, and $M$
 	a finite set of \emph{marked points}\index{marked point} in the closure of $S$. Then we
-	call the tuple $(S, M)$ a \emph{bordered surface with marked points}\index{surface!with
-		marked points}. The marked points in the interior of $S$, i.e., not on one of the
-	boundary circles, will be called \emph{punctures}\index{puncture}.
+	call the tuple $(S, M)$\index{S M@$(S, M)$} a \emph{bordered surface with marked
+		points}\index{surface!with marked points}. The marked points in the interior of $S$,
+	i.e., not on one of the boundary circles, will be called
+	\emph{punctures}\index{puncture}.
 
 	We assume that every boundary component has at least one marked point. Furthermore, to
 	prevent cases with only one or no triangulations we exclude:
@@ -3271,16 +3279,153 @@ of $\bbD$. To make triangulations, we first need the analogous concept of a diag
 		\item $\gamma$ does not intersect itself, except possibly in the endpoints.
 		\item Except at the endpoints, no other part of $\gamma$ intersects with $M$ or with the
 		      boundary of $S$.
-		\item $\gamma$ does not cut out an unpunctured monogon or digon.
+		\item $\gamma$ does not cut out an unpunctured monogon or digon. If it cuts out an unpunctured monogon, we say that $\gamma$ is a \emph{loop}\index{loop}. If it cuts out an unpunctured digon, then the endpoints of $\gamma$ lie on the boundary, and $\gamma$ is hence isotopic to the segment of the boundary connecting those two endpoints. In this case we say that $\gamma$ is a \emph{boundary segment}.
 	\end{itemize}
+	\textbf{TODO: figure good and bad curves.}
 \end{definition}
 
-For an $n$-gon, an arc is precisely a diagonal.
-\textbf{TODO: figure good and bad curves.}
+Consider the case of an $n$-gon, i.e., a disc with $n$ marked points on the boundary.
+Then, if $\gamma$ is an arc, its endpoints are vertices of the $n$-gon. By assumption,
+$\gamma$ does not intersect itself, and is contained in the interior of the $n$-gon,
+except for the endpoints. It follows that arcs in the $n$-gon are completely determined
+by their endpoints, since the $n$-gon has no punctures. Finally, because $\gamma$ does
+not cut out an unpunctured monogon or digon, it is not a loop or a side of the polygon,
+so $\gamma$ must be a diagonal.
+
+\begin{definition}
+
+	Two arcs are said to be \emph{compatible}\index{arc!compatible} if they have
+	representatives of their equivalence classes which do not intersect. \textbf{TODO:
+		figure compatible arcs. }
+\end{definition}
+
+With this, we are now ready to define triangulations.
+
+\begin{definition}
+
+	An \emph{ideal triangulation}\index{triangulation!ideal} of a bordered surface with
+	marked points $(S, M)$ is a maximal collection of distinct pairwise compatible arcs. It
+	is always possible to choose representatives in such a way that they do not intersect \parencite[Proposition 2.5]{FominShapiroThurston2008CATriangulatedSurfacesI}. An ideal
+	triangulation cuts $S$ into \emph{ideal triangles}\index{triangle!ideal}.
+\end{definition}
+
+Intuitively, a triangulation consists of triangles because of the maximality of the
+triangulation. If there were any polygons with a higher number of sides, then they
+could be subdivided, contradicting the maximality. There are no monogons or bigons,
+because we prohibited those in the definition of an arc.
+
+On the other hand, what defines a triangle has to be taken broadly. A triangulation can
+have \emph{self-folded}\index{triangle!self-folded} triangles \textbf{TODO:
+	figure/example self-folded}, i.e., triangles where two of the sides have been glued
+together. Furthermore, it is possible for two triangles to share more than one side
+\textbf{TODO: triangulation of 4-punctured sphere}.
+
+Another difference between the general case and the one of a polygon, is that the
+number of ideal triangulations and arcs is nearly always infinite. Indeed, only when
+$(S, M)$ is a polygon or a once-punctured polygon are there finitely many arcs and
+triangulations \parencite[Proposition 2.3]{FominShapiroThurston2008CATriangulatedSurfacesI}. Even though
+the number of triangulations may be infinite, the number of arcs in a triangulation is
+always finite. This can be shown using the Euler characteristic and an induction
+argument.
+
+\begin{proposition}[\protect{\cite[Lemma 2.2]{Schiffler2018CAfromSurfaces}}]
+
+	Let $(S, M)$ be a bordered surface with marked points. Then each ideal triangulation
+	has
+	\begin{equation*}
+		n = 6g + 3b + 3p + c -6
+	\end{equation*}
+	arcs, where $g$ is the genus, $b$ is the number of boundary components, $p$ is the number of punctures, and $c$ is the number of marked points on the boundary. The number $n$ is called the \emph{rank}\index{surface!rank}\index{rank!surface} of $(S, M)$.
+\end{proposition}
+
+Consider again a polygon. Its rank is
+\begin{equation*}
+	n = 6g + 3b + 3p + c - 6 = 0 + 3 + 0 + c - 6 = c - 3.
+\end{equation*}
+%
+This matches what we saw in \cref{exmp:triangulations_revisited}: a polygon with $m +
+	3$ sides has $m$ diagonals. Note that this is also the rank of the corresponding
+cluster algebra. The cluster algebra associated to a bordered surface with marked
+points will also have the same rank, precisely because the arcs will correspond with
+cluster variables.
+
+\begin{definition}
+
+	A \emph{flip}\index{triangulation!flip} of an ideal triangulation $T$, replaces an arc
+	$\gamma$ in $T$ with a (necessarilly unique) different arc $\gamma'$ such that $(T
+		\setminus \{\gamma\}) \cup \{\gamma'\}$ is again an ideal triangulation. \textbf{TODO:
+		figure of flip}.
+\end{definition}
+
+As in \cref{exmp:triangulations_revisited}, mutations will correspond to flips.
+However, there is a slight problem. When $\gamma$ is the radius of a self-folded
+triangle \textbf{TODO: define radius of self-folded}, then it is not possible to flip
+it. This problem will be addressed in \cref{sec:tagged_triangulations}, by introducing
+\emph{tagged triangulations}. Even with the problems of self-folded triangles, every
+ideal triangulation can be obtained from another by a sequence of flips \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+
+To associate a quiver to an ideal triangulation, we make use of the following
+proposition.
+
+\begin{proposition}
+
+	A bordered surface with marked points has an ideal triangulation without self-folded
+	triangles. In particular, each triangulation can be transformed to one without
+	self-folded triangles by a sequence of flips.
+\end{proposition}
+
+Thus, let $T$ be an ideal triangulation of $(S, M)$ without self-folded triangles.
+Label the arcs of $T$ with $\ex \defeq [1,n]$ and the boundary segments of $(S, M)$ by
+$\frz \defeq [n+1, N]$. The arrows of the associated ice quiver $\tQ(T)$ are determined
+as follows. For each ideal triangle, with sides $i,j,k$ in clockwise order, add arrows
+from $i$ to $j$, from $j$ to $k$ and from $k$ to $i$, except between boundary segments.
+
+One can verify, using a similar reasoning as in \cref{exmp:triangulations_revisited},
+that if $T$ and $T'$ are two ideal triangulations without self-folded triangles, that
+are obtained from each other through a flip by the arc labeled $k$, that then $\tQ(T')
+	= \mu_k(\tQ(T))$ \parencite[Proposition 4.8]{FominShapiroThurston2008CATriangulatedSurfacesI}. One can then
+also define the associated quiver for an ideal triangulation with self-folded
+triangles, by demanding that mutations correspond to flips. It is also possible to
+describe the quiver directly, as we now explain.
+
+Let $T$ be an ideal triangulation (possibly with self-folded triangles). The associated
+quiver is exactly as above, except that one treats each radius of a self-folded
+triangle as a copy of the arc surrounding it. More precisely, let $\pi_T(i) = i$ if $i$
+is not the radius of a self-folded triangle, and $\pi_T(i) = j$ if $i$ is the radius of
+a self-folded triangle with sides $i$ and $j$. Then add an arrow from $i \in [1, N]$
+and $j \in \ex$ for each triangle in $T$ that is not self-folded with sides labeled
+$\pi_T(i)$ and $\pi_T(j)$ with $\pi_T(j)$ following $\pi_T(i)$ in clockwise order.
+
+It follows that the ice quiver $\tQ(T)$, remains unchanged by swapping two vertices
+corresponding to the sides of a self-folded triangle. If $\tB(T)$ is the associated
+matrix, then this means that the corresponding rows and columns are identical.
+
+\textbf{TODO: figures on associated quivers}
+
+The \emph{cluster algebra associated to a surface}\index{cluster algebra!associated to
+	a surface} is now defined as expected. We define $\mcA((S, M))$\index{A S M@$\mcA((S,
+		M))$} as the cluster algebra $\mcA(\tQ(T), \tbx)$, where $T$ is any ideal triangulation
+of $(S, M)$ and $\tbx$ is a free generating set of $\mcF$. We finish this section with
+the following proposition.
+
+\begin{proposition}
+
+	Let $(S, M)$ be a borderd surface with marked points. Then the cluster algebra
+	$\mcA((S, M))$ is mutation-finite.
+\end{proposition}
+\begin{proof}
+
+	Let $T$ be an ideal triangulation. Then each arc or boundary segment is contained in at
+	most two triangles. Thus, in the ice quiver $\tQ(T)$, there are at most two arrows
+	between any two vertices. Since the set of quivers with a fixed number of vertices, and
+	at most two arrows between any two vertices is finite, the statement follows.
+\end{proof}
 
 % \begin{example}\label{exmp:markov_upper_via_triangulation}
 % 	\textbf{TODO: markov cluster algebra not upper cluster algebra: see https://www.math.uni-bonn.de/people/sefil/Papers/punct.pdf}
 % \end{example}
 \subsection{Examples}
+
+\subsection{Tagged triangulations}\label{sec:tagged_triangulations}
 
 % \subsection{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
