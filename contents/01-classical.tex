@@ -1610,7 +1610,7 @@ The main theorems from the previous section carry over with some small modificat
 	\cref{exmp:A2_quiver,exmp:markov_quiver} there are seeds with the same quiver but
 	different clusters. In this case however, the triangulations correspond exactly to the
 	(unlabeled) seeds. In fact, as we will see later on, this holds more generally for
-	cluster algebras coming from surfaces \parencite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}.
+	cluster algebras coming from surfaces (\cref{thm:clusters_and_triangulations}).
 
 	To determine the exchange relation, it suffices once again to consider the situation as
 	in \cref{fig:flip_quad_is_mutation}. There we see that exchange relation is given by
@@ -1630,14 +1630,15 @@ The main theorems from the previous section carry over with some small modificat
 	Let us denote the corresponding skew-symmetric cluster algebra of geometric type by
 	$\mcA(T) \defeq \mcA(\tQ(T), \tbx(T))$. It is mutation-finite, because there are only
 	finitely many triangulations of an $n$-gon. More generally, we will see that all the
-	cluster algebras coming from surfaces will be mutation-finite as well \parencite[Corollary 12.2]{FominShapiroThurston2008CATriangulatedSurfacesI}. For $\mcA(T)$
-	we can say more. It is actually cluster-finite. Indeed, consider the triangulation
-	obtained by the diagonals $P_{1, 3}, P_{1,4}, \dots, P_{1,n-2}$. It corresponds to the
-	second triangulation of \cref{fig:triangulation_quiver}. The principal part of the
-	corresponding quiver is just a path graph on $n-3$ vertices, i.e., an orientation of
-	the Dynkin diagram $A_{n-3}$. By the classification of cluster-finite cluster algebras,
-	it follows that $\mcA(T)$ is cluster-finite. This explains why only finitely many
-	integers appeared in \cref{exmp:triangulations}.
+	cluster algebras coming from surfaces will be mutation-finite as well
+	(\cref{prop:surface_mutation_finite}). For $\mcA(T)$ we can say more. It is actually
+	cluster-finite. Indeed, consider the triangulation obtained by the diagonals $P_{1, 3},
+		P_{1,4}, \dots, P_{1,n-2}$. It corresponds to the second triangulation of
+	\cref{fig:triangulation_quiver}. The principal part of the corresponding quiver is just
+	a path graph on $n-3$ vertices, i.e., an orientation of the Dynkin diagram $A_{n-3}$.
+	By the classification of cluster-finite cluster algebras, it follows that $\mcA(T)$ is
+	cluster-finite. This explains why only finitely many integers appeared in
+	\cref{exmp:triangulations}.
 
 	Let us now specifically look at the case of a hexagon. We start with the seed
 	\begin{equation*}
@@ -3174,7 +3175,7 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[above right= 0.02 of disc] {$\Sigma_{0,1}$};
 
 		\node[draw, shape=circle, right= 2 of disc] (annulus) {};
-		\node[draw, shape=circle, fill, scale = 0.25] at (annulus) {};
+		\node[draw, shape=circle, pattern=crosshatch, scale = 0.25] at (annulus) {};
 		\node[above right= 0.02 of annulus] {$\Sigma_{0,2}$};
 
 		\node[below= 1.5 of sphere, shape=circle] (torus){};
@@ -3184,16 +3185,16 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[above right= 0.02 of torus] {$\Sigma_{1,0}$};
 
 		\node[below = 1.5 of disc, shape=circle] (S11) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below = 0.4 of S11.center] (S11Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below = 0.4 of S11.center] (S11Hole1) {};
 		\draw (S11Hole1.south west) .. controls +(120:2) and +(60:2) .. (S11Hole1.south east);
 		\draw (S11) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
 		\draw (S11) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
 		\node[above right=0.02 of S11] {$\Sigma_{1,1}$};
 
 		\node[below = 1.5 of annulus, shape=circle] (S12) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below left= 0.5 of S12.center] (S12Hole1) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below right= 0.5 of S12.center] (S12Hole2) {};
-		\draw (S12Hole1.south west) .. controls +(150:2) and +(30:2) .. (S12Hole2.south east);
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below left= 0.5 of S12.center] (S12Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below right= 0.5 of S12.center] (S12Hole2) {};
+		\draw (S12Hole1.south west) .. controls +(140:2) and +(40:2) .. (S12Hole2.south east);
 		\draw (S12Hole1.south east) parabola[bend pos = 0.5] bend +(0, 0.2) (S12Hole2.south west);
 		\draw (S12) ++(-0.15, -0.01) parabola[bend pos = 0.5] bend +(0, 0.06) +(0.3,0);
 		\draw (S12) ++(-0.2, 0.01) parabola[bend pos = 0.5] bend +(0, -0.07) +(0.4,0);
@@ -3210,7 +3211,7 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[above right=0.02 of S20] {$\Sigma_{2,0}$};
 
 		\node[below = 1.5 of S11, shape=circle] (S21) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below = 0.4 of S21.center] (S21Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below = 0.4 of S21.center] (S21Hole1) {};
 		\draw (S21Hole1.south west) .. controls +(150:2.5) and +(30:2.5) .. (S21Hole1.south east);
 		\coordinate[left=0.25 of S21.center] (S21a);
 		\coordinate[right=0.25 of S21.center] (S21b);
@@ -3221,8 +3222,8 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[above right=0.02 of S21] {$\Sigma_{2,1}$};
 
 		\node[below = 1.5 of S12, shape=circle] (S22) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below left= 0.5 of S22.center] (S22Hole1) {};
-		\node[draw, shape=circle, scale = 0.25, fill, below right= 0.5 of S22.center] (S22Hole2) {};
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below left= 0.5 of S22.center] (S22Hole1) {};
+		\node[draw, shape=circle, scale = 0.25, pattern=crosshatch, below right= 0.5 of S22.center] (S22Hole2) {};
 		\draw (S22Hole1.south west) .. controls +(140:2) and +(40:2) .. (S22Hole2.south east);
 		\draw (S22Hole1.south east) parabola[bend pos = 0.5] bend +(0, 0.2) (S22Hole2.south west);
 		\coordinate[left=0.25 of S22.center] (S22a);
@@ -3234,7 +3235,7 @@ The first step is to generalize the type of object on which we consider triangul
 		\node[above right=0.02 of S22] {$\Sigma_{2,2}$};
 
 	\end{tikzpicture}
-	\caption{The surfaces $\Sigma_{g,b}$ for $g,b \in [0,2]$. The filled in circles indicate the boundaries.}
+	\caption{The surfaces $\Sigma_{g,b}$ for $g,b \in [0,2]$. The crosshatched circles indicate the boundaries.}
 	\label{fig:surfaces_classification}
 \end{figure}
 
@@ -3279,8 +3280,10 @@ of $\bbD$. To make triangulations, we first need the analogous concept of a diag
 		\item $\gamma$ does not intersect itself, except possibly in the endpoints.
 		\item Except at the endpoints, no other part of $\gamma$ intersects with $M$ or with the
 		      boundary of $S$.
-		\item $\gamma$ does not cut out an unpunctured monogon or digon. If it cuts out an unpunctured monogon, we say that $\gamma$ is a \emph{loop}\index{loop}. If it cuts out an unpunctured digon, then the endpoints of $\gamma$ lie on the boundary, and $\gamma$ is hence isotopic to the segment of the boundary connecting those two endpoints. In this case we say that $\gamma$ is a \emph{boundary segment}.
+		\item $\gamma$ does not cut out an unpunctured monogon or digon. If it cuts out an unpunctured digon, then the endpoints of $\gamma$ lie on the boundary, and $\gamma$ is hence isotopic to the segment of the boundary connecting those two endpoints. In this case we say that $\gamma$ is a \emph{boundary segment}.
 	\end{itemize}
+
+	An arc whose endpoints coincide will be called a \emph{loop}\index{arc!loop}.
 	\textbf{TODO: figure good and bad curves.}
 \end{definition}
 
@@ -3328,7 +3331,7 @@ the number of triangulations may be infinite, the number of arcs in a triangulat
 always finite. This can be shown using the Euler characteristic and an induction
 argument.
 
-\begin{proposition}[\protect{\cite[Lemma 2.2]{Schiffler2018CAfromSurfaces}}]
+\begin{proposition}[\protect{\cite[Lemma 2.2]{Schiffler2018CAfromSurfaces}}]\label{prop:rank_triangulation}
 
 	Let $(S, M)$ be a bordered surface with marked points. Then each ideal triangulation
 	has
@@ -3367,7 +3370,7 @@ ideal triangulation can be obtained from another by a sequence of flips \parenci
 To associate a quiver to an ideal triangulation, we make use of the following
 proposition.
 
-\begin{proposition}
+\begin{proposition}[\protect{\cite[Lemma 2.13]{FominShapiroThurston2008CATriangulatedSurfacesI}}]
 
 	A bordered surface with marked points has an ideal triangulation without self-folded
 	triangles. In particular, each triangulation can be transformed to one without
@@ -3388,6 +3391,8 @@ also define the associated quiver for an ideal triangulation with self-folded
 triangles, by demanding that mutations correspond to flips. It is also possible to
 describe the quiver directly, as we now explain.
 
+\textbf{TODO: derive this directly by looking at mutations.}
+
 Let $T$ be an ideal triangulation (possibly with self-folded triangles). The associated
 quiver is exactly as above, except that one treats each radius of a self-folded
 triangle as a copy of the arc surrounding it. More precisely, let $\pi_T(i) = i$ if $i$
@@ -3403,29 +3408,170 @@ matrix, then this means that the corresponding rows and columns are identical.
 \textbf{TODO: figures on associated quivers}
 
 The \emph{cluster algebra associated to a surface}\index{cluster algebra!associated to
-	a surface} is now defined as expected. We define $\mcA((S, M))$\index{A S M@$\mcA((S,
-		M))$} as the cluster algebra $\mcA(\tQ(T), \tbx)$, where $T$ is any ideal triangulation
-of $(S, M)$ and $\tbx$ is a free generating set of $\mcF$. We finish this section with
-the following proposition.
+	a surface} is now defined as expected. We define $\mcA(S, M)$\index{A S M@$\mcA(S, M)$}
+as the cluster algebra $\mcA(\tQ(T), \tbx)$, where $T$ is any ideal triangulation of
+$(S, M)$ and $\tbx$ is a free generating set of $\mcF$. We finish this section with the
+following proposition.
 
-\begin{proposition}
+\begin{proposition}\label{prop:surface_mutation_finite}
 
-	Let $(S, M)$ be a borderd surface with marked points. Then the cluster algebra
-	$\mcA((S, M))$ is mutation-finite.
+	Let $(S, M)$ be a borderd surface with marked points. Then the cluster algebra $\mcA(S,
+		M)$ is mutation-finite.
 \end{proposition}
 \begin{proof}
 
 	Let $T$ be an ideal triangulation. Then each arc or boundary segment is contained in at
 	most two triangles. Thus, in the ice quiver $\tQ(T)$, there are at most two arrows
-	between any two vertices. Since the set of quivers with a fixed number of vertices, and
+	between any two vertices. Since the set of quivers with a fixed number of vertices and
 	at most two arrows between any two vertices is finite, the statement follows.
 \end{proof}
 
-% \begin{example}\label{exmp:markov_upper_via_triangulation}
-% 	\textbf{TODO: markov cluster algebra not upper cluster algebra: see https://www.math.uni-bonn.de/people/sefil/Papers/punct.pdf}
-% \end{example}
-\subsection{Examples}
+\subsection{Examples of ideal triangulations}
 
 \subsection{Tagged triangulations}\label{sec:tagged_triangulations}
 
-% \subsection{Algebras with a cluster algebra structure}\label{sec:algebra_cluster_algebra_structure}
+We have seen how how to associate a cluster algebra to a surface in such a way that
+each triangulation yields a cluster, and such that flips of triangulations give seed
+mutations. The problem was that not every mutation could be viewed as a flip, because
+the radius of a self-folded triangle did not have a flip. We will now resolve this by
+introducing tagged triangulations. The cluster algebra itself remains unchanged.
+
+\medskip
+
+Let $(S, M)$ be a bordered surface with marked points, and $T$ an ideal triangulation.
+Recall that we deduced that the vertices corresponding to the radius and surrounding
+arc of a self-folded triangle were interchangeable in the ice quiver $\tQ(T)$. We will
+replace the surrounding arc by a copy of the radius. To distinguish the two, we ``tag''
+one of them.
+
+\begin{definition}
+
+	A \emph{tagged arc}\index{arc!tag} in $(S, M)$ is an ordinary arc $\beta$ which does
+	not cut out a once-punctured monogon, and whose endpoints\footnote{The tagging is a
+		property of the arc, and not of the endpoints. Thus, when we say that an endpoint is
+		tagged, we really mean the segment of the arc close to this endpoint is tagged.} have
+	been tagged either \emph{plain}\index{tag!plain} or \emph{notched}\index{tag!notched}
+	such that:
+	\begin{itemize}
+		\item An endpoint lying on the boundary is tagged plain.
+		\item If $\beta$ starts and ends in the same marked point, then both endpoints are tagged the
+		      same.
+	\end{itemize}
+	%
+	In figures, plain endpoints will be visualized without any marking, while notched
+	endpoints will be shown with a $\bowtie$\index{bowtie@$\bowtie$}. \textbf{TODO: figure
+		of different types of tagged arcs.}
+
+	To aid in distinguishing between tagged and untagged arcs, we will denote tagged arcs
+	by $\alpha$ or $\beta$ and untagged arcs by $\gamma$ or $\eta$.
+\end{definition}
+
+To convert an ordinary untagged arc $\gamma$ to a tagged arc $\tau(\gamma)$, we do the
+following. If $\gamma$ does not cut out a once-punctured monogon, then $\tau(\gamma)$
+is the same arc with both ends marked plain. Otherwise, $\gamma$ is a loop based at
+some point $a$ and surrounding some puncture $b$. We then set $\tau(\gamma)$ to be the
+unique arc connecting $a$ and $b$, compatible with $\gamma$ with the endpoint at $a$
+tagged plain and the endpoint at $b$ tagged notched. Thus, a self-folded triangle is
+replaced by two copies of its radius, with one tagged plain and the other tagged
+notched at the central point.
+
+\textbf{TODO: figure converting untagged to tagged}
+
+\begin{definition}
+
+	Let $\alpha$ and $\beta$ be two tagged arcs, and denote the untagged arcs as
+	$\alpha^\circ$ and $\beta^\circ$. Then $\alpha$ and $\beta$ are
+	\emph{compatible}\index{arc!tagged compatible} if:
+	\begin{itemize}
+		\item The untagged versions $\alpha^\circ$ and $\beta^\circ$ are compatible.
+		\item If $\alpha^\circ = \beta^\circ$ at least one end has the same tag.
+		\item If $\alpha^\circ \neq \beta^\circ$ and they share one endpoint, then this endpoint has
+		      the same tag.
+	\end{itemize}
+
+	A maximal collection of distinct pairwise compatible tagged arcs is called a
+	\emph{tagged triangulation}\index{triangulation!tagged}.
+\end{definition}
+
+\begin{remark}\label{rem:change_tags_puncture}
+
+	Compatibility of tagged arcs is symmetric in the tags being plain or notched. Thus,
+	compatibility of tagged arcs is invariant under a simultaneous change of all tags
+	around a puncture $p$.
+\end{remark}
+
+Given an ideal triangulation, it can be converted into a tagged triangulation by
+sending each untagged arc $\gamma$ to $\tau(\gamma)$. The cardinality of a tagged
+triangulation is given by rank of the surface, as in \cref{prop:rank_triangulation} \parencite[Theorem 7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+
+\textbf{TODO: figure of untagged to tagged triangulation.}
+
+As before, we can mutate triangulations by performing flips. A \emph{tagged
+	flip}\index{triangulation!tagged flip} in a tagged triangulation $T$ replaces a tagged
+arc $\beta$ by the unique other tagged arc $\alpha$ compatible with all the other
+tagged arcs in $T$. That this is well-defined follows from \cite[Theorem
+	7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+
+It is possible to describe more directly what a tagged flip is. Let $T$ be a tagged
+triangulation. By replacing each tagged arc by an untagged arc, we end up with an ideal
+triangulation, except possibly when the triangulation contains once-punctured digons \parencite[Remark 7.6]{FominShapiroThurston2008CATriangulatedSurfacesI}. If there are two
+tagged arcs with different tags connected to the puncture in the digon, then the
+untagged version would coincide. In this case the two tagged arcs have to be
+transformed into a self-folded triangle. This way, we obtain an ideal triangulation
+$T^\circ$. Consequently, there are essentiall two types of tagged flips \cite[Remark
+	5.13]{FominThurston2018CATriangulatedSurfacesII}:
+\begin{enumerate}
+	\item A flip performed inside a once-punctured digon. \textbf{TODO: figure}.
+	\item An ordinary flip inside a quadrilateral (in $T^\circ$). \textbf{TODO: figure}.
+\end{enumerate}
+
+\begin{proposition}[\protect{\cite[Proposition 7.10]{FominShapiroThurston2008CATriangulatedSurfacesI}}]\label{prop:tagged_flips_connected}
+
+	Let $(S, M)$ be a bordered surface with marked points. Then every tagged triangulation
+	can be reached from any other tagged triangulation by a sequence of tagged flips,
+	except when $(S, M)$ is a surface without boundary components and exactly one puncture.
+	In the latter case there are two connected components, one where all the ends are
+	tagged plain, and one where all the ends are tagged notched. Thus, both connected
+	components coincide under the map $T \mapsto T^\circ$.
+\end{proposition}
+
+Let $(S, M)$ be a bordered surface with marked points. We now define $\tQ(T) \defeq
+	\tQ(T^\circ)$ for a tagged triangulation $T$ of $(S, M)$. As expected, tagged flips
+correspond to mutations of the associated ice quiver \parencite[Lemma 9.7]{FominShapiroThurston2008CATriangulatedSurfacesI}. By
+\cref{prop:tagged_flips_connected}, it follows that the mutation-equivalence class of
+$\tQ(T)$ only depends on $(S, M)$, and not on the choice of tagged triangulation. The
+associated cluster algebra $\mcA(S, M)$ is then defined exactly the same way as for
+ideal triangulations. However, because we can flip every tagged arc in a tagged
+triangulation, we now obtain a stronger correspondence between the combinatorics of the
+cluster algebra, and of the triangulations.
+
+\begin{theorem}[\protect{\cite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}}]\label{thm:clusters_and_triangulations}
+
+	Let $(S, M)$ be a bordered surface with marked points, and $\mcA(S, M)$ the associated
+	cluster algebra. Let $E(S, M)$ be a connected component of the graph with tagged
+	triangulations of $(S, M)$ as vertices and tagged flips as edges. Then $E(S, M)$ is
+	isomorphic to the exchange graph of $\mcA(S, M)$. More precisely, there is a one-to-one
+	correspondence between tagged triangulations $T \in E(S, M)$ and unlabeled seeds
+	$\Sigma$ of $\mcA(S, M)$ given by $T \mapsto \Sigma_T$ such that:
+	\begin{itemize}
+		\item The ice quiver of $\Sigma_T$ is given by $\tQ(T)$.
+		\item The cluster variables of $\Sigma_T$ are labeled by the tagged arcs of $T$. The cluster
+		      variable $x_\beta = x_\beta(T)$ does not depend on the triangulation $T$.
+		\item The frozen variables are labeled by the boundary segments of $(S, M)$.
+		\item If $T'$ is obtained from $T$ by flipping a tagged arc $\beta \in T$ to $\beta' \in T'$,
+		      then the seed $\Sigma_{T'}$ is obtained by a seed mutation of $\Sigma_T$ replacing
+		      $x_{\beta}$ by $x_{\beta'}$.
+	\end{itemize}
+	Furthermore, all the $x_\beta$ for $\beta$ a tagged arc in $(S,M)$ are distinct.
+\end{theorem}
+
+This is a strong result! It says that the combinatorics of a cluster algebra associated
+to a surface are completely governed by the tagged triangulations. One consequence is
+that the subgraph of the exchange graph containing a specific cluster variable has to
+be connected. Another is that a seed is completely determined by its cluster, i.e.,
+does not depend on the ice quiver. Furthermore,
+\textcite{FominThurston2018CATriangulatedSurfacesII} showed that once can generalize
+$\mcA(S, M)$ to cluster algebras with arbitrary coefficients, in such a way that the
+exchange graph is independent of the choice of coefficients.
+
+\subsection{Examples}
