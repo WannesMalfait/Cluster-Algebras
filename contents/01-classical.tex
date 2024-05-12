@@ -3263,6 +3263,25 @@ considering surfaces as above with specially marked points.
 	\end{itemize}
 \end{definition}
 
+\begin{figure}[ht!]
+	\centering
+	\begin{tikzpicture}[nodes={shape=circle,draw}]
+		\begin{scope}[nodes={inner sep=4ex}]
+			\node (monogon) {};
+			\node[right = of monogon, draw=none] (bigon){};
+		\end{scope}
+		\begin{scope}[nodes={inner sep=0.2ex, fill}]
+			\node at (monogon.south) {};
+			\node at (bigon.south) {};
+			\node at (bigon.north) {};
+		\end{scope}
+		\draw (bigon.south) edge[bend left=60] (bigon.north);
+		\draw (bigon.south) edge[bend right=60] (bigon.north);
+	\end{tikzpicture}
+	\caption{A monogon (left) and a bigon (right).}
+	\label{fig:monogon_bigon}
+\end{figure}
+
 Under the above definition, an $n$-gon is a tuple $(\bbD, \{x_1, \dotsc, x_n\})$ where
 $\bbD$ is a closed disc, and $x_1, \dotsc, x_n$ are $n$ distinct points on the boundary
 of $\bbD$. To make triangulations, we first need the analogous concept of a diagonal.
@@ -3274,18 +3293,62 @@ of $\bbD$. To make triangulations, we first need the analogous concept of a diag
 	homeomorphism of $S$ fixing $M$, without causing self-intersections along the way.
 
 	An \emph{arc}\index{arc} $\gamma$ in $(S, M)$ is an equivalence class of isotopic
-	curves in $S$ such that:
+	curves in $S$ such that (cf. \cref{fig:arcs}):
 	\begin{itemize}
 		\item The endpoints of $\gamma$ are marked points in $M$.
 		\item $\gamma$ does not intersect itself, except possibly in the endpoints.
 		\item Except at the endpoints, no other part of $\gamma$ intersects with $M$ or with the
 		      boundary of $S$.
-		\item $\gamma$ does not cut out an unpunctured monogon or digon. If it cuts out an unpunctured digon, then the endpoints of $\gamma$ lie on the boundary, and $\gamma$ is hence isotopic to the segment of the boundary connecting those two endpoints. In this case we say that $\gamma$ is a \emph{boundary segment}.
+		\item $\gamma$ does not cut out an unpunctured monogon or digon. If it cuts out an unpunctured digon, then the endpoints of $\gamma$ lie on the boundary, and $\gamma$ is hence isotopic to the segment of the boundary connecting those two endpoints. In this case we say that $\gamma$ is a \emph{boundary segment}\index{boundary segment}.
 	\end{itemize}
-
+	%
 	An arc whose endpoints coincide will be called a \emph{loop}\index{arc!loop}.
-	\textbf{TODO: figure good and bad curves.}
 \end{definition}
+
+\begin{figure}[ht!]
+	\centering
+	\begin{tikzpicture}[x=10ex,y=10ex]
+		\node[shape=circle,draw, inner sep=10ex, gray] (bad) {};
+		\node[shape=circle,draw,gray,fill=none, inner sep=2.5ex, pattern=crosshatch, pattern color=gray] at (bad.center) (badhole) {};
+
+		\begin{scope}[nodes={draw, shape=circle, inner sep=0.3ex, fill}]
+			\node at (bad.north east) {};
+			\node at (bad.south) {};
+			\node at (bad.west) {};
+			\node at (bad.east) {};
+			\node at (badhole.north) {};
+			\node at ($(bad.north) +(0, -0.2)$) {};
+		\end{scope}
+
+		\draw (bad.north east) ..controls +(-100:1) and +(170:1) .. (bad.north east);
+		\draw (bad.south) edge[bend left=20] (bad.east);
+		\draw plot [smooth, tension=1] coordinates {(bad.south) ($(badhole.north west) +(-0.2,0)$) ($(badhole.north east) + (45:0.15)$) ($(badhole.south east) + (-45:0.15)$) ($(badhole.south west) + (-135: 0.2)$) (bad.west)};
+
+		\node[shape=circle,draw, inner sep=10ex, gray, right=of bad] (good) {};
+		\node[shape=circle,draw,gray,fill=none, inner sep=2.5ex, pattern=crosshatch, pattern color=gray] at (good.center) (goodhole) {};
+
+		\begin{scope}[nodes={draw, shape=circle, inner sep=0.3ex, fill}]
+			\node at (good.north east) {};
+			\node at (good.south) {};
+			\node at (good.west) {};
+			\node at (good.east) {};
+			\node at (good.south east) {};
+			\node at (goodhole.north){};
+			\node at (goodhole.south){};
+			\node at ($(good.west) + (0.2, 0.2)$) (p1) {};
+			\node at ($(good.south east) + (+0.05, 0.4)$) {};
+		\end{scope}
+
+		\draw (good.south) -- (goodhole.south);
+		\draw (good.south) edge[bend right=15] (good.north east);
+		\draw (good.west) -- (p1);
+		\draw (good.south east) edge[bend left=55] (good.east);
+		\draw plot [smooth, tension=1] coordinates {(good.south) ($(goodhole.west) +(-0.2, 0)$) ($(goodhole.north) + (0,0.2)$) ($(goodhole.east) + (0.2, 0)$)  (goodhole.south)};
+	\end{tikzpicture}
+
+	\caption{The curves on the left are not arcs. The curves on the right are.}
+	\label{fig:arcs}
+\end{figure}
 
 Consider the case of an $n$-gon, i.e., a disc with $n$ marked points on the boundary.
 Then, if $\gamma$ is an arc, its endpoints are vertices of the $n$-gon. By assumption,
@@ -3298,8 +3361,8 @@ so $\gamma$ must be a diagonal.
 \begin{definition}
 
 	Two arcs are said to be \emph{compatible}\index{arc!compatible} if they have
-	representatives of their equivalence classes which do not intersect. \textbf{TODO:
-		figure compatible arcs. }
+	representatives of their equivalence classes which do not intersect. The arcs in the
+	left of \cref{fig:arcs} are pairwise compatible.
 \end{definition}
 
 With this, we are now ready to define triangulations.
@@ -3318,18 +3381,82 @@ could be subdivided, contradicting the maximality. There are no monogons or bigo
 because we prohibited those in the definition of an arc.
 
 On the other hand, what defines a triangle has to be taken broadly. A triangulation can
-have \emph{self-folded}\index{triangle!self-folded} triangles \textbf{TODO:
-	figure/example self-folded}, i.e., triangles where two of the sides have been glued
-together. Furthermore, it is possible for two triangles to share more than one side
-\textbf{TODO: triangulation of 4-punctured sphere}.
+have \emph{self-folded triangles}\index{triangle!self-folded}\footnote{Note that a
+	self-folded triangle still has three angle, and thus deserves the name ``triangle''.},
+i.e., triangles where two of the sides have been glued together (cf.
+\cref{fig:self_folded}). Furthermore, it is possible for two triangles to share more
+than one side (cf. \cref{exmp:triangulation_punctured_torus}).
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}
+		\node[shape=circle, inner sep=0.7, draw] (a) {$a$};
+		\node[shape=circle, inner sep=0.7, draw, above=of a] (b) {$b$};
+		\draw (a) -- (b);
+		\draw (a) .. controls +(140:5) and +(40:5) .. (a);
+	\end{tikzpicture}
+
+	\caption{A self-folded triangle. The arc connecting the points $a$ and $b$ is called the \emph{radius}\index{radius} of the self-folded triangle.}
+	\label{fig:self_folded}
+\end{figure}
 
 Another difference between the general case and the one of a polygon, is that the
 number of ideal triangulations and arcs is nearly always infinite. Indeed, only when
 $(S, M)$ is a polygon or a once-punctured polygon are there finitely many arcs and
-triangulations \parencite[Proposition 2.3]{FominShapiroThurston2008CATriangulatedSurfacesI}. Even though
-the number of triangulations may be infinite, the number of arcs in a triangulation is
-always finite. This can be shown using the Euler characteristic and an induction
-argument.
+triangulations \parencite[Proposition 2.3]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+\Cref{fig:infinite_arcs} gives an example where there are infinitely many arcs. Even
+though the number of triangulations may be infinite, the number of arcs in a given
+triangulation is always finite. This can be shown using the Euler characteristic and an
+induction argument.
+
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}[nodes={shape=circle,draw},x=1ex,y=1ex]
+		\node[gray,inner sep=7ex] (an1) {};
+		\node[gray,pattern=crosshatch,pattern color=gray,inner sep=1.5ex] at (an1.center) (hole1) {};
+		\node[fill, inner sep=0.3ex] at (an1.south) {};
+		\node[fill, inner sep=0.3ex] at (hole1.south) {};
+
+		\node[gray,inner sep=7ex, right=of an1] (an2) {};
+		\node[gray,pattern=crosshatch,pattern color=gray,inner sep=1.5ex] at (an2.center) (hole2) {};
+		\node[fill, inner sep=0.3ex] at (an2.south) {};
+		\node[fill, inner sep=0.3ex] at (hole2.south) {};
+
+		\node[gray,inner sep=7ex, right=of an2] (an3) {};
+		\node[gray,pattern=crosshatch,pattern color=gray,inner sep=1.5ex] at (an3.center) (hole3) {};
+		\node[fill, inner sep=0.3ex] at (an3.south) {};
+		\node[fill, inner sep=0.3ex] at (hole3.south) {};
+
+		\node[gray,inner sep=7ex, right=of an3] (an4) {};
+		\node[gray,pattern=crosshatch,pattern color=gray,inner sep=1.5ex] at (an4.center) (hole4) {};
+		\node[fill, inner sep=0.3ex] at (an4.south) {};
+		\node[fill, inner sep=0.3ex] at (hole4.south) {};
+
+		\draw (an1.south) -- (hole1.south);
+		\draw plot [smooth, tension=0.8] coordinates {
+				(an2.south)
+				($(hole2.west) + (-1,0)$) ($(hole2.north) + (0,1)$) ($(hole2.east) + (1,0)$)
+				(hole2.south)
+			};
+		\draw plot [smooth, tension=1] coordinates {
+				(an3.south)
+				($(hole3.west) + (-2,0)$) ($(hole3.north) + (0,2)$) ($(hole3.east) + (2,0)$) ($(hole3.south) + (0,-2)$)
+				($(hole3.west) + (-1,0)$) ($(hole3.north) + (0,1)$) ($(hole3.east) + (1,0)$)
+				(hole3.south)
+			};
+		\draw plot [smooth, tension=1] coordinates {
+				(an4.south)
+				($(hole4.west) + (-3,0)$) ($(hole4.north) + (0,3)$) ($(hole4.east) + (3,0)$) ($(hole4.south) + (0,-3)$)
+				($(hole4.west) + (-2,0)$) ($(hole4.north) + (0,2)$) ($(hole4.east) + (2,0)$) ($(hole4.south) + (0,-2)$)
+				($(hole4.west) + (-1,0)$) ($(hole4.north) + (0,1)$) ($(hole4.east) + (1,0)$)
+				(hole4.south)
+			};
+
+	\end{tikzpicture}
+	\caption{The annulus with one marked point on each boundary component admits an infinite number of arcs.}
+	\label{fig:infinite_arcs}
+\end{figure}
 
 \begin{proposition}[\protect{\cite[Lemma 2.2]{Schiffler2018CAfromSurfaces}}]\label{prop:rank_triangulation}
 
@@ -3355,17 +3482,66 @@ cluster variables.
 \begin{definition}
 
 	A \emph{flip}\index{triangulation!flip} of an ideal triangulation $T$, replaces an arc
-	$\gamma$ in $T$ with a (necessarilly unique) different arc $\gamma'$ such that $(T
-		\setminus \{\gamma\}) \cup \{\gamma'\}$ is again an ideal triangulation. \textbf{TODO:
-		figure of flip}.
+	$\gamma$ in $T$ with a (necessarily unique) different arc $\gamma'$ such that $(T
+		\setminus \{\gamma\}) \cup \{\gamma'\}$ is again an ideal triangulation (cf.
+	\cref{fig:flips_ideal_triangulation}).
 \end{definition}
+
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}
+		\node[draw, gray, xscale = 1.2, inner sep=5ex] (rect) {};
+		\node[xscale = 1.2, inner sep=5ex, outer sep=2ex] at (rect) (fakerect) {};
+		\node[xscale = 1.2, inner sep=5ex, outer sep =2ex, right= of fakerect] (fakerect2) {};
+		\node[draw, gray, xscale = 1.2, inner sep=5ex] at (fakerect2) (rect2) {};
+		\draw (rect.north west) edge["$\gamma$"] (rect.south east);
+		\draw (rect2.south west) edge["$\gamma'$"] (rect2.north east);
+		\draw  (fakerect) edge[Latex-Latex] (fakerect2);
+		\begin{scope}[nodes={circle,fill,inner sep=0.25ex}]
+			\node at (rect.north west) {};
+			\node at (rect.north east) {};
+			\node at (rect.south west) {};
+			\node at (rect.south east) {};
+			\node at (rect2.north west) {};
+			\node at (rect2.north east) {};
+			\node at (rect2.south west) {};
+			\node at (rect2.south east) {};
+		\end{scope}
+
+		\node[circle, inner sep=5ex, right= 8ex of fakerect2] (bigon) {};
+		\draw[gray] (bigon.south) edge[bend left=80] (bigon.north);
+		\draw[gray] (bigon.south) edge[bend right=80] (bigon.north);
+		\draw[gray] (bigon.south) -- (bigon.center);
+		\draw (bigon.center) edge["$\gamma$"] (bigon.north);
+
+		\node[circle, inner sep=5ex, right= of bigon] (bigon2) {};
+		\draw[gray] (bigon2.south) edge[bend left=80] (bigon2.north);
+		\draw[gray] (bigon2.south) edge[bend right=80] (bigon2.north);
+		\draw[gray] (bigon2.south) -- (bigon2.center);
+		\draw (bigon2.south) .. controls +(120:15ex) and +(60:15ex) .. node[above] {$\gamma'$} (bigon2.south);
+		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
+			\node at (bigon.center){};
+			\node at (bigon.south){};
+			\node at (bigon.north){};
+			\node at (bigon2.center){};
+			\node at (bigon2.south){};
+			\node at (bigon2.north){};
+
+		\end{scope}
+		\draw (bigon) edge[Latex-Latex] (bigon2);
+	\end{tikzpicture}
+
+	\caption{A flip inside a quadrilateral and a once-punctured bigon. Flips may result in self-folded triangles.}
+	\label{fig:flips_ideal_triangulation}
+\end{figure}
 
 As in \cref{exmp:triangulations_revisited}, mutations will correspond to flips.
 However, there is a slight problem. When $\gamma$ is the radius of a self-folded
-triangle \textbf{TODO: define radius of self-folded}, then it is not possible to flip
-it. This problem will be addressed in \cref{sec:tagged_triangulations}, by introducing
-\emph{tagged triangulations}. Even with the problems of self-folded triangles, every
-ideal triangulation can be obtained from another by a sequence of flips \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+triangle (cf. \cref{fig:self_folded}), then it is not possible to flip it. This problem
+will be addressed in \cref{sec:tagged_triangulations}, by introducing \emph{tagged
+	triangulations}. Even with the problems of self-folded triangles, every ideal
+triangulation can be obtained from another by a sequence of flips \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
 
 To associate a quiver to an ideal triangulation, we make use of the following
 proposition.
@@ -3391,8 +3567,6 @@ also define the associated quiver for an ideal triangulation with self-folded
 triangles, by demanding that mutations correspond to flips. It is also possible to
 describe the quiver directly, as we now explain.
 
-\textbf{TODO: derive this directly by looking at mutations.}
-
 Let $T$ be an ideal triangulation (possibly with self-folded triangles). The associated
 quiver is exactly as above, except that one treats each radius of a self-folded
 triangle as a copy of the arc surrounding it. More precisely, let $\pi_T(i) = i$ if $i$
@@ -3405,7 +3579,42 @@ It follows that the ice quiver $\tQ(T)$, remains unchanged by swapping two verti
 corresponding to the sides of a self-folded triangle. If $\tB(T)$ is the associated
 matrix, then this means that the corresponding rows and columns are identical.
 
-\textbf{TODO: figures on associated quivers}
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}[x=1ex,y=1ex, nodes={circle,font=\footnotesize}, every label/.style={font=\footnotesie}, baseline]
+		\node[circle,draw, gray, inner sep = 10ex] (boundary) {};
+		\node[circle,draw, gray, pattern=crosshatch,pattern color= gray, inner sep=2ex] (hole) at ($(boundary.center) + (7,0)$)  {};
+		\begin{scope}[nodes={draw,fill,inner sep=0.3ex}]
+			\node at (boundary.north) {};
+			\node at (boundary.south) {};
+			\node at (hole.west) {};
+			\node (puncture) at ($(boundary.west)! 0.3 !(boundary.center)$){};
+		\end{scope}
+
+		\node[left] at (boundary.west) {7};
+		\node[right] at (boundary.east) {8};
+		\draw (boundary.north) edge["1"'] (puncture);
+		\draw (boundary.north) edge["2"'] (boundary.south);
+		\draw (boundary.north) edge["3"] (hole.west);
+		\draw (boundary.south) edge["5"'] (hole.west);
+		\draw (boundary.north) .. controls +(-160:25ex) and (-110:20ex)  .. node[below] {6} (boundary.north);
+		\draw plot [smooth, tension=1] coordinates {
+				(boundary.north)
+				($(hole.east) + (2,0)$) ($(hole.south) + (0,-1.5)$)
+				(hole.west)
+			};
+		\node[below] at ($(hole.south) + (0,-2)$) {4};
+	\end{tikzpicture}
+	\quad
+	\begin{tikzcd}
+		1 \dar \rar & 2 \dlar \rar & 3 \rar \dar& 4 \dar\\
+		\boxed{7} \rar & 6 \uar & 5 \ular \urar & \boxed{8} \lar
+	\end{tikzcd}
+
+	\caption{The ice quiver associated to an ideal triangulation. Note how the vertices labeled ``2'' and ``6'' are interchangeable in the ice quiver.}
+	\label{fig:quiver_ideal_triangulation}
+\end{figure}
 
 The \emph{cluster algebra associated to a surface}\index{cluster algebra!associated to
 	a surface} is now defined as expected. We define $\mcA(S, M)$\index{A S M@$\mcA(S, M)$}
@@ -3427,6 +3636,352 @@ following proposition.
 \end{proof}
 
 \subsection{Examples of ideal triangulations}
+
+We first introduce some terminology, which will come in handy for the examples. Let
+$(S, M)$ be a borderd surface with marked points. We write $A^\circ(S, M)$\index{A circ
+	S M@$A^\circ(S, M)$} for the set of all arcs in $(S, M)$. Recall that an (abstract)
+\emph{simplicial complex}\index{simplicial complex} is a family of sets which is closed
+under taking subsets. The members of a simplicial complex are called simplices. The
+size-one sets are called points, the size-two sets are called edges, and so on.
+
+The \emph{arc simplex}\index{arc!simplex} $\Delta^\circ (S, M)$\index{Delta circ S
+	M@$\Delta^\circ(S, M)$} is the simplicial complex with ground set $A^\circ(S, M)$ and
+whose simplices consist of pairwise compatible arcs. Thus, the vertices are the arcs,
+the edges are pairs of compatible arcs, and the maximal simplices are the ideal
+triangulations. Dually, we have $E^\circ(S, M)$\index{E circ S M@$E^\circ(S, M)$},
+whose points are triangulations and whose edges correspond to flips. For example,
+\cref{fig:hexagon_exchange_graph} shows $E^\circ(S, M)$ for the hexagon.
+
+Under this terminology, the fact that every ideal triangulation can be reached from
+another by a sequence of flips comes down to the fact that $E^\circ(S,M)$ is connected.
+However, because the radius of a self-folded triangle can not be flipped, $E^\circ(S,
+	M)$ may have boundary (cf. \cref{fig:arc_simplex_digon}). This will be resolved by
+looking at tagged triangulations.
+
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}
+		\node[circle, inner sep=5ex] (bigon) {};
+		\node[circle, inner sep=5ex, outer sep = 1ex] at (bigon.center) (fakebigon) {};
+		\draw (bigon.north) -- (bigon.center);
+
+		\node[circle, inner sep=5ex, right= of fakebigon] (bigon2) {};
+		\node[circle, inner sep=5ex, outer sep = 1ex] at (bigon2.center) (fakebigon2) {};
+		\draw (bigon2.center) -- (bigon2.south);
+
+		\node[circle, inner sep=5ex, below= of fakebigon] (bigon3) {};
+		\node[circle, inner sep=5ex, outer sep = 1ex] at (bigon3.center) (fakebigon3) {};
+		\draw (bigon3.north) .. controls +(-120:15ex) and +(-60:15ex) .. (bigon3.north);
+
+		\node[circle, inner sep=5ex, below= of fakebigon2] (bigon4) {};
+		\node[circle, inner sep=5ex, outer sep = 1ex] at (bigon4.center) (fakebigon4) {};
+		\draw (bigon4.south) .. controls +(120:15ex) and +(60:15ex) .. (bigon4.south);
+
+		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
+			\foreach \dir in {center, south, north}
+			\foreach \x in {,2,3,4} {
+					\draw[gray] (bigon\x.south) edge[bend left=80] (bigon\x.north);
+					\draw[gray] (bigon\x.south) edge[bend right=80] (bigon\x.north);
+					\node at (bigon\x.\dir){};
+				}
+		\end{scope}
+		\draw[shorten <=1ex, shorten >=1ex] (fakebigon3) -- (fakebigon);
+		\draw[shorten <=1ex, shorten >=1ex] (fakebigon2) -- (fakebigon4);
+		\draw (fakebigon2) -- (fakebigon);
+
+		\node[below] at ($(bigon3.south)!0.5!(bigon4.south)$) {$\Delta^\circ(S, M)$};
+	\end{tikzpicture}
+	\hspace{5ex}
+	\begin{tikzpicture}
+		\node[circle, inner sep=5ex] (bigon) {};
+		\draw[gray] (bigon.south) edge[bend left=80] (bigon.north);
+		\draw[gray] (bigon.south) edge[bend right=80] (bigon.north);
+		\draw (bigon.south) -- (bigon.center);
+		\draw (bigon.center) edge (bigon.north);
+
+		\node[circle, inner sep=5ex, below right=8ex and 1ex of bigon] (bigon2) {};
+		\draw[gray] (bigon2.south) edge[bend left=80] (bigon2.north);
+		\draw[gray] (bigon2.south) edge[bend right=80] (bigon2.north);
+		\draw (bigon2.south) -- (bigon2.center);
+		\draw (bigon2.south) .. controls +(120:15ex) and +(60:15ex) .. (bigon2.south);
+
+		\node[circle, inner sep=5ex, below left =8ex and 1ex of bigon] (bigon3) {};
+		\draw[gray] (bigon3.south) edge[bend left=80] (bigon3.north);
+		\draw[gray] (bigon3.south) edge[bend right=80] (bigon3.north);
+		\draw (bigon3.north) -- (bigon3.center);
+		\draw (bigon3.north) .. controls +(-120:15ex) and +(-60:15ex) .. (bigon3.north);
+		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
+			\node at (bigon.center){};
+			\node at (bigon.south){};
+			\node at (bigon.north){};
+			\node at (bigon2.center){};
+			\node at (bigon2.south){};
+			\node at (bigon2.north){};
+			\node at (bigon3.center){};
+			\node at (bigon3.south){};
+			\node at (bigon3.north){};
+		\end{scope}
+		\draw (bigon) edge (bigon2);
+		\draw (bigon) edge (bigon3);
+
+		\node[below] at ($(bigon3.south)!0.5!(bigon2.south)$) {$E^\circ(S, M)$};
+	\end{tikzpicture}
+
+	\caption{The arc simplex $\Delta^\circ(S, M)$ and the dual $E^\circ(S, M)$ for the once-punctured digon. Because the radius of a self-folded triangle can not be flipped, the boundary is non-empty.}
+	\label{fig:arc_simplex_digon}
+\end{figure}
+
+\begin{example}
+
+	In this example we look at the once-punctured polygon. The case of a once-punctured
+	monogon is excluded by definition. The arc complex of the once-punctured digon and its
+	dual are shown in \cref{fig:arc_simplex_digon}. The number of arcs in any given ideal
+	triangulation of the punctured $n$-gon is given by the rank
+	\begin{equation*}
+		6g + 3b + 3p + c -6 = 0 + 3 + 3 + n = n.
+	\end{equation*}
+
+	We mentioned before that the only surfaces with finitely many ideal triangulations are
+	the unpunctured, and once-punctured polygons. Since the triangulations will correspond
+	one-to-one with the clusters (cf \cref{thm:clusters_and_triangulations}), we know that
+	the associated cluster algebra must cluster-finite. By the classification theorem
+	(\cref{thm:cluster_finite_classification}), it follows that the principal part of the
+	ice quiver for some triangulation should have connected components which are Dynkin
+	diagrams of type ADE.
+
+	For the unpunctured $(n+3)$-gon we saw that the quiver was of type $A_n$. For the
+	punctured $n$-gon the quiver will be of type $D_n$. Indeed, see
+	\cref{fig:triangulation_octogon}.
+
+	\begin{figure}[ht!]
+		\centering
+
+		\begin{tikzpicture}[
+				R/.style = {rectangle, fill=black, inner sep=0.35ex},
+				B/.style = {circle, fill=black, inner sep=0.35ex},
+				every edge/.style= {draw, gray},
+			]
+			\coordinate (center) at (0,0);
+			\def\radius{25ex}
+
+			% points on the circle
+			\begin{scope}[rotate=22.5]
+				\path (center) ++(0:\radius) coordinate (A);
+				\path (center) ++(45:\radius) coordinate (B);
+				\path (center) ++(90:\radius) coordinate (C);
+				\path (center) ++(135:\radius) coordinate (D);
+				\path (center) ++(180:\radius) coordinate (E);
+				\path (center) ++(225:\radius) coordinate (F);
+				\path (center) ++(270:\radius) coordinate (G);
+				\path (center) ++(315:\radius) coordinate (H);
+			\end{scope}
+
+			% Sides with frozen verts
+			\begin{scope}[nodes=R]
+				\path (A) edge node (AB) {} (B);
+				\path (B) edge node (BC) {} (C);
+				\path (C) edge node (CD) {} (D);
+				\path (D) edge node (DE) {} (E);
+				\path (E) edge node (EF) {} (F);
+				\path (F) edge node (FG) {} (G);
+				\path (G) edge node (GH) {} (H);
+				\path (H) edge node (HA) {} (A);
+			\end{scope}
+
+			% Diagonals with exchangeable verts
+			\begin{scope}[nodes=B]
+				\path (A) edge node (AC) {} (C);
+				\path (A) edge node (AD) {} (D);
+				\path (A) edge node (AE) {} (E);
+				\path (A) edge node (AF) {} (F);
+				\path (A) edge node (AG) {} (G);
+			\end{scope}
+
+			% Extra puncture
+			\node[circle,gray,fill,inner sep=0.15ex] at ($(H)!0.4!(AG)$) (P) {};
+			\begin{scope}[nodes=B]
+				\path (G) edge node[near end] (GP) {} (P);
+				\path (H) edge node (HP) {} (P);
+				\draw[gray] (G) ..controls +(65:1ex) and +(100:15ex).. node[near end] (GH') {} (H);
+			\end{scope}
+
+			% Quiver edges
+			\begin{scope}[every edge/.style={draw, -Latex,black,line width=0.13ex}]
+				\path (AB) edge (AC);
+				\path (AC) edge (BC);
+
+				\path (AC) edge (AD);
+				\path (AD) edge (CD);
+				\path (CD) edge (AC);
+
+				\path (AD) edge (AE);
+				\path (AE) edge (DE);
+				\path (DE) edge (AD);
+
+				\path (AE) edge (AF);
+				\path (AF) edge (EF);
+				\path (EF) edge (AE);
+
+				\path (AF) edge (AG);
+				\path (AG) edge (FG);
+				\path (FG) edge (AF);
+
+				\path (AG) edge (HA);
+				\path (HA) edge (GH');
+				\path (GH') edge (AG);
+
+				\path (GH) edge (GP);
+
+				\path (GP) edge (GH');
+				\path (GH') edge (HP);
+
+			\end{scope}
+		\end{tikzpicture}
+		\caption{The ice quiver associated to an ideal triangulation of a once-punctured octogon. The chosen triangulation yields an ice quiver whose principal part is an orientation of a Dynkin diagram of type $D_8$.}
+		\label{fig:triangulation_octogon}
+	\end{figure}
+
+	There are two special cases to take note of. When $n=2$, we have a punctured digon. In
+	this case the quiver is actually two copies of $A_1$, which can be interpreted as
+	$D_2$. When $n=3$, the quiver is of type $A_3$, which can also be interpreted as being
+	$D_3$. Note that $A_3$ is also the quiver associated to triangulations of an
+	unpunctured hexagon. Indeed, once we introduce tagged triangulations we will see that
+	their arc complexes coincide \textbf{TODO: link to tagged triangulations of punctured
+		triangle.}
+\end{example}
+
+\begin{example}\label{exmp:triangulation_punctured_torus}
+
+	We now look at the once-punctured torus. It can be quite tricky to visualize a
+	triangulation of a once-punctured torus embedded in 3-dimensional space. So, we will
+	instead make use of the ``topologist's torus'': a square with opposite ends identified.
+	We strategically place the puncture at one (and hence all four) of the corners. The
+	number of arcs in an ideal triangulation is given by the rank
+	\begin{equation*}
+		6g + 3b + 3p + c -6 = 6 + 0 + 3 + 0 - 6 = 3.
+	\end{equation*}
+	%
+	One ideal triangulation is obtained by taking the sides of the square together with one
+	of the diagonals (cf. \cref{fig:torus_triangulation}).
+	\begin{figure}[ht!]
+		\centering
+		\begin{tikzpicture}[baseline]
+			\node[draw, gray, inner sep=10ex] (rect) {};
+			\draw[gray] (rect.south west) -- (rect.north east);
+			\node[above] at (rect.north) {1};
+			\node[below] at (rect.south) {1};
+			\node[left] at (rect.west) {2};
+			\node[right] at (rect.east) {2};
+			\node[above left] at (rect.center) {3};
+
+			\foreach \anchor in {north, south, west, east, center} { \node[circle, fill=black, inner sep=0.3ex] at (rect.\anchor) (node\anchor) {};}
+			\foreach \anchor in {north east, south east, north west, south west} {\node[circle, fill=gray, inner sep=0.2ex] at (rect.\anchor) {};}
+
+			\begin{scope}[every edge/.style={draw,-Latex, line width = 0.2ex}]
+				\draw (nodecenter) edge (nodeeast);
+				\draw (nodeeast) edge (nodesouth);
+				\draw (nodesouth) edge (nodecenter);
+
+				\draw (nodecenter) edge (nodewest);
+				\draw (nodewest) edge (nodenorth);
+				\draw (nodenorth) edge (nodecenter);
+			\end{scope}
+		\end{tikzpicture}
+		\quad
+		\begin{tikzcd}[column sep=small]
+			& 1 \drar[shift left] \drar[shift right] & \\
+			2 \urar[shift left] \urar[shift right] & & 3 \ar[ll, shift left] \ar[ll, shift right]
+		\end{tikzcd}
+		\caption{Ideal triangulation of a once-punctured torus, with the associated quiver. The opposite sides of the square are identified, and the puncture is located on the corners of the square. Note that each of the triangles share two sides.}
+		\label{fig:torus_triangulation}
+	\end{figure}
+
+	Note that we find back the Markov quiver from \cref{exmp:markov_quiver}. Because there
+	is only one puncture and no boundary, there are no triangulations with self-folded
+	triangles. This allows us (see \cref{prop:tagged_flips_connected}) to apply
+	\cref{thm:clusters_and_triangulations} without the need for tagged triangulations.
+	Since the once-punctured torus has an infinite number of triangulations, we have now
+	found an alternative proof that the cluster algebra associated to the Markov quiver has
+	an infinite number of clusters.
+
+	\begin{figure}[ht!]
+		\centering
+		\begin{tikzpicture}[
+				nodes={gray,draw,densely dotted,inner sep=5ex},
+				every edge/.style={draw, line width =0.2},
+				scale= 3,
+			]
+			\node (u) at (0, 5ex) {};
+			\draw (u.north west) edge (u.south west);
+			\draw (u.north east) edge (u.south east);
+			\node (r) at (0,-5ex) {};
+			\draw (r.north west) edge (r.north east);
+			\draw (r.south west) edge (r.south east);
+
+			\node at (-5ex, 0) (ur) {};
+			\draw (ur.south west) edge (ur.north east);
+			\node at (5ex, 0) (ul) {};
+			\draw (ul.north west) edge (ul.south east);
+
+			\node (uur) at (135:10ex) {};
+			\draw (uur.south west) edge (uur.north);
+			\draw (uur.south) edge (uur.north east);
+			\node (urr) at (-135:10ex) {};
+			\draw (urr.west) edge (urr.north east);
+			\draw (urr.south west) edge (urr.east);
+
+			\node (uul) at (45:10ex) {};
+			\draw (uul.north west) edge (uul.south);
+			\draw (uul.north) edge (uul.south east);
+			\node (ull) at (-45:10ex) {};
+			\draw (ull.north west) edge (ull.east);
+			\draw (ull.west) edge (ull.south east);
+
+			\foreach \rectnode in {u,r,ur,ul,uur,urr,uul,ull}
+			\foreach \anchor in {north east, north west, south east, south west}
+				{
+					\node[draw=none,circle,fill=gray,inner sep=0.2ex] at (\rectnode.\anchor) {};
+				}
+
+			\begin{scope}[every edge/.style={draw,line width=0.1, shorten <=1ex, shorten >=1ex}]
+				\draw (u) edge (uur) edge (ur) edge (ul) edge (uul) edge (r);
+				\draw (r) edge (ur) edge (urr) edge (ul) edge (ull);
+				\draw (ur) edge (uur) edge (urr);
+				\draw (ul) edge (uul) edge (ull);
+			\end{scope}
+
+			\begin{scope}[
+					every edge/.style={draw,line width=0.1, densely dashed},
+					nodes={draw=none,circle,fill=black,inner sep=0.4ex}
+				]
+				\foreach \scale/\symb/\dir in {1//l,-1/'/r} {
+						\begin{scope}[xscale=\scale]
+							\node at (1.5ex, 0) (b\symb) {};
+							\node at ($(u)!0.5!(u\dir)!0.3!(uu\dir)$) (ba\symb) {};
+							\node at ($(u)!0.5!(uu\dir)!-0.8!(ba\symb)$) (baa\symb) {};
+							\node at ($(u\dir)!0.5!(uu\dir)!-0.8!(ba\symb)$) (bab\symb) {};
+							\node at ($(r)!0.5!(u\dir)!0.3!(u\dir\dir)$) (bb\symb) {};
+							\node at ($(r)!0.5!(u\dir\dir)!-0.8!(bb\symb)$) (bbb\symb) {};
+							\node at ($(u\dir)!0.5!(u\dir\dir)!-0.8!(bb\symb)$) (bba\symb) {};
+							\draw (b\symb) edge (ba\symb) edge (bb\symb);
+							\draw (ba\symb) edge (bab\symb) edge (baa\symb);
+							\draw (bb\symb) edge (bba\symb) edge (bbb\symb);
+						\end{scope}
+					}
+				\draw (b) edge (b');
+			\end{scope}
+		\end{tikzpicture}
+
+		\caption{Part of the arc complex $\Delta^\circ(S, M)$ of the once-punctured torus (solid lines). The dual graph, $E^\circ(S,M)$ is shown with dashed lines. Thus, the nodes in the dual graph represent the ideal triangulation formed by the three compatible arcs surrounding it. The dual graph forms a 3-regular infinite tree. }
+		\label{fig:torus_arc_complex}
+	\end{figure}
+\end{example}
+
+\begin{example}
+
+	We now look at
+\end{example}
 
 \subsection{Tagged triangulations}\label{sec:tagged_triangulations}
 
@@ -3518,7 +4073,7 @@ triangulation, except possibly when the triangulation contains once-punctured di
 tagged arcs with different tags connected to the puncture in the digon, then the
 untagged version would coincide. In this case the two tagged arcs have to be
 transformed into a self-folded triangle. This way, we obtain an ideal triangulation
-$T^\circ$. Consequently, there are essentiall two types of tagged flips \cite[Remark
+$T^\circ$. Consequently, there are essentialy two types of tagged flips \cite[Remark
 	5.13]{FominThurston2018CATriangulatedSurfacesII}:
 \begin{enumerate}
 	\item A flip performed inside a once-punctured digon. \textbf{TODO: figure}.
@@ -3562,7 +4117,7 @@ cluster algebra, and of the triangulations.
 		      then the seed $\Sigma_{T'}$ is obtained by a seed mutation of $\Sigma_T$ replacing
 		      $x_{\beta}$ by $x_{\beta'}$.
 	\end{itemize}
-	Furthermore, all the $x_\beta$ for $\beta$ a tagged arc in $(S,M)$ are distinct.
+	Furthermore, all the $x_\beta$, for $\beta$ a tagged arc in $(S,M)$, are distinct.
 \end{theorem}
 
 This is a strong result! It says that the combinatorics of a cluster algebra associated
@@ -3572,6 +4127,9 @@ be connected. Another is that a seed is completely determined by its cluster, i.
 does not depend on the ice quiver. Furthermore,
 \textcite{FominThurston2018CATriangulatedSurfacesII} showed that once can generalize
 $\mcA(S, M)$ to cluster algebras with arbitrary coefficients, in such a way that the
-exchange graph is independent of the choice of coefficients. Due to this nice interplay between the combinatorics of the cluster algebra and the triangulations, this class of cluster algebras was one of the first big classes for which positivity was shown. This was done by \textcite{MusikerSchifflerWilliams2011PositivityCASurfaces}.
+exchange graph is independent of the choice of coefficients. Due to this nice interplay
+between the combinatorics of the cluster algebra and the triangulations, this class of
+cluster algebras was one of the first big classes for which positivity was shown. This
+was done by \textcite{MusikerSchifflerWilliams2011PositivityCASurfaces}.
 
 \subsection{Examples}
