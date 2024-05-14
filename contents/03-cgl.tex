@@ -923,7 +923,7 @@ Using the previous lemma, we can now describe what happens to the homogeneous pr
 elements $y_1, \dots, y_N$.
 
 \begin{theorem}\label{thm:y_prime_swapped_cgl}
-	Assume that $R$ is a CGL extension of the form \eqref{eq:default_cgl_presentation}, with a second CGL presentation of the form \eqref{eq:swapped_cgl_presentation}. Denote with $y_1, \dots, y_N$ the sequence of homogeneous prime elements from \cref{thm:homogeneous_primes}, and $\eta : [1, N] \to \bbZ$ the associated function for \eqref{eq:default_cgl_presentation}. For \eqref{eq:swapped_cgl_presentation} we write $y'_1, \dots, y'_N$ and $\eta'$.
+	Assume that $R$ is a CGL extension of the form \eqref{eq:default_cgl_presentation}, with a second CGL presentation of the form \eqref{eq:swapped_cgl_presentation}. Denote with $y_1, \dots, y_N$ the sequence of homogeneous prime elements from \cref{thm:homogeneous_primes}, and $\eta : [1, N] \to \bbZ$ the associated function for \eqref{eq:default_cgl_presentation}. With respect to \eqref{eq:swapped_cgl_presentation} we can take $\eta' = \eta \circ (k, k+1)$ where $(k, k+1)$ denotes a transposition in $S_N$. Writing $y'_1, \dots, y'_N$ for the corresponding sequence of homogeneous prime elements we have:
 	\begin{enumerate}[(a)]
 		\item If $\eta(k) \neq \eta(k+1)$, then $y'_j = y_j$ for $j \neq k, k+1$ and $y'_k = y_{k+1},
 			      y'_{k+1} = y_k$.
@@ -1219,8 +1219,8 @@ Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
 %
 The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
 $\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
-$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ in
-two ways:
+$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ as
+iterated Ore extension in two ways:
 \begin{equation*}
 	R_{[j, k]} = R_{[j, k-1]}[x_k; \sigma_k, \delta_k] \text{ and } R_{[j,k]} = R_{[j+1, k]}[x_j; \sigma_j^*, \delta_j^*].
 \end{equation*}
@@ -1607,7 +1607,10 @@ their leading terms, it makes sense to normalize them in the same way:
 \index{y k overline@$\oy_k$}%%
 
 Using \cref{prop:y_quantum_torus} we then obtain a toric frame $M \colon \bbZ^N \to
-	\Fract(R)$ with matrix $\bbr$ and such that $M(e_j) = \oy_j$ for all $j \in [1, N]$.
+	\Fract(R)$ with matrix $\bbr$ and such that
+\begin{equation*}
+	M(e_j) = \oy_j\quad \text{for all}\quad j \in [1, N].
+\end{equation*}
 
 \begin{example}\label{exmp:heisenberg_y_normalization}
 
@@ -1630,10 +1633,13 @@ For a second CGL presentation as in \cref{eq:swapped_cgl_presentation}, we defin
 $\bbn', \bbr'$ and $M'$ in the same way, i.e., $M'(e_j) = \oy'_j$ for all $j \in [1,
 		N]$. Note that the vectors $\oe_k \in \bbZ^N$ should be computed with respect to the
 predecessor function corresponding to this presentation instead. Since $\lambda'_{lj} =
-	\lambda_{(k, k+1)l, (k, k+1)j}$, we also have
+	\lambda_{(k, k+1)l, (k, k+1)j}$, we may assume that the square roots have been chosen
+such that
 \begin{equation*}
 	\bbn' = (k, k+1)\bbn (k, k+1) \in M_N(\bbK^\times).
 \end{equation*}
+%
+In the setting of the main theorem this will be forced by \cref{cond:no_order_two}.
 
 In the next theorem we describe $\bbr'$ in terms of $\bbr$ and show that the
 normalization has the desired effect.
@@ -1790,8 +1796,11 @@ As before, this presentation has $\bbl$-matrix given by $\bbl_\tau = \tau\inv \b
 for all $l, j \in [1, N]$.	Write $\oy_{\tau, 1}, \dots, \oy_{\tau, N}$\index{y k
 	overline tau@$\oy_{\tau, k}$} for the sequence of normalized homogeneous prime elements
 of this presentation, and $\widehat{M}_\tau$\index{M hat tau@$\wh{M}_\tau$} as the
-toric frame with matrix $\widehat{\bbr}_\tau$ and such that $\widehat{M}_\tau (e_k) =
-	\oy_{\tau, k}$ for all $k \in [1, N]$.
+toric frame with matrix $\widehat{\bbr}_\tau$ and such that
+\begin{equation*}
+	\widehat{M}_\tau (e_k) =
+	\oy_{\tau, k} \quad \text{for all}\quad k \in [1, N].
+\end{equation*}
 
 We now need to address indexing issue by permuting the order of the cluster variables.
 Consider $\eta : [1, N] \to \bbZ$ satisfying the conditions of
@@ -1917,7 +1926,8 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 	\leavevmode
 	\begin{enumerate}[(a)]
 		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
-				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet' = \tau_\bullet\tau$.
+				      N-1]$. If $\eta(\tau(k)) = \eta(\tau(k+1))$, then $\tau_\bullet'\tau' =
+			      \tau_\bullet\tau$.
 		\item Take $\tau,\tau' \in \Xi_N$ such that $\tau' = \tau(k, k +1)$ for some $k \in [1,
 				      N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $\tau'_\bullet\tau' =
 			      \tau_\bullet\tau (k, k +1)$.
@@ -1927,7 +1937,7 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 	\begin{enumerate}[(a)]
 		\item Because $\eta(\tau(k)) = \eta(\tau(k+1)) = \eta(\tau'(k)) = \eta(\tau'(k+1))$, and
 		      $\tau(j) = \tau'(j)$ for all $j\neq k, k+1$ we have $\tau\inv(L) = (\tau')\inv(L)$ for
-		      all level sets, $L$, of $\eta$. Hence, $\tau_\bullet(\tau) = (\tau')_\bullet(\tau')$.
+		      all level sets, $L$, of $\eta$. Hence, $\tau_\bullet\tau = (\tau')_\bullet(\tau')$.
 		\item Suppose
 		      \begin{equation*}
 			      \eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
@@ -2014,16 +2024,24 @@ $s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
 \index{e i smi@$e_{[i, s^m(i)]}$}%%
 
 In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, N]$. By convention
-$y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. Applying
-\cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting yields the
-following result.
+$y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. By applying
+\cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting to the
+permutations
+\begin{equation*}
+	[i+1, i+2, \dotsc, s^m(i)-1,i,s^{m}(i), s^m(i)+1, \dotsc, N, i-1, \dotsc,1] \in \Xi_N
+\end{equation*}
+and
+\begin{equation*}
+	[i+1, i+2, \dotsc, s^m(i)-1,s^m(i),i,s^m(i)+1,\dotsc, N,i-1,\dotsc,1] \in \Xi_N,
+\end{equation*}
+one can obtain the following result.
 \begin{proposition}[\protect{\cite[Corollary 5.11]{GoodearlYakimov2017QCA}}]\label{prop:def_u_brackets}
 
 	Let $R$ be a symmetric CGL extension of length $N$. Then, for $i\in [1, N]$ and $m \in
 		\bbZ_{> 0}$ such that $s^m(i) \neq + \infty$, the element
 	\begin{align*}
-		u_{[i, s^m(i)]} & \defeq y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}             \\
-		                & \defeq y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
+		u_{[i, s^m(i)]} & \defeq y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_i, e_{[s(i), s^{m-1}(i)]})y_{[s(i), s^{m-1}(i)]}y_{[i, s^m(i)]}        \\
+		                & = y_{[i, s^{m-1}(i)]}y_{[s(i), s^m(i)]} - \Omega_{\bbl}(e_{s^m(i)}, e_{[s(i), s^{m-1}(i)]})\inv y_{[i, s^m(i)]}y_{[s(i), s^{m-1}(i)]}
 	\end{align*}
 	\index{u i smi@$u_{[i, s^m(i)]}$}%
 	%
@@ -2886,7 +2904,7 @@ a small lemma which we will need in the inductive step.
 	\end{align*}
 \end{proof}
 \begin{proposition}\label{prop:y_tau_is_y_bracket}
-	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$. Write, for $i \in [1, N-1]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq +\infty$,
+	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$. Write, for $i \in [1, N]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq +\infty$,
 	\begin{equation*}
 		\oy_{[i, s^m(i)]} \defeq \mcS_{\bbn}(e_{[i, s^m(i)]})y_{[i, s^m(i)]},
 	\end{equation*}
@@ -3343,7 +3361,7 @@ We can now finally prove mutation between adjacent presentations.
 
 	We now consider the case where $\eta(\tau(k)) = \eta(\tau(k+1))$ which requires
 	significantly more work. Because $\tau([1, k])$ and $\tau([1, k+1])$ are intervals,
-	$\tau(k+1)$ must lie on one of the endpoints of the interval $\tau([1, k])$. The
+	$\tau(k+1)$ must lie on one of the endpoints of the interval $\tau([1, k+1])$. The
 	assumption $\tau(k) < \tau(k+1)$ forces
 	\begin{equation*}
 		\tau'([1, k+1]) = \tau([1, k+1]) = [\tau(i), \tau(k+1)] \quad \text{and}\quad \tau([1, k]) = [\tau(i), \tau(k+1) - 1]
@@ -3371,23 +3389,13 @@ We can now finally prove mutation between adjacent presentations.
 		\begin{aligned}
 			\eta\inv(\eta(\tau(k))) \cap \tau([1, k+1])
 			 & = \{j \in [\tau(k), s^m(\tau(k))] \mid \eta(j) = \eta(\tau(k))\} \\
-			 & = \{\tau(k), s(\tau(k)), \dots, \tau(k+1) = s^m(\tau(k))\},
+			 & = \{\tau(k), s(\tau(k)), \dots, \tau(k+1) = s^m(\tau(k))\}.
 		\end{aligned}
 	\end{equation}
-	which, combined with $\tau(j) = \tau'(j)$ for $j\neq k, k+1$, gives
-	\begin{equation*}
-		\tau\inv(\eta\inv(\eta(\tau(k)))) = (\tau')\inv(\eta\inv(\eta(\tau(k)))).
-	\end{equation*}
 	%
-	Hence, as $\tau$ and $\tau'$ have the same inverse image on the level set of
-	$\eta(\tau(k))$,
-	\begin{equation*}
-		k_\bullet = \tau_\bullet(\tau(k)) = (\tau')_\bullet(\tau'(k)).
-	\end{equation*}
-	%
-	Since $\tau$ and $\tau'$ agree on the other level sets, we find that $\tau_\bullet \tau
-		= (\tau')_\bullet \tau'$, such that \cref{thm:almost_mutation_toric_frame} implies
-	$M_\tau(e_j) = M_{\tau'(e_j)}$ for all $j \neq k_\bullet$.
+	Then, since $\tau_\bullet \tau = (\tau')_\bullet \tau'$, by \cref{lem:tau_bullet}, we
+	obtain using \cref{thm:almost_mutation_toric_frame} that $M_\tau(e_j) = M_{\tau'(e_j)}$
+	for all $j \neq k_\bullet$.
 
 	Now, from $\tau([1, k]) = [\tau(k), \tau(k+1) - 1] = [\tau(k), s^m(\tau(k)) - 1]$ it
 	follows that
@@ -3404,8 +3412,9 @@ We can now finally prove mutation between adjacent presentations.
 
 	Our goal is now to apply \cref{thm:mutation_for_bracket_frames}. To do this, we will
 	construct an isomorphism $\dot{w}$ from $\bbZ^{s^m(\tau(k)) -\tau(k) + 1} = \bbZ^{k+1}$
-	to $\bbZ e_{\tau(k)} + \cdots + \bbZ e_{s^m(\tau(k))}$ in such a way that the toric
-	frames $\wh{M}_\tau$ and $M_{[\tau(k), s^m(\tau(k))]}\dot{w}$ agree on suitable $e_j$.
+	to $\bbZ e_{\tau(k)} + \bbZ e_{\tau(k)+1} + \dotsb + \bbZ e_{s^m(\tau(k))}$ in such a
+	way that the toric frames $\wh{M}_\tau$ and $M_{[\tau(k), s^m(\tau(k))]}\dot{w}$ agree
+	on suitable $e_j$.
 
 	Recall that
 	\begin{equation*}
@@ -3447,8 +3456,9 @@ We can now finally prove mutation between adjacent presentations.
 		\item If $\tau(j) < \tau(1)$, then $\tau([1, j]) = [\tau(j), \tau(i_j)]$ for some $i_j \in
 			      [1, j-1]$. Let $m_j$ be the integer corresponding to $j$ in
 		      \cref{prop:y_tau_is_y_bracket}, and write $s^{m_j}(\tau(j)) = \tau(j^{-})$. Then
-		      $s(\tau(j^{-})) s^m(\tau(k))$ and hence $\tau(j-) \in P_{[\tau(k), s^m(\tau(k))]}$.
-		      Furthermore, $m_j = O_{-}^{\tau(k) + 1}$ such that \cref{prop:y_tau_is_y_bracket} gives
+		      $s(\tau(j^{-})) > s^m(\tau(k))$ and hence $\tau(j^{-}) \in P_{[\tau(k),
+							      s^m(\tau(k))]}$. Furthermore, $m_j = O_{-}^{\tau(k) + 1}$ such that
+		      \cref{prop:y_tau_is_y_bracket} gives
 		      \begin{equation*}
 			      \oy_{\tau, j} = \oy_{[p^{m_j}(\tau(j^{-})), \tau(j^{-})]} = M_{[\tau(k), s^m(\tau(k))]}(e_{\tau(j^{-})}).
 		      \end{equation*}
@@ -3524,7 +3534,7 @@ We can now finally prove mutation between adjacent presentations.
 	\begin{align*}
 		\oy_{\tau', k} = \oy_{[s(\tau(k)), s^m(\tau(k))]} = \wh{M}_\tau(e_t + e_{k+1} - e_k) + \wh{M}_\tau(g' - e_k),
 	\end{align*}
-	where $\supp(g) \subseteq Q$. By \cref{eq:level_set_tau_k}, we find this time that
+	where $\supp(g') \subseteq Q$. By \cref{eq:level_set_tau_k}, we find this time that
 	\begin{equation*}
 		\tau_\bullet\tau(t) = p(k_\bullet) \quad \text{and} \quad \tau_\bullet\tau(k+1) = s(k_\bullet),
 	\end{equation*}
@@ -3534,10 +3544,10 @@ We can now finally prove mutation between adjacent presentations.
 	\end{equation*}
 	again.
 
-	We now resolve the remaining identities. Note that the $p(k)$ appearing in
-	\cref{eq:Omega_r_squared_ek,eq:Omega_r_squared_one} is with respect to the presentation
-	corresponding to $\tau$, and is hence equal to $p_\tau(k) = t$ in the current setting.
-	Consequently, \cref{eq:Omega_r_squared_one} gives
+	We now resolve the remaining identities. Write $g = \tau_\bullet \tau(g')$. Note that
+	the $p(k)$ appearing in \cref{eq:Omega_r_squared_ek,eq:Omega_r_squared_one} is with
+	respect to the presentation corresponding to $\tau$, and is hence equal to $p_\tau(k) =
+		t$ in the current setting. Consequently, \cref{eq:Omega_r_squared_one} gives
 	\begin{equation*}
 		\Omega_{\bbr_\tau}(e_{p(k_\bullet)} + e_{s(k_\bullet)} -g, e_j) = 1
 	\end{equation*}
@@ -4076,14 +4086,17 @@ analysis of the denominators that can appear.
 
 \begin{lemma}\label{lem:ore_set_ore_extension}
 	%
-	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set of
-	regular elements in $B$. If $\sigma(\bbK^\times E) = \bbK^\times E$, then $E$ is a
-	(left or right) Ore set of regular elements in $B[x;\sigma, \delta]$.
+	Let $B[x;\sigma,\delta]$ be an Ore extension and $E$ a (left or right) Ore set in $B$.
+	If $\sigma(\bbK^\times E) = \bbK^\times E$, then $E$ is a (left or right) Ore set in
+	$B[x;\sigma, \delta]$.
 \end{lemma}
 \begin{proof}
 	%
-	That the elements remain regular follows from $x b = 0 \iff b x = 0 \iff b = 0$ for all
-	$b \in B$.
+	We first show that the elements of $E$ are still regular in $B[x; \sigma, \delta]$.
+	Indeed, take some $\sum_{i} b_i x^i \in B[x; \sigma, \delta]$ and $e \in E$. Then,
+	since the elements $x^i$ form a basis, we have that $e \sum_i b_i x^i = 0$ if and only
+	if $e b_i = 0$ for all $i$. Because $e$ is regular, it follows that $b_i = 0$ for all
+	$i$, and hence $\sum_i b_i x^i = 0$.
 
 	Take $e \in E$. We only prove the case where $E$ is a right Ore set, as the case for a
 	left Ore set is completely analogous. We first show that there exist $e' \in E$ and $r
@@ -4119,8 +4132,8 @@ analysis of the denominators that can appear.
 
 We now apply this lemma to a CGL extension $R$. Let $y_1, \dots, y_N$ be the sequence
 of homogeneous prime elements from \cref{thm:homogeneous_primes}. We now claim that for
-each $j \in [1, K]$, the set, $E_j \defeq \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq
-		0}\}$, is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and
+each $j \in [1, K]$, the set $E_j \defeq \bbK^\times\{y_j^{m} \mid m \in \bbZ_{\geq
+		0}\}$ is an Ore set in $R$. Indeed, first note that for any $m \in \bbZ_{\geq 0}$ and
 $a \in R_j$, we have
 \begin{equation*}
 	y_j^k R_j \cap a E_j = R_j y_j^k \cap  a E_j \ni a y_j^k.
