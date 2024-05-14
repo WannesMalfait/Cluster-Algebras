@@ -4,20 +4,36 @@
 \noindent
 In this first chapter, we look at classical cluster algebras and cover the basic theory. \Cref{sec:cgl_extensions,sec:quantum_cluster_algebras} will then look at a noncommutative generalization, known as quantum cluster algebras.
 
-The theory of cluster algebras is relatively new. They were first introduced in 2002, by \textcite{FominZelevinsky2002CAF}. It was quickly discovered that they could be used in many areas of mathematics, besides the original motivation as a tool to study canonical bases. Because of this, the field has grown rapidly, and it is impractical to cover all aspects of it in a single document.
+The theory of cluster algebras is relatively new. They were first introduced in 2002,
+by \textcite{FominZelevinsky2002CAF}. It was quickly discovered that they could be used
+in many areas of mathematics, besides the original motivation as a tool to study
+canonical bases. Because of this, the field has grown rapidly, and it is impractical to
+cover all aspects of it in a single document.
 
-We start, in \cref{sec:cluster_algebras_quivers}, with the simplest notion of a cluster algebra, that of a cluster algebra coming from a quiver. These are mostly combinatorial, and can be understood without too much background. Using these we introduce the most important concepts. The next section, \cref{sec:ice_quivers_and_coefficients}, slowly builds up to the most general definition of a cluster algebra. Along the way, examples are given to relate the different versions with each other. Finally, we look at cluster algebras coming from surfaces in \cref{sec:cluster_algebras_surfaces}. This generic method for producing cluster algebras connects cluster algebras with geometric topology, and yields beautiful diagrams.
+We start, in \cref{sec:cluster_algebras_quivers}, with the simplest notion of a cluster
+algebra, that of a cluster algebra coming from a quiver. These are mostly
+combinatorial, and can be understood without too much background. Using these we
+introduce the most important concepts. The next section,
+\cref{sec:ice_quivers_and_coefficients}, slowly builds up to the most general
+definition of a cluster algebra. Along the way, examples are given to relate the
+different versions with each other. Finally, we look at cluster algebras coming from
+surfaces in \cref{sec:cluster_algebras_surfaces}. This generic method for producing
+cluster algebras connects cluster algebras with geometric topology, and yields
+beautiful diagrams.
 
 \section{Cluster algebras from quivers}\label{sec:cluster_algebras_quivers}
 
-This first section serves as an introduction to cluster algebras. We will first look, in \cref{sec:integer_sequences}, at
-some examples of integer sequences arising from number theory or from combinatorial
-data. In these examples, a few recurring observations will occur. These observations
-will be explained by viewing each of the examples under the lens of cluster algebra
-theory. This will be done in \cref{sec:sequences_revisited}, after introducing cluster algebras coming from quivers in \cref{sec:quivers_seeds_mutations,sec:cluster_algebra_from_quiver}. We do not yet provide the most general definition of a cluster algebra, which
-will be given in \cref{sec:ice_quivers_and_coefficients}. Cluster algebras coming from quivers are easier to
-grasp, and will allow us to understand the general concepts without getting distracted by
-technical details.
+This first section serves as an introduction to cluster algebras. We will first look,
+in \cref{sec:integer_sequences}, at some examples of integer sequences arising from
+number theory or from combinatorial data. In these examples, a few recurring
+observations will occur. These observations will be explained by viewing each of the
+examples under the lens of cluster algebra theory. This will be done in
+\cref{sec:sequences_revisited}, after introducing cluster algebras coming from quivers
+in \cref{sec:quivers_seeds_mutations,sec:cluster_algebra_from_quiver}. We do not yet
+provide the most general definition of a cluster algebra, which will be given in
+\cref{sec:ice_quivers_and_coefficients}. Cluster algebras coming from quivers are
+easier to grasp, and will allow us to understand the general concepts without getting
+distracted by technical details.
 
 \subsection{Combinatorial integer sequences}\label{sec:integer_sequences}
 
@@ -38,7 +54,8 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	Even though the recurrence relation involves a fraction, all the terms of the sequence
 	are positive integers. We will explain this later, as a consequence of a more general
 	fact about cluster algebras. Another way to observe this is as follows. For each $n \in
-		\bbZ_{\geq0}$, we will show by induction that the triple $(x_n, x_{n+1}, x_{n+2})$ satisfies the equation
+		\bbZ_{\geq0}$, we will show by induction that the triple $(x_n, x_{n+1}, x_{n+2})$
+	satisfies the equation
 	\begin{equation}\label{eq:markov_diophantine}
 		x_n^2 + x_{n+1}^2 + x_{n+2}^2 = 3 x_n x_{n+1}x_{n+2},
 	\end{equation}
@@ -52,7 +69,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 		 & = (3 x_{n+1}x_{n+2} - x_n)^2 + x_{n+1}^2 + x_{n+2}^2                            \\
 		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_{n+1} x_{n+2} x_n + x_n^2 + x_{n+1}^2 + x_{n+2}^2 \\
 		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_n x_{n+1} x_{n+2} + 3 x_n x_{n+1} x_{n+2}         \\
-		 & = 3 (3 x_{n+1} x_{n+2}-  x_n) x_{n+1} x_{n+2}                                    \\
+		 & = 3 (3 x_{n+1} x_{n+2}-  x_n) x_{n+1} x_{n+2}                                   \\
 		 & = 3 x_{n+3} x_{n+1} x_{n+2}.
 	\end{align*}
 	%
@@ -95,7 +112,9 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	elements of the sequence would be integers. However, somewhat remarkably, the
 	denominators seem to always cancel out perfectly. Viewing this sequence through the
 	cluster algebra framework, it will follow immediately that all the terms are indeed
-	integers, as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}. Although it is quite obvious in this case, we remark that all the terms in the sequence are once again positive.
+	integers, as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}.
+	Although it is quite obvious in this case, we remark that all the terms in the sequence
+	are once again positive.
 \end{example}
 
 \begin{example}\label{exmp:frieze_patterns}
@@ -104,8 +123,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 		patterns}\footnote{The name ``frieze pattern'' comes from architecture, where it refers
 		to a horizontal strip, often found just below the roofline, which is decorated with
 		patterns.}\index{frieze pattern}\index{SL 2 Z@$\SL_2(\bbZ)$}. The idea of a frieze
-	pattern is best explained through an example (\cite{Coxeter1971FriezePatterns}). Take
-	for example the following pattern:
+	pattern is best explained through an example \parencite{Coxeter1971FriezePatterns}. Take for example the following pattern:
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -137,7 +155,8 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	rows. If so, one might be interested in knowing how many such patterns there are.
 	Furthermore, one might notice that the pattern is periodic, repeating every 7 columns.
 	In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes
-	a translation and reflection. One can show that this always happens. In particular, there are only a finite number of integers in each pattern.
+	a translation and reflection. One can show that this always happens. In particular,
+	there are only a finite number of integers in each pattern.
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -266,11 +285,12 @@ The last example will be based on the following theorem from Euclidean geometry.
 	Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
 	connecting the points $i$ and $i +1$ for $i \in [1, n]$, where the indices are taken
 	modulo $n$, we obtain a polygon with $n$ sides. A triangulation\index{triangulations!of
-		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals\footnote{This choice is maximal, i.e., a maximal set of non-crossing diagonals in an $n$-gon has size $n-3$.}. This results in a
-	partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
-	detail in \cref{sec:triangulations_of_surfaces}, and will therefore keep things brief
-	here. For now, it is enough to understand things visually (cf.
-	\cref{fig:hexagon_triangulations}).
+		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals\footnote{This choice is
+		maximal, i.e., a maximal set of non-crossing diagonals in an $n$-gon has size $n-3$.}.
+	This results in a partitioning of the polygon in $n-2$ triangles. We will see
+	triangulations in much more detail in \cref{sec:triangulations_of_surfaces}, and will
+	therefore keep things brief here. For now, it is enough to understand things visually
+	(cf. \cref{fig:hexagon_triangulations}).
 	\begin{figure}[ht]
 		\centering
 
@@ -370,15 +390,18 @@ The last example will be based on the following theorem from Euclidean geometry.
 	\end{equation*}
 	%
 	Once again, we observe that we only obtain integers. Furthermore, there seems to be a
-	limit to which integers we can obtain this way. This hints at a hidden periodicity, similar to what we observed for the frieze patterns. The
-	Laurent phenomenon offers an explanation for why we only obtain integers: the lengths
-	of the diagonals are Laurent polynomials in the originally chosen lengths.
+	limit to which integers we can obtain this way. This hints at a hidden periodicity,
+	similar to what we observed for the frieze patterns. The Laurent phenomenon offers an
+	explanation for why we only obtain integers: the lengths of the diagonals are Laurent
+	polynomials in the originally chosen lengths.
 \end{example}
 
-There are many more examples like the three that we just gave. One can, for example, look at wiring
-diagrams, generalized Somos sequences, knight recurrence and the Gale-Robinson sequence. As the focus of this thesis is not on number theory, we refrain from delving
-deeper into this interesting world. We refer interested readers to \cite[Chapter
-	3.4]{FominWilliams2021IntroductionCA_1-3} and \cite{FominZelevinsky2002Laurent}.
+There are many more examples like the three that we just gave. One can, for example,
+look at wiring diagrams, generalized Somos sequences, knight recurrence and the
+Gale-Robinson sequence. As the focus of this thesis is not on number theory, we refrain
+from delving deeper into this interesting world. We refer interested readers to
+\cite[Chapter 3.4]{FominWilliams2021IntroductionCA_1-3} and
+\cite{FominZelevinsky2002Laurent}.
 
 \subsection{Quivers, seeds, and mutations}\label{sec:quivers_seeds_mutations}
 
@@ -421,14 +444,14 @@ a cluster algebra. These can be constructed from a quiver, as we now explain.
 
 We now fix some notation for what follows.
 \begin{notation}
-Write $[a,b] = \{a, a + 1, \dots, b\}$
-for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an integer $N
-	\in \bbZ_{\geq 0}$, and a field $\bbK$ of characteristic zero. Finally, let $\mcF =
-	\bbK (Y_1, \dots, Y_N)$ be the \emph{field of rational functions}\index{rational
-	function field} over $\bbK$, in $N$ variables. Thus, $\mcF$ consists of fractions $P/Q$
-where $P, Q\in \bbK[Y_1, \dots, Y_N]$ are polynomials in the variables $Y_1, \dots,
-	Y_N$, and $Q$ is non-zero. In most cases we will take $\bbK = \bbC$ or $\bbK = \bbQ$.
-This does not impact the definitions that follow meaningfully.
+	Write $[a,b] = \{a, a + 1, \dots, b\}$
+	for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an integer $N
+		\in \bbZ_{\geq 0}$, and a field $\bbK$ of characteristic zero. Finally, let $\mcF =
+		\bbK (Y_1, \dots, Y_N)$ be the \emph{field of rational functions}\index{rational
+		function field} over $\bbK$, in $N$ variables. Thus, $\mcF$ consists of fractions $P/Q$
+	where $P, Q\in \bbK[Y_1, \dots, Y_N]$ are polynomials in the variables $Y_1, \dots,
+		Y_N$, and $Q$ is non-zero. In most cases we will take $\bbK = \bbC$ or $\bbK = \bbQ$.
+	This does not impact the definitions that follow meaningfully.
 \end{notation}
 
 \begin{definition}
@@ -453,9 +476,9 @@ one can obtain from the seed. From a given seed, we can make another seed throug
 process known as \emph{seed mutation}\index{seed!mutation}.
 \begin{definition}
 
-	Let $k \in \ex$ be an exchangeable vertex of the quiver $Q$. We define the
-	\emph{mutation in direction $k$} of the seed $(Q, \bx)$ to be the seed $\mu_k(Q, \bx)
-		\defeq (Q', \bx') = (\mu_k(Q), \mu_k(\bx))$\index{mu k@$\mu_k$}, where
+	Let $k \in Q_0$ be a vertex of the quiver $Q$. We define the \emph{mutation in
+		direction $k$} of the seed $(Q, \bx)$ to be the seed $\mu_k(Q, \bx) \defeq (Q', \bx') =
+		(\mu_k(Q), \mu_k(\bx))$\index{mu k@$\mu_k$}, where
 	\begin{enumerate}
 		\item $Q'_0 \defeq Q_0$.
 		\item For every pair of vertices $i,j$ with $s$ arrows $i \to k$ and $t$ arrows $k \to j$ we
@@ -487,7 +510,7 @@ process known as \emph{seed mutation}\index{seed!mutation}.
 
 Let us first look at an example involving only the mutation of the quiver.
 \begin{example}
-	We mutate the given quiver at vertex 2:
+	We mutate the given quiver at the vertex 2:
 	\begin{equation*}
 		\begin{tikzcd}
 			& 4 \dlar \rar & 6 \dar \\
@@ -512,8 +535,8 @@ Let us first look at an example involving only the mutation of the quiver.
 	unchanged.
 \end{example}
 
-Before we give some examples of seed mutation, we prove a small lemma, which will also
-be useful for the examples.
+Before we give some examples of seed mutation, we prove a small but essential lemma,
+which will also be useful for the examples.
 \begin{lemma}\label{lem:mutation_involution}
 	Seed mutation at a fixed vertex is an \emph{involution}\index{involution}, i.e., $\mu_k \circ \mu_k = id$.
 \end{lemma}
@@ -719,9 +742,10 @@ be useful for the examples.
 	vertex (up to a simultaneous flipping of all the arrows). Let us see what happens to
 	the cluster variables as we mutate in a cyclic order of the vertices. Denote for
 	brevity $x \defeq x_1, y \defeq x_2$ and $z \defeq x_3$ for the cluster variables
-	corresponding to the vertices $1,2$ and $3$ respectively. Because the exchange relation
-	is invariant under a flipping of all the arrows and the Markov quiver is rotationally
-	symmetric, the exchange relation will always be of the form
+	corresponding to the vertices $1,2$ and $3$ respectively. Note that the exchange
+	relation (\cref{eq:exchange_relation_quiver}) is invariant under a flipping of all the
+	arrows, and that the Markov quiver is rotationally symmetric. Thus, the exchange
+	relation will always be of the form
 	\begin{equation}\label{eq:markov_exchange_relation}
 		w' = \frac{u^2 + v^2}{w},
 	\end{equation}
@@ -752,7 +776,7 @@ be useful for the examples.
 	whose only mutation corresponds to a reversal of all the arrows.
 \end{example}
 
-\subsection{The cluster algebra}\label{sec:cluster_algebra_from_quiver}
+\subsection{The cluster algebra associated to a quiver}\label{sec:cluster_algebra_from_quiver}
 
 From the examples of \cref{sec:quivers_seeds_mutations} we gather the following
 observations:
@@ -797,9 +821,13 @@ quiver (\cref{exmp:markov_quiver}) is mutation-finite but has infinitely many cl
 variables. The inverse implication is true. Any cluster-finite cluster algebra is
 automatically also mutation-finite. Indeed, suppose that there are finitely many
 cluster variables, but infinitely many distinct quivers. By the pigeonhole principle,
-there is some cluster which appears in infinitely many seeds. Since there are only
-finitely many variables in the cluster, one of them has to appear in an infinite number
-of exchange rules, but that leads to infinitely many new cluster variables.
+there is some cluster $\bx$ which appears in infinitely many seeds. Since there are
+only finitely many variables in the cluster, one of them, say $x \in \bx$, has to
+appear in an infinite number of exchange relations. Now recall that the elements of a
+cluster are algebraically independent. Thus, two exchange relations for $x$ in $\bx$
+can only yield the same mutated cluster variable if the two quivers are equal (up to a
+simultaneous flip of all the arrows). Because $x$ appears in an infinite number of
+exchange relations, we obtain infinitely many new cluster variables, a contradiction.
 
 Remarkably, it is possible to classify the cluster- and mutation-finite cluster
 algebras. To state the classification more precisely, the following lemma is useful:
@@ -828,8 +856,10 @@ algebras. To state the classification more precisely, the following lemma is use
 	orientation of the arrow between $v$ and $w$ is wrong.
 \end{proof}
 
-Some converse of this theorem is also true, but the proof is no longer purely
-combinatorial, and requires advanced techniques:
+So, two orientations of a tree give the same cluster algebra. The following theorem
+strengthens this, by showing that two oriented trees are mutation-equivalent if and
+only if the trees are isomorphic. The proof is no longer purely combinatorial, and
+requires advanced categorical techniques:
 \begin{theorem}[\cite{CalderoKeller2006TriangulatedCat}]
 
 	Let $Q$ and $Q'$ be two acyclic quivers\index{quiver!acyclic} (without oriented cycles)
@@ -845,12 +875,13 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 \begin{theorem}[Fomin--Zelevinsky]\label{thm:cluster_finite_classification}
 
 	A cluster algebra $\mcA (Q, \bx)$ is cluster-finite if and only if each connected
-	component of $Q$ is mutation-equivalent to a simply-laced, i.e., of type ADE, Dynkin
-	diagram\index{Dynkin diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In this case there
-	is a bijective correspondence between the cluster variables and the almost positive
-	roots $\Phi_{\geq -1}$, given by
+	component of $Q$ is mutation-equivalent to an orientation of a simply-laced, i.e., of
+	type ADE, Dynkin diagram\index{Dynkin diagram} (cf. \cref{fig:dynkin_diagrams_ade}). In
+	this case there is a bijective correspondence between the cluster variables and the
+	almost positive roots $\Phi_{\geq -1}$ of the corresponding root system of the given
+	type, given by
 	\begin{equation*}
-		\alpha \leftrightarrow \frac{P_\alpha (\bx)}{x^\alpha},
+		\alpha = (\alpha_1, \dots, \alpha_N) \in \Phi_{\geq -1} \longleftrightarrow \frac{P_\alpha (\bx)}{x^\alpha} = \frac{P_{\alpha}(\bx)}{x_1^{\alpha_1}x_2^{\alpha_N}\dotsb x_n^{\alpha_N}},
 	\end{equation*}
 	where $P_\alpha (\bx)$ is a polynomial in $\bx$.
 \end{theorem}
@@ -861,11 +892,11 @@ not very relevant for the rest of the thesis. A complete proof can be found in, 
 		 &
 		\begin{aligned}
 			 & A_n \quad \begin{tikzcd}[ampersand replacement=\&, sep=small]
-				             \bullet \rar \& \bullet \rar \&\dots \rar \&\bullet
-			             \end{tikzcd}                     \\
+				             \bullet \rar \& \bullet \rar \&\dotsb \rar \&\bullet
+			             \end{tikzcd}                    \\
 			 & D_n \quad \begin{tikzcd}[ampersand replacement=\&, sep=small, row sep=tiny]
 				             \bullet\drar\&\&\&\& \\
-				             \&\bullet \rar \& \bullet \rar \&\dots \rar \& \bullet \\
+				             \&\bullet \rar \& \bullet \rar \&\dotsb \rar \& \bullet \\
 				             \bullet\urar\&\&\&\&
 			             \end{tikzcd}
 		\end{aligned}
@@ -910,8 +941,8 @@ We already saw that cluster-finite cluster algebras are mutation-finite. Beyond 
 which other cluster algebras are mutation-finite? It turns out that, other than a few
 exceptions, the only other ones are those originating from triangulations of surfaces
 with boundary and punctures (which we will discuss in
-\cref{sec:cluster_algebras_surfaces}) (\cite{FeliksonShapiroTumarkin2012SkewSCA}). An
-example of a quiver that is not mutation-finite, is the following:
+\cref{sec:cluster_algebras_surfaces}), \parencite{FeliksonShapiroTumarkin2012SkewSCA}. An example of a quiver that is not
+mutation-finite, is the following:
 \begin{equation*}
 	Q =
 	\begin{tikzcd}[sep = small]
@@ -959,11 +990,10 @@ alluded-to \emph{Laurent phenomenon}.
 \end{theorem}
 %
 This theorem was already proven by Fomin and Zelevinsky in their paper from 2002
-introducing cluster algebras (\cite[Theorem 3.1]{FominZelevinsky2002CAF}). They
-conjectured that all the coefficients would be positive. This remained an open
-conjecture for quite some time, and was first proven by
-\textcite{LeeSchiffler2015PositivityCA} in 2015 for cluster algebras coming from
-quivers.
+introducing cluster algebras \parencite[Theorem 3.1]{FominZelevinsky2002CAF}. They conjectured that all the coefficients
+would be positive. This remained an open conjecture for quite some time, and was first
+proven by \textcite{LeeSchiffler2015PositivityCA} in 2015 for cluster algebras coming
+from quivers.
 
 An alternative perspective on the Laurent phenomenon is given by looking at the
 \emph{upper cluster algebra}\index{algebra!upper cluster}. Let $\mcA(Q, \bx)$ be a
@@ -974,7 +1004,7 @@ $\mcF$-subalgebra
 \end{equation*}
 %
 where the intersection is over all seeds mutation-equivalent to $(Q, \bx)$. In other
-words, it is the $\mcF$-subalgebra consisting of all the elements which are Laurent
+words, it is the subalgebra of $\mcF$ consisting of all the elements which are Laurent
 polynomials in the cluster variables of any seed mutation-equivalent to $(Q, \bx)$. The
 Laurent phenomenon then implies that
 \begin{equation*}
@@ -987,10 +1017,10 @@ showed that if $Q$ is \emph{acyclic}\index{quiver!acyclic}, i.e., it contains no
 oriented cycles, then $\mcA(Q, \bx) = \mcU(Q, \bx)$. In particular, this holds for
 cluster-finite cluster algebras. \Textcite{Muller2013LocallyAcyclicCA} showed in a
 later paper that equality holds for so-called \emph{locally acyclic cluster
-	algbras}\index{algebra!locally acyclic cluster}. In \cref{sec:cgl_extensions} we will
+	algebras}\index{algebra!locally acyclic cluster}. In \cref{sec:cgl_extensions} we will
 study a broad class of quantum cluster algebras for which equality between the quantum
-cluster algebra and the quantum upper cluster algebra. We now look at an example were
-equality does not hold.
+cluster algebra and the quantum upper cluster algebra holds. We now look at an example
+were equality does not hold.
 
 \begin{example}
 	Consider the cluster algebra $\mcA(Q, \bx)$ from \cref{exmp:markov_quiver}. We claim that $\mcA(Q, \bx) \subsetneq \mcU(Q, \bx)$. For any seed with cluster variables $x,y$ and $z$, the mutated cluster variables are given by
@@ -1002,16 +1032,16 @@ equality does not hold.
 	%
 	Note that mutated cluster variables are
 	\emph{homogeneous}\index{homogeneous!polynomial} Laurent polynomials of degree one,
-	i.e., all the monomials are of degree one, just like the original cluster variables.
-	From this it follows that $\mcA(Q, \bx)$ is a $\bbZ_{\geq 0}$\emph{-graded
-		algebra}\index{algebra!graded} such that all the cluster variables are homogeneous of
-	degree one. Thus
+	i.e., all the monomials are of total degree one, just like the original cluster
+	variables. From this it follows that $\mcA(Q, \bx)$ is a $\bbZ_{\geq 0}$\emph{-graded
+		algebra}\index{algebra!graded} with all the cluster variables are homogeneous of degree
+	one. Thus,
 	\begin{equation*}
 		\mcA(Q, \bx) = \bigoplus_{n \in \bbZ_{\geq 0}} A_n,
 	\end{equation*}
 	%
 	with $A_n A_m \subseteq A_{n+m}$, where $A_n \subseteq \mcA(Q, \bx)$ is the subset of
-	all homogeneous Laurent polynomials of degree $n$.
+	all homogeneous Laurent polynomials of degree $n$ in the cluster variables.
 
 	We now claim that
 	\begin{equation*}
@@ -1029,7 +1059,7 @@ equality does not hold.
 		\bbK[x^{\pm 1}, y^{\pm 1}, z^{\pm 1}] \cap \bbK[\left(\frac{y^2 + z^2}{x}\right)^{\pm 1}, y^{\pm 1}, z^{\pm 1}] \cap {}                                      \\
 		 & \quad {}\cap\bbK[x^{\pm 1}, \left(\frac{x^2 + z^2}{y}\right)^{\pm 1}, z^{\pm 1}]\cap \bbK[x^{\pm 1},y^{\pm 1}, \left(\frac{x^2 + y^2}{z}\right)^{\pm 1}].
 	\end{align*}
-	Thus,
+	Now,
 	\begin{equation*}
 		\frac{x^2 + y^2 + z^2}{xyz} = xy\inv z\inv+ x\inv y z\inv + x\inv y \inv z \in \bbK[\bx^{\pm 1}],
 	\end{equation*}
@@ -1037,7 +1067,7 @@ equality does not hold.
 	\begin{equation*}
 		\frac{x^2 + y^2 + z^2}{xyz} = \frac{y^2 + z^2}{x}y\inv z\inv + (y^2  + z^2)\frac{x}{y^2 + z^2}y \inv z \inv \in \bbK[(\mu_1(\bx))^{\pm 1}].
 	\end{equation*}
-	The other cases follow by symmetry.
+	The other cases follow by symmetry, and we indeed find that $w \in \mcU(Q, \bx)$.
 
 	A more direct approach is to show that $w$ is invariant under mutations. Indeed,
 	\begin{align*}
@@ -1057,14 +1087,14 @@ equality does not hold.
 \subsection{Integer sequences revisited}\label{sec:sequences_revisited}
 
 We now revisit the examples from \cref{sec:integer_sequences} in the context of cluster
-algebras. The theory of cluster algebras will provide convenient explanations for the
-observations made. However, all the mentioned observations were already known long
-before cluster algebras were invented.
+algebras. All the mentioned observations were already known long before cluster
+algebras were invented. However, the theory of cluster algebras provides deeper
+explanations for the observations made.
 
 \begin{example}
 
-	As one might have guessed from the names, the sequence $(x_n)_{n \in \bbZ_{>0}}$ from
-	\cref{exmp:markov_sequence} is related to the Markov quiver from
+	As one might have guessed from the names, the sequence $(x_n)_{n \in \bbZ_{\geq 0}}$
+	from \cref{exmp:markov_sequence} is related to the Markov quiver from
 	\cref{exmp:markov_quiver}\index{Markov!quiver}. Let us call a triplet $(x,y,z) \in
 		\bbZ_{> 0}^3$ a \emph{Markov triplet}\index{Markov!triplet} if it satisfies the Markov
 	equation \cref{eq:markov_diophantine}:
@@ -1074,21 +1104,28 @@ before cluster algebras were invented.
 	%
 	From \cref{exmp:markov_sequence} we know that any triple of consecutive elements in the
 	sequence $(x_n)_{n \in \bbZ_{\geq 0}}$ satisfies the Markov equation. A consequence of
-	the proof was that if $(x,y,z)$ is a Markov triplet, then so is
+	the proof of \cref{eq:markov_diophantine} was that if $(x,y,z)$ is a Markov triplet,
+	then so is
 	\begin{equation*}
 		(3 yz -x, y, z) = (\frac{y^2 + z^2}{x}, y, z).
 	\end{equation*}
 	%
 	From the symmetry of the Markov equation, it follows that $(x, \frac{x^2 + z^2}{y}, z)$
-	and $(x, y, \frac{x^2 + y^2}{z})$ are also Markov triplets. Comparing this to the
-	exchange relation for the Markov quiver, \cref{eq:markov_exchange_relation}, we see
-	that mutation sends Markov triplets to Markov triplets. The Laurent phenomenon now also
-	provides an alternative proof that the sequence $(x_n)_{n\in \bbZ_{\geq 0}}$ consists
-	only of integers. Indeed, since $x_0 = x_1 = x_2 = 1$, all the denominators are one,
-	because they are monomials in the variables $x_0, x_1$ and $x_2$. Starting from the
-	initial triplet $(1,1,1)$ and mutating in all possible directions yields
-	\cref{fig:markov_exchange_graph}, where we identify triplets which are equal up to a
-	permutation of the entries. Such graphs are known as \emph{exchange
+	and $(x, y, \frac{x^2 + y^2}{z})$ are also Markov triplets.
+
+	Now, recall the exchange relation for the Markov quiver,
+	\cref{eq:markov_exchange_relation}. It is exactly the same as the ``mutation rule'' we
+	discovered above for Markov triplets. Thus, if the elements of a cluster represent a
+	solution to the Markov equation, then so do all the other cluster in the cluster
+	algebra.
+
+	The Laurent phenomenon now also provides an alternative proof that the sequence
+	$(x_n)_{n\in \bbZ_{\geq 0}}$ consists only of integers. Indeed, since $x_0 = x_1 = x_2
+		= 1$, all the denominators are one, because they are monomials in the variables $x_0,
+		x_1$ and $x_2$. Starting from the initial triplet $(1,1,1)$ and mutating in all
+	possible directions yields \cref{fig:markov_exchange_graph}, where we identify triplets
+	which are equal up to a permutation of the entries. One can show that all Markov
+	triplets are obtianed this way. Such graphs are known as \emph{exchange
 		graphs}\index{exchange!graph}. The nodes consist of unlabeled seeds, and edges
 	correspond to mutations.
 
@@ -1145,6 +1182,14 @@ before cluster algebras were invented.
 		\caption{A part of the exchange graph of the Markov quiver, where the nodes are labeled by the corresponding Markov triplet.}
 		\label{fig:markov_exchange_graph}
 	\end{figure}
+
+	The Markov triplets are obtained by specializing $x=1,y=1,z=1$ in the cluster algebra
+	coming from the Markov quiver. It remains an open question whether the Markov triplets
+	are uniquely identified by their largest element. We will see in
+	\cref{exmp:triangulation_punctured_torus} that all the cluster variables are distinct.
+	Thus, the open question can be reformulated by asking if the specialization $x=y=z=1$
+	gives a one-to-one correspondence, i.e., if distinct cluster variables yield distinct
+	integers.
 \end{example}
 
 \begin{example}
@@ -1207,7 +1252,7 @@ before cluster algebras were invented.
 	\end{equation*}
 	%
 	In this case we need (an orientation of) the $A_4$ quiver. We can choose any lattice
-	path from top to bottom. Then, the edges are oriented so that they always point from
+	path from top to bottom, and orient the edges are oriented from
 	left to right.
 	\begin{equation*}
 		\dots\quad
@@ -1224,8 +1269,10 @@ before cluster algebras were invented.
 		\quad
 		\dots
 	\end{equation*}
-	%
-	Mutating at a sink or a source, only changes the orientation of the edges, and does not
+
+	The values of the lattice path will be associated to the elements of the cluster. Recall from \cref{lem:orientation_tree_mutation}, 
+	
+	that mutating at a sink or a source, only changes the orientation of the edges, and does not
 	introduce new edges. For example, mutation at a sink gives
 	\begin{equation*}
 		\begin{tikzcd}
@@ -1235,15 +1282,19 @@ before cluster algebras were invented.
 	\end{equation*}
 	%
 	The mutated cluster variable corresponding to $d$ is then given by $d' = \frac{bc +
-			1}{d}$. If we call this $a$, then find that $ad - bc = 1$, which is precisely the
+			1}{d}$. If we call this $a$, then we find that $ad - bc = 1$, which is precisely the
 	$\SL_2(\bbZ)$ diamond rule. Similarly, mutation at a source would compute $d$ in terms
 	of $a$ in the $\SL_2(\bbZ)$ diamond. In the example, mutation at the vertex labeled 3
 	results in changing the lattice path from $2 \to 5 \to 3 \gets 4$ to $2 \to 5 \gets 7
-		\to 4$. Applying the Laurent phenomenon now shows that all the entries in the frieze
+		\to 4$.
+		
+	All the values of the frieze pattern will appear in iterated mutation of the initial lattice path. Thus, applying the Laurent phenomenon now shows that all the entries in the frieze
 	pattern are Laurent polynomials in the entries of the initial lattice path. In
 	particular, if one starts with a lattice path consisting of only ones, then all the
-	entries will be integers. Do note that there exist frieze patterns which do not have a
-	lattice path from top to bottom consisting of only ones:
+	entries will be integers.
+	
+	Interestingly, there exist frieze patterns which do not have a
+	lattice path from top to bottom consisting of only ones. This means that there exist other ``specializations'' for the cluster variables of the initial cluster, such that all the Laurent polynomials yield integers.
 	\begin{equation*}
 		\begin{tikzcd}[sep=0.2em,cramped]
 			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
@@ -1268,7 +1319,7 @@ before cluster algebras were invented.
 	\cite{BaurFaberGratz2018ConwayCoxeterFriezes}.
 \end{example}
 
-For \cref{exmp:triangulations} it will be more convenient to use a more general
+For \cref{exmp:triangulations} it we need a more general
 definition of a cluster algebra. Namely, that of a cluster algebra with coefficients.
 
 \section{Ice quivers and coefficients}\label{sec:ice_quivers_and_coefficients}
@@ -1288,9 +1339,9 @@ algebra.
 \subsection{Ice quivers}
 
 Recall that in \cref{exmp:triangulations}, the length of a diagonal was obtained using
-Ptolomy's theorem. The calculation involves the lengths of some of the diagonals, as
-well as the lengths of some of the sides. Thus, the cluster variables should be
-associated with both the diagonals as well as the sides. This poses a slight problem.
+Ptolomy's theorem. The calculation involves the lengths of the diagonals, as
+well as the lengths of the sides. Thus, the cluster variables should be
+associated with both the diagonals and the sides. This poses a slight problem.
 It is not possible to perform a flip on one of the sides of the $n$-gon. To fix this,
 we will make a distinction between \emph{exchangeable} and \emph{frozen} vertices. This
 leads to the notion of an \emph{ice quiver}\index{quiver!ice}.
@@ -1343,7 +1394,7 @@ quiver are discarded. We then obtain the following definition.
 
 	The choice of $\binv$ does not have a big impact on the structure of the cluster
 	algebra. It is more of a technical addition to allow placing cluster algebra structures
-	on algebras were some of the frozen variables can be inverted. We will write $\mcA(\tQ,
+	on algebras were some frozen variables can be inverted. We will write $\mcA(\tQ,
 		\tbx) \defeq \mcA(\tQ, \tbx, \emptyset)$.
 \end{remark}
 
@@ -1364,7 +1415,7 @@ The main theorems from the previous section carry over with some small modificat
 		      as denominators in the Laurent polynomials, i.e., $x \in \bbZ[x_i^{\pm 1}, x_j \mid i
 			      \in \ex,\, j \in \frz]$ \cite[Theorem 3.3.6]{FominWilliams2021IntroductionCA_1-3}.
 		\item The integer coefficients can be taken to be positive
-		      (\cite{LeeSchiffler2015PositivityCA}).
+		      \parencite{LeeSchiffler2015PositivityCA}.
 	\end{itemize}
 \end{theorem}
 
@@ -1523,10 +1574,10 @@ The main theorems from the previous section carry over with some small modificat
 
 	Let us now verify that flips of diagonals really correspond to mutations of the
 	associated quiver. Recall that a diagonal is the side of precisely two triangles in a
-	triangulation. These two triangles form a quadraliteral, and the flip of the diagonal
-	is obtained by replacing it with the other diagonal of the quadraliteral. Now remark
+	triangulation. These two triangles form a quadrilateral, and the flip of the diagonal
+	is obtained by replacing it with the other diagonal of the quadrilateral. Now remark
 	that in the associated quiver, the vertex corresponding to the diagonal is only
-	connected to the vertices corresponding to the sides of this quadraliteral. Thus, it
+	connected to the vertices corresponding to the sides of this quadrilateral. Thus, it
 	suffices to consider a single quadrilateral in the triangulation. This case is quickly
 	verified (cf. \cref{fig:flip_quad_is_mutation}).
 	\begin{figure}[ht!]
@@ -1597,16 +1648,15 @@ The main theorems from the previous section carry over with some small modificat
 			\end{tikzpicture}
 		\end{equation*}
 
-		\caption{A flip in a quadraliteral corresponds with a mutation of the associated quiver. The diamonds indicate that the vertices might be frozen or exchangeable, and the dashed lines indicate that the arrows should be ignored if the vertices are frozen.}
+		\caption{A flip in a quadrilateral corresponds with a mutation of the associated quiver. The diamonds indicate that the vertices might be frozen or exchangeable, and the dashed lines indicate that the arrows should be ignored if the vertices are frozen.}
 		\label{fig:flip_quad_is_mutation}
 	\end{figure}
 
 	Let $T$ be a triangulation of an $n$-gon, and let $\tQ(T)$ be the associated ice quiver
 	as above. We have shown that mutations of $\tQ(T)$ correspond to flips of the
-	triangulation $T$. It can be shown that every triangulation can obtained from another
+	triangulation $T$. It can be shown that every triangulation can be obtained from another
 	triangulation by a sequence of flips, which implies that all the triangulations are
-	mutation-equivalent to each other (\cite[Proposition
-		3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}).
+	mutation-equivalent to each other \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
 
 	We also have an extended cluster $\tbx(T)$. Let us write $P_{ij}$ for the element of
 	the extended cluster corresponding to the edge between $i$ and $j$. Thus, for example,
@@ -1903,7 +1953,7 @@ The main theorems from the previous section carry over with some small modificat
 	quadrilaterals. By ``freezing'' a diagonal, the hexagon splits into either a triangle
 	and a pentagon, or two quadrilaterals. In the first case the exchange graph of the
 	pentagon appears, which is again a pentagon. In the latter case the direct product of
-	the exchange graph of the quadraliteral with itself appears, which creates a
+	the exchange graph of the quadrilateral with itself appears, which creates a
 	quadrilateral.
 
 	More generally, one can remark that the exchange graph is the edge-graph of a convex
@@ -1918,12 +1968,12 @@ The main theorems from the previous section carry over with some small modificat
 	\end{equation*}
 	%
 	The other cluster-finite cluster algebras have exchange graphs which are so-called
-	\emph{generalized} associahedra (\cite[Theorem 1.13]{FominZelevinsky2003CAFin}).
+	\emph{generalized} associahedra \parencite[Theorem 1.13]{FominZelevinsky2003CAFin}.
 \end{example}
 
 \subsection{Skew-symmetrizable matrices}
 
-Thusfar, all the cluster algebras have been constructed from (ice) quivers.
+Thus far, all the cluster algebras have been constructed from (ice) quivers.
 Equivalently, one can work with matrices, as we know explain.
 
 Let $\tQ$ be an ice quiver with exchangeable vertices labeled by $\ex$ and frozen
@@ -2051,7 +2101,7 @@ and $b_{kj} >0$, then $b'_{ik} = -b_{ik} < 0$ and $b'_{kj} = -b_{kj} < 0$ so tha
 	b''_{ij} = b'_{ij} - b'_{ik}b'_{kj} = b_{ij} + b_{ik}b_{kj} - b_{ik}b_{kj} = b_{ij}.
 \end{equation*}
 %
-Similarly, if $b_{ik} < 0$ and $b_{kj} < 0$. In the other cases mutation does not
+Similarly, if $b_{ik} < 0$ and $b_{kj} < 0$. In the other cases, mutation does not
 change $b_{ij}$.
 
 Additionally, remark that if $B$ is the principal part of $\tB$, then the principal
@@ -2063,7 +2113,7 @@ part of $\tB$ all together. It turns out that in order to have a nice enough ``e
 pattern'', the minimal requirement is that the principal part of $\tB$ and all matrices
 mutation-equivalent to it should be \emph{sign-
 	skew-symmetric}\index{skew-symmetric!sign-}\index{matrix!sign-skew-symmetric}
-(\cite[Proposition 4.3]{FominZelevinsky2002CAF}). A matrix $B \in M_N(\bbZ)$ is said to
+\parencite[Proposition 4.3]{FominZelevinsky2002CAF}. A matrix $B \in M_N(\bbZ)$ is said to
 be sign-skew-symmetric if for all $i,j \in [1, N]$, the entries $b_{ij}$ and $b_{ji}$
 are both zero, or have opposite signs. In particular, skew-symmetric matrices are sign
 skew-symmetric. The problem is that mutation of a sign-skew-symmetric matrix might
@@ -2137,9 +2187,8 @@ $\alpha\beta\gamma \geq 0$, the matrix
 \end{equation*}
 %
 is sign-skew-symmetric, not skew-symmetrizable, and it remains sign-skew-symmetric
-under any sequence of mutations (\cite[Proposition 4.7]{FominZelevinsky2002CAF}). In
-practice, however, one always restricts to the skew-symmetric or skew-symmetrizable
-case.
+under any sequence of mutations \parencite[Proposition 4.7]{FominZelevinsky2002CAF}. In practice, however, one always
+restricts to the skew-symmetric or skew-symmetrizable case.
 \begin{definition}\label{def:cluster_algebra_geometric_type}
 
 	A pair $(\tB, \tbx)$, where $\tB \in M_{N \times \ex}(\bbZ)$ is such that its principal
@@ -2172,7 +2221,7 @@ Cartan matrices, Dynkin diagrams and the classification.
 
 The mutation-finite classification remains roughly the same. One has to replace quivers
 by \emph{diagrams}\index{diagram} and surfaces by \emph{orbifolds}\index{orbifold}
-(\cite{FeliksonPavel2023cluster}). Since we will not need this result, we refrain from
+\parencite{FeliksonPavel2023cluster}. Since we will not need this result, we refrain from
 giving the relevant definitions.
 
 Finally, the Laurent phenomenon and positivity still hold without any changes. Proving
@@ -2302,10 +2351,10 @@ shown along with some other open conjectures at the time in a groundbreaking pap
 	The cluster algebra $\mcA(0,0)$ is just a direct sum of two copies of the cluster
 	algebra coming from the $A_1$ quiver.
 
-	If $n=m=1$ then $B(n,m)$ corresponds to the $A_2$ quiver. Thus $\mcA(1,1)$ has the
+	If $n=m=1$ then $B(n,m)$ corresponds to the $A_2$ quiver. Thus, $\mcA(1,1)$ has the
 	cluster algebras from \cref{exmp:A2_quiver}:
 	\begin{equation*}
-		\dots, x_1, x_2, x_3=\frac{1 + x_2}{x_1}, x_4=\frac{1 + x_1 + x_2}{x_1x_2}, x_5=\frac{1 + x_1}{x_2}, x_6=x_1, x_7=x_2, \dots
+		\dots, x_1, x_2, x_3=\frac{1 + x_2}{x_1}, x_4=\frac{1 + x_1 + x_2}{x_1x_2}, x_5=\frac{1 + x_1}{x_2}, x_6=x_1, x_7=x_2, \dotsc
 	\end{equation*}
 
 	We now delve into new territory by looking at $\mcA(1,2)$. Using
@@ -2357,7 +2406,7 @@ shown along with some other open conjectures at the time in a groundbreaking pap
 		\end{aligned}
 	\end{align*}
 
-	The cluster algebra $\mcA(1,4)$ no longer meets the criterium of
+	The cluster algebra $\mcA(1,4)$ no longer meets the criteria of
 	\cref{thm:cluster_finite_general_case}, so it should have an infinite number of cluster
 	variables. Starting with $x_1 = x_2 = 1$ we obtain the sequence $x_1, x_2, x_3, \dots$
 	\begin{equation*}
@@ -2389,7 +2438,7 @@ We start with a new definition.
 	\begin{enumerate}
 		\item $(\bbP, \cdot)$ is an abelian multiplicative group.
 		\item The \emph{auxiliary addition}\index{auxiliary addition}, $\oplus$, is commutative,
-		      associative and distributive with respect to the multiplication in $(\bbP, \cdot)$.
+		      associative, and distributive with respect to the multiplication in $(\bbP, \cdot)$.
 		      Thus, for all $a,b,c \in \bbP$:
 		      \begin{align*}
 			       & a \oplus b = b \oplus a                                \\
@@ -2402,7 +2451,7 @@ We start with a new definition.
 	\end{enumerate}
 	%
 	As is common for multiplicative groups, we will simply denote the multiplication by
-	concatenation. Thus $ab \defeq a \cdot b$ for all $a, b \in \bbP$.
+	concatenation. Thus, $ab \defeq a \cdot b$ for all $a, b \in \bbP$.
 \end{definition}
 
 Another way to think about a semifield, is as a field where the additive structure does
@@ -2448,7 +2497,7 @@ and $n \in \bbZ$ with $n\geq 2$ then $p = 1$. Indeed, if $p^n = 1$ for some $p \
 		 & a \min \{a, b\} + c = \min\{a + c, b + c\},
 	\end{align*}
 	%
-	from which the commutativity, associativity and distributivity of $\oplus$ follow.
+	from which the commutativity, associativity, and distributivity of $\oplus$ follow.
 
 \end{example}
 
@@ -2459,10 +2508,10 @@ and $n \in \bbZ$ with $n\geq 2$ then $p = 1$. Indeed, if $p^n = 1$ for some $p \
 	functions in $\bmu$ with a \emph{subtraction-free expression}\index{subtraction-free},
 	i.e., $f(\bmu) \in \bbQ_{\tsf}(\bmu)$ can be written as $p(\bmu) / q (\bmu)$ with $p, q
 		\in \bbQ[\bmu]$ nonzero polynomials with nonnegative coefficients. For example, the
-	element $u^2 - u + 1$ is in $\bbQ_{\tsf}(u)$, because it can be writen as the
+	element $u^2 - u + 1$ is in $\bbQ_{\tsf}(u)$, because it can be written as the
 	subtraction-free expression $\frac{u^3 + 1}{u + 1}$.
 
-	The semifield $\bbQ_{{\tsf}}(\bmu)$ is universal in the sense that it satifies the
+	The semifield $\bbQ_{{\tsf}}(\bmu)$ is universal in the sense that it satisfies the
 	following universal property. For every semifield $\bbP$ and $a_1, \dots, a_N \in
 		\bbP$, there is a unique semifield homomorphism $\pi \colon \bbQ_{\tsf}(\bmu) \to \bbP$
 	such that $\pi(u_i) = a_i$ for all $i \in [1, N]$. The idea is that one sends an
@@ -2585,7 +2634,7 @@ cluster algebra as usual.
 	Let $(B, \bx, \by)$ be a labeled seed in $\mcF$. The \emph{cluster
 		algebra}\index{cluster algebra}\index{algebra!cluster}\index{cluster!algebra}, $\mcA(B,
 		\bx, \by)$\index{A B x y@$\mcA(B, \bx, \by)$} is the $\mcF$-subalgebra generated by all
-	the cluster variables in all the seeds mutation equivalent to the initial seed $(B,
+	the cluster variables in all the seeds mutation-equivalent to the initial seed $(B,
 		\bx, \by)$. The \emph{upper cluster algebra}\index{cluster
 		algebra!upper}\index{algebra!upper cluster}, $\mcU(B, \bx, \by)$\index{U B x y@$\mcU(B,
 			\bx, \by)$} is the $\mcF$-subalgebra
@@ -2616,7 +2665,7 @@ determined by \cref{eq:coefficients_from_frozen}. Finally, write $\tbx \defeq (x
 	\bx, \by)$ and $\mcA(\tB, \tbx, \binv)$ are equal.
 
 We already remarked that the group algebra $\bbK[\Trop(x_{n+1}, \dots, x_{N})]$ is just
-the algebra of Laurent polynomials in $x_{n+1}, \dots, x_N$. Thus
+the algebra of Laurent polynomials in $x_{n+1}, \dots, x_N$. Thus,
 \begin{equation*}
 	\bbK[\Trop(x_{n+1}, \dots, x_N)] = \bbK[x_{n+1}^{\pm 1}, \dots, x_N^{\pm 1}] = \bbK[x_i, x_j^{\pm 1} \mid i \in \frz \setminus \binv,\,j \in \binv].
 \end{equation*}
@@ -2686,8 +2735,8 @@ reasons for this.
 	\end{equation*}
 	%
 	We now compute the other seeds of $\mcA(Q, \bx, \by)$. Alternating between a mutation
-	at the first or the second vertex yields \cref{table:A2_quiver_coefficients}. After $5$
-	mutations we end up with the original (unlabeled) seed.
+	at the first or the second vertex yields \cref{table:A2_quiver_coefficients}. After five
+	mutations, we end up with the original (unlabeled) seed.
 	\begin{table}[ht!]
 		\centering
 		\bgroup
@@ -2836,7 +2885,7 @@ Finally, positivity was proven in the skew-symmetric case by
 
 \section{Cluster algebras from surfaces}\label{sec:cluster_algebras_surfaces}
 
-Thusfar, we have only considered cluster algebras on their own. Although we used
+Thus far, we have only considered cluster algebras on their own. Although we used
 properties of cluster algebras to prove things about other structures, we have not yet
 looked at algebras which have a cluster algebra structure. We will illustrate such a
 case by looking at the Grassmannian. The cluster algebra structure will be the one that
@@ -2900,7 +2949,7 @@ We will refer to the $P_J(V)$ for $J \subseteq [1,m]$ with $|J| = k$ as the
 $\iota \colon \Gr_{k, m}(\bbC) \to P^N(\bbC)$ is an embedding, known as the
 \emph{Plücker embedding}\index{Plücker!embedding}. From this, it follows that
 $\Gr_{k,m}(\bbC)$ is a projective variety. We will not really need this fact for our
-purposes. Instead we want to look at the \emph{homogeneous coordinate
+purposes. Instead, we want to look at the \emph{homogeneous coordinate
 	ring}\index{homogeneous!coordinate algebra} $\bbC[\Gr_{k,m}]$ which is defined as the
 algebra generated by the Plücker coordinates $P_J$. More precisely, consider the
 polynomial algebra $R = \bbK[x_J \mid J\subseteq [1, m], |J| = k]$, and the ideal $I$
@@ -3027,7 +3076,7 @@ structure of geometric type. This means that we can find a skew-symmetrizable ma
 $\tB \in M_{N \times \ex}$, and some elements $x_1, \dots, x_N \in \bbC[\Gr_{2, n+3}]$
 such that $\mcA(\tB, (x_1, \dots, x_N)) = \bbC[\Gr_{2, n+3}]$. One can show that
 $\bbC[\Gr_{k,m}]$ has a cluster algebra structure even if $k \neq 2$
-(\cite{Scott2006GrassmanniansCA}).
+\parencite{Scott2006GrassmanniansCA}.
 
 As the astute reader will have noticed, the relations, \cref{eq:plucker_relation}, are
 exactly the same ones as \cref{eq:exchange_flip_quad} from
@@ -3148,7 +3197,7 @@ From the triangulation of a regular polygon, we obtained an interesting cluster 
 structure, with seeds in one-to-one correspondence with the triangulations.
 Furthermore, this cluster algebra turned out to be related to the homogeneous
 coordinate ring of a Grassmannian. We now look at a more general way of turning
-triangulations into cluster algebras, developped by
+triangulations into cluster algebras, developed by
 \textcite[postnote]{FominShapiroThurston2008CATriangulatedSurfacesI}.
 
 \medskip
@@ -3388,7 +3437,7 @@ because we prohibited those in the definition of an arc.
 
 On the other hand, what defines a triangle has to be taken broadly. A triangulation can
 have \emph{self-folded triangles}\index{triangle!self-folded}\footnote{Note that a
-	self-folded triangle still has three angle, and thus deserves the name ``triangle''.},
+	self-folded triangle still has three angles, and thus deserves the name ``triangle''.},
 i.e., triangles where two of the sides have been glued together (cf.
 \cref{fig:self_folded}). Furthermore, it is possible for two triangles to share more
 than one side (cf. \cref{exmp:triangulation_punctured_torus}).
@@ -3630,7 +3679,7 @@ following proposition.
 
 \begin{proposition}\label{prop:surface_mutation_finite}
 
-	Let $(S, M)$ be a borderd surface with marked points. Then the cluster algebra $\mcA(S,
+	Let $(S, M)$ be a bordered surface with marked points. Then the cluster algebra $\mcA(S,
 		M)$ is mutation-finite.
 \end{proposition}
 \begin{proof}
@@ -3644,7 +3693,7 @@ following proposition.
 \subsection{Examples of ideal triangulations}
 
 We first introduce some terminology, which will come in handy for the examples. Let
-$(S, M)$ be a borderd surface with marked points. We write $A^\circ(S, M)$\index{A circ
+$(S, M)$ be a bordered surface with marked points. We write $A^\circ(S, M)$\index{A circ
 	S M@$A^\circ(S, M)$} for the set of all arcs in $(S, M)$. Recall that an (abstract)
 \emph{simplicial complex}\index{simplicial complex} is a family of sets which is closed
 under taking subsets. The members of a simplicial complex are called simplices. The
@@ -3908,7 +3957,9 @@ looking at tagged triangulations.
 	\cref{thm:clusters_and_triangulations} without the need for tagged triangulations.
 	Since the once-punctured torus has an infinite number of triangulations, we have now
 	found an alternative proof that the cluster algebra associated to the Markov quiver has
-	an infinite number of clusters.
+	an infinite number of clusters. Furthermore, \cref{thm:clusters_and_triangulations}
+	states that all the cluster variables are distinct, something which is not initially
+	obvious.
 
 	\begin{figure}[ht!]
 		\centering
@@ -4020,7 +4071,7 @@ looking at tagged triangulations.
 	\end{equation*}
 
 	The unoriented principal part of the ice quiver is not a Dynkin diagram of type ADE, as
-	expected. Instead it is a so-called affine Dynkin diagram of type $\wt{A}_1$. An
+	expected. Instead, it is a so-called affine Dynkin diagram of type $\wt{A}_1$. An
 	\emph{affine Dynkin diagram}\index{Dynkin diagram!affine} of type $\wt{A}_{n-1}$ for $n
 		\geq 3$ is an $n$-cycle. Note that in this case we do not have
 	\cref{lem:orientation_tree_mutation}. Not all orientations of $\wt{A}_{n-1}$ will be
@@ -4341,7 +4392,7 @@ triangulation, except possibly when the triangulation contains once-punctured di
 tagged arcs with different tags connected to the puncture in the digon, then the
 untagged version would coincide. In this case the two tagged arcs have to be
 transformed into a self-folded triangle. This way, we obtain an ideal triangulation
-$T^\circ$. Consequently, there are essentialy two types of tagged flips \cite[Remark
+$T^\circ$. Consequently, there are essentially two types of tagged flips \cite[Remark
 	5.13]{FominThurston2018CATriangulatedSurfacesII}:
 \begin{enumerate}
 	\item A tagged flip performed inside a once-punctured digon (cf. \cref{fig:tagged_digon}).
@@ -4594,7 +4645,7 @@ data, by distinguishing arcs that cross the cut, and those that do not.
 In addition to adding this ``cut'', we also introduce some folding as follows. Let $T$
 be a tagged triangulation of the once-punctured $(n+1)$-gon. The group $\bbZ/2\bbZ$
 acts on $T$ by flipping the tagging between plain and notched for arcs connected to the
-puncture. Thus the $\bbZ/2\bbZ$-orbit of an arc essentially forgets the tagging. We
+puncture. Thus, the $\bbZ/2\bbZ$-orbit of an arc essentially forgets the tagging. We
 then associate a Plücker coordinate $P_\gamma \in \bbC[\Gr_{2, n+2}]$ to each
 $\bbZ/2\bbZ$-orbit or boundary segment $\gamma$ via
 \begin{equation*}
@@ -4610,7 +4661,7 @@ where
 	P_{a\bar{b}} \defeq P_{a, n+2}P_{b,n+2} - P_{ab}.
 \end{equation*}
 
-The idea is to now to apply \cref{prop:cluster_structure}. In terms of dimensions
+The idea is to now apply \cref{prop:cluster_structure}. In terms of dimensions
 things work out. Indeed, the dimension of $\bbC[\Gr_{2,n+2}]$ is $2(n+2-2) + 1 = 2n +
 	1$. On the other hand we have $n+1$ frozen variables corresponding to the sides of the
 $(n+1)$-gon, and $n+1$ arcs in $T$. If we choose $T$ such that at least one arc is
@@ -4620,7 +4671,7 @@ longer have an associated quiver of type $D_{n+1}$, but rather a matrix of type 
 This is because the $\bbZ/2\bbZ$-action folds\footnote{Folding is a general procedure
 	that allows to study skew-symmetrizable matrices via quivers. See \cite[Chapter
 		4]{FominWilliams2021IntroductionCA_4-5}.} the two endpoints of the $D_{n+1}$ quiver
-together. Thus the exchange matrix is given by
+together. Thus, the exchange matrix is given by
 \begin{equation*}
 	B_n = \begin{pmatrix}
 		0      & 2      & 0      & 0      & \dots  & 0      & 0      \\
