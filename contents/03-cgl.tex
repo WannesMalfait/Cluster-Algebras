@@ -256,6 +256,21 @@ can complete this to a multiplicatively skew-symmetric matrix
 	which shows $h \cdot \delta_k (a) = \chi_{x_k}(h) \delta_k (h \cdot a)$. The result then follows from linearity of $(h \cdot)$ and $\delta_k$.
 \end{proof}
 
+The following theorem shows that the center of a CGL extension is not too big. It
+crucially relies on the root of unity conditions to ensure that the $\mcH$-action is
+nontrivial, and the generators commute in nontrivial ways.
+
+\begin{theorem}[\protect{\parencite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}}]\label{thm:H_rationality} Let $R$
+	be a CGL extension as in \cref{def:cgl_extension}, and let\footnote{In
+		\cref{sec:ore_localizations}, we will see that every CGL extension is an Ore domain,
+		thus it makes sense to consider $\Fract(R)$.} $Z(\Fract(R))$ be the center of
+	$\Fract(R)$. Then
+	\begin{equation*}
+		Z(\Fract(R))^\mcH = \bbK,
+	\end{equation*}
+	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$.
+\end{theorem}
+
 Before proceeding, let us look at some examples of CGL extensions.
 
 \begin{example}
@@ -2633,14 +2648,24 @@ and $k \leq j_k \leq \cdots \leq j_1 \leq N$, define
 \index{tau jk j one@$\tau_{(j_k, \dots, j_1)}$}%%
 %
 where the right-hand side is a composition of cycles.
-\begin{lemma}
-	We have the following characterization for $\Xi_N$.
+\begin{lemma}\label{lem:xi_n_characterization}
+
+	We have the following characterization for $\Xi_N$:
 	\begin{equation*}
 		\Xi_N = \{\tau_{(j_k, \dots, j_1)} \mid k \leq j_k \leq \cdots \leq j_1 \leq N,\, k\in [1, N]\}.
 	\end{equation*}
+	%
+	Moreover, for each $\tau \in \Xi_N$, there exists a sequence $\tau_0 = \id, \tau_1,
+		\dots, \tau_n = \tau$ in $\Xi_N$ and $k_i\in[1, N-1]$ for $i\in[1,n]$, such that for
+	all $l \in [1, n]$,
+	\begin{equation*}
+		\tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
+	\end{equation*}
+	%
+	and $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$.
 \end{lemma}
 \begin{proof}
-	We only show that each element of $\Xi_N$ can be written as an element $\tau_{(j_k, \dots, j_1)}$. The other inclusion follows from \cref{prop:eta_invariance} (a) below.
+	We first show that each element of $\Xi_N$ can be written as an element $\tau_{(j_k, \dots, j_1)}$.
 
 	By induction on $N$. For $N = 1$, we have $\Xi_N = \{\id\}$, and $\tau_{(1)} = \id$.
 	Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. There are two
@@ -2667,6 +2692,37 @@ where the right-hand side is a composition of cycles.
 			       & = \tau(i).
 		      \end{align*}
 	\end{enumerate}
+
+	We prove the other inclusion, and the final statement together. More precisely, take $k
+		\in [1, N]$ and $k \leq j_k \leq \dotsb \leq j_1 \leq N$. We will show that
+	$\tau_{(j_k, \dotsc, j_1)} \in \Xi_N$, and that it can be decomposed as in the
+	statement of the lemma.
+
+	We can decompose the cycle $(1,2,\dots, j_1)$ as $(1, j_1)(1, j_1 - 1)\cdots (1, 2)$.
+	For each $l \in [1, j_1 - 1]$, write
+	\begin{equation*}
+		\tau_l = (1,2,\cdots, l+1) = (1, l+1) (1, l) \cdots (1, 2).
+	\end{equation*}
+	Then
+	\begin{equation*}
+		\tau_l = (1, l+1)\tau_{l-1} = (\tau_{l-1}(l), \tau_{l-1}(l+1)) = \tau_{l-1}(l, l+1),
+	\end{equation*}
+	%
+	and $\tau_l \in \Xi_N$, because $\tau_l ([1, i]) = [2, i+1]$ for $i \in [1, l]$ and
+	$\tau_l ([1, i]) = [1, i]$ for $i \in [l+1, N]$.
+
+	We now look at what happens when we add another cycle, $(2,3,\dots, j_2)$. Because we
+	can apply the same type of decomposition in transpositions to the cycle $(2,3,\dots,
+		j_2)$, it remains to show that $\tau_{(j_2, j_1)} \in \Xi_N$. For $i \in [1, j_2 - 2]$,
+	we have
+	\begin{equation*}
+		\tau_{(j_2, j_1)}([1, i]) = (2,3, \dots, j_2)(1,2,\dots,j_1)[1, i]= (2,3,\dots,j_2)[2, i+1] = [3,\dots,i+2].
+	\end{equation*}
+	For $i \in [j_2 - 1, j_1 -1]$, we have
+	\begin{equation*}
+		\tau_{(j_2,j_1)}([1, i]) = (2,3,\dots, j_2)(1,2, \dots, j_1)[1, i] = (2,3,\dots,j_2)[2,i+1] = [2, i+1],
+	\end{equation*}
+	and finally, for $i \in [j_1, N]$ we have $\tau_{(j_2,j_1)}[1,i] = [1, i]$, which shows that $\tau_{(j_2, j_1)} \in \Xi_N$. The statement now follows by proceeding like this inductively.
 \end{proof}
 
 To illustrate the induction step in the proof of the previous lemma, we look at a small
@@ -2688,18 +2744,11 @@ example.
 	unique.
 \end{example}
 
-We now use this result to show that any element $\tau \in \Xi_N$ can be built out of a
-sequence of elements of $\Xi_N$ which differ only by a transposition.
+The decomposition of \cref{lem:xi_n_characterization} has the following important
+consequence, which we alluded to many times already.
 \begin{proposition}\label{prop:eta_invariance}
 	Let $R$ be a symmetric CGL extension of length $N$ and $\tau \in \Xi_N$.
 	\begin{enumerate}[(a)]
-		\item There exists a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau$ in $\Xi_N$ such
-		      that for all $l \in [1, n]$,
-		      \begin{equation*}
-			      \tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
-		      \end{equation*}
-		      %
-		      and $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$ for some $k_l \in [1, N-1]$.
 		\item If $\eta : [1, N] \to \bbZ$ is a function satisfying the conditions of
 		      \cref{thm:homogeneous_primes} for the original CGL extension presentation of $R$, then
 		      \begin{equation*}
@@ -2721,44 +2770,21 @@ sequence of elements of $\Xi_N$ which differ only by a transposition.
 \end{proposition}
 \begin{proof}
 
-	Write $\tau = \tau_{(j_k, \dots, j_1)}$. Then we can decompose the cycle $(1,2,\dots,
-		j_1)$ as $(1, j_1)(1, j_1 - 1)\cdots (1, 2)$. For each $l \in [1, j_1 - 1]$, write
-	\begin{equation*}
-		\tau_l = (1,2,\cdots, l+1) = (1, l+1) (1, l) \cdots (1, 2).
-	\end{equation*}
-	Then
-	\begin{equation*}
-		\tau_l = (1, l+1)\tau_{l-1} = (\tau_{l-1}(l), \tau_{l-1}(l+1)) = \tau_{l-1}(l, l+1).
-	\end{equation*}
-	%
-	Furthermore, each $\tau_l \in \Xi_N$, because $\tau_l ([1, i]) = [2, i+1]$ for $i \in
-		[1, l]$ and $\tau_l ([1, i]) = [1, i]$ for $i \in [l+1, N]$. Now, we see what happens
-	when we add another cycle, $(2,3,\dots, j_2)$. Because we can apply the same type of
-	decomposition in transpositions to the cycle $(2,3,\dots, j_2)$, it suffices to show
-	that $\tau_{(j_2, j_1)} \in \Xi_N$. For $i \in [1, j_2 - 2]$, we have
-	\begin{equation*}
-		\tau_{(j_2, j_1)}([1, i]) = (2,3, \dots, j_2)(1,2,\dots,j_1)[1, i]= (2,3,\dots,j_2)[2, i+1] = [3,\dots,i+2].
-	\end{equation*}
-	For $i \in [j_2 - 1, j_1 -1]$, we have
-	\begin{equation*}
-		\tau_{(j_2,j_1)}([1, i]) = (2,3,\dots, j_2)(1,2, \dots, j_1)[1, i] = (2,3,\dots,j_2)[2,i+1] = [2, i+1],
-	\end{equation*}
-	and finally, for $i \in [j_1, N]$ we have $\tau_{(j_2,j_1)}[1,i] = [1, i]$, which proves $\tau_{(j_2, j_1)} \in \Xi_N$. Proceeding like this inductively, one shows the first part.
+	The first part follows from \cref{lem:xi_n_characterization}, by applying
+	\cref{thm:y_prime_swapped_cgl} inductively. Indeed, assume that $\eta_{\tau_l}$
+	satisfies the conditions of \cref{thm:homogeneous_primes} for the presentation
+	corresponding to $\tau_l$. Then, because $\tau_{l+1} = \tau_l (k_{l+1}, k_{l+1} + 1)$,
+	\cref{thm:y_prime_swapped_cgl} applied to the CGL presentations corresponding to
+	$\tau_{l}$ and $\tau_{l+1}$ gives that we may take $\eta' = \eta_{\tau_l}(k_{l+1},
+		k_{l+1}+1) = \eta_{\tau_{l+1}}$ for the $\eta$-function of the presentation
+	corresponding to $\tau_{l+1}$.
 
-	The second part follows from the first by applying \cref{thm:y_prime_swapped_cgl}
-	inductively. Indeed, assume that $\eta_{\tau_l}$ satisfies the conditions of
-	\cref{thm:homogeneous_primes} for the presentation corresponding to $\tau_l$. Then,
-	because $\tau_{l+1} = \tau_l (k_{l+1}, k_{l+1} + 1)$, \cref{thm:y_prime_swapped_cgl}
-	applied to the CGL presentations corresponding to $\tau_{l}$ and $\tau_{l+1}$ gives
-	that we may take $\eta' = \eta_{\tau_l}(k_{l+1}, k_{l+1}+1) = \eta_{\tau_{l+1}}$ for
-	the $\eta$-function of the presentation corresponding to $\tau_{l+1}$.
-
-	The final statement follows from the second by looking at
+	The second statement follows from the first by looking at
 	\begin{equation*}
 		\tau = [j, j+1, \dots, k, j-1,j-2, \dots , 1, k+1, k+2, \dots, N] \in \Xi_N.
 	\end{equation*}
 	%
-	By the second part, we can take $\eta_\tau$ for the $\eta$-function of
+	Due to the first part, we can take $\eta_\tau$ for the $\eta$-function of
 	\cref{thm:homogeneous_primes} applied to the presentation corresponding to $\tau$.
 	Furthermore, \cref{thm:homogeneous_primes} implies that the (restriction of the) same
 	function can be used when looking at the subalgebra generated by the first $i$
@@ -2813,7 +2839,7 @@ original CGL extension presentation. This result will be used in
 	one of the $y$-elements for $R_{[\tau(k), s^m(\tau(k))]}$, and hence also a homogeneous
 	prime element of $R_{[\tau(k), \tau(i)]} = R_{\tau, k}$, by
 	\cref{prop:eta_invariance,thm:homogeneous_primes} as $s(s^m(\tau(k))) > \tau(i)$.
-	Because it's leading term contains $x_{\tau(k)}$ by \cref{thm:y_square_brackets}, it
+	Because its leading term contains $x_{\tau(k)}$ by \cref{thm:y_square_brackets}, it
 	does not belong to $R_{[\tau(k) + 1, \tau(i)]} = R_{\tau, k-1}$. But then
 	\cref{thm:homogeneous_primes} implies that it must be a scalar multiple of $y_{\tau,
 				k}$ as a homogeneous prime element of $R_{\tau, k}$ which does not lie in $R_{\tau,
@@ -2860,7 +2886,13 @@ a small lemma which we will need in the inductive step.
 	\end{align*}
 \end{proof}
 \begin{proposition}\label{prop:y_tau_is_y_bracket}
-	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$.
+	Assume the setting of \cref{thm:gy_main_result}. Let $\tau \in \Xi_N$ and $k \in [1, N]$. Write, for $i \in [1, N-1]$ and $m \in \bbZ_{\geq 0}$ such that $s^m(i) \neq +\infty$,
+	\begin{equation*}
+		\oy_{[i, s^m(i)]} \defeq \mcS_{\bbn}(e_{[i, s^m(i)]})y_{[i, s^m(i)]},
+	\end{equation*}
+	%
+	as in \cref{eq:normalization_y}. Thus, the normalization happens in the subalgebra
+	$R_{[i, s^m(i)]}$. Then,
 	\begin{itemize}
 		\item If $\tau(k) \geq \tau(1)$, then $\oy_{\tau,k} = \oy_{[p^m(\tau(k)), \tau(k)]}$, where
 		      \begin{equation*}
@@ -2883,7 +2915,7 @@ a small lemma which we will need in the inductive step.
 	$\tau([1, k]) = [\tau(k), \tau(i)]$ for some $i \in [1, k]$. Thus, $R_{[\tau(k),
 						\tau(i)]} = R_{\tau, k}$ and $R_{\tau, k-1} = R_{[\tau(k) + 1, \tau(i)]}$.
 
-	In hat follows, all leading terms will be computed with respect to the standard
+	In what follows, all leading terms will be computed with respect to the standard
 	presentation of $R_{[\tau(k), \tau(i)]}$ where the generators are adjoined in the order
 	$x_{\tau(k)}, x_{\tau(k) + 1}, \dots, x_{\tau(i)}$. By
 	\cref{thm:homogeneous_primes,prop:eta_invariance},
@@ -2893,7 +2925,7 @@ a small lemma which we will need in the inductive step.
 	%
 	for some $c_{\tau, k-1} \in R_{\tau, k-1}$, where, like before, $p_\tau$ is the
 	predecessor function corresponding to $\eta_\tau = \eta \tau \colon [1, N] \to \bbZ$.
-	If $p_\tau(k) = -\infty$, then $oy_{\tau, k} = x_{\tau(k)} = \oy_{[\tau(k),
+	If $p_\tau(k) = -\infty$, then $\oy_{\tau, k} = x_{\tau(k)} = \oy_{[\tau(k),
 					s^m(\tau(k))]}$, because $m = 0$ in this case. Indeed, if $m>0$, then $s(\tau(k)) =
 		\tau(j)$ for some $j \in [1, k-1]$. Hence, $\eta_\tau(j) = \eta(\tau(j)) =
 		\eta(\tau(k))$, which implies $p_\tau(k) \geq j$, a contradiction with $p_\tau(k) =
@@ -2981,7 +3013,7 @@ illustrated by the following corollary.
 \begin{corollary}\label{cor:cluster_variables}
 
 	Assume the setting of \cref{thm:gy_main_result}. Then the following sets of cluster
-	variables are equal.
+	variables are equal:
 	\begin{align*}
 		\{M_\tau(e_k) \mid \tau \in \Xi_N,\, k \in [1, N]\}
 		 & = \{M_\tau(e_k) \mid \tau \in \Gamma_N,\, k \in [1, N]\}             \\
@@ -3642,11 +3674,11 @@ such that $\tau(k) < \tau(k+1)$ and $\eta(\tau(k)) = \eta(\tau(k+1))$. This only
 some columns. The other columns will be constructed inductively through mutation. This
 is achieved for the most part in \cref{lem:inductive_columns}.
 
-A priori, there might be some issues with this approach. \Cref{prop:eta_invariance} (a)
-gives a way to reach $\tau$ by a sequence of adjacent permutations, but this sequence
-is not necessarily unique. It could be possible that two different sequences would
-yield different columns. This is resolved by showing uniqueness of vectors satisfying
-similar conditions to the vector $\epsbullet -g$ in
+A priori, there might be some issues with this approach.
+\Cref{lem:xi_n_characterization} gives a way to reach $\tau$ by a sequence of adjacent
+permutations, but this sequence is not necessarily unique. It could be possible that
+two different sequences would yield different columns. This is resolved by showing
+uniqueness of vectors satisfying similar conditions to the vector $\epsbullet -g$ in
 \cref{prop:mutation_adjacent_permutations}. This will be shown in \cref{lem:unique_b}.
 Furthermore, we show that these conditions are preserved under mutation. This makes it
 possible to keep those conditions on all the columns, and ensures uniqueness for the
@@ -3668,11 +3700,7 @@ $\epsbullet - g$ in \cref{prop:mutation_adjacent_permutations}.
 	%
 	The second condition implies that $M_\tau(b_1)M_\tau(b_2)\inv$ commutes with
 	$M_\tau(e_j)$ for all $j\in [1, N]$. Thus, by \cref{prop:y_quantum_torus}, it must lie
-	in the center $Z(\Fract(R))$. Now,
-	\begin{equation*}
-		Z(\Fract(R))^\mcH = \bbK,
-	\end{equation*}
-	where $Z(\Fract(R))^\mcH$ is the subalgebra fixed by $\mcH$ \parencite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}. Hence,
+	in the center, $Z(\Fract(R))$. We now apply \cref{thm:H_rationality}, to conclude that
 	$M_\tau(b_1)M_\tau(b_2)\inv \in \bbK$, which can only happen when $b_1 = b_2$.
 \end{proof}
 
@@ -3990,7 +4018,7 @@ the mutation matrix $\tB = \tB_{\id}$ for the initial toric frame $M = M_{\id}$.
 The proof of parts (a), (b) and (c) of \cref{thm:gy_main_result} are now just a matter
 of putting everything together.
 \begin{proof}[Proof of \cref{thm:gy_main_result} (a), (b) and (c)]
-	We prove part (a) by induction. The uniqueness follows from \cref{lem:unique_b}. Fix $\tau \in \Xi_N$. By \cref{prop:eta_invariance}, we can find a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau \in \Xi_N$ such that for all $l \in [1, n]$ we can write
+	We prove part (a) by induction. The uniqueness follows from \cref{lem:unique_b}. Fix $\tau \in \Xi_N$. By \cref{lem:xi_n_characterization}, we can find a sequence $\tau_0 = \id, \tau_1, \dots, \tau_n = \tau \in \Xi_N$ such that for all $l \in [1, n]$ we can write
 	\begin{equation*}
 		\tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
 	\end{equation*}
@@ -4014,9 +4042,9 @@ of putting everything together.
 			1))$. The other case, $\eta(\tau(k)) = \eta(\tau(k+1))$, is covered by
 	\cref{lem:inductive_step_btautau}, swapping the roles of $\tau$ and $\tau'$ if needed.
 	Finally, since mutation is involutive, every $\tau \in \Xi_N$ can be obtained by a
-	sequence of one-step mutations from $\id\in \Xi_N$ due to \cref{prop:eta_invariance}
-	(a), and the uniqueness of part (a), we obtain that all the quantum seeds associated to
-	$\Xi_N$ are mutation-equivalent to each other.
+	sequence of one-step mutations from $\id\in \Xi_N$ due to
+	\cref{lem:xi_n_characterization} (a), and the uniqueness of part (a), we obtain that
+	all the quantum seeds associated to $\Xi_N$ are mutation-equivalent to each other.
 \end{proof}
 
 \section{The upper cluster algebra}
@@ -4039,7 +4067,7 @@ to proving this inclusion will be \cref{thm:minimal_denominators}. The inclusion
 then proven in \cref{thm:intersections} (d) using an inductive argument based on the
 total order on $\Gamma_N$.
 
-\subsection{Ore localizations of CGL extensions}
+\subsection{Ore localizations of CGL extensions}\label{sec:ore_localizations}
 
 We first focus on what happens to the intersection of the localizations of the two
 sequences of prime elements in the setting of \cref{thm:y_prime_swapped_cgl}. The main
