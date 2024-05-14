@@ -5,10 +5,12 @@
 In this first chapter, we look at classical cluster algebras and cover the basic theory. \Cref{sec:cgl_extensions,sec:quantum_cluster_algebras} will then look at a noncommutative generalization, known as quantum cluster algebras.
 
 The theory of cluster algebras is relatively new. They were first introduced in 2002,
-by \textcite{FominZelevinsky2002CAF}. It was quickly discovered that they could be used
-in many areas of mathematics, besides the original motivation as a tool to study
-canonical bases. Because of this, the field has grown rapidly, and it is impractical to
-cover all aspects of it in a single document.
+by \textcite{FominZelevinsky2002CAF}, as a tool to study canonical bases. It was
+quickly realized that cluster algebras are a useful tool in other of mathematics as
+well. Because of this, the field has grown rapidly, and it has become impractical to
+cover all aspects of it in a single document. Thus, what is covered here is only the
+tip of the iceberg. At the same time, the presented material should be sufficient to
+have a solid understanding of the underlying principles and ideas.
 
 We start, in \cref{sec:cluster_algebras_quivers}, with the simplest notion of a cluster
 algebra, that of a cluster algebra coming from a quiver. These are mostly
@@ -1252,8 +1254,7 @@ explanations for the observations made.
 	\end{equation*}
 	%
 	In this case we need (an orientation of) the $A_4$ quiver. We can choose any lattice
-	path from top to bottom, and orient the edges are oriented from
-	left to right.
+	path from top to bottom, and orient the edges are oriented from left to right.
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -1270,10 +1271,11 @@ explanations for the observations made.
 		\dots
 	\end{equation*}
 
-	The values of the lattice path will be associated to the elements of the cluster. Recall from \cref{lem:orientation_tree_mutation}, 
-	
-	that mutating at a sink or a source, only changes the orientation of the edges, and does not
-	introduce new edges. For example, mutation at a sink gives
+	The values of the lattice path will be associated to the elements of the cluster.
+	Recall from \cref{lem:orientation_tree_mutation},
+
+	that mutating at a sink or a source, only changes the orientation of the edges, and
+	does not introduce new edges. For example, mutation at a sink gives
 	\begin{equation*}
 		\begin{tikzcd}
 			\cdots b \rar &d & \lar c \cdots & \, \rar[rightsquigarrow, "\mu_d"] & \,&
@@ -1287,14 +1289,17 @@ explanations for the observations made.
 	of $a$ in the $\SL_2(\bbZ)$ diamond. In the example, mutation at the vertex labeled 3
 	results in changing the lattice path from $2 \to 5 \to 3 \gets 4$ to $2 \to 5 \gets 7
 		\to 4$.
-		
-	All the values of the frieze pattern will appear in iterated mutation of the initial lattice path. Thus, applying the Laurent phenomenon now shows that all the entries in the frieze
-	pattern are Laurent polynomials in the entries of the initial lattice path. In
-	particular, if one starts with a lattice path consisting of only ones, then all the
+
+	All the values of the frieze pattern will appear in iterated mutation of the initial
+	lattice path. Thus, applying the Laurent phenomenon now shows that all the entries in
+	the frieze pattern are Laurent polynomials in the entries of the initial lattice path.
+	In particular, if one starts with a lattice path consisting of only ones, then all the
 	entries will be integers.
-	
-	Interestingly, there exist frieze patterns which do not have a
-	lattice path from top to bottom consisting of only ones. This means that there exist other ``specializations'' for the cluster variables of the initial cluster, such that all the Laurent polynomials yield integers.
+
+	Interestingly, there exist frieze patterns which do not have a lattice path from top to
+	bottom consisting of only ones. This means that there exist other ``specializations''
+	for the cluster variables of the initial cluster, such that all the Laurent polynomials
+	yield integers.
 	\begin{equation*}
 		\begin{tikzcd}[sep=0.2em,cramped]
 			1&&1&&1&&1&&1&&1&&1&&1&&1&&1&&1\\
@@ -1319,8 +1324,8 @@ explanations for the observations made.
 	\cite{BaurFaberGratz2018ConwayCoxeterFriezes}.
 \end{example}
 
-For \cref{exmp:triangulations} it we need a more general
-definition of a cluster algebra. Namely, that of a cluster algebra with coefficients.
+For \cref{exmp:triangulations} it we need a more general definition of a cluster
+algebra. Namely, that of a cluster algebra with coefficients.
 
 \section{Ice quivers and coefficients}\label{sec:ice_quivers_and_coefficients}
 
@@ -1339,12 +1344,12 @@ algebra.
 \subsection{Ice quivers}
 
 Recall that in \cref{exmp:triangulations}, the length of a diagonal was obtained using
-Ptolomy's theorem. The calculation involves the lengths of the diagonals, as
-well as the lengths of the sides. Thus, the cluster variables should be
-associated with both the diagonals and the sides. This poses a slight problem.
-It is not possible to perform a flip on one of the sides of the $n$-gon. To fix this,
-we will make a distinction between \emph{exchangeable} and \emph{frozen} vertices. This
-leads to the notion of an \emph{ice quiver}\index{quiver!ice}.
+Ptolomy's theorem. The calculation involves the lengths of the diagonals, as well as
+the lengths of the sides. Thus, the cluster variables should be associated with both
+the diagonals and the sides. This poses a slight problem. It is not possible to perform
+a flip on one of the sides of the $n$-gon. To fix this, we will make a distinction
+between \emph{exchangeable} and \emph{frozen} vertices. This leads to the notion of an
+\emph{ice quiver}\index{quiver!ice}.
 
 Fix a subset $\ex \subseteq [1, N]$. The elements of $\ex$ will be called
 \emph{exchangeable}\index{exchangeable}, while the elements of $\frz = [1, N] \setminus
@@ -1394,8 +1399,8 @@ quiver are discarded. We then obtain the following definition.
 
 	The choice of $\binv$ does not have a big impact on the structure of the cluster
 	algebra. It is more of a technical addition to allow placing cluster algebra structures
-	on algebras were some frozen variables can be inverted. We will write $\mcA(\tQ,
-		\tbx) \defeq \mcA(\tQ, \tbx, \emptyset)$.
+	on algebras were some frozen variables can be inverted. We will write $\mcA(\tQ, \tbx)
+		\defeq \mcA(\tQ, \tbx, \emptyset)$.
 \end{remark}
 
 The main theorems from the previous section carry over with some small modifications.
@@ -1654,9 +1659,9 @@ The main theorems from the previous section carry over with some small modificat
 
 	Let $T$ be a triangulation of an $n$-gon, and let $\tQ(T)$ be the associated ice quiver
 	as above. We have shown that mutations of $\tQ(T)$ correspond to flips of the
-	triangulation $T$. It can be shown that every triangulation can be obtained from another
-	triangulation by a sequence of flips, which implies that all the triangulations are
-	mutation-equivalent to each other \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+	triangulation $T$. It can be shown that every triangulation can be obtained from
+	another triangulation by a sequence of flips, which implies that all the triangulations
+	are mutation-equivalent to each other \parencite[Proposition 3.8]{FominShapiroThurston2008CATriangulatedSurfacesI}.
 
 	We also have an extended cluster $\tbx(T)$. Let us write $P_{ij}$ for the element of
 	the extended cluster corresponding to the edge between $i$ and $j$. Thus, for example,
@@ -2735,8 +2740,8 @@ reasons for this.
 	\end{equation*}
 	%
 	We now compute the other seeds of $\mcA(Q, \bx, \by)$. Alternating between a mutation
-	at the first or the second vertex yields \cref{table:A2_quiver_coefficients}. After five
-	mutations, we end up with the original (unlabeled) seed.
+	at the first or the second vertex yields \cref{table:A2_quiver_coefficients}. After
+	five mutations, we end up with the original (unlabeled) seed.
 	\begin{table}[ht!]
 		\centering
 		\bgroup
@@ -3679,8 +3684,8 @@ following proposition.
 
 \begin{proposition}\label{prop:surface_mutation_finite}
 
-	Let $(S, M)$ be a bordered surface with marked points. Then the cluster algebra $\mcA(S,
-		M)$ is mutation-finite.
+	Let $(S, M)$ be a bordered surface with marked points. Then the cluster algebra
+	$\mcA(S, M)$ is mutation-finite.
 \end{proposition}
 \begin{proof}
 
@@ -3693,11 +3698,12 @@ following proposition.
 \subsection{Examples of ideal triangulations}
 
 We first introduce some terminology, which will come in handy for the examples. Let
-$(S, M)$ be a bordered surface with marked points. We write $A^\circ(S, M)$\index{A circ
-	S M@$A^\circ(S, M)$} for the set of all arcs in $(S, M)$. Recall that an (abstract)
-\emph{simplicial complex}\index{simplicial complex} is a family of sets which is closed
-under taking subsets. The members of a simplicial complex are called simplices. The
-size-one sets are called points, the size-two sets are called edges, and so on.
+$(S, M)$ be a bordered surface with marked points. We write $A^\circ(S, M)$\index{A
+	circ S M@$A^\circ(S, M)$} for the set of all arcs in $(S, M)$. Recall that an
+(abstract) \emph{simplicial complex}\index{simplicial complex} is a family of sets
+which is closed under taking subsets. The members of a simplicial complex are called
+simplices. The size-one sets are called points, the size-two sets are called edges, and
+so on.
 
 The \emph{arc simplex}\index{arc!simplex} $\Delta^\circ (S, M)$\index{Delta circ S
 	M@$\Delta^\circ(S, M)$} is the simplicial complex with ground set $A^\circ(S, M)$ and
@@ -4661,9 +4667,9 @@ where
 	P_{a\bar{b}} \defeq P_{a, n+2}P_{b,n+2} - P_{ab}.
 \end{equation*}
 
-The idea is to now apply \cref{prop:cluster_structure}. In terms of dimensions
-things work out. Indeed, the dimension of $\bbC[\Gr_{2,n+2}]$ is $2(n+2-2) + 1 = 2n +
-	1$. On the other hand we have $n+1$ frozen variables corresponding to the sides of the
+The idea is to now apply \cref{prop:cluster_structure}. In terms of dimensions things
+work out. Indeed, the dimension of $\bbC[\Gr_{2,n+2}]$ is $2(n+2-2) + 1 = 2n + 1$. On
+the other hand we have $n+1$ frozen variables corresponding to the sides of the
 $(n+1)$-gon, and $n+1$ arcs in $T$. If we choose $T$ such that at least one arc is
 tagged plain, then we only end up with $n$ orbits, for a total of $2n + 1$. We see that
 the triangulations do not correspond one-to-one with clusters. Furthermore, we no
