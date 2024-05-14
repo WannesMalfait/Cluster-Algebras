@@ -1,5 +1,8 @@
 %% PACKAGES
 
+% Fancy chapters with toc
+\usepackage{titlesec,titletoc}
+
 \usepackage[style=alphabetic, maxnames=4]{biblatex}
 \addbibresource{references.bib}
 
@@ -18,17 +21,62 @@
 \usepackage{cleveref}
 \usepackage{tikz-cd}
 \usepackage{aligned-overset}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+% \tcbuselibrary{theorems}
+\tcbuselibrary{skins}
 \usepackage{microtype}
 \usepackage{nicematrix}
 \NiceMatrixOptions{cell-space-limits = 5pt}
 
+\renewcommand{\thechapter}{\Roman{chapter}}
+\counterwithout{section}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\renewcommand*\thesection{\arabic{section}}
+
+\titleformat{\chapter}[display]
+{\bfseries\Large}
+{\filleft
+	\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+{3ex}
+{\titlerule
+	\vspace{2ex}%
+	\filright}
+[{%
+			\vspace{2ex}%
+			\titlerule
+		}]
+
+\titlecontents{chapter}
+[0pt]
+{\addvspace{1pc}}%
+{\contentsmargin{0pt}%
+	\bfseries
+	\makebox[0pt][r]{\huge\thecontentslabel\enspace}%
+	\large}
+{% \addvspace{.2pc}%
+	\contentsmargin{0pt}%
+	\large}
+{}
+[\addvspace{.5pc}]
+
+\newcommand{\chaptertoc}{%
+	\dotfill
+	\vspace*{1ex}
+	\startcontents[chapters]
+	\printcontents[chapters]{}{1}[2]{}
+	\vspace*{1ex}
+	\noindent\dotfill\\
+	\vspace*{1pc}
+}
 % \usepackage{fancyhdr}
 % \pagestyle{fancy}
 
 \usetikzlibrary{positioning,quotes,calc,patterns}
 
 %% Equation numbered by section
-% \numberwithin{equation}{section}
+\numberwithin{equation}{section}
 
 %% Theorem environments
 \theoremstyle{plain}
@@ -49,8 +97,9 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
+% \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
+\newtheorem*{notation}{Notation}
 \newtheorem*{definition*}{Definition}
 \newtheorem*{example*}{Example}
 \newtheorem*{exercise*}{Exercise}
@@ -59,62 +108,84 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem*{remark*}{Remark}
 
+\tcolorboxenvironment{notation}{%
+	blanker,breakable,left=5mm,
+	before skip=10pt,after skip=10pt,
+	borderline west={1mm}{0pt}{gray}}
+
+\usepackage{thmtools}
+
+\declaretheoremstyle[
+  sibling=theorem,
+	style=definition,
+  spaceabove=1em plus 0.75em minus 0.25em,
+  spacebelow=1em plus 0.75em minus 0.25em,
+  qed={\itshape End of example.}
+]{exmpstyle}
+
+\declaretheorem[
+  style=exmpstyle,
+  title=Example,
+  refname={example,examples},
+  Refname={Example,Examples}
+]{example}
+
 %===========================================================%
 %The code below customises theorem numbering
 %===========================================================%
 
-\theoremstyle{plain}
-\newtheorem{innercustomgenericplain}{\customgenericname}
-\providecommand{\customgenericname}{}
-\newcommand{\newcustomtheoremplain}[2]{%
-	\crefname{#2}{#2}{#2s}%
-	\newenvironment{#1}[1]
-	{%
-		\renewcommand\customgenericname{#2}%
-		\crefalias{innercustomgenericplain}{#2}%
-		\renewcommand\theinnercustomgenericplain{##1}%
-		\innercustomgenericplain
-	}
-	{\endinnercustomgenericplain}
-}
+% \theoremstyle{plain}
+% \newtheorem{innercustomgenericplain}{\customgenericname}
+% \providecommand{\customgenericname}{}
+% \newcommand{\newcustomtheoremplain}[2]{%
+% 	\crefname{#2}{#2}{#2s}%
+% 	\newenvironment{#1}[1]
+% 	{%
+% 		\renewcommand\customgenericname{#2}%
+% 		\crefalias{innercustomgenericplain}{#2}%
+% 		\renewcommand\theinnercustomgenericplain{##1}%
+% 		\innercustomgenericplain
+% 	}
+% 	{\endinnercustomgenericplain}
+% }
 
-\theoremstyle{definition}
-\newtheorem{innercustomgenericdefinition}{\customgenericname}
-\providecommand{\customgenericname}{}
-\newcommand{\newcustomtheoremdefinition}[2]{%
-	\crefname{#2}{#2}{#2s}%
-	\newenvironment{#1}[1]
-	{%
-		\renewcommand\customgenericname{#2}%
-		\crefalias{innercustomgenericdefinition}{#2}%
-		\renewcommand\theinnercustomgenericdefinition{##1}%
-		\innercustomgenericdefinition
-	}
-	{\endinnercustomgenericdefinition}
-}
+% \theoremstyle{definition}
+% \newtheorem{innercustomgenericdefinition}{\customgenericname}
+% \providecommand{\customgenericname}{}
+% \newcommand{\newcustomtheoremdefinition}[2]{%
+% 	\crefname{#2}{#2}{#2s}%
+% 	\newenvironment{#1}[1]
+% 	{%
+% 		\renewcommand\customgenericname{#2}%
+% 		\crefalias{innercustomgenericdefinition}{#2}%
+% 		\renewcommand\theinnercustomgenericdefinition{##1}%
+% 		\innercustomgenericdefinition
+% 	}
+% 	{\endinnercustomgenericdefinition}
+% }
 
-\theoremstyle{remark}
-\newtheorem{innercustomgenericremark}{\customgenericname}
-\providecommand{\customgenericname}{}
-\newcommand{\newcustomtheoremremark}[2]{%
-	\crefname{#2}{#2}{#2s}%
-	\newenvironment{#1}[1]
-	{%
-		\renewcommand\customgenericname{#2}%
-		\crefalias{innercustomgenericremark}{#2}%
-		\renewcommand\theinnercustomgenericremark{##1}%
-		\innercustomgenericremark
-	}
-	{\endinnercustomgenericremark}
-}
+% \theoremstyle{remark}
+% \newtheorem{innercustomgenericremark}{\customgenericname}
+% \providecommand{\customgenericname}{}
+% \newcommand{\newcustomtheoremremark}[2]{%
+% 	\crefname{#2}{#2}{#2s}%
+% 	\newenvironment{#1}[1]
+% 	{%
+% 		\renewcommand\customgenericname{#2}%
+% 		\crefalias{innercustomgenericremark}{#2}%
+% 		\renewcommand\theinnercustomgenericremark{##1}%
+% 		\innercustomgenericremark
+% 	}
+% 	{\endinnercustomgenericremark}
+% }
 
-\newcustomtheoremplain{customtheorem}{Theorem}
-\newcustomtheoremplain{customlemma}{Lemma}
-\newcustomtheoremplain{customprop}{Proposition}
-\newcustomtheoremplain{customcorollary}{Corollary}
+% \newcustomtheoremplain{customtheorem}{Theorem}
+% \newcustomtheoremplain{customlemma}{Lemma}
+% \newcustomtheoremplain{customprop}{Proposition}
+% \newcustomtheoremplain{customcorollary}{Corollary}
 
-\newcustomtheoremdefinition{customdefinition}{Definition}
-\newcustomtheoremdefinition{customexample}{Example}
-\newcustomtheoremdefinition{customexercise}{Exercise}
+% \newcustomtheoremdefinition{customdefinition}{Definition}
+% \newcustomtheoremdefinition{customexample}{Example}
+% \newcustomtheoremdefinition{customexercise}{Exercise}
 
-\newcustomtheoremremark{customremark}{Remark}
+% \newcustomtheoremremark{customremark}{Remark}

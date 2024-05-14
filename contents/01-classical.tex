@@ -1,17 +1,22 @@
 \chapter{Classical cluster algebras}
-Mostly use \cite{FominWilliams2021IntroductionCA_1-3} as reference together with
-Geoffrey's notes.
+\chaptertoc
 
-\section{Cluster algebras from quivers}
+\noindent
+In this first chapter, we look at classical cluster algebras and cover the basic theory. \Cref{sec:cgl_extensions,sec:quantum_cluster_algebras} will then look at a noncommutative generalization, known as quantum cluster algebras.
 
-This first section serves as an introduction to cluster algebras. We will first look at
+The theory of cluster algebras is relatively new. They were first introduced in 2002, by \textcite{FominZelevinsky2002CAF}. It was quickly discovered that they could be used in many areas of mathematics, besides the original motivation as a tool to study canonical bases. Because of this, the field has grown rapidly, and it is impractical to cover all aspects of it in a single document.
+
+We start, in \cref{sec:cluster_algebras_quivers}, with the simplest notion of a cluster algebra, that of a cluster algebra coming from a quiver. These are mostly combinatorial, and can be understood without too much background. Using these we introduce the most important concepts. The next section, \cref{sec:ice_quivers_and_coefficients}, slowly builds up to the most general definition of a cluster algebra. Along the way, examples are given to relate the different versions with each other. Finally, we look at cluster algebras coming from surfaces in \cref{sec:cluster_algebras_surfaces}. This generic method for producing cluster algebras connects cluster algebras with geometric topology, and yields beautiful diagrams.
+
+\section{Cluster algebras from quivers}\label{sec:cluster_algebras_quivers}
+
+This first section serves as an introduction to cluster algebras. We will first look, in \cref{sec:integer_sequences}, at
 some examples of integer sequences arising from number theory or from combinatorial
 data. In these examples, a few recurring observations will occur. These observations
 will be explained by viewing each of the examples under the lens of cluster algebra
-theory. We do not yet provide the most general definition of a cluster algebra, which
-will instead be done in \cref{sec:ice_quivers_and_coefficients}. Instead, we focus on
-the simplest case of a cluster algebra associated to a quiver. This case is easier to
-grasp, and allows understanding the general concepts without getting distracted by
+theory. This will be done in \cref{sec:sequences_revisited}, after introducing cluster algebras coming from quivers in \cref{sec:quivers_seeds_mutations,sec:cluster_algebra_from_quiver}. We do not yet provide the most general definition of a cluster algebra, which
+will be given in \cref{sec:ice_quivers_and_coefficients}. Cluster algebras coming from quivers are easier to
+grasp, and will allow us to understand the general concepts without getting distracted by
 technical details.
 
 \subsection{Combinatorial integer sequences}\label{sec:integer_sequences}
@@ -33,7 +38,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	Even though the recurrence relation involves a fraction, all the terms of the sequence
 	are positive integers. We will explain this later, as a consequence of a more general
 	fact about cluster algebras. Another way to observe this is as follows. For each $n \in
-		\bbZ_{\geq0}$, the triple $(x_n, x_{n+1}, x_{n+2})$ satisfies the equation
+		\bbZ_{\geq0}$, we will show by induction that the triple $(x_n, x_{n+1}, x_{n+2})$ satisfies the equation
 	\begin{equation}\label{eq:markov_diophantine}
 		x_n^2 + x_{n+1}^2 + x_{n+2}^2 = 3 x_n x_{n+1}x_{n+2},
 	\end{equation}
@@ -47,8 +52,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 		 & = (3 x_{n+1}x_{n+2} - x_n)^2 + x_{n+1}^2 + x_{n+2}^2                            \\
 		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_{n+1} x_{n+2} x_n + x_n^2 + x_{n+1}^2 + x_{n+2}^2 \\
 		 & = 9 x_{n+1}^2 x_{n+2}^2 - 6 x_n x_{n+1} x_{n+2} + 3 x_n x_{n+1} x_{n+2}         \\
-		 & = 9 x_{n+1}^2 x_{n+2}^2 - 3 x_n x_{n+1} x_{n+2}                                 \\
-		 & = 3 ( x_{n+1} x_{n+2}-  x_n) x_{n+1} x_{n+2}                                    \\
+		 & = 3 (3 x_{n+1} x_{n+2}-  x_n) x_{n+1} x_{n+2}                                    \\
 		 & = 3 x_{n+3} x_{n+1} x_{n+2}.
 	\end{align*}
 	%
@@ -86,12 +90,12 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 			a_{13} & = \frac{83313 \cdot 1529 + 8209^2}{314} = \frac{194773258}{314} = 620297.
 		\end{aligned}
 	\end{align*}
-	%
+
 	Just like in the previous example, there is no reason, a priori, to assume that all the
 	elements of the sequence would be integers. However, somewhat remarkably, the
 	denominators seem to always cancel out perfectly. Viewing this sequence through the
 	cluster algebra framework, it will follow immediately that all the terms are indeed
-	integers, as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}.
+	integers, as a corollary of the \emph{Laurent phenomenon}\index{Laurent!-phenomenon}. Although it is quite obvious in this case, we remark that all the terms in the sequence are once again positive.
 \end{example}
 
 \begin{example}\label{exmp:frieze_patterns}
@@ -133,7 +137,7 @@ explained by viewing these sequences as arising from a cluster algebra. \medskip
 	rows. If so, one might be interested in knowing how many such patterns there are.
 	Furthermore, one might notice that the pattern is periodic, repeating every 7 columns.
 	In fact, the pattern even has ``half-periodicity'' where the marked triangle undergoes
-	a translation and reflection.
+	a translation and reflection. One can show that this always happens. In particular, there are only a finite number of integers in each pattern.
 	\begin{equation*}
 		\dots\quad
 		\begin{tikzcd}[
@@ -262,7 +266,7 @@ The last example will be based on the following theorem from Euclidean geometry.
 	Let $1, 2, \dots, n$ denote $n$ points on a circle, arranged in cyclic order. By
 	connecting the points $i$ and $i +1$ for $i \in [1, n]$, where the indices are taken
 	modulo $n$, we obtain a polygon with $n$ sides. A triangulation\index{triangulations!of
-		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals. This results in a
+		polygons}, $T$, is a choice of $(n-3)$ non-crossing diagonals\footnote{This choice is maximal, i.e., a maximal set of non-crossing diagonals in an $n$-gon has size $n-3$.}. This results in a
 	partitioning of the polygon in $n-2$ triangles. We will see triangulations in much more
 	detail in \cref{sec:triangulations_of_surfaces}, and will therefore keep things brief
 	here. For now, it is enough to understand things visually (cf.
@@ -366,18 +370,17 @@ The last example will be based on the following theorem from Euclidean geometry.
 	\end{equation*}
 	%
 	Once again, we observe that we only obtain integers. Furthermore, there seems to be a
-	limit to which integers we can obtain this way. This hints at a hidden periodicity. The
+	limit to which integers we can obtain this way. This hints at a hidden periodicity, similar to what we observed for the frieze patterns. The
 	Laurent phenomenon offers an explanation for why we only obtain integers: the lengths
 	of the diagonals are Laurent polynomials in the originally chosen lengths.
 \end{example}
 
-There are many more examples like the three that we just gave. One can look at wiring
-diagrams, generalized Somos sequences, knight recurrence, the Gale-Robinson sequence,
-etc. As the focus of this thesis is not on number theory, we refrain from delving
+There are many more examples like the three that we just gave. One can, for example, look at wiring
+diagrams, generalized Somos sequences, knight recurrence and the Gale-Robinson sequence. As the focus of this thesis is not on number theory, we refrain from delving
 deeper into this interesting world. We refer interested readers to \cite[Chapter
 	3.4]{FominWilliams2021IntroductionCA_1-3} and \cite{FominZelevinsky2002Laurent}.
 
-\subsection{Quivers, seeds and mutations}\label{sec:quivers_seeds_mutations}
+\subsection{Quivers, seeds, and mutations}\label{sec:quivers_seeds_mutations}
 
 In the examples from \cref{sec:integer_sequences} we made a couple of observations. In
 each case, the sequence consisted of positive integers, something which was not so
@@ -392,7 +395,7 @@ a cluster algebra. These can be constructed from a quiver, as we now explain.
 	A \emph{quiver}\index{quiver} is a finite directed (multi)-graph with no 1-cycles
 	(vertex connected to itself) or 2-cycles (two vertices connected by a pair of opposite
 	arrows) (cf. \cref{fig:quivers}). For a quiver $Q$, we will denote the set of vertices
-	with $Q_0$\index{Q 0@$Q_0$}.
+	by $Q_0$\index{Q 0@$Q_0$}.
 \end{definition}
 
 \begin{figure}[ht!]
@@ -416,14 +419,17 @@ a cluster algebra. These can be constructed from a quiver, as we now explain.
 	\label{fig:quivers}
 \end{figure}
 
-Let us now fix some notation for what follows. Write $[a,b] = \{a, a + 1, \dots, b\}$
+We now fix some notation for what follows.
+\begin{notation}
+Write $[a,b] = \{a, a + 1, \dots, b\}$
 for integers $a,b \in \bbZ$, where $[a,b] = \emptyset$ if $a > b$. Fix an integer $N
 	\in \bbZ_{\geq 0}$, and a field $\bbK$ of characteristic zero. Finally, let $\mcF =
 	\bbK (Y_1, \dots, Y_N)$ be the \emph{field of rational functions}\index{rational
 	function field} over $\bbK$, in $N$ variables. Thus, $\mcF$ consists of fractions $P/Q$
 where $P, Q\in \bbK[Y_1, \dots, Y_N]$ are polynomials in the variables $Y_1, \dots,
 	Y_N$, and $Q$ is non-zero. In most cases we will take $\bbK = \bbC$ or $\bbK = \bbQ$.
-This does not impact the definitions that follow in a meaningful way.
+This does not impact the definitions that follow meaningfully.
+\end{notation}
 
 \begin{definition}
 	We call a pair $(Q, \bx)$ a \emph{labeled seed}\index{seed!labeled} in $\mcF$ if
@@ -746,7 +752,7 @@ be useful for the examples.
 	whose only mutation corresponds to a reversal of all the arrows.
 \end{example}
 
-\subsection{The cluster algebra}
+\subsection{The cluster algebra}\label{sec:cluster_algebra_from_quiver}
 
 From the examples of \cref{sec:quivers_seeds_mutations} we gather the following
 observations:
@@ -1335,7 +1341,7 @@ quiver are discarded. We then obtain the following definition.
 
 \begin{remark}
 
-	The choice of $\inv$ does not have a big impact on the structure of the cluster
+	The choice of $\binv$ does not have a big impact on the structure of the cluster
 	algebra. It is more of a technical addition to allow placing cluster algebra structures
 	on algebras were some of the frozen variables can be inverted. We will write $\mcA(\tQ,
 		\tbx) \defeq \mcA(\tQ, \tbx, \emptyset)$.
