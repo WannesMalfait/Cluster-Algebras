@@ -1491,9 +1491,9 @@ extension presentation is chosen, then this yields a different sequence of homog
 prime elements. When $R$ is a symmetric CGL extension, we obtain a presentation for
 each $\tau \in \Xi_N$. Suppose that $\tau, \tau' \in \Xi_N$ are a pair of
 \emph{adjacent permutations}\index{adjacent permutation}, i.e., such that $\tau' = \tau
-	(k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a transposition.
-Then the two presentations obtained this way will be adjacent presentations as in the
-setting of \cref{thm:y_prime_swapped_cgl}:
+	(k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a transposition
+(cf. \cref{fig:xi_6_graph}). Then the two presentations obtained this way will be
+adjacent presentations as in the setting of \cref{thm:y_prime_swapped_cgl}:
 \begin{align*}
 	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k)}; \sigma_{\tau, k}, \delta_{\tau, k}][x_{\tau(k+1)};\sigma_{\tau, k+1}, \delta_{\tau, k+1}] \cdots [x_\tau(N); \sigma_{\tau, N}, \delta_{\tau, N}]        \\
 	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k+1)}; \sigma_{\tau', k}, \delta_{\tau', k}][x_{\tau(k)};\sigma_{\tau', k+1}, \delta_{\tau', k+1}] \cdots [x_\tau(N); \sigma_{\tau', N}, \delta_{\tau', N}].
@@ -1518,7 +1518,101 @@ section (cf. \cref{thm:gy_main_result}).
 	corresponding to pairs of adjacent permutations $\tau' = \tau(k, k+1)$.
 \end{theorem*}
 
-\textbf{TODO: Exchange graph}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[
+			x = 0.01ex, y=0.01ex,
+			scale=10, xscale= -3,
+			every node/.style={font=\footnotesize}
+		]
+
+		\draw
+		(99.0, 18.0) node (0){$[1, 2, 3, 4, 5, 6]$}
+		(99.0, 90.0) node (1){$[2, 1, 3, 4, 5, 6]$}
+		(99.0, 162.0) node (2){$[2, 3, 1, 4, 5, 6]$}
+		(63.0, 234.0) node (3){$[3, 2, 1, 4, 5, 6]$}
+		(135.0, 234.0) node (4){$[2, 3, 4, 1, 5, 6]$}
+		(63.0, 306.0) node (5){$[3, 2, 4, 1, 5, 6]$}
+		(27.0, 378.0) node (6){$[3, 4, 2, 1, 5, 6]$}
+		(27.0, 450.0) node (7){$[4, 3, 2, 1, 5, 6]$}
+		(135.0, 306.0) node (8){$[2, 3, 4, 5, 1, 6]$}
+		(99.0, 378.0) node (9){$[3, 2, 4, 5, 1, 6]$}
+		(99.0, 450.0) node (10){$[3, 4, 2, 5, 1, 6]$}
+		(27.0, 522.0) node (11){$[4, 3, 2, 5, 1, 6]$}
+		(99.0, 522.0) node (12){$[3, 4, 5, 2, 1, 6]$}
+		(27.0, 594.0) node (13){$[4, 3, 5, 2, 1, 6]$}
+		(27.0, 666.0) node (14){$[4, 5, 3, 2, 1, 6]$}
+		(27.0, 738.0) node (15){$[5, 4, 3, 2, 1, 6]$}
+		(171.0, 378.0) node (16){$[2, 3, 4, 5, 6, 1]$}
+		(171.0, 450.0) node (17){$[3, 2, 4, 5, 6, 1]$}
+		(171.0, 522.0) node (18){$[3, 4, 2, 5, 6, 1]$}
+		(99.0, 594.0) node (19){$[4, 3, 2, 5, 6, 1]$}
+		(171.0, 594.0) node (20){$[3, 4, 5, 2, 6, 1]$}
+		(99.0, 666.0) node (21){$[4, 3, 5, 2, 6, 1]$}
+		(99.0, 738.0) node (22){$[4, 5, 3, 2, 6, 1]$}
+		(63.0, 810.0) node (23){$[5, 4, 3, 2, 6, 1]$}
+		(171.0, 666.0) node (24){$[3, 4, 5, 6, 2, 1]$}
+		(171.0, 738.0) node (25){$[4, 3, 5, 6, 2, 1]$}
+		(135.0, 810.0) node (26){$[4, 5, 3, 6, 2, 1]$}
+		(63.0, 882.0) node (27){$[5, 4, 3, 6, 2, 1]$}
+		(135.0, 882.0) node (28){$[4, 5, 6, 3, 2, 1]$}
+		(99.0, 954.0) node (29){$[5, 4, 6, 3, 2, 1]$}
+		(99.0, 1026.0) node (30){$[5, 6, 4, 3, 2, 1]$}
+		(99.0, 1098.0) node (31){$[6, 5, 4, 3, 2, 1]$};
+		\begin{scope}[-]
+			\draw[dashed] (1) to (0);
+			\draw (2) to (1);
+			\draw[dashed] (3) to (2);
+			\draw (4) to (2);
+			\draw (5) to (3);
+			\draw[dashed] (5) to (4);
+			\draw[dashed] (6) to (5);
+			\draw (7) to (6);
+			\draw[dashed] (8) to (4);
+			\draw[dashed] (9) to (5);
+			\draw[dashed] (9) to (8);
+			\draw[dashed] (10) to (6);
+			\draw[dashed] (10) to (9);
+			\draw[dashed] (11) to (7);
+			\draw (11) to (10);
+			\draw (12) to (10);
+			\draw (13) to (11);
+			\draw (13) to (12);
+			\draw[dashed] (14) to (13);
+			\draw[dashed] (15) to (14);
+			\draw (16) to (8);
+			\draw (17) to (9);
+			\draw[dashed] (17) to (16);
+			\draw (18) to (10);
+			\draw[dashed] (18) to (17);
+			\draw (19) to (11);
+			\draw (19) to (18);
+			\draw (20) to (12);
+			\draw (20) to (18);
+			\draw (21) to (13);
+			\draw (21) to (19);
+			\draw (21) to (20);
+			\draw (22) to (14);
+			\draw[dashed] (22) to (21);
+			\draw (23) to (15);
+			\draw[dashed] (23) to (22);
+			\draw[dashed] (24) to (20);
+			\draw[dashed] (25) to (21);
+			\draw (25) to (24);
+			\draw[dashed] (26) to (22);
+			\draw[dashed] (26) to (25);
+			\draw[dashed] (27) to (23);
+			\draw[dashed] (27) to (26);
+			\draw (28) to (26);
+			\draw (29) to (27);
+			\draw[dashed] (29) to (28);
+			\draw (30) to (29);
+			\draw[dashed] (31) to (30);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{The subset $\Xi_6 \subset S_6$. Edges are drawn between adjacent permutations. The dashed lines indicate where $\eta(\tau(k)) \neq \eta(\tau(k+1))$ for the $\eta$-function corresponding to $\HeisUqn$ (cf. \cref{exmp:heisenberg_primes}). No mutation occurs at these edges (cf. \cref{thm:y_prime_swapped_cgl}). Finally, note that the graph is connected. Thus, every element of $\Xi_6$ can be built out of a chain of adjacent permutations starting from the identity. We will show later on that this holds in general for $\Xi_N$ (cf. \cref{lem:xi_n_characterization}).}
+	\label{fig:xi_6_graph}
+\end{figure}
 
 \section{Formulating a precise statement}\label{sec:formulating_theorem}
 
@@ -2197,7 +2291,8 @@ The normalization that we need is described by the following proposition.
 
 	Let us write $\wt{E}_2, \wt{E}_{12}, \wt{E}_1, \wt{F}_1, \wt{F}_{12}, \wt{F}_2$ for the
 	normalized generators. Because $\gamma_1 = 1 = \gamma_2$, we have $\oy_1 = \oy'_1 =
-		y'_1$ and $\oy_2 = \oy'_2 = y'_2$. For $\oy_3$ we have $\gamma_3 = (1 - q^{-2})$. Then
+		y'_1$ and $\oy_2 = \oy'_2 = y'_2$. For $\oy_3$ we have $\gamma_3 = q^{\frac{1}{2}}(1 -
+		q^{-2})$. Then
 	\begin{equation*}
 		q^{\frac{1}{2}}(1-q^{-2})y'_3 = E_2 q^{\frac{1}{2}}(1-q^{-2})E_1 - E_{12} = \wt{E}_2\wt{E}_1 - \wt{E}_{12},
 	\end{equation*}
@@ -2205,15 +2300,15 @@ The normalization that we need is described by the following proposition.
 	\begin{equation*}
 		y_4 = (1-q^2)y'_4 = q^{\frac{1}{2}}(1-q^{-2})y'_3 (-q^{\frac{3}{2}}F_1) - E_2 = y_3 \wt{F}_1 - \wt{E}_2,
 	\end{equation*}
-	and $\oy_4 = q y_4 = (1-q^2)y'_4$. From $\gamma_5 = -q^2$ we find
+	and $\oy_4 = q y_4 = q(1-q^2)y'_4$. From $\gamma_5 = -q^2$ we find
 	\begin{equation*}
-		y_5 = (-q^{\frac{3}{2}})y'_5 = y_2\wt{F_1} -q^{\frac{1}{2}} \wt{E}_1\wt{F}_1 + q^{\frac{1}{2}},
+		y_5 = (-q^{2})y'_5 = y_2\wt{F}_{12} -q \wt{E}_1\wt{F}_{1} + q,
 	\end{equation*}
-	and $\oy_5 = q y_5 = -q^{\frac{5}{2}} y'_5$. Finally, $\gamma_6 = (1-q^2)$ implies
+	and $\oy_5 = q y_5 = -q^{3} y'_5$. Finally, $\gamma_6 = (1-q^2)$ implies
 	\begin{align*}
-		y_6 & = (1-q^2)^2 y'_6                                                                          \\
-		    & = (1-q^2)y'_4 ((1-q^2)F_2) - q^{-\frac{1}{2}}q^{\frac{1}{2}}(1-q^{-2})y'_3(-q^2F_{12}) +1 \\
-		    & = y_4\wt{F}_2 + q^{-\frac{3}{2}}y_3\wt{F}_{12} + 1,
+		y_6 & = (1-q^2)^2 y'_6                                                                         \\
+		    & = (1-q^2)y'_4 ((1-q^2)F_2) - q^{\frac{1}{2}}q^{\frac{1}{2}}(1-q^{-2})y'_3(-q^2F_{12}) +1 \\
+		    & = y_4\wt{F}_2 - q^{\frac{1}{2}}y_3\wt{F}_{12} + 1,
 	\end{align*}
 	and $\oy_6 = q^2 y_6 = q^2(1-q^2)^2 y'_6$.
 
@@ -2387,9 +2482,9 @@ The main result can now be formulated.
 		\end{pmatrix*},
 	\end{equation*}
 	%
-	which corresponds to the quiver
+	which corresponds to the ice quiver
 	\begin{equation*}
-		Q =
+		\tQ =
 		\begin{tikzcd}
 			1 \rar & 2 \dar & \lar \boxed{5} \\
 			3 \uar & 4 \lar \urar & \lar \boxed{6}
@@ -2457,23 +2552,37 @@ The main result can now be formulated.
 		                                              \end{pmatrix*},
 	\end{align*}
 	%
-	which corresponds to the quiver
+	which corresponds to the ice quiver
 	\begin{equation*}
-		Q_{\tau} =
+		\tQ_{\tau} =
 		\begin{tikzcd}
 			1 & 2 \dlar & \boxed{5} \lar \\
 			3 \uar \rar & 4 \urar & \boxed{6} \lar
 		\end{tikzcd}
 		.
 	\end{equation*}
+	%
+	Note that the principal part of $\tQ_\tau$ is an orientation of the Dynkin diagram of
+	type $D_4$. Recall also that the exchange graph for the quantum cluster algebra may be
+	identified with the exchange of the classical cluster algebra in the uniparameter case.
+	It follows that the quantum cluster algebra associated to $\HeisUqn$ is cluster-finite.
+	Moreover, the seeds may be identified with tagged triangulations of a once-punctured
+	square (cf. \cref{exmp:punctured_polygon1,thm:clusters_and_triangulations}). Only a
+	small part of this exchange graph consists of the seeds are of the form $(M_\sigma,
+		\tB_\sigma)$ for some $\sigma \in \Xi_6$. These are illustrated in
+	\cref{fig:xi_6_graph}. An interesting question is whether the other seeds have any
+	ring-theoretic meaning. Note that these other seeds are in some sense redundant.
+	Indeed, the (extended) cluster variables from the seeds $(M_\sigma, \tB_\sigma)$
+	already generate the whole algebra, as we will see later in (\cref{thm:intersections}
+	(b)).
 
-	We now want to see the relation with seed mutations. \Cref{thm:gy_main_result} (c) says
+	We now take a closer look at the seed mutations. \Cref{thm:gy_main_result} (c) says
 	that mutation will happen between adjacent permutations, i.e., ones which differ by an
 	elementary transposition\index{elementary transposition}. Recall that an
 	\emph{elementary transposition} is a transposition of the form $(i, i+1)$. We now
 	decompose $\tau$ as a sequence of permutations in $\Xi_6$ each of which differs by an
 	elementary transposition. Such decompositions will play an important role in the proof
-	of \cref{thm:gy_main_result} (cf. \cref{prop:eta_invariance}). Write $\tau' =
+	of \cref{thm:gy_main_result} (cf. \cref{lem:xi_n_characterization}). Write $\tau' =
 		[2,3,1,4,5,6]$. Then $\tau = \tau(3,4)$. For $\tau'' = [2,1,3,4,5,6]$, we have $\tau''
 		= \tau(2,3)$, and $\tau'' = \id (1,2)$. One can compute that $\tau'_{\bullet} =
 			[3,2,1,4,5,6],\, \tau'_\bullet \tau' = [2,1,3,4,5,6]$ and
@@ -2498,7 +2607,7 @@ The main result can now be formulated.
 			0 & 1 & 0 & -1\\
 			0 & 0 & 0 & 1
 		\end{pmatrix*},
-		\quad Q_{\tau'} =
+		\quad \tQ_{\tau'} =
 		\begin{tikzcd}
 			1 \dar & 2 \lar \dar & \boxed{5} \lar \\
 			3 \urar & 4 \lar \urar & \boxed{6} \lar
@@ -2510,11 +2619,11 @@ The main result can now be formulated.
 	$\tB_{\tau''}$. Instead, $\tB = \tB_{\tau''}$. Now, since $\tau' = \tau''(2,3)$ and
 	$\eta(\tau''(2)) = \eta(\tau''(3)) = 1$, \cref{thm:gy_main_result} (c) gives that
 	$\tB_{\tau'} = \mu_{k_\bullet}(\tB_{\tau''}) = \mu_{k_\bullet}(\tB)$ where $k_\bullet =
-		\tau''_\bullet(\tau''(2)) = \tau'_\bullet(\tau'(2)) = 1$. Indeed, the quiver
-	$Q_{\tau'}$ is obtained from $Q$ by a mutation at vertex 1. In the same way, from $\tau
-		= \tau'(3,4)$ and $\tau_\bullet(\tau(3)) = 3$, it follows that $\tB_\tau =
+		\tau''_\bullet(\tau''(2)) = \tau'_\bullet(\tau'(2)) = 1$. Indeed, the ice quiver
+	$\tQ_{\tau'}$ is obtained from $\tQ$ by a mutation at vertex 1. In the same way, from
+	$\tau = \tau'(3,4)$ and $\tau_\bullet(\tau(3)) = 3$, it follows that $\tB_\tau =
 		\mu_{3}(\tB_{\tau'})$ which can again be verified most easily by looking at the
-	corresponding quivers.
+	corresponding ice quivers.
 
 	To finish the example, we look at the sequences of homogeneous prime elements
 	corresponding to the permutations $\tau$ and $\tau'$. First remark that $\tau$ and
@@ -3881,20 +3990,9 @@ order on $\Gamma_N$:
 \end{multline*}
 %
 where $w_\circ = [N, N-1, \dots, 1]$. We will write $\sigma \preceq \tau$ for $\sigma,
-	\tau \in \Gamma_N$ to say that either $\sigma = \tau$ or $\sigma \prec \tau$. Note that
-any two consecutive elements are of the form $\tau_{i, j-1} \prec \tau_{i, j}$ for some
-$1 \leq i < j \leq N$.
+	\tau \in \Gamma_N$ to say that either $\sigma = \tau$ or $\sigma \prec \tau$.
 
-To each $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$\index{ex
-	tau@$\ex_\tau$} in such a way that
-\begin{equation*}
-	\ex_{\id} = \emptyset, \quad \ex_{w_\circ} = \ex \quad
-\end{equation*}
-%
-and $\ex_\sigma \subseteq \ex_\tau$ for all $\sigma, \tau \in \Gamma_N$ with $\sigma
-	\prec \tau$. The subsets $\ex_\tau$ are defined inductively, as follows. The base case
-is $\ex_{\id} \defeq \emptyset$. Then, if $\tau \prec \tau'$ are consecutive elements
-in the total order, we can write
+If $\tau \prec \tau'$ are consecutive elements in the total order, we can write
 \begin{equation*}
 	\tau = \tau_{i,j-1} \text{ and } \tau' = \tau_{i,j}
 \end{equation*}
@@ -3910,7 +4008,27 @@ from which we see that
 	\tau' = \tau_{i,j} = (i, j)\tau_{i, j-1} = (i, j)\tau = \tau(j-i, j-i+1).
 \end{equation*}
 %
-From $\ex_\tau$ we then construct $\ex_{\tau'}$ as
+Thus, consecutive elements in the linear order are adjacent permutations. We can hence
+view the elements of $\Gamma_N$ as a special instance of
+\cref{lem:xi_n_characterization} applied to $w_\circ$. In \cref{fig:xi_6_graph}, the
+elements of $\Gamma_6$ form the path from $\id$ to $w_\circ$ consisting of the leftmost
+nodes.
+
+To each $\tau \in \Gamma_N$ we associate a subset $\ex_\tau \subseteq \ex$\index{ex
+	tau@$\ex_\tau$} in such a way that
+\begin{equation*}
+	\ex_{\id} = \emptyset, \quad \ex_{w_\circ} = \ex \quad
+\end{equation*}
+%
+and $\ex_\sigma \subseteq \ex_\tau$ for all $\sigma, \tau \in \Gamma_N$ with $\sigma
+	\prec \tau$. The subsets $\ex_\tau$ are defined inductively, as follows. The base case
+is $\ex_{\id} \defeq \emptyset$. Now, suppose that $\tau \prec \tau'$ are two
+consecutive elements, and write
+\begin{equation*}
+	\tau' = \tau_{i,j} = (i, j)\tau_{i, j-1} = (i, j)\tau = \tau(j-i, j-i+1),
+\end{equation*}
+%
+as above. From $\ex_\tau$ we then construct $\ex_{\tau'}$ as
 \begin{equation*}
 	\ex_{\tau'} \defeq \begin{dcases*}
 		\ex_\tau \cup \{p(j)\}, & if $p(i) = -\infty$ and $\eta(i) = \eta(j)$ \\
@@ -4599,7 +4717,7 @@ simple observations.
 	with the set $\{ M_\tau(e_j) \mid j \in \ex\}$. By \cref{lem:tau_bullet_ex_gamma} (a),
 	this last set is the same as the set
 	\begin{equation*}
-		\{ \wh{M}_\tau(e_j) \mid j \in [1, N] s_\tau(j) \neq + \infty\} = \{ \oy_{\tau, j} \mid j \in [1, N] s_\tau(j) \neq + \infty\}.
+		\{ \wh{M}_\tau(e_j) \mid j \in [1, N],\, s_\tau(j) \neq + \infty\} = \{ \oy_{\tau, j} \mid j \in [1, N],\, s_\tau(j) \neq + \infty\}.
 	\end{equation*}
 
 	As noted in the proof of \cref{thm:intersections}, for each $j \in [1, N]$
