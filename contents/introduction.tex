@@ -1,7 +1,89 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
+As the title suggests, cluster algebras and the different contexts in which they appear
+will be the central topic of this thesis. The original motivation for cluster algebras
+was to use their structure to better understand canonical bases and the notion of total
+positivity for semisimple groups. In this thesis we will not focus on this aspect of
+cluster algebras. Instead, we will look at different methods of constructing cluster
+algebras, and give an overview of the main results in the theory.
 
+A \emph{cluster algebra} is a type of commutative algebra with a set of distinguished
+generators called \emph{cluster variables}. These are grouped into \emph{clusters},
+which are related to each other by a type of \emph{exchange relation}: If $x$ is a
+cluster variable of some cluster $\bx$, then a new cluster is formed by replacing $x$
+with $x'$ where
+\begin{equation}\label{eq:exchange_general}
+	x x' = M_{1} + M_{2}\tag{$*$},
+\end{equation}
+%
+for some monomials $M_1$ and $M_2$ in the other cluster variables of $\bx$. Remarkably,
+these structures are both flexible enough to be applicable to a large class of
+algebras, and powerful enough to make strong statements about the algebra.
+
+\medskip
+
+In \cref{sec:classical_cluster_algebras}, we introduce cluster algebras from the ground
+up. In essence, a cluster algebra is determined by the monomials that appear in
+\cref{eq:exchange_general}. There are two aspects to this: the coefficients and the
+exponents. We start in \cref{sec:cluster_algebras_quivers} by looking at the simplest
+kinds of cluster algebras. There the coefficients of the monomials are trivial, while
+the exponents are determined by a \emph{quiver}, i.e., a directed graph with no
+1-cycles or 2-cycles. This setting allows us to get familiar with the general concepts
+without being bogged down by other auxiliary definitions. The general setting is worked
+out in \cref{sec:ice_quivers_and_coefficients}.
+
+Finally, in \cref{sec:cluster_algebras_surfaces}, we look at a way of associating a
+cluster algebra to a surface. For these cluster algebras, the clusters are in
+one-to-one correspondence with triangulations of the surface. As a special instance, we
+look at the triangulations of a polygon, and show that cluster algebra can be
+identified with the homogeneous coordinate ring of a certain Grassmannian.
+
+\medskip
+
+We now leave the realm of commutative algebras, and look at quantum cluster algebras.
+In \cref{sec:quantum_cluster_algebras}, we look at the modifications necessary to
+obtain a noncommutative version of a cluster algebra. Remarkably, many of the
+structural results from the classical setting carry over to the quantum setting. We
+explore the similarities between the two in \cref{sec:quantum_grassmannian}, by
+studying quantum Grassmannians and comparing the quantum cluster algebra structure on
+them to that of the classical cluster algebra structure for the Grassmannian.
+
+\medskip
+
+The last part, \cref{sec:cgl_extensions}, focuses on one specific class of
+noncommutative algebras, the so-called CGL extensions. These are a type of iterated Ore
+extension
+\begin{equation*}
+	R = \bbK[x_1][x_2; \sigma_2, \delta_2]\cdots[x_N; \sigma_N, \delta_N],
+\end{equation*}
+%
+equipped with a special type of action by a $\bbK$-torus $(\bbK^\times)^r$. It turns
+out that, under some minor assumptions, these always carry the structure of a quantum
+cluster algebra. Furthermore, the quantum cluster algebra structure can be described
+explicitly in terms of ring-theoretic properties of CGL extensions.
+
+In \cref{sec:cgl_introduction} we define CGL extensions and motivate why one should
+expect a quantum cluster algebra structure. The next section,
+\cref{sec:formulating_theorem} is focused on pinning down the exact conditions needed,
+and formulating a precise statement of the quantum cluster algebra structure.
+\Cref{sec:normalizing_generators,sec:constructing_quantum_seeds,sec:upper_cluster_algebra}
+then contain the proof of this statement, split into three parts. The first,
+\cref{sec:normalizing_generators} is the most technical, and essentially proves the
+inductive step. The second, \cref{sec:constructing_quantum_seeds}, uses this to
+inductively construct the clusters. Finally, in \cref{sec:upper_cluster_algebra} we
+prove that the quantum cluster algebra equals the CGL extension.
 
 \section*{Acknowledgements}
 
+First and foremost I would like to thank my two supervisors, Kenny De Commer and
+Geoffrey Janssens. Before the start of this academic year, I had never heard of a
+cluster algebra. With your mini-lectures, seminars, and toy example problems, I was
+quickly brought up to date. Furthermore, you provided a lot of additional context to
+the theory, even if not required for the thesis itself.
+
+Additionally, a big thank you to Andreas Lorrain for all the help with using the
+\texttt{tikz} package, without which I would have spent countless more hours struggling
+with cryptic error messages. Finally, a thank you to all the other master students as
+well, for the moral support of working together in the same office on the thesis, and
+figuring out all the administrative requirements.
