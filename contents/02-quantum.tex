@@ -7,17 +7,19 @@ cluster algebra is by construction commutative. There are, however, many interes
 algebras arising from natural examples that are not commutative. Of these, a broad
 class is given by deformations of coordinate algebras of algebraic varieties. To also
 be able to study these objects through cluster algebras, we will need a noncommutative
-version of a cluster algebra. The first part of this chapter will be dedicated to
-describing how one can generalize cluster algebras to the noncommutative setting,
-obtaining so-called quantum cluster algebras.
+version of a cluster algebra.
 
-We will then compare the Grassmannians that we saw in the setting of cluster algebras,
-to quantum Grassmannians. This will be used to provide a better intuition for the
-differences between the quantum and non-quantum setting. In the next chapter we will
-look at one specific class of noncommutative algebras, the symmetric CGL extensions.
-These always admit a quantum cluster algebra structure, which can be written down
-explicitly. We will follow the work of \cite{GoodearlYakimov2017QCA} while working out
-some examples to get a better feel for the material.
+The first part of this chapter will be dedicated to describing how one can generalize
+cluster algebras to the noncommutative setting, obtaining so-called quantum cluster
+algebras. We will then compare the Grassmannians that we saw in the setting of cluster
+algebras, to quantum Grassmannians. This will be used to provide a better intuition for
+the differences between the quantum and non-quantum setting.
+
+In the next chapter we will look at one specific class of noncommutative algebras, the
+symmetric CGL extensions. These always admit a quantum cluster algebra structure, which
+can be written down explicitly. We will follow the work of
+\cite{GoodearlYakimov2017QCA} while working out some examples to get a better feel for
+the material.
 
 Let us now first fix some notation, similar to that of the previous chapter.
 \begin{notation}
@@ -78,7 +80,7 @@ write $\mcT_\bbq$ for the \emph{quantum torus}\index{quantum!torus}
 %
 It has a $\bbK$-basis consisting of elements of the form $Y^f = Y_1^{f_1} \cdots
 	Y_N^{f_N}$ for $f \in \bbZ^N$. We will refer to the property that $X Y = qY X$ for some
-$q \in \bbK^\times$ by saying that $Y_i$ and $Y_j$
+$q \in \bbK^\times$ by saying that $X$ and $Y$
 \emph{quasi-commute}\index{quasi-commuting}.
 \begin{remark}
 
@@ -149,25 +151,27 @@ all the nonzero elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
 multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
 set, we write $\Fract(R)$\index{fract R@$\Fract(R)$} for the corresponding ring of
-fractions, and say that $R$ is an \emph{Ore domain}\index{Ore!domain}. For example, the set $\mcT_\bbq \setminus \{0\}$ forms an Ore set by a
-similar argument as above. The quantum cluster variables will live in the division
-algebra $\Fract(\mcT_\bbq)$.
+fractions, and say that $R$ is an \emph{Ore domain}\index{Ore!domain}. For example, the
+set $\mcT_\bbq \setminus \{0\}$ forms an Ore set by a similar argument as above. The
+quantum cluster variables will live in the division algebra $\Fract(\mcT_\bbq)$.
 
 \section{Toric frames and quantum mutations}
 
 We now proceed with the quest towards quantum cluster algebras. Recall that a cluster
-algebra is determined by an initial seed, consisting of a matrix and the initial
-cluster variables. The mutation is completely determined by the matrix. In the
-noncommutative setting, there is one additional thing to keep track of, namely the
-multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$. It turns out that
-some sort of compatibility will be needed between the mutation matrix, $\tB$, and the
-matrix $\bbq$.
+algebra (of geometric type) is determined by an initial seed, consisting of a matrix
+and the initial cluster variables. The mutation is completely determined by the matrix.
+In the noncommutative setting, there is one additional thing to keep track of, namely
+the multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$. It turns out
+that some sort of compatibility will be needed between the mutation matrix, $\tB$, and
+the matrix $\bbq$.
 
 Fix a multiplicatively skew-symmetric matrix $\bbq \in M_N (\bbK^\times)$, and a
 mutation matrix $\tB \in M_{N \times \ex}(\bbZ)$. As in the classical setting, $\ex
 	\subseteq [1, N]$ and the \emph{principal part}\index{principal part} of $\tB$ is the
 submatrix $B \in M_{\ex \times \ex}(\bbZ)$ indexed by the elements of $\ex$. Let
 $\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
+
+\subsection{Compatibility conditions}
 
 We now explore a naive way of generalizing the exchange relation
 (\cref{eq:exchange_relation_matrix}) to the noncommutative setting. This will give us
@@ -190,7 +194,7 @@ By convention, we take all the products to be in increasing index\footnote{If th
 	toric frames.}, i.e., $Y^f = Y_1^{f_1}Y_2^{f_2} \cdots Y_N^{f_N}$ for $f \in \bbZ^N$.
 For this definition to work, the variables $Y_1, \dots, Y_{k-1}, Y'_k, Y_{k+1}, \dots,
 	Y_N$ should now be contained in another quantum torus $\mcT_{\bbq'}$. Thus, for each $j
-	\in [1, N], j \neq k$, we need $Y'_k Y_j = q'_{kj} Y_j Y'_k$ for some $q'_{kj} \in
+	\in [1, N],\, j \neq k$, we need $Y'_k Y_j = q'_{kj} Y_j Y'_k$ for some $q'_{kj} \in
 	\bbK^\times$. We have
 \begin{align*}
 	Y'_k Y_j
@@ -238,16 +242,16 @@ properties
 \Cref{eq:compatibility_q_b} can now be rewritten as $\Omega_\bbq(b^k, e_j) = 1$. This leads to the following definition.
 \begin{definition}\label{def:compatible_pair}
 
-	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and $\bbq \in
+	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and let $\bbq \in
 		M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Let $\wt{\bbt}\in M_{\ex
 				\times N}(\bbZ)$\index{t tilde@$\wt{\bbt}$} be the matrix with entries
 	\begin{equation*}
 		t_{kj} = \Omega_\bbq(b^k, e_j) = \prod_{i=1}^N q_{ij}^{b_{ik}}
 	\end{equation*}
-	for $k \in \ex$ and $j \in [1, N]$. We say that the pair $(\bbq, \tB)$ is \emph{compatible}\index{compatible pair} if $t_{kj} = 1$ for all $k \in \ex$ and $j \in [1, N], j\neq k$ and  $t_{kk}$ is not a root of unity, for all $k\in \ex$.
+	for $k \in \ex$ and $j \in [1, N]$. We say that the pair $(\bbq, \tB)$ is \emph{compatible}\index{compatible pair} if $t_{kj} = 1$ for all $k \in \ex$ and $j \in [1, N],\, j\neq k$ and  $t_{kk}$ is not a root of unity, for all $k\in \ex$.
 \end{definition}
 \begin{remark}
-	The condition that $t_{kk}$ is not a root of unity is not strictly necessary to ensure that $Y'_k$ quasi-commutes with the $Y_j, j\neq k$. It is more of a technical condition that prevents certain degenerate cases, and has some useful consequences (cf. \cref{lem:principal_part_skew_symmetrizable}).
+	The condition that $t_{kk}$ is not a root of unity is not strictly necessary to ensure that $Y'_k$ quasi-commutes with the $Y_j,\, j\neq k$. It is more of a technical condition that prevents certain degenerate cases, and has some useful consequences (cf. \cref{lem:principal_part_skew_symmetrizable}).
 \end{remark}
 %
 
@@ -311,13 +315,15 @@ straightforward verification.
 	one for the pair $(\bbq, \tB)$.
 \end{proposition}
 
-\medskip
+\subsection{Toric frames}
 
 Although \cref{eq:quantum_exchange_naive} has led us on the right path, it is not
 perfect. It depends heavily on the order in which we take the products. It would be
 nice if there was some ``order-independent'' way to define the exchange relation. To do
 this, we will introduce the \emph{based quantum torus}\index{torus!based quantum} and
 \emph{toric frames}\index{toric frame}.
+
+\medskip
 
 The idea is that we want to symmetrize or balance the equation $Y_i Y_j = q_{ij} Y_j
 	Y_i$. To do this, we assume the existence of another multiplicatively skew-symmetric
@@ -327,14 +333,14 @@ then find that
 	\Omega_\bbr(e_i, e_j)\inv Y_i Y_j = r_{ji} Y_i Y_j = r_{ij} Y_j Y_i = \Omega_\bbr (e_j, e_i)\inv Y_j Y_i.
 \end{equation*}
 %
-We then define
+Write
 \begin{equation*}
-	Y^{(e_i + e_j)} = \Omega_\bbr(e_i, e_j)\inv Y_i Y_j = \Omega_\bbr(e_j, e_i)\inv Y_i Y_j.
+	Y^{(e_i + e_j)} \defeq \Omega_\bbr(e_i, e_j)\inv Y_i Y_j = \Omega_\bbr(e_j, e_i)\inv Y_i Y_j.
 \end{equation*}
 %
 This new element $Y^{(e_i + e_j)}$ represents the order-independent product of $Y_i$
 and $Y_j$. This leads to the \emph{based quantum torus}\index{torus!based quantum}
-$\mcT_{\bbr^{\cdot 2}}$ which has a $\bbK$-basis consisting of elements
+$\mcT_{\bbr^{\cdot 2}}$, which has a $\bbK$-basis consisting of elements
 \begin{equation*}
 	Y^{(f)} \defeq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{f_1}\dots Y_N^{f_N}
 	\text{ for } f = (f_1, \dots, f_n)^T \in \bbZ^N,
@@ -407,7 +413,7 @@ cluster variables, which we will need later on.
 		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
 		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
 	\end{align*}
-	We'll use the notation $\mathbf{r}(M)$ to denote the matrix of the toric frame $M$.
+	We'll use the notation $\mathbf{r}(M)$\index{r M@$\bbr(M)$} to denote the matrix of the toric frame $M$.
 \end{remark}
 %
 With the necessary background out of the way, it is time to define the quantum analogs
@@ -618,16 +624,13 @@ Just like in the classical setting, we have a dramatic simplification! Continuin
 we find
 \begin{align*}
 	Y_6
-	 & \defeq (1 + q Y_5)Y_4 \inv                                 \\
-	 & = (1 + q(q\inv Y_1 + 1)Y_2\inv)Y_2 (Y_1 + q + Y_2)\inv Y_1 \\
-	 & = (Y_2 +  Y_1 + q)Y_2\inv Y_2 (Y_1 + q + Y_2)\inv Y_1      \\
-	 & = Y_1,
-\end{align*}
-%
-and
-\begin{align*}
-	Y_7 & \defeq Y_5\inv (1 + q\inv Y_6)            \\
-	    & = Y_2 (1 + q\inv Y_1)\inv (1 + q\inv Y_1) \\
+	    & \defeq (1 + q Y_5)Y_4 \inv                                 \\
+	    & = (1 + q(q\inv Y_1 + 1)Y_2\inv)Y_2 (Y_1 + q + Y_2)\inv Y_1 \\
+	    & = (Y_2 +  Y_1 + q)Y_2\inv Y_2 (Y_1 + q + Y_2)\inv Y_1      \\
+	    & = Y_1,                                                     \\
+	\shortintertext{and}
+	Y_7 & \defeq Y_5\inv (1 + q\inv Y_6)                             \\
+	    & = Y_2 (1 + q\inv Y_1)\inv (1 + q\inv Y_1)                  \\
 	    & = Y_2.
 \end{align*}
 %
@@ -766,11 +769,11 @@ shows that the quantum Grassmannian is contained in the quantum cluster algebra.
 show that no extra cluster variables are created, they used the fact that in the
 classical setting, the cluster variables correspond one-to-one with the diagonals of
 the $(n+3)$-gon (cf. \cref{thm:clusters_and_triangulations}), combined with the fact
-that the quantum exchange graph equals the clasical exchange graph.
+that the quantum exchange graph equals the classical exchange graph.
 
 We now look at the special case of $\mcO_q(\Gr_{2,4}(\bbC))$. The frozen variables are
 the quantum minors $\Delta_q^{12}, \Delta_q^{23}, \Delta_q^{34}$ and $\Delta_q^{14}$.
-In the initial seed the only cluster variable is the minor $\Delta_q^{13}$. To
+In the initial seed, the only cluster variable is the minor $\Delta_q^{13}$. To
 determine how these quasi-commute, we could use \cref{eq:quantum_plucker}, or use the
 calculations done by \textcite{GrabowskiLaunois2011QCAonQuantumGrassmannians}. In any
 case, one finds
@@ -809,7 +812,7 @@ Although the classical cluster algebra structure and the quantum cluster algebra
 structure are in spirit the same for the Grassmannian, the calculations on the quantum
 side require a lot more work. Note that in both cases the method used to show that
 there was a cluster structure was quite ad hoc. There is no easy way to generalize the
-methods to other types of algebras. This makes the results of
-\cref{sec:cgl_extensions}, that much more surprising. There we show that a broad class
-of algebras have a quantum cluster algebra structure, using purely algebraic methods.
+methods to other types of algebras. This makes the results of \cref{sec:cgl_extensions}
+that much more surprising. There we show for a broad class of algebras that they all
+have a quantum cluster algebra structure, using purely algebraic methods.
 %%
