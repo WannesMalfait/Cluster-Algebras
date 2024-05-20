@@ -17,10 +17,10 @@ We will first look at what CGL extensions are, and then build up some intuition 
 one should expect a quantum cluster algebra structure on them. Afterwards we will make
 explicit the quantum cluster algebra structure, and prove its existence. Along the way
 we will work out examples to show how the results can be used to construct the quantum
-cluster algebra structure in practice. As mentioned the method is purely algebraic, and
-does not rely on geometric structures related to the algebra. In the end, constructing
-the initial quantum seed can be done almost algorithmically from the data of the CGL
-extension.
+cluster algebra structure in practice. As mentioned, the method is purely algebraic,
+and does not rely on geometric structures related to the algebra. In the end,
+constructing the initial quantum seed can be done almost algorithmically from the data
+of the CGL extension.
 
 Throughout this chapter, we use the same notation as in
 \cref{sec:quantum_cluster_algebras}. Thus, in particular, $\bbK$ is a field of
@@ -99,7 +99,7 @@ consisting of the \emph{monomials}\index{monomial}
 This basis has a natural ordering given by the \emph{reverse lexicographic
 	order}\index{reverse lexicographic order} on the exponents. Namely, $x^f \succ x^{f'}$
 if and only if there exists some $i \in [1, N]$ such that $f_i > f'_i$ and $f_j = f'_j$
-for all $j \in [1, N]$ with $j > i$. This is most easily understood with some examples:
+for all $j \in [i+1, N]$. This is most easily understood with some examples:
 \begin{equation*}
 	x_N \succ x_{N-1} \succ \cdots \succ x_1, \quad x_1^2x_2 \succ x_1x_2, \quad x_2x_4 \succ x_1x_2^4 x_3^3.
 \end{equation*}
@@ -258,7 +258,7 @@ can complete this to a multiplicatively skew-symmetric matrix
 
 The following theorem shows that the center of a CGL extension is not too big. It
 crucially relies on the root of unity conditions to ensure that the $\mcH$-action is
-nontrivial, and the generators commute in nontrivial ways.
+nontrivial and that the generators commute in nontrivial ways.
 
 \begin{theorem}[\protect{\parencite[Theorem II.6.4]{GoodearlBrown2002LecturesAQC}}]\label{thm:H_rationality} Let $R$
 	be a CGL extension as in \cref{def:cgl_extension}, and let\footnote{In
@@ -295,9 +295,9 @@ Before proceeding, let us look at some examples of CGL extensions.
 	%
 	and $\delta(1) = 0$ we find (by induction) that $\delta^{n+1}(x_1^n) = 0$, which shows
 	that it is locally nilpotent. In fact, a similar reasoning shows that it suffices to
-	check local nilpotency on the generators for any Ore extension. Finally, it suffices to
-	pick $h_2 = q$, since $q \cdot x_1 = qx_1 = \sigma(x_1)$ and $q \cdot x_2 = q^{-1}x_2$,
-	and $q^{-1}$ is not a root of unity.
+	check local nilpotency on the generators $x_1, \dotsc, x_N$ of an iterated Ore
+	extension. Finally, it suffices to pick $h_2 = q$, since $q \cdot x_1 = qx_1 =
+		\sigma(x_1)$ and $q \cdot x_2 = q^{-1}x_2$, and $q^{-1}$ is not a root of unity.
 \end{example}
 
 The following algebra will be studied extensively in what follows.
@@ -368,7 +368,7 @@ The following algebra will be studied extensively in what follows.
 
 		\end{center}
 
-		\caption{The values of the functions $\sigma_i$ and $\delta_i$ in the CGL extension presentation \cref{eq:cgl_heisenberg} for the algebra of \cref{exmp:heisenberg}. }
+		\caption{The values of the functions $\sigma_i$ and $\delta_i$ in the CGL extension presentation, \cref{eq:cgl_heisenberg}, for the algebra of \cref{exmp:heisenberg}. }
 		\label{table:sigma_delta_heisenberg}
 	\end{table}
 
@@ -581,8 +581,8 @@ where we take $\max \emptyset = - \infty$ and $\min \emptyset = + \infty$ (cf.
 
 To compute the elements $y_1, \dots, y_N$, some additional facts come in handy. For
 this, we introduce some further notation and relations related to CGL extensions. In
-what follows, $R$ is a CGL extension and the elements $y_k, k \in [1, N]$ and the
-functions $p$ and $s$ are as in \cref{thm:homogeneous_primes}.
+what follows, $R$ is a CGL extension of length $N$ and the elements $y_k,\, k \in [1,
+		N]$ and the functions $p$ and $s$ are as in \cref{thm:homogeneous_primes}.
 
 Let $O_{\pm} \colon [1, N] \to \bbZ_{\geq 0}$\index{O pm k@$O_{\pm}(k)$} be the order
 functions\index{function!order} given by
@@ -597,7 +597,9 @@ where we take $p^0 = s^0 \defeq \id$. Define
 \end{equation*}
 \index{e k@$\oe_k$}%%
 %
-for $k \in [1, N]$. Then, for $j,k \in [1, N]$, set
+for $k \in [1, N]$. Recalling
+\cref{eq:Omega_of_basis,eq:Omega_skew_symmetric,eq:Omega_of_sum}, set, for $j,k \in [1,
+		N]$,
 \begin{equation*}
 	\alpha_{kj} \defeq \Omega_{\bbl}(e_k, \overline{e}_j) = \prod_{m=0}^{O_{-}(j)}\lambda_{k, p^m(j)} \in \bbK^\times
 \end{equation*}
@@ -638,7 +640,7 @@ homogeneous prime elements $y_1, \dots, y_N$ of \cref{thm:homogeneous_primes}.
 	For all $1 \leq j < k \leq N$ such that $p(k) \neq -\infty$ and $s(j) \geq k$, we have $\delta_k(y_j) \neq 0$ if and only $s(j) = k$.
 \end{lemma}
 \begin{proof}
-	First, suppose that $s(j) = k$. Then $p(k) = j$, and \cref{eq:delta_of_y_pk} gives that $\delta_k(y_j)$ is a scalar multiple of $c_k$, which is nonzero. Indeed, $c_k \neq 0$ because $p(k) \neq -\infty$ and $\lambda_k \neq 1$ because it is not a root of unity. Now, suppose that $s(j) > k$. Then \cref{eq:y_x_quasi_commute,eq:sigma_of_y} give that
+	First, suppose that $s(j) = k$. Then $p(k) = j$, and \cref{eq:delta_of_y_pk} gives that $\delta_k(y_j)$ is a scalar multiple of $c_k$, which is nonzero by assumption. Now, suppose that $s(j) > k$. Then \cref{eq:y_x_quasi_commute,eq:sigma_of_y} give that
 	\begin{equation*}
 		\alpha_{kj}y_jx_k = x_k y_j = \sigma_k(y_j) x_k + \delta_k(y_j) = \alpha_{kj}y_j x_k + \delta_k(y_j),
 	\end{equation*}
@@ -948,7 +950,6 @@ elements $y_1, \dots, y_N$.
 			      \end{dcases*}
 		      \end{equation}
 	\end{enumerate}
-	In both cases, we can take $\eta' = \eta \circ (k,k+1)$, where $(k, k+1)$ denotes a transposition in $S_N$.
 \end{theorem}
 \begin{proof}
 	%
@@ -1092,12 +1093,12 @@ elements $y_1, \dots, y_N$.
 	\end{equation*}
 	for all $j \in [1, k-1]$, where
 	\begin{align*}
-		\beta_j & = (\alpha'_{jk})\inv \alpha_{jk} \inv                                                                                   \\
-		        & = \left(\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(k)}\lambda'_{j,p^l(k)}\right)\inv                \\
-		        & = \left(\lambda_{j, k+1}\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=1}^{O_{-}(k)}\lambda_{j,p^l(k)}\right)\inv \\
-		        & = \left(\prod_{m = 0}^{O_{-}(k+1)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(p(k))}\lambda_{j,p^l(p(k))}\right)\inv         \\
-		        & = (\alpha_{j,k+1} \alpha_{j, p(k)})\inv                                                                                 \\
-		        & = \gamma_j.
+		\beta_j  = (\alpha'_{jk})\inv \alpha_{jk} \inv
+		 & = \left(\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(k)}\lambda'_{j,p^l(k)}\right)\inv                \\
+		 & = \left(\lambda_{j, k+1}\prod_{m = 0}^{O_{-}(k)}\lambda_{j,p^m (k)} \prod_{l=1}^{O_{-}(k)}\lambda_{j,p^l(k)}\right)\inv \\
+		 & = \left(\prod_{m = 0}^{O_{-}(k+1)}\lambda_{j,p^m (k)} \prod_{l=0}^{O_{-}(p(k))}\lambda_{j,p^l(p(k))}\right)\inv         \\
+		 & = (\alpha_{j,k+1} \alpha_{j, p(k)})\inv
+		= \gamma_j.
 	\end{align*}
 	This completes the proof.
 \end{proof}
@@ -1143,7 +1144,7 @@ mutations.
 		P(k-1)\}$, as the set $\{y_i \mid i \in P(k-1)\}$ contains all homogeneous prime
 	elements of $R_{k-1}$ up to associates by \cref{thm:homogeneous_primes}. If $p(k) =
 		-\infty$, then \cref{eq:y_k_y_k_prime_when_pk_inf} gives that the $\kappa$ can not be
-	zero as $c_{k+1} \neq 0$. In this case, also $i \neq p(k)$ for all $i \in P(k-1)$.
+	zero as $c_{k+1} \neq 0$. Moreover, in this case, $i \neq p(k)$ for all $i \in P(k-1)$.
 	Thus, it remains to show that $\kappa \neq 0$ and $m_{p(k)} = 0$ if $p(k) \neq -
 		\infty$.
 
@@ -1191,7 +1192,7 @@ extension has enough presentations for our purposes of constructing a quantum cl
 algebra.
 
 \begin{definition}[\protect{\cite[Definition 3.12]{GoodearlYakimov2017QCA}}]
-	We call a CGL extension, $R$, \emph{symmetric}\index{CGL extension!symmetric} if the following conditions hold
+	We call a CGL extension $R$ as in \cref{def:cgl_extension}, \emph{symmetric}\index{CGL extension!symmetric} if the following conditions hold:
 	\begin{enumerate}
 		\item For all $1\leq j < k \leq N$,
 		      \begin{equation*}
@@ -1219,7 +1220,7 @@ Then, define the $\sigma_j^*$-derivation, $\delta_j^*$, of $R_{[j+1, N]}$ via
 %
 The conditions for $R$ to be a symmetric CGL extension then imply that $\sigma_k$ and
 $\delta_k$ preserve $R_{[j, k-1]}$ and that $\sigma_k^*$ and $\delta_k^*$ preserve
-$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ as
+$R_{[j+1, k]}$ for all $1 \leq j < k \leq N$. This allows us to view $R_{[j, k]}$ as an
 iterated Ore extension in two ways:
 \begin{equation*}
 	R_{[j, k]} = R_{[j, k-1]}[x_k; \sigma_k, \delta_k] \text{ and } R_{[j,k]} = R_{[j+1, k]}[x_j; \sigma_j^*, \delta_j^*].
@@ -1261,11 +1262,11 @@ for each $k \in [1, N]$. Indeed, $\tau(1)$ is a singleton and hence an interval.
 by induction, $\tau([1, k-1])$ is an interval, say $[i, j] \subset [1, N]$ and $\tau(k)
 	= j + 1$ or $\tau(k) = i - 1$ by definition. Hence, $\tau([1, k]) = [i-1, j]$ or
 $\tau([1, k]) = [i, j+1]$ both of which are intervals. It helps to have the mental
-picture in mind that an element $\tau \in \Xi_N$ is built iteratively by choosing some
-$\tau(1) \in [1, N]$ and then appending iteratively to the left or right until the
-whole interval $[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
+picture in mind that an element $\tau \in \Xi_N$ is built by choosing some $\tau(1) \in
+	[1, N]$ and then appending iteratively to the left or right until the whole interval
+$[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
 
-\begin{figure}
+\begin{figure}[ht!]
 	\centering
 	\begin{tikzpicture}
 		\tikzset{
@@ -1295,7 +1296,7 @@ whole interval $[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
 
 	The property of being symmetric depends on the chosen presentation. It is possible that
 	the conditions might be satisfied for one presentation, but not for another. If the
-	symmetry condition was satisfied for every presentation, then every order of adjoining
+	symmetry condition were satisfied for every presentation, then every order of adjoining
 	the generators would yield a valid presentation. Indeed, from the above we know that if
 	$R$ is symmetric with respect to a certain presentation, then each $\tau \in \Xi_N$
 	yields a valid CGL extension presentation by adjoining the generators in the order
@@ -1476,7 +1477,8 @@ We now look at an example of \cref{thm:almost_cluster_mutation} in action.
 	%
 	and
 	\begin{align*}
-		q^2 y_{\tau, 2} y_{\tau, 4}
+		\alpha_{\tau, 32}y_{\tau, 2}y_{\tau,4}
+		 & = q^2 y_{\tau, 2} y_{\tau, 4}                               \\
 		 & = q^2 E_1 y_{\tau, 3} E_2 + \frac{q^2}{1-q^2}E_1 E_{12} F_1 \\
 		 & = y_{\tau, 3} E_1 E_2 + \frac{q}{1-q^2} E_1 F_1 E_{12},
 	\end{align*}
@@ -1485,15 +1487,15 @@ We now look at an example of \cref{thm:almost_cluster_mutation} in action.
 
 \subsection{CGL extensions as cluster algebras}
 
-Let $R$ be a CGL extension. From \cref{thm:homogeneous_primes} we obtain a sequence
-$y_1, \dots, y_N$ of homogeneous prime elements which quasi-commute. If a different CGL
-extension presentation is chosen, then this yields a different sequence of homogeneous
-prime elements. When $R$ is a symmetric CGL extension, we obtain a presentation for
-each $\tau \in \Xi_N$. Suppose that $\tau, \tau' \in \Xi_N$ are a pair of
-\emph{adjacent permutations}\index{adjacent permutation}, i.e., such that $\tau' = \tau
-	(k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a transposition
-(cf. \cref{fig:xi_6_graph}). Then the two presentations obtained this way will be
-adjacent presentations as in the setting of \cref{thm:y_prime_swapped_cgl}:
+Let $R$ be a CGL extension of length $N$. From \cref{thm:homogeneous_primes} we obtain
+a sequence $y_1, \dots, y_N$ of homogeneous prime elements which quasi-commute. If a
+different CGL extension presentation is chosen, then this yields a different sequence
+of homogeneous prime elements. When $R$ is a symmetric CGL extension, we obtain a
+presentation for each $\tau \in \Xi_N$. Suppose that $\tau, \tau' \in \Xi_N$ are a pair
+of \emph{adjacent permutations}\index{adjacent permutation}, i.e., such that $\tau' =
+	\tau (k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a
+transposition (cf. \cref{fig:xi_6_graph}). Then the two presentations obtained this way
+will be adjacent presentations as in the setting of \cref{thm:y_prime_swapped_cgl}:
 \begin{align*}
 	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k)}; \sigma_{\tau, k}, \delta_{\tau, k}][x_{\tau(k+1)};\sigma_{\tau, k+1}, \delta_{\tau, k+1}] \cdots [x_\tau(N); \sigma_{\tau, N}, \delta_{\tau, N}]        \\
 	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k+1)}; \sigma_{\tau', k}, \delta_{\tau', k}][x_{\tau(k)};\sigma_{\tau', k+1}, \delta_{\tau', k+1}] \cdots [x_\tau(N); \sigma_{\tau', N}, \delta_{\tau', N}].
@@ -1509,13 +1511,13 @@ section (cf. \cref{thm:gy_main_result}).
 
 \begin{theorem*}
 	%
-	Let $R$ be a symmetric CGL extension. Then it has the structure of a quantum cluster
-	algebra which equals the corresponding upper cluster algebra. For each $\tau \in
-		\Xi_N$, the sequence of homogeneous prime elements $y_{\tau, 1}, \dots, y_{\tau, N}$ of
-	\cref{thm:homogeneous_primes} for the presentation corresponding to $\tau$ form the
-	cluster variables of a quantum seed (up to a reordering and rescaling). All such
-	quantum seeds are mutation-equivalent to each other, and mutations occur between seeds
-	corresponding to pairs of adjacent permutations $\tau' = \tau(k, k+1)$.
+	Let $R$ be a symmetric CGL extension of length $N$. Then it has the structure of a
+	quantum cluster algebra which equals the corresponding upper cluster algebra. For each
+	$\tau \in \Xi_N$, the sequence of homogeneous prime elements $y_{\tau, 1}, \dots,
+		y_{\tau, N}$ of \cref{thm:homogeneous_primes} for the presentation corresponding to
+	$\tau$ form the cluster variables of a quantum seed (up to a reordering and rescaling).
+	All such quantum seeds are mutation-equivalent to each other, and mutations occur
+	between seeds corresponding to pairs of adjacent permutations $\tau' = \tau(k, k+1)$.
 \end{theorem*}
 
 \begin{figure}
@@ -1610,7 +1612,7 @@ section (cf. \cref{thm:gy_main_result}).
 			\draw[dashed] (31) to (30);
 		\end{scope}
 	\end{tikzpicture}
-	\caption{The subset $\Xi_6 \subset S_6$. Edges are drawn between adjacent permutations. The dashed lines indicate where $\eta(\tau(k)) \neq \eta(\tau(k+1))$ for the $\eta$-function corresponding to $\HeisUqn$ (cf. \cref{exmp:heisenberg_primes}). No mutation occurs at these edges (cf. \cref{thm:y_prime_swapped_cgl}). Finally, note that the graph is connected. Thus, every element of $\Xi_6$ can be built out of a chain of adjacent permutations starting from the identity. We will show later on that this holds in general for $\Xi_N$ (cf. \cref{lem:xi_n_characterization}).}
+	\caption{The subset $\Xi_6 \subset S_6$. Edges are drawn between adjacent permutations. The dashed lines indicate where $\eta(\tau(k)) \neq \eta(\tau(k+1))$ for the $\eta$-function corresponding to $\HeisUqn$ computed in \cref{exmp:heisenberg_primes}. No mutation occurs at these edges (cf. \cref{thm:y_prime_swapped_cgl}). Finally, note that the graph is connected. Thus, every element of $\Xi_6$ can be built out of a chain of adjacent permutations starting from the identity. We will show later on in \cref{lem:xi_n_characterization} that this holds in general for $\Xi_N$.}
 	\label{fig:xi_6_graph}
 \end{figure}
 
@@ -1652,7 +1654,7 @@ appropriate normalization resolves the first issue.
 
 \medskip
 
-For the toric frames we need to move over to the based quantum torus which requires a
+For the toric frames, we need to move over to the based quantum torus which requires a
 matrix $\bbr$ such that $\bbr^{\cdot 2} = \bbq$. This puts an extra condition on the
 base field. We need to be able to take square roots of the scalars $\lambda_{lj}$ for
 all $l,j \in [1, N]$. If this is not possible in $\bbK$, one can consider the field
@@ -1662,7 +1664,7 @@ structure of the CGL extension). In what follows we will hence assume the follow
 condition.
 
 \begin{condition}\label{cond:square_roots}
-	$R$ is a CGL extension where $\sqrt{\lambda_{lj}} \in \bbK$ for all
+	$R$ is a CGL extension as in \cref{def:cgl_extension}, where $\sqrt{\lambda_{lj}} \in \bbK$ for all
 	$l, j \in [1, N]$, and a choice of
 	\begin{equation*}
 		\nu_{lj} \in \bbK \text{ such that } \nu^2_{lj} = \lambda_{lj}\text{ for all } l < j \in [1,N],
@@ -1672,7 +1674,7 @@ condition.
 
 Define $\nu_{ll} \defeq 1$ and $\nu_{jl} \defeq \nu_{lj}\inv$ for $l < j \in [1, N]$.
 Then $\bbn \defeq (\nu_{ij}) \in M_N(\bbK^\times)$\index{nu@$\bbn$} is multiplicatively
-skew-symmetric, and $\bbn^{\cdot 2} = \boldsymbol{\lambda}$. Then analogous to the
+skew-symmetric, and $\bbn^{\cdot 2} = \boldsymbol{\lambda}$. Then, analogous to the
 definition of $\bbq$, we define
 \begin{equation*}
 	r_{lj} \defeq \Omega_{\bbn}(\oe_l, \oe_j) = \prod_{m=0}^{O_{-}(l)}\prod_{n=0}^{O_{-}(j)}\nu_{p^m(l), p^n(j)}.
@@ -1862,8 +1864,8 @@ this we first describe everything in terms of the original presentation and the
 elements $\tau \in \Xi_N$. Then, by choosing a canonical ordering for the level set of
 the function $\eta$, we will ensure that the indices align.
 
-So, let $R$ be a symmetric CGL extension, and $\tau \in \Xi_n$. Recall that each such
-$\tau$ gives rise to a CGL extension presentation of the form
+So, let $R$ be a symmetric CGL extension of length $N$, and $\tau \in \Xi_N$. Recall
+that each such $\tau$ gives rise to a CGL extension presentation of the form
 \begin{equation*}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
 \end{equation*}
@@ -1907,7 +1909,7 @@ for $k_1 < \cdots < k_{|\eta\inv(m)|}$. Sort the elements of $\eta\inv(m)$ in in
 \begin{equation*}
 	\tau(k_{i_1}) < \cdots < \tau(k_{i_{|\eta\inv(m)|}}).
 \end{equation*}
-We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$\index{tau bullet@$\tau_\bullet$}, i.e., the $j$-th element in the sorted list. So, $\tau_\bullet$ sorts the elements in the level sets of $\eta$, effectively ``unscrambling'' the permutation $\tau$.
+We then set $\tau_\bullet(\tau(k_j)) = \tau(k_{i_j})$\index{tau bullet@$\tau_\bullet$}, i.e., the $j$-th element in the sorted list. So, $\tau_\bullet$ sorts the elements in the level sets of $\eta$, effectively ``unscrambling'' the permutation $\tau$, while preserving the level sets of $\eta$.
 
 We can then finally define the toric frame $M_\tau$ as
 \begin{equation}\label{eq:M_tau}
@@ -2014,7 +2016,7 @@ of the cluster variables.
 \end{example}
 
 The following lemma, which we will need later on, justifies the observations made in
-the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
+the examples.
 
 \begin{lemma}\label{lem:tau_bullet}
 	\leavevmode
@@ -2031,7 +2033,7 @@ the examples. Write $\ex = \{j \in [1, N] \mid s(j) \neq + \infty\}$.
 	\begin{enumerate}[(a)]
 		\item Because $\eta(\tau(k)) = \eta(\tau(k+1)) = \eta(\tau'(k)) = \eta(\tau'(k+1))$, and
 		      $\tau(j) = \tau'(j)$ for all $j\neq k, k+1$ we have $\tau\inv(L) = (\tau')\inv(L)$ for
-		      all level sets, $L$, of $\eta$. Hence, $\tau_\bullet\tau = (\tau')_\bullet(\tau')$.
+		      all level sets $L$, of $\eta$. Hence, $\tau_\bullet\tau = (\tau')_\bullet(\tau')$.
 		\item Suppose
 		      \begin{equation*}
 			      \eta\inv(a) = \{\tau(k_1), \dots, \tau(k_n) \mid k_1 < \dots < k_n\}
@@ -2065,8 +2067,8 @@ describe the normalization needed, but leave the technical proof that it works f
 
 \medskip
 
-The key insight, is that we can find back all the variables $\oy_{\tau}$ (up to a
-scalar multiple) by considering just the homogeneous prime elements of the subalgebras
+The key insight is that we can find back all the variables $\oy_{\tau}$ (up to a scalar
+multiple), by considering just the homogeneous prime elements of the subalgebras
 $R_{[j, k]}$ of the original CGL extension presentation.
 
 \begin{theorem}[\protect{\cite[Theorem 5.1]{GoodearlYakimov2017QCA}}]\label{thm:y_square_brackets}
@@ -2080,18 +2082,22 @@ $R_{[j, k]}$ of the original CGL extension presentation.
 \end{theorem}
 
 A priori, the $y_{[i, s^m(i)]}$ would only be cluster variables of the subalgebras
-$R_{[i, s^m(i)]}$. We will show later that they are all actually cluster variables of
-$R$ (cf. \cref{cor:cluster_variables}).
+$R_{[i, s^m(i)]}$. We will show later in \cref{cor:cluster_variables} that they are all
+actually cluster variables of $R$.
 
 \begin{example}\label{exmp:heisenberg_y_brackets}
 
 	We compute the $y_{[i, s^m(i)]}$ for the algebra $R = \HeisUqn$\index{Heis@$\HeisUqn$}.
-	Recall that the $\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i
-		= 1$ we just have
+	Recall that $\eta(1) = \eta(3) = \eta(4) = \eta(6)$ and $\eta(2) = \eta(5)$. For $i =
+		1$ we just have
 	\begin{equation*}
 		y_{[1,1]} = y_1, \quad y_{[1, 3]} = y_3, \quad y_{[1, 4]} = y_4, \quad y_{[1, 6]} = y_6,
 	\end{equation*}
-	since $R_{[1, j]} = R_j$ for all $j \in [1, 6]$.  For $i = 2$, the uniqueness of \cref{thm:y_square_brackets} implies $y_{[2,5]} = y_5$. The other cases require some actual calculations. Note that \cref{prop:eta_invariance} ensures that we can calculate the predecessors and successors in the subalgebras $R_{[i, s^m(i)]}$ as in $R$.
+	%
+	since $R_{[1, j]} = R_j$ for all $j \in [1, 6]$. For $i = 2$, the uniqueness of
+	\cref{thm:y_square_brackets} implies $y_{[2,5]} = y_5$. The other cases require some
+	actual calculations. Note that \cref{prop:eta_invariance} ensures that we can calculate
+	the predecessors and successors in the subalgebras $R_{[i, s^m(i)]}$ as in $R$.
 
 	For $y_{[3, 4]}$ we have $\delta_4(E_1) = 1$ and hence $c_{[3,4]} = - \frac{1}{1-q^2}$
 	so that
@@ -2117,7 +2123,7 @@ $s^m(i)\in [1, N]$, i.e., $s^m(i) \neq + \infty$, we define
 \end{equation*}
 \index{e i smi@$e_{[i, s^m(i)]}$}%%
 
-In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, N]$. By convention
+In particular, $\oe_k = e_{[p^{O_{-}(k)}, k]}$, for all $k \in [1, N]$. By convention,
 $y_{\emptyset} = 1$ and $e_{\emptyset} = 0$. By applying
 \cref{thm:y_prime_swapped_cgl,thm:almost_cluster_mutation} in this setting to the
 permutations
@@ -2281,10 +2287,10 @@ The normalization that we need is described by the following proposition.
 
 	For later convenience, we now determine the sequence of normalized homogeneous primes
 	of $R = \HeisUqn$ if the normalization $x_i \mapsto \gamma_i x_i$ has been applied.
-	Denote the original sequence of homogeneous primes with $y'_1, \dots, y'_6$ (cf.
-	\cref{eq:heisenberg_hom_primes}). Note that the normalization of the generators does
-	not change the subalgebras $R_1, \dots, R_3$, and hence \cref{thm:homogeneous_primes}
-	guarantees that $\oy_1, \dots, \oy_N$ will be scalar multiples of $y'_1, \dots, y'_N$
+	Denote the original sequence of homogeneous primes (\cref{eq:heisenberg_hom_primes})
+	with $y'_1, \dots, y'_6$. Note that the normalization of the generators does not change
+	the subalgebras $R_1, \dots, R_3$, and hence \cref{thm:homogeneous_primes} guarantees
+	that $\oy_1, \dots, \oy_N$ will be scalar multiples of $y'_1, \dots, y'_N$
 	respectively. Furthermore, the matrix $\bbl$ remains the same, so the normalization
 	constants $\mcS_{\bbn}(\oe_i)$ remain unchanged, and we can re-use the work from
 	\cref{exmp:heisenberg_y_normalization}.
@@ -2380,7 +2386,7 @@ The main result can now be formulated.
 		      \end{equation*}
 		      for some $k\in [1, N-1]$. If $\eta(\tau(k)) \neq \eta(\tau(k+1))$, then $M_{\tau'} = M_\tau$. Otherwise, if $\eta(\tau(k)) = \eta(\tau(k+1))$, then $M_{\tau'} = \mu_{k_\bullet}(M_\tau)$, where $k_\bullet = \tau_\bullet \tau(k)$.
 		\item We have equality between the CGL extension $R$, the quantum cluster algebra and the
-		      upper cluster algebra associated to $M$ and $\tB$:
+		      upper quantum cluster algebra associated to $M$ and $\tB$:
 		      \begin{equation*}
 			      R = \mcA(M, \tB, \emptyset)_\bbK = \mcU(M, \tB, \emptyset)_\bbK.
 		      \end{equation*}
@@ -2568,13 +2574,13 @@ The main result can now be formulated.
 	It follows that the quantum cluster algebra associated to $\HeisUqn$ is cluster-finite.
 	Moreover, the seeds may be identified with tagged triangulations of a once-punctured
 	square (cf. \cref{exmp:punctured_polygon1,thm:clusters_and_triangulations}). Only a
-	small part of this exchange graph consists of the seeds are of the form $(M_\sigma,
+	small part of this exchange graph consists of seeds of the form $(M_\sigma,
 		\tB_\sigma)$ for some $\sigma \in \Xi_6$. These are illustrated in
 	\cref{fig:xi_6_graph}. An interesting question is whether the other seeds have any
 	ring-theoretic meaning. Note that these other seeds are in some sense redundant.
 	Indeed, the (extended) cluster variables from the seeds $(M_\sigma, \tB_\sigma)$
-	already generate the whole algebra, as we will see later in (\cref{thm:intersections}
-	(b)).
+	already generate the whole algebra, as we will see later in \cref{thm:intersections}
+	(b).
 
 	We now take a closer look at the seed mutations. \Cref{thm:gy_main_result} (c) says
 	that mutation will happen between adjacent permutations, i.e., ones which differ by an
@@ -2641,7 +2647,7 @@ The main result can now be formulated.
 		 & = M_{\tau}(-e_3 + [b^3_{\tau}]_{+}) + M_\tau(-e_3 - [b^3_{\tau}]_{-}) \\
 		 & = M_{\tau}(-e_3 + e_2) + M_{\tau}(-e_3 + e_1 + e_4).
 	\end{align*}
-	Recall that $\tau_\bullet\tau = [2,1,3,4,5,6] = (1,2)$ and \cref{eq:heisenberg_q_hat_tau,eq:heisenberg_q_tau}. Expanding the right-hand side gives
+	Recall \cref{eq:heisenberg_q_hat_tau,eq:heisenberg_q_tau}, and that $\tau_\bullet\tau = [2,1,3,4,5,6] = (1,2)$. Expanding the right-hand side gives
 	\begin{align*}
 		M_{\tau}(e_2 - e_3) + M_{\tau}(e_1 - e_3 + e_4)
 		 & = \mcS_{\bbr_\tau}(e_2 - e_3)\oy_{\tau, 1}(\oy_{\tau, 3})\inv + \mcS_{\bbr_\tau}(e_1 -e_3 + e_4)\oy_{\tau, 2}(\oy_{\tau, 3})\inv \oy_{\tau, 4} \\
@@ -2734,7 +2740,7 @@ The main result can now be formulated.
 
 \section{Normalizing the generators}\label{sec:normalizing_generators}
 
-The goal of this chapter is to show that \cref{cond:normalization_generators} had the
+The goal of this section is to show that \cref{cond:normalization_generators} had the
 desired effect. This is by far the most technical part of the proof of
 \cref{thm:gy_main_result}. We begin by characterizing the subset $\Xi_N \subseteq S_N$
 differently. From this we obtain a description of the $\eta$-functions of the
@@ -2753,7 +2759,7 @@ element $\tau \in \Xi_N$ has the property that $\tau([1, j])$ is an interval for
 	\in [1, N]$. In particular, this means that $\tau([1, N-1]) = [1, N-1]$ or $\tau([1,
 		N-1]) = [2, N]$. Reformulating this in terms of an element $\tau' \in \Xi_{N-1}$ we
 obtain the following lemma.
-\begin{lemma}
+\begin{lemma}\label{lem:tau_recursive}
 	For each $\tau \in \Xi_N$, there exists $\tau' \in \Xi_{N-1}$ such that either
 	\begin{equation*}
 		\tau(i) = \tau'(i), \text{ for all } i \in [1, N-1] \quad \text{and} \quad \tau(N) = N
@@ -2789,14 +2795,15 @@ where the right-hand side is a composition of cycles.
 		\tau_l = (\tau_{l-1}(k_l), \tau_{l-1}(k_l + 1))\tau_{l-1} = \tau_{l-1}(k_l, k_l + 1)
 	\end{equation*}
 	%
-	and $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$.
+	and $\tau_{l-1}(k_l) < \tau_{l-1}(k_l + 1)$. In other words, each $\tau \in \Xi_N$ can
+	be built out of a chain of adjacent permutations in $\Xi_N$.
 \end{lemma}
 \begin{proof}
 	We first show that each element of $\Xi_N$ can be written as an element $\tau_{(j_k, \dots, j_1)}$.
 
 	By induction on $N$. For $N = 1$, we have $\Xi_N = \{\id\}$, and $\tau_{(1)} = \id$.
-	Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. There are two
-	cases
+	Now assume the lemma holds for $\Xi_{N-1}$, and take $\tau \in \Xi_N$. By
+	\cref{lem:tau_recursive}, there are two cases
 	\begin{enumerate}
 		\item There exists $\tau' \in \Xi_{N-1}$ such that $\tau(i) = \tau'(i)$ for all $i\in [1,
 				      N-1]$ and $\tau(N) = N$. Write $\tau' = \tau_{(j_k, \dots, j_1)} \in S_{N-1}$ using the
@@ -2820,7 +2827,7 @@ where the right-hand side is a composition of cycles.
 		      \end{align*}
 	\end{enumerate}
 
-	We prove the other inclusion, and the final statement together. More precisely, take $k
+	We prove the other inclusion and the final statement together. More precisely, take $k
 		\in [1, N]$ and $k \leq j_k \leq \dotsb \leq j_1 \leq N$. We will show that
 	$\tau_{(j_k, \dotsc, j_1)} \in \Xi_N$, and that it can be decomposed as in the
 	statement of the lemma.
@@ -2994,7 +3001,7 @@ a small lemma which we will need in the inductive step.
 \begin{lemma}\label{lem:symmetrization_of_sum}
 
 	Let $\bbr \in M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Then, for
-	all $j \in [2, N]$ and $f = m_1 e_1 + \dots + m_j e_j, g = m_{j+1} e_{j+1} + \dots +
+	all $j \in [2, N]$ and $f = m_1 e_1 + \dots + m_j e_j,\, g = m_{j+1} e_{j+1} + \dots +
 		m_{N} e_N \in \bbZ^N$,
 	\begin{equation*}
 		\mcS_\bbr(f+g) = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f)\mcS_{\bbr}(g).
@@ -3004,12 +3011,12 @@ a small lemma which we will need in the inductive step.
 	This is a straightforward calculation from the definitions.
 	\begin{align*}
 		\mcS_{\bbr}(f+g)
-		 & = \prod_{k < l}r_{kl}^{-m_k m_l}                                                                                 \\
+		= \prod_{k < l}r_{kl}^{-m_k m_l}
 		 & = \prod_{k < l \leq j}r_{kl}^{-m_k m_l} \prod_{k \leq j < l}r_{kl}^{-m_k m_l} \prod_{j < k < l}r_{kl}^{-m_k m_l} \\
 		 & = \prod_{k < l \leq j}r_{kl}^{-f_k f_l} \prod_{k \leq j < l}r_{kl}^{-f_k g_l} \prod_{j < k < l}r_{kl}^{-g_k g_l} \\
 		 & = \mcS_{\bbr}(f) \prod_{k \leq j < l}r_{kl}^{-f_k g_l} \mcS_{\bbr}(g)                                            \\
 		 & = \mcS_{\bbr}(f) \prod_{k, l}r_{kl}^{-f_k g_l} \mcS_{\bbr}(g)                                                    \\
-		 & = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f) \mcS_{\bbr}(g).
+		 & = \Omega_{\bbr}(f,g)\inv \mcS_{\bbr}(f) \mcS_{\bbr}(g) \qedhere
 	\end{align*}
 \end{proof}
 \begin{proposition}\label{prop:y_tau_is_y_bracket}
@@ -3071,7 +3078,7 @@ a small lemma which we will need in the inductive step.
 	find that $\tau(p_\tau(k)) > \tau(k)$. Now, take $\tau(j) \in [\tau(k) + 1,
 			\tau(p_\tau(k))]$ such that $\eta(\tau(j)) = \eta(\tau(k))$. We need to show that $j =
 		p_\tau(k)$. By definition of $p_\tau(k)$ we have $j \notin [p_\tau(k) + 1, k-1]$. Since
-	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$, we also have $j \not [1,
+	$\tau([1, p_\tau(k)]) = [\tau(p_\tau(k)), \tau(i')]$, we also have $j \notin [1,
 			p_\tau(k) - 1]$. If $j = p_\tau(k)$, then we are done. If not, then $j > k$, and hence
 	$\tau(j) \notin [\tau(k), \tau(i)]$. By assumption, $\tau(j) \geq \tau(k) + 1$, so we
 	must have
@@ -3095,7 +3102,7 @@ a small lemma which we will need in the inductive step.
 	$p\tau(k)$ we also have $j \notin [p_\tau(k) + 1, k -1]$. So, either $j = p_\tau(k)$,
 	or $j = k$ or $j > k$ in which case $\tau(j) \in \tau([1, k])$, proving the claim.
 
-	So, in both case we found $\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
+	So, in both cases we found $\oy_{\tau, p_\tau(k)} = \oy_{[s(\tau(k)), s^m(\tau(k))]}$.
 	From \cref{lem:symmetrization_of_sum}, we obtain
 	\begin{align*}
 		\mcS_{\bbn_\tau}(e^\tau_{[p^m_\tau(k), k]})
@@ -3231,11 +3238,11 @@ restrictions this vector has. This is established in the next theorem.
 \end{theorem}
 \begin{proof}
 
-	Denote for brevity the elements
-	\begin{align}
-		g            & = \sum_{i \in P(k-1), i\neq p(k)} m_i e_i            \\
-		\overline{g} & = \sum_{i \in P(k-1), i\neq p(k)} m_i \overline{e}_i
-	\end{align}
+	Denote, for brevity, the elements
+	\begin{align*}
+		g            & \defeq \sum_{i \in P(k-1), i\neq p(k)} m_i e_i            \\
+		\overline{g} & \defeq \sum_{i \in P(k-1), i\neq p(k)} m_i \overline{e}_i
+	\end{align*}
 	%
 	in $\bbZ^N$. By construction of the toric frames $M$ and $M'$, the element
 	$\overline{y}_j$ belongs to the image of both $M$ and $M'$ for each $j \neq k$. Recall
@@ -3334,7 +3341,7 @@ and
 %
 By \cref{prop:eta_invariance}, we can take $\eta\tau_{i,j}$ as the $\eta$-function of
 \cref{thm:homogeneous_primes} for the CGL extension presentation corresponding to
-$\tau_{i,j}$. In particular, $\eta_{\tau_{i,j}}(j-i+1) = i$ and
+$\tau_{i,j}$. In particular, $\eta_{\tau_{i,j}}(j-i+1) = \eta(i)$ and
 $\eta_{\tau_{i,j}}(j-i+2) = \eta(j+1)$. So, if $\eta(i) = \eta(j+1)$, then
 \cref{eq:Omega_r_squared_ek} of the previous theorem implies
 \begin{equation*}
@@ -3365,9 +3372,9 @@ generators:
 	x_{i+1}, x_{i+2}, \dots, x_{s^m(i) - 1}, x_i, x_{s^m(i)}.
 \end{equation*}
 %
-Write $t = s^m(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \cdots + \bbZ
-	e_{s^m(i)}$ and index the rows and columns of matrices in $M_t(\bbZ)$ by $i, \cdots,
-	s^m(i)$. Recall from \cref{prop:def_u_brackets} that we write
+Write $t = s^m(i)-i +1$. We then identify $\bbZ^t \cong \bbZ e_i + \dotsb + e_{i+1} +
+	\cdots + \bbZ e_{s^m(i)}$ and index the rows and columns of matrices in $M_t(\bbZ)$ by
+$i, \dotsc, s^m(i)$. Recall from \cref{prop:def_u_brackets} that we write
 \begin{equation*}
 	O_{-}^j(k) \defeq \max \{n \in \bbZ_{\geq 0} \mid p^n(k) \geq j\},
 \end{equation*}
@@ -3468,10 +3475,14 @@ We can now finally prove mutation between adjacent presentations.
 	$\tau_\bullet \tau (k, k+1) = (\tau')_\bullet \tau'$, and part (a) of the theorem now
 	follows from \cref{thm:almost_mutation_toric_frame} (a).
 
-	We now consider the case where $\eta(\tau(k)) = \eta(\tau(k+1))$ which requires
-	significantly more work. Because $\tau([1, k])$ and $\tau([1, k+1])$ are intervals,
-	$\tau(k+1)$ must lie on one of the endpoints of the interval $\tau([1, k+1])$. The
-	assumption $\tau(k) < \tau(k+1)$ forces
+	We now consider the case where $\eta(\tau(k)) = \eta(\tau(k+1))$. By
+	\cref{lem:tau_bullet}, $\tau_\bullet \tau = (\tau')_\bullet \tau'$, so that we obtain
+	using \cref{thm:almost_mutation_toric_frame} that $M_\tau(e_j) = M_{\tau'(e_j)}$ for
+	all $j \neq k_\bullet$. The rest of the statement requires significantly more work.
+
+	Because $\tau([1, k])$ and $\tau([1, k+1])$ are intervals, $\tau(k+1)$ must lie on one
+	of the endpoints of the interval $\tau([1, k+1])$. The assumption $\tau(k) < \tau(k+1)$
+	forces
 	\begin{equation*}
 		\tau'([1, k+1]) = \tau([1, k+1]) = [\tau(i), \tau(k+1)] \quad \text{and}\quad \tau([1, k]) = [\tau(i), \tau(k+1) - 1]
 	\end{equation*}
@@ -3502,9 +3513,6 @@ We can now finally prove mutation between adjacent presentations.
 		\end{aligned}
 	\end{equation}
 	%
-	Then, since $\tau_\bullet \tau = (\tau')_\bullet \tau'$, by \cref{lem:tau_bullet}, we
-	obtain using \cref{thm:almost_mutation_toric_frame} that $M_\tau(e_j) = M_{\tau'(e_j)}$
-	for all $j \neq k_\bullet$.
 
 	Now, from $\tau([1, k]) = [\tau(k), \tau(k+1) - 1] = [\tau(k), s^m(\tau(k)) - 1]$ it
 	follows that
@@ -3834,7 +3842,7 @@ together with \cref{prop:mutation_preserves_good_things}.
 	properties.
 \end{lemma}
 \begin{proof}
-	Denote, for brevity, $M' = \mu_k(M)$ and $\tB' = \mu_k(\tB)$. Since $\chi_{M(b^k)} = 1$ and $b^k = [b^k]_{+} + [b^k]_{-}$, we find
+	Denote, for brevity, $M' \defeq \mu_k(M)$ and $\tB' \defeq \mu_k(\tB)$. Since $\chi_{M(b^k)} = 1$ and $b^k = [b^k]_{+} + [b^k]_{-}$, we find
 	\begin{equation*}
 		\chi_{M(-e_k + [b^k]_{+})} = \chi_{M(-e_k - [b^k]_{-})}.
 	\end{equation*}
@@ -3854,7 +3862,7 @@ together with \cref{prop:mutation_preserves_good_things}.
 	\begin{equation*}
 		(b')^j = b^j + \epsilon b_{kj}[b^k]_{\epsilon} - 2 b_{kj}e_k,
 	\end{equation*}
-	where $\epsilon = \sign(b_{kj})$. Thus,
+	where $\epsilon = \sign(b_{kj})$. Hence,
 	\begin{align*}
 		\chi_{M'((b')^j)}
 		 & = \chi_{M'(b^j + \epsilon b_{kj}[b^k]_\epsilon - 2b_{kj} e_k)}                                                  \\
@@ -4188,7 +4196,7 @@ chain of inclusions:
 
 The first inclusion will be shown by proving that for each $j \in [1, N]$, the
 generator $x_j \in R$ is a cluster variable for some toric frame $M_\tau$. The second
-inclusion is just the quantum Laurent phenomenon (cf. \cref{thm:quantum_laurent}). The
+inclusion is just the quantum Laurent phenomenon, \cref{thm:quantum_laurent}. The
 hardest inclusion is the last one. For this we will need to study the intersections of
 the Ore localizations by the homogeneous prime elements more carefully. The first step
 to proving this inclusion will be \cref{thm:minimal_denominators}. The inclusion is
@@ -4274,7 +4282,7 @@ similar argument as in the proof of \cref{lem:ore_set_ore_extension}. Indeed, if
 	E$ and $f' \in F$ such that $ey = xe'$ and $fz = yf'$. Then $xe'f' = eyf' = efz \in efR
 	\cap xEF$.
 
-We will use the shorthand $E = E_{[1,N]}$. Write $a \mid_l b$\index{divides
+We will use the shorthand $E \defeq E_{[1,N]}$. Write $a \mid_l b$\index{divides
 	left$\mid_l$} if $a$ divides $b$ on the left, i.e., $b = ar$ for some $r \in R$. Call
 an element $y_1^{m_1}\cdots y_N^{m_N}$ a \emph{minimal denominator}\index{minimal
 	denominator} of a nonzero element $v\in R[E\inv]$ if
@@ -4289,12 +4297,12 @@ In what follows, we assume the setting of
 \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. We then define for
 all $I \subseteq [1, N]$ the analogous Ore sets,
 \begin{equation*}
-	E'_{I} := \bbK^\times \prod_{j \in I}\{(y'_j)^m \mid m \in \bbZ_{\geq 0}\};
+	E'_{I} \defeq \bbK^\times \prod_{j \in I}\{(y'_j)^m \mid m \in \bbZ_{\geq 0}\};
 \end{equation*}
 %
-and write $E' = E'_{[1, N]}$. Because $y'_j$ is a scalar multiple of $y_j$ for all $j
-	\neq k$, we have that $E'_I = E_I$ if $k \notin I'$. We now state the theorem that we
-want to prove.
+and write $E' \defeq E'_{[1, N]}$. Because $y'_j$ is a scalar multiple of $y_j$ for all
+$j \neq k$, we have that $E'_I = E_I$ if $k \notin I'$. We now state the theorem that
+we want to prove.
 
 \begin{theorem}\label{thm:minimal_denominators}
 	Assume the setting of \cref{thm:y_prime_swapped_cgl}~\ref*{itm:eta_k_is_eta_k_plus_one}. Let
@@ -4388,7 +4396,7 @@ We now state and prove 3 lemmas that we will need for the proof of
 		e \inv = \alpha\inv f\inv p$ and $e\inv p = p \beta\inv g \inv$. Since $p$ is prime it
 	is also normal in $R$, and we obtain that $p$ is normal in $R[E\inv]$.
 
-	To see that it is prime, we go for the brute-force approach. Take $xe\inv, yf\inv \in
+	To see that it is prime, we go for the direct approach. Take $xe\inv, yf\inv \in
 		R[E\inv]$ such that their product lies in $pR[E\inv]$. We want to show that either
 	$xe\inv$ or $yf\inv$ must lie in $pR[E\inv]$. We can write
 	\begin{equation*}
@@ -4570,16 +4578,17 @@ predecessor and successor functions corresponding to $\eta_\tau$ and let $y_{\ta
 	\mcT_\tau & \defeq \text{ the $\bbK$-subalgebra of $\Fract(R)$ generated by } \{y_{\tau, k}^{\pm 1} \mid k \in [1, N]\}                                   \\
 	E_\tau    & \defeq \text{ the multiplicative subset of $\mcA_\tau$ generated by } \bbK \sqcup \{y_{\tau, k} \mid k \in [1, N], s_\tau(k) \neq + \infty\}.
 \end{align*}
-\index{A tau@$\mcA_\tau$}\index{T tau@$\mcT_\tau$}\index{E tau@$E_\tau$%}
+\index{A tau@$\mcA_\tau$}\index{T tau@$\mcT_\tau$}\index{E tau@$E_\tau$}%
 
 Note that $\mcT_\tau$ is a quantum torus because of \cref{eq:y_quasi_commute}.
 Consequently, $E_\tau$ consists of normal elements in $\mcA_\tau$, and is thus an Ore
 set in $\mcA_\tau$, so that $\mcA_\tau[E\inv_\tau]$ makes sense to write down.
 
-The following lemma ensures that every element $j \in \ex$ gets mutated when
-considering only the elements of $\Gamma_N$. The first part of the lemma will be used
-to describe the set $E_\tau$ in terms of the cluster variables of the toric frame
-$M_\tau$.
+Recall the definition of $\ex$ (\cref{eq:ex}) in the setting of
+\cref{thm:gy_main_result}. The following lemma ensures that every element $j \in \ex$
+gets mutated when considering only the elements of $\Gamma_N$. The first part of the
+lemma will be used to describe the set $E_\tau$ in terms of the cluster variables of
+the toric frame $M_\tau$.
 
 \begin{lemma}\label{lem:tau_bullet_ex_gamma}
 	\leavevmode
@@ -4591,7 +4600,7 @@ $M_\tau$.
 		      $\tau_\bullet\tau(k) = j$.
 	\end{enumerate}
 \end{lemma}
-\begin{proof}
+\begin{proof}\leavevmode
 	\begin{enumerate}[(a)]
 		\item Take $j\in [1, N]$ and let $k = (\tau_\bullet \tau)\inv(j)$. Since $\tau_\bullet$
 		      preserves the level sets, we have $\eta(j) = \eta(\tau(k))$. So, $j \in \ex$ if and
