@@ -3177,7 +3177,11 @@ algebraic variety of dimension $N$'' is.
 	\item The dimension, $d = \dim(X)$ of $X$, is the maximal length of a chain of prime ideals
 	      $p_0 \subset p_1 \subset \dotsb \subset p_d$ in the coordinate algebra $\bbC[X]$. This
 	      corresponds to the intuition that lines and circles are one-dimensional, while planes
-	      or spheres are two-dimensional. One can show that $\dim(\wh{\Gr}_{k,m}) = k(m-k) + 1$.
+	      or spheres are two-dimensional. One can show that
+	      \begin{equation}\label{eq:dimension_grassmannian}
+		      \dim(\wh{\Gr}_{k,m}) = k(m-k) + 1.
+	      \end{equation}
+	      %
 	      The extra $+1$ is caused by taking the affine cone and adding all the scalar multiples
 	      of points.
 	\item An affine algebraic variety is said to be \emph{irreducible}\index{variety!irreducible}
@@ -3193,18 +3197,22 @@ algebraic variety of dimension $N$'' is.
 \end{itemize}
 
 We now check that the conditions of the proposition are satisfied. As mentioned, we
-take $X \defeq \wh{\Gr}_{2, n+3}$, and $\mcA \defeq \mcA(T)$ as in
-\cref{sec:triangulations_revisited}, where $T$ is a triangulation of an $(n+3)$-gon. It
-is well known \cite[Proposition 12.7]{FominZelevinsky2003CAFin} that $X$ is a rational
-irreducible affine algebraic variety. The dimension of $X$ is $2 (n+3 - 2) + 1 = 2n
-	+3$. An extended cluster of $\mcA$ has $n+3$ frozen variables corresponding to the
-sides of the $(n+3)$-gon, and $n$ cluster variables corresponding to the diagonals, for
-a total of $n+3 + n = 2n +3$ variables in each extended cluster. Note that none of the
-$P_{ij}$ are zero, since the matrix $M_{ij}$ with a one at the entries $(i,1)$ and
-$(j,2)$, and zeros everywhere else has $P_{ij}(M_{ij}) = \det(I_2) = 1$. That the
-$P_{ij}$ generate $\bbC[X]$ is by construction. Finally, that every exchange relation
-in $\mcA$ is valid in $\bbC[X]$ follows from noting that the Ptolomy relations
-\cref{eq:exchange_flip_quad} are exactly the same as the Plücker relations
+take
+\begin{equation*}
+	X \defeq \wh{\Gr}_{2, n+3} \quad \text{and}\quad \mcA \defeq \mcA(T),
+\end{equation*}
+%
+as in \cref{sec:triangulations_revisited}, where $T$ is a triangulation of an
+$(n+3)$-gon. It is well known \cite[Proposition 12.7]{FominZelevinsky2003CAFin} that
+$X$ is a rational irreducible affine algebraic variety. The dimension of $X$ is $2 (n+3
+	- 2) + 1 = 2n +3$. An extended cluster of $\mcA$ has $n+3$ frozen variables
+corresponding to the sides of the $(n+3)$-gon, and $n$ cluster variables corresponding
+to the diagonals, for a total of $n+3 + n = 2n +3$ variables in each extended cluster.
+Note that none of the $P_{ij}$ are zero, since the matrix $M_{ij}$ with a one at the
+entries $(i,1)$ and $(j,2)$, and zeros everywhere else has $P_{ij}(M_{ij}) = \det(I_2)
+	= 1$. That the $P_{ij}$ generate $\bbC[X]$ is by construction. Finally, that every
+exchange relation in $\mcA$ is valid in $\bbC[X]$ follows from noting that the Ptolomy
+relations \cref{eq:exchange_flip_quad} are exactly the same as the Plücker relations
 \cref{eq:plucker_relation}.
 
 \medskip
@@ -3692,9 +3700,11 @@ We then add an arrow from $i \in [1, N]$ to $j \in \ex$ for each triangle in $T$
 is not self-folded with sides labeled $\pi_T(i)$ and $\pi_T(j)$ with $\pi_T(j)$
 following $\pi_T(i)$ in clockwise order.
 
-It follows that the ice quiver $\tQ(T)$ remains unchanged by swapping two vertices
-corresponding to the sides of a self-folded triangle. If $\tB(T)$ is the associated
-matrix, then this means that the corresponding rows and columns are identical.
+\begin{remark}\label{rem:self_folded_interchangeable}
+	It follows that the ice quiver $\tQ(T)$ remains unchanged by swapping two vertices
+	corresponding to the sides of a self-folded triangle. If $\tB(T)$ is the associated
+	matrix, then this means that the corresponding rows and columns are identical.
+\end{remark}
 
 \begin{figure}[htb!]
 	\centering
@@ -3768,32 +3778,28 @@ whose simplices consist of pairwise compatible arcs. Thus, the vertices are the 
 the edges are pairs of compatible arcs, and the maximal simplices are the ideal
 triangulations. Dually, we have $E^\circ(S, M)$\index{E circ S M@$E^\circ(S, M)$},
 whose points are triangulations and whose edges correspond to flips. For example,
-\cref{fig:hexagon_exchange_graph} shows $E^\circ(S, M)$ for the hexagon.
-
-Under this terminology, the fact that every ideal triangulation can be reached from
-another by a sequence of flips comes down to the fact that $E^\circ(S,M)$ is connected.
-However, because the radius of a self-folded triangle can not be flipped, $E^\circ(S,
-	M)$ may have boundary (cf. \cref{fig:arc_simplex_digon}). This will be resolved by
-looking at tagged triangulations.
+\cref{fig:hexagon_exchange_graph} shows $E^\circ(S, M)$ for the hexagon. Under this
+terminology, the fact that every ideal triangulation can be reached from another by a
+sequence of flips comes down to the fact that $E^\circ(S,M)$ is connected.
 
 \begin{figure}[htb!]
 	\centering
 
 	\begin{tikzpicture}
-		\node[circle, inner sep=5ex] (digon) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon.center) (fakedigon) {};
+		\node[circle, inner sep=4.5ex] (digon) {};
+		\node[circle, inner sep=4.5ex, outer sep = 1ex] at (digon.center) (fakedigon) {};
 		\draw (digon.north) -- (digon.center);
 
-		\node[circle, inner sep=5ex, right= of fakedigon] (digon2) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon2.center) (fakedigon2) {};
+		\node[circle, inner sep=4.5ex, right= of fakedigon] (digon2) {};
+		\node[circle, inner sep=4.5ex, outer sep = 1ex] at (digon2.center) (fakedigon2) {};
 		\draw (digon2.center) -- (digon2.south);
 
-		\node[circle, inner sep=5ex, below= of fakedigon] (digon3) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon3.center) (fakedigon3) {};
+		\node[circle, inner sep=4.5ex, below= of fakedigon] (digon3) {};
+		\node[circle, inner sep=4.5ex, outer sep = 1ex] at (digon3.center) (fakedigon3) {};
 		\draw (digon3.north) .. controls +(-120:15ex) and +(-60:15ex) .. (digon3.north);
 
-		\node[circle, inner sep=5ex, below= of fakedigon2] (digon4) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon4.center) (fakedigon4) {};
+		\node[circle, inner sep=4.5ex, below= of fakedigon2] (digon4) {};
+		\node[circle, inner sep=4.5ex, outer sep = 1ex] at (digon4.center) (fakedigon4) {};
 		\draw (digon4.south) .. controls +(120:15ex) and +(60:15ex) .. (digon4.south);
 
 		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
@@ -3812,19 +3818,19 @@ looking at tagged triangulations.
 	\end{tikzpicture}
 	\hspace{5ex}
 	\begin{tikzpicture}
-		\node[circle, inner sep=5ex] (digon) {};
+		\node[circle, inner sep=4.5ex] (digon) {};
 		\draw[gray] (digon.south) edge[bend left=80] (digon.north);
 		\draw[gray] (digon.south) edge[bend right=80] (digon.north);
 		\draw (digon.south) -- (digon.center);
 		\draw (digon.center) edge (digon.north);
 
-		\node[circle, inner sep=5ex, below right=8ex and 1ex of digon] (digon2) {};
+		\node[circle, inner sep=4.5ex, below right=8ex and 1ex of digon] (digon2) {};
 		\draw[gray] (digon2.south) edge[bend left=80] (digon2.north);
 		\draw[gray] (digon2.south) edge[bend right=80] (digon2.north);
 		\draw (digon2.south) -- (digon2.center);
 		\draw (digon2.south) .. controls +(120:15ex) and +(60:15ex) .. (digon2.south);
 
-		\node[circle, inner sep=5ex, below left =8ex and 1ex of digon] (digon3) {};
+		\node[circle, inner sep=4.5ex, below left =8ex and 1ex of digon] (digon3) {};
 		\draw[gray] (digon3.south) edge[bend left=80] (digon3.north);
 		\draw[gray] (digon3.south) edge[bend right=80] (digon3.north);
 		\draw (digon3.north) -- (digon3.center);
@@ -3846,7 +3852,7 @@ looking at tagged triangulations.
 		\node[below] at ($(digon3.south)!0.5!(digon2.south)$) {$E^\circ(S, M)$};
 	\end{tikzpicture}
 
-	\caption{The arc simplex $\Delta^\circ(S, M)$ and the dual $E^\circ(S, M)$ for the once-punctured digon. Because the radius of a self-folded triangle can not be flipped, the boundary is non-empty.}
+	\caption{The arc simplex $\Delta^\circ(S, M)$ and the dual $E^\circ(S, M)$ for the once-punctured digon. Because the rank of the once-punctured digon is $2$ (see \cref{eq:rank_punctured_polygon}), the arc simplex and the dual are simply graphs. Remark that the graphs are not 2-regular, because the radius of a self-folded triangle can not be flipped.}
 	\label{fig:arc_simplex_digon}
 \end{figure}
 
@@ -3856,15 +3862,15 @@ looking at tagged triangulations.
 	monogon is excluded by definition. The arc complex of the once-punctured digon and its
 	dual are shown in \cref{fig:arc_simplex_digon}. The number of arcs in any given ideal
 	triangulation of the punctured $n$-gon is given by the rank
-	\begin{equation*}
-		6g + 3b + 3p + c -6 = 0 + 3 + 3 + n = n.
-	\end{equation*}
+	\begin{equation}\label{eq:rank_punctured_polygon}
+		6g + 3b + 3p + c -6 = 0 + 3 + 3 + n -6 = n.
+	\end{equation}
 
 	We mentioned before that the only surfaces with finitely many ideal triangulations are
 	the unpunctured, and once-punctured polygons. Since the triangulations will correspond
-	one-to-one with the clusters (cf \cref{thm:clusters_and_triangulations}), we know that
+	one-to-one with the clusters (cf. \cref{thm:clusters_and_triangulations}), we know that
 	the associated cluster algebra must be cluster-finite. By the classification theorem
-	(\cref{thm:cluster_finite_classification}), it follows that the principal part of the
+	(\ref{thm:cluster_finite_classification}), it follows that the principal part of the
 	ice quiver for some triangulation should have connected components which are Dynkin
 	diagrams of type ADE.
 
@@ -3955,7 +3961,7 @@ looking at tagged triangulations.
 
 			\end{scope}
 		\end{tikzpicture}
-		\caption{The ice quiver associated to an ideal triangulation of a once-punctured octagon. The chosen triangulation yields an ice quiver whose principal part is an orientation of a Dynkin diagram of type $D_8$.}
+		\caption{The ice quiver associated to an ideal triangulation of a once-punctured octagon. The puncture is located in bottom right of the octagon. The chosen triangulation yields an ice quiver whose principal part is an orientation of a Dynkin diagram of type $D_8$.}
 		\label{fig:triangulation_octagon}
 	\end{figure}
 
@@ -3963,14 +3969,14 @@ looking at tagged triangulations.
 	this case the quiver is actually two copies of $A_1$, which can be interpreted as
 	$D_2$. When $n=3$, the quiver is of type $A_3$, which can also be interpreted as being
 	$D_3$. Note that $A_3$ is also the quiver associated to triangulations of an
-	unpunctured hexagon. Indeed, once we introduce tagged triangulations we will see that
-	their arc complexes coincide (cf. \cref{fig:punctured_triangle}).
+	unpunctured hexagon. Indeed, once we introduce tagged triangulations we will see in
+	\cref{fig:punctured_triangle} that their arc complexes coincide.
 \end{example}
 
 \begin{example}\label{exmp:triangulation_punctured_torus}
 
 	We now look at the once-punctured torus. It can be quite tricky to visualize a
-	triangulation of a once-punctured torus embedded in 3-dimensional space. So, we will
+	triangulation of a once-punctured torus embedded in a 3-dimensional space. So, we will
 	instead make use of the ``topologist's torus'': a square with opposite ends identified.
 	We strategically place the puncture at one (and hence all four) of the corners. The
 	number of arcs in an ideal triangulation is given by the rank
@@ -3979,7 +3985,8 @@ looking at tagged triangulations.
 	\end{equation*}
 	%
 	One ideal triangulation is obtained by taking the sides of the square together with one
-	of the diagonals (cf. \cref{fig:torus_triangulation}).
+	of the diagonals (cf. \cref{fig:torus_triangulation}). Note that we find back the
+	Markov quiver from \cref{exmp:markov_quiver}.
 	\begin{figure}[ht!]
 		\centering
 		\begin{tikzpicture}[baseline]
@@ -4013,15 +4020,526 @@ looking at tagged triangulations.
 		\label{fig:torus_triangulation}
 	\end{figure}
 
-	Note that we find back the Markov quiver from \cref{exmp:markov_quiver}. Because there
-	is only one puncture and no boundary, there are no triangulations with self-folded
-	triangles. This allows us (see \cref{prop:tagged_flips_connected}) to apply
-	\cref{thm:clusters_and_triangulations} without the need for tagged triangulations.
-	Since the once-punctured torus has an infinite number of triangulations, we have now
-	found an alternative proof that the cluster algebra associated to the Markov quiver has
-	an infinite number of clusters. Furthermore, \cref{thm:clusters_and_triangulations}
-	states that all the cluster variables are distinct, something which is not initially
-	obvious.
+\end{example}
+
+\begin{example}
+
+	We now look at ideal triangulations of the annulus. Let us write $\wt{A}(n_1, n_2)$ for
+	the annulus with $n_1$ marked points on the first boundary component and $n_2$ marked
+	points on the second boundary component. Note that the two boundary components are
+	topologically indistinguishable, so that $\wt{A}(n_1, n_2) = \wt{A}(n_2, n_1)$. The
+	rank is given by
+	\begin{equation*}
+		6g + 3b + 3p + c - 6 = 0 + 6 + 0 + n_1 + n_2 -6 = n_1 + n_2.
+	\end{equation*}
+	%
+	The definition of a bordered surface with marked points requires that $n_1, n_2 \geq
+		1$.
+
+	The simplest case is $\wt{A}(1,1)$. A part of the arc complex is illustrated in
+	\cref{fig:infinite_arcs}. The arcs can be identified with $\bbZ$ by the number of times
+	they wind around the central boundary component. Positive integers are assigned to
+	clockwise windings, and negative integers to counter-clockwise windings. The compatible
+	arcs correspond to pairs of consecutive integers. Label the ``outer'' boundary
+	component with $a$ and the ``inner'' boundary component with $b$, where inner and outer
+	refer to the presentation in \cref{fig:infinite_arcs}. Then we have for example the
+	following ice quivers associated to the triangulations $\{-1, 0\}$ and $\{0,1\}$:
+	\begin{equation*}
+		\begin{tikzcd}[column sep=small]
+			& \boxed{b} \drar & \\
+			0 \urar \drar && -1 \ar[ll, shift left] \ar[ll, shift right]\\
+			& \boxed{a} \urar &
+		\end{tikzcd}
+		\quad \overset{\mu_1}{\longleftrightarrow} \quad
+		\begin{tikzcd}[column sep=small]
+			& \boxed{b} \dlar & \\
+			0 \ar[rr, shift left] \ar[rr, shift right]  && \dlar \ular 1\\
+			& \boxed{a} \ular &
+		\end{tikzcd}.
+	\end{equation*}
+
+	The unoriented principal part of the ice quiver is not a Dynkin diagram of type ADE, as
+	expected. Instead, it is a so-called affine Dynkin diagram of type $\wt{A}_1$. An
+	\emph{affine Dynkin diagram}\index{Dynkin diagram!affine} of type $\wt{A}_{n-1}$ for $n
+		\geq 3$ is an $n$-cycle. Note that in this case we do not have
+	\cref{lem:orientation_tree_mutation}. Not all orientations of $\wt{A}_{n-1}$ will be
+	equivalent. Take $n \geq 3$, and write for an orientation of an $n$-cycle, $n = n_1 +
+		n_2$ where $n_1$ is the number of edges oriented in one direction and $n_2$ is the
+	number of edges oriented the other way. Then two orientations $n = n_1 + n_2 = n_1' +
+		n_2'$ will be equivalent if and only if $\{n_1, n_2\} = \{n_1', n_2'\}$ \parencite[Lemma 6.8]{FominShapiroThurston2008CATriangulatedSurfacesI}. The annulus
+	$\wt{A}(n_1, n_2)$ will have an associated ice quiver whose principal part corresponds
+	to the orientation of $\wt{A}_{n - 1}$ with $n = n_1 + n_2$. That explains the
+	notation.
+
+	An ideal triangulation where the affine Dynkin diagram of type $\wt{A}_2$ appears is
+	given in \cref{fig:annulus1_2_ideal_triangulation}. The arc complex of $\wt{A}(1,2)$,
+	and its dual are given in \cref{fig:annulus1_2_exchange_graph}.
+	\begin{figure}[htb!]
+		\centering
+		\begin{tikzpicture}[nodes={shape=circle,draw,font=\footnotesize},x=1ex,y=1ex, scale=2.5,baseline]
+			\node[gray, inner sep=10ex] (an) {};
+			\node[gray, pattern=crosshatch,pattern color=gray,inner sep=3 ex] at (an.center) (hole) {};
+			\node[fill, inner sep=0.3ex] at (an.south) {};
+			\node[fill, inner sep=0.3ex] at (hole.west) {};
+			\node[fill, inner sep=0.3ex] at (hole.east) {};
+
+			\draw (an.south) edge[bend left] node[draw=none, left] {1} (hole.west);
+			\draw (an.south) edge[bend right] node[draw=none, left, near start] {2} (hole.east);
+			\draw plot [smooth, tension=1] coordinates {
+					(an.south)
+					($(hole.east) + (2,0)$) ($(hole.north) + (0,2)$)
+					(hole.west)
+				};
+			\node[draw=none, left, outer sep=0.5ex] at (an.east) {3};
+
+			\node[left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
+			\node[below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
+			\node[above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
+
+		\end{tikzpicture}
+		\hspace{5ex}
+		\begin{tikzcd}[column sep=small]
+			\boxed{a} \ar[rr] & & 3 \drar \dlar & & \boxed{c} \ar[ll] \\
+			& 1 \ular \drar & & 2 \ar[ll] \urar & \\
+			& & \boxed{b} \urar & &
+		\end{tikzcd}
+
+		\caption{An ideal triangulation of the annulus $\wt{A}(1,2)$, together with the associated ice quiver.}
+		\label{fig:annulus1_2_ideal_triangulation}
+	\end{figure}
+
+	\begin{figure}[ht!]
+		\centering
+		\begin{tikzpicture}[nodes={shape=circle,draw},x=1ex,y=1ex, scale=2.5]
+			\foreach \x/\y/\label in {0/0/1,0/10/2,0/-10/3,10/-5/4,10/5/5,10/-15/6,-10/-2.5/7,20/-2.5/8, 0/-20/9, 10/15/10} {
+					% The annulus.
+					\node[gray, inner sep=5ex] at (\x,\y) (an\label) {};
+					\node[gray, pattern=crosshatch,pattern color=gray,inner sep=1ex] at (an\label.center) (hole\label) {};
+					\node[fill, inner sep=0.3ex] at (an\label.south) {};
+					\node[fill, inner sep=0.3ex] at (hole\label.west) {};
+					\node[fill, inner sep=0.3ex] at (hole\label.east) {};
+				}
+
+			\foreach \y in {-20,-10,0,10} {
+					% The dual graph nodes.
+					\begin{scope}[nodes={fill, inner sep = 0.5ex}]
+						\node at (5,\y) {};
+						\node at (15, \y) {};
+						\draw[dashed] (5, \y) -- (15, \y);
+						\node at ($(5, \y) + (0, 5)$) {};
+						\node at ($(-5, \y) + (0, 5)$) {};
+						\draw[dashed] ($(5, \y) + (0, 5)$) -- ($(-5, \y) + (0,5)$);
+					\end{scope}
+				}
+			% Vertical lines for dual graph.
+			\draw[dashed] (-5,-22.5) -- (-5, 17.5);
+			\draw[dashed] (5,-22.5) -- (5, 17.5);
+			\draw[dashed] (15,-22.5) -- (15, 17.5);
+
+			\draw (an1.south) edge[bend left] (hole1.west);
+			\draw (an4.south) edge[bend right] (hole4.east);
+			\draw plot [smooth, tension=0.8] coordinates {
+					(an2.south)
+					($(hole2.west) + (-1,0)$) ($(hole2.north) + (0,1)$) ($(hole2.east) + (1,0)$) ($(hole2.south) + (0, -1)$)
+					(hole2.west)
+				};
+			\draw plot [smooth, tension=1] coordinates {
+					(an5.south)
+					($(hole5.west) + (-1,0)$) ($(hole5.north) + (0,1)$)
+					(hole5.east)
+				};
+			\draw plot [smooth, tension=1] coordinates {
+					(an3.south)
+					($(hole3.east) + (1,0)$) ($(hole3.north) + (0,1)$)
+					(hole3.west)
+				};
+			\draw plot [smooth, tension=0.8] coordinates {
+					(an6.south)
+					($(hole6.east) + (1,0)$)($(hole6.north) + (0,1)$) ($(hole6.west) + (-1,0)$) ($(hole6.south) + (0, -1)$)
+					(hole6.east)
+				};
+			\draw plot [smooth, tension=1.4] coordinates {
+					(hole7.west)
+					($(hole7.north) + (0,0.5)$) ($(hole7.east) + (0.75,0)$) ($(hole7.south) + (0,-0.5)$)
+					(hole7.west)
+				};
+			\draw plot [smooth, tension=1.4] coordinates {
+					(hole8.east)
+					($(hole8.north) + (0,0.5)$) ($(hole8.west) + (-0.75,0)$) ($(hole8.south) + (0,-0.5)$)
+					(hole8.east)
+				};
+			\draw plot [smooth, tension=0.8] coordinates {
+					(an9.south)
+					($(hole9.east) + (1.5,0)$) ($(hole9.north) + (0,1.5)$) ($(hole9.west) + (-1.25,0)$)
+					($(hole9.south) + (0, -1)$) ($(hole9.east) + (0.75,0)$) ($(hole9.north) + (0,0.5)$)
+					(hole9.west)
+				};
+			\draw plot [smooth, tension=0.8] coordinates {
+					(an10.south)
+					($(hole10.west) + (-1.5,0)$) ($(hole10.north) + (0,1.5)$) ($(hole10.east) + (1.25,0)$)
+					($(hole10.south) + (0, -1)$) ($(hole10.west) + (-0.75,0)$) ($(hole10.north) + (0,0.5)$)
+					(hole10.east)
+				};
+
+			% Edges between compatible arcs.
+			\begin{scope}[every edge/.style={draw,gray,line width=0.1, shorten <=1ex, shorten >=1ex}]
+				\draw (an7) edge (an1) edge[bend left] (an2) edge[bend right] (an3) edge[bend right] (an9);
+				\draw (an8) edge (an4) edge [bend right] (an5) edge[bend right] (an10) edge[bend left] (an6);
+				\draw (an2) edge (an1) edge (an10) edge (an5);
+				\draw (an1) edge (an3) edge (an5) edge (an4);
+				\draw (an3) edge (an4) edge (an6) edge (an9);
+				\draw (an6) edge (an9) edge (an4);
+				\draw (an4) edge (an5);
+				\draw (an5) edge (an10);
+			\end{scope}
+
+		\end{tikzpicture}
+
+		\caption{Part of the arc complex of the annulus $\wt{A}(1,2)$ (solid gray lines). The dual graph is drawn with dashed lines. This ``brick wall'' pattern already appeared in the first paper introducing cluster algebras \parencite[Figure 4]{FominZelevinsky2002CAF}. Because there are no punctures, no
+			self-folded triangles appear.} \label{fig:annulus1_2_exchange_graph}
+	\end{figure}
+\end{example}
+
+\subsection{Tagged triangulations}\label{sec:tagged_triangulations}
+
+We have seen how to associate a cluster algebra to a surface in such a way that each
+triangulation yields a cluster, and such that flips of triangulations give seed
+mutations. The problem was that not every mutation could be viewed as a flip, because
+the radius of a self-folded triangle could be flipped. We will now resolve this by
+introducing tagged triangulations. The cluster algebra itself remains unchanged.
+
+\medskip
+
+Let $(S, M)$ be a bordered surface with marked points, and $T$ an ideal triangulation.
+Recall (\cref{rem:self_folded_interchangeable}) that the vertices corresponding to the
+radius and surrounding arc of a self-folded triangle are interchangeable in the ice
+quiver $\tQ(T)$. We will replace the surrounding arc by a copy of the radius. To
+distinguish the two, we ``tag'' one of them.
+
+\begin{definition}
+
+	A \emph{tagged arc}\index{arc!tag} in $(S, M)$ is an ordinary arc $\beta$ which does
+	not cut out a once-punctured monogon, and whose endpoints\footnote{The tagging is a
+		property of the arc, and not of the endpoints. Thus, when we say that an endpoint is
+		tagged, we really mean the segment of the arc close to this endpoint is tagged.} have
+	been tagged either \emph{plain}\index{tag!plain} or \emph{notched}\index{tag!notched}
+	such that:
+	\begin{itemize}
+		\item An endpoint lying on the boundary is tagged plain.
+		\item If $\beta$ starts and ends in the same marked point, then both endpoints are tagged the
+		      same.
+	\end{itemize}
+	%
+	In figures, plain endpoints will be visualized without any marking, while notched
+	endpoints will be shown with a $\bowtie$\index{bowtie@$\bowtie$}. The different types
+	of tagged arcs are given in \cref{fig:types_tagged_arcs}.
+
+	To aid in distinguishing between tagged and untagged arcs, we will denote tagged arcs
+	by $\alpha$ or $\beta$ and untagged arcs by $\gamma$ or $\eta$.
+\end{definition}
+
+\begin{figure}[htb!]
+	\centering
+	\begin{tikzpicture}[x=8ex,y=4ex, nodes={font=\footnotesize}]
+		\foreach \x in {0,...,5} {
+				\node[fill=black,circle, inner sep=0.3ex] at (\x, 0) (\x0) {};
+				\node[fill=black,circle, inner sep=0.3ex] at (\x, 2) (\x2) {};
+			}
+		\node[above,pattern=crosshatch, xscale=2, yscale=0.7] at (02) {};
+		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (00) {};
+		\draw (00) edge (02);
+
+		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (10) {};
+		\draw (10) edge (12);
+
+		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (20) {};
+		\draw (20) edge node[very near end] {$\bowtie$} (22);
+
+		\draw (30) edge (32);
+
+		\draw (40) edge node[very near end] {$\bowtie$} (42);
+
+		\draw (50) edge node[very near start] {$\bowtie$} node[very near end] {$\bowtie$} (52);
+
+		\node[draw, circle, inner sep=3ex] at (7, 1) (circ1) {};
+		\node[draw, circle, inner sep=3ex] at (9, 1) (circ2) {};
+		\node[fill=black,circle, inner sep=0.3ex] at (circ1.south) {};
+		\node[fill=black,circle, inner sep=0.3ex] at (circ2.south) {};
+		\node[rotate=70] at (circ2.250) {$\bowtie$};
+		\node[rotate=110] at (circ2.290) {$\bowtie$};
+
+	\end{tikzpicture}
+
+	\caption{The different types of tagged arcs.}
+	\label{fig:types_tagged_arcs}
+\end{figure}
+
+To convert an ordinary untagged arc $\gamma$ to a tagged arc $\tau(\gamma)$, we do the
+following. If $\gamma$ does not cut out a once-punctured monogon, then $\tau(\gamma)$
+is the same arc with both ends marked plain. Otherwise, $\gamma$ is a loop based at
+some point $a$ and surrounding some puncture $b$. We then set $\tau(\gamma)$ to be the
+unique arc connecting $a$ and $b$, compatible with $\gamma$ with the endpoint at $a$
+tagged plain and the endpoint at $b$ tagged notched. Thus, a self-folded triangle is
+replaced by two copies of its radius, with one tagged plain and the other tagged
+notched at the central point. See also \cref{fig:untagged_to_tagged}.
+
+\begin{definition}
+
+	Let $\alpha$ and $\beta$ be two tagged arcs, and denote the untagged arcs as
+	$\alpha^\circ$ and $\beta^\circ$. Then $\alpha$ and $\beta$ are
+	\emph{compatible}\index{arc!tagged compatible} if:
+	\begin{itemize}
+		\item The untagged versions $\alpha^\circ$ and $\beta^\circ$ are compatible.
+		\item If $\alpha^\circ = \beta^\circ$ at least one end has the same tag.
+		\item If $\alpha^\circ \neq \beta^\circ$ and they share one endpoint, then this endpoint has
+		      the same tag.
+	\end{itemize}
+
+	A maximal collection of distinct pairwise compatible tagged arcs is called a
+	\emph{tagged triangulation}\index{triangulation!tagged}. In analogy with the arc
+	simplex, we have the \emph{tagged arc simplex}\index{tagged simplex}
+	$\Delta^{\bowtie}(S,M)$\index{Delta bowtie S M@$\Delta^{\bowtie}(S, M)$} which is the
+	simplex with ground set consisting of all tagged arcs, and whose simplices are sets of
+	pairwise compatible distinct tagged arcs.
+\end{definition}
+
+\begin{remark}\label{rem:change_tags_puncture}
+
+	Compatibility of tagged arcs is symmetric in the tags being plain or notched. Thus,
+	compatibility of tagged arcs is invariant under a simultaneous change of all tags
+	around a puncture.
+\end{remark}
+
+Given an ideal triangulation, it can be converted into a tagged triangulation by
+sending each untagged arc $\gamma$ to $\tau(\gamma)$ (cf.
+\cref{fig:untagged_to_tagged}). The cardinality of a tagged triangulation is given by
+the rank of the surface, as in \cref{prop:rank_triangulation} \parencite[Theorem 7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}.
+
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}[x=1ex,y=1ex, nodes={circle,font=\footnotesize}, every label/.style={font=\footnotesize}, baseline]
+		\node[circle,draw, gray, inner sep = 8ex] (boundary) {};
+		\node[circle,draw, gray, pattern=crosshatch,pattern color= gray, inner sep=1.5ex] (hole) at ($(boundary.center) + (5,0)$)  {};
+		\begin{scope}[nodes={draw,fill,inner sep=0.3ex}]
+			\node at (boundary.north) {};
+			\node at (boundary.south) {};
+			\node at (hole.west) {};
+			\node (puncture) at ($(boundary.west)! 0.3 !(boundary.center)$){};
+		\end{scope}
+
+		\draw (boundary.north) edge (puncture);
+		\draw (boundary.north) edge (boundary.south);
+		\draw (boundary.north) edge (hole.west);
+		\draw (boundary.south) edge (hole.west);
+		\draw (boundary.north) .. controls +(-160:20ex) and (-110:18ex)  .. (boundary.north);
+		\draw plot [smooth, tension=1] coordinates {
+				(boundary.north)
+				($(hole.east) + (2,0)$) ($(hole.south) + (0,-1.5)$)
+				(hole.west)
+			};
+	\end{tikzpicture}
+	\quad$\overset{\tau}{\longrightarrow}$\quad
+	\begin{tikzpicture}[x=1ex,y=1ex, nodes={circle,font=\footnotesize}, every label/.style={font=\footnotesize}, baseline]
+		\node[circle,draw, gray, inner sep = 8ex] (boundary) {};
+		\node[circle,draw, gray, pattern=crosshatch,pattern color= gray, inner sep=1.5ex] (hole) at ($(boundary.center) + (5,0)$)  {};
+		\begin{scope}[nodes={draw,fill,inner sep=0.3ex}]
+			\node at (boundary.north) {};
+			\node at (boundary.south) {};
+			\node at (hole.west) {};
+			\node (puncture) at ($(boundary.west)! 0.3 !(boundary.center)$){};
+		\end{scope}
+
+		\draw (boundary.north) edge[bend left=20] (puncture);
+		\draw (boundary.north) edge[bend right=20] node[very near end,rotate=90, sloped] {$\bowtie$} (puncture);
+		\draw (boundary.north) edge (boundary.south);
+		\draw (boundary.north) edge (hole.west);
+		\draw (boundary.south) edge (hole.west);
+		\draw plot [smooth, tension=1] coordinates {
+				(boundary.north)
+				($(hole.east) + (2,0)$) ($(hole.south) + (0,-1.5)$)
+				(hole.west)
+			};
+	\end{tikzpicture}
+	\caption{Converting an untagged ideal triangulation to a tagged triangulation.}
+	\label{fig:untagged_to_tagged}
+\end{figure}
+
+As before, we can mutate triangulations by performing flips. A \emph{tagged
+	flip}\index{triangulation!tagged flip} in a tagged triangulation $T$ replaces a tagged
+arc $\beta$ by the unique other tagged arc $\alpha$ compatible with all the other
+tagged arcs in $T$. That this is well-defined follows from \cite[Theorem
+	7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}. Dual to the tagged arc simplex,
+$\Delta^{\bowtie}(S,M)$ we have $E^{\bowtie}(S, M)$\index{E bowtie S M@$E^{\bowtie}(S,
+		M)$}, whose points are tagged triangulations, and whose edges correspond to tagged
+flips.
+
+It is possible to describe more directly what a tagged flip is. Let $T$ be a tagged
+triangulation. By replacing each tagged arc by an untagged arc, we end up with an ideal
+triangulation, except possibly when the triangulation contains once-punctured digons \parencite[Remark 7.6]{FominShapiroThurston2008CATriangulatedSurfacesI}. If there are two
+tagged arcs with different tags connected to the puncture in the digon, then the
+untagged version would coincide. In this case the two tagged arcs have to be
+transformed into a self-folded triangle. This way, we obtain an ideal triangulation
+$T^\circ$. Consequently, there are essentially two types of tagged flips \cite[Remark
+	5.13]{FominThurston2018CATriangulatedSurfacesII}:
+\begin{enumerate}
+	\item A tagged flip performed inside a once-punctured digon (cf. \cref{fig:tagged_digon}).
+	\item An ordinary flip inside a quadrilateral (in $T^\circ$).
+\end{enumerate}
+
+\begin{figure}[ht!]
+	\centering
+
+	\begin{tikzpicture}[nodes={font=\footnotesize}]
+		\node[circle, inner sep=3.5ex] (digon) {};
+		\node[circle, inner sep=3.5ex, outer sep = 1ex] at (digon.center) (fakedigon) {};
+		\draw (digon.north) -- (digon.center);
+
+		\node[circle, inner sep=3.5ex, right= of fakedigon] (digon2) {};
+		\node[circle, inner sep=3.5ex, outer sep = 1ex] at (digon2.center) (fakedigon2) {};
+		\draw (digon2.center) -- (digon2.south);
+
+		\node[circle, inner sep=3.5ex, below= of fakedigon] (digon3) {};
+		\node[circle, inner sep=3.5ex, outer sep = 1ex] at (digon3.center) (fakedigon3) {};
+		\draw (digon3.north) edge node[near end] {$\bowtie$} (digon3.center);
+
+		\node[circle, inner sep=3.5ex, below= of fakedigon2] (digon4) {};
+		\node[circle, inner sep=3.5ex, outer sep = 1ex] at (digon4.center) (fakedigon4) {};
+		\draw (digon4.south) edge node[near end] {$\bowtie$} (digon4.center);
+
+		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
+			\foreach \dir in {center, south, north}
+			\foreach \x in {,2,3,4} {
+					\draw[gray] (digon\x.south) edge[bend left=80] (digon\x.north);
+					\draw[gray] (digon\x.south) edge[bend right=80] (digon\x.north);
+					\node at (digon\x.\dir){};
+				}
+		\end{scope}
+		\draw[shorten <=1ex, shorten >=1ex] (fakedigon3) -- (fakedigon);
+		\draw[shorten <=1ex, shorten >=1ex] (fakedigon2) -- (fakedigon4);
+		\draw (fakedigon2) -- (fakedigon);
+		\draw (fakedigon3) -- (fakedigon4);
+
+		\node[below,font=\normalsize] at ($(digon3.south)!0.5!(digon4.south)$) {$\Delta^{\bowtie}(S, M)$};
+	\end{tikzpicture}
+	\hspace{5ex}
+	\begin{tikzpicture}[nodes={font=\footnotesize}]
+		\node[circle, inner sep=3.5ex] (digon) {};
+		\draw[gray] (digon.south) edge[bend left=80] (digon.north);
+		\draw[gray] (digon.south) edge[bend right=80] (digon.north);
+		\draw (digon.south) -- (digon.center);
+		\draw (digon.center) edge (digon.north);
+
+		\node[circle, inner sep=3.5ex, below right=1ex and 3ex of digon] (digon2) {};
+		\draw[gray] (digon2.south) edge[bend left=80] (digon2.north);
+		\draw[gray] (digon2.south) edge[bend right=80] (digon2.north);
+		\draw (digon2.south) edge[bend left] (digon2.center);
+		\draw (digon2.south) edge[bend right] node[near end, rotate=90,sloped] {$\bowtie$} (digon2.center);
+
+		\node[circle, inner sep=3.5ex, below left =1ex and 3ex of digon] (digon3) {};
+		\draw[gray] (digon3.south) edge[bend left=80] (digon3.north);
+		\draw[gray] (digon3.south) edge[bend right=80] (digon3.north);
+		\draw (digon3.north) edge[bend left] (digon3.center);
+		\draw (digon3.north) edge[bend right] node[near end,rotate=90,sloped] {$\bowtie$} (digon3.center);
+
+		\node[circle, inner sep=3.5ex, below left =1ex and 3ex of digon2] (digon4) {};
+		\draw[gray] (digon4.south) edge[bend left=80] (digon4.north);
+		\draw[gray] (digon4.south) edge[bend right=80] (digon4.north);
+		\draw (digon4.south) edge node[near end] {$\bowtie$} (digon4.center);
+		\draw (digon4.north) edge node[near end] {$\bowtie$} (digon4.center);
+		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
+			\node at (digon.center){};
+			\node at (digon.south){};
+			\node at (digon.north){};
+			\node at (digon2.center){};
+			\node at (digon2.south){};
+			\node at (digon2.north){};
+			\node at (digon3.center){};
+			\node at (digon3.south){};
+			\node at (digon3.north){};
+			\node at (digon4.center){};
+			\node at (digon4.south){};
+			\node at (digon4.north){};
+		\end{scope}
+		\draw (digon) edge (digon2);
+		\draw (digon) edge (digon3);
+		\draw (digon3) edge (digon4);
+		\draw (digon2) edge (digon4);
+
+		\node[below,font=\normalsize] at ($(digon4.south)$) {$E^{\bowtie}(S, M)$};
+	\end{tikzpicture}
+
+	\caption{The tagged arc simplex $\Delta^{\bowtie}(S, M)$ and the dual $E^{\bowtie}(S, M)$ for the once-punctured digon. Compared to \cref{fig:arc_simplex_digon}, there are no problems due to self-folded triangles.}
+	\label{fig:tagged_digon}
+\end{figure}
+
+\begin{proposition}[\protect{\cite[Proposition 7.10]{FominShapiroThurston2008CATriangulatedSurfacesI}}]\label{prop:tagged_flips_connected}
+
+	Let $(S, M)$ be a bordered surface with marked points. Then every tagged triangulation
+	can be reached from any other tagged triangulation by a sequence of tagged flips,
+	except when $(S, M)$ is a surface without boundary components and exactly one puncture.
+	In the latter case $E^{\bowtie}(S, M)$ has two connected components, one where all the
+	ends are tagged plain, and one where all the ends are tagged notched. Thus, both
+	connected components coincide under the map $T \mapsto T^\circ$.
+\end{proposition}
+
+Let $(S, M)$ be a bordered surface with marked points. We now define
+\begin{equation*}
+	\tQ(T) \defeq	\tQ(T^\circ)
+\end{equation*}
+%
+for a tagged triangulation $T$ of $(S, M)$. As expected, tagged flips correspond to
+mutations of the associated ice quiver \parencite[Lemma 9.7]{FominShapiroThurston2008CATriangulatedSurfacesI}. By
+\cref{prop:tagged_flips_connected}, it follows that the mutation-equivalence class of
+$\tQ(T)$ only depends on $(S, M)$, and not on the choice of tagged triangulation. The
+associated cluster algebra $\mcA(S, M)$ is then defined exactly the same way as for
+ideal triangulations. However, because we can flip every tagged arc in a tagged
+triangulation, we now obtain a stronger correspondence between the combinatorics of the
+cluster algebra, and of the triangulations.
+
+\begin{theorem}[\protect{\cite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}}]\label{thm:clusters_and_triangulations}
+
+	Let $(S, M)$ be a bordered surface with marked points, and $\mcA(S, M)$ the associated
+	cluster algebra. Let $E(S, M)$ be a connected component of $E^{\bowtie}(S, M)$. Then
+	$E(S, M)$ is isomorphic to the exchange graph of $\mcA(S, M)$. More precisely, there is
+	a one-to-one correspondence between tagged triangulations $T \in E(S, M)$ and unlabeled
+	seeds $\Sigma$ of $\mcA(S, M)$ given by $T \mapsto \Sigma_T$ such that:
+	\begin{itemize}
+		\item The ice quiver of $\Sigma_T$ is given by $\tQ(T)$.
+		\item The cluster variables of $\Sigma_T$ are labeled by the tagged arcs of $T$. The cluster
+		      variable $x_\beta = x_\beta(T)$ does not depend on the triangulation $T$.
+		\item The frozen variables are labeled by the boundary segments of $(S, M)$.
+		\item If $T'$ is obtained from $T$ by flipping a tagged arc $\beta \in T$ to $\beta' \in T'$,
+		      then the seed $\Sigma_{T'}$ is obtained by a seed mutation of $\Sigma_T$ replacing
+		      $x_{\beta}$ by $x_{\beta'}$.
+	\end{itemize}
+	Furthermore, all the $x_\beta$, for $\beta$ a tagged arc in $(S,M)$, are distinct.
+\end{theorem}
+
+This is a strong result! It says that the combinatorics of a cluster algebra associated
+to a surface are completely governed by the tagged triangulations. One consequence is
+that the subgraph of the exchange graph containing a specific cluster variable has to
+be connected. Another is that a seed is completely determined by its cluster, i.e.,
+does not depend on the ice quiver. Furthermore,
+\textcite{FominThurston2018CATriangulatedSurfacesII} showed that one can generalize
+$\mcA(S, M)$ to cluster algebras with arbitrary coefficients, in such a way that the
+exchange graph is independent of the choice of coefficients. Due to this nice interplay
+between the combinatorics of the cluster algebra and the triangulations, this class of
+cluster algebras was one of the first big classes for which positivity was shown. This
+was done by \textcite{MusikerSchifflerWilliams2011PositivityCASurfaces}.
+
+\begin{example}
+	Consider again the once-punctured torus. As we saw in \cref{exmp:triangulation_punctured_torus}, the associated quiver is just the Markov quiver.
+
+	Now note that because there is only one puncture and no boundary, there are no
+	triangulations with self-folded triangles. This allows us (see
+	\cref{prop:tagged_flips_connected}) to apply \cref{thm:clusters_and_triangulations}
+	without the need for tagged triangulations. Since the once-punctured torus has an
+	infinite number of triangulations, we have now found an alternative proof that the
+	cluster algebra associated to the Markov quiver has an infinite number of clusters.
+	Furthermore, \cref{thm:clusters_and_triangulations} states that all the cluster
+	variables are distinct, something which is not initially obvious. A part of the
+	untagged arc simplex, and the exchange graph are given in \cref{fig:torus_arc_complex}.
 
 	\begin{figure}[ht!]
 		\centering
@@ -4091,512 +4609,11 @@ looking at tagged triangulations.
 			\end{scope}
 		\end{tikzpicture}
 
-		\caption{Part of the arc complex $\Delta^\circ(S, M)$ of the once-punctured torus (solid gray lines). The dual graph, $E^\circ(S,M)$ is shown with dashed lines. Thus, the nodes in the dual graph represent the ideal triangulation formed by the three compatible arcs surrounding it. The dual graph forms a 3-regular infinite tree. }
+		\caption{Part of the untagged arc complex $\Delta^\circ(S, M)$ of the once-punctured torus (solid gray lines). The dual graph, $E^\circ(S,M)$, is shown with dashed lines. Thus, the nodes in the dual graph represent the ideal triangulation formed by the three compatible arcs surrounding it. The dual graph forms a 3-regular infinite tree.}
 		\label{fig:torus_arc_complex}
 	\end{figure}
-\end{example}
-
-\begin{example}
-
-	We now look at ideal triangulations of the annulus. Let us write $\wt{A}(n_1, n_2)$ for
-	the annulus with $n_1$ marked points on the first boundary component and $n_2$ marked
-	points on the second boundary component. Note that the two boundary components are
-	topologically indistinguishable, so that $\wt{A}(n_1, n_2) = \wt{A}(n_2, n_1)$. The
-	rank is given by
-	\begin{equation*}
-		6g + 3b + 3p + c - 6 = 0 + 6 + 0 + n_1 + n_2 -6 = n_1 + n_2.
-	\end{equation*}
-	%
-	The definition of a bordered surface with marked points requires that $n_1, n_2 \geq
-		1$.
-
-	The simplest case is $\wt{A}(1,1)$. A part of the arc complex is illustrated in
-	\cref{fig:infinite_arcs}. The arcs can be identified with $\bbZ$ by the number of times
-	they wind around the central boundary component. Positive integers are assigned to
-	clockwise windings, and negative integers to counter-clockwise windings. The compatible
-	arcs correspond to pairs of consecutive integers. Label the ``outer'' boundary
-	component with $a$ and the ``inner'' boundary component with $b$, where inner and outer
-	refer to the presentation in \cref{fig:infinite_arcs}. Then we have for example the
-	following ice quivers associated to the triangulations $\{-1, 0\}$ and $\{0,1\}$:
-	\begin{equation*}
-		\begin{tikzcd}[column sep=small]
-			& \boxed{b} \drar & \\
-			0 \urar \drar && -1 \ar[ll, shift left] \ar[ll, shift right]\\
-			& \boxed{a} \urar &
-		\end{tikzcd}
-		\quad \overset{\mu_1}{\longleftrightarrow} \quad
-		\begin{tikzcd}[column sep=small]
-			& \boxed{b} \dlar & \\
-			0 \ar[rr, shift left] \ar[rr, shift right]  && \dlar \ular 1\\
-			& \boxed{a} \ular &
-		\end{tikzcd}.
-	\end{equation*}
-
-	The unoriented principal part of the ice quiver is not a Dynkin diagram of type ADE, as
-	expected. Instead, it is a so-called affine Dynkin diagram of type $\wt{A}_1$. An
-	\emph{affine Dynkin diagram}\index{Dynkin diagram!affine} of type $\wt{A}_{n-1}$ for $n
-		\geq 3$ is an $n$-cycle. Note that in this case we do not have
-	\cref{lem:orientation_tree_mutation}. Not all orientations of $\wt{A}_{n-1}$ will be
-	equivalent. Take $n \geq 3$, and write for an orientation of an $n$-cycle, $n = n_1 +
-		n_2$ where $n_1$ is the number of edges oriented in one direction and $n_2$ is the
-	number of edges oriented the other way. Then two orientations $n = n_1 + n_2 = n_1' +
-		n_2'$ will be equivalent if and only if $\{n_1, n_2\} = \{n_1', n_2'\}$ \parencite[Lemma 6.8]{FominShapiroThurston2008CATriangulatedSurfacesI}. The annulus
-	$\wt{A}(n_1, n_2)$ will have an associated ice quiver whose principal part corresponds
-	to the orientation $n = n_1 + n_2$ of $\wt{A}_{n - 1}$. That explains the notation.
-
-	An ideal triangulation where the affine Dynkin diagram of type $\wt{A}_2$ appears is
-	given in \cref{fig:annulus1_2_ideal_triangulation}. The arc complex of $\wt{A}(1,2)$,
-	and its dual are given in \cref{fig:annulus1_2_exchange_graph}.
-	\begin{figure}[htb!]
-		\centering
-		\begin{tikzpicture}[nodes={shape=circle,draw,font=\footnotesize},x=1ex,y=1ex, scale=2.5,baseline]
-			\node[gray, inner sep=10ex] (an) {};
-			\node[gray, pattern=crosshatch,pattern color=gray,inner sep=3 ex] at (an.center) (hole) {};
-			\node[fill, inner sep=0.3ex] at (an.south) {};
-			\node[fill, inner sep=0.3ex] at (hole.west) {};
-			\node[fill, inner sep=0.3ex] at (hole.east) {};
-
-			\draw (an.south) edge[bend left] node[draw=none, left] {1} (hole.west);
-			\draw (an.south) edge[bend right] node[draw=none, left, near start] {2} (hole.east);
-			\draw plot [smooth, tension=1] coordinates {
-					(an.south)
-					($(hole.east) + (2,0)$) ($(hole.north) + (0,2)$)
-					(hole.west)
-				};
-			\node[draw=none, left, outer sep=0.5ex] at (an.east) {3};
-
-			\node[left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
-			\node[below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
-			\node[above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
-
-		\end{tikzpicture}
-		\hspace{5ex}
-		\begin{tikzcd}[column sep=small]
-			\boxed{a} \ar[rr] & & 3 \drar \dlar & & \boxed{c} \ar[ll] \\
-			& 1 \ular \drar & & 2 \ar[ll] \urar & \\
-			& & \boxed{b} \urar & &
-		\end{tikzcd}
-
-		\caption{An ideal triangulation of the annulus $\wt{A}(1,2)$, together with the associated ice quiver.}
-		\label{fig:annulus1_2_ideal_triangulation}
-	\end{figure}
 
 \end{example}
-
-\subsection{Tagged triangulations}\label{sec:tagged_triangulations}
-
-We have seen how to associate a cluster algebra to a surface in such a way that each
-triangulation yields a cluster, and such that flips of triangulations give seed
-mutations. The problem was that not every mutation could be viewed as a flip, because
-the radius of a self-folded triangle could be flipped. We will now resolve this by
-introducing tagged triangulations. The cluster algebra itself remains unchanged.
-
-\medskip
-
-Let $(S, M)$ be a bordered surface with marked points, and $T$ an ideal triangulation.
-Recall that we deduced that the vertices corresponding to the radius and surrounding
-arc of a self-folded triangle were interchangeable in the ice quiver $\tQ(T)$. We will
-replace the surrounding arc by a copy of the radius. To distinguish the two, we ``tag''
-one of them.
-
-\begin{definition}
-
-	A \emph{tagged arc}\index{arc!tag} in $(S, M)$ is an ordinary arc $\beta$ which does
-	not cut out a once-punctured monogon, and whose endpoints\footnote{The tagging is a
-		property of the arc, and not of the endpoints. Thus, when we say that an endpoint is
-		tagged, we really mean the segment of the arc close to this endpoint is tagged.} have
-	been tagged either \emph{plain}\index{tag!plain} or \emph{notched}\index{tag!notched}
-	such that:
-	\begin{itemize}
-		\item An endpoint lying on the boundary is tagged plain.
-		\item If $\beta$ starts and ends in the same marked point, then both endpoints are tagged the
-		      same.
-	\end{itemize}
-	%
-	In figures, plain endpoints will be visualized without any marking, while notched
-	endpoints will be shown with a $\bowtie$\index{bowtie@$\bowtie$}. The different types
-	of tagged arcs are given in \cref{fig:types_tagged_arcs}.
-
-	To aid in distinguishing between tagged and untagged arcs, we will denote tagged arcs
-	by $\alpha$ or $\beta$ and untagged arcs by $\gamma$ or $\eta$.
-\end{definition}
-
-\begin{figure}[htb!]
-	\centering
-	\begin{tikzpicture}[x=8ex,y=5ex, nodes={font=\footnotesize}]
-		\foreach \x in {0,...,5} {
-				\node[fill=black,circle, inner sep=0.3ex] at (\x, 0) (\x0) {};
-				\node[fill=black,circle, inner sep=0.3ex] at (\x, 2) (\x2) {};
-			}
-		\node[above,pattern=crosshatch, xscale=2, yscale=0.7] at (02) {};
-		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (00) {};
-		\draw (00) edge (02);
-
-		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (10) {};
-		\draw (10) edge (12);
-
-		\node[below,pattern=crosshatch, xscale=2, yscale=0.7] at (20) {};
-		\draw (20) edge node[very near end] {$\bowtie$} (22);
-
-		\draw (30) edge (32);
-
-		\draw (40) edge node[very near end] {$\bowtie$} (42);
-
-		\draw (50) edge node[very near start] {$\bowtie$} node[very near end] {$\bowtie$} (52);
-
-		\node[draw, circle, inner sep=3.5ex] at (7, 1) (circ1) {};
-		\node[draw, circle, inner sep=3.5ex] at (9, 1) (circ2) {};
-		\node[fill=black,circle, inner sep=0.3ex] at (circ1.south) {};
-		\node[fill=black,circle, inner sep=0.3ex] at (circ2.south) {};
-		\node[rotate=70] at (circ2.250) {$\bowtie$};
-		\node[rotate=110] at (circ2.290) {$\bowtie$};
-
-	\end{tikzpicture}
-
-	\caption{The different types of tagged arcs.}
-	\label{fig:types_tagged_arcs}
-\end{figure}
-
-To convert an ordinary untagged arc $\gamma$ to a tagged arc $\tau(\gamma)$, we do the
-following. If $\gamma$ does not cut out a once-punctured monogon, then $\tau(\gamma)$
-is the same arc with both ends marked plain. Otherwise, $\gamma$ is a loop based at
-some point $a$ and surrounding some puncture $b$. We then set $\tau(\gamma)$ to be the
-unique arc connecting $a$ and $b$, compatible with $\gamma$ with the endpoint at $a$
-tagged plain and the endpoint at $b$ tagged notched. Thus, a self-folded triangle is
-replaced by two copies of its radius, with one tagged plain and the other tagged
-notched at the central point. See also \cref{fig:untagged_to_tagged}.
-
-\begin{definition}
-
-	Let $\alpha$ and $\beta$ be two tagged arcs, and denote the untagged arcs as
-	$\alpha^\circ$ and $\beta^\circ$. Then $\alpha$ and $\beta$ are
-	\emph{compatible}\index{arc!tagged compatible} if:
-	\begin{itemize}
-		\item The untagged versions $\alpha^\circ$ and $\beta^\circ$ are compatible.
-		\item If $\alpha^\circ = \beta^\circ$ at least one end has the same tag.
-		\item If $\alpha^\circ \neq \beta^\circ$ and they share one endpoint, then this endpoint has
-		      the same tag.
-	\end{itemize}
-
-	A maximal collection of distinct pairwise compatible tagged arcs is called a
-	\emph{tagged triangulation}\index{triangulation!tagged}. In analogy with the arc
-	simplex, we have the \emph{tagged arc simplex}\index{tagged simplex}
-	$\Delta^{\bowtie}(S,M)$\index{Delta bowtie S M@$\Delta^{\bowtie}(S, M)$} which is the
-	simplex with ground set consisting of all tagged arcs, and whose simplices are sets of
-	pairwise compatible distinct tagged arcs.
-\end{definition}
-
-\begin{remark}\label{rem:change_tags_puncture}
-
-	Compatibility of tagged arcs is symmetric in the tags being plain or notched. Thus,
-	compatibility of tagged arcs is invariant under a simultaneous change of all tags
-	around a puncture.
-\end{remark}
-
-Given an ideal triangulation, it can be converted into a tagged triangulation by
-sending each untagged arc $\gamma$ to $\tau(\gamma)$ (cf.
-\cref{fig:untagged_to_tagged}). The cardinality of a tagged triangulation is given by
-the rank of the surface, as in \cref{prop:rank_triangulation} \parencite[Theorem 7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}.
-
-\begin{figure}[ht!]
-	\centering
-
-	\begin{tikzpicture}[x=1ex,y=1ex, nodes={circle,font=\footnotesize}, every label/.style={font=\footnotesie}, baseline]
-		\node[circle,draw, gray, inner sep = 10ex] (boundary) {};
-		\node[circle,draw, gray, pattern=crosshatch,pattern color= gray, inner sep=2ex] (hole) at ($(boundary.center) + (7,0)$)  {};
-		\begin{scope}[nodes={draw,fill,inner sep=0.3ex}]
-			\node at (boundary.north) {};
-			\node at (boundary.south) {};
-			\node at (hole.west) {};
-			\node (puncture) at ($(boundary.west)! 0.3 !(boundary.center)$){};
-		\end{scope}
-
-		\draw (boundary.north) edge (puncture);
-		\draw (boundary.north) edge (boundary.south);
-		\draw (boundary.north) edge (hole.west);
-		\draw (boundary.south) edge (hole.west);
-		\draw (boundary.north) .. controls +(-160:25ex) and (-110:20ex)  .. (boundary.north);
-		\draw plot [smooth, tension=1] coordinates {
-				(boundary.north)
-				($(hole.east) + (2,0)$) ($(hole.south) + (0,-1.5)$)
-				(hole.west)
-			};
-	\end{tikzpicture}
-	\quad$\overset{\tau}{\longrightarrow}$\quad
-	\begin{tikzpicture}[x=1ex,y=1ex, nodes={circle,font=\footnotesize}, every label/.style={font=\footnotesie}, baseline]
-		\node[circle,draw, gray, inner sep = 10ex] (boundary) {};
-		\node[circle,draw, gray, pattern=crosshatch,pattern color= gray, inner sep=2ex] (hole) at ($(boundary.center) + (7,0)$)  {};
-		\begin{scope}[nodes={draw,fill,inner sep=0.3ex}]
-			\node at (boundary.north) {};
-			\node at (boundary.south) {};
-			\node at (hole.west) {};
-			\node (puncture) at ($(boundary.west)! 0.3 !(boundary.center)$){};
-		\end{scope}
-
-		\draw (boundary.north) edge[bend left=15] (puncture);
-		\draw (boundary.north) edge[bend right=15] node[very near end,rotate=90, sloped] {$\bowtie$} (puncture);
-		\draw (boundary.north) edge (boundary.south);
-		\draw (boundary.north) edge (hole.west);
-		\draw (boundary.south) edge (hole.west);
-		\draw plot [smooth, tension=1] coordinates {
-				(boundary.north)
-				($(hole.east) + (2,0)$) ($(hole.south) + (0,-1.5)$)
-				(hole.west)
-			};
-	\end{tikzpicture}
-	\caption{Converting an untagged ideal triangulation to a tagged triangulation.}
-	\label{fig:untagged_to_tagged}
-\end{figure}
-
-As before, we can mutate triangulations by performing flips. A \emph{tagged
-	flip}\index{triangulation!tagged flip} in a tagged triangulation $T$ replaces a tagged
-arc $\beta$ by the unique other tagged arc $\alpha$ compatible with all the other
-tagged arcs in $T$. That this is well-defined follows from \cite[Theorem
-	7.9]{FominShapiroThurston2008CATriangulatedSurfacesI}. Dual to the tagged arc simplex,
-$\Delta^{\bowtie}(S,M)$ we have $E^{\bowtie}(S, M)$\index{E bowtie S M@$E^{\bowtie}(S,
-		M)$}, whose points are tagged triangulations, and whose edges correspond to tagged
-flips.
-
-It is possible to describe more directly what a tagged flip is. Let $T$ be a tagged
-triangulation. By replacing each tagged arc by an untagged arc, we end up with an ideal
-triangulation, except possibly when the triangulation contains once-punctured digons \parencite[Remark 7.6]{FominShapiroThurston2008CATriangulatedSurfacesI}. If there are two
-tagged arcs with different tags connected to the puncture in the digon, then the
-untagged version would coincide. In this case the two tagged arcs have to be
-transformed into a self-folded triangle. This way, we obtain an ideal triangulation
-$T^\circ$. Consequently, there are essentially two types of tagged flips \cite[Remark
-	5.13]{FominThurston2018CATriangulatedSurfacesII}:
-\begin{enumerate}
-	\item A tagged flip performed inside a once-punctured digon (cf. \cref{fig:tagged_digon}).
-	\item An ordinary flip inside a quadrilateral (in $T^\circ$).
-\end{enumerate}
-
-\begin{figure}[ht!]
-	\centering
-
-	\begin{tikzpicture}[nodes={font=\footnotesize}]
-		\node[circle, inner sep=5ex] (digon) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon.center) (fakedigon) {};
-		\draw (digon.north) -- (digon.center);
-
-		\node[circle, inner sep=5ex, right= of fakedigon] (digon2) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon2.center) (fakedigon2) {};
-		\draw (digon2.center) -- (digon2.south);
-
-		\node[circle, inner sep=5ex, below= of fakedigon] (digon3) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon3.center) (fakedigon3) {};
-		\draw (digon3.north) edge node[near end] {$\bowtie$} (digon3.center);
-
-		\node[circle, inner sep=5ex, below= of fakedigon2] (digon4) {};
-		\node[circle, inner sep=5ex, outer sep = 1ex] at (digon4.center) (fakedigon4) {};
-		\draw (digon4.south) edge node[near end] {$\bowtie$} (digon4.center);
-
-		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
-			\foreach \dir in {center, south, north}
-			\foreach \x in {,2,3,4} {
-					\draw[gray] (digon\x.south) edge[bend left=80] (digon\x.north);
-					\draw[gray] (digon\x.south) edge[bend right=80] (digon\x.north);
-					\node at (digon\x.\dir){};
-				}
-		\end{scope}
-		\draw[shorten <=1ex, shorten >=1ex] (fakedigon3) -- (fakedigon);
-		\draw[shorten <=1ex, shorten >=1ex] (fakedigon2) -- (fakedigon4);
-		\draw (fakedigon2) -- (fakedigon);
-		\draw (fakedigon3) -- (fakedigon4);
-
-		\node[below,font=\normalsize] at ($(digon3.south)!0.5!(digon4.south)$) {$\Delta^{\bowtie}(S, M)$};
-	\end{tikzpicture}
-	\hspace{5ex}
-	\begin{tikzpicture}[nodes={font=\footnotesize}]
-		\node[circle, inner sep=5ex] (digon) {};
-		\draw[gray] (digon.south) edge[bend left=80] (digon.north);
-		\draw[gray] (digon.south) edge[bend right=80] (digon.north);
-		\draw (digon.south) -- (digon.center);
-		\draw (digon.center) edge (digon.north);
-
-		\node[circle, inner sep=5ex, below right=1ex and 3ex of digon] (digon2) {};
-		\draw[gray] (digon2.south) edge[bend left=80] (digon2.north);
-		\draw[gray] (digon2.south) edge[bend right=80] (digon2.north);
-		\draw (digon2.south) edge[bend left] (digon2.center);
-		\draw (digon2.south) edge[bend right] node[near end, rotate=90,sloped] {$\bowtie$} (digon2.center);
-
-		\node[circle, inner sep=5ex, below left =1ex and 3ex of digon] (digon3) {};
-		\draw[gray] (digon3.south) edge[bend left=80] (digon3.north);
-		\draw[gray] (digon3.south) edge[bend right=80] (digon3.north);
-		\draw (digon3.north) edge[bend left] (digon3.center);
-		\draw (digon3.north) edge[bend right] node[near end,rotate=90,sloped] {$\bowtie$} (digon3.center);
-
-		\node[circle, inner sep=5ex, below left =1ex and 3ex of digon2] (digon4) {};
-		\draw[gray] (digon4.south) edge[bend left=80] (digon4.north);
-		\draw[gray] (digon4.south) edge[bend right=80] (digon4.north);
-		\draw (digon4.south) edge node[near end] {$\bowtie$} (digon4.center);
-		\draw (digon4.north) edge node[near end] {$\bowtie$} (digon4.center);
-		\begin{scope}[nodes={circle, fill, inner sep= 0.25ex}]
-			\node at (digon.center){};
-			\node at (digon.south){};
-			\node at (digon.north){};
-			\node at (digon2.center){};
-			\node at (digon2.south){};
-			\node at (digon2.north){};
-			\node at (digon3.center){};
-			\node at (digon3.south){};
-			\node at (digon3.north){};
-			\node at (digon4.center){};
-			\node at (digon4.south){};
-			\node at (digon4.north){};
-		\end{scope}
-		\draw (digon) edge (digon2);
-		\draw (digon) edge (digon3);
-		\draw (digon3) edge (digon4);
-		\draw (digon2) edge (digon4);
-
-		\node[below,font=\normalsize] at ($(digon4.south)$) {$E^{\bowtie}(S, M)$};
-	\end{tikzpicture}
-
-	\caption{The tagged arc simplex $\Delta^{\bowtie}(S, M)$ and the dual $E^{\bowtie}(S, M)$ for the once-punctured digon. Compared to \cref{fig:arc_simplex_digon}, there are no problems due to self-folded triangles.}
-	\label{fig:tagged_digon}
-\end{figure}
-
-\begin{proposition}[\protect{\cite[Proposition 7.10]{FominShapiroThurston2008CATriangulatedSurfacesI}}]\label{prop:tagged_flips_connected}
-
-	Let $(S, M)$ be a bordered surface with marked points. Then every tagged triangulation
-	can be reached from any other tagged triangulation by a sequence of tagged flips,
-	except when $(S, M)$ is a surface without boundary components and exactly one puncture.
-	In the latter case $E^{\bowtie}(S, M)$ has two connected components, one where all the
-	ends are tagged plain, and one where all the ends are tagged notched. Thus, both
-	connected components coincide under the map $T \mapsto T^\circ$.
-\end{proposition}
-
-Let $(S, M)$ be a bordered surface with marked points. We now define $\tQ(T) \defeq
-	\tQ(T^\circ)$ for a tagged triangulation $T$ of $(S, M)$. As expected, tagged flips
-correspond to mutations of the associated ice quiver \parencite[Lemma 9.7]{FominShapiroThurston2008CATriangulatedSurfacesI}. By
-\cref{prop:tagged_flips_connected}, it follows that the mutation-equivalence class of
-$\tQ(T)$ only depends on $(S, M)$, and not on the choice of tagged triangulation. The
-associated cluster algebra $\mcA(S, M)$ is then defined exactly the same way as for
-ideal triangulations. However, because we can flip every tagged arc in a tagged
-triangulation, we now obtain a stronger correspondence between the combinatorics of the
-cluster algebra, and of the triangulations.
-
-\begin{figure}[ht!]
-	\centering
-	\begin{tikzpicture}[nodes={shape=circle,draw},x=1ex,y=1ex, scale=2.5]
-		\foreach \x/\y/\label in {0/0/1,0/10/2,0/-10/3,10/-5/4,10/5/5,10/-15/6,-10/-2.5/7,20/-2.5/8, 0/-20/9, 10/15/10} {
-				% The annulus.
-				\node[gray, inner sep=5ex] at (\x,\y) (an\label) {};
-				\node[gray, pattern=crosshatch,pattern color=gray,inner sep=1ex] at (an\label.center) (hole\label) {};
-				\node[fill, inner sep=0.3ex] at (an\label.south) {};
-				\node[fill, inner sep=0.3ex] at (hole\label.west) {};
-				\node[fill, inner sep=0.3ex] at (hole\label.east) {};
-			}
-
-		\foreach \y in {-20,-10,0,10} {
-				% The dual graph nodes.
-				\begin{scope}[nodes={fill, inner sep = 0.5ex}]
-					\node at (5,\y) {};
-					\node at (15, \y) {};
-					\draw[dashed] (5, \y) -- (15, \y);
-					\node at ($(5, \y) + (0, 5)$) {};
-					\node at ($(-5, \y) + (0, 5)$) {};
-					\draw[dashed] ($(5, \y) + (0, 5)$) -- ($(-5, \y) + (0,5)$);
-				\end{scope}
-			}
-		% Vertical lines for dual graph.
-		\draw[dashed] (-5,-22.5) -- (-5, 17.5);
-		\draw[dashed] (5,-22.5) -- (5, 17.5);
-		\draw[dashed] (15,-22.5) -- (15, 17.5);
-
-		\draw (an1.south) edge[bend left] (hole1.west);
-		\draw (an4.south) edge[bend right] (hole4.east);
-		\draw plot [smooth, tension=0.8] coordinates {
-				(an2.south)
-				($(hole2.west) + (-1,0)$) ($(hole2.north) + (0,1)$) ($(hole2.east) + (1,0)$) ($(hole2.south) + (0, -1)$)
-				(hole2.west)
-			};
-		\draw plot [smooth, tension=1] coordinates {
-				(an5.south)
-				($(hole5.west) + (-1,0)$) ($(hole5.north) + (0,1)$)
-				(hole5.east)
-			};
-		\draw plot [smooth, tension=1] coordinates {
-				(an3.south)
-				($(hole3.east) + (1,0)$) ($(hole3.north) + (0,1)$)
-				(hole3.west)
-			};
-		\draw plot [smooth, tension=0.8] coordinates {
-				(an6.south)
-				($(hole6.east) + (1,0)$)($(hole6.north) + (0,1)$) ($(hole6.west) + (-1,0)$) ($(hole6.south) + (0, -1)$)
-				(hole6.east)
-			};
-		\draw plot [smooth, tension=1.4] coordinates {
-				(hole7.west)
-				($(hole7.north) + (0,0.5)$) ($(hole7.east) + (0.75,0)$) ($(hole7.south) + (0,-0.5)$)
-				(hole7.west)
-			};
-		\draw plot [smooth, tension=1.4] coordinates {
-				(hole8.east)
-				($(hole8.north) + (0,0.5)$) ($(hole8.west) + (-0.75,0)$) ($(hole8.south) + (0,-0.5)$)
-				(hole8.east)
-			};
-		\draw plot [smooth, tension=0.8] coordinates {
-				(an9.south)
-				($(hole9.east) + (1.5,0)$) ($(hole9.north) + (0,1.5)$) ($(hole9.west) + (-1.25,0)$)
-				($(hole9.south) + (0, -1)$) ($(hole9.east) + (0.75,0)$) ($(hole9.north) + (0,0.5)$)
-				(hole9.west)
-			};
-		\draw plot [smooth, tension=0.8] coordinates {
-				(an10.south)
-				($(hole10.west) + (-1.5,0)$) ($(hole10.north) + (0,1.5)$) ($(hole10.east) + (1.25,0)$)
-				($(hole10.south) + (0, -1)$) ($(hole10.west) + (-0.75,0)$) ($(hole10.north) + (0,0.5)$)
-				(hole10.east)
-			};
-
-		% Edges between compatible arcs.
-		\begin{scope}[every edge/.style={draw,gray,line width=0.1, shorten <=1ex, shorten >=1ex}]
-			\draw (an7) edge (an1) edge[bend left] (an2) edge[bend right] (an3) edge[bend right] (an9);
-			\draw (an8) edge (an4) edge [bend right] (an5) edge[bend right] (an10) edge[bend left] (an6);
-			\draw (an2) edge (an1) edge (an10) edge (an5);
-			\draw (an1) edge (an3) edge (an5) edge (an4);
-			\draw (an3) edge (an4) edge (an6) edge (an9);
-			\draw (an6) edge (an9) edge (an4);
-			\draw (an4) edge (an5);
-			\draw (an5) edge (an10);
-		\end{scope}
-
-	\end{tikzpicture}
-
-	\caption{Part of the arc complex of the annulus $\wt{A}(1,2)$ (solid gray lines). The dual graph is drawn with dashed lines. This ``brick wall'' pattern already appeared in the first paper introducing cluster algebras \parencite[Figure 4]{FominZelevinsky2002CAF}. Because there are no punctures, no
-		self-folded triangles appear.} \label{fig:annulus1_2_exchange_graph}
-\end{figure}
-
-\begin{theorem}[\protect{\cite[Theorem 6.1]{FominThurston2018CATriangulatedSurfacesII}}]\label{thm:clusters_and_triangulations}
-
-	Let $(S, M)$ be a bordered surface with marked points, and $\mcA(S, M)$ the associated
-	cluster algebra. Let $E(S, M)$ be a connected component of $E^{\bowtie}(S, M)$. Then
-	$E(S, M)$ is isomorphic to the exchange graph of $\mcA(S, M)$. More precisely, there is
-	a one-to-one correspondence between tagged triangulations $T \in E(S, M)$ and unlabeled
-	seeds $\Sigma$ of $\mcA(S, M)$ given by $T \mapsto \Sigma_T$ such that:
-	\begin{itemize}
-		\item The ice quiver of $\Sigma_T$ is given by $\tQ(T)$.
-		\item The cluster variables of $\Sigma_T$ are labeled by the tagged arcs of $T$. The cluster
-		      variable $x_\beta = x_\beta(T)$ does not depend on the triangulation $T$.
-		\item The frozen variables are labeled by the boundary segments of $(S, M)$.
-		\item If $T'$ is obtained from $T$ by flipping a tagged arc $\beta \in T$ to $\beta' \in T'$,
-		      then the seed $\Sigma_{T'}$ is obtained by a seed mutation of $\Sigma_T$ replacing
-		      $x_{\beta}$ by $x_{\beta'}$.
-	\end{itemize}
-	Furthermore, all the $x_\beta$, for $\beta$ a tagged arc in $(S,M)$, are distinct.
-\end{theorem}
-
-This is a strong result! It says that the combinatorics of a cluster algebra associated
-to a surface are completely governed by the tagged triangulations. One consequence is
-that the subgraph of the exchange graph containing a specific cluster variable has to
-be connected. Another is that a seed is completely determined by its cluster, i.e.,
-does not depend on the ice quiver. Furthermore,
-\textcite{FominThurston2018CATriangulatedSurfacesII} showed that one can generalize
-$\mcA(S, M)$ to cluster algebras with arbitrary coefficients, in such a way that the
-exchange graph is independent of the choice of coefficients. Due to this nice interplay
-between the combinatorics of the cluster algebra and the triangulations, this class of
-cluster algebras was one of the first big classes for which positivity was shown. This
-was done by \textcite{MusikerSchifflerWilliams2011PositivityCASurfaces}.
 
 \subsection{Punctured polygons and Grassmannians}\label{sec:punctured_polygon}
 
@@ -4723,12 +4740,12 @@ where
 	P_{a\bar{b}} \defeq P_{a, n+2}P_{b,n+2} - P_{ab}.
 \end{equation*}
 
-The idea is to now apply \cref{prop:cluster_structure}. In terms of dimensions things
-work out. Indeed, the dimension of $\bbC[\Gr_{2,n+2}]$ is $2(n+2-2) + 1 = 2n + 1$. On
-the other hand we have $n+1$ frozen variables corresponding to the sides of the
-$(n+1)$-gon, and $n+1$ arcs in $T$. If we choose $T$ such that at least one arc is
-tagged plain, then we only end up with $n$ orbits, for a total of $2n + 1$. We see that
-the triangulations do not correspond one-to-one with clusters.
+The idea is to now apply \cref{prop:cluster_structure}. Note that the dimensions agree.
+Indeed, by \cref{eq:dimension_grassmannian}, the dimension of $\bbC[\Gr_{2,n+2}]$ is
+$2(n+2-2) + 1 = 2n + 1$. On the other hand we have $n+1$ frozen variables corresponding
+to the sides of the $(n+1)$-gon, and $n+1$ arcs in $T$. If we choose $T$ such that at
+least one arc is tagged plain, then we only end up with $n$ orbits, for a total of $2n
+	+ 1$. We see that the triangulations do not correspond one-to-one with clusters.
 
 Furthermore, we no longer have an associated quiver of type $D_{n+1}$, but rather a
 matrix of type $B_n$. This is because the $\bbZ/2\bbZ$-action folds\footnote{Folding is
