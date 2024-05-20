@@ -428,7 +428,7 @@ studied.
 	%
 	It can be shown by a straightforward calculation that this quantum determinant is a
 	central element, i.e., it commutes with every element of $R$. This will also follow
-	indirectly from later theory (cf. \cref{exmp:quantum_matrices_hom_primes}).
+	indirectly from later theory (see \cref{exmp:quantum_matrices_hom_primes}).
 
 	We now claim that $R$ can be written as an iterated Ore extension of the form
 	\begin{equation*}
@@ -521,7 +521,7 @@ function\index{function!predecessor}\index{function!successor}:
 	s \colon [1, N] \to [1, N] \sqcup \{+\infty\} & \colon k \mapsto  \min\{j > k \mid \eta(j) = \eta(k)\},
 \end{align*}
 %
-where we take $\max \emptyset = - \infty$ and $\min \emptyset = + \infty$ (cf.
+where we take $\max \emptyset = - \infty$ and $\min \emptyset = + \infty$ (see
 \cref{fig:predecessor_successor}).
 
 \begin{figure}[h]
@@ -1150,7 +1150,7 @@ mutations.
 
 	If $\kappa = 0$, then $y_k y'_k = \alpha_{kp(k)}y_{p(k)}y_{k+1}$, which is a
 	contradiction, as $y_{k+1}$ is a prime element of $R_{k+1}$ which does not divide
-	either $y_k$ or $y'_k$ (cf. \cref{lem:prime_divides_product}).
+	either $y_k$ or $y'_k$ (see \cref{lem:prime_divides_product}).
 
 	If $m_{p(k)} \neq 0$ and $p(k) \neq -\infty$, then $y_{p(k)}$ is a prime element of
 	$R_{k-1}$ since $s(p(k)) = k > k-1$, and
@@ -1237,8 +1237,8 @@ the symmetric group $S_N$:
 \end{equation*}
 \index{Xi N@$\Xi_N$}%%
 %
-Each $\tau \in \Xi_N$ gives rise to a CGL presentation (cf. \cite[Proposition
-	3.14]{GoodearlYakimov2017QCA}):
+Each $\tau \in \Xi_N$ gives rise to a CGL presentation \parencite[Proposition
+	3.14]{GoodearlYakimov2017QCA}:
 \begin{equation}\label{eq:cgl_presentation_tau}
 	R = \bbK[x_{\tau(1)}][x_{\tau(2)}; \sigma_{\tau(2)}'', \delta_{\tau(2)}''] \cdots [x_{\tau(N)}; \sigma_{\tau(N)}'', \delta_{\tau(N)}''],
 \end{equation}
@@ -1264,7 +1264,7 @@ by induction, $\tau([1, k-1])$ is an interval, say $[i, j] \subset [1, N]$ and $
 $\tau([1, k]) = [i, j+1]$ both of which are intervals. It helps to have the mental
 picture in mind that an element $\tau \in \Xi_N$ is built by choosing some $\tau(1) \in
 	[1, N]$ and then appending iteratively to the left or right until the whole interval
-$[1, N]$ has been made (cf. \cref{fig:mental_picture_Xi_N}).
+$[1, N]$ has been made (see \cref{fig:mental_picture_Xi_N}).
 
 \begin{figure}[ht!]
 	\centering
@@ -1494,7 +1494,7 @@ of homogeneous prime elements. When $R$ is a symmetric CGL extension, we obtain 
 presentation for each $\tau \in \Xi_N$. Suppose that $\tau, \tau' \in \Xi_N$ are a pair
 of \emph{adjacent permutations}\index{adjacent permutation}, i.e., such that $\tau' =
 	\tau (k, k+1)$ for some $k \in [1, N-1]$ where $(k, k+1) \in S_N$ denotes a
-transposition (cf. \cref{fig:xi_6_graph}). Then the two presentations obtained this way
+transposition (see \cref{fig:xi_6_graph}). Then the two presentations obtained this way
 will be adjacent presentations as in the setting of \cref{thm:y_prime_swapped_cgl}:
 \begin{align*}
 	 & R = \bbK[x_{\tau(1)}]\cdots [x_{\tau(k)}; \sigma_{\tau, k}, \delta_{\tau, k}][x_{\tau(k+1)};\sigma_{\tau, k+1}, \delta_{\tau, k+1}] \cdots [x_\tau(N); \sigma_{\tau, N}, \delta_{\tau, N}]        \\
@@ -1507,7 +1507,7 @@ then tell us that the sequence of homogeneous prime elements $y_{\tau', 1}, \dot
 from $y_{\tau, 1}, \dots, y_{\tau, N}$ by a reordering or by a mutation of $y_{\tau,
 			k}$. We summarize these findings (together with some extrapolated conjectures) in the
 following imprecise statement. Formulating a precise statement will be done in the next
-section (cf. \cref{thm:gy_main_result}).
+section (see \cref{thm:gy_main_result}).
 
 \begin{theorem*}
 	%
@@ -1612,7 +1612,7 @@ section (cf. \cref{thm:gy_main_result}).
 			\draw[dashed] (31) to (30);
 		\end{scope}
 	\end{tikzpicture}
-	\caption{The subset $\Xi_6 \subset S_6$. Edges are drawn between adjacent permutations. The dashed lines indicate where $\eta(\tau(k)) \neq \eta(\tau(k+1))$ for the $\eta$-function corresponding to $\HeisUqn$ computed in \cref{exmp:heisenberg_primes}. No mutation occurs at these edges (cf. \cref{thm:y_prime_swapped_cgl}). Finally, note that the graph is connected. Thus, every element of $\Xi_6$ can be built out of a chain of adjacent permutations starting from the identity. We will show later on in \cref{lem:xi_n_characterization} that this holds in general for $\Xi_N$.}
+	\caption{The subset $\Xi_6 \subset S_6$. Edges are drawn between adjacent permutations. The dashed lines indicate where $\eta(\tau(k)) \neq \eta(\tau(k+1))$ for the $\eta$-function corresponding to $\HeisUqn$ computed in \cref{exmp:heisenberg_primes}. No mutation occurs at these edges (see \cref{thm:y_prime_swapped_cgl}). Finally, note that the graph is connected. Thus, every element of $\Xi_6$ can be built out of a chain of adjacent permutations starting from the identity. We will show later on in \cref{lem:xi_n_characterization} that this holds in general for $\Xi_N$.}
 	\label{fig:xi_6_graph}
 \end{figure}
 
@@ -2344,7 +2344,7 @@ prime elements with respect to \emph{any} possible ordering of the generators. T
 elements of $P(N)$ are therefore taken to be frozen.
 
 The second condition is used to ensure that the principal part of the matrix $\tB_\tau$
-in the statement is skew-symmetrizable (cf.
+in the statement is skew-symmetrizable (see
 \cref{lem:principal_part_skew_symmetrizable}).
 \begin{condition}\label{cond:lambda_star_to_the_d}
 	There exist positive integers $d_i \in \bbZ_{>0}$ for $i$ in the image of $\eta$ such that
@@ -2573,7 +2573,7 @@ The main result can now be formulated.
 	identified with the exchange of the classical cluster algebra in the uniparameter case.
 	It follows that the quantum cluster algebra associated to $\HeisUqn$ is cluster-finite.
 	Moreover, the seeds may be identified with tagged triangulations of a once-punctured
-	square (cf. \cref{exmp:punctured_polygon1,thm:clusters_and_triangulations}). Only a
+	square (see \cref{exmp:punctured_polygon1,thm:clusters_and_triangulations}). Only a
 	small part of this exchange graph consists of seeds of the form $(M_\sigma,
 		\tB_\sigma)$ for some $\sigma \in \Xi_6$. These are illustrated in
 	\cref{fig:xi_6_graph}. An interesting question is whether the other seeds have any
@@ -2588,7 +2588,7 @@ The main result can now be formulated.
 	\emph{elementary transposition} is a transposition of the form $(i, i+1)$. We now
 	decompose $\tau$ as a sequence of permutations in $\Xi_6$ each of which differs by an
 	elementary transposition. Such decompositions will play an important role in the proof
-	of \cref{thm:gy_main_result} (cf. \cref{lem:xi_n_characterization}). Write $\tau' =
+	of \cref{thm:gy_main_result} (see \cref{lem:xi_n_characterization}). Write $\tau' =
 		[2,3,1,4,5,6]$. Then $\tau = \tau(3,4)$. For $\tau'' = [2,1,3,4,5,6]$, we have $\tau''
 		= \tau(2,3)$, and $\tau'' = \id (1,2)$. One can compute that $\tau'_{\bullet} =
 			[3,2,1,4,5,6],\, \tau'_\bullet \tau' = [2,1,3,4,5,6]$ and
@@ -4708,7 +4708,7 @@ necessary inclusions for \cref{thm:gy_main_result} parts (d) and (e).
 		      For each $\tau \in \Gamma_N$, we can write $v = xy\inv$ for some $x \in R[E\inv_\tau]$
 		      and $y$ in the multiplicative set generated by $\{y_k \mid k \in \binv\}$. Now, we can
 		      choose $y$ to be the same for each $\tau \in \Gamma_N$, and hence $vy \in
-			      R[E\inv_\tau]$ for all $\tau \in \Gamma_N$ (cf. \cref{lem:ore_set_properties}). Thus,
+			      R[E\inv_\tau]$ for all $\tau \in \Gamma_N$ (see \cref{lem:ore_set_properties}). Thus,
 		      $vy\in R$ by part (d), and $v \in R[y_k\inv \mid k \in \binv]$ as we needed to show.
 	\end{enumerate}
 \end{proof}
