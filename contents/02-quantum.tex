@@ -24,7 +24,7 @@ the material.
 Let us now first fix some notation, similar to that of the previous chapter.
 \begin{notation}
 	In what follows, $\bbK$ will be a field (of any characteristic) and $N \in \bbZ_{> 0}$
-	an integer. We denote by $\bbK^\times$\index{K times@$\bbK^\times$} the multiplicative
+	an integer. We denote by $\bbK^\times$\index[symbols]{K times@$\bbK^\times$} the multiplicative
 	group of $\bbK$. It will be useful to consider the following multiplicative version of
 	matrix multiplication. For $A = (a_{ij}) \in M_{m \times n}(\bbK^\times), B = (b_{ij})
 		\in M_{s \times m}(\bbZ)$ and $C = (c_{ij}) \in M_{n \times r} (\bbZ)$, we define
@@ -32,7 +32,7 @@ Let us now first fix some notation, similar to that of the previous chapter.
 	\begin{equation*}
 		(\prescript{B}{}{}A^C)_{ij}  \defeq \prod_{k, l} a_{kl}^{b_{ik}c_{lj}},
 	\end{equation*}
-	\index{B A C@$\prescript{B}{}{}A^C$}%
+	\index[symbols]{B A C@$\prescript{B}{}{}A^C$}%
 	%
 	with special cases
 	\begin{equation*}
@@ -69,14 +69,14 @@ $\bbK[Y_1, \dots, Y_N]$ by $\bbq$, we obtain
 \begin{equation*}
 	\mcA_\bbq \defeq \frac{\bbK \langle Y_1 , \dots, Y_N\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)},
 \end{equation*}
-\index{A q@$\mcA_\bbq$}%
+\index[symbols]{Amc q@$\mcA_\bbq$}%
 %
 the \emph{quantum affine space algebra}\index{algebra!quantum affine space}. We then
 write $\mcT_\bbq$ for the \emph{quantum torus}\index{quantum!torus}
 \begin{equation}\label{eq:quantum_torus}
 	\mcT_\bbq \defeq \frac{\bbK \langle Y_1^{\pm 1} , \dots, Y_N^{\pm 1}\rangle}{(Y_i Y_j = q_{ij}Y_j Y_i)}.
 \end{equation}
-\index{T q@$\mcT_\bbq$}
+\index[symbols]{T q@$\mcT_\bbq$}
 %
 It has a $\bbK$-basis consisting of elements of the form $Y^f = Y_1^{f_1} \cdots
 	Y_N^{f_N}$ for $f \in \bbZ^N$. We will refer to the property that $X Y = qY X$ for some
@@ -94,7 +94,7 @@ Even though a quantum version of the Laurent phenomenon will hold
 (\cref{thm:quantum_laurent}), we will still need to be able to invert arbitrary
 (non-zero) elements in $\mcA_\bbq$ in order to define a quantum cluster algebra. This
 requires localization in the noncommutative setting, also known as \emph{Ore
-	localization}\index{Ore localization}.
+	localization}\index{Ore!localization}.
 
 The idea is that we want to define a new ring $R[E\inv] = \{re\inv \mid r \in R,\,e \in
 	E\}$ for some subset $E \subseteq R$ of a (noncommutative) ring $R$. In order for this
@@ -108,7 +108,7 @@ and $e' \in E$. That condition is equivalent to $y e' = e y'$ for some $y' \in R
 $e' \in E$, which in turn is equivalent to $y E \cap e R \neq \emptyset$ for all $y \in
 	R$ and $e \in E$. Putting this together, we find the following definition.
 \begin{definition}
-	A \emph{right Ore set}\index{Ore set} $E
+	A \emph{right Ore set}\index{Ore!set} $E
 		\subseteq R$ is a multiplicative subset of regular elements such that $x E \cap e R
 		\neq \emptyset$ for all $x \in R$ and $e \in E$. One defines a left Ore set
 	analogously. If $E$ is both a left and a right Ore set, we will just say that $E$ is an Ore set.
@@ -150,7 +150,7 @@ all the nonzero elements in $\mcA_\bbq$ are regular. Thus, $E$ is an Ore set.
 
 When $R$ is a (noncommutative) domain, the set, $R \setminus \{0\}$, is a
 multiplicative subset of $R$ consisting of regular elements. When this is also an Ore
-set, we write $\Fract(R)$\index{fract R@$\Fract(R)$} for the corresponding ring of
+set, we write $\Fract(R)$\index[symbols]{fract R@$\Fract(R)$} for the corresponding ring of
 fractions, and say that $R$ is an \emph{Ore domain}\index{Ore!domain}. For example, the
 set $\mcT_\bbq \setminus \{0\}$ forms an Ore set by a similar argument as above. The
 quantum cluster variables will live in the division algebra $\Fract(\mcT_\bbq)$.
@@ -176,8 +176,8 @@ $\mcT_\bbq$ be a quantum torus as in \cref{eq:quantum_torus}.
 We now explore a naive way of generalizing the exchange relation
 (\cref{eq:exchange_relation_matrix}) to the noncommutative setting. This will give us
 the intuition needed to arrive at the right definition. Take $k \in \ex$ and write
-$b^k$\index{b k@$b^k$} for the $k$-th column of $\tB$. We will denote with
-$[b^k]_{+}$\index{b k plusminus@$[b^k]_{\pm}$} and $[b^k]_{-}$ the positive and
+$b^k$\index[symbols]{b k@$b^k$} for the $k$-th column of $\tB$. We will denote with
+$[b^k]_{+}$\index[symbols]{b k plusminus@$[b^k]_{\pm}$} and $[b^k]_{-}$ the positive and
 negative parts of $b^k \in \bbZ^N$. Thus,
 \begin{align*}
 	[b^k]_{+} & \defeq \sum_{i=1}^N \max\{0, b_{ik}\}e_i = \sum_{b_{ik} > 0} b_{ik}e_i. \\
@@ -228,7 +228,7 @@ To a multiplicatively skew-symmetric matrix $\bbq \in M_N(\bbK^\times)$ we assoc
 	\Omega_{\bbq} \colon \bbZ^N \times \bbZ^N \to \bbK^\times \colon
 	(f,g) \mapsto \Omega_{\bbq}(f, g) \defeq \prescript{f^T}{}{}\bbq^g.
 \end{equation*}
-\index{Omega q@$\Omega_\bbq(f,g)$}%
+\index[symbols]{Omega q@$\Omega_\bbq(f,g)$}%
 %
 It is a bicharacter in the sense that each of the components is a character $\bbZ^N \to
 	\bbK^\times$. The function $\Omega_\bbq$ satisfies (or is determined by) the following
@@ -244,7 +244,7 @@ properties
 
 	Let $\tB \in M_{N \times \ex}(\bbZ)$ be an integer matrix, and let $\bbq \in
 		M_N(\bbK^\times)$ be a multiplicatively skew-symmetric matrix. Let $\wt{\bbt}\in M_{\ex
-				\times N}(\bbZ)$\index{t tilde@$\wt{\bbt}$} be the matrix with entries
+				\times N}(\bbZ)$\index[symbols]{t tilde@$\wt{\bbt}$} be the matrix with entries
 	\begin{equation*}
 		t_{kj} = \Omega_\bbq(b^k, e_j) = \prod_{i=1}^N q_{ij}^{b_{ik}}
 	\end{equation*}
@@ -345,13 +345,13 @@ $\mcT_{\bbr^{\cdot 2}}$, which has a $\bbK$-basis consisting of elements
 	Y^{(f)} \defeq \mcS_{\mathbf{r}}(f)Y^f = \mcS_{\mathbf{r}}(f)Y_1^{f_1}\dots Y_N^{f_N}
 	\text{ for } f = (f_1, \dots, f_n)^T \in \bbZ^N,
 \end{equation*}
-\index{Y f@$Y^{(f)}$}%
+\index[symbols]{Y f@$Y^{(f)}$}%
 %
 where
 \begin{equation*}
 	\mcS_{\mathbf{r}}(f) \defeq \prod_{i < j}r_{ij}^{-f_if_j}.
 \end{equation*}
-\index{S r@$\mcS_\bbr(f)$}%
+\index[symbols]{S r@$\mcS_\bbr(f)$}%
 %
 Then $Y^{(e_k)} = Y_k$ for all $k \in [1, N]$ as
 \begin{align*}
@@ -413,7 +413,7 @@ cluster variables, which we will need later on.
 		r_{ij} = \varphi(r_{ij}) & = \varphi(Y^{(e_i)}Y^{(e_j)}(Y^{(e_i + e_j)})\inv) \\
 		                         & = M(e_i)M(e_j)M(e_i + e_j)\inv.
 	\end{align*}
-	We'll use the notation $\mathbf{r}(M)$\index{r M@$\bbr(M)$} to denote the matrix of the toric frame $M$.
+	We'll use the notation $\mathbf{r}(M)$\index[symbols]{r M@$\bbr(M)$} to denote the matrix of the toric frame $M$.
 \end{remark}
 %
 With the necessary background out of the way, it is time to define the quantum analogs
@@ -467,8 +467,8 @@ compatible pairs. That this works is ensured by the following proposition.
 
 Let $\binv \subseteq [1, N]\setminus \ex$ be some subset. This set will determine which
 of the frozen variables will also be inverted in the cluster algebra. We then define
-the \emph{quantum cluster algebra}\index{algebra!quantum cluster}\index{cluster
-	algebra!quantum}\index{quantum!cluster algebra} $\mcA(M, \tB, \binv)_\bbK$\index{A M B
+the \emph{quantum cluster algebra}\index{algebra!cluster!}\index{cluster
+	algebra!quantum}\index{quantum!cluster algebra} $\mcA(M, \tB, \binv)_\bbK$\index[symbols]{Amc M B
 	inv@$\mcA(M, \tB, \binv)_\bbK$} completely analogously to the classical setting.
 Namely, it is the $\bbK$-subalgebra of $\mcF$ generated by all the cluster variables
 $M'(e_j), \, j \in [1, N]$ and the inverses $M'(e_l)\inv, \, l \in \binv$ for all the
@@ -482,18 +482,17 @@ Write
 We note two special cases. If $\ex \sqcup \binv = \emptyset$, then $\mcT\mcA_{(M, \tB)}
 	= \mcA_{\bbr(M)^{\cdot 2}}$, while if $\binv = [1, N] \setminus \ex$, then
 $\mcT\mcA_{(M, \tB)} = \mcT_{\bbr(M)^{\cdot 2}}$. This explains the notation. The
-\emph{upper quantum cluster algebra}\index{algebra!upper quantum cluster} $\mcU(M, \tB,
+\emph{upper quantum cluster algebra}\index{algebra!cluster!quantum upper} $\mcU(M, \tB,
 	\binv)_\bbK$ is then defined as the intersection
 \begin{equation*}
 	\mcU(M, \tB, \binv) \defeq \bigcap_{(M', \tB')} \mcT\mcA_{(M', \tB')} ,
 \end{equation*}
-\index{U M B inv@$\mcU(M, \tB, \binv)_\bbK$}%
+\index[symbols]{Umc M B inv@$\mcU(M, \tB, \binv)_\bbK$}%
 %
 where the intersection runs over all quantum seeds $(M', \tB')$ mutation-equivalent to
 the initial seed $(M, \tB)$. We now have the following generalization of the Laurent
 phenomenon (\cref{thm:laurent_phenomenon}), which we will refer to as the \emph{quantum
-	Laurent phenomenon}\index{quantum!Laurent phenomenon}\index{Laurent!quantum
-	-phenomenon}.
+	Laurent phenomenon}\index{quantum!Laurent phenomenon}\index{Laurent!phenomenon!quantum}.
 \begin{theorem}[\protect{\cite[Theorem 2.15]{GoodearlYakimov2017QCA}}]\label{thm:quantum_laurent}
 
 	For all quantum seeds $(M, \tB)$ of a division algebra $\mcF$ over $\bbK$ and subsets
@@ -666,7 +665,7 @@ $m \times k$ matrices. The quantum Grassmannian is generated by maximal quantum 
 of the quantized coordinate algebra of $M_{m \times k}(\bbC)$.
 
 Fix $q \in \bbC^\times$ not a root of unity, and let $\mcO_q(M_{m \times
-			k}(\bbC))$\index{O q M n@$\mcO_q(M_{n \times m}(\bbK))$} be the noncommutative algebra
+			k}(\bbC))$\index[symbols]{O q M n@$\mcO_q(M_{n \times m}(\bbK))$} be the noncommutative algebra
 generated by the elements $\{X_{ij} \mid i \in [1,m],\, j \in [1,k] \}$ subject to the
 quantum $2\times 2$ matrix relations. Thus, arranging the generators as a matrix
 \begin{equation*}
@@ -690,11 +689,11 @@ This algebra is called the \emph{quantized matrix coordinate
 	algebra}\index{algebra!quantized matrix coordinate}\index{quantum!matrix algebra}.
 
 The \emph{quantum Grassmannian}\index{Grassmannian!quantum}\index{quantum!Grassmannian}
-$\mcO_q(\Gr_{k,m}(\bbC))$\index{O q Gr@$\mcO_q(\Gr_{k,m}(\bbC))$} is the subalgebra of
+$\mcO_q(\Gr_{k,m}(\bbC))$\index[symbols]{O q Gr@$\mcO_q(\Gr_{k,m}(\bbC))$} is the subalgebra of
 $\mcO_q(M_{k\times m}(\bbC))$ generated by all the $k \times k$ \emph{quantum
 	minors}\index{minor!quantum}\index{quantum!minor}. For $1 \leq i_1 < \dotsb < i_k \leq
 	m$ and $J = \{i_1, \dotsc, i_k\}$, the $k \times k$ quantum minor
-$\Delta^J_q$\index{Delta J q@$\Delta^J_q$} is defined as
+$\Delta^J_q$\index[symbols]{Delta J q@$\Delta^J_q$} is defined as
 \begin{equation*}
 	\Delta^J_q \defeq \sum_{\sigma \in S_k} (-q)^{l(\sigma)}X_{\sigma(i_1)1}\cdots X_{\sigma(i_k)k},
 \end{equation*}
