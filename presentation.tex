@@ -20,59 +20,59 @@
 \maketitle
 \section{Combinatorics $\to$ algebra}
 \begin{frame}{The goal}
-	\only<1>{
+	\uncover<2>{
 		\begin{center}
-			\textbf{Goal:} Associate rich algebraic structure to certain types of combinatorial data.
+			Triangulations
 		\end{center}
 	}
-	\only<2->{
-		\uncover<3>{
-			\begin{center}
-				Triangulations
-			\end{center}
-		}
-		\begin{center}
-			\begin{tikzpicture}
-				\node[name=h,shape=regular polygon, regular polygon sides = 6, draw, inner sep = 10ex] {};
-				\only<3>{
-					\draw (h.corner 1) -- (h.corner 3);
-					\draw (h.corner 1) -- (h.corner 4);
-					\draw (h.corner 1) -- (h.corner 5);
-				}
-			\end{tikzpicture}
-		\end{center}
-
-	}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[name=h,shape=regular polygon, regular polygon sides = 6, draw, inner sep = 10ex] {};
+			\only<2>{
+				\draw (h.corner 1) -- (h.corner 3);
+				\draw (h.corner 1) -- (h.corner 4);
+				\draw (h.corner 1) -- (h.corner 5);
+			}
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Triangulations of a polygon}
 	\begin{columns}[c]
 		\begin{column}{0.4\textwidth}
+			Observations:
 			\begin{itemize}
 				\item Flipping a diagonal
 				      %
-				\item<4-> Ptolomy's rule \only<5>{
+				\item<5-> Ptolomy's rule\uncover<6->{:
 						\begin{equation*}
 							{\color{red} |ac| \cdot |b d|} = |ab| \cdot |cd| + |ad| \cdot |bc|
-						\end{equation*}
-					}
-				\item<6> Sides $\neq$ diagonals
+						\end{equation*}}
+
+				\item<7> Sides $\neq$ diagonals
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.6\textwidth}
 			\begin{center}
 				\begin{tikzpicture}
-					\node[name=h,shape=regular polygon, regular polygon sides = 6, draw, inner sep = 10ex] {};
+					\node[name=h,shape=regular polygon, regular polygon sides = 6, draw, alt=<{2,3,5,6}>{gray}{mDarkTeal}, minimum size = 30ex] {};
 					\draw (h.corner 1) -- (h.corner 3);
-					\only<1,2,5> {
-						\draw[alt=<{2,5}>{dashed, red}{solid, black}] (h.corner 1) -- (h.corner 4);
+					\only<1,2,5,6> {
+						\draw[alt=<{2,5,6}>{dashed, red}{solid, mDarkTeal}] (h.corner 1) -- (h.corner 4);
 					}
 					\only<3->{
-						\draw[alt=<{3,5}>{dashed, red}{solid, black}] (h.corner 3) -- (h.corner 5);
+						\draw[alt=<{3,5,6}>{dashed, red}{solid, mDarkTeal}] (h.corner 3) -- (h.corner 5);
+					}
+					\uncover<6>{
+						\node[circle, draw, minimum size = 30ex] {};
+					}
+					\only<{2,3,5,6}>{
+						\draw (h.corner 3) -- (h.corner 4);
+						\draw (h.corner 4) -- (h.corner 5);
 					}
 					\draw (h.corner 1) -- (h.corner 5);
-					\uncover<5>{
+					\uncover<{5,6}>{
 						\node[above] at (h.corner 1) {a};
 						\node[left] at (h.corner 3) {b};
 						\node[below] at (h.corner 4) {c};
@@ -92,7 +92,7 @@
 	\end{equation*}
 	\pause
 	\begin{itemize}
-		\item Flip $\leadsto$ mutate a variable
+		\item Flip $\leadsto$ mutate a variable\pause
 		      \begin{equation*}
 			      x_i' = \frac{x_a x_c + x_b x_d}{x_i}
 		      \end{equation*}
@@ -126,22 +126,22 @@
 
 	\begin{center}
 		\begin{tikzpicture}
-			\node[outer sep=1ex] (triangulations) at (-4,0) {\{Triangulations of a polygon\}};
-			\node[outer sep=1ex] (commalg) at (4, 0) {Commutative algebra};
-			\draw[->, alt=<1>{solid}{dashed}] (triangulations) -- (commalg);
+			\node[outer sep=1ex] (triangulations) at (-3.5,0) {\{Triangulations of $n$-gon\}};
+			\node[outer sep=1ex] (clusteralgebra) at (4, 0) {Commutative algebra};
+			\draw[->, alt=<1>{solid}{dashed}] (triangulations) -- (clusteralgebra);
 			\uncover<2->{
-				\node[outer sep=1ex] (graph) at (0,-1.5) {Graph};
+				\node[outer sep=1ex] (graph) at (0,-1.5) {\{Graphs\}};
 				\draw[->] (triangulations) -- (graph);
-				\draw[->] (graph) -- (commalg);
+				\draw[->] (graph) -- (clusteralgebra);
 			}
 		\end{tikzpicture}
 	\end{center}
 	\uncover<3->{
 		\begin{center}
 			\begin{tikzpicture}[
-					R/.style = {rectangle, alt=<{3,6}>{fill=none}{fill=black}, inner sep=0.7ex},
-					B/.style = {circle, alt=<{3,6}>{fill=none}{fill=black}, inner sep=0.7ex},
-					every edge/.style= {draw, alt=<{3,4,6}>{black}{gray}},
+					R/.style = {rectangle, alt=<{3,6}>{fill=none}{fill=mDarkTeal}, inner sep=0.7ex},
+					B/.style = {circle, alt=<{3,6}>{fill=none}{fill=mDarkTeal}, inner sep=0.7ex},
+					every edge/.style= {draw, mDarkTeal},
 					baseline
 				]
 				\coordinate (center) at (0,0);
@@ -178,7 +178,7 @@
 				\end{scope}
 
 				% Quiver edges
-				\begin{scope}[every edge/.style={alt=<{3,4,6}>{draw=none}{draw}, -Latex,black,line width=0.2ex}]
+				\begin{scope}[every edge/.style={alt=<{3,4,6}>{draw=none}{draw}, -Latex,mDarkTeal,line width=0.2ex}]
 					\path (AB) edge (AC);
 					\path (AC) edge (BC);
 					\path (AC) edge (AD);
@@ -203,8 +203,8 @@
 			\only<6>{
 				$\qquad \longrightarrow \qquad$
 				\begin{tikzpicture}[
-						R/.style = {rectangle, fill=black, inner sep=0.7ex},
-						B/.style = {circle, fill=black, inner sep=0.7ex},
+						R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
+						B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
 						every edge/.style= {draw=none},
 						baseline
 					]
@@ -242,7 +242,7 @@
 					\end{scope}
 
 					% Quiver edges
-					\begin{scope}[every edge/.style={draw, -Latex,black,line width=0.2ex}]
+					\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.2ex}]
 						\path (AB) edge (AC);
 						\path (AC) edge (BC);
 						\path (AC) edge (AD);
@@ -270,6 +270,222 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Quiver Mutation}
+	\begin{columns}[c]
+
+		\begin{column}{0.4\textwidth}
+			\begin{center}
+
+				\begin{tikzpicture}[
+						R/.style = {rectangle, fill=none, inner sep=0.7ex},
+						B/.style = {circle, fill=none, inner sep=0.7ex},
+						every edge/.style= {draw, mDarkTeal},
+						baseline
+					]
+					\coordinate (center) at (0,0);
+					\def\radius{8ex}
+
+					% points on the circle
+					\begin{scope}[rotate=120]
+						\path (center) ++(0:\radius) coordinate (A);
+						\path (center) ++(60:\radius) coordinate (B);
+						\path (center) ++(120:\radius) coordinate (C);
+						\path (center) ++(180:\radius) coordinate (D);
+						\path (center) ++(240:\radius) coordinate (E);
+						\path (center) ++(300:\radius) coordinate (F);
+					\end{scope}
+
+					% Sides with frozen verts
+					\begin{scope}[nodes=R]
+						\path (A) edge node (AB) {} (B);
+						\path (B) edge node (BC) {} (C);
+						\path (C) edge node (CD) {} (D);
+						\path (D) edge node (DE) {} (E);
+						\path (E) edge node (EF) {} (F);
+						\path (F) edge node (AF) {} (A);
+					\end{scope}
+
+					% Diagonals with exchangeable verts
+					\begin{scope}[nodes=B]
+						\path (A) edge node (AC) {} (C);
+						\path (A) edge node (AD) {} (D);
+						\path (D) edge node (DF) {} (F);
+					\end{scope}
+				\end{tikzpicture}
+				\uncover<2->{
+					\begin{equation*}
+						\downarrow
+					\end{equation*}
+
+					\begin{tikzpicture}[
+							R/.style = {rectangle, fill=none, inner sep=0.7ex},
+							B/.style = {circle, fill=none, inner sep=0.7ex},
+							every edge/.style= {draw, mDarkTeal},
+							baseline
+						]
+						\coordinate (center) at (0,0);
+						\def\radius{8ex}
+
+						% points on the circle
+						\begin{scope}[rotate=120]
+							\path (center) ++(0:\radius) coordinate (A);
+							\path (center) ++(60:\radius) coordinate (B);
+							\path (center) ++(120:\radius) coordinate (C);
+							\path (center) ++(180:\radius) coordinate (D);
+							\path (center) ++(240:\radius) coordinate (E);
+							\path (center) ++(300:\radius) coordinate (F);
+						\end{scope}
+
+						% Sides with frozen verts
+						\begin{scope}[nodes=R]
+							\path (A) edge node (AB) {} (B);
+							\path (B) edge node (BC) {} (C);
+							\path (C) edge node (CD) {} (D);
+							\path (D) edge node (DE) {} (E);
+							\path (E) edge node (EF) {} (F);
+							\path (F) edge node (AF) {} (A);
+						\end{scope}
+
+						% Diagonals with exchangeable verts
+						\begin{scope}[nodes=B]
+							\path (A) edge node (AC) {} (C);
+							\path (C) edge node (CF) {} (F);
+							\path (D) edge node (DF) {} (F);
+							% \path (A) edge node (AG) {} (G);
+							% \path (D) edge node (DG) {} (G);
+							% \path (E) edge node (EG) {} (G);
+						\end{scope}
+					\end{tikzpicture}
+				}
+			\end{center}
+		\end{column}
+
+		\begin{column}{0.2\textwidth}
+			\uncover<3>{
+				\begin{equation*}
+					x_i' = \frac{1}{x_i}\Bigl( \prod_{i \to j} x_j + \prod_{j \to i} x_j\Bigr)
+				\end{equation*}
+			}
+		\end{column}
+
+		\begin{column}{0.4\textwidth}
+			\begin{center}
+
+				\begin{tikzpicture}[
+						R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
+						B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
+						every edge/.style= {draw=none},
+						baseline
+					]
+					\coordinate (center) at (0,0);
+					\def\radius{8ex}
+
+					% points on the circle
+					\begin{scope}[rotate=120]
+						\path (center) ++(0:\radius) coordinate (A);
+						\path (center) ++(60:\radius) coordinate (B);
+						\path (center) ++(120:\radius) coordinate (C);
+						\path (center) ++(180:\radius) coordinate (D);
+						\path (center) ++(240:\radius) coordinate (E);
+						\path (center) ++(300:\radius) coordinate (F);
+					\end{scope}
+
+					% Sides with frozen verts
+					\begin{scope}[nodes=R]
+						\path (A) edge node (AB) {} (B);
+						\path (B) edge node (BC) {} (C);
+						\path (C) edge node (CD) {} (D);
+						\path (D) edge node (DE) {} (E);
+						\path (E) edge node (EF) {} (F);
+						\path (F) edge node (AF) {} (A);
+					\end{scope}
+
+					% Diagonals with exchangeable verts
+					\begin{scope}[nodes=B]
+						\path (A) edge node (AC) {} (C);
+						\path (A) edge node (AD) {} (D);
+						\path (D) edge node (DF) {} (F);
+					\end{scope}
+
+					% Quiver edges
+					\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.2ex}]
+						\path (AB) edge (AC);
+						\path (AC) edge (BC);
+						\path (AC) edge (AD);
+						\path (CD) edge (AC);
+						\path (AD) edge (CD);
+						\path (AD) edge (AF);
+						\path (AF) edge (DF);
+						\path (DF) edge (AD);
+						\path (DF) edge (EF);
+						\path (DE) edge (DF);
+					\end{scope}
+				\end{tikzpicture}
+
+				\uncover<2->{
+
+					\begin{equation*}
+						\downarrow
+					\end{equation*}
+
+					\begin{tikzpicture}[
+							R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
+							B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
+							every edge/.style= {draw=none},
+							baseline
+						]
+						\coordinate (center) at (0,0);
+						\def\radius{8ex}
+
+						% points on the circle
+						\begin{scope}[rotate=120]
+							\path (center) ++(0:\radius) coordinate (A);
+							\path (center) ++(60:\radius) coordinate (B);
+							\path (center) ++(120:\radius) coordinate (C);
+							\path (center) ++(180:\radius) coordinate (D);
+							\path (center) ++(240:\radius) coordinate (E);
+							\path (center) ++(300:\radius) coordinate (F);
+						\end{scope}
+
+						% Sides with frozen verts
+						\begin{scope}[nodes=R]
+							\path (A) edge node (AB) {} (B);
+							\path (B) edge node (BC) {} (C);
+							\path (C) edge node (CD) {} (D);
+							\path (D) edge node (DE) {} (E);
+							\path (E) edge node (EF) {} (F);
+							\path (F) edge node (AF) {} (A);
+						\end{scope}
+
+						% Diagonals with exchangeable verts
+						\begin{scope}[nodes=B]
+							\path (A) edge node (AC) {} (C);
+							\path (C) edge node (CF) {} (F);
+							\path (D) edge node (DF) {} (F);
+						\end{scope}
+
+						% Quiver edges
+						\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.2ex}]
+							\path (AB) edge (AC);
+							\path (AC) edge (BC);
+							\path (AC) edge (AF);
+							\path (AF) edge (CF);
+							\path (CF) edge (AC);
+							\path (CD) edge (CF);
+							\path (CF) edge (DF);
+							\path (DF) edge (CD);
+							\path (DF) edge (EF);
+							\path (DE) edge (DF);
+						\end{scope}
+					\end{tikzpicture}
+				}
+			\end{center}
+		\end{column}
+
+	\end{columns}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Another example}
 
 	\begin{center}
@@ -280,26 +496,29 @@
 			\node[fill, inner sep=0.3ex] at (hole.west) {};
 			\node[fill, inner sep=0.3ex] at (hole.east) {};
 
-			\draw (an.south) edge[bend left, line width = 0.2ex] node[draw=none, left] {1} (hole.west);
-			\draw (an.south) edge[bend right, line width = 0.2ex] node[draw=none, left, near start] {2} (hole.east);
-			\draw[line width = 0.2ex] plot [smooth, tension=1] coordinates {
-					(an.south)
-					($(hole.east) + (2,0)$) ($(hole.north) + (0,2)$)
-					(hole.west)
-				};
-			\node[draw=none, left, outer sep=0.5ex] at (an.east) {3};
+			\uncover<2->{
+				\draw (an.south) edge[bend left, line width = 0.2ex] node[draw=none, left] {1} (hole.west);
+				\draw (an.south) edge[bend right, line width = 0.2ex] node[draw=none, left, near start] {2} (hole.east);
+				\draw[line width = 0.2ex] plot [smooth, tension=1] coordinates {
+						(an.south)
+						($(hole.east) + (2,0)$) ($(hole.north) + (0,2)$)
+						(hole.west)
+					};
+				\node[draw=none, left, outer sep=1.8ex] at (an.east) {3};
 
-			\node[left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
-			\node[below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
-			\node[above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
-
+				\node[left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
+				\node[below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
+				\node[above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
+			}
 		\end{tikzpicture}
-		$\quad \longrightarrow \quad$
-		\begin{tikzcd}[column sep=small,ampersand replacement=\&, arrows={-Latex, line width = 0.2ex}]
-			\boxed{a} \ar[rr, -Latex, line width = 0.2ex] \& \& 3 \drar \dlar \& \& \boxed{c} \ar[ll] \\
-			\& 1 \ular \drar \& \& 2 \ar[ll] \urar \& \\
-			\& \& \boxed{b} \urar \& \&
-		\end{tikzcd}
+		\uncover<3>{
+			$\quad \longrightarrow \quad$
+			\begin{tikzcd}[column sep=small,ampersand replacement=\&, arrows={-Latex, line width = 0.2ex}]
+				\boxed{a} \ar[rr, -Latex, line width = 0.2ex] \& \& 3 \drar \dlar \& \& \boxed{c} \ar[ll] \\
+				\& 1 \ular \drar \& \& 2 \ar[ll] \urar \& \\
+				\& \& \boxed{b} \urar \& \&
+			\end{tikzcd}
+		}
 	\end{center}
 \end{frame}
 
@@ -310,13 +529,13 @@
 
 	\begin{itemize}
 		\item $X$ algebraic variety = set of zeros of a system of polynomials
-		      \pause
+		\item e.g. $X$ is a circle, a line, a torus, a plane, ... \pause
 		\item $\mathbb{C}[X]$ coordinate algebra = polynomial functions on $X$.
 	\end{itemize}
 	\pause
 	\textbf{Goal:} $\mathbb{C}[X] \cong$ cluster algebra
 	\\
-	$\leadsto$ Find graph from the geometry of $X$
+	$\leadsto$ Shows hidden combinatorial structure in $X$
 
 \end{frame}
 
@@ -330,6 +549,13 @@
 	\begin{theorem}
 		$\mathbb{C}[\Gr(2,n)] \cong $ cluster algebra of $n$-gon.
 	\end{theorem}
+	\pause
+	Idea of proof:
+	\begin{itemize}
+		\item Write down relations in $\bbC[\Gr(2,n)]$
+		\item Notice they are the same as Ptolomy's rule
+		\item Finish by a dimension argument
+	\end{itemize}
 
 \end{frame}
 
@@ -337,11 +563,11 @@
 	\frametitle{Canonical bases}
 
 	\begin{itemize}
-		\item $X = G$ semisimple Lie group
+		\item $X = G$ algebraic group, e.g. $SL_n$.
 	\end{itemize}
 	\pause
-	\begin{theorem}[Lusztig-Kashiwara '90]
-		$\mathbb{C}[G]$ has very special type of linear basis: ``canonical/crystal basis''.
+	\begin{theorem}[Lusztig--Kashiwara '90]
+		$\mathbb{C}[G]$ has very special type of linear basis: ``dual canonical/crystal basis''.
 	\end{theorem}
 	\pause
 	Difficulties:
@@ -361,17 +587,14 @@
 
 	Shortcomings:
 	\begin{enumerate}
-		\item Case-by-case \pause
 		\item Commutative, so not for quantum groups\\ \pause $\leadsto$ quantum cluster algebra,
 		      i.e.,
 		      \begin{equation*}
 			      x_i x_j = q_{ij} x_j x_i
-		      \end{equation*}
+		      \end{equation*}%
+		      \pause
+		\item Case-by-case
 	\end{enumerate}
-
-	\vspace{1em}
-	\pause
-	What about the first problem?
 
 \end{frame}
 
@@ -394,11 +617,11 @@
 		\item $A$ an algebra
 		\item Ore extension $A[x; \sigma, \delta]$ is algebra such that
 		      \begin{equation*}
-			      x r = \sigma(r) x + \delta(r)
+			      x a = \sigma(a) x + \delta(a)
 		      \end{equation*}
 		\item CGL extension $\approx$ iterated Ore extension
 		      \begin{equation*}
-			      R = \bbK[x_1][x_2; \sigma_2, \delta_2][x_3; \sigma_3, \delta_3] \dotsb [x_N; \sigma_N, \delta_N]
+			      R = \bbC[x_1][x_2; \sigma_2, \delta_2][x_3; \sigma_3, \delta_3] \dotsb [x_N; \sigma_N, \delta_N]
 		      \end{equation*}
 	\end{itemize}
 	\begin{theorem}[Goodearl--Yakimov, 2017]
@@ -412,8 +635,9 @@
 
 	Some examples:
 	\begin{itemize}
-		\item $\bbC_q[M_{n\times m}]$ quantized matrix coordinate algebra
-		\item Quantum Schubert cell algebras
+		\item $\bbC_q[M_{n\times m}]$: quantized matrix coordinate algebras
+		\item $A^n_q(\bbC)$: quantized Weyl algebras
+		\item More generally: $\mcU_q(\mfn_+ \cap w(\mfn_-))$ quantum Schubert cell algebras
 		\item Double Bruhat cells \pause
 		\item Heisenberg double: $\HeisUqn$
 	\end{itemize}
