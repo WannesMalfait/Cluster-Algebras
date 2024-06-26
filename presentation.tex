@@ -45,7 +45,7 @@
 			\begin{itemize}
 				\item Flipping a diagonal
 				      %
-				\item<5-> Ptolomy's rule\uncover<6->{:
+				\item<5-> Ptolemy's rule\uncover<6->{:
 						\begin{align*}
 							{\color{red} |ac| \cdot |b d|} = |ab| \cdot |cd| + |ad| \cdot |bc| \\
 							\leadsto {\color{red} |bd|} = \frac{|ab| \cdot |cd| + |ad| \cdot |bc|}{\color{red} |ac|}
@@ -230,7 +230,7 @@
 			\node[outer sep=1ex] (clusteralgebra) at (4, 0) {Commutative algebra};
 			\draw[->, alt=<1>{solid}{dashed}] (triangulations) -- (clusteralgebra);
 			\uncover<2->{
-				\node[outer sep=1ex] (graph) at (0,-1.5) {\{Graphs\}};
+				\node[outer sep=1ex] (graph) at (0,-1.5) {\{Quivers\}};
 				\draw[->] (triangulations) -- (graph);
 				\draw[->] (graph) -- (clusteralgebra);
 			}
@@ -239,9 +239,9 @@
 	\uncover<3->{
 		\begin{center}
 			\begin{tikzpicture}[
-					R/.style = {rectangle, alt=<{3,6}>{fill=none}{fill=mDarkTeal}, inner sep=0.7ex},
-					B/.style = {circle, alt=<{3,6}>{fill=none}{fill=mDarkTeal}, inner sep=0.7ex},
-					every edge/.style= {draw, mDarkTeal},
+					R/.style = {rectangle, alt=<{3,6}>{fill=none}{fill=mLightBrown}, inner sep=0.5ex, outer sep=0.5ex},
+					B/.style = {circle, alt=<{3,6}>{fill=none}{fill=teal}, inner sep=0.5ex, outer sep=0.5ex},
+					every edge/.style= {draw, alt=<{5}>{gray}{mDarkTeal}},
 					baseline
 				]
 				\coordinate (center) at (0,0);
@@ -272,9 +272,6 @@
 					\path (A) edge node (AC) {} (C);
 					\path (A) edge node (AD) {} (D);
 					\path (D) edge node (DF) {} (F);
-					% \path (A) edge node (AG) {} (G);
-					% \path (D) edge node (DG) {} (G);
-					% \path (E) edge node (EG) {} (G);
 				\end{scope}
 
 				% Quiver edges
@@ -289,22 +286,13 @@
 					\path (DF) edge (AD);
 					\path (DF) edge (EF);
 					\path (DE) edge (DF);
-					% \path (AD) edge (AG);
-					% \path (DG) edge (AD);
-					% \path (AG) edge (DG);
-					% \path (AG) edge (HA);
-					% \path (GH) edge (AG);
-					% \path (DE) edge (DG);
-					% \path (DG) edge (EG);
-					% \path (EG) edge (FG);
-					% \path (EF) edge (EG);
 				\end{scope}
 			\end{tikzpicture}
 			\only<6>{
 				$\qquad \longrightarrow \qquad$
 				\begin{tikzpicture}[
-						R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
-						B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
+						R/.style = {rectangle, fill=mLightBrown, inner sep=0.5ex, outer sep= 0.5ex},
+						B/.style = {circle, fill=teal, inner sep=0.5ex, outer sep= 0.5ex},
 						every edge/.style= {draw=none},
 						baseline
 					]
@@ -336,9 +324,6 @@
 						\path (A) edge node (AC) {} (C);
 						\path (A) edge node (AD) {} (D);
 						\path (D) edge node (DF) {} (F);
-						% \path (A) edge node (AG) {} (G);
-						% \path (D) edge node (DG) {} (G);
-						% \path (E) edge node (EG) {} (G);
 					\end{scope}
 
 					% Quiver edges
@@ -353,15 +338,6 @@
 						\path (DF) edge (AD);
 						\path (DF) edge (EF);
 						\path (DE) edge (DF);
-						% \path (AD) edge (AG);
-						% \path (DG) edge (AD);
-						% \path (AG) edge (DG);
-						% \path (AG) edge (HA);
-						% \path (GH) edge (AG);
-						% \path (DE) edge (DG);
-						% \path (DG) edge (EG);
-						% \path (EG) edge (FG);
-						% \path (EF) edge (EG);
 					\end{scope}
 				\end{tikzpicture}
 			}
@@ -407,7 +383,7 @@
 
 					% Diagonals with exchangeable verts
 					\begin{scope}[nodes=B]
-						\path (A) edge node (AC) {} (C);
+						\path[dashed] (A) edge[red] node (AC) {} (C);
 						\path (A) edge node (AD) {} (D);
 						\path (D) edge node (DF) {} (F);
 					\end{scope}
@@ -448,8 +424,8 @@
 
 						% Diagonals with exchangeable verts
 						\begin{scope}[nodes=B]
-							\path (A) edge node (AC) {} (C);
-							\path (C) edge node (CF) {} (F);
+							\path (A) edge node (AD) {} (D);
+							\path[dashed] (B) edge[red] node (BD) {} (D);
 							\path (D) edge node (DF) {} (F);
 							% \path (A) edge node (AG) {} (G);
 							% \path (D) edge node (DG) {} (G);
@@ -472,13 +448,13 @@
 			\begin{center}
 
 				\begin{tikzpicture}[
-						R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
-						B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
+						R/.style = {rectangle, fill=mLightBrown, inner sep=0.5ex, outer sep=.5ex},
+						B/.style = {circle, fill=teal, inner sep=0.5ex, outer sep=0.5ex},
 						every edge/.style= {draw=none},
 						baseline
 					]
 					\coordinate (center) at (0,0);
-					\def\radius{8ex}
+					\def\radius{9ex}
 
 					% points on the circle
 					\begin{scope}[rotate=120]
@@ -502,13 +478,13 @@
 
 					% Diagonals with exchangeable verts
 					\begin{scope}[nodes=B]
-						\path (A) edge node (AC) {} (C);
+						\path (A) edge node[red] (AC) {} (C);
 						\path (A) edge node (AD) {} (D);
 						\path (D) edge node (DF) {} (F);
 					\end{scope}
 
 					% Quiver edges
-					\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.2ex}]
+					\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.15ex}]
 						\path (AB) edge (AC);
 						\path (AC) edge (BC);
 						\path (AC) edge (AD);
@@ -529,8 +505,8 @@
 					\end{equation*}
 
 					\begin{tikzpicture}[
-							R/.style = {rectangle, fill=mDarkTeal, inner sep=0.7ex},
-							B/.style = {circle, fill=mDarkTeal, inner sep=0.7ex},
+							R/.style = {rectangle, fill=mLightBrown, inner sep=0.5ex, outer sep = 0.5ex},
+							B/.style = {circle, fill=teal, inner sep=0.5ex, outer sep = 0.5ex},
 							every edge/.style= {draw=none},
 							baseline
 						]
@@ -559,21 +535,24 @@
 
 						% Diagonals with exchangeable verts
 						\begin{scope}[nodes=B]
-							\path (A) edge node (AC) {} (C);
-							\path (C) edge node (CF) {} (F);
+							\path (A) edge node (AD) {} (D);
+							\path (B) edge node[fill=red] (BD) {} (D);
 							\path (D) edge node (DF) {} (F);
 						\end{scope}
 
 						% Quiver edges
-						\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.2ex}]
-							\path (AB) edge (AC);
-							\path (AC) edge (BC);
-							\path (AC) edge (AF);
-							\path (AF) edge (CF);
-							\path (CF) edge (AC);
-							\path (CD) edge (CF);
-							\path (CF) edge (DF);
-							\path (DF) edge (CD);
+						\begin{scope}[every edge/.style={draw, -Latex,mDarkTeal,line width=0.15ex}]
+							\path (BD) edge[red] (AB);
+							\path (AB) edge[red] (AD);
+							\path (AD) edge[red] (BD);
+
+							\path (BC) edge[red] (BD);
+							\path (BD) edge[red] (CD);
+
+							\path (AD) edge (AF);
+							\path (AF) edge (DF);
+							\path (DF) edge (AD);
+
 							\path (DF) edge (EF);
 							\path (DE) edge (DF);
 						\end{scope}
@@ -589,26 +568,27 @@
 	\frametitle{Another example}
 
 	\begin{center}
-		\begin{tikzpicture}[nodes={shape=circle,line width = 0.2ex, draw,font=\footnotesize},x=1ex,y=1ex, scale=2.5,baseline]
-			\node[gray, inner sep=10ex] (an) {};
-			\node[gray, pattern=crosshatch,pattern color=gray,inner sep=3 ex] at (an.center) (hole) {};
+		\begin{tikzpicture}[nodes={shape=circle,line width = 0.2ex, draw,font=\footnotesize},baseline]
+			\fill[fill=mLightBrown!30, even odd rule] (0,0) circle[radius=18ex] (0,0) circle[radius=5ex];
+			\node[minimum size=36ex] at (0,0) (an) {};
+			\node[minimum size =10 ex] at (an.center) (hole) {};
 			\node[fill, inner sep=0.3ex] at (an.south) {};
 			\node[fill, inner sep=0.3ex] at (hole.west) {};
 			\node[fill, inner sep=0.3ex] at (hole.east) {};
 
 			\uncover<2->{
-				\draw (an.south) edge[bend left, line width = 0.2ex] node[draw=none, left] {1} (hole.west);
-				\draw (an.south) edge[bend right, line width = 0.2ex] node[draw=none, left, near start] {2} (hole.east);
+				\draw (an.south) edge[bend left, line width = 0.2ex] node[draw, fill=white, left, outer sep=0.5ex] {1} (hole.west);
+				\draw (an.south) edge[bend right, line width = 0.2ex] node[draw,fill=white, left, near start, outer sep=1ex] {2} (hole.east);
 				\draw[line width = 0.2ex] plot [smooth, tension=1] coordinates {
 						(an.south)
-						($(hole.east) + (2,0)$) ($(hole.north) + (0,2)$)
+						($(hole.east) + (1.5,0)$) ($(hole.north) + (0,1.5)$)
 						(hole.west)
 					};
-				\node[draw=none, left, outer sep=1.8ex] at (an.east) {3};
+				\node[draw,fill=white, left, outer sep=5ex] at (an.east) {3};
 
-				\node[left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
-				\node[below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
-				\node[above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
+				\node[fill=white, left, rectangle, outer sep=0.3ex] at (an.west) {$a$};
+				\node[fill=white, below, rectangle, outer sep=0.3ex] at (hole.south) {$b$};
+				\node[fill=white, above, rectangle, outer sep=0.3ex] at (hole.north) {$c$};
 			}
 		\end{tikzpicture}
 		\uncover<3>{
@@ -628,8 +608,8 @@
 	\frametitle{Other objects with cluster structure}
 
 	\begin{itemize}
-		\item $X$ algebraic variety = set of zeros of a system of polynomials
-		\item e.g. $X$ is a circle, a line, a torus, a plane, ... \pause
+		\item $X$ affine variety = set of zeros of a system of polynomials
+		\item e.g. $X$ is a line, a circle, a sphere, a plane, ... \pause
 		\item $\mathbb{C}[X]$ coordinate algebra = polynomial functions on $X$.
 	\end{itemize}
 	\pause
@@ -647,13 +627,13 @@
 	\end{itemize}
 	\pause
 	\begin{theorem}
-		$\mathbb{C}[\Gr(2,n)] \cong $ cluster algebra of $n$-gon.
+		$\mathbb{C}[\wh{\Gr}(2,n)] \cong $ cluster algebra of $n$-gon.
 	\end{theorem}
 	\pause
 	Idea of proof:
 	\begin{itemize}
 		\item Write down relations in $\bbC[\Gr(2,n)]$
-		\item Notice they are the same as Ptolomy's rule
+		\item Notice they are the same as Ptolemy's rule
 		\item Finish by a dimension argument
 	\end{itemize}
 
@@ -663,7 +643,7 @@
 	\frametitle{Canonical bases}
 
 	\begin{itemize}
-		\item $X = G$ algebraic group, e.g. $SL_n$.
+		\item $X = G$ (simple) algebraic group, e.g. $SL_n$.
 	\end{itemize}
 	\pause
 	\begin{theorem}[Lusztig--Kashiwara '90]
@@ -680,6 +660,17 @@
 
 \end{frame}
 
+\begin{frame}
+	\frametitle{Motivation for cluster algebras}
+
+	Cluster algebras were introduced by S. Fomin and A. Zelevinsky in 2002
+	\begin{itemize}
+		\item Combinatorial framework to study canonical bases and total positivity
+		\item Cluster monomials form (large part of) dual canonical basis
+		\item Structure constants are all positive
+	\end{itemize}
+\end{frame}
+
 \section{Quantum cluster algebras}
 
 \begin{frame}
@@ -687,7 +678,7 @@
 
 	Shortcomings:
 	\begin{enumerate}
-		\item Commutative, so not for quantum groups\\ \pause $\leadsto$ quantum cluster algebra,
+		\item Commutative algebras, so not for quantum groups\\ \pause $\leadsto$ quantum cluster algebra,
 		      i.e.,
 		      \begin{equation*}
 			      x_i x_j = q_{ij} x_j x_i
@@ -739,12 +730,12 @@
 		\item $\bbC_q[M_{n\times m}]$: quantized matrix coordinate algebras
 		\item $A^n_q(\bbC)$: quantized Weyl algebras
 		\item More generally: $\mcU_q(\mfn_+ \cap w(\mfn_-))$ quantum Schubert cell algebras
-		\item Double Bruhat cells \pause
+		\item $\bbC_q[B^+ u B^- \cap B^+ v B^-]$: quantized Double Bruhat cells \pause
 		\item Heisenberg double: $\HeisUqn$
 	\end{itemize}
 	\medskip
 	\pause
-	Future: more general Heisenberg doubles
+	Future: integrate analytic structure of Heisenberg doubles
 
 \end{frame}
 
