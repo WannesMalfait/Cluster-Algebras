@@ -565,6 +565,24 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Hexagon is a surface}
+
+	\begin{center}
+		\begin{tikzpicture}
+			\node[draw, shape=regular polygon, regular polygon sides=6, minimum size=20ex](hex){};
+			\pause
+			\node[draw, shape=circle, fill=mLightBrown!30, right= 10ex of hex, minimum size=20ex] (disc) {};
+			\path (hex) -- node[font=\Large] {=} (disc);
+			\foreach \a in {0, 60, ..., 360} {
+					\node[fill, inner sep=0.3ex, shape=circle] at ($(\a :10ex) + (disc)$) {};
+				}
+
+		\end{tikzpicture}
+	\end{center}
+
+\end{frame}
+
+\begin{frame}
 	\frametitle{Another example}
 
 	\begin{center}
@@ -609,7 +627,7 @@
 
 	\begin{itemize}
 		\item $X$ affine variety = set of zeros of a system of polynomials
-		\item e.g. $X$ is a line, a circle, a sphere, a plane, ... \pause
+		\item e.g., $X$ is a line, a circle, a sphere, a plane, ... \pause
 		\item $\mathbb{C}[X]$ coordinate algebra = polynomial functions on $X$.
 	\end{itemize}
 	\pause
@@ -632,7 +650,7 @@
 	\pause
 	Idea of proof:
 	\begin{itemize}
-		\item Write down relations in $\bbC[\Gr(2,n)]$
+		\item Write down relations in $\bbC[\wh{Gr}(2,n)]$
 		\item Notice they are the same as Ptolemy's rule
 		\item Finish by a dimension argument
 	\end{itemize}
@@ -643,7 +661,7 @@
 	\frametitle{Canonical bases}
 
 	\begin{itemize}
-		\item $X = G$ (simple) algebraic group, e.g. $SL_n$.
+		\item $X = G$ (simple) algebraic group, e.g., $SL_n$.
 	\end{itemize}
 	\pause
 	\begin{theorem}[Lusztig--Kashiwara '90]
@@ -678,8 +696,8 @@
 
 	Shortcomings:
 	\begin{enumerate}
-		\item Commutative algebras, so not for quantum groups\\ \pause $\leadsto$ quantum cluster algebra,
-		      i.e.,
+		\item Commutative algebras, so not for quantum groups\\ \pause $\leadsto$ quantum cluster
+		      algebra, i.e.,
 		      \begin{equation*}
 			      x_i x_j = q_{ij} x_j x_i
 		      \end{equation*}%
@@ -739,8 +757,54 @@
 
 \end{frame}
 
-% \appendix
+\appendix
 
-% \section{Extra slides}
+\section{Extra slides}
 
+\begin{frame}
+	\frametitle{Example of $\SL_2$}
+
+	\begin{itemize}
+		\item $\bbC[\SL_2] = \bbC[a,b,c,d] / (ad -bc - 1)$
+		\item Rank 1 cluster algebra
+		\item Frozen variables: $\{b,c\}$
+		\item Exchangeable variables: $\{a,d\}$
+		\item Clusters: $\{a,b,c\}$ and $\{d,b,c\}$
+		\item Exchange relation
+		      \begin{equation*}
+			      ad = bc + 1
+		      \end{equation*}
+	\end{itemize}
+
+\end{frame}
+\begin{frame}
+	\frametitle{$A_2$ quiver}
+
+	\begin{align*}
+		Q = \begin{tikzcd}[ampersand replacement=\&]
+			    1 \rar \& 2
+		    \end{tikzcd},
+		 & \quad \mathbf{x} = \left(x_1, x_2\right)                                                                                  \\
+		\mu_1(Q) = \begin{tikzcd}[ampersand replacement=\&]
+			           1 \&  \lar 2
+		           \end{tikzcd},
+		 & \quad \mu_1(\mathbf{x}) = \left(\frac{1+x_2}{x_1}, x_2\right)                                                             \\
+		\mu_{12}(Q) = \begin{tikzcd}[ampersand replacement=\&]
+			              1 \rar \&  2
+		              \end{tikzcd},
+		 & \quad  \mu_{12}(\mathbf{x}) = \left(\frac{1+x_2}{x_1}, \frac{x_1 + x_2 + 1}{x_1 x_2}\right)                               \\
+		\mu_{121}(Q) = \begin{tikzcd}[ampersand replacement=\&]
+			               1 \& \lar 2
+		               \end{tikzcd},
+		 & \quad  \mu_{121}(\mathbf{x}) = \left(\frac{x_1(x_1 x_2 + x_1 + x_2 + 1)}{x_1x_2(1+x_2)}, \frac{x_1 + x_2 + 1}{x_2}\right) \\
+		\mu_{1212}(Q) = \begin{tikzcd}[ampersand replacement=\&]
+			                1 \rar\& 2
+		                \end{tikzcd},
+		 & \quad  \mu_{1212}(\mathbf{x}) = \left(\frac{x_1 + 1}{x_2}, x_1\right)                                                     \\
+		\mu_{12121}(Q) = \begin{tikzcd}[ampersand replacement=\&]
+			                 1 \& \lar 2
+		                 \end{tikzcd},
+		 & \quad  \mu_{12121}(\mathbf{x}) = \left(x_2, x_1\right)
+	\end{align*}
+\end{frame}
 \end{document}
